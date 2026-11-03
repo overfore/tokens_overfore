@@ -6,6 +6,7 @@ uso (desde la carpeta latex/, después de compilar):
   python herramientas/medir_figuras.py S4 T-14         sólo esos documentos
   python herramientas/medir_figuras.py --todas         muestra también las que cumplen
   python herramientas/medir_figuras.py --md informe.md además escribe la lista en Markdown
+  python herramientas/medir_figuras.py --carpeta salida-borrador   mide los PDF de otra carpeta
 
 Cómo mide: LaTeX no sabe qué letra hay dentro de una imagen, así que la herramienta lee el PDF
 ya compilado. Cada figura (imagen de más de 4 cm con título «Figura …» debajo) se dibuja a
@@ -142,12 +143,16 @@ def main():
     args = sys.argv[1:]
     todas = '--todas' in args
     md = args[args.index('--md') + 1] if '--md' in args else None
-    filtro = {a.upper().replace('ANEXOS', 'anexos') for a in args if not a.startswith('--') and a != md}
-    pdfs = sorted(glob.glob(os.path.join(SALIDA, '*.pdf')))
+    dir_arg = args[args.index('--carpeta') + 1] if '--carpeta' in args else None
+    carpeta = dir_arg or SALIDA
+    if not os.path.isdir(carpeta):
+        carpeta = os.path.join(os.path.dirname(AQUI), carpeta)     # relativa a latex/
+    filtro = {a.upper().replace('ANEXOS', 'anexos') for a in args if not a.startswith('--') and a not in (md, dir_arg)}
+    pdfs = sorted(glob.glob(os.path.join(carpeta, '*.pdf')))
     if filtro:
         pdfs = [f for f in pdfs if documento(f) in filtro or documento(f).split()[0] in filtro]
     if not pdfs:
-        sys.exit('No hay PDF en %s que coincidan; compila primero.' % SALIDA)
+        sys.exit('No hay PDF en %s que coincidan; compila primero.' % carpeta)
     figuras = []
     with ProcessPoolExecutor() as ex:
         for r in ex.map(medir, pdfs):
@@ -187,7 +192,8 @@ def main():
 
     if md:
         with open(md, 'w', encoding='utf-8') as out:
-            out.write('# Figuras bajo 9 pt\n\nMedición de `herramientas/medir_figuras.py` sobre los PDF de `salida/`. '
+            out.write('# Figuras bajo 9 pt\n\nMedición de `herramientas/medir_figuras.py` sobre los PDF de `%s/`. '
+                      % os.path.basename(os.path.normpath(carpeta)) +
                       'La letra es la del texto más chico de cada figura tal como se imprime (± 0,3 pt).\n\n')
             out.write('| Doc | Figura | Folio | Letra | Estado | Título |\n|---|---|---|---|---|---|\n')
             for fila in filas:
