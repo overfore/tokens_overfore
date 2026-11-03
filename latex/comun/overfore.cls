@@ -222,7 +222,7 @@
 \newcommand\subseccion{\subsubsection}
 \newcommand\subsubseccion{\paragraph}
 \newif\ifov@enIA
-\newcommand\ov@textoIA{Declaración de uso de IA}
+\newcommand*\ov@textoIA{Declaración de uso de IA}% con * para que \ifx la iguale al \def de \seccionsinnumero
 \newcommand\seccionsinnumero[1]{\def\ov@tmp{#1}\ifx\ov@tmp\ov@textoIA\global\ov@enIAtrue\else\global\ov@enIAfalse\fi
   \section*{#1}\phantomsection\addcontentsline{toc}{section}{#1}}
 

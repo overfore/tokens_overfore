@@ -34,6 +34,7 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 | F-02 | Alta / forma | Figuras 4.10 y 4.21 a 4.24 de S4 en vista general y por partes, a 9 pt por parte | en_revision | Claude, sesión 2026-10-31 (a pedido del usuario, Grupo 2) | Pendiente (sólo autorrevisión) |
 | S13-01 | Alta / entrega 2 | Corregir S13: ubicación del motor de conciliación (DEC-014 / R-06) y cuantificación del beneficio de la innovación 4 (O-13.1) | cerrada | Claude, sesión 2026-10-29, por encargo de David (Grupo 1) | David (Grupo 1), revisada el 2026-10-29 |
 | F-03 | Alta / presentación | Dependencias y ruta crítica en las cartas Gantt de las ramas de T-14 | en_revision | Claude, sesión 2026-10-29, rama grupo6 | Pendiente (sólo autorrevisión) |
+| LC-01 | Media / lectura de cierre | Corregir erratas, oraciones rotas, citas inexistentes e indicios «dudosos» que señaló la Primera Revisión del Informe 2 y que siguen en el LaTeX | en_revision | Claude, sesión 2026-11-03, rama claude/kind-heisenberg-egckbe | Pendiente (sólo autorrevisión) |
 | E3-01 | Planificada / entrega 3 | Documento económico, planilla, flujo, curva S, VAN/TIR e innovaciones | pendiente | Sin asignar | Sin asignar |
 | E3-02 | Planificada / entrega 3 | Prototipo navegable y evidencia de requisitos UX/UI | pendiente | Sin asignar | Sin asignar |
 
@@ -137,6 +138,23 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 - **Validación 2026-10-29:** reglas sin errores, T-14 compila con 129 páginas (folios sin cambio) y la letra mínima de las 18 cartas mide 9,00 pt en el PDF. Revisión independiente pendiente.
 - **Validación de la tercera pasada:** reglas sin errores; T-14 con 129 páginas; letra mínima 9,00 pt en C.1 a C.15 y 9,02 pt en C.16 a C.18.
 - **Validación de la segunda pasada:** reglas sin errores; T-14 compila con 129 páginas (folios sin cambio; el párrafo explicativo se compactó para no agregar página) y la letra mínima de las 18 cartas mide 9,00 pt en el PDF, incluidos los recuadros de código. Revisión independiente pendiente.
+
+### LC-01 — Lectura de cierre tras la Primera Revisión del Informe 2
+
+- **Estado:** en_revision. Responsable: Claude, sesión 2026-11-03, a pedido del usuario («qué cosas son obvias de corregir»). Commit de partida: `e7f2195` (main). Revisión independiente pendiente.
+- **Origen:** `revisiones-profesor/G01 - OVERFORE - Primera Revisión Informe 2.pdf` y `revision-comision/Revision_Informe2_OVERFORE_v3.md`. Cada frase citada por el profesor como errata se buscó en el LaTeX actual; sólo se corrigen las que siguen.
+- **Alcance:** correcciones locales de redacción y de referencias que no cambian decisiones, cifras ni compromisos. Se agrega `\externos{S6}` al T-9 para que resuelvan sus referencias al S6.
+  - S2 2.2.3: «referencia de la industria» → «meta interna de 25 minutos» (caso, cap. 7.2, columna «Meta interna», verificado en el PDF del caso).
+  - Oraciones rotas: S3 (2), S4 (párrafo SOLID), S5 (3); puntos pegados en S4, T-14 y S13.
+  - S4: se retira la frase de plantilla «Las Figuras 4.Xa, 4.Xb presentan este recorrido por partes» en 4.6 y 4.8; en 4.15 se fusiona con el párrafo anterior porque es la única cita de esas figuras.
+  - T-9: «Figura 6.4a/6.4b» → referencias a las Figuras de S6 que existen (ecosistema y matriz de poder e interés).
+  - T-12, RT-19.08 y RT-19.10: «Tabla 6.2» inexistente → Formulario T-9, Tabla «Plan de comunicaciones».
+  - S8-Anexos: el Comunicado 10 se atribuye al mandante (CMAA, 2026d) y no al docente; T-16: se retira esa entrada, que no se citaba.
+  - S8: leyenda de la Figura 8.3 sin la «zona inherente» que la figura no muestra.
+  - Declaraciones de IA: sin cambios. El paso a mayúscula de los nombres de herramienta se revirtió a pedido del usuario; las celdas quedan como en `e7f2195`.
+- **Clase (autorizado por el usuario el 2026-11-03):** `latex/comun/overfore.cls`, línea 225, `\newcommand` → `\newcommand*` en `\ov@textoIA`. La comparación `\ifx` con el `\def` de `\seccionsinnumero` nunca era verdadera, por lo que la excepción que deja a la tabla de la Declaración de uso de IA pasar de página no se activaba y la compilación normal se detenía en 9 subdocumentos. Las demás tablas del cuerpo siguen limitadas a una página. Comprobado con un documento mínimo; `python compilar.py` (modo normal): 31 documentos sin error, estable en 5 pasadas, 1.317 folios, PDF en `latex/salida/` (no versionados).
+- **Fuera de alcance (requiere decisión del equipo):** 14 frente a 19 grupos de interés (DEC-012), dotación del S1 (DEC-013), sitio y correo institucional, figuras bajo 9 pt, parciales del T-12, EDT y Gantt del S7, riesgos internos del S8.
+- **Validación 2026-11-03:** `python compilar.py --reglas`: 0 errores (los 9 avisos de R-08). `python compilar.py --borrador`: 31 documentos sin error, estable en 3 pasadas, 1.317 folios; la compilación normal sigue detenida por la Declaración de IA (fuera de alcance). T-9 recompilado tras agregar `\externos{S6}`: 0 referencias indefinidas; T-12, S4 y S8-Anexos también con 0. Cada corrección se comprobó en el texto de los PDF: «Tabla 6.2» 0, «presentan este recorrido» 0, «Moya» 0, «zona inherente» en la leyenda 0. Entorno: TeX Live 2023 en Linux. No se versionan PDF ni auxiliares. Sólo autorrevisión.
 
 ### E3-01 — Economía de entrega 3
 

@@ -263,7 +263,7 @@ Los patrones de diseño resuelven los riesgos recurrentes: bandeja de salida tra
 
 Los módulos intercambian eventos de dominio mediante publicación y suscripción, con orden por agregado y cola de fallidos (4.1.7.3). Cada módulo conserva su propio almacén de las vistas integradas de Equipos y Mantenimiento, e Indicadores y Centro Integrado, son vistas materializadas alimentadas por eventos (ADR-08, 4.1.6.2 y 4.1.6.4). Dos puertas de enlace separan la exposición para portales e integraciones de los canales operacionales de terreno (4.1.4.3), y las colas nivelan la carga para absorber saturaciones sin rechazar registros de terreno (4.2.4).
 
-Cada servicio modular se implementa con puertos y adaptadores y aplica SOLID (Martin, 2017): tiene una única responsabilidad y razón de cambio las reglas de su proceso, mientras identidad y traducción de sistemas externos permanecen aisladas que se amplía mediante módulos, conectores y parámetros versionados sin modificar lo existente, la cuál permite sustituir conectores que cumplen el mismo contrato de correlación y antigüedad del dato, incluso entre interfaces y exportaciones programadas (SUP-16), expone sólo las interfaces necesarias para cada consumidor (Tabla \ref{tab:interfaces-sincronas-eventos-publicados-datos-consumidos}), y hace depender la lógica de negocio de contratos OpenAPI y AsyncAPI y de puertos abstractos de mensajería y almacenamiento. Así, un mismo módulo puede operar en nube mediante el bus de eventos o en el Nodo de Faena mediante la bandeja de salida local, cambiando únicamente el adaptador.
+Cada servicio modular se implementa con puertos y adaptadores y aplica SOLID (Martin, 2017). Cada servicio tiene una única responsabilidad, y su razón de cambio son las reglas de su proceso, mientras la identidad y la traducción de sistemas externos permanecen aisladas. Se amplía mediante módulos, conectores y parámetros versionados, sin modificar lo existente. Permite sustituir conectores que cumplen el mismo contrato de correlación y antigüedad del dato, incluso entre interfaces y exportaciones programadas (SUP-16). Además, expone sólo las interfaces necesarias para cada consumidor (Tabla \ref{tab:interfaces-sincronas-eventos-publicados-datos-consumidos}), y hace depender la lógica de negocio de contratos OpenAPI y AsyncAPI y de puertos abstractos de mensajería y almacenamiento. Así, un mismo módulo puede operar en nube mediante el bus de eventos o en el Nodo de Faena mediante la bandeja de salida local, cambiando únicamente el adaptador.
 
 \subseccion{Vista general en capas}
 Esta sección presenta las ocho capas en una vista general, la correspondencia de los componentes del Esquema de Solución con cada una, su ubicación en la faena, el Nodo de Faena y la nube, y los ambientes lógicos en que se despliegan.
@@ -378,7 +378,7 @@ Alcance desde Internet & Sí, detrás del borde & No, sólo abre conexiones sali
 Analizando la tabla, se puede observar que la puerta de exposición prioriza controlar a cada consumidor y la operacional prioriza no perder ningún hecho. Como la puerta operacional no acepta conexiones entrantes desde Internet, sólo es alcanzable desde la red local de cada sitio: la red de la faena para el Nodo y sus gabinetes, y la red del acopio para el gabinete de puerto.
 
 \subsubseccion{Capa 4: Servicios de negocio, con siete módulos de negocio y dos transversales}
-\enlargethispage{2\baselineskip}La capa de servicios de negocio es la que decide. Contiene los siete módulos de negocio y los dos transversales del Esquema de Solución, cada uno como un servicio modular, y su responsabilidad es aplicar las reglas del negocio: registrar los hechos, validarlos, calcular balances e indicadores y decidir la habilitación de una persona.La Figura \ref{fig:modulos-capa-servicios-negocio-nube-nodo} muestra cómo se agrupan los módulos, cuáles tienen además una instancia en el Nodo de Faena y con qué capas se relacionan.
+\enlargethispage{2\baselineskip}La capa de servicios de negocio es la que decide. Contiene los siete módulos de negocio y los dos transversales del Esquema de Solución, cada uno como un servicio modular, y su responsabilidad es aplicar las reglas del negocio: registrar los hechos, validarlos, calcular balances e indicadores y decidir la habilitación de una persona. La Figura \ref{fig:modulos-capa-servicios-negocio-nube-nodo} muestra cómo se agrupan los módulos, cuáles tienen además una instancia en el Nodo de Faena y con qué capas se relacionan.
 
 \begin{horizontal}
 \csname ov@hoja\endcsname{330.2mm}{215.9mm}
@@ -393,8 +393,6 @@ Hacia arriba, los servicios ofrecen interfaces síncronas a las puertas de la ca
 
 \subsubseccion{Capa 5: Integración y eventos, con el Integrador de Sistemas y el Nodo de Faena}
 La capa de integración y eventos mueve el dato sin decidir sobre él. Sus responsables son el bus de eventos, el Integrador de Sistemas y el Nodo de Faena, que además tiene un agente en cada gabinete. Las Figuras \ref{fig:componentes-capa-integracion-eventos-nube-faena} y \ref{fig:componentes-capa-integracion-eventos-nube-faena-b} muestran dónde corre cada componente y qué sistema atiende cada conector.
-
-Las Figuras \ref{fig:componentes-capa-integracion-eventos-nube-faena}, \ref{fig:componentes-capa-integracion-eventos-nube-faena-b} presentan este recorrido por partes.
 
 \begin{horizontal}
 \expandafter\def\csname ov@altofig\endcsname{0.80}
@@ -435,8 +433,6 @@ La declaración del operador de pala queda guardada en el almacén transaccional
 
 \subsubseccion{Capa 7: Seguridad transversal}
 Las capas 7 y 8 no forman un paso del recorrido, porque se aplican sobre las capas 1 a 6. La capa de seguridad sigue el modelo de confianza cero, y la red de la faena no concede confianza por sí misma. Las Figuras \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante} y \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante-b} muestran los componentes responsables en la nube y en la faena, la población que atiende cada identidad y la forma en que opera la capa durante un corte.
-
-Las Figuras \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante}, \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante-b} presentan este recorrido por partes.
 
 \begin{horizontal}
 \expandafter\def\csname ov@altofig\endcsname{0.80}
@@ -606,9 +602,7 @@ Se dispone de nueve conectores operativos y de un conector de migración para la
 \end{horizontal}
 En la nube se ejecutan los conectores de SAP, telemetría, fatiga y planificación minera. El bus transporta los eventos entre estos conectores y los módulos de SITCO. La versión vigente del plan minero y los datos de referencia se envían al Nodo de Faena para que la operación local conserve la información necesaria durante un corte de enlace.
 
-La segunda parte muestra cómo se atienden los sistemas ubicados en la faena y cómo se conserva la información antes de enviarla a la nube.
-
-Las Figuras \ref{fig:conectores-faena-procesamiento-local-carga-unica}, \ref{fig:conectores-faena-procesamiento-local-carga-unica-b} presentan este recorrido por partes.
+Las Figuras \ref{fig:conectores-faena-procesamiento-local-carga-unica} y \ref{fig:conectores-faena-procesamiento-local-carga-unica-b} muestran cómo se atienden los sistemas ubicados en la faena y cómo se conserva la información antes de enviarla a la nube.
 
 \begin{horizontal}
 \expandafter\def\csname ov@altofig\endcsname{0.80}
