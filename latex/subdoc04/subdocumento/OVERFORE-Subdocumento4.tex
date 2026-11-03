@@ -263,7 +263,7 @@ Los patrones de diseño resuelven los riesgos recurrentes: bandeja de salida tra
 
 Los módulos intercambian eventos de dominio mediante publicación y suscripción, con orden por agregado y cola de fallidos (4.1.7.3). Cada módulo conserva su propio almacén de las vistas integradas de Equipos y Mantenimiento, e Indicadores y Centro Integrado, son vistas materializadas alimentadas por eventos (ADR-08, 4.1.6.2 y 4.1.6.4). Dos puertas de enlace separan la exposición para portales e integraciones de los canales operacionales de terreno (4.1.4.3), y las colas nivelan la carga para absorber saturaciones sin rechazar registros de terreno (4.2.4).
 
-Cada servicio modular se implementa con puertos y adaptadores y aplica SOLID (Martin, 2017): tiene una única responsabilidad y razón de cambio las reglas de su proceso, mientras identidad y traducción de sistemas externos permanecen aisladas que se amplía mediante módulos, conectores y parámetros versionados sin modificar lo existente, la cuál permite sustituir conectores que cumplen el mismo contrato de correlación y antigüedad del dato, incluso entre interfaces y exportaciones programadas (SUP-16), expone sólo las interfaces necesarias para cada consumidor (Tabla \ref{tab:interfaces-sincronas-eventos-publicados-datos-consumidos}), y hace depender la lógica de negocio de contratos OpenAPI y AsyncAPI y de puertos abstractos de mensajería y almacenamiento. Así, un mismo módulo puede operar en nube mediante el bus de eventos o en el Nodo de Faena mediante la bandeja de salida local, cambiando únicamente el adaptador.
+Cada servicio modular se implementa con puertos y adaptadores y aplica SOLID (Martin, 2017). Cada servicio tiene una única responsabilidad, y su razón de cambio son las reglas de su proceso, mientras la identidad y la traducción de sistemas externos permanecen aisladas. Se amplía mediante módulos, conectores y parámetros versionados, sin modificar lo existente. Permite sustituir conectores que cumplen el mismo contrato de correlación y antigüedad del dato, incluso entre interfaces y exportaciones programadas (SUP-16). Además, expone sólo las interfaces necesarias para cada consumidor (Tabla \ref{tab:interfaces-sincronas-eventos-publicados-datos-consumidos}), y hace depender la lógica de negocio de contratos OpenAPI y AsyncAPI y de puertos abstractos de mensajería y almacenamiento. Así, un mismo módulo puede operar en nube mediante el bus de eventos o en el Nodo de Faena mediante la bandeja de salida local, cambiando únicamente el adaptador.
 
 \subseccion{Vista general en capas}
 Esta sección presenta las ocho capas en una vista general, la correspondencia de los componentes del Esquema de Solución con cada una, su ubicación en la faena, el Nodo de Faena y la nube, y los ambientes lógicos en que se despliegan.
@@ -378,7 +378,7 @@ Alcance desde Internet & Sí, detrás del borde & No, sólo abre conexiones sali
 Analizando la tabla, se puede observar que la puerta de exposición prioriza controlar a cada consumidor y la operacional prioriza no perder ningún hecho. Como la puerta operacional no acepta conexiones entrantes desde Internet, sólo es alcanzable desde la red local de cada sitio: la red de la faena para el Nodo y sus gabinetes, y la red del acopio para el gabinete de puerto.
 
 \subsubseccion{Capa 4: Servicios de negocio, con siete módulos de negocio y dos transversales}
-\enlargethispage{2\baselineskip}La capa de servicios de negocio es la que decide. Contiene los siete módulos de negocio y los dos transversales del Esquema de Solución, cada uno como un servicio modular, y su responsabilidad es aplicar las reglas del negocio: registrar los hechos, validarlos, calcular balances e indicadores y decidir la habilitación de una persona.La Figura \ref{fig:modulos-capa-servicios-negocio-nube-nodo} muestra cómo se agrupan los módulos, cuáles tienen además una instancia en el Nodo de Faena y con qué capas se relacionan.
+\enlargethispage{2\baselineskip}La capa de servicios de negocio es la que decide. Contiene los siete módulos de negocio y los dos transversales del Esquema de Solución, cada uno como un servicio modular, y su responsabilidad es aplicar las reglas del negocio: registrar los hechos, validarlos, calcular balances e indicadores y decidir la habilitación de una persona. La Figura \ref{fig:modulos-capa-servicios-negocio-nube-nodo} muestra cómo se agrupan los módulos, cuáles tienen además una instancia en el Nodo de Faena y con qué capas se relacionan.
 
 \begin{horizontal}
 \csname ov@hoja\endcsname{330.2mm}{215.9mm}
@@ -393,8 +393,6 @@ Hacia arriba, los servicios ofrecen interfaces síncronas a las puertas de la ca
 
 \subsubseccion{Capa 5: Integración y eventos, con el Integrador de Sistemas y el Nodo de Faena}
 La capa de integración y eventos mueve el dato sin decidir sobre él. Sus responsables son el bus de eventos, el Integrador de Sistemas y el Nodo de Faena, que además tiene un agente en cada gabinete. Las Figuras \ref{fig:componentes-capa-integracion-eventos-nube-faena} y \ref{fig:componentes-capa-integracion-eventos-nube-faena-b} muestran dónde corre cada componente y qué sistema atiende cada conector.
-
-Las Figuras \ref{fig:componentes-capa-integracion-eventos-nube-faena}, \ref{fig:componentes-capa-integracion-eventos-nube-faena-b} presentan este recorrido por partes.
 
 \begin{horizontal}
 \expandafter\def\csname ov@altofig\endcsname{0.80}
@@ -435,8 +433,6 @@ La declaración del operador de pala queda guardada en el almacén transaccional
 
 \subsubseccion{Capa 7: Seguridad transversal}
 Las capas 7 y 8 no forman un paso del recorrido, porque se aplican sobre las capas 1 a 6. La capa de seguridad sigue el modelo de confianza cero, y la red de la faena no concede confianza por sí misma. Las Figuras \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante} y \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante-b} muestran los componentes responsables en la nube y en la faena, la población que atiende cada identidad y la forma en que opera la capa durante un corte.
-
-Las Figuras \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante}, \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante-b} presentan este recorrido por partes.
 
 \begin{horizontal}
 \expandafter\def\csname ov@altofig\endcsname{0.80}
@@ -606,9 +602,7 @@ Se dispone de nueve conectores operativos y de un conector de migración para la
 \end{horizontal}
 En la nube se ejecutan los conectores de SAP, telemetría, fatiga y planificación minera. El bus transporta los eventos entre estos conectores y los módulos de SITCO. La versión vigente del plan minero y los datos de referencia se envían al Nodo de Faena para que la operación local conserve la información necesaria durante un corte de enlace.
 
-La segunda parte muestra cómo se atienden los sistemas ubicados en la faena y cómo se conserva la información antes de enviarla a la nube.
-
-Las Figuras \ref{fig:conectores-faena-procesamiento-local-carga-unica}, \ref{fig:conectores-faena-procesamiento-local-carga-unica-b} presentan este recorrido por partes.
+Las Figuras \ref{fig:conectores-faena-procesamiento-local-carga-unica} y \ref{fig:conectores-faena-procesamiento-local-carga-unica-b} muestran cómo se atienden los sistemas ubicados en la faena y cómo se conserva la información antes de enviarla a la nube.
 
 \begin{horizontal}
 \expandafter\def\csname ov@altofig\endcsname{0.80}
@@ -1334,49 +1328,49 @@ Se utilizó IA generativa, principalmente como apoyo en la redacción, en la org
   {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad del uso} & \cab{Nivel en\newline texto} & \cab{Nivel en\newline diagramas} & \cab{Revisión humana\newline (Quien y que verificó)}}
   {Fuente: elaboración propia.}
 Introducción y capítulo 4 & Claude & Redacción de enlace entre arquitectura lógica, física y continuidad. & Medio & Ninguno & Gabriel Sanzana: comprobó la coherencia del capítulo con los Subdocs. 3 y 5. \\
-4.1 & claude & Base narrativa de la arquitectura lógica y sus criterios. & Medio & Medio & Patricio Figueroa: revisó la separación de responsabilidades entre capas. \\
-4.1.1 & claude & Organización de la selección de tecnologías de software. & Medio & Ninguno & Gabriel Sanzana: comprobó las tecnologías elegidas frente a las necesidades del caso. \\
-4.1.1.1 a 4.1.1.5 & claude & Apoyo para comparar tecnologías, sistemas operativos y vigencia. & Medio & Ninguno & Gabriel Sanzana: contrastó las versiones, alternativas y fechas de soporte declaradas. \\
-4.1.2 & claude & Apoyo en la síntesis de la justificación del estilo arquitectónico. & Medio & Ninguno & Patricio Figueroa: comprobó las decisiones de diseño y sus consecuencias operativas. \\
-4.1.2.1 a 4.1.2.4 & claude & Desarrollo de criterios, decisiones ADR y patrones. & Medio & Ninguno & Patricio Figueroa: contrastó los criterios de evaluación y las decisiones registradas. \\
-4.1.3 & claude & Apoyo para explicar la vista general en ocho capas. & Medio & Medio & Patricio Figueroa: revisó las dependencias y la lectura del esquema por capas. \\
-4.1.3.1 a 4.1.3.4 & claude & Organización de capas, componentes, emplazamiento y ambientes. & Medio & Medio & Lucas Zamora: revisó la ubicación de cada componente y su relación con la faena. \\
-4.1.4 & claude & Base de redacción de la descripción de las capas. & Medio & Ninguno & Lucas Zamora: revisó que cada capa tenga una responsabilidad reconocible. \\
-4.1.4.1 a 4.1.4.8 & claude & Desarrollo del texto sobre presentación, servicios, datos y controles transversales. & Medio & Medio & Gabriel Sanzana: verificó los canales, servicios y controles de las ocho capas frente a la Figura \ref{fig:vista-general-sitco-aranda-ocho-capas} y a la Tabla \ref{tab:correspondencia-canales-modulos-plataformas-esquema-solucion}. \\
-4.1.5 & claude & Apoyo comparativo para justificar los canales de terreno. & Medio & Ninguno & Lucas Zamora: revisó la adecuación de los canales al uso durante un corte. \\
-4.1.5.1 & claude & Ajuste de claridad en la decisión de botonera y aplicación de terreno. & Medio & Ninguno & Lucas Zamora: revisó la decisión frente a los equipos y al alcance del Subdoc. 3. \\
-4.1.6 & claude & Organización de la explicación de módulos y límites de contexto. & Medio & Ninguno & Lucas Zamora: validó la autonomía de cada módulo y sus dependencias. \\
-4.1.6.1 & claude & Base explicativa de los módulos de la cadena del mineral. & Medio & Medio & Patricio Figueroa: verificó el recorrido desde la operación hasta la conciliación. \\
-4.1.6.1.1 a 4.1.6.1.3 & claude & Redacción de las funciones de Operación Mina, Trazabilidad y Conciliación. & Medio & Medio & Gabriel Sanzana: validó los límites y los datos intercambiados entre los tres módulos. \\
-4.1.6.2 a 4.1.6.5 & claude & Apoyo para describir mantenimiento, cumplimiento, módulos transversales e interfaces. & Medio & Ninguno & Lucas Zamora: comprobó las funciones y los contratos entre módulos. \\
-4.1.7 & claude & Estructuración de la explicación de integración y eventos. & Medio & Ninguno & Lucas Zamora: contrastó la consistencia de las integraciones con los sistemas existentes. \\
-4.1.7.1 a 4.1.7.9 & claude & Desarrollo de conectores, contratos y escenarios de integración. & Medio & Medio & Gabriel Sanzana: revisó los conectores, eventos y comportamiento ante fallas. \\
-4.1.8 & claude & Apoyo en la síntesis de la explicación de la arquitectura de seguridad. & Medio & Ninguno & Gabriel Sanzana: comprobó la cobertura de amenazas y la coherencia con los accesos. \\
-4.1.8.1 a 4.1.8.5 & claude & Apoyo para ordenar identidad, exposición, cifrado y controles. & Medio & Ninguno & Gabriel Sanzana: comprobó las poblaciones usuarias, excepciones y controles de seguridad. \\
-4.1.9 & claude & Base descriptiva de la operación sin enlace. & Medio & Ninguno & Gabriel Sanzana: verificó las funciones que siguen disponibles en la faena. \\
-4.1.9.1 a 4.1.9.2 & claude & Desarrollo de las reglas de continuidad y sincronización. & Medio & Ninguno & Lucas Zamora: revisó la recuperación de datos y la resolución de conflictos. \\
-4.2 & codex y claude & Apoyo para explicar la arquitectura física y comparar el inventario. & Medio & Medio & Benjamín Rodríguez: verificó que los equipos y servicios del inventario coincidan con el diseño físico de 4.2. \\
-4.2.1 & codex y claude & Organización de los implementos necesarios para la propuesta. & Medio & Ninguno & Marcelo Flores: comprobó el inventario frente al Formulario T-11. \\
-4.2.1.1 a 4.2.1.4 & codex y claude & Apoyo en la descripción de nube, faena, terreno y licencias. & Medio & Medio & Kavon Kermani: contrastó las cantidades, garantías y condiciones de reposición. \\
-4.2.2 & codex y claude & Comparación del emplazamiento y de la configuración de servicios de nube. & Medio & Medio & Kavon Kermani: comprobó la ubicación y la configuración frente al esquema físico. \\
-4.2.2.1 a 4.2.2.2 & codex y claude & Apoyo para justificar el emplazamiento en faena, nube y servicios Azure. & Medio & Medio & Kavon Kermani: verificó los servicios Azure y los criterios de emplazamiento. \\
-4.2.3 & codex y claude & Apoyo para comparar diagramas de despliegue, redes y continuidad. & Medio & Medio & Benjamín Rodríguez: validó la edición manual en draw.io y los enlaces representados. \\
-4.2.3.1 a 4.2.3.5 & codex y claude & Organización de ambientes, enlaces, gabinetes, redundancia y respaldos. & Medio & Medio & Benjamín Rodríguez: revisó las rutas, redundancias y estrategia de respaldo del diseño. \\
-4.2.4 & codex y claude & Apoyo de redacción para explicar el plan de capacidad. & Medio & Ninguno & Kavon Kermani: revisó la relación entre demanda y capacidad ofertada. \\
-4.2.4.1 a 4.2.4.6 & codex y claude & Contraste de cálculos de volumetría, cómputo, almacenamiento y ancho de banda. & Bajo & Ninguno & Benjamín Rodríguez: verificó las fórmulas y los resultados frente al Anexo D de OVERFORE-Subdocumento4-Anexos. \\
-4.3 & codex & Comparación del plano y del texto sobre el data center. & Medio & Medio & Kavon Kermani: validó la distribución y su correspondencia con los equipos. \\
-4.3.1 & codex & Apoyo para describir el data center primario. & Medio & Medio & Kavon Kermani: verificó los servicios de la sala técnica y su redundancia. \\
-4.3.1.1 a 4.3.1.4 & codex & Apoyo para explicar recinto, climatización, energía y protección contra incendios. & Medio & Medio & Marcelo Flores: comprobó el plano en draw.io y los requisitos físicos de la sala. \\
-4.3.2 & codex & Base explicativa del data center secundario. & Medio & Medio & Benjamín Rodríguez: revisó la función de recuperación y la ubicación de la réplica. \\
-4.3.2.1 a 4.3.2.2 & codex & Organización de replicación, conmutación, retorno y pruebas. & Medio & Bajo & Benjamín Rodríguez: revisó la secuencia de recuperación y sus criterios de prueba. \\
-Referencias & claude & Apoyo para ordenar y uniformar las referencias citadas. & Medio & Ninguno & Patricio Figueroa: revisó la existencia de las fuentes y su correspondencia con las citas. \\
-Anexo A & codex y claude & Apoyo para ordenar fichas y comparar especificaciones técnicas. & Medio & Ninguno & Marcelo Flores: comprobó las fichas frente a cantidades y componentes del T-11. \\
-Anexo B & codex y claude & Organización de la correspondencia entre componentes lógicos y físicos. & Medio & Ninguno & Kavon Kermani: verificó el emplazamiento físico de los componentes lógicos. \\
-Anexo C & codex y claude & Apoyo de redacción en responsabilidades y fuentes técnicas. & Medio & Ninguno & Marcelo Flores: revisó las responsabilidades y referencias de los equipos. \\
-Anexo D & codex y claude & Contraste de fórmulas y cálculos de volumetría y dimensionamiento. & Bajo & Ninguno & Benjamín Rodríguez: revisó las unidades, operaciones y cantidades frente al T-11. \\
-Anexo E & codex y claude & Apoyo en la síntesis de la matriz de controles de seguridad. & Medio & Ninguno & Lucas Zamora: validó las amenazas, controles y componentes cubiertos. \\
-Anexo F & codex y claude & Apoyo comparativo para justificar tecnologías de software. & Medio & Ninguno & Patricio Figueroa: comprobó las alternativas, criterios y decisión de selección. \\
-T-11 & codex y claude & Comparación del inventario de componentes, equipos y servicios ofertados. & Bajo & Ninguno & Marcelo Flores: verificó las cantidades, denominaciones y vínculos con las fichas técnicas. \\
+4.1 & Claude & Base narrativa de la arquitectura lógica y sus criterios. & Medio & Medio & Patricio Figueroa: revisó la separación de responsabilidades entre capas. \\
+4.1.1 & Claude & Organización de la selección de tecnologías de software. & Medio & Ninguno & Gabriel Sanzana: comprobó las tecnologías elegidas frente a las necesidades del caso. \\
+4.1.1.1 a 4.1.1.5 & Claude & Apoyo para comparar tecnologías, sistemas operativos y vigencia. & Medio & Ninguno & Gabriel Sanzana: contrastó las versiones, alternativas y fechas de soporte declaradas. \\
+4.1.2 & Claude & Apoyo en la síntesis de la justificación del estilo arquitectónico. & Medio & Ninguno & Patricio Figueroa: comprobó las decisiones de diseño y sus consecuencias operativas. \\
+4.1.2.1 a 4.1.2.4 & Claude & Desarrollo de criterios, decisiones ADR y patrones. & Medio & Ninguno & Patricio Figueroa: contrastó los criterios de evaluación y las decisiones registradas. \\
+4.1.3 & Claude & Apoyo para explicar la vista general en ocho capas. & Medio & Medio & Patricio Figueroa: revisó las dependencias y la lectura del esquema por capas. \\
+4.1.3.1 a 4.1.3.4 & Claude & Organización de capas, componentes, emplazamiento y ambientes. & Medio & Medio & Lucas Zamora: revisó la ubicación de cada componente y su relación con la faena. \\
+4.1.4 & Claude & Base de redacción de la descripción de las capas. & Medio & Ninguno & Lucas Zamora: revisó que cada capa tenga una responsabilidad reconocible. \\
+4.1.4.1 a 4.1.4.8 & Claude & Desarrollo del texto sobre presentación, servicios, datos y controles transversales. & Medio & Medio & Gabriel Sanzana: verificó los canales, servicios y controles de las ocho capas frente a la Figura \ref{fig:vista-general-sitco-aranda-ocho-capas} y a la Tabla \ref{tab:correspondencia-canales-modulos-plataformas-esquema-solucion}. \\
+4.1.5 & Claude & Apoyo comparativo para justificar los canales de terreno. & Medio & Ninguno & Lucas Zamora: revisó la adecuación de los canales al uso durante un corte. \\
+4.1.5.1 & Claude & Ajuste de claridad en la decisión de botonera y aplicación de terreno. & Medio & Ninguno & Lucas Zamora: revisó la decisión frente a los equipos y al alcance del Subdoc. 3. \\
+4.1.6 & Claude & Organización de la explicación de módulos y límites de contexto. & Medio & Ninguno & Lucas Zamora: validó la autonomía de cada módulo y sus dependencias. \\
+4.1.6.1 & Claude & Base explicativa de los módulos de la cadena del mineral. & Medio & Medio & Patricio Figueroa: verificó el recorrido desde la operación hasta la conciliación. \\
+4.1.6.1.1 a 4.1.6.1.3 & Claude & Redacción de las funciones de Operación Mina, Trazabilidad y Conciliación. & Medio & Medio & Gabriel Sanzana: validó los límites y los datos intercambiados entre los tres módulos. \\
+4.1.6.2 a 4.1.6.5 & Claude & Apoyo para describir mantenimiento, cumplimiento, módulos transversales e interfaces. & Medio & Ninguno & Lucas Zamora: comprobó las funciones y los contratos entre módulos. \\
+4.1.7 & Claude & Estructuración de la explicación de integración y eventos. & Medio & Ninguno & Lucas Zamora: contrastó la consistencia de las integraciones con los sistemas existentes. \\
+4.1.7.1 a 4.1.7.9 & Claude & Desarrollo de conectores, contratos y escenarios de integración. & Medio & Medio & Gabriel Sanzana: revisó los conectores, eventos y comportamiento ante fallas. \\
+4.1.8 & Claude & Apoyo en la síntesis de la explicación de la arquitectura de seguridad. & Medio & Ninguno & Gabriel Sanzana: comprobó la cobertura de amenazas y la coherencia con los accesos. \\
+4.1.8.1 a 4.1.8.5 & Claude & Apoyo para ordenar identidad, exposición, cifrado y controles. & Medio & Ninguno & Gabriel Sanzana: comprobó las poblaciones usuarias, excepciones y controles de seguridad. \\
+4.1.9 & Claude & Base descriptiva de la operación sin enlace. & Medio & Ninguno & Gabriel Sanzana: verificó las funciones que siguen disponibles en la faena. \\
+4.1.9.1 a 4.1.9.2 & Claude & Desarrollo de las reglas de continuidad y sincronización. & Medio & Ninguno & Lucas Zamora: revisó la recuperación de datos y la resolución de conflictos. \\
+4.2 & Codex y Claude & Apoyo para explicar la arquitectura física y comparar el inventario. & Medio & Medio & Benjamín Rodríguez: verificó que los equipos y servicios del inventario coincidan con el diseño físico de 4.2. \\
+4.2.1 & Codex y Claude & Organización de los implementos necesarios para la propuesta. & Medio & Ninguno & Marcelo Flores: comprobó el inventario frente al Formulario T-11. \\
+4.2.1.1 a 4.2.1.4 & Codex y Claude & Apoyo en la descripción de nube, faena, terreno y licencias. & Medio & Medio & Kavon Kermani: contrastó las cantidades, garantías y condiciones de reposición. \\
+4.2.2 & Codex y Claude & Comparación del emplazamiento y de la configuración de servicios de nube. & Medio & Medio & Kavon Kermani: comprobó la ubicación y la configuración frente al esquema físico. \\
+4.2.2.1 a 4.2.2.2 & Codex y Claude & Apoyo para justificar el emplazamiento en faena, nube y servicios Azure. & Medio & Medio & Kavon Kermani: verificó los servicios Azure y los criterios de emplazamiento. \\
+4.2.3 & Codex y Claude & Apoyo para comparar diagramas de despliegue, redes y continuidad. & Medio & Medio & Benjamín Rodríguez: validó la edición manual en draw.io y los enlaces representados. \\
+4.2.3.1 a 4.2.3.5 & Codex y Claude & Organización de ambientes, enlaces, gabinetes, redundancia y respaldos. & Medio & Medio & Benjamín Rodríguez: revisó las rutas, redundancias y estrategia de respaldo del diseño. \\
+4.2.4 & Codex y Claude & Apoyo de redacción para explicar el plan de capacidad. & Medio & Ninguno & Kavon Kermani: revisó la relación entre demanda y capacidad ofertada. \\
+4.2.4.1 a 4.2.4.6 & Codex y Claude & Contraste de cálculos de volumetría, cómputo, almacenamiento y ancho de banda. & Bajo & Ninguno & Benjamín Rodríguez: verificó las fórmulas y los resultados frente al Anexo D de OVERFORE-Subdocumento4-Anexos. \\
+4.3 & Codex & Comparación del plano y del texto sobre el data center. & Medio & Medio & Kavon Kermani: validó la distribución y su correspondencia con los equipos. \\
+4.3.1 & Codex & Apoyo para describir el data center primario. & Medio & Medio & Kavon Kermani: verificó los servicios de la sala técnica y su redundancia. \\
+4.3.1.1 a 4.3.1.4 & Codex & Apoyo para explicar recinto, climatización, energía y protección contra incendios. & Medio & Medio & Marcelo Flores: comprobó el plano en draw.io y los requisitos físicos de la sala. \\
+4.3.2 & Codex & Base explicativa del data center secundario. & Medio & Medio & Benjamín Rodríguez: revisó la función de recuperación y la ubicación de la réplica. \\
+4.3.2.1 a 4.3.2.2 & Codex & Organización de replicación, conmutación, retorno y pruebas. & Medio & Bajo & Benjamín Rodríguez: revisó la secuencia de recuperación y sus criterios de prueba. \\
+Referencias & Claude & Apoyo para ordenar y uniformar las referencias citadas. & Medio & Ninguno & Patricio Figueroa: revisó la existencia de las fuentes y su correspondencia con las citas. \\
+Anexo A & Codex y Claude & Apoyo para ordenar fichas y comparar especificaciones técnicas. & Medio & Ninguno & Marcelo Flores: comprobó las fichas frente a cantidades y componentes del T-11. \\
+Anexo B & Codex y Claude & Organización de la correspondencia entre componentes lógicos y físicos. & Medio & Ninguno & Kavon Kermani: verificó el emplazamiento físico de los componentes lógicos. \\
+Anexo C & Codex y Claude & Apoyo de redacción en responsabilidades y fuentes técnicas. & Medio & Ninguno & Marcelo Flores: revisó las responsabilidades y referencias de los equipos. \\
+Anexo D & Codex y Claude & Contraste de fórmulas y cálculos de volumetría y dimensionamiento. & Bajo & Ninguno & Benjamín Rodríguez: revisó las unidades, operaciones y cantidades frente al T-11. \\
+Anexo E & Codex y Claude & Apoyo en la síntesis de la matriz de controles de seguridad. & Medio & Ninguno & Lucas Zamora: validó las amenazas, controles y componentes cubiertos. \\
+Anexo F & Codex y Claude & Apoyo comparativo para justificar tecnologías de software. & Medio & Ninguno & Patricio Figueroa: comprobó las alternativas, criterios y decisión de selección. \\
+T-11 & Codex y Claude & Comparación del inventario de componentes, equipos y servicios ofertados. & Bajo & Ninguno & Marcelo Flores: verificó las cantidades, denominaciones y vínculos con las fichas técnicas. \\
 Figuras revisadas de 4.1 a 4.3 & Codex & Adaptación de ilustraciones a carta u oficio, revisión de legibilidad y enlaces entre zonas y figuras. & Medio & Medio & Autorrevisión técnica y visual; revisión independiente del equipo aún no registrada. \\
 \end{tabla}
 

@@ -48,7 +48,7 @@ El alcance se presenta en dos planos, siguiendo la Guía del PMBOK que adopta la
 El diagnóstico agrupó la problemática de Aranda en tres problemas con una causa común, el dato no nace donde ocurre el hecho, pues la trazabilidad y conciliación del mineral, la productividad de la operación y el cumplimiento regulatorio y la gestión de personas. La solución sigue esa misma división, como muestra la Figura~\ref{fig:descomposicion-problema-modulos}.
 
 \figura{16.09}{fig-3-3-descomposicion-problema-modulos}{Descomposición del problema en módulos}{fig:descomposicion-problema-modulos}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 7, pp. 11-12, y cap. 9, pp. 18-19).}
-El primer problema se resuelve con tres módulos que siguen al mineral, estos son Operación Mina captura el origen, Trazabilidad y Embarque lo sigue hasta el embarque y Conciliación Metalúrgica cuadra las cantidades. Operación Mina sirve también al segundo problema, porque el registro que indica de dónde viene una tonelada mide el cumplimiento del plan y las demoras, y Equipos y Mantenimiento lo completa. El tercero se resuelve con Acreditación y Acceso, Seguridad y Salud Ocupacional y Cumplimiento Ambiental.
+El primer problema se resuelve con tres módulos que siguen al mineral: Operación Mina captura el origen, Trazabilidad y Embarque lo sigue hasta el embarque y Conciliación Metalúrgica cuadra las cantidades. Operación Mina sirve también al segundo problema, porque el registro que indica de dónde viene una tonelada mide el cumplimiento del plan y las demoras, y Equipos y Mantenimiento lo completa. El tercero se resuelve con Acreditación y Acceso, Seguridad y Salud Ocupacional y Cumplimiento Ambiental.
 
 Las condiciones transversales se resuelven con los módulos transversales, las plataformas, los dispositivos de terreno y la red, lo que permite construir y poner en producción cada parte por separado y repartirlas en dos etapas sin rehacer la arquitectura.
 
@@ -195,7 +195,7 @@ Administración y Servicios Comunes & 19 & No aplica & 19 \\
 Integrador de Sistemas y Nodo de Faena & 5 & No aplica & 5 \\
 Total & 92 & 34 & 126 \\
 \end{tabla}
-La cadena del mineral reúne 52 requerimientos, el 41 \% de los funcionales, y que 51 entran en la Etapa 1, el único de la Etapa 2 es el Portal para Compradores, que necesita datos de ambas etapas. Administración y Servicios Comunes entrega sus 19 en la Etapa 1, porque los demás módulos dependen de su identidad y su firma, y la Etapa 2 se concentra en mantenimiento, seguridad y cumplimiento ambiental, con 27 de sus 34 requerimientos. La sección 2.5 del Subdocumento 2 distribuye los requerimientos según el problema que los origina, no por módulo.
+La cadena del mineral reúne 52 requerimientos, el 41 \% de los funcionales, y 51 de ellos entran en la Etapa 1; el único de la Etapa 2 es el Portal para Compradores, que necesita datos de ambas etapas. Administración y Servicios Comunes entrega sus 19 en la Etapa 1, porque los demás módulos dependen de su identidad y su firma, y la Etapa 2 se concentra en mantenimiento, seguridad y cumplimiento ambiental, con 27 de sus 34 requerimientos. La sección 2.5 del Subdocumento 2 distribuye los requerimientos según el problema que los origina, no por módulo.
 
 \subsubseccion{Requerimientos no funcionales}
 Los 96 no funcionales declaran su umbral y su método de verificación. Desempeño (18), seguridad (16) y usabilidad (15) reúnen el 51 \%, lo que refleja la naturaleza de una solución enfocada en registrar hechos en terreno rápido, sin fricción y protegiendo datos sensibles. Les siguen disponibilidad y continuidad (9), capacidad y escalabilidad (8), interoperabilidad (6), operabilidad (6), portabilidad (4), cumplimiento (2) e infraestructura (1). Los 11 requisitos transversales provienen de las Bases técnicas transversales.
@@ -440,29 +440,29 @@ Se utilizó IA generativa, principalmente como apoyo en la redacción, en la org
   {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad del uso} & \cab{Nivel en\newline texto} & \cab{Nivel en\newline diagramas} & \cab{Revisión humana\newline (Quién y qué verificó)}}
   {Fuente: elaboración propia.}
 Introducción y capítulo 3 & Claude & Apoyo en la síntesis de la presentación de SITCO Aranda y de su alcance. & Medio & Ninguno & Benjamín Velásquez: comprobó la continuidad con el diagnóstico del Subdocumento 2. \\
-3.1 & claude & Desarrollo de la base del resumen ejecutivo de la solución. & Medio & Ninguno & Claudio Cabello: contrastó que la síntesis coincide con el alcance comprometido. \\
-3.1.1 a 3.1.3 & claude & Redacción de la visión general, las etapas y el soporte. & Medio & Alto & Benjamín Velásquez: revisó la separación de implementación, implantación y operación. \\
-3.2 & claude & Organización del apartado que delimita el alcance. & Medio & Ninguno & Claudio Cabello: contrastó los límites de la solución frente a T-12. \\
-3.2.1 a 3.2.2 & claude & Apoyo para vincular módulos y distribución entre etapas. & Medio & Alto & David Martínez: contrastó que cada módulo conserve la etapa acordada. \\
-3.2.2.1 a 3.2.2.6 & claude & Base explicativa de los criterios y del alcance de cada etapa. & Medio & Alto & Claudio Cabello: verificó los compromisos y las fechas frente a T-14 y T-18. \\
-3.2.3 & claude & Redacción de la entrada a supuestos y restricciones. & Medio & Ninguno & David Martínez: revisó que el texto no convierta supuestos en compromisos. \\
-3.2.3.1 a 3.2.3.3 & claude & Ordenamiento de exclusiones, supuestos y restricciones. & Medio & Ninguno & David Martínez: contrastó las fronteras contractuales y su origen en las Bases. \\
-3.2.4 & claude & Estructura del catálogo funcional y no funcional. & Medio & Ninguno & David Martínez: revisó la relación del catálogo con los requerimientos del caso. \\
-3.2.4.1 a 3.2.4.3 & claude & Apoyo para explicar clasificación, prioridad y tipos de requerimiento. & Medio & Ninguno & David Martínez: comprobó los códigos RF y RNF y su trazabilidad. \\
-3.2.5 & claude & Apoyo en la síntesis de criterios verificables de aceptación del alcance. & Medio & Ninguno & Claudio Cabello: comprobó la posibilidad de demostrar cada criterio con evidencia. \\
-3.3 & claude & Apoyo para explicar el esquema de solución. & Medio & Ninguno & Benjamín Velásquez: revisó la correspondencia del esquema con la arquitectura del Subdoc. 4. \\
-3.3.1 a 3.3.2 & claude & Base de descripción de la vista general y del software. & Medio & Alto & Benjamín Velásquez: revisó los componentes y los nombres usados en las figuras. \\
-3.3.2.1 a 3.3.2.2 & claude & Redacción sobre módulos, canales e integración con sistemas existentes. & Medio & Alto & David Martínez: revisó los flujos y la responsabilidad de cada integración. \\
-3.3.3 a 3.3.6 & claude & Explicación de dispositivos, conectividad, infraestructura y trabajo sin enlace. & Medio & Alto & Benjamín Velásquez: comprobó la continuidad local y los equipos frente a T-11. \\
-3.4 & claude & Desarrollo del hilo explicativo de funcionamiento de SITCO. & Medio & Ninguno & Benjamín Velásquez: validó la relación entre la explicación y el problema del caso. \\
-3.4.1 a 3.4.2 & claude & Apoyo para describir el uso operacional y los módulos de negocio. & Medio & Alto & Claudio Cabello: comprobó que el recorrido de los datos coincida con el diseño. \\
-3.4.2.1 a 3.4.2.7 & claude & Apoyo para describir la función de los siete módulos de negocio. & Medio & Ninguno & Claudio Cabello: revisó las entradas, salidas y límites de cada módulo. \\
-3.4.3 a 3.4.5 & claude & Síntesis de plataformas, coherencia de la solución y apoyo de interesados. & Medio & Ninguno & David Martínez: revisó la cobertura de los problemas y la estrategia de adopción. \\
-Referencias & claude & Apoyo para ordenar y uniformar las referencias citadas. & Medio & Ninguno & Claudio Cabello: revisó la existencia de las fuentes y su correspondencia con las citas. \\
-Anexo A & claude & Apoyo en la síntesis de la asignación de alcance por etapa. & Medio & Ninguno & Claudio Cabello: revisó las etapas frente al capítulo 3 y al cronograma. \\
-Anexo B & claude & Apoyo para relacionar problemas y componentes de solución. & Medio & Ninguno & Benjamín Velásquez: comprobó la cobertura de cada problema por los módulos propuestos. \\
-Anexo C & claude & Redacción de la estrategia para cada grupo de interés. & Medio & Ninguno & David Martínez: revisó las acciones y su adecuación a cada actor. \\
-T-12 & claude & Apoyo para organizar la matriz de cumplimiento técnico. & Medio & Ninguno & Benjamín Velásquez: comprobó cada requisito y la evidencia que acredita su cumplimiento. \\
+3.1 & Claude & Desarrollo de la base del resumen ejecutivo de la solución. & Medio & Ninguno & Claudio Cabello: contrastó que la síntesis coincide con el alcance comprometido. \\
+3.1.1 a 3.1.3 & Claude & Redacción de la visión general, las etapas y el soporte. & Medio & Alto & Benjamín Velásquez: revisó la separación de implementación, implantación y operación. \\
+3.2 & Claude & Organización del apartado que delimita el alcance. & Medio & Ninguno & Claudio Cabello: contrastó los límites de la solución frente a T-12. \\
+3.2.1 a 3.2.2 & Claude & Apoyo para vincular módulos y distribución entre etapas. & Medio & Alto & David Martínez: contrastó que cada módulo conserve la etapa acordada. \\
+3.2.2.1 a 3.2.2.6 & Claude & Base explicativa de los criterios y del alcance de cada etapa. & Medio & Alto & Claudio Cabello: verificó los compromisos y las fechas frente a T-14 y T-18. \\
+3.2.3 & Claude & Redacción de la entrada a supuestos y restricciones. & Medio & Ninguno & David Martínez: revisó que el texto no convierta supuestos en compromisos. \\
+3.2.3.1 a 3.2.3.3 & Claude & Ordenamiento de exclusiones, supuestos y restricciones. & Medio & Ninguno & David Martínez: contrastó las fronteras contractuales y su origen en las Bases. \\
+3.2.4 & Claude & Estructura del catálogo funcional y no funcional. & Medio & Ninguno & David Martínez: revisó la relación del catálogo con los requerimientos del caso. \\
+3.2.4.1 a 3.2.4.3 & Claude & Apoyo para explicar clasificación, prioridad y tipos de requerimiento. & Medio & Ninguno & David Martínez: comprobó los códigos RF y RNF y su trazabilidad. \\
+3.2.5 & Claude & Apoyo en la síntesis de criterios verificables de aceptación del alcance. & Medio & Ninguno & Claudio Cabello: comprobó la posibilidad de demostrar cada criterio con evidencia. \\
+3.3 & Claude & Apoyo para explicar el esquema de solución. & Medio & Ninguno & Benjamín Velásquez: revisó la correspondencia del esquema con la arquitectura del Subdoc. 4. \\
+3.3.1 a 3.3.2 & Claude & Base de descripción de la vista general y del software. & Medio & Alto & Benjamín Velásquez: revisó los componentes y los nombres usados en las figuras. \\
+3.3.2.1 a 3.3.2.2 & Claude & Redacción sobre módulos, canales e integración con sistemas existentes. & Medio & Alto & David Martínez: revisó los flujos y la responsabilidad de cada integración. \\
+3.3.3 a 3.3.6 & Claude & Explicación de dispositivos, conectividad, infraestructura y trabajo sin enlace. & Medio & Alto & Benjamín Velásquez: comprobó la continuidad local y los equipos frente a T-11. \\
+3.4 & Claude & Desarrollo del hilo explicativo de funcionamiento de SITCO. & Medio & Ninguno & Benjamín Velásquez: validó la relación entre la explicación y el problema del caso. \\
+3.4.1 a 3.4.2 & Claude & Apoyo para describir el uso operacional y los módulos de negocio. & Medio & Alto & Claudio Cabello: comprobó que el recorrido de los datos coincida con el diseño. \\
+3.4.2.1 a 3.4.2.7 & Claude & Apoyo para describir la función de los siete módulos de negocio. & Medio & Ninguno & Claudio Cabello: revisó las entradas, salidas y límites de cada módulo. \\
+3.4.3 a 3.4.5 & Claude & Síntesis de plataformas, coherencia de la solución y apoyo de interesados. & Medio & Ninguno & David Martínez: revisó la cobertura de los problemas y la estrategia de adopción. \\
+Referencias & Claude & Apoyo para ordenar y uniformar las referencias citadas. & Medio & Ninguno & Claudio Cabello: revisó la existencia de las fuentes y su correspondencia con las citas. \\
+Anexo A & Claude & Apoyo en la síntesis de la asignación de alcance por etapa. & Medio & Ninguno & Claudio Cabello: revisó las etapas frente al capítulo 3 y al cronograma. \\
+Anexo B & Claude & Apoyo para relacionar problemas y componentes de solución. & Medio & Ninguno & Benjamín Velásquez: comprobó la cobertura de cada problema por los módulos propuestos. \\
+Anexo C & Claude & Redacción de la estrategia para cada grupo de interés. & Medio & Ninguno & David Martínez: revisó las acciones y su adecuación a cada actor. \\
+T-12 & Claude & Apoyo para organizar la matriz de cumplimiento técnico. & Medio & Ninguno & Benjamín Velásquez: comprobó cada requisito y la evidencia que acredita su cumplimiento. \\
 \end{tabla}
 
 \end{document}
