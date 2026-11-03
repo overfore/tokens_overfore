@@ -18,5 +18,5 @@ __pycache__/
 *.pyc
 # Bloqueos de Word
 ~$*
-# Diagramas de draw.io (40 MB; el original vive en Google Drive)
-diagramas/
+
+
