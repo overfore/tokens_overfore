@@ -21,6 +21,10 @@ Una estructura de descomposición del trabajo (EDT) divide el alcance en entrega
 \figura{16.09}{fig-7-1-edt-sitco-aranda-vista-general}{EDT de SITCO Aranda, vista general de las ocho ramas.}{fig:edt-sitco-aranda-vista-general-ocho}{Fuente: elaboración propia con el Formulario T-14 (Overfore S.A., 2026a).}
 La rama 1.8, con la operación 24x7 de los meses 21 a 56, reúne el 67,0 \% de las horas. Las ramas 1.4 y 1.6, que construyen e implantan la solución, suman otro 23,5 \%. Las cinco innovaciones tienen una rama propia, la 1.7, para controlar su avance y su verificación por separado.
 
+El primer nivel por fases del ciclo de vida es deliberado. El contrato se acepta y se paga por hitos que siguen esas mismas fases (CMAA, 2026a, Formulario E-25), de modo que cada rama termina en entregables que acepta una sola acta, desde la línea base (H1 y H8) hasta la certificación (H5 y H10) y el paso a producción (H7 y H12). Por la misma razón, la Etapa 1 y la Etapa 2 son entregables distintos dentro de cada rama: el Artículo 17 fija para cada etapa su propia línea base, certificación y paso a producción, y cada etapa entrega módulos y conectores distintos, por lo que ningún producto se acepta dos veces. Los productos de la solución se reconocen en el nivel 3, donde cada módulo, conector o canal es un paquete con su criterio de aceptación.
+
+Algunos paquetes son de esfuerzo continuo y no producen un entregable propio, como la coordinación técnica de los equipos de desarrollo (1.4.1.4) o la dirección del proyecto (rama 1.1). Se tratan como paquetes de nivel de esfuerzo: su avance se controla por las horas y la cadencia comprometidas, y no por un porcentaje de producto terminado.
+
 La EDT incluye el trabajo que no es software. La seguridad está en el plan de amenazas (1.3.3) y en las pruebas de intrusión (1.5.4), la calidad en las puertas de calidad (1.1.4) y en la certificación de cada etapa (1.5.3 y 1.5.6), y la migración en los datos migrados (1.4.6). Lo que las Bases excluyen, como reemplazar SAP S/4HANA o comprar el hardware de terreno, no es paquete, su integración, su especificación y su instalación sí lo son (Overfore S.A., 2026a, sección 6).
 
 El diccionario de la EDT tiene una ficha por entregable y otra por paquete. Cada paquete declara su entregable, un criterio de aceptación que la Contraparte Técnica puede verificar y un único responsable del equipo clave, como piden las Bases para el plan de trabajo (CMAA, 2026a, Formulario T-7, p. 58). Las 230 fichas, 55 de entregable y 175 de paquete, están en las secciones 7 a 14 del Formulario T-14. Las fichas de paquete citan en su campo Referencias los requisitos del Formulario T-12 que atienden.
@@ -39,7 +43,7 @@ Las horas de cada paquete se reparten en partes iguales entre sus meses, y de es
   {\cab{Etapa} & \cab{Meses} & \cab{HH} & \cab{Personas (máximo)} & \cab{Frentes}}
   {Fuente: elaboración propia con el Formulario T-15 (Overfore S.A., 2026b).}
 Etapa 1 · Desarrollo & 1 a 12 & 23.514 & 25 (mes 8) & 7 \\
-Etapa 1 · Marcha blanca & 13 a 15 & 10.959 & 25 (mes 15) & 4 \\
+Etapa 1 · Marcha blanca & 13 a 15 & 10.959 (incluye 2.360 HH de los meses 16 y 17) & 25 (mes 15) & 4 \\
 Etapa 2 · Desarrollo & 13 a 18 & 14.628 (incluye 1.624 HH de los meses 10 a 12) & 27 (mes 14) & 7 \\
 Etapa 2 · Marcha blanca & 19 y 20 & 7.785 & 36 (mes 19) & 7 \\
 Operación & 21 a 56 & 126.180 & 38 (mes 21) & 7 \\
@@ -65,6 +69,8 @@ La ruta crítica se calcula con el método del camino crítico (CPM) sobre una r
 
 \figura{15.65}{fig-7-3-ruta-critica-implementacion-sobre-cronograma}{Ruta crítica de la implementación sobre el cronograma contractual, meses 1 a 21.}{fig:ruta-critica-implementacion-sobre-cronograma-contractual}{Fuente: elaboración propia con la Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14 (Overfore S.A., 2026a)}
 Cada etapa tiene una cadena sin holgura, porque sus duraciones llenan exactamente los meses entre hitos. En la Etapa 1 va de la línea base (A04) al paso a producción (A24), y en la Etapa 2, de la línea base (B01) al paso del mes 21 (B11). Su margen se mide en días de ventana: hasta el 28 de abril de 2028 para H7, y el 29 y el 30 de septiembre de 2028 para H12.
+
+Que las dos cadenas no tengan holgura significa que el plan no tiene un colchón propio entre la construcción y cada paso a producción: un atraso en la cadena del núcleo consume la ventana de paso. La primera defensa es el mes 11 de corrección de defectos (A16), que absorbe atrasos de construcción de hasta unas cuatro semanas sin mover la certificación de H5. Si el atraso lo excede, el Comité de Proyecto decide qué funciones entran en la primera ola del paso, sin mover el hito, y el Subdocumento 8 mide cada mes cuánto de esa holgura se ha consumido.
 
 Entre las negociaciones con terceros, sólo la del sindicato (A09) no tiene holgura, porque precede a la verificación facial de los meses 15 a 17. El caudalímetro (B05) tampoco la tiene, porque se instala en la fecha fija de la detención de marzo de 2028. Siete actividades tienen holgura, entre uno y cuatro meses. Los acuerdos con los fabricantes (A08) tienen cuatro, porque los conectores se construyen contra la especificación y sólo la conexión productiva del mes 17 espera la firma.
 

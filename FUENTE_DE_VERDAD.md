@@ -75,8 +75,8 @@ No cambiar estas cifras para hacer coincidir resúmenes. Primero recalcular las 
 
 | Tema | Fuentes en tensión | Registro / tarea |
 |---|---|---|
-| Actores | S2: 19 grupos; S6: 14 y 91 canales, sin equivalencia explícita | DEC-012 / R-04 |
-| Dotación de desarrollo | S1: 8 y 7 según período; figura 1.2: 5 sin período | DEC-013 / R-05 |
+| Actores | Resuelto: 19 grupos en S2, S3, S6 y T-9, 171 canales (DEC-018); faltan las Figuras 6.4 y 6.5 | DEC-012 / DEC-018 / R-04 |
+| Dotación de desarrollo | Resuelto en texto: Anexo F y T-15 (8 y 7 según período; 45 personas en M14), DEC-017; faltan las Figuras 1.1 y 1.2 | DEC-013 / DEC-017 / R-05 |
 | Identidad de botonera | S4 ADR-07 llama segundo factor al contraste con despacho | DEC-007 / R-03 |
 | Motor de conciliación | Resuelto en S13, T-19 y A13 (nube; balance del turno en el Nodo, DEC-014) | DEC-014 / R-06 |
 

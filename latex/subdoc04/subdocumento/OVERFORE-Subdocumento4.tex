@@ -105,7 +105,7 @@ Ninguna versión de Angular, Spring Boot, Kubernetes, ClickHouse, Envoy o .NET c
 \begin{tabla}{I{0.328}I{0.240}I{0.432}}{Versión, fin de soporte y plan de actualización de los componentes de software.}{tab:version-fin-soporte-plan-actualizacion-componentes}
   {\cab{Componente} & \cab{Fin de soporte} & \cab{Plan durante el contrato}}
   {Fuente: elaboración propia a partir de las políticas de soporte publicadas por cada fabricante.}
-Angular 22 & Junio de 2028 & Cada versión mayor, antes del fin de soporte de la anterior \\
+Angular 22 & Noviembre de 2027 & Cada versión mayor, antes del fin de soporte de la anterior \\
 Java 25 LTS (Eclipse Temurin) & Septiembre de 2031 & Parches trimestrales que cubre el contrato \\
 Spring Boot 4.1 & Julio de 2027 & Cada versión menor, dentro de seis meses \\
 .NET 10 LTS del contenedor de terreno & Noviembre de 2028 & Siguiente LTS, antes del vencimiento \\
@@ -152,7 +152,7 @@ Las decisiones que condicionan la arquitectura se documentan como registros de d
 
 \begin{tabla}{I{0.196}I{0.804}}{Registro de decisión ADR-01: servicios modulares.}{tab:registro-decision-adr-01-servicios-modulares}
   {\cab{Campo del registro} & \cab{ADR-01 · Servicios modulares}}
-  {Fuente: elaboración propia, con el método de análisis de decisiones con múltiples criterios (PMI, 2017)}
+  {Fuente: elaboración propia, con una matriz de decisión ponderada por criterio.}
 Contexto & Nueve módulos con distinto calendario de entrega, cinco de ellos también en la faena, y un área de TI de once personas que operará la solución. \\
 Decisión & Construir nueve servicios modulares, uno por módulo, que se despliegan por separado. \\
 Alternativas evaluadas & (a) Monolito modular de despliegue único, (b) microservicios de grano fino, uno por agregado raíz. \\
@@ -165,7 +165,7 @@ La decisión se sostiene en la operación posterior al contrato y en la ejecuci�
 
 \begin{tabla}{I{0.196}I{0.804}}{Registro de decisión ADR-02: Nodo de Faena con cinco módulos.}{tab:registro-decision-adr-02-nodo-faena}
   {\cab{Campo del registro} & \cab{ADR-02 · Nodo de Faena con cinco módulos}}
-  {Fuente: elaboración propia, con el método de análisis de decisiones con múltiples criterios (PMI, 2017)}
+  {Fuente: elaboración propia, con una matriz de decisión ponderada por criterio.}
 Contexto & El enlace con Antofagasta registra tres a seis cortes al año, de cuatro a veinte horas cada uno, y la faena debe operar al menos 48 horas sin enlace. \\
 Decisión & Ejecutar cinco módulos en el Nodo de Faena, con un solo sitio escritor por agregado: los hechos de faena se escriben en el Nodo y los maestros y parámetros, en la nube. \\
 Alternativas evaluadas & (a) Nodo que sólo almacena y reenvía, (b) réplica completa con escritura activa en ambos sitios. \\
@@ -178,7 +178,7 @@ Se puede concluir de la tabla que el sitio escritor único es lo que permite ope
 
 \begin{tabla}{I{0.236}I{0.764}}{Registro de decisión ADR-03: integración por eventos.}{tab:registro-decision-adr-03-integracion-eventos}
   {\cab{Campo del registro} & \cab{ADR-03 · Integración por eventos}}
-  {Fuente: elaboración propia, con el método de análisis de decisiones con múltiples criterios (PMI, 2017)}
+  {Fuente: elaboración propia, con una matriz de decisión ponderada por criterio.}
 Contexto & Un mismo hecho alimenta a varios módulos y debe llegar sin pérdida ni duplicados aunque ocurra durante un corte. \\
 Decisión & Transportar los hechos por un bus de eventos con entrega al menos una vez, orden por agregado y deduplicación en el consumidor, alimentado desde la faena por una bandeja de salida transaccional. \\
 Alternativas evaluadas & (a) Llamadas síncronas punto a punto, (b) bus de particiones con interfaz Kafka. \\
@@ -191,7 +191,7 @@ A partir de lo anterior, la integración por eventos convierte el corte del enla
 
 \begin{tabla}{I{0.196}I{0.804}}{Registro de decisión ADR-04: un conector por sistema existente.}{tab:registro-decision-adr-04-conector-sistema}
   {\cab{Campo del registro} & \cab{ADR-04 · Un conector por sistema existente}}
-  {Fuente: elaboración propia, con el método de análisis de decisiones con múltiples criterios (PMI, 2017)}
+  {Fuente: elaboración propia, con una matriz de decisión ponderada por criterio.}
 Contexto & Nueve de los diez sistemas existentes se mantienen (las planillas sólo se migran), sus interfaces no están documentadas, y SAP y el despacho alimentan a varios módulos. \\
 Decisión & Conectar cada sistema mediante un conector propio, con capa anticorrupción, dentro del Integrador de Sistemas. \\
 Alternativas evaluadas & (a) Conexión directa de cada módulo con cada sistema, (b) plataforma comercial de integración con orquestación central. \\
@@ -204,7 +204,7 @@ Se deduce que el conector aislado protege a los módulos de la falta de inventar
 
 \begin{tabla}{I{0.196}I{0.804}}{Registro de decisión ADR-05: lectura del historiador por diodo de datos.}{tab:registro-decision-adr-05-lectura-historiador}
   {\cab{Campo del registro} & \cab{ADR-05 · Lectura del historiador por diodo de datos}}
-  {Fuente: elaboración propia, con el método de análisis de decisiones con múltiples criterios (PMI, 2017)}
+  {Fuente: elaboración propia, con una matriz de decisión ponderada por criterio.}
 Contexto & La red de control de planta es de sólo lectura y el historiador tiene 14.500 etiquetas. \\
 Decisión & Leer, con un conector OPC UA restringido a Read y Subscribe, un servidor espejo en la zona desmilitarizada industrial, alimentado por el historiador a través de un diodo de datos. \\
 Alternativas evaluadas & (a) Cliente OPC UA directo al historiador detrás de un cortafuegos, (b) exportación programada de archivos. \\
@@ -217,7 +217,7 @@ La tabla muestra que la barrera contra la escritura en la red de control no depe
 
 \begin{tabla}{I{0.196}I{0.804}}{Registro de decisión ADR-06: canales de terreno.}{tab:registro-decision-adr-06-canales-terreno}
   {\cab{Campo del registro} & \cab{ADR-06 · Canales de terreno}}
-  {Fuente: elaboración propia, con el método de análisis de decisiones con múltiples criterios (PMI, 2017)}
+  {Fuente: elaboración propia, con una matriz de decisión ponderada por criterio.}
 Contexto & Los dispositivos instalados antes en la faena se abandonaron porque no funcionaban con guantes ni se leían al sol, y el operador de pala no puede sumar pasos al ciclo. \\
 Decisión & Botonera de Pala sin pantalla en la cabina y App SITCO Terreno híbrida, con núcleo web y contenedor nativo Windows, para la supervisión y las perforadoras sin instrumentación. \\
 Alternativas evaluadas & (a) Tableta táctil en la cabina de la pala, (b) aplicación web progresiva, (c) aplicación nativa completa. \\
@@ -230,7 +230,7 @@ De lo anterior, se observa que la decisión separa dos usuarios con exigencias o
 
 \begin{tabla}{I{0.196}I{0.804}}{Registro de decisión ADR-07: identidad por población.}{tab:registro-decision-adr-07-identidad-poblacion}
   {\cab{Campo del registro} & \cab{ADR-07 · Identidad por población}}
-  {Fuente: elaboración propia, con el método de análisis de decisiones con múltiples criterios (PMI, 2017)}
+  {Fuente: elaboración propia, con una matriz de decisión ponderada por criterio.}
 Contexto & Usan la solución 1.780 personas propias, hasta 6.700 contratistas durante una detención, unas noventa empresas, los compradores, el operador portuario y los laboratorios externos. \\
 Decisión & Separar tres planos de identidad: directorio corporativo federado para el personal propio, identidad externa para empresas y compradores, y credencial con número de identificación personal (PIN) en terreno; en la botonera, el segundo factor es el contraste de la credencial con el operador que el despacho asigna a la pala, y el toque no abre sesión. \\
 Alternativas evaluadas & (a) Todas las identidades en el directorio corporativo, (b) biometría obligatoria en todo acceso. \\
@@ -243,7 +243,7 @@ Se puede observar que el doble factor se cumple en las tres poblaciones, incluid
 
 \begin{tabla}{I{0.196}I{0.804}}{Registro de decisión ADR-08: almacén propio por módulo y modelo analítico separado.}{tab:registro-decision-adr-08-almacen-propio}
   {\cab{Campo del registro} & \cab{ADR-08 · Almacén propio por módulo y modelo analítico separado}}
-  {Fuente: elaboración propia, con el método de análisis de decisiones con múltiples criterios (PMI, 2017)}
+  {Fuente: elaboración propia, con una matriz de decisión ponderada por criterio.}
 Contexto & Las consultas de gestión y del CIO no pueden degradar el registro de terreno ni la portería. \\
 Decisión & Dar a cada módulo su propio almacén transaccional y construir los indicadores sobre un modelo analítico alimentado por eventos. \\
 Alternativas evaluadas & (a) Base de datos compartida por todos los módulos, (b) réplica de lectura de la base transaccional. \\
@@ -427,9 +427,9 @@ En la capa de datos termina el recorrido del hecho. La capa guarda los datos en 
 \begin{horizontal}
 \figura{22.44}{fig-4-7-almacenes-capa-datos-unidades-trazabilidad}{Almacenes de la capa de datos y unidades de trazabilidad.}{fig:almacenes-capa-datos-unidades-trazabilidad}{Fuente: elaboración propia.}
 \end{horizontal}
-Cada módulo es dueño exclusivo de su almacén y comparte información mediante eventos. Los almacenes comunes atienden series de tiempo, documentos, analítica, búsqueda y consulta histórica. El Nodo y los dispositivos mantienen copias locales cifradas para operar sin enlace. Motores, consistencia, retención y migración se desarrollan en el Subdocumento 5.
+Cada módulo es dueño exclusivo de su almacén y comparte información mediante eventos. Los almacenes comunes atienden series de tiempo, documentos, analítica, búsqueda y consulta histórica. El Nodo y los dispositivos mantienen copias locales cifradas para operar sin enlace.
 
-La declaración del operador de pala queda guardada en el almacén transaccional de Operación Mina como parte del viaje, la primera unidad de trazabilidad del ciclo del mineral, la cadena de unidades se muestra en la Figura \ref{fig:almacenes-capa-datos-unidades-trazabilidad} y su modelo se desarrolla en el Subdocumento 5. La capa ofrece a los servicios transacciones con garantías de atomicidad y aislamiento, cifrado en reposo y respaldo, y excluye cualquier consulta de un módulo al almacén de otro. La selección de motores, la consistencia por dominio, la retención y la migración de los datos se desarrollan en el Subdocumento 5.
+La declaración del operador de pala queda guardada en el almacén transaccional de Operación Mina como parte del viaje, la primera unidad de trazabilidad del ciclo del mineral. La cadena de unidades se muestra en la Figura \ref{fig:almacenes-capa-datos-unidades-trazabilidad} y su modelo se desarrolla en el Subdocumento 5. La capa ofrece a los servicios transacciones con garantías de atomicidad y aislamiento, cifrado en reposo y respaldo, y excluye cualquier consulta de un módulo al almacén de otro. La selección de motores, la consistencia por dominio, la retención y la migración de los datos se desarrollan en el Subdocumento 5.
 
 \subsubseccion{Capa 7: Seguridad transversal}
 Las capas 7 y 8 no forman un paso del recorrido, porque se aplican sobre las capas 1 a 6. La capa de seguridad sigue el modelo de confianza cero, y la red de la faena no concede confianza por sí misma. Las Figuras \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante} y \ref{fig:componentes-capa-seguridad-transversal-excepcion-durante-b} muestran los componentes responsables en la nube y en la faena, la población que atiende cada identidad y la forma en que opera la capa durante un corte.
@@ -1313,7 +1313,6 @@ La conmutación se prueba dos veces al año durante las detenciones de planta de
 \item OpenSearch Project. (s.f.). Release schedule and maintenance policy. https://opensearch.org/releases/
 \item PostgreSQL Global Development Group. (s.f.). Versioning policy. https://www.postgresql.org/support/versioning/
 \item Prometheus. (s.f.). Long-term support. https://prometheus.io/docs/introduction/release-cycle/
-\item Project Management Institute. (2017). \emph{A guide to the project management body of knowledge (PMBOK guide)} (6.ª ed.). Project Management Institute.
 \item PTC. (s.f.). Support and subscription renewal: Kepware. https://www.ptc.com/en/products/kepware/standard-support
 \item Richardson, C. (2018). Microservices patterns: With examples in Java. Manning.
 \item Rose, S., Borchert, O., Mitchell, S. y Connelly, S. (2020). Zero trust architecture (NIST Special Publication 800-207). National Institute of Standards and Technology. https://doi.org/10.6028/NIST.SP.800-207

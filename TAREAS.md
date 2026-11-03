@@ -23,8 +23,8 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 | R-01 | Alta / revisión entrega 2 | Sustentar desglose y HH de ramas 1.1 y 1.4 antes de presupuestar | pendiente | Sin asignar | Sin asignar |
 | R-02 | Alta / herramienta | Evitar PDF antiguo o inválido en salida de entrega | pendiente | Sin asignar | Sin asignar |
 | R-03 | Alta / diseño | Revisar afirmación de MFA de la botonera | pendiente | Sin asignar | Sin asignar |
-| R-04 | Media / entrega 2 | Resolver equivalencia de actores S2/S6 | pendiente | Sin asignar | Sin asignar |
-| R-05 | Media / entrega 2 | Alinear organigrama y dotación por período | pendiente | Sin asignar | Sin asignar |
+| R-04 | Media / entrega 2 | Resolver equivalencia de actores S2/S6 | en_revision | Claude, vía LC-02 (DEC-018) | Pendiente |
+| R-05 | Media / entrega 2 | Alinear organigrama y dotación por período | en_revision | Claude, vía LC-02 (DEC-017); faltan Figuras 1.1 y 1.2 | Pendiente |
 | R-06 | Media / entrega 2 | Resolver ubicación del motor de conciliación | cerrada | Claude, sesión 2026-10-29 (vía S13-01) | David (Grupo 1), revisada el 2026-10-29 |
 | R-07 | Media / herramienta | Hacer que --revisar señale errores mediante código de salida | pendiente | Sin asignar | Sin asignar |
 | R-08 | Media / forma | Revisar nueve avisos de tablas explicativas | pendiente | Sin asignar | Sin asignar |
@@ -35,6 +35,7 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 | S13-01 | Alta / entrega 2 | Corregir S13: ubicación del motor de conciliación (DEC-014 / R-06) y cuantificación del beneficio de la innovación 4 (O-13.1) | cerrada | Claude, sesión 2026-10-29, por encargo de David (Grupo 1) | David (Grupo 1), revisada el 2026-10-29 |
 | F-03 | Alta / presentación | Dependencias y ruta crítica en las cartas Gantt de las ramas de T-14 | en_revision | Claude, sesión 2026-10-29, rama grupo6 | Pendiente (sólo autorrevisión) |
 | LC-01 | Media / lectura de cierre | Corregir erratas, oraciones rotas, citas inexistentes e indicios «dudosos» que señaló la Primera Revisión del Informe 2 y que siguen en el LaTeX | en_revision | Claude, sesión 2026-11-03, rama claude/kind-heisenberg-egckbe | Pendiente (sólo autorrevisión) |
+| LC-02 | Alta / revisión del profesor | Corregir lo pendiente de la Primera Revisión del Informe 2 tomando la decisión de menor cambio; figuras en md aparte | en_revision | Claude, sesión 2026-11-03, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
 | E3-01 | Planificada / entrega 3 | Documento económico, planilla, flujo, curva S, VAN/TIR e innovaciones | pendiente | Sin asignar | Sin asignar |
 | E3-02 | Planificada / entrega 3 | Prototipo navegable y evidencia de requisitos UX/UI | pendiente | Sin asignar | Sin asignar |
 
@@ -155,6 +156,24 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 - **Clase (autorizado por el usuario el 2026-11-03):** `latex/comun/overfore.cls`, línea 225, `\newcommand` → `\newcommand*` en `\ov@textoIA`. La comparación `\ifx` con el `\def` de `\seccionsinnumero` nunca era verdadera, por lo que la excepción que deja a la tabla de la Declaración de uso de IA pasar de página no se activaba y la compilación normal se detenía en 9 subdocumentos. Las demás tablas del cuerpo siguen limitadas a una página. Comprobado con un documento mínimo; `python compilar.py` (modo normal): 31 documentos sin error, estable en 5 pasadas, 1.317 folios, PDF en `latex/salida/` (no versionados).
 - **Fuera de alcance (requiere decisión del equipo):** 14 frente a 19 grupos de interés (DEC-012), dotación del S1 (DEC-013), sitio y correo institucional, figuras bajo 9 pt, parciales del T-12, EDT y Gantt del S7, riesgos internos del S8.
 - **Validación 2026-11-03:** `python compilar.py --reglas`: 0 errores (los 9 avisos de R-08). `python compilar.py --borrador`: 31 documentos sin error, estable en 3 pasadas, 1.317 folios; la compilación normal sigue detenida por la Declaración de IA (fuera de alcance). T-9 recompilado tras agregar `\externos{S6}`: 0 referencias indefinidas; T-12, S4 y S8-Anexos también con 0. Cada corrección se comprobó en el texto de los PDF: «Tabla 6.2» 0, «presentan este recorrido» 0, «Moya» 0, «zona inherente» en la leyenda 0. Entorno: TeX Live 2023 en Linux. No se versionan PDF ni auxiliares. Sólo autorrevisión.
+
+### LC-02 — Pendientes de la Primera Revisión del Informe 2 con decisiones de menor cambio
+
+- **Estado:** en_revision. Responsable: Claude, sesión 2026-11-03, a pedido del usuario: «hacer todos los cambios posibles y tomar las decisiones que menos cambien». Commit de partida: `f778818`. Revisión independiente pendiente.
+- **Criterio de decisión:** ante una contradicción gana la fuente con más consumidores (T-14/T-15 para dotación y HH; S2/S3 para interesados) y se corrige el documento que menos arrastra. Decisiones registradas en DEC-017 a DEC-021.
+- **Corregido:**
+  - S1: ISO/IEC 42001 en un solo párrafo, roles del JP en el Anexo E, 45 personas explicadas, «meses 14 y 15» en el Anexo F, escala de las referencias argumentada, correo con dominio propio y sin sitio personal.
+  - S2: Tabla 2.5 («1» en vez de «SUP-30»), leyenda de la Figura 2.1, citas de Google con a/b/c, nueva subsección de conceptos de la industria (conciliación, liquidación con arsénico e IEC 62443) con dos referencias.
+  - S3: análisis de escalabilidad (qué se satura primero), coherente con S4.
+  - S4: fuente PMI retirada de los ocho ADR y su referencia; fin de soporte de Angular 22 (noviembre de 2027); frase repetida «se desarrollan en el Subdocumento 5».
+  - S5: SSO como imagen indexada; histórico ambiental con resolución diaria (DEC-020); celda RTO de la Tabla 5.5 sin explicación.
+  - S6 y T-9/T-10: 19 grupos y 171 canales (DEC-018); autorización de la ventana entre sesiones; acreditación del personal y traspaso a TI; anillos para tabletas.
+  - S7 y T-14: justificación del primer nivel de la EDT y de las etapas; paquetes de nivel de esfuerzo; imputación en la Tabla 7.1; holgura cero y primera defensa; criterio del 1.4.6.2 explicado con la regla del tres; texto de la rama 1.7.
+  - S8, A8 y T-16: justificación de las respuestas con beneficio/costo bajo 1; R-10 en la tabla de temas del caso; R-15 fuera de la exposición agregada (5,06 → 2,01, 60 %); precisión redondeada; páginas relativas en fuentes.
+  - S9, A9 y T-17: TMMi junto a SAMM; capacidad de interacción en segundos; pruebas en detenciones justificadas; puerta 5 sin pasos en detención; criterio 14 en H7 y H12; remisión a T-14; escalamiento de campañas atrasadas.
+  - S13, A13 y T-19: valorización de la innovación 1 (USD 0,95 a 1,4 millones al año, beneficio del cliente); innovación 3 en toneladas y defensa frente a la práctica habitual; rama 1.7 en 3.000 HH; innovación 5 con cuatro módulos; páginas relativas en fuentes.
+- **Fuera de alcance (requiere el equipo o rehacer cálculos):** figuras ([Figuras_Pendientes.md](revision-comision/Figuras_Pendientes.md)); reglas de negocio del Cap. 17.1; parciales del T-12; ADR de región y CIO y conversión de ADR a texto; latencia y costo de Brazil South; LTE del rajo; CPM con duraciones estimadas y reserva de cronograma; medida de tamaño; sacar los riesgos internos y agregar los externos del S8; 704 + 96 HH en T-14/T-15; reserva de gestión; Montecarlo; volumen; lectura de cierre humana.
+- **Validación:** ver la línea de validación al cierre de esta ficha.
 
 ### E3-01 — Economía de entrega 3
 
