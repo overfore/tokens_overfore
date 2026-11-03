@@ -1,0 +1,145 @@
+%% OVERFORE-Subdocumento7.tex — generado desde OVERFORE-Subdocumento7.docx
+%% Formato: clase overfore, modo subdoc. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[subdoc]{../../comun/overfore}
+\numsubdoc{7}
+\nombresubdoc{Plan de trabajo, EDT, cronograma e implantación}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{T14,T15}
+\begin{document}
+
+\capitulo{Introducción al Plan de trabajo}
+El plan de trabajo de SITCO Aranda reúne todo el alcance del contrato en 8 ramas, 55 entregables y 175 paquetes de trabajo, desde la dirección del proyecto hasta los 36 meses de operación. Suma 183.066 horas hombre (HH): 60.394 en las ramas 1.1 a 1.7 y 122.672 en la rama 1.8, de operación y mantención. Contadas por mes, 56.886 HH caen en los meses 1 a 20 y 126.180 en los meses 21 a 56. La diferencia, 3.508 HH, es trabajo de las ramas 1.1 a 1.7 posterior al mes 20. El cronograma cumple sin desplazamientos las fases del Art. 17° y los doce hitos del Formulario E-25 (Compañía Minera Altos de Aranda [CMAA], 2026a, Art. 17, pp. 12–13, y Art. 18.1, p. 13).
+
+Este capítulo resume y analiza el plan, el detalle está en tres formularios que se entregan como archivos propios. El Formulario T-14 contiene la EDT, el diccionario de cada paquete y la carta Gantt de los 56 meses (Overfore S.A., 2026a). El Formulario T-15 nivela los recursos por paquete, mes y frente (Overfore S.A., 2026b), y el Formulario T-18 detalla la implantación por sitio y la puesta en marcha controlada (Overfore S.A., 2026c).
+
+El plan aplica las metodologías del Capítulo 6, las cuales consisten en hitos y líneas base con enfoque predictivo, y construcción en sprints de dos semanas entre hitos. Los paquetes citan los requisitos del Formulario T-12 que atienden, y sus meses ubican ese trabajo en el cronograma. Las innovaciones del Capítulo 13 forman la rama 1.7, las pruebas y la aceptación de hitos siguen el Capítulo 9, y la dotación coincide con la del Capítulo 1. Todo el esfuerzo se expresa en horas hombre, sin costos ni tarifas (CMAA, 2026a, Art. 50.2, p. 29).
+
+\seccion{EDT}
+Una estructura de descomposición del trabajo (EDT) divide el alcance en entregables y paquetes que se pueden estimar y asignar a un responsable (Project Management Institute [PMI], 2017). La de SITCO Aranda cubre el 100 \% del alcance de la implementación y de la operación, y sus ramas siguen el ciclo de vida del producto. La Figura \ref{fig:edt-sitco-aranda-vista-general-ocho} muestra las ocho ramas con su tamaño.
+
+\figura{16.09}{fig-7-1-edt-sitco-aranda-vista-general}{EDT de SITCO Aranda, vista general de las ocho ramas.}{fig:edt-sitco-aranda-vista-general-ocho}{Fuente: elaboración propia con el Formulario T-14 (Overfore S.A., 2026a).}
+La rama 1.8, con la operación 24x7 de los meses 21 a 56, reúne el 67,0 \% de las horas. Las ramas 1.4 y 1.6, que construyen e implantan la solución, suman otro 23,5 \%. Las cinco innovaciones tienen una rama propia, la 1.7, para controlar su avance y su verificación por separado.
+
+La EDT incluye el trabajo que no es software. La seguridad está en el plan de amenazas (1.3.3) y en las pruebas de intrusión (1.5.4), la calidad en las puertas de calidad (1.1.4) y en la certificación de cada etapa (1.5.3 y 1.5.6), y la migración en los datos migrados (1.4.6). Lo que las Bases excluyen, como reemplazar SAP S/4HANA o comprar el hardware de terreno, no es paquete, su integración, su especificación y su instalación sí lo son (Overfore S.A., 2026a, sección 6).
+
+El diccionario de la EDT tiene una ficha por entregable y otra por paquete. Cada paquete declara su entregable, un criterio de aceptación que la Contraparte Técnica puede verificar y un único responsable del equipo clave, como piden las Bases para el plan de trabajo (CMAA, 2026a, Formulario T-7, p. 58). Las 230 fichas, 55 de entregable y 175 de paquete, están en las secciones 7 a 14 del Formulario T-14. Las fichas de paquete citan en su campo Referencias los requisitos del Formulario T-12 que atienden.
+
+El esfuerzo se estima de abajo hacia arriba, entre 8 y 80 HH por paquete o por ocurrencia. Los 154 paquetes con trabajo incierto se estiman además con PERT de tres valores, con rangos según su clase de incertidumbre (McConnell, 2006). Con 90 \% de confianza, el esfuerzo supera al esperado en 988 HH. Esas diferencias se cubren con las 1.280 HH de corrección de defectos de 1.4.3.7 y 1.4.4.7. Si todas las desviaciones van en el mismo sentido, la referencia de gestión es de 5.372 HH, fuera de la EDT y sujeta a autorización del Comité Ejecutivo. Las 152 HH de 1.1.3.2 administran las respuestas; su ejecución se asigna a los paquetes técnicos y se nivela por persona y mes.
+
+\seccion{Plan de trabajo}
+El plan de trabajo ordena los paquetes en el tiempo y les asigna personas. Sigue la división del Capítulo 6: los hitos y las líneas base se gestionan con la Guía del PMBOK (PMI, 2017), y entre hitos el software se construye en sprints de dos semanas. Así, la construcción se estima por sprint y la gestión por informe mensual o por comité.
+
+\subseccion{Secuenciamiento y estimación}
+El reparto entre etapas sigue el orden que pide el directorio, el cuál consiste primeramente en trazabilidad y conciliación, luego terreno y personas, y al final la analítica de mantenimiento (CMAA, 2026b, sección 13.1, p. 21). Tres dependencias externas ajustan ese orden. La telemetría espera los acuerdos con los tres fabricantes, la verificación facial espera el acuerdo con el sindicato y Cumplimiento Ambiental espera el caudalímetro de la detención de marzo de 2028. Además, Seguridad y Salud Ocupacional espera la digitalización de 193.000 formularios en papel, que hace Overfore (paquete 1.4.6.3).
+
+Las horas de cada paquete se reparten en partes iguales entre sus meses, y de ese reparto salen las curvas y la dotación. La capacidad por persona es de 160 HH al mes hasta el mes 15 y de 152 HH desde el mes 16, porque la jornada baja a 40 horas semanales en abril de 2028 (Ley N° 21.561, 2023). La Tabla \ref{tab:horas-hombre-personas-frentes-etapa} resume el resultado por etapa.
+
+\begin{tabla}{I{0.338}I{0.123}D{0.261}D{0.146}D{0.131}}{Horas hombre, personas y frentes por etapa.}{tab:horas-hombre-personas-frentes-etapa}
+  {\cab{Etapa} & \cab{Meses} & \cab{HH} & \cab{Personas (máximo)} & \cab{Frentes}}
+  {Fuente: elaboración propia con el Formulario T-15 (Overfore S.A., 2026b).}
+Etapa 1 · Desarrollo & 1 a 12 & 23.514 & 25 (mes 8) & 7 \\
+Etapa 1 · Marcha blanca & 13 a 15 & 10.959 & 25 (mes 15) & 4 \\
+Etapa 2 · Desarrollo & 13 a 18 & 14.628 (incluye 1.624 HH de los meses 10 a 12) & 27 (mes 14) & 7 \\
+Etapa 2 · Marcha blanca & 19 y 20 & 7.785 & 36 (mes 19) & 7 \\
+Operación & 21 a 56 & 126.180 & 38 (mes 21) & 7 \\
+Total del contrato & 1 a 56 & 183.066 & 45 (mes 14) & 8 \\
+\end{tabla}
+Los meses 21 a 56 concentran el 69 \% de las horas, con 30 a 31 personas en régimen. En la implementación el máximo, 45 personas, ocurre en el mes 14, cuando se cruzan la marcha blanca de la Etapa 1 y el desarrollo de la Etapa 2. La marcha blanca de la Etapa 1 ocurre en los meses 13 a 15. Sus 10.959 HH incluyen 2.360 HH del trabajo de la Etapa 1 en los meses 16 y 17. El paso a producción y la estabilización ocurren en los meses 16 y 17, con 2.064 HH del paquete 1.6.4.1, las horas por paquete y por mes están en el Formulario T-15.
+
+\subseccion{Frentes de trabajo, paralelización y sincronización}
+Los frentes de trabajo son las ocho ramas de la EDT, de modo que cada hora conserva el código y el responsable de su paquete. En los meses 1 a 12 trabajan siete frentes en paralelo, y el de software llega a 15 personas. La Figura \ref{fig:curva-horas-hombre-implementacion-etapa-total} muestra las horas de la implementación por mes y por etapa.
+
+\figura{14.76}{fig-7-2-curva-horas-hombre-implementacion-etapa}{Curva de horas hombre de la implementación, por etapa y total, meses 1 a 20.}{fig:curva-horas-hombre-implementacion-etapa-total}{Fuente: elaboración propia con el Formulario T-15 (Overfore S.A., 2026b).}
+La carga se mantiene entre 1.900 y 2.300 HH al mes desde el mes 3 hasta el 9 y llega a su máximo, 5.251 HH, en el mes 15. El 41 \% de las horas de la implementación, 23.162 HH, ocurre en los cinco meses en que las dos etapas se solapan.
+
+En el solapamiento de los meses 13 a 15 trabajan 32,1 personas a jornada completa y hasta 45 personas distintas. El acompañamiento en faena de la Etapa 1 ocupa 17,3 de ellas, y el frente de software, con 9,1, construye la Etapa 2 y corrige los defectos de la marcha blanca. En los meses 19 y 20 la dotación baja a 25,7 personas a jornada completa, con hasta 36, y el riesgo pasa a ser la Etapa 1 ya en producción. Por eso los módulos de la Etapa 2 se despliegan como servicios separados y cada promoción ejecuta la regresión de la Etapa 1 (Overfore S.A., 2026b, Tabla \refext{T15}{tab:dotacion-frente-solapamientos-meses-13-15} del Formulario T-15).
+
+Los frentes se sincronizan en el comité de proyecto, que sesiona cada dos semanas al cierre de cada sprint, y en el informe mensual de avance con valor ganado (paquete 1.1.2.2). Un atraso en un paquete continuo de un rol clave toma horas de ese mismo paquete y no de otro rol.
+
+\seccion{Cronograma e implantación}
+El cronograma fija el mes 1 en enero de 2027 y respeta las fases del Art. 17°. La Etapa 1 se desarrolla en los meses 1 a 12, tiene su marcha blanca en los meses 13 a 15 y pasa a producción en el mes 16. La Etapa 2 se desarrolla en los meses 13 a 18, tiene su marcha blanca en los meses 19 y 20 y pasa en el mes 21, cuando comienza la operación (CMAA, 2026a, Art. 17, pp. 12–13). Una fecha real de inicio distinta desplaza las fechas sin cambiar los meses contractuales.
+
+\subseccion{Ruta crítica y gestión de holguras}
+La ruta crítica se calcula con el método del camino crítico (CPM) sobre una red de 35 actividades que agrupan los paquetes de la EDT (PMI, 2017). El cálculo hacia adelante parte en el mes 1 y el cálculo hacia atrás parte del mes 21, respetando el mes de cada hito. La holgura es la diferencia entre el inicio más tardío y el más temprano, y la red completa está en la Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14. La Figura \ref{fig:ruta-critica-implementacion-sobre-cronograma-contractual} muestra las cadenas sin holgura sobre las fases del Art. 17° y los hitos del Formulario E-25.
+
+\figura{15.65}{fig-7-3-ruta-critica-implementacion-sobre-cronograma}{Ruta crítica de la implementación sobre el cronograma contractual, meses 1 a 21.}{fig:ruta-critica-implementacion-sobre-cronograma-contractual}{Fuente: elaboración propia con la Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14 (Overfore S.A., 2026a)}
+Cada etapa tiene una cadena sin holgura, porque sus duraciones llenan exactamente los meses entre hitos. En la Etapa 1 va de la línea base (A04) al paso a producción (A24), y en la Etapa 2, de la línea base (B01) al paso del mes 21 (B11). Su margen se mide en días de ventana: hasta el 28 de abril de 2028 para H7, y el 29 y el 30 de septiembre de 2028 para H12.
+
+Entre las negociaciones con terceros, sólo la del sindicato (A09) no tiene holgura, porque precede a la verificación facial de los meses 15 a 17. El caudalímetro (B05) tampoco la tiene, porque se instala en la fecha fija de la detención de marzo de 2028. Siete actividades tienen holgura, entre uno y cuatro meses. Los acuerdos con los fabricantes (A08) tienen cuatro, porque los conectores se construyen contra la especificación y sólo la conexión productiva del mes 17 espera la firma.
+
+Las actividades cuya duración no controla Overfore se estiman también con PERT, con duración esperada te = (o + 4m + p) / 6, y con una distribución normal se calcula la probabilidad de terminar dentro del plazo que deja la red. La Tabla \ref{tab:estimacion-pert-actividades-inciertas-red} presenta el resultado.
+
+\begin{tabla}{I{0.385}D{0.223}D{0.208}D{0.185}}{Estimación PERT de las actividades inciertas de la red.}{tab:estimacion-pert-actividades-inciertas-red}
+  {\cab{Actividad} & \cab{Duración esperada y σ} & \cab{Plazo que deja la red} & \cab{Probabilidad}}
+  {Fuente: elaboración propia con la Tabla \refext{T14}{tab:estimacion-pert-duracion-actividades-inciertas-red} del Formulario T-14 (Overfore S.A., 2026a)}
+A01 Primera acreditación del equipo clave & 9,7 y 1,3 días hábiles & 15 días hábiles & Más de 99,9 \% \\
+A03 Inventario de los diez sistemas & 12,3 y 1,7 semanas & 17,3 semanas & 99,9 \% \\
+A08 Acuerdos con los tres fabricantes & 33,3 y 5,3 semanas & 60,7 semanas & Más de 99,9 \% \\
+A09 Acuerdo con el sindicato & 26,0 y 6,0 semanas & 56,3 semanas & Más de 99,9 \% \\
+B06 Digitalización con tres puestos & 25,2 y 1,3 semanas & 25,6 semanas & 61,8 \% \\
+\end{tabla}
+Sólo la digitalización tiene un plazo ajustado. Por eso su primer lote es piloto y, si rinde menos de lo previsto, un cuarto digitalizador abre un cuarto puesto y la duración esperada baja a 18,9 semanas. Las negociaciones con terceros terminan a tiempo con alta probabilidad, su riesgo es de resultado, y cada una tiene una salida prevista en la sección 3 del Formulario T-14.
+
+\subseccion{Carta Gantt e hitos del contrato}
+La carta Gantt del Formulario T-14 cubre los 56 meses, con una barra por rama, entregable y paquete y un rombo en el mes del hito que cada paquete gatilla. Los doce hitos del Formulario E-25 caen en su mes contractual: H1 en el mes 2, H2 en el 4, H3 en el 6, H4 en el 10, H5 en el 12, H6 en el 13, H8 en el 14, H7 en el 16, H9 en el 17, H10 en el 18, H11 en el 19 y H12 en el 21. La operación de los meses 21 a 56 se paga con 36 hitos mensuales, que gatillan los paquetes de la rama 1.8.
+
+Las detenciones de planta son las únicas ventanas para lo que exige detener un proceso. La de septiembre de 2027 sirve para conectar el diodo de datos, la de marzo de 2028, para instalar el caudalímetro y para el corte de 48 horas y la conmutación de la Etapa 1, y la de septiembre de 2028, para el corte y la conmutación de la Etapa 2. Ningún paso a producción ocurre en una detención ni en el cierre contable de los cinco primeros días hábiles del mes.
+
+\subseccion{Implantación y puesta en marcha}
+La estrategia de despliegue es progresiva por área. Cada etapa entra a producción en tres olas, separadas por al menos 72 horas, en la ventana de 03:00 a 05:00 y después del quinto día hábil. Dentro de cada ola el despliegue es azul-verde en la nube, por extracción en el Nodo de Faena y por anillos en terreno, y se demuestra en Preproducción antes de cada paso (Overfore S.A., 2026a, paquete 1.4.1.2). La Figura \ref{fig:calendario-implantacion-dos-etapas-meses-12} muestra el calendario de las dos etapas.
+
+\figura{16.51}{fig-7-4-calendario-implantacion-dos-etapas-meses}{Calendario de implantación de las dos etapas, meses 12 a 23.}{fig:calendario-implantacion-dos-etapas-meses-12}{Fuente: elaboración propia con el Formulario T-18 (Overfore S.A., 2026c).}
+La Figura \ref{fig:calendario-implantacion-dos-etapas-meses-12} muestra que ninguna ola cae en una detención de planta y que cada área se capacita durante dos ciclos del 7x7 antes de su marcha blanca. En la Etapa 1 pasan portería y acreditación, mina, y planta, concentrado y puerto, el 10, el 17 y el 21 de abril de 2028. En la Etapa 2 pasan seguridad y salud ocupacional, equipos y mantenimiento, y cumplimiento ambiental, el 20, el 24 y el 28 de septiembre de 2028.
+
+Antes de cada paso se ejecutan las pruebas que exigen H5 y H10. La prueba de carga sostiene 300 transacciones por segundo, 1,5 veces el pico declarado de 200, durante 60 minutos y con el percentil 95 dentro de los umbrales, como 2 segundos en terreno y 1,5 en portería. La prueba de estrés identifica el punto de quiebre y la de resistencia exige 72 horas sin degradación sobre 10 \% (paquetes 1.5.3.1 y 1.5.6.1). Las pruebas de aceptación de usuario siguen el Formulario T-17. La conmutación a la región de recuperación verifica un RTO de 4 horas y un RPO de 15 minutos (paquete 1.5.5.1). El corte de 48 horas exige cero registros perdidos y sincronización en 4 horas o menos (paquete 1.5.5.2).
+
+La reversión se hace por función o por área, sin detener las demás. Ante un incidente crítico no resuelto en 4 horas o una diferencia no explicada en la conciliación diaria, el Comité de Operación ordena revertir, se reactiva la versión anterior en 30 minutos o menos y el área vuelve a las planillas y la radio. No se pierden registros, porque el Nodo de Faena conserva su bandeja de salida y lo registrado en SITCO pasa a las planillas antes de reanudar (Overfore S.A., 2026c, sección 7).
+
+\subseccion{Marcha blanca de la Etapa 1 y de la Etapa 2}
+La marcha blanca de la Etapa 1 ocupa de enero a marzo de 2028 y la de la Etapa 2, julio y agosto de 2028, con datos y usuarios reales. SITCO convive con la forma actual de trabajar y se concilia cada día contra las planillas, que dejan de ser fuente oficial sólo el día del paso de cada área. La Tabla \ref{tab:indicadores-diarios-umbrales-cierre-marchas-blancas} presenta los indicadores de cierre, que se miden cada día durante al menos las cuatro últimas semanas (CMAA, 2026a, Art. 17.3, p. 13).
+
+\begin{tabla}{I{0.308}I{0.400}I{0.292}}{Indicadores diarios y umbrales de cierre de las marchas blancas.}{tab:indicadores-diarios-umbrales-cierre-marchas-blancas}
+  {\cab{Condición del Art. 17.3} & \cab{Indicador diario} & \cab{Umbral de cierre}}
+  {Fuente: elaboración propia con el Formulario T-18 (Overfore S.A., 2026c).}
+Sin incidentes críticos ni altos & Incidentes abiertos atribuibles a la solución & Cero críticos y cero altos \\
+Volumen real comprometido & Registros del período hechos en SITCO & 95 \% o más \\
+Disponibilidad y tiempo de respuesta & Disponibilidad de servicios críticos y p95 del registro en terreno & 99,9 \% o más y 2 s o menos \\
+Conciliación & Diferencias entre SITCO y las planillas & Ninguna sin explicar \\
+Personal capacitado y certificado & Personas de las olas capacitadas, por área y turno & 100 \% del plan aprobado \\
+Acta de aceptación & Avance del expediente del hito & Acta suscrita por la Contraparte Técnica \\
+\end{tabla}
+Todas las condiciones se miden cada día, y el cierre exige cumplirlas juntas. Si una no se cumple, Overfore extiende la marcha blanca a su costo, sin mover las fases siguientes. El acompañamiento en faena tiene una persona por turno en cada área en marcha blanca, con 6.824 HH en la Etapa 1 y 4.248 HH en la Etapa 2, y la estabilización sigue sin costo adicional hasta el 31 de mayo y el 8 de noviembre de 2028. La adopción se mide por área y grupo del 7x7, con una meta de 90 \% de las declaraciones de la Botonera hechas por el propio operador.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item Ley N° 21.561. (2023). \emph{Modifica el Código del Trabajo con el objeto de reducir la jornada laboral}. Diario Oficial de la República de Chile.
+\item McConnell, S. (2006). \emph{Software estimation: Demystifying the black art}. Microsoft Press.
+\item Overfore S.A. (2026a). \emph{Formulario T-14: Plan de trabajo, EDT y carta Gantt}. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026b). \emph{Formulario T-15: Nivelación de recursos}. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026c). \emph{Formulario T-18: Propuesta de implantación y puesta en marcha controlada}. Licitación N° TFEP-01/2026.
+\item Project Management Institute. (2017). \emph{A guide to the project management body of knowledge (PMBOK guide)} (6.ª ed.). Project Management Institute.
+\end{referencias}
+
+\seccionsinnumero{Declaración de uso de IA}
+Se utilizó IA generativa, principalmente como apoyo en la síntesis del capítulo a partir de los Formularios T-14, T-15 y T-18 y en la verificación de cifras; el detalle por sección está en la Tabla \ref{tab:declaracion-uso-ia-seccion}.
+
+\begin{tabla}{I{0.151}I{0.166}I{0.215}I{0.086}I{0.142}I{0.241}}{Declaración de uso de IA por sección.}{tab:declaracion-uso-ia-seccion}
+  {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad del uso} & \cab{Nivel en\newline texto} & \cab{Nivel en\newline diagramas} & \cab{Revisión humana (quién y qué verificó)}}
+  {Fuente: elaboración propia.}
+Introducción y capítulo 7 & Claude & Borrador de presentación del plan de trabajo y sus etapas. & Alto & Ninguno & Gabriel Sanzana: contrastó la coherencia entre alcance, esfuerzo y calendario. \\
+7.1 & claude & Apoyo para explicar la estructura de descomposición del trabajo. & Alto & Medio & Marcelo Flores: revisó los paquetes de la EDT frente al Formulario T-14. \\
+7.2 & claude & Base narrativa del plan de trabajo. & Alto & Ninguno & Kavon Kermani: revisó las dependencias necesarias para ejecutar cada etapa. \\
+7.2.1 a 7.2.2 & claude & Organización de secuencias, estimaciones y frentes paralelos. & Alto & Medio & Lucas Zamora: revisó las horas, recursos y puntos de sincronización. \\
+7.3 & claude & Apoyo para describir cronograma e implantación. & Alto & Ninguno & Marcelo Flores: revisó las fechas de los hitos frente a T-14 y T-18. \\
+7.3.1 a 7.3.4 & claude & Desarrollo de ruta crítica, Gantt, puesta en marcha y marcha blanca. & Alto & Medio & Kavon Kermani: revisó las holguras, los hitos y las ventanas de implantación. \\
+Referencias & claude & Apoyo para ordenar y uniformar las referencias citadas. & Bajo & Ninguno & Lucas Zamora: comprobó la existencia de las fuentes y su correspondencia con las citas. \\
+T-14 & claude y codex & Apoyo en la organización de EDT, paquetes y carta Gantt. & Alto & Alto & Lucas Zamora: verificó los paquetes, meses, dependencias y esfuerzo del plan. \\
+T-15 & claude y codex & Contraste de la nivelación de recursos y horas por perfil. & Alto & Medio & Patricio Figueroa: validó las sumas y cargas frente al T-14. \\
+T-18 & claude y codex & Borrador del plan de implantación, marcha blanca y reversión. & Alto & Medio & Patricio Figueroa: revisó los sitios, fechas y criterios de paso a producción. \\
+\end{tabla}
+
+\end{document}

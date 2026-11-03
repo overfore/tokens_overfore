@@ -1,0 +1,281 @@
+%% OVERFORE-Subdocumento2.tex — generado desde OVERFORE-Subdocumento2.docx
+%% Formato: clase overfore, modo subdoc. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[subdoc]{../../comun/overfore}
+\numsubdoc{2}
+\nombresubdoc{Comprensión del problema y de la necesidad}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{A2}
+\begin{document}
+
+\capitulo{Introducción al Problema y Necesidad}
+Se describe el problema de Compañía Minera Altos de Aranda antes de hablar de la solución. La sección 2.1 lo resume con su magnitud y sus actores, la 2.2 presenta la compañía, sus sistemas y las particularidades operacionales, regulatorias y estacionales que lo condicionan, y lo desglosa en tres problemas, la 2.3 lo dimensiona con los indicadores y la volumetría del caso, la 2.4 identifica a los actores y su influencia, y la 2.5 resume los requerimientos, supuestos, exclusiones y restricciones que se detallan en el archivo OVERFORE-Subdocumento2-Anexos. El análisis de este capítulo es la base del Subdocumento 3, que describe la solución y su alcance a partir de los tres problemas aquí identificados, y del Subdocumento 8, que trata como riesgos los supuestos que dependen de terceros.
+
+\seccion{Resumen Ejecutivo del problema}
+Compañía Minera Altos de Aranda S.A. es una operación de cobre a rajo abierto que produce cerca de 100.000 toneladas de cobre fino al año en la Región de Antofagasta. Su desafío, tal como lo reconoce su gerente general, es demostrar con datos el origen del mineral y las condiciones en que opera (Compañía Minera Altos de Aranda [CMAA], 2026b, caps. 1 y 2, pp. 2–5).
+
+Esto, que durante años fue una incomodidad interna, se volvió urgente en 2026, debido a que el comprador japonés que se lleva el 38 \% del concentrado exigirá a partir de 2029 trazabilidad verificable del origen del mineral, huella de carbono por tonelada de cobre fino calculada cada trimestre y auditada por un tercero, y evidencia de las condiciones laborales de la cadena de suministro. Además un comprador coreano ya planteó lo mismo con otras palabras. Hoy la compañía demora entre cuatro y seis semanas en reconstruir de dónde vino el mineral de un embarque y lo que obtiene es una estimación. La conciliación metalúrgica del mes, por su parte, cierra dieciocho días hábiles después del cierre contable, con diferencias que en el último año fueron de entre 3,1 \% y 6,8 \%.
+
+La conciliación presenta diferencias mensuales de 3,1 \% a 6,8 \% (CMAA, 2026b, cap. 7.1, p. 11). Como referencia de escala, aplicar ese rango a la producción anual aproximada de 100.000 t da entre 3.100 y 6.800 t de cobre fino (100.000 × 0,031 y 100.000 × 0,068). Este cálculo no acredita una pérdida anual: muestra un equivalente de magnitud, pues el caso no entrega el promedio anual ponderado ni explica dónde se producen las diferencias. A esto se suman cuatro de 31 embarques penalizados por arsénico y 94 horas anuales de detención no programada por sobre la meta interna de la compañía (214 − 120 = 94 h). El comprador japonés adquiere el 38 \% del concentrado y exigirá demostrar su origen desde enero de 2029 (CMAA, 2026b, caps. 1 y 7, pp. 2–3 y 11–12).
+
+El problema involucra a 4.180 personas con acceso a faena en régimen normal y hasta 8.500 durante las detenciones mayores, a cerca de noventa empresas contratistas, a los compradores japonés y coreano, a las autoridades minera y ambiental y a la comunidad con un convenio de empleo y compras locales. Dentro de Aranda, TI, Seguridad y Salud Ocupacional y Sustentabilidad intervienen directamente en la continuidad de la operación, la acreditación de personas y los reportes auditables. Las diferencias entre estas áreas y quienes operan forman parte del problema (CMAA, 2026b, caps. 4.8–4.9, 8 y 14.1, pp. 9–10, 13–17 y 23–24).
+
+\seccion{Comprensión del problema y de la necesidad}
+La presente sección presenta a la compañía y el contexto de la industria en que opera, con sus particularidades operacionales, regulatorias y estacionales. Luego desglosa la problemática en tres problemas y en las condiciones que los cruzan a todos.
+
+\subseccion{La compañía y su operación}
+A continuación se detallan las principales cifras de la operación de Aranda, las que se resumen en la Tabla \ref{tab:cifras-principales-operacion-aranda}.
+
+\begin{tabla}{I{0.267}D{0.246}I{0.487}}{Cifras principales de la operación de Aranda.}{tab:cifras-principales-operacion-aranda}
+  {\cab{Aspecto de la operación} & \cab{Cifra principal} & \cab{Detalle}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería.}
+Faena & 3.180 m s. n. m. & Rajo Aranda, comuna de Sierra Gorda, Región de Antofagasta, a 145 km de Antofagasta \\
+Inicio de operaciones y vida remanente & 2009 & 14 años de plan minero por delante \\
+Movimiento total mina & 82 Mt al año & 88 Mt proyectadas a tres años \\
+Mineral enviado a planta & 21,5 Mt al año & Ley media de cabeza de 0,54 \% de cobre \\
+Planta concentradora & 59.000 t por día & Capacidad nominal, con recuperación metalúrgica de 86,5 \% \\
+Producción & 100.000 t de cobre fino & 372.000 t de concentrado base seca al 27 \% de cobre \\
+Embarques y transporte a puerto & 31 embarques al año & Cerca de 12.000 t por embarque y 34 viajes diarios de camión con 30 t netas \\
+Equipos principales & 38 camiones de 240 t & Tres generaciones y dos fabricantes, más 5 palas eléctricas, 9 perforadoras, 3 cargadores frontales, 62 equipos de apoyo y 310 vehículos livianos \\
+Personas & 4.180 con acceso a faena & 1.780 propios y 2.400 contratistas permanentes, hasta 4.300 contratistas adicionales en detención mayor de planta y 115 personas en el CIO \\
+Régimen & 24x7 & Operación continua, dos turnos de 12 horas y turno 7x7 en faena \\
+\end{tabla}
+Aranda es una operación continua y de gran escala, en la que el concentrado recorre 145 km entre la faena y el puerto y en la que más de la mitad de las personas con acceso a la faena son contratistas. Estas condiciones hacen que la información pase por muchos responsables y lugares antes de consolidarse.
+
+\subsubseccion{Lugares de operación de la compañía}
+La operación de la compañía se reparte entre tres zonas: la faena de Sierra Gorda, la ciudad de Antofagasta y la oficina corporativa de Santiago, en lugares con condiciones muy distintas entre sí, lo que influye en cómo se genera y cómo viaja la información. La descripción de cada lugar, desde el rajo y la planta concentradora hasta el Centro Integrado de Operaciones y la oficina corporativa, está en la sección C.3 del Anexo C de OVERFORE-Subdocumento2-Anexos.
+
+La figura \ref{fig:faena-antofagasta-norte} corresponde a la faena, ubicada en la comuna de Sierra Gorda, Región de Antofagasta, a 3.180 metros de altura. En ella se encuentran el rajo, donde se perfora, se trona y se carga y transporta el mineral, el área de servicios y portería, que controla el acceso de las personas a la faena y la planta concentradora, donde se procesa el mineral y el depósito de relaves, ubicado a 6 km de la planta.
+
+\figura{16.06}{fig-2-1-faena-antofagasta-norte}{Faena (Antofagasta Norte).}{fig:faena-antofagasta-norte}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.).}
+Las cuatro instalaciones de la faena, el rajo, el área de servicios y portería, la planta concentradora y el depósito de relaves, están separadas entre sí, con el depósito de relaves a 6 km de la planta, por lo que la información de cada una se traslada hoy por radio, papel o correo antes de consolidarse.
+
+La segunda zona corresponde a la ciudad de Antofagasta, que se conecta con la faena a través de una ruta de 145 km. En esta zona se ubican el centro integrado de operaciones, que supervisa la mina y la planta de forma remota, y el acopio y embarque de concentrado, que recibe el material desde la faena y lo despacha a través de un terminal portuario administrado por un tercero. La figura \ref{fig:ciudad-antofagasta-cio-acopio-puerto} muestra ambas instalaciones.
+
+\figura{13.48}{fig-2-2-ciudad-antofagasta-cio-acopio-puerto}{Ciudad de Antofagasta (CIO y acopio de puerto).}{fig:ciudad-antofagasta-cio-acopio-puerto}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.).}
+En Antofagasta conviven dos funciones que dependen del dato de la faena, el acopio y embarque, donde se forma el lote comercial que llega al comprador, y el centro integrado de operaciones, que supervisa a distancia la mina y la planta.
+
+Por último, la tercera zona corresponde a la oficina corporativa, ubicada en la comuna de Las Condes, en Santiago. En ella se encuentran las áreas de finanzas, comercial, sustentabilidad, abastecimiento y tecnologías de información, que se relacionan con la operación a través de la zona de Antofagasta. La Figura~\ref{fig:oficina-corporativa-santiago} muestra la ubicación de la oficina.
+
+\figura{12.63}{fig-2-3-oficina-corporativa-santiago}{Oficina corporativa en Santiago.}{fig:oficina-corporativa-santiago}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.).}
+La oficina corporativa se encuentra en Santiago, lejos de la faena, por lo que las áreas que trabajan en Santiago dependen por completo de la información que llega desde la faena y desde Antofagasta.
+
+\subsubseccion{Sistemas de la compañía}
+La compañía tiene diez sistemas o grupos de sistemas en funcionamiento. Las Bases establecen que el ERP corporativo (SAP S/4HANA), el despacho de flota, el laboratorio y la planificación minera deben mantenerse. Hoy sus datos se consultan o exportan por separado, mientras las planillas y carpetas compartidas sostienen la acreditación, el balance metalúrgico, los stocks y el reporte ambiental. Esa fragmentación explica la necesidad de integrar la información sin sustituir los sistemas vigentes. El inventario está en C.4 del Anexo C de OVERFORE-Subdocumento2-Anexos (CMAA, 2026b, caps. 5 y 10, pp. 10 y 19).
+
+\subseccion{Contexto de la industria}
+En esta sección se revisan las particularidades operacionales, regulatorias y estacionales que condicionan cómo se genera y cómo viaja la información en la faena.
+
+\subsubseccion{Particularidades operacionales}
+La operación de Aranda tiene características que condicionan cómo se genera la información. Funciona de forma continua, sin pausas, en dos turnos de doce horas y con régimen 7x7 en faena, y en condiciones físicas extremas. La conectividad no es pareja, con zonas de sombra en el rajo y un único enlace de fibra con Antofagasta. La red de control de la planta es de solo lectura, una parte importante de la operación se supervisa desde Antofagasta y Santiago, y cerca del 57 \% de las personas con acceso a la faena son contratistas. El detalle de estas características está en la sección C.5 del Anexo C de OVERFORE-Subdocumento2-Anexos.
+
+La figura \ref{fig:ciclo-mineral-aranda-flujo-actual-informacion} resume el ciclo del mineral en Aranda, del rajo al embarque, en ocho etapas y con el responsable de cada una. Los colores indican dónde ocurre cada etapa: el azul corresponde a la operación en la faena de Sierra Gorda, el amarillo al transporte por la ruta de 145 km y al acopio y embarque en Antofagasta, y el morado a la venta al comprador internacional.
+
+\figura{16.51}{fig-2-4-ciclo-mineral-aranda-flujo-actual}{Ciclo del mineral en Aranda y flujo actual de la información.}{fig:ciclo-mineral-aranda-flujo-actual-informacion}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 4, pp. 7–8).}
+Como se aprecia en la figura, el mineral pasa por siete traspasos entre ocho etapas antes de embarcarse, y en casi todos los traspasos la información viaja fuera de un sistema: por radio, en una carpeta compartida, en una planilla o en un documento de papel que acompaña al camión.
+
+El flujo de la información se describe por tramos en la sección C.5 del Anexo C de OVERFORE-Subdocumento2-Anexos: de la planificación al carguío (etapas 1, 2 y 3), de los stocks intermedios al procesamiento (etapas 4 y 5) y del transporte a la venta (etapas 6, 7 y 8).
+
+\subsubseccion{Particularidades regulatorias}
+La minería del cobre es una de las industrias más fiscalizadas del país, y Aranda responde a varias autoridades al mismo tiempo, cada una con sus propias exigencias de registro y de reporte. Los ámbitos relevantes para el problema son seguridad minera, cierre de faenas, medio ambiente, salud ocupacional, datos personales, redes industriales, cobre responsable, huella de carbono y comercialización. La norma o compromiso de cada ámbito, la obligación que impone y la situación actual de la compañía se presentan en la Tabla \refext{A2}{tab:marco-normativo-compromisos-terceros-relevantes-problema} de la sección C.6 del Anexo C de OVERFORE-Subdocumento2-Anexos.
+
+La seguridad y salud ocupacional depende de exámenes, cursos y registros exigidos por el Decreto 594 (1999) y por el marco del caso. En Aranda, su seguimiento manual deja vencimientos sin advertir y registros difíciles de recuperar. Para los datos de salud y fatiga, la Ley N° 21.719 (2024) fija un nuevo régimen de protección: su vigencia está prevista para el 1 de diciembre de 2026. El proyecto informado por Carey (2026) propone postergarla a diciembre de 2027. La propuesta de postergación no se considera una modificación ya aprobada. En ambos escenarios, el tratamiento de datos sensibles condiciona el proyecto.
+
+En trazabilidad, The Copper Mark (2026) aporta un marco de verificación y reporte de la cadena de custodia. Se utiliza como referencia de investigación, sin afirmar que Aranda ya esté certificada ni equiparar ese estándar voluntario con una obligación legal. La exigencia contractual del comprador desde 2029 requiere evidencia del origen de los lotes y de sus mezclas. En emisiones, el protocolo de World Resources Institute y World Business Council for Sustainable Development (2004) ordena la contabilidad de gases de efecto invernadero, la necesidad específica de Aranda es pasar de un cálculo anual manual a información trimestral auditable, con trazabilidad a consumos y factores de emisión (CMAA, 2026b, caps. 8 y 12, pp. 15 y 20–21).
+
+\subsubseccion{Particularidades estacionales}
+El calendario de Aranda tiene momentos en que la operación cambia de ritmo, y algunos coinciden justamente con los momentos en que el problema se hace más visible. Los que más pesan son las detenciones programadas de planta de marzo y septiembre y las lluvias de enero y febrero, a los que se suman el cierre contable, los cambios de turno, las tronaduras casi diarias y el ciclo 7x7. El detalle de las horas, ventanas y frecuencias de cada uno está en la sección C.5 del Anexo C de OVERFORE-Subdocumento2-Anexos.
+
+\subseccion{Desglose de la problemática}
+La problemática se divide en tres problemas. El Problema 1 corresponde a la trazabilidad comercial del mineral y su conciliación, el Problema 2 a la productividad de la operación y el Problema 3 al cumplimiento regulatorio y la gestión de personas. Si bien se relacionan entre sí (figura \ref{fig:relacion-entre-tres-problemas-aranda-causa}), conviene analizarlos por separado, ya que cada uno tiene destinatarios, plazos y responsables diferentes. Separarlos permite ver, por ejemplo, que el comprador, la operación y la autoridad le hacen preguntas distintas al mismo dato. A los tres problemas se suman condiciones que los cruzan a todos. La descripción de cada problema se construye a partir del ciclo del mineral y de las entrevistas de levantamiento entregadas por la compañía.
+
+La figura \ref{fig:relacion-entre-tres-problemas-aranda-causa} muestra cómo se relacionan los tres problemas y la causa que comparten.
+
+\figura{12.04}{fig-2-5-relacion-entre-tres-problemas-aranda}{Relación entre los tres problemas de Aranda y su causa común.}{fig:relacion-entre-tres-problemas-aranda-causa}{Fuente: elaboración propia.}
+Como se observa en la figura, los tres problemas comparten una misma causa: el dato no nace donde ocurre el hecho y viaja entre áreas por radio, papel, planillas o correo.
+
+\subsubseccion{Problema 1: Trazabilidad comercial y conciliación}
+El desglose comienza con la trazabilidad comercial, destacada en la figura \ref{fig:primer-problema-trazabilidad-comercial}.
+
+\figura{15.53}{fig-2-6-primer-problema-trazabilidad-comercial}{Primer problema: trazabilidad comercial.}{fig:primer-problema-trazabilidad-comercial}{Fuente: elaboración propia.}
+Se entiende como trazabilidad del mineral a la capacidad de tomar un lote embarcado y reconstruir, con evidencia, de qué polígonos del rajo proviene, en qué fechas se extrajo, por qué stocks pasó, cuándo se procesó y qué análisis lo respaldan, y también de recorrer ese camino al revés, desde un polígono hasta los embarques en que terminó. La conciliación metalúrgica, por su parte, es el ejercicio de cuadrar el cobre que estimaba el modelo de bloques, el que salió de la mina, el que entró a la planta, el que se recuperó y el que se embarcó. Ambas dependen de lo mismo: que la cadena no se corte en ningún punto. En Aranda la cadena se corta en varios lugares, que se identifican en la figura \ref{fig:puntos-quiebre-trazabilidad-mineral}.
+
+\figura{16.51}{fig-2-7-puntos-quiebre-trazabilidad-mineral}{Puntos de quiebre de la trazabilidad del mineral.}{fig:puntos-quiebre-trazabilidad-mineral}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 4, pp. 7–9).}
+La figura \ref{fig:puntos-quiebre-trazabilidad-mineral} sintetiza siete quiebres del flujo. La sección C.7 del Anexo C de OVERFORE-Subdocumento2-Anexos desarrolla nueve brechas, incluidas la demora de los resultados de laboratorio y la reconstrucción del lote como estimación. Destacan el plan que cambia sin registrar su versión, las tres mediciones de tonelaje sin una fuente oficial común y la ley de retoma de los stocks que se asume sin verificación.
+
+El efecto de todo lo anterior quedó a la vista en 2025. Cuatro de los treinta y un embarques fueron penalizados por contenido de arsénico, y cuando el directorio preguntó de qué sector del rajo venía ese mineral, la respuesta tomó cinco semanas y llegó con la advertencia de que era solo una estimación. Una estimación como esa deja sin base la decisión de qué dejar de mezclar o cómo mezclar distinto.
+
+\subsubseccion{Problema 2: Productividad Operacional}
+La segunda problemática es la productividad operacional, que se muestra en la figura \ref{fig:segundo-problema-productividad-operacional}.
+
+\figura{12.03}{fig-2-8-segundo-problema-productividad-operacional}{Segundo problema: productividad operacional.}{fig:segundo-problema-productividad-operacional}{Fuente: elaboración propia.}
+En el caso de la productividad, pese a que la operación cuenta con un sistema de despacho que el personal usa todos los días, la información de cada equipo vive repartida en lugares distintos y se junta recién cuando alguien la necesita. Las debilidades que esto produce se detallan en la sección C.8 del Anexo C de OVERFORE-Subdocumento2-Anexos. Entre ellas están las demoras sin clasificar, que son el 23 \% del tiempo registrado, los avisos de falla que se levantan por radio y se transcriben a mano, y la telemetría repartida en tres portales web distintos. Además, en cada cambio de turno se pierden 47 minutos efectivos, casi el doble de la referencia de la industria.
+
+La compañía mantiene reservas frente a las herramientas que prometen anticiparse a las fallas, a partir de dos experiencias anteriores. En 2018 compró una plataforma de mantenimiento predictivo que se usó catorce meses y hoy está apagada, y en 2022 un piloto con seis camiones no continuó una vez terminado el período de prueba. En ambos casos el área dejó de revisar las alertas porque la gran mayoría no correspondía a fallas reales. La necesidad sigue presente, ya que el propio jefe de mantenimiento reconoce que reunir la información en un solo lugar mejoraría su trabajo diario, pero cualquier iniciativa en ese ámbito parte con un bajo nivel de confianza por parte del área. Además, esa postura no es la de toda la compañía, el gerente general ya considera el mantenimiento predictivo parte del proyecto, el directorio lo ve como valioso pero no urgente, y el propio caso reconoce que esa diferencia no se resolverá antes de la adjudicación.
+
+\subsubseccion{Problema 3: Cumplimiento regulatorio y personas}
+La tercera problemática reúne el cumplimiento regulatorio y la gestión de personas. La figura \ref{fig:tercer-problema-cumplimiento-regulatorio-personas} destaca este ámbito y su dependencia del registro trazable de los hechos.
+
+\figura{11.23}{fig-2-9-tercer-problema-cumplimiento-regulatorio-personas}{Tercer problema: cumplimiento regulatorio y personas.}{fig:tercer-problema-cumplimiento-regulatorio-personas}{Fuente: elaboración propia.}
+Al ser una operación con más de cuatro mil personas en régimen, cerca de noventa empresas contratistas y compromisos ante varias autoridades, el control de las personas y el cumplimiento de las obligaciones de reporte requieren un seguimiento riguroso. Los diez puntos de brecha que se identifican en este ámbito se detallan en la sección C.9 del Anexo C de OVERFORE-Subdocumento2-Anexos. Destacan la acreditación de un contratista nuevo, que demora en promedio nueve días, los registros de seguridad en papel y las alertas de fatiga sin acción documentada.
+
+Esta situación deja a la compañía expuesta ante la autoridad. Marcelo Tapia Ríos, jefe de Seguridad y Salud Ocupacional, señala que, ante un accidente por somnolencia, no podría demostrar qué acción se tomó frente a las alertas previas (CMAA, 2026b, cap. 8, p. 15).
+
+\subsubseccion{Condiciones transversales a los tres problemas}
+Además de lo anterior, existen condiciones que no pertenecen a un solo problema, pero que afectan a los tres. El dato no nace donde ocurre el hecho: la radio, el papel, las planillas y el correo son hoy el medio principal por el que viaja la información entre áreas, y cada traspaso es una oportunidad de error o de pérdida. Los sistemas que se mantienen no conversan entre sí y la compañía no tiene documentadas sus interfaces ni las condiciones contractuales de acceso a sus datos. La faena depende de una sola fibra con Antofagasta, y las condiciones de terreno son exigentes para cualquier dispositivo: según el operador de pala con más años en faena, una pantalla instalada anteriormente no funcionaba con guantes y dejó de usarse. El conocimiento está concentrado en pocas personas y TI dispone de once personas para toda la compañía, cuatro de ellas en faena. Esa dotación limita la capacidad de sostener tareas manuales adicionales y hace relevante el criterio de Verónica Alcaíno Prat, jefa de TI, sobre continuidad y seguridad (CMAA, 2026b, cap. 8, p. 16). Además, la compañía ya tuvo dos iniciativas tecnológicas que se implantaron correctamente, pero que el personal dejó de usar, por lo que la adopción es parte central del problema.
+
+\seccion{Dimensionamiento del problema}
+Para dimensionar el problema de forma realista se presentan los indicadores que entrega la compañía, las cifras de su operación y las referencias de la industria o metas internas de la compañía con que se comparan.
+
+\subseccion{Indicadores de la operación}
+En la Tabla \ref{tab:indicadores-problema-comparados-referencia-industria} se presentan los indicadores que sustentan las brechas, agrupados según los tres problemas, junto con la referencia de la industria o la meta interna de la compañía con que se contrastan. Las demás filas están en la sección C.10 del Anexo C de OVERFORE-Subdocumento2-Anexos.
+
+\begin{tabla}{I{0.393}D{0.137}D{0.239}I{0.231}}{Indicadores del problema comparados con la referencia de la industria o la meta interna de la compañía.}{tab:indicadores-problema-comparados-referencia-industria}
+  {\cab{Indicador} & \cab{Valor Aranda 2025} & \cab{Referencia o exigencia} & \cab{Brecha respecto de la referencia}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 7, pp. 11–12).}
+\multicolumn{4}{I{1.000}}{Problema 1: Trazabilidad comercial y conciliación} \\
+Diferencia de conciliación mina-planta-embarque & 3,1 \% a 6,8 \% mensual & bajo 2 \% (referencia de industria) & 1,55 a 3,4 veces el umbral de 2 \% \\
+Días hábiles para cerrar la conciliación del mes & 18 & 3 a 5 (referencia de industria) & 3,6 a 6 veces más lento \\
+\multicolumn{4}{I{1.000}}{Problema 2: Productividad de la operación} \\
+Utilización efectiva de la flota & 71 \% & 80 \% (meta interna) & 9 puntos bajo la meta \\
+Demoras operacionales sin clasificar & 23 \% del tiempo & bajo 5 \% (meta interna) & Más de 4,6 veces la meta \\
+Detenciones sin causa raíz documentada & 61 \% & bajo 10 \% (meta interna) & Más de 6,1 veces la meta \\
+\multicolumn{4}{I{1.000}}{Problema 3: Cumplimiento regulatorio y gestión de personas} \\
+Días para acreditar a un contratista nuevo & 9 & menos de 2, meta del mandante & Más de 4,5 veces la meta \\
+\end{tabla}
+Las brechas de la Tabla \ref{tab:indicadores-problema-comparados-referencia-industria} se calculan con los límites de referencia y las metas internas: 3,1/2 = 1,55 y 6,8/2 = 3,4 para la conciliación, 18/5 = 3,6 y 18/3 = 6 para el cierre, 80 − 71 = 9 puntos porcentuales para la utilización. Como las metas de demoras, causa raíz y acreditación son inferiores a 5 \%, 10 \% y 2 días, las razones son mayores que 23/5 = 4,6; 61/10 = 6,1 y 9/2 = 4,5; respectivamente. El diagnóstico relaciona estas brechas con captura tardía, transcripción manual y datos dispersos.
+
+\subseccion{Volumen de hechos operacionales y forma en que se registran}
+Otra manera de dimensionar el problema es contar cuántas veces al año ocurre un hecho que debería quedar registrado y cómo se registra hoy. El volumen anual de cada hecho, con su proyección a tres años y su forma de registro actual, se presenta en la Tabla \refext{A2}{tab:volumen-hechos-operacionales-forma-se-registran} de la sección C.11 del Anexo C de OVERFORE-Subdocumento2-Anexos, a partir de la volumetría entregada por la compañía.
+
+Como promedio diario de una operación de 365 días, la volumetría de la Tabla \refext{A2}{tab:volumen-hechos-operacionales-forma-se-registran} equivale a unos 53 registros de seguridad que nacen en papel: (11.500 incidentes y observaciones + 7.800 inspecciones)/365 = 52,9. Se añaden 4.600/365 = 12,6 alertas de fatiga y 342.000/365 = 937 viajes de extracción. Son promedios de escala, no mediciones de cada jornada. Hoy no queda documentado el tratamiento de las alertas ni la razón de cada cambio de destino, y la compañía proyecta un crecimiento de estos volúmenes (CMAA, 2026b, cap. 14.1, pp. 23–24).
+
+\subseccion{Consecuencias de mantener la situación actual}
+Para completar el dimensionamiento, se analizan los efectos de que la compañía mantenga su forma actual de operar. Desde enero de 2029 no podría demostrar el origen de lo que vende, lo que pone en juego el contrato con el comprador que se lleva el 38 \% del concentrado y, probablemente, el del comprador coreano. Según el gerente general, si en tres años la compañía no puede demostrar el origen de cada tonelada, los compradores se abastecerán de otro proveedor.
+
+Seguirían las penalizaciones por arsénico sin saber qué sectores evitar o cómo mezclar distinto. Paula Guerrero Lizana, gerenta de Sustentabilidad y Asuntos Regulatorios, advierte que una nueva inconsistencia de los reportes podría derivar en un procedimiento sancionatorio. La recertificación de 2029 y las fiscalizaciones de la autoridad minera seguirían dependiendo de carpetas físicas; los datos sensibles circularían en planillas y correos, y los indicadores del convenio con la comunidad continuarían consolidándose a mano. El conocimiento de los ajustes del balance seguiría concentrado en pocas personas y el CIO se usaría cerca del 40 \% de su capacidad (CMAA, 2026b, caps. 3, 4.9, 8 y 13, pp. 6–7, 10, 15 y 22).
+
+\seccion{Actores y Grupos de Interés}
+El análisis considera diecinueve grupos de actores: catorce internos y cinco externos. Las figuras \ref{fig:actores-internos-operacion-gobierno-corporativo} y \ref{fig:actores-externos-operacion-relacion-comercial} presentan la vista operacional y comercial. El texto incorpora a los responsables de TI, seguridad y sustentabilidad y a los actores regulatorios y comunitarios. La Figura \ref{fig:influencia-interes-actores-operacionales-comerciales} y la Tabla \ref{tab:influencia-interes-actores-soporte-regulacion-comunidad} completan su clasificación de influencia e interés a partir de las necesidades del caso.
+
+\subseccion{Actores internos}
+Los actores internos son las áreas y el personal de Aranda. La figura \ref{fig:actores-internos-operacion-gobierno-corporativo} agrupa once actores de la operación y del gobierno corporativo; a ellos se añaden TI, Seguridad y Salud Ocupacional y Sustentabilidad y Asuntos Regulatorios, por sus responsabilidades directas sobre el problema.
+
+\figura{16.51}{fig-2-10-actores-internos-operacion-gobierno-corporativo}{Actores internos de la operación y del gobierno corporativo.}{fig:actores-internos-operacion-gobierno-corporativo}{Fuente: elaboración propia.}
+Los once actores de la figura \ref{fig:actores-internos-operacion-gobierno-corporativo} se describen en C.12 del Anexo C de OVERFORE-Subdocumento2-Anexos. Los tres responsables transversales completan los catorce grupos internos: TI, dirigida por Verónica Alcaíno Prat, condiciona la seguridad, la continuidad y la capacidad de operación. Seguridad y Salud Ocupacional, a cargo de Marcelo Tapia Ríos, depende de acreditaciones vigentes y acciones documentadas frente a incidentes y fatiga. Sustentabilidad y Asuntos Regulatorios, dirigida por Paula Guerrero Lizana, consolida reportes ambientales, emisiones e indicadores comunitarios (CMAA, 2026b, cap. 8, pp. 15–16). Su influencia e interés se analizan en la Tabla \ref{tab:influencia-interes-actores-soporte-regulacion-comunidad}.
+
+\subseccion{Actores externos}
+Los actores externos incluyen cinco grupos. La figura \ref{fig:actores-externos-operacion-relacion-comercial} sintetiza a contratistas, compradores internacionales y autoridad ambiental; se incorporan además la autoridad minera y la comunidad vinculada al convenio de empleo y compras locales.
+
+\figura{13.86}{fig-2-11-actores-externos-operacion-relacion-comercial}{Actores externos de la operación y de la relación comercial.}{fig:actores-externos-operacion-relacion-comercial}{Fuente: elaboración propia.}
+Los actores externos que muestra la figura son los siguientes:
+
+\begin{itemize}
+\item Empresas contratistas: cerca de noventa empresas que prestan servicios en la faena, con 2.400 trabajadores permanentes y hasta 4.300 adicionales en cada detención mayor de planta.
+\item Compradores internacionales: el japonés adquiere el 38 \% del concentrado y exigirá evidencia verificable desde 2029. Y el coreano plantea una necesidad equivalente. Ambos se consideran dentro del mismo grupo de interés comercial.
+\item Autoridad ambiental: fiscaliza los compromisos y reportes ambientales de la compañía. La calidad y trazabilidad de la evidencia condicionan su relación con Aranda.
+\end{itemize}
+La autoridad minera fiscaliza los registros de seguridad, inspecciones e incidentes y ya observó seis brechas de trazabilidad. La comunidad del convenio recibe indicadores semestrales de empleo local y compras locales, construidos hoy con planillas de recursos humanos y abastecimiento. Su participación y su interés se consideran en la Tabla \ref{tab:influencia-interes-actores-soporte-regulacion-comunidad} (CMAA, 2026b, caps. 4.9, 7.3, 8 y 12, pp. 10, 12, 15 y 20–21).
+
+\subseccion{Matriz de influencia e interés}
+La figura \ref{fig:influencia-interes-actores-operacionales-comerciales} clasifica catorce actores operacionales y comerciales según su capacidad de condicionar decisiones y su interés en resolver el problema. La Tabla \ref{tab:influencia-interes-actores-soporte-regulacion-comunidad} incorpora cinco actores de soporte, regulación y comunidad. Ambas vistas cubren los diecinueve grupos identificados.
+
+\figura{16.09}{fig-2-12-influencia-interes-actores-operacionales-comerciales}{Influencia e interés: actores operacionales y comerciales.}{fig:influencia-interes-actores-operacionales-comerciales}{Fuente: elaboración propia.}
+En la figura \ref{fig:influencia-interes-actores-operacionales-comerciales}, la gerencia general y finanzas tienen alta influencia sobre la contratación. Operaciones mina y planta condicionan la continuidad y la calidad del dato, y los compradores exigen trazabilidad comercial y conciliación confiable antes de 2029. Su interés es alto porque dependen directamente de esos resultados. La Tabla \ref{tab:influencia-interes-actores-soporte-regulacion-comunidad} muestra los responsables y destinatarios que completan esta vista.
+
+\begin{tabla}{I{0.242}I{0.107}I{0.151}I{0.102}I{0.398}}{Influencia e interés de los actores de soporte, regulación y comunidad.}{tab:influencia-interes-actores-soporte-regulacion-comunidad}
+  {\cab{Actor} & \cab{Ámbito} & \cab{Influencia} & \cab{Interés} & \cab{Fundamento}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, caps. 4.9, 7.3, 8 y 12, pp. 10, 12, 15–16 y 20–21).}
+TI & Interno & Alta & Alto & Condiciona seguridad, continuidad y capacidad de operación. \\
+Seguridad y Salud Ocupacional & Interno & Alta & Alto & Define habilitación y requiere evidencia de incidentes y fatiga. \\
+Sustentabilidad y Asuntos Regulatorios & Interno & Alta & Alto & Responde por reportes ambientales, emisiones y convenio comunitario. \\
+Autoridad minera & Externo & Alta & Alto & Fiscaliza registros y exige trazabilidad de la evidencia. \\
+Comunidad del convenio & Externo & Media & Alto & Depende del cumplimiento y la transparencia de empleo y compras locales. \\
+\end{tabla}
+Los cuatro actores con influencia alta pueden exigir controles, registros o evidencia y su participación es necesaria desde el levantamiento. La comunidad tiene influencia media por su convenio y un interés alto en que los indicadores sean completos y verificables. Estas posiciones son una valoración del proponente basada en sus responsabilidades.
+
+El sindicato y la autoridad ambiental tienen alta influencia aunque no generen el registro diario, su interés se concentra en condiciones laborales, datos sensibles y cumplimiento. Planificación minera, mantenimiento, CIO, supervisores, metalurgistas, contratistas y operadores tienen alto interés por su trabajo cotidiano, aunque menor influencia formal sobre la contratación. La clasificación reconoce que su adopción determina la calidad del dato de origen.
+
+Aunque este grupo no decide la contratación, es el que genera el dato en su origen. Por eso, cualquier cambio en la forma de registrar depende de que estas personas lo adopten y perciban una reducción real en la dificultad de su trabajo, como lo muestran las dos iniciativas anteriores que dejaron de usarse.
+
+\seccion{Resumen de Requerimientos, Supuestos, Exclusiones y Restricciones}
+Para cerrar el análisis del problema se resumen los requerimientos que la compañía exige, los supuestos que se identifican donde el caso no define un punto y las exclusiones y restricciones que delimitan el proyecto. El detalle completo se entrega en OVERFORE-Subdocumento2-Anexos.
+
+\subseccion{Requerimientos}
+El catálogo reúne 248 requerimientos: 126 funcionales, 96 no funcionales, 15 de transición y preparación y 11 del proyecto. Cada uno indica de qué parte del caso proviene, tal como pide el capítulo 17.1 de las Bases técnicas del caso Minería, en su página 29. La Tabla \ref{tab:requerimientos-catalogo-segun-problema-origina} los distribuye según el problema que los origina.
+
+\begin{tabla}{I{0.422}D{0.170}D{0.164}D{0.147}D{0.097}}{Requerimientos del catálogo según el problema que los origina.}{tab:requerimientos-catalogo-segun-problema-origina}
+  {\cab{Problema u origen del requerimiento} & \cab{Funcionales} & \cab{No funcionales} & \cab{Transición y proyecto} & \cab{Total}}
+  {Fuente: elaboración propia a partir del Anexo A de OVERFORE-Subdocumento2-Anexos.}
+Problema 1: Trazabilidad comercial y conciliación & 38 & 14 & 5 & 57 \\
+Problema 2: Productividad de la operación & 27 & 26 & 8 & 61 \\
+Problema 3: Cumplimiento regulatorio y gestión de personas & 39 & 20 & 1 & 60 \\
+Condiciones transversales & 22 & 36 & 12 & 70 \\
+Total & 126 & 96 & 26 & 248 \\
+\end{tabla}
+Los cuatro grupos representan entre 23 \% y 28 \% del total. Los 126 requerimientos funcionales se reparten en 92 para la Etapa 1 y 34 para la Etapa 2, dentro del cronograma obligatorio (CMAA, 2026a, Art. 17.1, p. 12). Los requerimientos no funcionales son los que dejan más claro cuánto exige la compañía: el sistema debe reconstruir el origen de un lote embarcado en menos de 2 horas, cerrar la conciliación del mes en tres días hábiles y operar 48 horas sin enlace con Antofagasta sin perder registros. La ficha de cada requerimiento, con su método de verificación y su origen en las bases, está en las secciones A.1 a A.4 del Anexo A de OVERFORE-Subdocumento2-Anexos.
+
+\subseccion{Supuestos}
+El caso no define todos los puntos que condicionan el diseño, por lo que se identifican 35 supuestos. Cada uno se registra con su fundamento, su impacto si resulta equivocado y la instancia en que se valida, y todos están en el Anexo B. La Tabla \ref{tab:supuestos-declarados-segun-origen} los agrupa según su origen.
+
+\begin{tabla}{I{0.224}I{0.267}D{0.128}I{0.220}D{0.160}}{Supuestos declarados según su origen.}{tab:supuestos-declarados-segun-origen}
+  {\cab{Categoría} & \cab{Origen en el caso} & \cab{Cantidad} & \cab{Consultados al cliente} & \cab{Tratados también como riesgo}}
+  {Fuente: elaboración propia a partir del Anexo B de OVERFORE-Subdocumento2-Anexos y de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 16.1, pp. 26–27).}
+Decisiones de diseño pendientes & Capítulo 16.1, decisiones 1 a 14 & 14 & 0 & 3 \\
+Vacíos identificados por el proponente & Nota final del capítulo 16.1 & 6 & 0 & 3 \\
+Supuestos del alcance & Capítulos descriptivos del caso y Bases técnicas transversales & 15 & SUP-30 & 8 \\
+Total & No aplica & 35 & 1 & 14 \\
+\end{tabla}
+De la tabla se concluye que 14 de los 35 supuestos responden a decisiones que el propio caso deja pendientes, y que ninguna de ellas se consultó a la compañía. Los seis vacíos son puntos que el caso no menciona y que el diseño necesita definir, como las condiciones del contrato con el operador del terminal portuario o de qué reloj se toma la hora de los eventos. Los 15 restantes son supuestos del alcance, y ocho de ellos se tratan también como riesgo porque dependen de que la compañía entregue información o equipos, como los datos a migrar o el hardware de terreno.
+
+Un supuesto (SUP-30) se planteó a la compañía como consulta el 30 de agosto de 2026, y los otros 34 se validan durante el proyecto. Cuatro supuestos tienen el mayor impacto sobre el diseño o el calendario. El primero es la balanza de alimentación como fuente oficial del mineral que entra a la planta (SUP-02) y el segundo, que la compañía puede extraer la telemetría de sus equipos (SUP-10). Si alguno no se cumple, cambia la base del balance o la vista única queda incompleta. El tercero es el inicio del contrato a más tardar en abril de 2027 (SUP-15), ya que con un inicio posterior la consulta del origen por parte del comprador quedaría fuera de plazo, y el cuarto, que los sistemas que se mantienen exponen interfaces documentadas (SUP-16), pues de lo contrario habría que levantarlas y documentarlas antes de integrar, lo que atrasa la Etapa 1. Los supuestos SUP-02, SUP-10 y SUP-16 se tratan también como riesgo. El fundamento y el impacto de cada supuesto están en la sección B.1 del Anexo B de OVERFORE-Subdocumento2-Anexos.
+
+\subseccion{Exclusiones y restricciones}
+Los capítulos 10 y 11 de las Bases técnicas del caso Minería, en sus páginas 19 y 20, fijan doce restricciones que no se negocian y nueve exclusiones. El detalle de las exclusiones y de las restricciones está en las Tablas \refext{A2}{tab:exclusiones-caso-dependencias-generan} y \refext{A2}{tab:restricciones-no-negociables-requerimientos-operacionalizan} del Anexo B de OVERFORE-Subdocumento2-Anexos.
+
+Las exclusiones dejan fuera el reemplazo de los sistemas que se mantienen, la intervención del control de proceso, la automatización de equipos, el diseño del plan minero y la operación del terminal portuario, entre otras. Las restricciones responden a tres ideas. La primera es integrar sin reemplazar, la segunda es no interrumpir ni cargar a las personas, y la tercera es cumplir las reglas de acceso y seguridad.
+
+Las exclusiones generan dependencias concretas: cobertura inalámbrica del rajo (SUP-26), entrega del hardware de terreno y de la sala técnica (SUP-33 y SUP-34), además de la alimentación de las cabinas de pala (SUP-18) y colaboración del operador portuario (SUP-24). Son aportes del cliente o de terceros que el proyecto necesita para cumplir su alcance.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Carey. (2026, 3 de septiembre). Gobierno ingresa proyecto de ley que posterga en un año entrada en vigor de la Ley 21.719 sobre Protección de Datos Personales y fortalece la institucionalidad de la Agencia de Protección de Datos Personales. https://www.carey.cl/gobierno-ingresa-proyecto-de-ley-que-posterga-en-un-ano-entrada-en-vigor-de-la-ley-sobre-proteccion-de-datos-personales
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Decreto 594. (1999). Aprueba Reglamento sobre condiciones sanitarias y ambientales básicas en los lugares de trabajo. Ministerio de Salud. Diario Oficial de la República de Chile.
+\item Google. (s. f.). [Mapa satelital de la ciudad de Antofagasta, Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de https://www.google.com/maps
+\item Google. (s. f.). [Mapa satelital de Santiago, Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de \href{https://www.google.com/maps}{https://www.google.com/maps}
+\item Google. (s. f.). [Mapa satelital de Sierra Gorda Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de https://www.google.com/maps
+\item Ley N° 21.719. (2024). Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales. Diario Oficial de la República de Chile.
+\item The Copper Mark. (2026). The Copper Mark chain of custody standard (v. 2). https://coppermark.org/wp-content/uploads/2026/06/CopperMark\_Chain-of-Custody-Standard-v2\_2026-06-11.pdf
+\item World Resources Institute y World Business Council for Sustainable Development. (2004). The greenhouse gas protocol: A corporate accounting and reporting standard (Ed. rev.). \href{https://ghgprotocol.org/corporate-standard}{https://ghgprotocol.org/corporate-standard}
+\end{referencias}
+
+\seccionsinnumero{Declaración de uso de IA}
+Se utilizó IA generativa, principalmente como apoyo en la redacción y en la síntesis del diagnóstico; el detalle por sección está en la Tabla \ref{tab:declaracion-uso-ia-seccion}.
+
+\begin{tabla}{I{0.149}I{0.163}I{0.233}I{0.089}I{0.141}I{0.227}}{Declaración de uso de IA por sección.}{tab:declaracion-uso-ia-seccion}
+  {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad del uso} & \cab{Nivel en\newline texto} & \cab{Nivel en\newline diagramas} & \cab{Revisión humana (quién y qué verificó)}}
+  {Fuente: elaboración propia.}
+Introducción y capítulo 2 & Claude & Apoyo de redacción para presentar el problema del caso minero. & Medio & Ninguno & Claudio Cabello: revisó que la introducción sea acorde a las Bases técnicas del caso Minería. \\
+2.1 & claude y chatGPT & Síntesis del problema y de sus consecuencias operacionales. & Medio & Ninguno & David Martínez: revisó que el resumen no anticipe compromisos ajenos al diagnóstico. \\
+2.2 & claude & Ordenamiento de los antecedentes que explican la necesidad de SITCO. & Medio & Ninguno & Benjamín Velásquez: validó la relación entre necesidades, operación y sistemas existentes. \\
+2.2.1 & claude & Redacción de enlace entre la compañía y su operación. & Medio & Ninguno & David Martínez: comprobó la descripción de la faena y de sus procesos. \\
+2.2.1.1 a 2.2.1.2 & claude & Apoyo para describir sitios de operación y sistemas actuales. & Medio & Bajo & Claudio Cabello: revisó los lugares, sistemas y relaciones frente al caso original. \\
+2.2.2 & claude & Ajustes al texto que presenta el contexto de la industria. & Medio & Ninguno & David Martínez: revisó que el contexto sea pertinente para esta operación minera. \\
+2.2.2.1 a 2.2.2.3 & claude & Organización de las particularidades operativas, regulatorias y estacionales. & Medio & Bajo & Benjamín Velásquez: validó las restricciones y su respaldo en las Bases. \\
+2.2.3 & claude & Estructuración del diagnóstico en los tres problemas del caso. & Medio & Bajo & David Martínez: revisó que la división conserve las causas y los efectos identificados. \\
+2.2.3.1 a 2.2.3.4 & claude & Desarrollo del borrador sobre trazabilidad, productividad y cumplimiento. & Medio & Bajo & David Martínez: validó los datos usados para describir cada problema transversal. \\
+2.3 & claude & Apoyo para presentar el dimensionamiento del problema. & Medio & Ninguno & Claudio Cabello: verificó las unidades y el origen de las cifras. \\
+2.3.1 a 2.3.3 & claude & Síntesis de indicadores, registros y consecuencias de la situación actual. & Medio & Ninguno & Benjamín Velásquez: contrastó los volúmenes y las consecuencias frente al Caso Minería. \\
+2.4 & claude & Organización de la explicación de actores y grupos de interés. & Medio & Ninguno & David Martínez: validó que estén incluidos los actores que intervienen en la solución. \\
+2.4.1 a 2.4.3 & claude & Apoyo para describir actores y ordenar influencia e interés. & Medio & Bajo & David Martínez: comprobó la clasificación de cada actor y su vínculo con el proyecto. \\
+2.5 & chatGPT & Ajustes breves al resumen de requerimientos y límites del caso. & Bajo & Ninguno & David Martínez: comprobó la correspondencia del resumen con los anexos. \\
+2.5.1 a 2.5.3 & chatGPT & Condensación de requerimientos, supuestos, exclusiones y restricciones. & Bajo & Ninguno & David Martínez: comprobó los identificadores y la separación entre cada categoría. \\
+Referencias & claude y chatGPT & Apoyo para ordenar y uniformar las referencias citadas. & Bajo & Ninguno & Claudio Cabello: comprobó la existencia de las fuentes y su correspondencia con las citas. \\
+Anexo A & claude & Apoyo para ordenar el listado de requerimientos. & Bajo & Ninguno & Benjamín Velásquez: revisó la asignación de los códigos, prioridades y fuentes de cada requerimiento. \\
+Anexo B & claude & Ajustes de redacción en supuestos, exclusiones y restricciones. & Bajo & Ninguno & Benjamín Velásquez: comprobó la consistencia de los límites con el capítulo 2. \\
+Anexo C & claude & Organización de los listados complementarios del diagnóstico. & Bajo & Ninguno & Benjamín Velásquez: contrastó la integridad y correspondencia de los registros. \\
+\end{tabla}
+
+\end{document}

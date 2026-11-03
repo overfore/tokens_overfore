@@ -1,0 +1,482 @@
+%% OVERFORE-Subdocumento5.tex — generado desde OVERFORE-Subdocumento5.docx
+%% Formato: clase overfore, modo subdoc. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[subdoc]{../../comun/overfore}
+\numsubdoc{5}
+\nombresubdoc{Modelo y gestión de datos}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{A5,S4}
+\begin{document}
+
+\capitulo{Introducción al Modelo y gestión de datos}
+Este capítulo presenta el modelo de datos de SITCO Aranda y la forma en que la solución gestiona esos datos durante toda su vida: desde que nacen en un dispositivo de terreno o en un sistema existente hasta que se archivan o se eliminan de forma verificable. Parte de los nueve módulos del Esquema de Solución (Subdocumento 3, sección 3.3.2) y de la arquitectura lógica, que deja al Subdocumento 5 la selección de motores, la consistencia por dominio, la retención y la migración de los datos (Subdocumento 4, sección 4.1.4.6). Las cifras de volumen se toman de la volumetría del caso y del dimensionamiento de la arquitectura física (Subdocumento 4, sección 4.2.4). Así, este capítulo y la infraestructura dimensionada usan los mismos números.
+
+El capítulo se ordena en cuatro secciones. La sección 5.1 describe los dominios de información y el modelo de datos de cada uno en figuras. La sección 5.2 justifica el motor y el paradigma de persistencia, separa el almacenamiento transaccional del analítico y fija la calidad, la retención, el archivado, la eliminación segura y el tratamiento de los datos personales. La sección 5.3 presenta la migración de los datos históricos con su volumen y sus ventanas de corte, compatibles con el cronograma del Subdocumento 7, y la sección 5.4 aborda la estrategia de desempeño fundada en la volumetría. El diccionario de datos completo, atributo por atributo, y el detalle del plan de migración van en el archivo OVERFORE-Subdocumento5-Anexos (Anexos A y C). Por su parte, el pronunciamiento sobre cada requisito técnico del capítulo 5 de las Bases técnicas transversales (Compañía Minera Altos de Aranda [CMAA], 2026c, pp. 11-13) está en el archivo OVERFORE-Formulario-T-12.
+
+Todos los requisitos obligatorios de las secciones 5.1, 5.2 y 5.4 del capítulo 5 de las Bases técnicas transversales tienen una sección que los desarrolla, según el Formulario T-12, y el deseable de la sección 5.1, el catálogo con linaje, también se cubre. Los requisitos de integración e interoperabilidad de la sección 5.3 (RT-05.16 a RT-05.24) se desarrollan en la arquitectura de integración (Subdocumento 4, sección 4.1.7). La analítica predictiva deseable (RT-05.30) se cubre con el clasificador asistido de detenciones de la innovación 2 (Subdocumento 13), que propone la causa de las detenciones que las reglas no resuelven y se entrena sólo con detenciones cuya causa confirmó un supervisor (OVERFORE-Subdocumento13-Anexos, sección B.2). El mantenimiento predictivo, en cambio, queda para la operación, cuando existan doce meses de datos limpios y con la aprobación conjunta de la gerencia general y del jefe de mantenimiento (Subdocumento 3, secciones 3.2.3.1 y 3.4.5).
+
+\seccion{Modelo}
+El modelo de datos se organiza por dominios de información, uno por módulo del Esquema de Solución, y se presenta en figuras por dominio. El detalle atributo por atributo, con tipo, dominio de valores, obligatoriedad, propietario y sensibilidad, está en el Anexo A.3 de OVERFORE-Subdocumento5-Anexos.
+
+\subseccion{Dominios de información}
+El modelo se organiza en nueve dominios de información, uno por cada módulo del Esquema de Solución: Operación Mina, Trazabilidad y Embarque, Conciliación Metalúrgica, Equipos y Mantenimiento, Acreditación y Acceso, Seguridad y Salud Ocupacional, Cumplimiento Ambiental, Indicadores y Centro Integrado, y Administración y Servicios Comunes (Subdocumento 3, sección 3.3.2.1). Cada módulo es un límite de contexto con su propio almacén transaccional, y ningún módulo lee el almacén de otro (Subdocumento 4, ADR-08 y sección 4.1.6), por lo que cada dominio coincide con el módulo que lo escribe, tiene un área del cliente que responde por él y sigue sus propias reglas de gestión, almacenamiento y disponibilidad.
+
+Cada dato tiene además un único sitio escritor, la regla que permite operar sin enlace sin crear dos versiones del mismo hecho (Subdocumento 4, ADR-02). Los hechos que nacen en la faena, como el viaje, la capa de stock, el lote de planta, el balance del turno, el paso por portería y el registro de seguridad, se escriben en el Nodo de Faena y suben a la nube por la bandeja de salida, los del acopio de puerto se escriben en la nube desde el gabinete de puerto, y los maestros, los parámetros, la versión del plan y lo que consolidan los cuatro módulos que corren sólo en la nube se escriben en la nube y bajan al Nodo como copia de lectura.
+
+El sitio escritor, la etapa, el área responsable y los agregados raíz de cada dominio están en las Tablas \refext{A5}{tab:dominios-datos-sitio-escritor-almacen-garantia} a \refext{A5}{tab:entidades-modelo} del Anexo A de OVERFORE-Subdocumento5-Anexos, y la Figura \ref{fig:vista-general-nueve-dominios-informacion-eventos} los resume. Las demás entidades de cada dominio están en sus figuras correspondientes (sección 5.1.6).
+
+Los cinco dominios que también operan en la faena, Operación Mina, Trazabilidad y Embarque, Conciliación Metalúrgica, Acreditación y Acceso, y Seguridad y Salud Ocupacional, concentran los hechos que no pueden esperar al enlace. Aunque un dominio escriba en dos sitios, cada agregado tiene uno solo: en Operación Mina, el viaje se escribe en el Nodo y el plan en la nube. Trazabilidad y Embarque es el único dominio cuya cadena empieza en la faena y termina en el acopio de puerto.
+
+La Figura \ref{fig:vista-general-nueve-dominios-informacion-eventos} muestra la vista general del modelo por dominio. Cada tarjeta resume un dominio con sus agregados raíz, su sitio escritor y su etapa, mientras que las flechas numeradas muestran los eventos por los que un dominio entrega datos a otro.
+
+\begin{horizontal}
+\figura{22.44}{fig-5-1-vista-general-nueve-dominios-informacion}{Vista general de los nueve dominios de información y de los eventos entre ellos.}{fig:vista-general-nueve-dominios-informacion-eventos}{Fuente: elaboración propia.}
+\end{horizontal}
+La figura muestra que ningún dominio lee la base de otro: todo dato que cruza una frontera viaja como evento por el bus y el dominio que lo recibe guarda una proyección local. La cadena del mineral se lee de arriba hacia abajo en la columna central, desde Operación Mina hasta Trazabilidad y Embarque, con Conciliación Metalúrgica aportando el tonelaje y la ley. Administración y Servicios Comunes alimenta a todos con los maestros y los parámetros, e Indicadores y Centro Integrado recibe los eventos de todos sin escribir en ninguno. La Tabla \ref{tab:eventos-entre-dominios-vista-general} detalla los eventos numerados de la figura.
+
+\begin{tabla}{I{0.075}I{0.365}I{0.280}I{0.280}}{Eventos entre dominios de la vista general.}{tab:eventos-entre-dominios-vista-general}
+  {\cab{N.º} & \cab{Evento} & \cab{Dominio que lo publica} & \cab{Dominio que lo consume}}
+  {Fuente: elaboración propia.}
+1 & Habilitación otorgada o bloqueada & Acreditación y Acceso & Operación Mina \\
+2 & Detención registrada & Operación Mina & Equipos y Mantenimiento \\
+3 & Detención clasificada & Equipos y Mantenimiento & Operación Mina \\
+4 & Viaje registrado y material declarado & Operación Mina & Trazabilidad y Embarque \\
+5 & Viaje registrado & Operación Mina & Conciliación Metalúrgica \\
+6 & Balance de turno calculado & Conciliación Metalúrgica & Operación Mina \\
+7 & Pesaje capturado y análisis validado & Conciliación Metalúrgica & Trazabilidad y Embarque \\
+8 & Lote de planta conformado & Trazabilidad y Embarque & Conciliación Metalúrgica \\
+9 & Viaje registrado, para combustible y emisiones & Operación Mina & Cumplimiento Ambiental \\
+10 & Embarque registrado & Trazabilidad y Embarque & Cumplimiento Ambiental \\
+11 & Maestro actualizado y parámetro aprobado & Administración y Servicios Comunes & Todos \\
+12 & Identidad del autor y documento firmado & Administración y Servicios Comunes & Seguridad y Salud Ocupacional \\
+13 & Eventos de todos los dominios & Todos & Indicadores y Centro Integrado \\
+14 & Arbitraje resuelto & Conciliación Metalúrgica & Trazabilidad y Embarque \\
+15 & Caso actualizado y tarea asignada & Administración y Servicios Comunes & Módulo responsable del proceso \\
+16 & Acción de fatiga documentada & Seguridad y Salud Ocupacional & Administración y Servicios Comunes \\
+\end{tabla}
+La tabla muestra que Operación Mina es el dominio que más publica, cuatro de los dieciséis eventos, porque el viaje y la detención alimentan a Trazabilidad y Embarque, Conciliación Metalúrgica, Cumplimiento Ambiental y Equipos y Mantenimiento. Los eventos 14 a 16 corresponden a la resolución de arbitrajes y a la ejecución de los flujos de trabajo.
+
+\subseccion{Entidades y proyecciones locales}
+El catálogo comprende 78 entidades y estructuras comunes con 844 atributos individuales, organizadas en 37 agregados raíz, cada raíz controla los registros dependientes y las reglas de coherencia de su operación. Cada entidad tiene un solo módulo dueño, que es el único que la escribe. Cuando otro módulo necesita ese dato, lo recibe como evento por el bus y guarda una proyección local de sólo lectura, como la de los viajes que mantiene Trazabilidad y Embarque, la proyección nunca se edita y, si diverge, se reconstruye desde el bus. La trazabilidad acompaña a cada registro como identificador de origen y como identificador de correlación, con los que se sigue una transacción desde el dispositivo que la generó hasta el indicador que la resume.
+
+El evento de terreno es la estructura común de captura: conserva los bytes firmados, la hora del hecho y la del registro y la identidad validada de su autor, y se guarda en una transacción junto con el hecho, su auditoría y su bandeja de salida. La lista de entidades está en la Tabla \refext{A5}{tab:entidades-modelo} del Anexo A de OVERFORE-Subdocumento5-Anexos, su detalle atributo por atributo en las Tablas \refext{A5}{tab:atributos-modulo-operacion-mina} a \refext{A5}{tab:atributos-modulo-administracion-servicios-comunes}, el del evento de terreno en la Tabla \refext{A5}{tab:atributos-estructura-comun-eventos-terreno} y el de los catálogos versionados, que el cliente amplía sin desplegar código, en la Tabla \refext{A5}{tab:catalogos-definiciones-versionadas}.
+
+\subseccion{Clasificación de la información}
+La clasificación se asigna al dato y lo acompaña cuando el registro se convierte en evento, entra al índice de búsqueda, se exporta, pasa a la capa analítica o se incluye en un respaldo, de modo que un dato protegido en la base no termine expuesto en un reporte derivado. El propietario y la sensibilidad se declaran por atributo y no por entidad (Subdocumento 4, sección 4.1.7.4, así como en el Anexo A, sección A.3). Hay cuatro niveles: público, interno, confidencial y personal sensible, donde cada uno suma controles al anterior. El nivel público no contiene datos, porque no existe un portal abierto a la ciudadanía. A partir del nivel confidencial toda consulta queda registrada, y el personal sensible es el único que agrega cifrado a nivel de campo. Por eso la identidad del operador que acompaña a un viaje o a una declaración se cifra igual que un dato de salud (sección 5.2.6).
+
+El dato personal sensible conserva el plazo de la categoría del registro al que pertenece (Tabla \ref{tab:retencion-categoria-entidad}) y no admite borrado anticipado, salvo la plantilla biométrica, que se elimina cuando la persona pierde el acceso o revoca su consentimiento, lo que ocurra primero (SUP 13 y RF-ACR-010). Lo que comprende cada nivel y los controles que agrega están en la Tabla \refext{A5}{tab:niveles-clasificacion-informacion} del Anexo A de OVERFORE-Subdocumento5-Anexos.
+
+\subseccion{Datos maestros y regla de precedencia}
+La solución no incorpora una herramienta de gestión de datos maestros. Declara por escrito qué sistema manda sobre cada entidad y qué operaciones quedan prohibidas desde la solución, como resume la Tabla \ref{tab:sistema-maestro-operacion-prohibida-entidad}. Administración y Servicios Comunes es el maestro de los parámetros y reglas y el sitio escritor de los maestros de personas y equipos, que recibe de su origen, escribe en la nube y baja al Nodo de Faena como copia de lectura (Subdocumento 4, sección 4.1.6.4); así no se duplican entidades entre módulos, como exigen las Bases técnicas transversales (RT-05.09, p. 12).
+
+\begin{tabla}{I{0.246}I{0.310}I{0.443}}{Sistema maestro y operación prohibida por entidad.}{tab:sistema-maestro-operacion-prohibida-entidad}
+  {\cab{Entidad} & \cab{Sistema maestro} & \cab{Operación prohibida desde la solución}}
+  {Fuente: elaboración propia.}
+Persona propia & SAP S/4HANA & Crear o modificar personal propio \\
+Persona contratista & Portal de Contratistas & Duplicar a una persona que ya existe como propia \\
+Equipo & Despacho de flota y SAP S/4HANA & Crear un equipo que no existe en ninguno de los dos \\
+Polígono y plan & Planificación minera & Editar un polígono o una versión de plan \\
+Resultado de análisis & Laboratorio & Sobrescribir un resultado de laboratorio \\
+Parámetro y regla & Administración y Servicios Comunes & Cambiar un umbral mediante despliegue de código \\
+\end{tabla}
+Ninguna entidad tiene dos dueños para el mismo atributo. El registro de terreno conserva el hecho ocurrido y el maestro determina su contexto. Los maestros y parámetros se modifican en su sitio escritor y se copian al Nodo para consulta. Durante un corte el hecho mantiene la versión que utilizó, al sincronizar se aplica y audita la regla de su tipo de registro. Una referencia todavía inexistente queda pendiente o en cuarentena con alerta, sin descartar el hecho ni crear automáticamente el maestro.
+
+\subseccion{Origen y transformación de los datos}
+El Integrador de Sistemas mantiene catorce integraciones en ejecución: nueve de los diez sistemas existentes, porque las planillas y carpetas compartidas sólo se cargan una vez en la migración, y cinco integraciones adicionales (Subdocumento 4, sección 4.1.7.1). Once de ellas entregan datos a un dominio, la mensajería de notificaciones, la radio y megafonía y la firma electrónica avanzada no aportan datos al modelo. A ellas se suma la captura propia de SITCO en botonera, tableta y consola. Ninguna escribe directo en el modelo: cada sistema entra por un conector con una capa anticorrupción que traduce su vocabulario al del módulo, y el modo, la ventana y el comportamiento ante falla de cada integración están en las Tablas \refext{S4}{tab:conectores-integrador-sistemas-etapa-lugar-ejecucion} y \refext{S4}{tab:modo-ventana-comportamiento-ante-falla-integraciones} del Subdocumento 4. El dato que entrega cada fuente, el dominio que lo recibe, la transformación de su conector y su volumen diario están en la Tabla \refext{A5}{tab:origen-transformacion-volumen-datos-entran-dominios} del Anexo A de OVERFORE-Subdocumento5-Anexos; el volumen deriva de la volumetría anual del caso (CMAA, 2026b, cap. 14.1, p. 23), con el cálculo de las Tablas D.4 y D.5 del Anexo D de OVERFORE-Subdocumento4-Anexos.
+
+El volumen de registro es pequeño en hechos de negocio, unos 8.100 al día, mientras que las series del historiador, la telemetría y la instrumentación suman unos 94 millones de lecturas diarias. Esa diferencia de órdenes de magnitud es la que lleva a separar los motores en la sección 5.2.1. Las 5.000 señales del historiador que se ingieren en continuo, de 14.500 declaradas, son las que necesitan el balance del turno, la conciliación y los indicadores, y el resto se consulta bajo demanda. Los laboratorios externos aportan unos 50 informes al mes, supuesto propio que se confirma en el levantamiento de los primeros tres meses. Las declaraciones de material, a lo más una por viaje, y los ingresos manuales de portería acompañan a hechos ya contados, por lo que no se suman a los 8.100.
+
+\subseccion{Modelo de datos por dominio}
+Las figuras de esta sección presentan el modelo lógico de cada dominio: sus entidades, sus claves y las relaciones con su cardinalidad, en notación de pata de gallo. Un modelo lógico describe entidades, atributos y relaciones con independencia del motor que los almacene (Amazon Web Services, s. f.), y el físico se deriva de él en la sección 5.2.1. Las referencias a otro dominio aparecen en cursiva y apuntan a la proyección local. Los demás atributos están en el Anexo A.3 de OVERFORE-Subdocumento5-Anexos, y los dominios con más entidades se presentan por partes.
+
+Las Figuras \ref{fig:operacion-mina-parte-1a-plan-poligono} y \ref{fig:operacion-mina-parte-1b-declaracion-material} presentan la primera parte de Operación Mina. La Figura \ref{fig:operacion-mina-parte-1a-plan-poligono} reúne el contexto que el viaje toma al cargar: el plan minero y sus polígonos, el turno y la sesión del operador en el equipo.
+
+\figura{16.51}{fig-5-2-operacion-mina-parte-1a-plan}{Operación Mina, parte 1a: plan, polígono, turno y sesión de operador.}{fig:operacion-mina-parte-1a-plan-poligono}{Fuente: elaboración propia.}
+El plan se guarda por versión, con su vigencia, autor y motivo, y cada viaje y ciclo conserva la versión que regía al cargar, de modo que una actualización posterior no cambia su contexto. SITCO no edita el plan: sólo recibe la versión aprobada por el sistema de planificación. La sesión liga a la persona con el equipo, la credencial y el dispositivo durante el turno.
+
+La Figura \ref{fig:operacion-mina-parte-1b-declaracion-material} muestra los hechos que se registran sobre ese contexto: la declaración de material, el viaje, sus ciclos de carguío y el evento de terreno.
+
+\figura{15.11}{fig-5-3-operacion-mina-parte-1b-declaracion}{Operación Mina, parte 1b: declaración de material, viaje, ciclo de carguío y evento de terreno.}{fig:operacion-mina-parte-1b-declaracion-material}{Fuente: elaboración propia.}
+El viaje es el centro del dominio y la primera unidad de trazabilidad (Subdocumento 3, sección 3.4.1; Subdocumento 4, Figura \refext{S4}{fig:cadena-mineral}): referencia al polígono y a la versión del plan, al turno, a la sesión del operador y a la declaración que explica un cambio de destino. Cuando el operador no se identifica, la sesión y el operador quedan nulos y el viaje se marca como operador no identificado (RF-ACR-011). El destino del viaje apunta a un stock o a un lote de planta de Trazabilidad y Embarque, que el dominio conoce por su proyección. Los ciclos llegan del despacho sin pedir datos al operador, y el cambio de material se vincula al viaje y al ciclo, o queda pendiente de correlación si el despacho aún no los informa.
+
+La Figura \ref{fig:operacion-mina-parte-2-perforacion-tronadura} muestra la segunda parte de Operación Mina, con la perforación, la tronadura y las detenciones de los equipos de la mina.
+
+\figura{16.51}{fig-5-4-operacion-mina-parte-2-perforacion}{Operación Mina, parte 2: perforación, tronadura, detención e hito de relevo.}{fig:operacion-mina-parte-2-perforacion-tronadura}{Fuente: elaboración propia.}
+La tronadura agrupa sus pozos e identifica todos los polígonos afectados, lo que permite explicar una detención sin texto libre. Cada detención se clasifica en tres niveles con la taxonomía versionada de Administración y Servicios Comunes, recibe como evento la clasificación automática de Equipos y Mantenimiento y conserva su causa raíz, su responsable y la fecha del diagnóstico. Los hitos del relevo separan sus etapas, y una etapa no observable queda pendiente de medición.
+
+La Figura \ref{fig:trazabilidad-embarque-parte-1-stock-capas} muestra la primera parte de Trazabilidad y Embarque, que sigue al mineral desde el viaje hasta el despacho a puerto.
+
+\figura{14.09}{fig-5-5-trazabilidad-embarque-parte-1-stock}{Trazabilidad y Embarque, parte 1: stock, capas, lote de planta y despacho a puerto.}{fig:trazabilidad-embarque-parte-1-stock-capas}{Fuente: elaboración propia.}
+La figura muestra el tramo donde hoy se rompe la trazabilidad. El stock conserva el promedio ponderado por tonelaje de lo vigente, y cada retoma conserva la proporción de cada polígono de origen, que suma exactamente uno, junto con la fracción cuyo origen no pudo reconstruirse, sin asignarle un polígono que no le corresponde; los aportes distinguen viajes, traspasos desde otro stock y saldos anteriores al sistema. El lote de planta reúne lo alimentado en el turno, y el despacho a puerto lo liga al camión que lleva su concentrado, con la guía que emite SAP S/4HANA y su pesaje en la báscula, sin crear un viaje de extracción.
+
+Las Figuras \ref{fig:trazabilidad-embarque-parte-2a-recepcion-acopio} y \ref{fig:trazabilidad-embarque-parte-2b-embarque-hitos} presentan la segunda parte de Trazabilidad y Embarque, desde la recepción en el acopio hasta el embarque. La Figura \ref{fig:trazabilidad-embarque-parte-2a-recepcion-acopio} muestra cómo se arma el lote comercial con lo que llega al acopio.
+
+\figura{14.12}{fig-5-6-trazabilidad-embarque-parte-2a-recepcion}{Trazabilidad y Embarque, parte 2a: recepción en acopio, lote comercial, composición y devolución.}{fig:trazabilidad-embarque-parte-2a-recepcion-acopio}{Fuente: elaboración propia.}
+El lote comercial se compone de lotes de planta y, eventualmente, de concentrado devuelto como lote de reproceso (SUP-07), con proporciones que suman uno. Cada recepción del acopio se incorpora a un lote comercial pendiente aunque falten la conformación y el análisis, y guarda el tonelaje y la humedad que informa el acopio sin sobrescribir los datos de salida. El lote se libera sólo con datos completos, un análisis válido, la aprobación comercial y la comprobación de los límites del contrato del comprador.
+
+La Figura \ref{fig:trazabilidad-embarque-parte-2b-embarque-hitos} muestra el embarque y los documentos que dependen de él: sus hitos, la liquidación con sus componentes y el certificado derivado.
+
+\figura{16.51}{fig-5-7-trazabilidad-embarque-parte-2b-embarque}{Trazabilidad y Embarque, parte 2b: embarque, hitos, liquidación y certificado derivado.}{fig:trazabilidad-embarque-parte-2b-embarque-hitos}{Fuente: elaboración propia.}
+Desde un lote embarcado se recorre la cadena hacia atrás hasta los polígonos y las fechas de origen, con cinco años de historia migrada que llegan a diez con la operación, que es la evidencia que piden los esquemas de cadena de custodia del cobre (The Copper Mark, 2026). La liquidación conserva las versiones y componentes recibidos del comprador que SAP S/4HANA la contabiliza y SITCO la registra por lote sin calcularla.
+
+Las Figuras \ref{fig:conciliacion-metalurgica-parte-1-pesaje-muestra} y \ref{fig:conciliacion-metalurgica-parte-2-balance-turno} presentan el modelo de Conciliación Metalúrgica. La Figura \ref{fig:conciliacion-metalurgica-parte-1-pesaje-muestra} reúne las fuentes de medición y el muestreo.
+
+\figura{14.89}{fig-5-8-conciliacion-metalurgica-parte-1-pesaje}{Conciliación Metalúrgica, parte 1: pesaje, muestra, análisis, laboratorio y arbitraje.}{fig:conciliacion-metalurgica-parte-1-pesaje-muestra}{Fuente: elaboración propia.}
+El pesaje guarda las tres mediciones de tonelaje en una sola entidad y marca la fuente de verdad de cada tramo. El arbitraje conserva su solicitud y su resolución sin modificar los resultados originales: el rechazo bloquea el lote, la solicitud de remuestreo guarda su fecha para controlar el plazo de 24 horas y la nueva muestra referencia a la reemplazada.
+
+La Figura \ref{fig:conciliacion-metalurgica-parte-2-balance-turno} muestra los cálculos que usan esas mediciones: el balance de turno, la conciliación mensual, su detalle por punto y los pasos de cálculo de ambos.
+
+\figura{16.51}{fig-5-9-conciliacion-metalurgica-parte-2-balance}{Conciliación Metalúrgica, parte 2: balance de turno, conciliación y pasos de cálculo.}{fig:conciliacion-metalurgica-parte-2-balance-turno}{Fuente: elaboración propia.}
+El balance de turno es provisional hasta que llegan los análisis pendientes, y la conciliación mensual usa la versión de parámetros que regía en el período. Ambos conservan entradas, pasos, factores y ventanas de series, de modo que un cierre se puede reproducir sin modificarlo.
+
+La Figura \ref{fig:equipos-mantenimiento-aviso-falla-alarma-pauta} presenta el modelo de Equipos y Mantenimiento.
+
+\figura{16.51}{fig-5-10-equipos-mantenimiento-aviso-falla-alarma}{Equipos y Mantenimiento: aviso de falla, alarma, pauta y detención de planta.}{fig:equipos-mantenimiento-aviso-falla-alarma-pauta}{Fuente: elaboración propia.}
+El dominio tiene pocas entidades propias porque la vista única del equipo es una tabla de lectura que combina despacho, telemetría y SAP (Subdocumento 4, sección 4.1.6.2). El aviso de falla puede nacer de una alarma de fabricante y se crea en SAP sin transcripción, la orden de trabajo y la pauta quedan como referencias de lectura a SAP. Las alertas de reglas propias guardan la versión de la regla y sus acciones, y el límite semanal por equipo se controla de forma atómica, registrando cuántas alertas terminaron en una acción de mantenimiento.
+
+La Figura \ref{fig:acreditacion-acceso-habilitacion-credencial-paso-porteria} presenta el modelo de Acreditación y Acceso.
+
+\figura{13.96}{fig-5-11-acreditacion-acceso-habilitacion-credencial-paso}{Acreditación y Acceso: habilitación, credencial, paso de portería y consentimiento.}{fig:acreditacion-acceso-habilitacion-credencial-paso-porteria}{Fuente: elaboración propia.}
+La persona es el eje del dominio, y cada paso de portería queda ligado a la credencial presentada y, en un ingreso excepcional, a quien lo autorizó. La verificación facial en portería entra en la Etapa 2 sólo si se firma el acuerdo con el sindicato (Subdocumento 3, secciones 3.2.2.5 y 3.4.5), y su plantilla existe sólo con un consentimiento vigente (RF-ACR-010). La esclusa de la sala técnica verifica la biometría en su propio sistema, SITCO no guarda esas plantillas y registra la habilitación y cada paso. El expediente conserva cada versión documental y su validación, y la decisión de habilitar se guarda antes de ordenar una apertura.
+
+La Figura \ref{fig:seguridad-salud-ocupacional-incidente-inspeccion-alerta} presenta el modelo de Seguridad y Salud Ocupacional.
+
+\figura{14.04}{fig-5-12-seguridad-salud-ocupacional-incidente-inspeccion}{Seguridad y Salud Ocupacional: incidente, inspección, alerta de fatiga y control de salud.}{fig:seguridad-salud-ocupacional-incidente-inspeccion-alerta}{Fuente: elaboración propia.}
+Cada alerta de fatiga mantiene su severidad y sus acciones con responsable y hora, con escalamiento a los 30 minutos sin una acción documentada. Los controles de salud conservan la base de tratamiento y requieren validación humana antes de afectar la habilitación.
+
+La Figura \ref{fig:cumplimiento-ambiental-compromiso-medicion-informe-externo} presenta el modelo de Cumplimiento Ambiental.
+
+\figura{13.90}{fig-5-13-cumplimiento-ambiental-compromiso-medicion-informe}{Cumplimiento Ambiental: compromiso, medición, informe externo y huella de carbono.}{fig:cumplimiento-ambiental-compromiso-medicion-informe-externo}{Fuente: elaboración propia.}
+Cada compromiso conserva sus cumplimientos por período, y cada lectura identifica su punto, su fuente y su unidad, los resultados de un informe externo se relacionan con su archivo original. La huella guarda sus datos de actividad y los factores efectivamente utilizados, sin sustituir el consumo por compras ni aplicar factores sin aprobar.
+
+La Figura \ref{fig:indicadores-centro-integrado-indicador-tablas-hechos} presenta el modelo de Indicadores y Centro Integrado, que además del indicador versionado contiene el modelo analítico en estrella descrito en la sección 5.2.2.
+
+\figura{15.21}{fig-5-14-indicadores-centro-integrado-indicador-tablas}{Indicadores y Centro Integrado: indicador y tablas de hechos del modelo analítico.}{fig:indicadores-centro-integrado-indicador-tablas-hechos}{Fuente: elaboración propia.}
+El indicador conserva su fórmula versionada y los eventos que consume, y las tablas de hechos comparten dimensiones conformadas.
+
+Las Figuras \ref{fig:administracion-servicios-comunes-parte-1-maestros} y \ref{fig:administracion-servicios-comunes-parte-2-documentos} presentan el modelo de Administración y Servicios Comunes. La Figura \ref{fig:administracion-servicios-comunes-parte-1-maestros} muestra los maestros y la configuración versionada: persona, cuenta externa, asignación, equipo, dispositivo inventariado y parámetro o regla.
+
+\figura{16.51}{fig-5-15-administracion-servicios-comunes-parte-1}{Administración y Servicios Comunes, parte 1: maestros y parámetros.}{fig:administracion-servicios-comunes-parte-1-maestros}{Fuente: elaboración propia.}
+Cada versión de un parámetro o regla registra su autor y, cuando el parámetro lo exige, un segundo aprobador. Las cuentas externas se conservan como proyecciones de identidad, sin convertir a compradores o laboratorios en personal contratista.
+
+La Figura \ref{fig:administracion-servicios-comunes-parte-2-documentos} muestra los documentos, el flujo de trabajo y la auditoría.
+
+\figura{16.51}{fig-5-16-administracion-servicios-comunes-parte-2}{Administración y Servicios Comunes, parte 2: documentos, flujo de trabajo y auditoría.}{fig:administracion-servicios-comunes-parte-2-documentos}{Fuente: elaboración propia.}
+Cada documento conserva su archivo con hash, clasificación y versión, y los campos de firma se completan sólo cuando el tipo lo exige. Documento y Asiento de auditoría declaran el módulo y registro de origen, porque sus referencias pueden apuntar a varios tipos de entidad.
+
+\seccion{Gestión de datos}
+La gestión de datos fija cómo se almacena, se protege y se explota la información del modelo, desde la elección del motor de persistencia hasta la eliminación segura de cada registro.
+
+\subseccion{Motor y paradigma de persistencia}
+La solución usa varios motores, elegidos por el patrón de acceso, el volumen y el nivel de garantía que exige cada dato, para cubrir nueve naturalezas de datos con siete tecnologías, porque cuatro de ellas se resuelven dentro de la familia PostgreSQL. Azure Database for PostgreSQL, Azure Blob Storage y Azure Managed Redis son servicios administrados. Por otro lado, TimescaleDB, ClickHouse y OpenSearch corren en el grupo de datos de AKS. Se optó por TimescaleDB porque el servicio administrado de PostgreSQL sólo ofrece su edición Apache 2, sin la compresión nativa que reduce cuatro veces el volumen de las series. ClickHouse y OpenSearch se seleccionaron porque no tienen un servicio administrado equivalente en la región (Subdocumento 4, sección 4.2.2.1 y Anexo F, Tabla F.1). La Tabla \ref{tab:naturaleza-dato-motor-razon-eleccion} presenta cada naturaleza con su motor, la razón de la elección y el requisito que la exige.
+
+\begin{tabla}{I{0.183}I{0.229}I{0.248}I{0.339}}{Naturaleza del dato, motor y razón de la elección.}{tab:naturaleza-dato-motor-razon-eleccion}
+  {\cab{Naturaleza} & \cab{Motor} & \cab{Razón de la elección} & \cab{Requisito que la exige}}
+  {Fuente: elaboración propia a partir del Subdocumento 2-Anexos y formulario t-12.}
+Transaccional & PostgreSQL 18, una base por módulo, y para los cinco módulos de faena, en el Nodo & Integridad referencial demostrable sobre el árbol de trazabilidad & RT-05.02, RT-05.03, TRA-MIG-005 (vínculo polígono-viaje-stock-lote) \\
+Series de tiempo & TimescaleDB 2.30 sobre PostgreSQL 18 & 2,19 TB al año por anexado, sin un motor distinto & Volumetría del caso (cap. 14.1), RT-05.05, RNF-CAP-004 \\
+Analítica & ClickHouse 26.8 LTS & Agregación columnar separada del registro & RT-05.05, RNF-DES-017, RNF-DES-010 \\
+Índice de búsqueda & OpenSearch 3 & Búsqueda sobre los nueve módulos, filtrada por rol & RF-ADM-012 \\
+Documental & PostgreSQL 18 y Azure Blob Storage & Metadatos relacionales y binario fuera de la base & RF-ADM-010 \\
+Archivos y evidencia & Azure Blob Storage con retención bloqueada & Inmutabilidad y ciclo de vida por clase de retención & RT-05.07, RNF-SEG-005, RF-DAT-002 \\
+Consulta histórica & PostgreSQL 18, sólo lectura, un esquema por módulo & Mismo control de acceso que el registro vivo & RT-05.15, RF-ADM-001, SUP-30 \\
+Registro local de terreno & SQLite con SQLCipher 4 y memoria cifrada de la botonera & 48 horas sin señal, con cada hecho firmado & RF-CNX-003, RNF-DIS-003, RNF-CAP-006, RNF-SEG-001 \\
+Caché de sesión y proceso & Azure Managed Redis & Servicios sin estado en memoria & RNF-CAP-008 (escalado automático sin transacciones perdidas) \\
+\end{tabla}
+Cada motor responde a un requisito de las bases o del catálogo. El núcleo es relacional, y los demás motores responden a patrones de acceso que una base relacional no resuelve bien, tales como la agregación columnar, la búsqueda de texto entre módulos y el almacenamiento de binarios. El transaccional va en Azure Database for PostgreSQL con alta disponibilidad entre zonas y una base y una credencial por módulo (Subdocumento 4, secciones 4.1.4.6 y 4.2.2.2). En el Nodo de Faena, la bandeja de salida vive en la misma base que el hecho, para que ambos se guarden en una sola transacción (PostgreSQL Global Development Group, s. f.). Las series usan TimescaleDB, que mantiene el mismo lenguaje de consulta y el mismo control de acceso que el transaccional (TimescaleDB, s. f.). La analítica usa ClickHouse, para que el recálculo de indicadores no compita con el peak de escritura del cambio de turno (ClickHouse, s. f.). Finalmente, la caché guarda fuera de los servicios el estado de sesión y de proceso, lo que permite el escalado automático sin pérdida de transacciones exigido en RNF-CAP-008 (Subdocumento 4, Tabla \refext{S4}{tab:tecnologias-capas-4-5-alternativa-evaluada} y sección 4.2.2.2).
+
+Para los almacenes transaccionales se evaluó un almacén documental y se descartó: reconstruir un lote exige validar relaciones exactas entre viaje, capa, aporte, retoma, lote de planta, despacho a puerto y composición, y fuera de la base esa validación queda en el código de la aplicación, donde puede omitirse en una carga masiva y no se puede demostrar ante un tercero. Los cambios de forma de los sistemas de origen los absorbe la capa anticorrupción de cada conector.
+
+Seis garantías transaccionales ordenan cómo se escribe y cómo se lee. La atomicidad y la integridad se cumplen con una transacción única dentro del módulo que escribe el árbol de trazabilidad y con claves foráneas declaradas en el motor, sin borrado en cascada, cuando una entidad apunta a otro módulo, la clave va hacia su proyección local y, si el evento aún no llega, el hecho queda en cuarentena hasta que la referencia se resuelve. El aislamiento por omisión es lectura confirmada y sube a serializable en el cierre contable y en la conciliación. La idempotencia usa como clave el identificador del evento generado en el dispositivo, de modo que ni un reintento ni un reenvío desde la bandeja de salida duplican un viaje.
+
+La inmutabilidad es la que más condiciona el modelo: la trazabilidad se almacena por anexado, toda corrección es un evento nuevo, y el asiento de auditoría guarda con sello criptográfico el autor, el momento, el dispositivo y los valores anterior y posterior completos (CMAA, 2026c, RT-05.03, p. 11). Cuando la escritura viene de una integración, consigna la identidad del sistema y del conector. La vigencia temporal identifica plan, parámetro, regla y definición de indicador por entidad y versión, para recalcular un período con la versión que regía. La entrega de eventos usa Azure Service Bus Premium con entrega al menos una vez, orden por agregado y cola de fallidos (Subdocumento 4, sección 4.1.7.3).
+
+La posición frente al teorema CAP se decide por dominio y por sitio, como piden las bases (CMAA, 2026c, RT-05.02, p. 11), porque la faena registra entre tres y seis cortes de fibra al año, de cuatro a veinte horas (CMAA, 2026b, cap. 6, p. 11). La arquitectura física agrega una segunda fibra y un enlace satelital de órbita baja (Subdocumento 4, sección 4.2.3.2), pero la solución no supone que haya salida: la partición que importa es la pérdida simultánea de los tres caminos, que separa el Nodo de Faena de la nube. Dentro de su sitio escritor cada agregado es CP, porque se escribe en una sola base, con ACID y sin réplicas activas que puedan divergir. Hay dos excepciones deliberadas: el balance de turno de Conciliación Metalúrgica, que se publica como provisional antes de que lleguen todos los análisis, y la capa analítica de Indicadores y Centro Integrado, que se alimenta por eventos con una latencia comprometida. Entre el Nodo y la nube se acepta consistencia eventual, porque la alternativa sería detener la mina durante un corte, en línea con el compromiso entre consistencia y disponibilidad que describe el teorema (IBM, s. f.). Ese desfase no crea dos versiones de un hecho, porque ningún agregado se escribe en los dos lados, y la sincronización sigue las reglas deterministas del Subdocumento 4 (sección 4.1.9.2). La Tabla \ref{tab:posicion-cap-dominio} resume la posición de cada dominio.
+
+\begin{tabla}{I{0.237}I{0.217}I{0.220}I{0.326}}{Posición CAP por dominio.}{tab:posicion-cap-dominio}
+  {\cab{Dominio} & \cab{Dentro de su sitio} & \cab{Entre Nodo y nube} & \cab{Fundamento}}
+  {Fuente: elaboración propia a partir del Subdocumento 4 (ADR-02 y sección 4.1.9).}
+Operación Mina & CP & AP & El registro no se rechaza por falta de enlace \\
+Trazabilidad y Embarque & CP & AP & El certificado sólo se emite sobre el lote confirmado \\
+Conciliación Metalúrgica & AP en el turno, CP en el mes & AP & El balance del turno es provisional, el mes cierra serializable \\
+Equipos y Mantenimiento & CP en aviso y clasificación & No aplica, sólo nube & La telemetría tolera pérdida, la detención no \\
+Acreditación y Acceso & CP en la habilitación & AP en la portería & La portería valida con la lista local de 72 horas \\
+Seguridad y Salud Ocupacional & CP en casos y salud & AP en el registro de terreno & La inspección sin señal se registra igual \\
+Cumplimiento Ambiental & CP & AP en la captura: los gabinetes de relaves y planta guardan las mediciones durante un corte & Cada cifra reportada se navega hasta su medición \\
+Indicadores y Centro Integrado & AP & AP & Latencia comprometida de 15 minutos y 4 horas \\
+Administración y Servicios Comunes & CP & Copia de lectura en el Nodo & Una revocación no admite dos estados \\
+\end{tabla}
+La disponibilidad se privilegia en el tramo entre el Nodo y la nube, en el balance de turno y en la capa analítica, todo lo que se informa a un tercero, como la conciliación mensual, el certificado de un lote o un reporte ambiental, se calcula de forma consistente. La latencia comprometida de la analítica, 15 minutos para indicadores de turno y 4 horas para gestión y cumplimiento, es la que fija el caso (CMAA, 2026b, cap. 15, p. 25) y recoge RNF-DES-010, que fija el inicio del turno siguiente para el cumplimiento del plan minero, el estado de equipos y señales, con un retraso máximo de 60 segundos, no pasa por la capa analítica y se lee de la tabla de lectura de Equipos y Mantenimiento (sección 5.4.5).
+
+Las Bases técnicas transversales fijan para los servicios críticos un punto de recuperación de 15 minutos y un tiempo de recuperación de 4 horas (RT-07.04, p. 17). Para el registro operacional en terreno, la propuesta fija un objetivo más exigente, sin pérdida de eventos y con recuperación en una hora (RNF-DIS-006), derivado de las 48 horas sin enlace que exige el caso (CMAA, 2026b, cap. 15, RT-03.10, p. 24). Si se pierde la sala técnica completa, el registro no se detiene: los dispositivos y los gabinetes conservan 48 horas de hechos firmados mientras el Nodo se reinstala en la sala de 2014 (Subdocumento 4, sección 4.2.3.4). La Tabla \ref{tab:objetivos-recuperacion-mecanismo-datos-sostiene} indica el mecanismo de datos que sostiene cada objetivo de recuperación.
+
+\begin{tabla}{I{0.184}I{0.125}I{0.307}I{0.383}}{Objetivos de recuperación y mecanismo de datos que los sostiene.}{tab:objetivos-recuperacion-mecanismo-datos-sostiene}
+  {\cab{Ámbito} & \cab{RPO} & \cab{RTO} & \cab{Mecanismo de datos}}
+  {Fuente: elaboración propia a partir de RNF-OPE-005, RNF-DIS-006 y el Subdocumento 4 (secciones 4.2.3.5 y 4.3.2).}
+Servicios críticos en la nube & 15 minutos & 4 horas & Réplica continua a Azure Brazil South, con el retraso monitoreado frente al RPO de 15 minutos, Service Bus, con un máximo configurado de 5 minutos \\
+Registro operacional en terreno & 0 eventos & 1 hora (RNF-DIS-006), ante la pérdida de la sala técnica, los dispositivos y gabinetes registran hasta 48 horas mientras se reinstala el Nodo (Subdocumento 4, 4.2.3.4) & Bandeja de salida transaccional, réplica entre los tres servidores del Nodo y registro firmado en el dispositivo \\
+Corrupción o borrado lógico & Último punto válido & Cerca de 1 hora para transacciones y 2 para series & Respaldo 3-2-1-1-0 con recuperación a cualquier instante de 35 días, copia diaria inmutable retenida doce meses y copia mensual según la clase de retención \\
+\end{tabla}
+La pérdida cero en terreno no depende del enlace: el hecho y su evento se guardan juntos en el Nodo, y el dispositivo conserva al menos 48 horas de registros firmados si el Nodo no responde (RT-03.10). En la nube, la réplica de PostgreSQL y de TimescaleDB hacia la región secundaria mantiene un retraso habitual de segundos, muy por debajo de los 15 minutos (Subdocumento 4, sección 4.3.2). El respaldo cubre el caso que la réplica no resuelve, porque una réplica también copiaría un borrado o una corrupción (Subdocumento 4, sección 4.2.3.5).
+
+\subseccion{Separación transaccional y analítica, y modelo de explotación}
+El almacenamiento transaccional y el analítico están separados físicamente, en motores distintos y con dimensionamiento propio (CMAA, 2026c, RT-05.05, p. 11). El transaccional son nueve bases, una por módulo, en modelo relacional de tercera forma normal, con la desnormalización declarada en la sección 5.4.5, que escriben con alta frecuencia filas pequeñas con peak en el cambio de turno y consultan por identificador y ventana reciente. El analítico es el modelo de Indicadores y Centro Integrado en ClickHouse, dimensional en estrella con dimensiones conformadas, que recibe carga incremental por evento y responde agregaciones sobre grandes volúmenes. Ninguna consulta analítica corre contra una base de módulo y ningún proceso operacional depende de la capa analítica, de modo que una falla de la analítica no puede detener el registro de un viaje.
+
+La capa analítica se alimenta sólo de los eventos publicados en el bus: no lee las bases de los módulos ni las replica tabla a tabla. Si un indicador necesita un dato que nadie publica, se publica el evento que falta con su contrato versionado, que es la misma regla que fija la arquitectura para todos los módulos (Subdocumento 4, ADR-08 y sección 4.1.6.4). Cada carga conserva el identificador de correlación del evento de origen, con el que todo valor de un tablero se navega hasta el registro que lo compone y hasta el sistema del que provino. Los eventos se archivan comprimidos, unos 9 GB al año (24.300 eventos diarios × 365 días × cerca de 1 KB comprimido). Cada evento se conserva durante el plazo de la categoría del hecho que respalda, 5 o 10 años, y el archivo permite reconstruir la analítica.
+
+La Tabla \refext{A5}{tab:hechos-dimensiones-modelo-analitico} del Anexo A de OVERFORE-Subdocumento5-Anexos fija el grano, el evento de origen y la retención de cada tabla de hechos, y la Figura \ref{fig:indicadores-centro-integrado-indicador-tablas-hechos} las muestra con sus dimensiones. El modelo cubre el movimiento de mineral, el cumplimiento del plan, la conciliación, la productividad, el acceso y la habilitación, la seguridad, el cumplimiento ambiental y lo comercial, e incorpora además costos, empleo, compras locales y la evolución de calidad y adopción, con las dimensiones que permiten interpretar cada período.
+
+Cada hecho tiene un evento de origen publicado por un único módulo, lo que permite verificar la latencia comprometida comparando la marca de tiempo del evento con su llegada al modelo (RNF-DES-010). Las dimensiones se mantienen con variación lenta de tipo 2: cuando cambia la definición de un turno, la taxonomía de detenciones o un factor de emisión, el hecho histórico conserva la versión que regía, y un período cerrado se recalcula con exactamente la cifra que se informó. La persona llega siempre como identificador seudonimizado, porque la capa analítica no puede descifrar la identidad (Subdocumento 4, sección 4.1.7.4).
+
+Los costos, el empleo y las compras llegan de SAP como proyecciones de lectura con su clave externa, período y fecha de actualización (Tablas \refext{A5}{tab:series-proyecciones-fuentes-externas} y \refext{A5}{tab:hechos-dimensiones-modelo-analitico} del anexo).
+
+El modelo de explotación declara ocho vías de entrega de la información, con un filtro sobre el dato que aumenta con el alcance del consumidor, como muestra la Tabla \ref{tab:vias-explotacion-informacion}.
+
+\begin{tabla}{I{0.256}I{0.331}I{0.412}}{Vías de explotación de la información.}{tab:vias-explotacion-informacion}
+  {\cab{Vía} & \cab{Destinatario} & \cab{Control}}
+  {Fuente: elaboración propia.}
+Tableros operacionales & Supervisión de turno y Centro Integrado de Operaciones & Latencia de 15 minutos, acceso por rol, área y sitio \\
+Tableros de gestión & Superintendencias y gerencias & Latencia de 4 horas y conciliación en 3 días hábiles \\
+Tablero de calidad de datos & Cliente & Acceso propio y permanente, sin intervención del adjudicatario \\
+Consulta autoservida & Analistas designados por el cliente & Sólo sobre el analítico, con un modelo semántico documentado que publica cada indicador con su definición versionada (RT-05.27), y con el acceso del dato de origen \\
+Interfaces de programación & Sistemas del cliente y terceros autorizados & Contrato versionado, OAuth 2.1, cuota y límite de tasa \\
+Exportación total & Cliente & Formatos abiertos, en cualquier momento y sin costo \\
+Publicación externa & Comprador y autoridad & Lista blanca de atributos filtrada en el servicio \\
+Informes programados & Destinatarios que define el cliente & Exportación en formatos abiertos y envío automático por calendario (RT-05.28) \\
+\end{tabla}
+La vía más abierta, la publicación externa, es también la más restringida: el Portal para Compradores, desde la Etapa 2, sólo muestra lo que la lista blanca permite, y el certificado derivado presenta sectores, fechas, stocks recorridos, análisis y cadena de custodia, sin incluir nunca la ley por polígono (SUP-22). La exportación total responde a que la información es del cliente, que puede llevarla completa en formatos abiertos y documentados sin intervención del adjudicatario (CMAA, 2026c, RT-05.06, p. 12).
+
+\subseccion{Calidad de datos y catálogo con linaje}
+La calidad se gestiona conforme a ISO/IEC 25012 (International Organization for Standardization, 2008), con validación en el punto de captura y no en la ingesta (CMAA, 2026c, RT-05.04, p. 11). El evento se valida en el dispositivo, contra su esquema, antes de firmarse, y el operador se entera del problema cuando todavía puede corregirlo. Un evento que no valida no se descarta, porque el hecho ocurrió: la puerta operacional lo guarda en la cola de fallidos con su carga íntegra y el motivo del rechazo (Subdocumento 4, sección 4.1.4.3).
+
+El tablero de calidad publica, por dominio y por mes, las tres dimensiones que exige RF-DAT-001. La completitud cuenta los registros que tienen todos los atributos obligatorios del diccionario, y un nulo permitido por diseño, como el operador no identificado, no la reduce, la exactitud cuenta los registros que coinciden con su fuente en la verificación muestral mensual, y la consistencia, los que cumplen las reglas entre entidades. La Tabla \ref{tab:indicadores-calidad-datos-metas} presenta sus metas junto con los principales indicadores de detalle que explican dónde está cada desviación.
+
+\begin{tabla}{I{0.192}I{0.509}I{0.299}}{Indicadores de calidad de datos y metas.}{tab:indicadores-calidad-datos-metas}
+  {\cab{Dimensión} & \cab{Indicador} & \cab{Meta}}
+  {Fuente: elaboración propia.}
+Completitud & Registros con todos sus atributos obligatorios, por dominio y mes & ≥ 95 \% (RF-DAT-001) \\
+Exactitud & Registros que coinciden con su fuente en la muestra mensual & ≥ 98 \% (RF-DAT-001) \\
+Consistencia & Registros que cumplen las reglas entre entidades & ≥ 98 \% (RF-DAT-001) \\
+Exactitud & Desviación entre ley estimada y ley medida, por polígono & Se publica como calidad del modelo de bloques \\
+Consistencia & Suma de proporciones por lote padre & Exactamente 1 \\
+Trazabilidad & Registros con linaje completo hasta su sistema de origen & 100 \% \\
+Actualidad & Latencia de la capa analítica frente a la comprometida & ≤ 15 minutos en indicadores de turno, cumplimiento del plan al inicio del turno siguiente, ≤ 4 horas en gestión y cumplimiento (RNF-DES-010) \\
+Adopción & Cambios de material declarados con la botonera & ≥ 90 \% (RNF-USA-005) \\
+\end{tabla}
+Las metas de RF-DAT-001 se miden sobre todo el dominio, y los indicadores de detalle no las reemplazan. Las desviaciones de exactitud entre mediciones, como la ley estimada frente a la medida por polígono o el pesaje de a bordo frente a la báscula, no tienen meta numérica: se publican y no se corrigen, porque corregirlas borraría la evidencia del problema de medición. La meta de 90 \% de adopción no es de completitud: mide cuántos cambios de material declara el operador por su cuenta, y un viaje sin declaración sigue siendo un registro completo. Las tres cifras de RF-DAT-001 se verifican cada mes con una muestra de al menos 200 registros por entidad crítica, el tamaño que deriva la sección 5.3.4. El tablero publica además otros indicadores de detalle: las detenciones clasificadas al cierre del turno siguiente, los compromisos medidos dentro de su frecuencia y la diferencia de conciliación atribuida a un punto de medición, con meta de 100 \%. Asimismo, incluye los eventos en cuarentena y referencias sin resolver, que deben tender a cero, con alerta si crecen.
+
+El catálogo de datos con linaje automatizado, que las bases valoran como deseable (CMAA, 2026c, RT-05.10, p. 12), se construye sobre el catálogo de interfaces de la arquitectura de integración, que registra cada contrato de evento publicado con su esquema, su dueño, su versión y su clasificación (Subdocumento 4, secciones 4.1.7.4 a 4.1.7.6). A ese catálogo se suman el diccionario del Anexo A y, para cada indicador, su fórmula y los eventos que consume, que el modelo guarda en el atributo de eventos de entrada. El linaje se genera sin intervención manual, porque cada carga analítica conserva el identificador de correlación: desde un indicador se recorre hasta el evento, el registro y el sistema de origen, y el indicador de trazabilidad de la tabla mide que ese recorrido exista para el 100 \% de los registros.
+
+\subseccion{Retención y archivado}
+La política de retención se declara por dominio, como exige RT-05.07 (CMAA, 2026c, p. 12, así como en la Tabla \refext{A5}{tab:dominios-datos-posicion-cap-propietario-funcional} del anexo). Dentro de cada dominio el plazo se fija por categoría de registro, porque un mismo módulo guarda datos con obligaciones distintas. Las categorías y sus plazos son los de RNF-SEG-005, con los valores que fija el caso (CMAA, 2026b, cap. 15, p. 25). La Tabla \ref{tab:retencion-categoria-entidad} asigna cada entidad a su categoría, y la retención de cada una de las 78 entidades está en la Tabla \refext{A5}{tab:entidades-modelo} del anexo.
+
+\begin{tabla}{I{0.218}I{0.392}I{0.195}I{0.195}}{Retención por categoría de entidad.}{tab:retencion-categoria-entidad}
+  {\cab{Categoría} & \cab{Entidades} & \cab{Plazo} & \cab{Almacén}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 15, p. 25).}
+Seguridad y salud ocupacional & Persona, entidades de Acreditación y Acceso, salvo la plantilla biométrica, y de Seguridad y Salud Ocupacional & 10 años & Transaccional y documental \\
+Ambientales y de monitoreo & Compromiso y cumplimiento por período, medición ambiental, informe externo, huella y detalle de cálculo & 10 años & Transaccional, series y documental \\
+Trazabilidad de mineral y embarques & Plan, polígono, declaración, viaje y ciclos, entidades de Trazabilidad y Embarque y de Conciliación Metalúrgica & 10 años & Transaccional y documental \\
+Heredada de la trazabilidad & Equipo, turno, hito de relevo, sesión de operador, evento y metadatos que respaldan un hecho de diez años & 10 años & Transaccional \\
+Auditoría y plataforma & Asiento de auditoría, parámetro o regla, indicador, dispositivo inventariado, caso de flujo, tarea y transición, proyecciones de identidad y asignaciones & 10 años & Transaccional y documental \\
+Operacionales & Evento de un hecho de cinco años, pozo, tronadura y detención, entidades de Equipos y Mantenimiento & 5 años & Transaccional y series \\
+Biométricos & Plantilla biométrica & Hasta perder el acceso o revocar el consentimiento & Transaccional cifrado \\
+Tributarios & Se consultan en SAP S/4HANA y no se duplican & 7 años & SAP S/4HANA \\
+Trazas técnicas & Registros técnicos sin datos personales sensibles & 90 días & Observabilidad \\
+\end{tabla}
+La mayor parte del modelo se conserva diez años. Cuatro entidades operacionales, el equipo, el turno, el hito de relevo y la sesión de operador, heredan ese plazo porque los registros de trazabilidad las referencian: si se eliminaran a los cinco años, un viaje de hace seis años apuntaría a un equipo o a un turno inexistente. La regla general es que una entidad referenciada por un registro de mayor retención hereda esa retención; por eso el documento conserva el plazo del registro que respalda, 10 años si es de seguridad y salud ocupacional, ambiental o trazabilidad, y 5 si es operacional (RF-ADM-010), y el evento de terreno, el del agregado al que pertenece, cuya firma, dispositivo y sello de tiempo de origen deben poder reconstruirse durante toda la retención (RT-05.03). Ninguna entidad admite el borrado antes de su plazo, salvo la plantilla biométrica. Los registros de seguridad exigidos por el Reglamento de Seguridad Minera (Ministerio de Minería, 2004) quedan en la categoría de diez años, y los tributarios no se duplican, porque dos copias de una cifra que se declara a la autoridad podrían divergir.
+
+Las versiones de reglas, definiciones y catálogos se conservan mientras haya registros vigentes que las necesiten para interpretarse.
+
+Al cerrarse la ventana en línea de cada registro, de 5 años desde el hecho, el horizonte con que el Subdocumento 4 dimensiona el almacenamiento (sección 4.2.4.4), los datos se transfieren al esquema del módulo dueño en el repositorio de consulta histórica (sección 5.3.5). Como el contrato dura 56 meses, durante su vigencia sólo los registros migrados alcanzan esa ventana. El repositorio es un almacén compartido de la capa de datos, con un esquema de sólo lectura por módulo, separado de las bases de los módulos; la partición vencida se copia a él, se verifica por suma de control y sólo entonces se desacopla y elimina del origen, una operación por partición completa que no compite con la escritura. Los archivos adjuntos pasan al nivel de acceso esporádico del almacén de objetos después de 90 días, sin alterar su inmutabilidad, y durante toda su retención la información archivada conserva su inmutabilidad, su auditoría y su cifrado a nivel de campo.
+
+\subseccion{Eliminación segura y verificable}
+Durante el período de retención sólo se aplican bajas lógicas auditadas, el traslado de una partición al repositorio histórico cambia el almacén del dato, pero no lo elimina. La eliminación física, en todos sus almacenes, ocurre en tres casos: el vencimiento del plazo de retención, la pérdida del acceso o la revocación del consentimiento, sólo para la plantilla biométrica, y el término del contrato. Este último alcanza sólo a las copias que queden bajo control del adjudicatario, después de entregar al cliente la totalidad de la información en formatos abiertos (RT-05.06), conforme al Artículo 85, numeral 7, de las Bases administrativas (p. 44); en los almacenes del cliente, que continúa operando la solución, los plazos siguen corriendo. Los tres casos pasan por el mismo procedimiento, que cumple RF-DAT-002, hace la purga irreversible y deja evidencia de que ocurrió en todos los almacenes y no sólo en el principal, como resume la Tabla \ref{tab:procedimiento-eliminacion-segura-evidencia-cada-paso}.
+
+\begin{tabla}{I{0.203}I{0.417}I{0.380}}{Procedimiento de eliminación segura y evidencia de cada paso.}{tab:procedimiento-eliminacion-segura-evidencia-cada-paso}
+  {\cab{Paso} & \cab{Qué se ejecuta} & \cab{Evidencia que deja}}
+  {Fuente: elaboración propia.}
+1. Identificación & Consulta de los registros que cumplieron su plazo, por categoría y módulo & Informe firmado con el alcance \\
+2. Aprobación & Aprobación de un segundo perfil & Asiento conservado 10 años desde la eliminación \\
+3. Ejecución & Eliminación física o criptográfica según el almacén & Bitácora de ejecución por almacén \\
+4. Verificación & Consulta de comprobación sobre todos los almacenes y copias & Cero filas legibles por identificador \\
+5. Constancia & Emisión del certificado de eliminación & Certificado con alcance, cantidad, almacenes, responsable y fecha \\
+\end{tabla}
+La evidencia de cada paso sobrevive al dato eliminado: el asiento de la aprobación cuenta sus diez años desde la eliminación y no desde el hecho registrado. La verificación del paso 4 abarca las bases de los módulos, las series, el analítico, el documental, los archivos, el repositorio histórico, el índice de búsqueda y el archivo de eventos, tanto en Chile Central como en Brazil South. Además, incluye los respaldos (como el local de la faena y los cartuchos removibles) y los almacenes del Nodo de Faena, de los gabinetes y de los dispositivos. Los respaldos inmutables y los contenedores con retención bloqueada no admiten borrado antes de su vencimiento, ni siquiera por un administrador (Subdocumento 4, sección 4.2.3.5). En ellos la eliminación es criptográfica: se destruye la clave del campo o del contenedor y el dato queda irrecuperable.
+
+\subseccion{Datos personales}
+Las obligaciones sobre datos personales rigen desde el primer día del contrato, conforme a la Ley N.º 21.719 (Congreso Nacional de Chile, 2024b) y al Artículo 85 de las Bases administrativas (p. 44), como exige RT-05.08 (CMAA, 2026c, p. 12). El cliente es el responsable del tratamiento y decide la finalidad, el adjudicatario es el encargado y lo ejecuta. Los controles de infraestructura, como la custodia de claves en hardware, la identidad por población y el cifrado en tránsito y en reposo, son los de la arquitectura de seguridad (Subdocumento 4, secciones 4.1.8 y 4.2.2.2), y esta sección declara sólo lo que agrega el modelo de datos.
+
+El cifrado a nivel de campo cubre las categorías sensibles que identifica el caso, que son salud ocupacional, exámenes preocupacionales, control de fatiga y control de alcohol y drogas (RNF-SEG-001), más la biometría, el documento de identidad y la identidad del operador en los registros operacionales, es decir el identificador de persona y de sesión de un viaje o de una declaración. Cada categoría tiene una clave separada (Subdocumento 4, Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}), el cifrado cubre también el registro local del dispositivo y la capa analítica recibe sólo un identificador seudonimizado, sin el nombre ni el documento. Cada tratamiento conserva su finalidad, la base que lo autoriza y su respaldo, aprobados por el cliente, cuando corresponde consentimiento, se vinculan su versión y su revocación, y la biometría mantiene el consentimiento exigido por RF-ACR-010.
+
+Cuatro reglas de datos tienen consecuencia operativa directa. La primera es que el dato personal sensible no sale de producción en claro: Desarrollo y QA usan datos sintéticos, y Preproducción usa copias con esos campos enmascarados de forma irreversible, según la regla de ambientes de la arquitectura lógica (Subdocumento 4, sección 4.1.3.4). La seudonimización sola no basta: con hasta 8.500 personas con acceso a la faena en una detención mayor (CMAA, 2026b, cap. 14.1; Subdocumento 4, sección 4.2.4.2), cada una con turno, equipo y área conocidos, una seudonimización sería reversible por cruce. La segunda es la auditoría de la consulta: toda lectura de un atributo confidencial o personal sensible deja un asiento con persona, motivo, momento y dispositivo, conservado diez años (RNF-SEG-002). La tercera es el límite a las decisiones automatizadas: la clasificación automática de detenciones, la marca de operador no identificado, las alertas de fatiga y el efecto que propone un control de salud producen avisos, y toda consecuencia sobre la persona requiere validación humana registrada.
+
+La cuarta es la localización. Los datos personales de los módulos residen en Azure Chile Central. Sus copias fuera de Chile, como la réplica de recuperación y el respaldo inmutable en Azure Brazil South, requieren base de licitud, resguardos adecuados y autorización previa y escrita del cliente (CMAA, 2026a, Art. 85.8, p. 44), con cláusulas contractuales (Subdocumento 4, sección 4.3.2.1). Los servicios globales de identidad, de gestión de dispositivos y de notificación (Formulario T-11, ítems T11-22, T11-25 y T11-27) tratan sólo identificadores de cuenta y datos de contacto, bajo la misma autorización del cliente y las mismas cláusulas. Ante una solicitud de un titular, el encargado entrega los antecedentes al cliente dentro de 5 días hábiles, plazo que se propone para el acuerdo de tratamiento, para que el cliente responda dentro del plazo legal (CMAA, 2026a, Art. 85.2 y 85.5, p. 44). La supresión no procede mientras rija una obligación de conservación, y en ese período sólo se bloquea el acceso al campo personal, sin borrarlo antes del plazo. Una brecha se notifica al cliente dentro de 24 horas (CMAA, 2026a, Art. 85.6, p. 44) y, si el cliente califica como operador de importancia vital bajo la Ley N.º 21.663 (Congreso Nacional de Chile, 2024a), el mismo procedimiento alimenta el reporte al CSIRT Nacional.
+
+\seccion{Estrategia de migración}
+La migración traspasa los datos históricos que hoy están en planillas, en sistemas existentes y en papel, con su saneamiento, su validación y su conciliación, dentro de las ventanas del cronograma del proyecto. Cumple el plan de migración que exigen las bases, con alcance, origen, volumen, reglas de transformación, criterios de calidad, estrategia de ejecución y reversión (CMAA, 2026c, RT-05.11, p. 12; TRA-MIG-001). Cada origen entra por un conector del Integrador de Sistemas con la misma capa anticorrupción de la operación. Las planillas, carpetas e imágenes entran por el conector de migración, que valida su índice antes de escribir. Por su parte, la historia del despacho, del laboratorio y de SAP entra por sus propios conectores, en lotes programados en la ventana de 03:00 a 05:00 (CMAA, 2026b, cap. 15, p. 25).
+
+\subseccion{Alcance, ventanas y volumen}
+La migración se divide en dos etapas para que cada traspaso llegue junto con el módulo que usa los datos (Subdocumento 3, secciones 3.2.2.2 y 3.2.2.3). En la Etapa 1 entran la producción y la trazabilidad de mineral, el laboratorio y la acreditación, con las habilitaciones vigentes en primer lugar para que la portería valide desde el primer día, en la Etapa 2 entran el mantenimiento, la seguridad y salud ocupacional y el monitoreo ambiental. Las ventanas de cada origen son las que fija el caso (CMAA, 2026b, cap. 15, p. 25) y recoge TRA-MIG-005.
+
+La Tabla \ref{tab:volumen-migracion-origen} resume el volumen de cada origen. Se deriva registro por registro, multiplicando la volumetría anual del caso (CMAA, 2026b, cap. 14.1, p. 23) por su ventana. El cálculo de cada fila está en la Tabla \refext{A5}{tab:calculo-volumen-migracion-origen} del Anexo C de OVERFORE-Subdocumento5-Anexos. Los tamaños unitarios y los 8 resultados por muestra de laboratorio son supuestos propios que se miden en el perfilado y en el primer lote. Un registro migrado ocupa 0,4 KB y no los 4 KB de un hecho nuevo (sección 5.4.1), porque llega sin la evidencia de terreno y con un solo asiento de auditoría por lote de carga.
+
+\begin{tabla}{I{0.337}I{0.171}I{0.322}I{0.171}}{Volumen de la migración por origen.}{tab:volumen-migracion-origen}
+  {\cab{Origen y etapa} & \cab{Ventana} & \cab{Destino de lo anterior} & \cab{Volumen}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, caps. 14.1 y 15, pp. 23–25), de TRA-MIG-005, de SUP-31 y SUP-32 y del Subdocumento 4 (Anexo D).}
+Despacho de flota · Etapa 1 & 5 años & Repositorio histórico & 3,4 GB \\
+Planillas de turno · Etapa 1 & 5 años & Repositorio histórico & < 0,01 GB \\
+Gestión de laboratorio · Etapa 1 & 5 años & Repositorio histórico & 1,1 GB \\
+Planilla de acreditación · Etapa 1 & 10 años & Se migra completo & 0,1 GB \\
+SAP S/4HANA, mantenimiento · Etapa 2 & 3 años & Repositorio de consulta histórica & 0,5 GB \\
+Formularios de seguridad en papel · Etapa 2 & 10 años & Se migra completo & 193,2 GB \\
+Monitoreo ambiental · Etapa 2 & 10 años & Se migra completo & 6,3 GB \\
+Historiador de proceso & No se migra & Permanece en el historiador & No aplica \\
+SAP S/4HANA, tributarios & No se migra & Permanecen en SAP & No aplica \\
+Total & — & — & ≈ 205 GB \\
+\end{tabla}
+La migración completa suma unos 205 GB, la misma cifra con que la arquitectura física dimensiona el almacenamiento (Subdocumento 4, sección 4.2.4.4; OVERFORE-Subdocumento4-Anexos, Tabla D.7), y casi todo es papel: 193,2 GB de imágenes de formularios frente a unos 11 GB de origen digital. La acreditación, los formularios de seguridad y el monitoreo ambiental se migran completos porque su ventana coincide con su retención de diez años (Tabla \ref{tab:retencion-categoria-entidad}) lo anterior a las demás ventanas queda en el repositorio de consulta histórica (sección 5.3.5), el historiador se relee desde el servidor espejo y los registros tributarios se consultan en SAP S/4HANA, que se mantiene (CMAA, 2026b, cap. 10, restricción 4). Los documentos de respaldo de las habilitaciones no se migran y quedan bajo custodia del cliente, porque sumarían unos 220 GB (Anexo C, sección C.1), y cada habilitación vigente se renueva con la documentación que las empresas cargan en el Portal de Contratistas (Subdocumento 4, sección 4.1.6.3).
+
+Las cifras de los orígenes digitales son las de SUP-31: si el perfilado encuentra más de un 20 \% adicional o más de un 5 \% de registros defectuosos, el trabajo extra se trata conforme al Artículo 72.º de las Bases administrativas (Subdocumento 2, Anexo B).
+
+\subseccion{Ventanas de corte y compatibilidad con el cronograma}
+La migración se ejecuta dentro del cronograma contractual obligatorio (CMAA, 2026a, Art. 17.1, p. 12), con el mes 1 en enero de 2027 (SUP-15), y sus paquetes de trabajo, con su duración, su secuencia y su dotación, están en la EDT y en la carta Gantt del Subdocumento 7. Esta sección fija sólo las ventanas en que puede ocurrir cada corte y las condiciones que ese cronograma respeta. La Figura \ref{fig:ventanas-corte-migracion-sobre-cronograma-contractual} ubica esas ventanas sobre las fases del Artículo 17.
+
+\figura{16.09}{fig-5-17-ventanas-corte-migracion-sobre-cronograma}{Ventanas de corte de la migración sobre el cronograma contractual.}{fig:ventanas-corte-migracion-sobre-cronograma-contractual}{Fuente: elaboración propia.}
+Cada corte cumple cuatro condiciones. La primera es el orden: el informe de perfilado, con la decisión sobre cada defecto, se cierra antes del primer ensayo (TRA-MIG-002), los dos ensayos completos en Preproducción terminan antes de la carga definitiva (RT-05.13) y, en la Etapa 2, la digitalización de los formularios de seguridad (sección 5.3.3) termina antes del primer ensayo para que ambos procesen el lote completo. Esa digitalización ocupa los meses 10 a 15 y empieza durante el desarrollo de la Etapa 1, porque sus 124 días hábiles no caben, junto con los dos ensayos, en los seis meses de desarrollo de la Etapa 2, es trabajo sobre papel que no depende del software de esa etapa, y su dotación está en el Formulario T-15. La segunda es la fase: la carga definitiva de cada etapa se ejecuta dentro de su desarrollo, al final de los meses 12 y 18, porque el Artículo 17 asigna la migración de datos al desarrollo y la marcha blanca debe operar con datos reales desde su primer día.
+
+La tercera es el calendario de la faena: ninguna carga ocurre en los cinco primeros días hábiles del mes, cuando se prohíbe intervenir sistemas con impacto contable, ni en las 48 horas previas a un embarque o durante él. La extracción masiva desde el despacho de flota, el laboratorio y SAP S/4HANA se hace de 03:00 a 05:00, previa aprobación del Comité de Operación, y las validaciones con el personal de planta se programan fuera de las detenciones de marzo y septiembre (CMAA, 2026b, cap. 15, p. 25, y cap. B, p. 35). Los pasos a producción de los meses 16 y 21, que retiran las planillas como fuente oficial, se programan después del quinto día hábil y fuera de las 48 horas previas a un embarque. El del mes 21, septiembre de 2028, ocurre terminada la detención de planta (CMAA, 2026b, cap. 13.3, condición 2, p. 22; Subdocumento 3, sección 3.2.2.5).
+
+La cuarta es el cierre: TRA-MIG-004 exige dejar explicada toda diferencia antes del cierre de la marcha blanca de la etapa en que migra cada origen, el mismo criterio que el Artículo 17.3 fija para cerrar cualquier marcha blanca (CMAA, 2026a, p. 13). Los orígenes de la Etapa 1 firman su acta de conciliación al cierre del mes 15. Por su parte, el mantenimiento de SAP S/4HANA, los formularios de seguridad y el monitoreo ambiental la firman al cierre del mes 20, fuera de los días de detención de planta. Durante la marcha blanca las planillas siguen siendo la fuente oficial y se comparan cada día con SITCO (Subdocumento 3, sección 3.1.3), y la carga incremental trae lo que registran mientras tanto, respetando las ventanas de la tercera condición. Desde el paso a producción del mes 16 dejan de ser fuente oficial (Subdocumento 3, sección 3.3.2.2) y quedan en sólo lectura, bajo custodia del cliente, hasta el acta de la Etapa 2.
+
+La documentación de los factores de ajuste del balance mensual termina en el mes 2 del contrato. Se supone que una de las dos personas que los explican se jubiló en marzo de 2026 (CMAA, 2026b, cap. 8, p. 14), por lo que el registro se hace con la persona que sigue en la compañía y, si es posible, con la persona jubilada. Los factores se reconstruyen con los metalurgistas y se cargan como parámetros versionados con su vigencia histórica, para recalcular un período migrado con los factores que regían entonces.
+
+\subseccion{Perfilado, saneamiento, ensayos y validación}
+Cuatro fases llevan cada origen hasta la carga definitiva, y cada una entrega una salida revisable. El inventario y perfilado levanta cada fuente con su volumen, su formato y su responsable, y perfila cardinalidad, nulos, valores fuera de dominio, duplicados, formatos de fecha y unidades. En los formularios en papel, el perfilado es un conteo por tipo, año y área contra el archivo físico. Su salida es el informe con el porcentaje de registros que no pasa cada regla y la decisión adoptada sobre cada defecto (CMAA, 2026c, RT-05.12, p. 12; TRA-MIG-002).
+
+El saneamiento normaliza unidades y formatos, resuelve duplicados por regla declarada y homologa catálogos contra la taxonomía vigente. Todo registro corregido conserva su valor original, de modo que una corrección discutible se puede revertir. Los ensayos de carga son al menos dos por etapa, completos, sobre datos reales y en Preproducción, con los campos personales sensibles enmascarados de forma irreversible y, en los formularios digitalizados, con imágenes sintéticas, y miden el tiempo total y el resultado de la conciliación (RT-05.13; TRA-MIG-003). La validación revisa la estructura contra el modelo, el dominio contra el diccionario y las reglas de integridad, y el registro que no pasa queda en cuarentena con un motivo tomado de una lista cerrada.
+
+La digitalización de los registros de seguridad tiene plan propio, porque es un trabajo sobre papel y no una carga de datos. El método es el escaneo a imagen a 300 ppp, en escala de grises y en PDF/A, sin transcripción de campos, con un índice por tipo de registro, fecha, área, empresa, persona involucrada y folio, que se valida contra el formulario (SUP-32). Cuatro digitalizadores de Overfore rotan en tres puestos de escaneo e indexación, a unos 520 formularios diarios por puesto, rendimiento supuesto que se confirma en el primer lote, los 193.000 formularios toman unos 124 días hábiles de los 128 que tienen los meses 10 a 15, con la dotación que presenta el Formulario T-15. El control de calidad revisa una muestra de 200 formularios en cada lote de unos 2.600, que es una semana de producción de un puesto, y un lote con más de un 2 \% de errores se vuelve a procesar completo, umbral coherente con la meta de exactitud de 98 \% de RF-DAT-001. Un formulario ilegible no se descarta: se registra como no migrable con su motivo y el original queda bajo custodia del cliente. El detalle del método, la precarga del índice, la contingencia de un cuarto puesto y el resguardo de las imágenes está en la sección C.2 del Anexo C de OVERFORE-Subdocumento5-Anexos.
+
+\subseccion{Conciliación, aceptación y reversa}
+La conciliación es cuantitativa y verificable (CMAA, 2026c, RT-05.14, p. 12; TRA-MIG-004). Cuenta por entidad y período contra la fuente, compara sumas de control de tonelaje, ley y monto sobre el 100 \% de los registros y hace una muestra aleatoria estratificada de al menos 200 registros por entidad crítica. El tamaño de la muestra se deriva de la regla del tres: si en 200 registros no aparece ningún error, la tasa de error está bajo 3/200, es decir 1,5 \%, con 95 \% de confianza, lo que es compatible con la meta de exactitud de 98 \% de RF-DAT-001. En los formularios digitalizados se compara el conteo de imágenes indexadas con el del archivo físico. La salida es un acta firmada por el cliente.
+
+Cuatro criterios deciden si la migración se acepta. La completitud exige que el 100 \% de los registros de la ventana esté en el destino o justificado en cuarentena, y la exactitud, tolerancia cero en las sumas de control por período, con toda discrepancia documentada. La integridad referencial exige que no haya referencias huérfanas en las estructuras de trazabilidad, dentro de cada módulo y entre cada módulo y sus proyecciones locales, y la trazabilidad, que todo dato migrado conserve su marca de origen y la identificación del proceso que lo cargó. La reversa respalda a los cuatro anteriores: las fuentes originales quedan activas en sólo lectura hasta que se firma el acta, la reversa se prueba en cada ensayo de carga y, durante la marcha blanca, revertir una ola significa volver a las planillas sin perder lo registrado en SITCO (Subdocumento 3, sección 3.2.2.5).
+
+\subseccion{Repositorio de consulta histórica}
+Lo anterior a cada ventana se guarda en el repositorio de consulta histórica, un almacén compartido de la capa de datos con un esquema de sólo lectura por módulo (Subdocumento 4, sección 4.1.4.6), con origen, auditoría y controles de acceso, como piden las bases para los históricos no migrados (CMAA, 2026c, RT-05.15, p. 12; RF-ADM-001). Se habilita en la Etapa 1, antes del cierre del mes 15, y se completa en la Etapa 2, antes del cierre del mes 20 (paquete 1.4.6.5). Los registros archivados que conservan insumos y versiones suficientes permiten reproducir el cálculo de un período, sin modificar su cierre ni volver a informar cifras distintas. Los datos anteriores al sistema que no tienen ese detalle se consultan con su limitación identificada, y esos períodos no se recalculan con insumos supuestos.
+
+\seccion{Estrategia de desempeño}
+La estrategia de desempeño fija la indexación, el particionamiento, la caché y la optimización de consultas a partir de la volumetría del caso. Cada decisión de esta sección parte de una cifra de volumen o de un umbral de tiempo, y la última subsección declara cómo se prueba que las consultas analíticas no degradan el registro de terreno.
+
+\subseccion{Volumetría de diseño}
+La volumetría de diseño convierte los volúmenes anuales del caso en cifras por día, por mes y por segundo, que son las que deciden el tamaño de un índice o de una partición. Su derivación está en las Tablas D.4 y D.5 del Anexo D de OVERFORE-Subdocumento4-Anexos, y la Tabla \ref{tab:volumetria-diseno-uso-estrategia-desempeno} reúne las cifras que usa esta sección con la decisión que funda cada una.
+
+\begin{tabla}{I{0.285}I{0.315}I{0.399}}{Volumetría de diseño y su uso en la estrategia de desempeño.}{tab:volumetria-diseno-uso-estrategia-desempeno}
+  {\cab{Magnitud} & \cab{Valor} & \cab{Uso en la estrategia}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 14.1, p. 23) y del Anexo D de OVERFORE-Subdocumento4-Anexos (Tablas D.2 y D.4 a D.7).}
+Viajes & 937 al día & Partición mensual de Viaje de unas 28.500 filas (342.000 al año / 12) \\
+Hechos de negocio & 8.100 al día & Registro transaccional de unos 12 GB al año (8.100 hechos × 4 KB de registro y auditoría × 365) \\
+Eventos de dominio & 24.300 al día (tres por hecho) & Cota del tamaño mensual de Evento de terreno \\
+Pasos de portería & 2.900 al día & Partición mensual de unas 87.000 filas \\
+Lecturas de series & 94,16 millones al día & Fragmento diario de unos 6 GB sin comprimir: 64 bytes por muestra del historiador y 60 por otra lectura \\
+Solicitudes a los servicios & 135 TPS en el relevo, 120 TPS de punta local en el Nodo de Faena durante un corte & Grupos de conexiones y prueba a 300 TPS \\
+Usuarios concurrentes & 505 personas y 37 dispositivos & Unas 550 sesiones en la caché (Tabla \ref{tab:caches-vigencia-origen-vigencia}) \\
+\end{tabla}
+El registro de negocio es pequeño, 0,094 hechos por segundo en promedio, y la carga la deciden dos cosas distintas: la concurrencia del cambio de turno, que fija las transacciones, y las series de tiempo, que fijan la ingesta y el almacenamiento. Un hecho es un registro nuevo, como un viaje o un paso de portería que una transacción es cualquier llamada a un servicio, incluidas las consultas de tableros y las validaciones, aunque no creen un hecho. Las 135 TPS del relevo de las 08:00 resultan de 505 personas que realizan una acción cada 30 segundos con seis llamadas por acción, unas 101 TPS, más 34 TPS de tabletas, botoneras, consolas, portería, cierre de turno y conectores. La punta de 200 TPS, cerca de 1,5 veces la cifra calculada, es la reserva para simultaneidades como el cierre mensual de la conciliación, aun si se duplicaran los 90 administradores de contratistas, la carga subiría a unas 153 TPS, dentro de la punta. La prueba se hace a 300 TPS, 1,5 veces la punta, como exige RT-09.06 (Subdocumento 4, sección 4.2.4.2, Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno} y Anexo D). La detención de planta, con hasta 8.500 personas en faena, no multiplica los usuarios concurrentes: las personas adicionales son trabajadores de contratistas que llegan a SITCO como pasos de portería, carga que se prueba aparte (sección 5.4.6).
+
+\subseccion{Indexación}
+Los índices se definen por patrón de acceso y no tabla por tabla, porque cada índice acelera una lectura y encarece todas las escrituras de su tabla. Ese costo no pesa en los 937 viajes diarios, sino en las tablas que crecen rápido, como el evento de terreno, el asiento de auditoría y las series, con 94 millones de lecturas diarias, donde no se crea ningún índice que no sostenga una consulta declarada. La Tabla \ref{tab:indices-tipo-consulta-sostienen} presenta los tipos de índice y la consulta que sostiene cada uno.
+
+\begin{tabla}{I{0.214}I{0.445}I{0.341}}{Índices por tipo y consulta que sostienen.}{tab:indices-tipo-consulta-sostienen}
+  {\cab{Tipo de índice} & \cab{Dónde} & \cab{Consulta que sostiene}}
+  {Fuente: elaboración propia.}
+Primarios y únicos & Identificadores de registros y de versiones, par identificador lógico y número de versión en entidades versionadas & Resolución por identificador y prevención de versiones duplicadas \\
+Clave foránea & Relaciones locales con destino único, referencias externas y polimórficas validadas por contrato o catálogo & Recorrido del árbol de trazabilidad en ambos sentidos \\
+Compuestos & Viaje por turno y equipo, detención por equipo y estado, habilitación y paso por persona & Indicadores de turno, cierre de turno y validación de portería \\
+Parciales & Detenciones sin clasificar, eventos en cuarentena y habilitaciones por vencer & Consultas de excepción \\
+Por rango de bloque & Pesaje, evento de terreno, paso de portería y series, sobre la marca de tiempo & Consultas por ventana temporal \\
+Texto completo & Documentos, hallazgos y registros publicados, en OpenSearch 3 & Búsqueda filtrada por rol, sin atributos sensibles \\
+\end{tabla}
+Los índices parciales y por rango de bloque son los que más rinden: los primeros indexan sólo las filas de excepción, que son las consultas más frecuentes en operación, y los segundos resuelven una ventana temporal sobre tablas que crecen en orden con una fracción del espacio de un índice tradicional. El índice de búsqueda excluye todo atributo personal sensible, porque es una copia del dato y hereda su clasificación. Los índices se revisan cada tres meses con las estadísticas de uso del motor y se eliminan los que no registran lecturas.
+
+La vigencia se valida al aprobar cada versión de plan, parámetro, catálogo o indicador, para impedir períodos incompatibles de una misma definición. La unicidad del identificador y número de versión evita duplicados, pero no sustituye esa validación.
+
+\subseccion{Particionamiento}
+El particionamiento separa las tablas de alto volumen por rango temporal y, para los eventos, también por sitio de origen. El pesaje conserva la hora propia de la medición para la no replica la hora de carguío. El evento incorpora el sitio del hecho para organizar el almacenamiento por origen. La Tabla \ref{tab:estrategia-particionamiento-tamano-particion} resume la estrategia, los plazos de archivado y eliminación de cada tabla son los de su categoría (Tabla \ref{tab:retencion-categoria-entidad} y sección 5.2.4): Viaje, Pesaje, Paso de portería y Asiento de auditoría se archivan a los 5 años y se eliminan a los 10, las detenciones y alarmas se eliminan a los 5 años, el evento de terreno sigue al agregado al que pertenece, y las series, a su tipo de serie.
+
+\begin{tabla}{I{0.321}I{0.377}I{0.302}}{Estrategia de particionamiento y tamaño de partición.}{tab:estrategia-particionamiento-tamano-particion}
+  {\cab{Tabla} & \cab{Clave y rango} & \cab{Tamaño de partición}}
+  {Fuente: elaboración propia.}
+Viaje y Pesaje & Hora de carguío de Viaje y hora de medición de Pesaje, cada una en su partición mensual & Unas 28.500 filas mensuales de Viaje, Pesaje según sus mediciones \\
+Evento de terreno & Marca de tiempo, mensual, y sitio de origen & Como máximo unas 729.000 filas \\
+Paso de portería & Marca de tiempo, mensual & Unas 87.000 filas \\
+Detención, detención de planta y alarma & Inicio o emisión, mensual & Según volumen medido \\
+Series de tiempo & Fragmento diario, comprimido a los 7 días & Unos 6 GB sin comprimir \\
+Asiento de auditoría & Marca de tiempo, mensual & Unas 729.000 filas mensuales (24.300 eventos diarios × 30), más las lecturas auditadas de datos sensibles, que se miden en la marcha blanca \\
+\end{tabla}
+Con la volumetría actual ninguna partición transaccional supera el millón de filas al mes, así que la consulta del período reciente recorre una o dos particiones pequeñas, con el crecimiento a tres veces que exige RNF-CAP-001, la mayor, la del evento de terreno, llega a unos 2,2 millones de filas, que una partición mensual subdividida por sitio sigue resolviendo sin rediseño. La subpartición por sitio del evento de terreno aísla las dos descargas que llegan a la nube tras un corte, la de la bandeja de salida del Nodo de Faena y la del gabinete de puerto, para que una no frene a la otra. Las series se comprimen después de siete días con la relación de diseño de 4:1, y quedan en 0,55 TB al año y unos 2,8 TB lógicos a cinco años (Subdocumento 4, sección 4.2.4.4); el Nodo de Faena conserva sólo los últimos treinta días de series (Tabla \refext{A5}{tab:series-proyecciones-fuentes-externas} del anexo).
+
+\subseccion{Caché}
+La solución usa cuatro cachés y cada una tiene su propia regla de vigencia, derivada de un umbral del caso o de la arquitectura, porque un dato vencido en caché causa más daño que una consulta lenta. La Tabla \ref{tab:caches-vigencia-origen-vigencia} las presenta.
+
+\begin{tabla}{I{0.342}I{0.287}I{0.372}}{Cachés, vigencia y origen de la vigencia.}{tab:caches-vigencia-origen-vigencia}
+  {\cab{Caché} & \cab{Vigencia} & \cab{Origen de la vigencia}}
+  {Fuente: elaboración propia.}
+Identidades y habilitaciones en el Nodo y en el gabinete de portería & Se actualiza con cada habilitación o revocación, sin enlace, vence a las 72 horas & Copia local que sostiene la portería en 1,5 segundos sin enlace \\
+Estado de sesión y de proceso en Azure Managed Redis & Lo que dura la sesión & Servicios sin estado, unas 550 sesiones en el peak \\
+Consultas de los portales & Hasta 15 minutos & Latencia de los indicadores de turno (RNF-DES-010) \\
+Catálogos y parámetros vigentes & Hasta un evento de cambio & Parámetro aprobado: rige de inmediato \\
+\end{tabla}
+Ningún caché agrega un atraso mayor que el que el caso ya acepta. La de los portales vence a los 15 minutos, el mismo plazo de los indicadores de turno, y aísla el tráfico externo de los módulos, que además no comparte ruta con el registro de terreno (Subdocumento 4, sección 4.1.4.3). La de identidades guarda el estado de habilitación y nunca el resultado de la validación. Con enlace, una revocación llega al Nodo y al gabinete como evento, dentro de las 24 horas que exige RNF-SEG-006, las 72 horas son el plazo máximo en que la copia sigue vigente durante un corte. Un hecho registrado con una credencial revocada durante un corte se acepta, porque ocurrió, y entra marcado para la reconciliación (Subdocumento 4, sección 4.1.8.1).
+
+\subseccion{Optimización de consultas}
+Cuatro consultas no pueden recorrer la tabla cada vez que se piden y usan tablas de lectura que el propio módulo actualiza al recibir cada evento, cada una en el módulo que la consulta: el saldo y la ley por stock y por capa, en Trazabilidad y Embarque, la vista única de equipo, en Equipos y Mantenimiento, las personas presentes, en Acreditación y Acceso, y el estado de sincronización por sitio, en Administración y Servicios Comunes.
+
+El portal y la reportería usan un grupo de conexiones distinto del operacional, de modo que una consulta pesada desde un tablero no consume la reserva que necesita el registro de terreno. La contención de fallas de los sistemas externos la hacen los conectores con tiempo de espera, cortacircuito y grupo de conexiones por dependencia (Subdocumento 4, sección 4.1.7.1). Las consultas que en conjunto acumulan el 80 \% del tiempo de base de datos en la marcha blanca, medidas con las estadísticas de ejecución del motor, tienen plan revisado y línea base, y la alerta se dispara cuando una de ellas supera el doble de su línea base. Tras un corte, o mientras sólo opera el enlace satelital, la reconciliación se ingiere por lotes con límite de tasa y da prioridad al registro operacional sobre las series del historiador, que son las únicas que se difieren, y todas las muestras se transmiten dentro de las cuatro horas posteriores a la recuperación del enlace (Subdocumento 4, sección 4.2.4.5).
+
+\subseccion{Prueba de desempeño con carga analítica concurrente}
+La separación entre lo transaccional y lo analítico se demuestra con una prueba y no sólo con el diseño. RNF-DES-017 exige que el registro en terreno, el de báscula y la consulta en portería mantengan sus tiempos mientras corren las consultas analíticas de mayor costo, y su método de verificación es una prueba de carga concurrente en Preproducción, cuyos umbrales y perfil de carga fijan en el Formulario T-13.
+
+La prueba combina la peor carga operacional con la peor carga analítica al mismo tiempo. Del lado operacional corren 300 TPS sostenidos de registro en terreno, 1,5 veces la punta de 200, con un umbral de 2 s (RNF-DES-001), la ráfaga de los camiones a puerto del turno en la báscula, con un máximo de 3 s por pesaje (RNF-DES-002), y unos 2.064 pasos por hora en la portería, con un máximo de 1,5 s por consulta de habilitación (RNF-DES-003), el primer umbral se mide en el percentil 95 y los otros dos como máximo, como fija el caso (CMAA, 2026b, cap. 15, RT-09.01, p. 25). Esa cifra de pasos es la del relevo durante una detención mayor de planta: el 70 \% de los 2.900 pasos diarios ocurre en los dos relevos, unos 1.015 por hora, y en la detención la dotación sube de 4.180 a 8.500 personas (Subdocumento 4, Anexo D, Tablas D.4 y D.5; Bases técnicas del caso Minería, cap. 14.1, p. 23), lo que da unos 34 pasos por minuto. Del lado analítico corren en paralelo el recálculo de la conciliación mensual, el tablero de gestión y la exportación total en la capa analítica. Además, el origen de un lote en la base de Trazabilidad y Embarque es una consulta operacional. Ninguno de los tres umbrales anteriores puede degradarse (RNF-DES-017).
+
+La prueba se ejecuta antes de cada paso a producción, en la misma campaña de 300 TPS de la arquitectura física (Subdocumento 4, sección 4.2.4.2; Bases técnicas transversales, RT-09.06), y se repite en la marcha blanca con datos reales. Si un umbral se excede, la corrección se busca en la separación y no en la capacidad: ninguna consulta analítica toca una base de módulo, y la única consulta pesada que sí lo hace, el origen de un lote, recorre el árbol con profundidad máxima declarada y resultado paginado, y usa el grupo de conexiones de la reportería y no el del registro de terreno (sección 5.4.5).
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Amazon Web Services. (s. f.). ¿Cuál es la diferencia entre el modelo de datos lógico y el modelo de datos físico? https://aws.amazon.com/es/compare/the-difference-between-logical-and-physical-data-model/
+\item ClickHouse. (s. f.). Which ClickHouse version to use in production? https://clickhouse.com/docs/faq/operations/production
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item Congreso Nacional de Chile. (2024a). Ley N.º 21.663, ley marco sobre ciberseguridad e infraestructura crítica de la información. Diario Oficial, 8 de abril de 2024. https://bcn.cl/3isi2
+\item Congreso Nacional de Chile. (2024b). Ley N.º 21.719, que regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales. Diario Oficial, 13 de diciembre de 2024. https://bcn.cl/GapReB
+\item IBM. (s. f.). What is the CAP theorem? https://www.ibm.com/think/topics/cap-theorem
+\item International Organization for Standardization. (2008). Software engineering — Software product Quality Requirements and Evaluation (SQuaRE) — Data quality model (ISO/IEC Standard No. 25012:2008). https://www.iso.org/standard/35736.html
+\item Ministerio de Minería. (2004). \emph{Decreto Supremo N.º 132, Reglamento de Seguridad Minera}. Diario Oficial de la República de Chile, 7 de febrero de 2004. https://bcn.cl/2f2cy
+\item PostgreSQL Global Development Group. (s. f.). PostgreSQL 18 documentation. https://www.postgresql.org/docs/18/
+\item The Copper Mark. (2026). The Copper Mark chain of custody standard (v. 2). https://coppermark.org/standards/chain-of-custody-standard/
+\item TimescaleDB. (s. f.). TimescaleDB: Real-time insights, scalable time-series. https://timescaledb.org/
+\end{referencias}
+
+\seccionsinnumero{Declaración de uso de IA}
+Se utilizó IA generativa, principalmente como apoyo en la redacción y en la verificación cruzada de cifras con los Subdocumentos 2, 3 y 4; el detalle por sección está en la Tabla \ref{tab:declaracion-uso-ia-seccion}.
+
+\begin{tabla}{I{0.152}I{0.170}I{0.205}I{0.089}I{0.143}I{0.243}}{Declaración de uso de IA por sección.}{tab:declaracion-uso-ia-seccion}
+  {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad del uso} & \cab{Nivel en\newline texto} & \cab{Nivel en\newline diagramas} & \cab{Revisión humana\newline (Quien y que verifico)}}
+  {Fuente: elaboración propia.}
+Introducción y capítulo 5 & Claude y Codex & Borrador de la presentación del diseño y gobierno de datos. & Alto & Ninguno & Patricio Figueroa: verificó la relación con la arquitectura del Subdocumento 4. \\
+5.1 & claude y codex & Apoyo para explicar el modelo y sus dominios. & Alto & Medio & Lucas Zamora: verificó las entidades y las relaciones del modelo. \\
+5.1.1 a 5.1.6 & claude y codex & Desarrollo de dominios, clasificación, maestros, linaje y modelos de datos. & Alto & Medio & Lucas Zamora: comprobó las claves, relaciones y reglas de precedencia. \\
+5.2 & claude y codex & Base de redacción sobre la gestión de datos. & Alto & Ninguno & Patricio Figueroa: revisó la consistencia de las decisiones de persistencia. \\
+5.2.1 a 5.2.6 & claude y codex & Organización del texto sobre motores, calidad, retención y datos personales. & Alto & Ninguno & Lucas Zamora: contrastó las reglas de almacenamiento, eliminación y acceso. \\
+5.3 & claude y codex & Apoyo para describir la estrategia de migración. & Alto & Medio & Lucas Zamora: verificó la coherencia de las ventanas con el cronograma. \\
+5.3.1 a 5.3.5 & claude y codex & Borrador de migración, saneamiento, conciliación, reversa y consulta histórica. & Alto & Medio & Gabriel Sanzana: revisó los volúmenes y los criterios de aceptación de la migración. \\
+5.4 & claude y codex & Desarrollo del enfoque de desempeño de los datos. & Alto & Ninguno & Lucas Zamora: revisó la relación entre la volumetría y las medidas de desempeño. \\
+5.4.1 a 5.4.6 & claude y codex & Apoyo para explicar índices, particiones, caché, consultas y pruebas de carga. & Alto & Ninguno & Lucas Zamora: verificó los cálculos y las metas de desempeño comprometidas. \\
+Referencias & claude y codex & Apoyo para ordenar y uniformar las referencias citadas. & Medio & Ninguno & Patricio Figueroa: verificó la existencia de las fuentes y su correspondencia con las citas. \\
+Anexo A & claude y codex & Base de descripción de entidades y campos del diccionario. & Alto & Ninguno & Patricio Figueroa: comprobó las claves, tipos y relaciones frente al modelo de datos. \\
+Anexo B & claude y codex & Organización de respuestas a observaciones del Informe 1. & Alto & Ninguno & Gabriel Sanzana: verificó la evidencia de cada corrección y su ubicación. \\
+Anexo C & claude y codex & Apoyo en el cálculo de migración y el plan de digitalización. & Alto & Ninguno & Lucas Zamora: verificó los volúmenes, fórmulas y ventanas de migración. \\
+\end{tabla}
+
+\end{document}

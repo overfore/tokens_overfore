@@ -1,0 +1,288 @@
+%% OVERFORE-Formulario-T-10.tex — generado desde OVERFORE-Formulario-T-10.docx
+%% Formato: clase overfore, modo formulario. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[formulario]{../../comun/overfore}
+\numsubdoc{6}
+\formulario{T-10}{Metodología para el desarrollo}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+
+\begin{document}
+
+\apartado{Metodología de Desarrollo Software}
+En este apartado se presenta el resultado que persigue la metodología de desarrollo, la organización común de los equipos y la forma en que se autoriza el paso a producción.
+
+\begin{tabla}{I{0.176}I{0.674}I{0.150}}{Aplicación de la metodología de desarrollo}{tab:aplicacion-metodologia-desarrollo}
+  {\cab{Elemento} & \cab{Aplicación en SITCO Aranda} & \cab{Registro}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Resultado esperado & Transformar un requerimiento en una versión probada y autorizada, conservando trazabilidad, aprobaciones y resultados. & Registro de versión \\
+Organización común & Backlog, definición de terminado y flujo de entrega compartidos. Refinamiento con el cliente manteniendo aceptación y ventanas operacionales. & Backlog y criterios \\
+Autorización & El comité de proyecto registra el paso a producción; el flujo automatizado ejecuta la instalación. La nube, el banco de pruebas y el nodo de faena conservan evidencias diferenciadas. & Aprobación y despliegue \\
+\end{tabla}
+
+\seccion{Enfoque de desarrollo}
+Este apartado muestra el método de desarrollo adoptado, la organización de los equipos y la planificación de los sprints en cada etapa del contrato.
+
+\begin{tabla}{I{0.190}I{0.628}I{0.182}}{Equipos y planificación del desarrollo}{tab:equipos-planificacion-desarrollo}
+  {\cab{Elemento del enfoque} & \cab{Aplicación en SITCO Aranda} & \cab{Registro}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Método & Scrum con tres equipos coordinados y sprints de dos semanas (Schwaber y Sutherland, 2020). Validación del incremento con ambos grupos 7x7. & Objetivo e incremento de sprint \\
+Equipo de cadena del mineral & Dedicado a trazabilidad y conciliación. & Historias de esos dominios \\
+Equipo de personas y cumplimiento & Dedicado a funciones de personas y cumplimiento. & Historias de esos dominios \\
+Equipo de plataforma e integración & Prepara servicios e integraciones. El líder de integración responde por el integrador y por la coordinación con SAP, despacho, laboratorio y demás sistemas. & Dependencias y conectores \\
+Etapa 1 & 19 sprints entre los meses 3 y 11; certificación en el mes 12. & Plan de construcción \\
+Etapa 2 & Diez sprints entre los meses 13 y 17; certificación en el mes 18. Entre los meses 12 y 17, el paquete 1.4.3.7 corrige los defectos de la etapa 1, sin agregar requerimientos. & Plan y reserva de capacidad \\
+Ciclo y operación & Preparación semanal, selección, construcción con controles, revisión y liberación aprobada. Desde el mes 21, Kanban de mantención conducido por el líder de operación (SRE). & Registros del flujo \\
+\end{tabla}
+
+\subseccion{Gestión de requerimientos}
+Este apartado presenta cómo se descomponen, priorizan y trazan los requerimientos, y las condiciones que debe reunir una historia para entrar a un sprint.
+
+\begin{tabla}{I{0.200}I{0.607}I{0.193}}{Preparación y trazabilidad de requerimientos}{tab:preparacion-trazabilidad-requerimientos}
+  {\cab{Práctica} & \cab{Aplicación en SITCO Aranda} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Descomposición & La historia conserva el identificador del requerimiento. Épicas por módulo; requerimientos funcionales en historias; no funcionales en criterios de aceptación y definición de terminado. & Historia y criterios \\
+Priorización & Etapa comprometida, dependencia técnica y valor para el usuario, en ese orden. El líder funcional y los referentes revisan semanalmente el backlog; el líder de datos acuerda con ellos la definición de cada dato y sus reglas de calidad. & Backlog ordenado \\
+Cadena de evidencia & Requerimiento → tarea ClickUp → rama → solicitud de integración → ejecución → artefacto → despliegue. ClickUp y GitHub permiten recorrerla en ambos sentidos. & Identificadores vinculados \\
+Botonera & Una prueba automática verifica el registro del cambio de material en dos segundos o menos, en el percentil 95. Se verifica en cada historia de la botonera durante todo el desarrollo. La aceptación funcional no sustituye la prueba de desempeño. & Resultado de la prueba \\
+Cambios de aceptación & Si una historia modifica un compromiso de aceptación, se aplica el control formal de cambios. & Solicitud aprobada \\
+\end{tabla}
+\begin{tabla}{I{0.319}I{0.369}I{0.312}}{Condiciones de entrada de historias}{tab:condiciones-entrada-historias}
+  {\cab{Dato de la historia} & \cab{Registro} & \cab{Verificación de entrada}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Requerimiento de origen & Identificador del catálogo & Vinculación conservada \\
+Módulo y etapa & Épica y compromiso de entrega & Prioridad compatible \\
+Criterio de aceptación & Resultado verificable & Prueba identificable \\
+Dependencias & Sistemas y tareas relacionadas & Resueltas para iniciar \\
+Datos de prueba & Datos disponibles para el escenario & Preparación comprobada \\
+Decisión funcional & Acuerdo con referente del cliente & Refinamiento registrado \\
+\end{tabla}
+
+\subseccion{Arquitectura evolutiva}
+Este apartado presenta las decisiones estructurales iniciales, los ensayos con que se verifica la arquitectura y las propiedades que se comprueban durante el desarrollo.
+
+\begin{tabla}{I{0.176}I{0.644}I{0.180}}{Evolución y verificación de arquitectura}{tab:evolucion-verificacion-arquitectura}
+  {\cab{Decisión o ensayo} & \cab{Aplicación en SITCO Aranda} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Acuerdos iniciales & El integrador, el nodo de faena y los servicios de identidad y auditoría se fijan en los primeros sprints. Los cambios transversales o tecnológicos requieren alternativas y aprobación del comité de arquitectura. & Decisión de arquitectura \\
+Verificación continua & Las propiedades se comprueban mediante funciones de aptitud durante el desarrollo (Ford et al., 2017). & Resultados de verificación \\
+Ensayo por versión & Cada versión del nodo de faena se ensaya en el banco de pruebas de la sala técnica. & Registro del banco \\
+Aceptación física & Antes de la producción de cada etapa, corte controlado de 48 horas sobre el nodo de faena: continuidad local, conservación de registros y sincronización completa en máximo cuatro horas tras recuperar el enlace. & Informe de aceptación \\
+Repetición operacional & Ensayo anual en detención programada de planta. Se mantienen separados los registros de autonomía física y los de desempeño de preproducción. & Informe anual y resultados separados \\
+Alcance de la prueba & El corte real no se sustituye por simulación en nube ni se repite obligatoriamente antes de cada liberación ordinaria. & Plan de pruebas \\
+\end{tabla}
+\begin{tabla}{I{0.241}I{0.316}I{0.251}I{0.192}}{Verificaciones de arquitectura}{tab:verificaciones-arquitectura}
+  {\cab{Propiedad} & \cab{Lugar de verificación} & \cab{Condición comprobada} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Autonomía local & Banco de pruebas de la sala técnica y nodo de faena & Continuidad sin enlace & Resultados del ensayo \\
+Registro en terreno & Aplicación y dispositivo & Tiempo comprometido & Prueba de desempeño \\
+Compatibilidad de integración & Simuladores de contratos & Interfaz compatible & Resultado de contrato \\
+Separación del control & Componentes e interfaces & Ausencia de escritura a red de control & Verificación \\
+\end{tabla}
+
+\subseccion{Refactorización y deuda técnica}
+Este apartado presenta el registro, la reserva de capacidad y los umbrales con que se controla la deuda técnica.
+
+\begin{tabla}{I{0.144}I{0.687}I{0.169}}{Control de deuda técnica}{tab:control-deuda-tecnica}
+  {\cab{Control} & \cab{Regla aplicada} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Registro y revisión & El autor deja el código más claro y mantenible; los pares comprueban el cambio. La deuda registra causa, impacto, esfuerzo y módulo afectado. & Registro de deuda y revisión \\
+Reserva & 15 \% de la capacidad de cada sprint para deuda técnica. La deuda de seguridad o desempeño se resuelve en el sprint siguiente a su detección. & Plan del sprint \\
+Revisión y umbral & El comité de arquitectura revisa mensualmente. Un índice de deuda mayor que 5 \% del esfuerzo del código nuevo de un módulo bloquea el cambio en las puertas 1 y 2. Exige dedicar el sprint siguiente a reducirlo. & Análisis estático y acciones \\
+Bloqueo de seguridad & No se promueve con hallazgos críticos o altos pendientes, aunque otras mejoras sigan planificadas. & Controles aprobados \\
+\end{tabla}
+
+\subseccion{Tiempo de salida al mercado}
+Este apartado presenta las condiciones que debe cumplir un incremento para pasar de la revisión a producción, considerando las restricciones de la operación en faena.
+
+\begin{tabla}{I{0.176}I{0.664}I{0.160}}{Revisión y condiciones de liberación}{tab:revision-condiciones-liberacion}
+  {\cab{Condición} & \cab{Regla aplicada} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Incremento & Despliegue automático del incremento de cada sprint en preproducción para revisión. & Resultado de revisión \\
+Usuarios de faena & Desde el mes 5, pruebas con usuarios de faena, con guantes, sol y zonas sin señal; desde el mes 8, con equipos reales. Resultados al backlog antes de la marcha blanca. & Validaciones de uso \\
+Ventana permitida & No coincidir con cierre contable, 48 horas previas a embarque ni detención de planta. Cambios en componentes de faena entre 03:00 y 05:00. & Autorización de ventana \\
+Ensayo anual & La detención programada usada para el ensayo de autonomía es una actividad específica de prueba, separada del despliegue ordinario. & Plan de ensayo \\
+Autorización separada & Revisar un incremento no autoriza producción: artefacto técnicamente disponible y aprobación operacional son condiciones diferentes. & Aprobación de liberación \\
+\end{tabla}
+
+\seccion{Prácticas de DevSecOps, integración y entrega continuas}
+Este apartado presenta las reglas de seguridad que se aplican a todo el flujo de entrega y que condicionan las prácticas descritas en los apartados siguientes.
+
+\begin{tabla}{I{0.186}I{0.578}I{0.236}}{Reglas de seguridad del flujo}{tab:reglas-seguridad-flujo}
+  {\cab{Regla} & \cab{Aplicación en el flujo} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Marco de trabajo & Seguridad incorporada al cambio mediante controles y decisiones registradas, conforme al SSDF (NIST, 2022). & Resultados vinculados a versión \\
+Bloqueo por severidad & Los hallazgos críticos o altos pendientes impiden integrar o promover. No se omiten controles bloqueantes. & Informes aprobados \\
+Otros bloqueos & Credenciales expuestas, pruebas fallidas, licencias incompatibles y cobertura insuficiente detienen el flujo. & Registro de rechazo y corrección \\
+\end{tabla}
+
+\subseccion{Repositorio y flujo de trabajo}
+Este apartado presenta las reglas de titularidad, ramas, revisión y versionado del código, y la organización de los repositorios.
+
+\begin{tabla}{I{0.164}I{0.660}I{0.177}}{Reglas de repositorio y revisión}{tab:reglas-repositorio-revision}
+  {\cab{Regla} & \cab{Aplicación en SITCO Aranda} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Titularidad & Organización GitHub Enterprise Cloud de propiedad del cliente, con su código e historial; Overfore participa como miembro. & Organización y permisos \\
+Ramas & Rama corta de menos de dos días con identificador ClickUp; commits firmados y cambios a la rama principal solo por solicitudes aprobadas (Humble y Farley, 2010). & Rama y solicitud \\
+Revisión reforzada & CODEOWNERS y reglas de protección exigen dos revisores para cambios en el nodo de faena, la seguridad o el cálculo crítico. & Aprobaciones registradas \\
+Versionado y acceso & Etiquetas de versionado semántico para producción y correcciones urgentes; identidades federadas con Azure, sin credenciales permanentes en el flujo. & Versión e identidad \\
+Corrección & Un control fallido se corrige en la rama y se reejecuta. Solo se avanza con aprobaciones y resultados válidos. & Tarea, revisiones y ejecuciones \\
+\end{tabla}
+\begin{tabla}{I{0.385}I{0.332}I{0.283}}{Organización de repositorios}{tab:organizacion-repositorios}
+  {\cab{Repositorio} & \cab{Contenido administrado} & \cab{Uso en el flujo}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+sitco-aplicacion & Nueve módulos, integrador y portales & Construcción de servicios \\
+sitco-terreno & SITCO Terreno y botonera & Construcción de software de terreno \\
+sitco-infraestructura & OpenTofu de nube, nodo de faena y borde & Plan de infraestructura \\
+sitco-despliegue & Configuración y versiones de ambientes & Promoción y actualización \\
+\end{tabla}
+
+\subseccion{Prácticas de integración continua}
+Este apartado presenta la secuencia de la integración continua, el tratamiento de sus resultados y los controles que un cambio debe superar para avanzar.
+
+\begin{tabla}{I{0.213}I{0.625}I{0.162}}{Secuencia y tratamiento de resultados de integración}{tab:secuencia-tratamiento-resultados-integracion}
+  {\cab{Práctica de integración} & \cab{Aplicación en SITCO Aranda} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Ejecución y amenazas & Cada solicitud y cada cambio a la rama principal ejecutan CI. Antes de construir un cambio arquitectónico se actualiza el modelo STRIDE como preparación de la historia (Shostack, 2014). & Modelo y ejecución \\
+Secretos y cobertura & Escaneo de envíos e historial; una credencial expuesta detiene el flujo y avisa. Las pruebas unitarias verifican la lógica de negocio; una cobertura menor de 70 \% no se suple manualmente. & Escaneo y pruebas \\
+Análisis de código y componentes & Se verifican calidad, seguridad, deuda, vulnerabilidades, licencias y lista de materiales de cada versión. & Informes y SBOM \\
+Infraestructura & OpenTofu se analiza por exposición de almacenamiento, puertos, cifrado, políticas y etiquetas. Una etiqueta faltante incumple la política; no es automáticamente un hallazgo crítico de seguridad. & Análisis del plan \\
+Contratos & El líder de integración mantiene contratos y simuladores para no depender de SAP, despacho o laboratorio reales en las pruebas diarias. & Resultados por conector \\
+Artefacto único & Construir una vez, escanear, aprobar, firmar con procedencia y publicar. La revisión comprueba el cambio y el plan de infraestructura cuando corresponde. No se recompila entre ambientes. & Imagen firmada y registro \\
+Rechazo & Se detiene y notifica con resultado vinculado a la tarea; el responsable corrige y vuelve al flujo. Aprobar exige resultados y revisiones, no solo una imagen publicada. & Reejecución y aprobaciones \\
+\end{tabla}
+\begin{tabla}{I{0.246}I{0.198}I{0.358}I{0.198}}{Controles de integración continua}{tab:controles-integracion-continua}
+  {\cab{Control} & \cab{Herramienta} & \cab{Condición para avanzar} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Preparación del trabajo & GitHub Actions & Código y ejecución preparados & Ejecución \\
+Secretos & GitHub Secret Protection & Sin credenciales expuestas & Resultado del escaneo \\
+Compilación y pruebas & GitHub Actions & Pruebas aprobadas y cobertura de negocio ≥ 70 \% & Informe de pruebas \\
+Análisis estático & SonarQube Cloud & Calidad aprobada y sin hallazgos críticos ni altos & Informe de análisis \\
+Dependencias y licencias & Dependabot y Trivy & Sin vulnerabilidades críticas o altas y licencias compatibles & Informe y SBOM \\
+Infraestructura como código & Checkov & Plan conforme y sin hallazgos críticos ni altos & Análisis de OpenTofu \\
+Contratos & Pact y WireMock & Interfaz compatible & Resultados por conector \\
+Imagen & Docker y Trivy & Escaneo aprobado sin hallazgos críticos ni altos & Identificador e informe \\
+Firma y procedencia & Cosign & Imagen aprobada antes de firmar & Firma y procedencia \\
+Revisión por pares & CODEOWNERS y GitHub & Aprobaciones requeridas & Solicitud aprobada \\
+Publicación & Azure Container Registry & Artefacto firmado aprobado & Registro de artefacto \\
+\end{tabla}
+
+\subseccion{Prácticas de entrega continua}
+Este apartado presenta las condiciones de promoción entre ambientes, los mecanismos de recuperación y los controles de la entrega continua en cada destino.
+
+\begin{tabla}{I{0.213}I{0.620}I{0.167}}{Condiciones de promoción y recuperación}{tab:condiciones-promocion-recuperacion}
+  {\cab{Práctica de entrega} & \cab{Aplicación en SITCO Aranda} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Promoción & Mismo artefacto firmado en todos los ambientes; autorización humana en ambiente protegido y ejecución automatizada. Firma comprobada antes de instalar. & Versión y autorización \\
+Infraestructura y secretos & OpenTofu se compara cada noche con el código y alerta desviaciones. Configuración separada por ambiente; secretos en Key Vault con rotación y auditoría. & Plan, alerta y accesos \\
+Uso de ambientes & Ambientes efímeros vinculados a ramas; no productivos reducidos fuera de horario. QA prueba integración, extremo a extremo y análisis dinámico; preproducción verifica desempeño, resiliencia y despliegue azul-verde. & Resultados de ambiente \\
+Ensayos físicos & El banco de pruebas verifica cada versión. El nodo de faena se prueba 48 horas antes del paso a producción de cada etapa y anualmente en operación; sincronización máxima de cuatro horas. & Registros físicos separados \\
+Migración & El líder de datos aprueba migraciones versionadas, automáticas y reversibles; ambas versiones de la aplicación conviven durante el cambio de esquema. & Aprobación y reversión \\
+Aprobación productiva & Pruebas de aceptación, pruebas de seguridad, intrusión independiente, plan de reversión probado, ventana permitida y usuarios capacitados. & Expediente de liberación \\
+Destinos & Nube con azul-verde. Flux, mediante GitOps de Azure Arc, descarga en faena cuando hay enlace y aplica en la ventana conservando la versión anterior. Botonera por anillos: una pala y después las cinco. & Resultado por destino \\
+Recuperación & Una falla previa detiene la promoción; una falla instalada activa la reversión. El líder de operación (SRE) vigila indicadores y degradación posterior. & Monitoreo y reversión \\
+Remediación operacional & Críticos en siete días corridos, altos en quince y medios en treinta. Estos plazos no autorizan versiones nuevas con hallazgos críticos o altos pendientes. & Hallazgos y corrección \\
+\end{tabla}
+\begin{tabla}{I{0.247}I{0.198}I{0.356}I{0.198}}{Controles de entrega continua}{tab:controles-entrega-continua}
+  {\cab{Actividad} & \cab{Destino} & \cab{Condición para avanzar} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Verificar artefacto & Todos los ambientes & Firma y procedencia válidas & Verificación \\
+Aplicar infraestructura & Nube y faena & Plan OpenTofu aprobado & Plan y ejecución \\
+Pruebas funcionales y de seguridad & QA & Integración, extremo a extremo y seguridad aprobados & Resultados \\
+Desempeño y resiliencia & Preproducción & Tiempos, fallas y azul-verde verificados & Informe \\
+Ensayo de versión & Banco de pruebas en sala técnica & Comportamiento del nodo de faena verificado & Registro del ensayo \\
+Aceptación de autonomía & Nodo de faena & 48 h y sincronización ≤ 4 h & Informe de aceptación \\
+Migración de esquema & Ambiente de instalación & Migración reversible aprobada por el líder de datos & Versión y ejecución \\
+Autorizar producción & Ambiente protegido & Comité de proyecto y condiciones de liberación aprobados & Aprobación registrada \\
+Desplegar en nube & Producción & Azul-verde con artefacto aprobado & Despliegue \\
+Desplegar en nodo de faena & Faena & Enlace disponible y ventana de 03:00 a 05:00 & Actualización por Flux \\
+Desplegar en terreno & Palas & Primer anillo verificado antes de las cinco & Resultado por anillo \\
+Verificar operación & Nube y faena & Indicadores dentro de lo comprometido & Monitor y resultado \\
+\end{tabla}
+
+\subseccion{Herramientas de integración continua}
+Este apartado presenta las herramientas de la integración continua y la evidencia que cada una deja en el expediente de versión.
+
+\begin{tabla}{I{0.298}I{0.552}I{0.150}}{Herramientas y evidencia de integración}{tab:herramientas-evidencia-integracion}
+  {\cab{Herramienta} & \cab{Uso en el flujo} & \cab{Evidencia generada}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+GitHub Actions & Ejecución del flujo vinculada a solicitud y tarea. & Ejecución \\
+Secret Protection, SonarQube Cloud, Dependabot, Trivy, Checkov y OWASP ZAP & Resultados de seguridad, calidad, dependencias, infraestructura y análisis dinámico con OWASP ZAP. & Informes y bloqueos \\
+Pact y WireMock & Compatibilidad de contratos de integración. & Resultados por conector \\
+Docker y Cosign & Construcción de imagen y conservación de firma y procedencia. & Artefacto firmado \\
+Azure Container Registry & Publicación del artefacto firmado y aprobado. & Registro de artefacto \\
+CODEOWNERS y GitHub & Revisiones y aprobaciones exigidas. & Solicitud aprobada \\
+Integración de ClickUp con GitHub & Localizar tarea, solicitud, informes, identificador de imagen y registro en el Container Registry sobre el mismo cambio y artefacto. & Expediente de versión \\
+\end{tabla}
+
+\subseccion{Herramientas de entrega continua}
+Este apartado presenta las herramientas de la entrega continua y el registro que generan en cada liberación.
+
+\begin{tabla}{I{0.287}I{0.522}I{0.191}}{Herramientas y evidencia de entrega}{tab:herramientas-evidencia-entrega}
+  {\cab{Herramienta o registro} & \cab{Uso en el flujo} & \cab{Evidencia generada}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+GitHub Actions y Cosign & Ambientes protegidos, aprobación y verificación del artefacto. & Autorización y verificación \\
+OpenTofu, Key Vault e identidades federadas & Aplicación de infraestructura y administración de acceso. & Plan, ejecución y acceso \\
+Datafaker & Preparación de datos sintéticos. & Datos de prueba \\
+Playwright, OWASP ZAP, k6 y Azure Chaos Studio & Pruebas de QA y preproducción. & Resultados de pruebas \\
+Flux (GitOps de Azure Arc) y Azure Monitor & Versiones al nodo de faena y comprobación operacional. & Actualización y monitoreo \\
+Registro de liberación & Versión, ambiente, aprobación y resultado; identifica la versión anterior para comprobar la reversión. & Registro de instalación \\
+\end{tabla}
+
+\subseccion{Automatización de pruebas y métricas de entrega}
+Este apartado presenta los niveles de prueba automatizada, la forma de medir el flujo de entrega y las metas para la implementación y la operación.
+
+\begin{tabla}{I{0.176}I{0.679}I{0.145}}{Pruebas y medición del flujo}{tab:pruebas-medicion-flujo}
+  {\cab{Nivel de prueba o medición} & \cab{Aplicación en SITCO Aranda} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Integración continua & Pruebas unitarias, de contrato y de análisis dinámico de seguridad, con resultado asociado a la ejecución y la versión. & Informes de CI \\
+Entrega continua & Pruebas de integración, extremo a extremo, desempeño y resiliencia en sus ambientes. & Informes de CD \\
+Faena & Ensayos físicos con registros propios, separados de preproducción. & Resultados de faena \\
+Métricas & Medición desde el inicio conforme a Forsgren et al. (2018), con marcas de cambio y despliegue, resultados y recuperación. & Registro de métricas \\
+Desviaciones & Se analizan las evidencias para identificar mejoras. La frecuencia de despliegue respeta las ventanas y no omite pruebas ni aprobación. & Acción de mejora \\
+\end{tabla}
+\begin{tabla}{I{0.312}I{0.357}I{0.331}}{Metas del flujo de entrega}{tab:metas-flujo-entrega}
+  {\cab{Métrica} & \cab{Meta durante la implementación} & \cab{Meta durante la operación}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Frecuencia de despliegue & Diaria en QA y al menos una por sprint en preproducción & Al menos una cada dos semanas en producción \\
+Tiempo desde el cambio hasta el despliegue & Menos de un día hasta QA & Cinco días hábiles o menos hasta producción \\
+Tasa de cambios fallidos & 5 \% o menos en preproducción & 5 \% o menos en producción \\
+Tiempo de restauración & Menos de un día en ambientes de prueba & Cuatro horas o menos ante incidente crítico \\
+\end{tabla}
+
+\seccion{Ceremonias, artefactos, cadencias y mecanismos de decisión}
+Este apartado presenta los artefactos del desarrollo, la autoridad de cada instancia de decisión y el calendario de ceremonias con sus participantes.
+
+\begin{tabla}{I{0.213}I{0.627}I{0.160}}{Artefactos y autoridad de decisión}{tab:artefactos-autoridad-decision}
+  {\cab{Artefacto o decisión} & \cab{Regla aplicada} & \cab{Registro}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Responsabilidad del producto & El líder funcional, con los referentes del cliente. Revisión del incremento y aceptación de historias según criterios; el comité de proyecto autoriza producción. & Criterios y decisiones \\
+Validación 7x7 & La validación semanal cubre ambos grupos en el sprint; se conservan resultados y correcciones de cada grupo. & Registro de validación \\
+Artefactos & Backlog del producto y del sprint, incremento, definiciones de listo y de terminado, registro de decisiones de arquitectura y registro de deuda técnica. & Registros actualizados \\
+Definición de listo & Requerimiento de origen, criterio de aceptación verificable, dependencias resueltas y datos de prueba disponibles. & Historia preparada \\
+Definición de terminado & Revisión por pares, pruebas y cobertura aprobadas, sin hallazgos de seguridad críticos ni altos pendientes, documentación actualizada, despliegue automático en preproducción y trazabilidad al requerimiento de origen. El referente acepta o rechaza contra el criterio. & Historia y evidencias \\
+Autoridad de decisión & El equipo y el líder funcional seleccionan el sprint; el referente acepta la función; el equipo implementa dentro de la arquitectura vigente; el comité de arquitectura aprueba cambios transversales; el comité de proyecto autoriza producción. & Decisión por instancia \\
+Mantención & Desde el mes 21, Kanban conducido por el líder de operación (SRE). La evolutiva se ordena por la bolsa anual priorizada por el cliente, con límites de trabajo en curso; la correctiva sigue la severidad, conservando controles y definición de terminado. & Registro de mantención \\
+\end{tabla}
+\begin{tabla}{I{0.248}I{0.256}I{0.259}I{0.237}}{Ceremonias y cadencias}{tab:ceremonias-cadencias}
+  {\cab{Ceremonia} & \cab{Cadencia} & \cab{Participación} & \cab{Resultado}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Planificación del sprint & Inicio del sprint; hasta dos horas & Equipo y líder funcional & Objetivo e historias \\
+Reunión diaria & Diaria; quince minutos & Equipo & Coordinación e impedimentos \\
+Refinamiento & Semanal; hasta noventa minutos & Equipo y referentes & Historias listas \\
+Validación en terreno & Semanal & Usuarios del grupo en turno & Resultados de uso \\
+Coordinación entre equipos & Dos veces por semana & Equipos & Dependencias resueltas \\
+Revisión del sprint & Quincenal en preproducción & Referentes y usuarios clave & Aceptación o rechazo \\
+Retrospectiva & Cierre del sprint & Equipo & Mejora para el sprint siguiente \\
+Planificación de liberación & Antes de cada hito de entrega & Equipos y gobierno del proyecto & Entrega ordenada \\
+\end{tabla}
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Ford, N., Parsons, R., y Kua, P. (2017). \emph{Building evolutionary architectures: Support constant change}. O'Reilly Media.
+\item Forsgren, N., Humble, J., y Kim, G. (2018). \emph{Accelerate: The science of lean software and DevOps}. IT Revolution Press.
+\item Humble, J., y Farley, D. (2010). \emph{Continuous delivery: Reliable software releases through build, test, and deployment automation}. Addison-Wesley.
+\item National Institute of Standards and Technology. (2022). \emph{Secure Software Development Framework (SSDF) version 1.1: Recommendations for mitigating the risk of software vulnerabilities} (NIST SP 800-218). https://doi.org/10.6028/NIST.SP.800-218
+\item Schwaber, K., y Sutherland, J. (2020). \emph{La Guía Scrum}. https://scrumguides.org/
+\item Shostack, A. (2014). \emph{Threat modeling: Designing for security}. Wiley.
+\end{referencias}
+\end{document}

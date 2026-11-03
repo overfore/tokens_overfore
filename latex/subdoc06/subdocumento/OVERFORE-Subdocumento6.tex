@@ -1,0 +1,263 @@
+%% OVERFORE-Subdocumento6.tex — generado desde OVERFORE-Subdocumento6.docx
+%% Formato: clase overfore, modo subdoc. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[subdoc]{../../comun/overfore}
+\numsubdoc{6}
+\nombresubdoc{Metodologías}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{T10,T9}
+\begin{document}
+
+\capitulo{Introducción a las Metodologías}
+SITCO Aranda tiene fechas comprometidas. La trazabilidad entra en producción en el mes 16 y el proyecto completo en el mes 21, antes de que en enero de 2029 los compradores comiencen a exigir evidencia del origen del cobre. Durante la ejecución, el detalle de la solución se define junto con el cliente y con terceros, como la ratificación de la fuente de verdad del tonelaje en el mes 3, el acceso a la telemetría de cada fabricante y el acuerdo con el sindicato para la verificación facial en portería. Estas fechas corresponden al cronograma obligatorio de las Bases administrativas (Compañía Minera Altos de Aranda [CMAA], 2026a, Art. 17.1, p. 12) y al horizonte del caso minero (CMAA, 2026b, cap. 13.2, p. 22).
+
+El proyecto avanza con dos elementos complementarios. Un marco de gestión resguarda las fechas, el alcance comprometido y los hitos que el cliente acepta. Una forma de construir ajusta los detalles a medida que se definen, con usuarios que validan software funcionando desde los primeros meses.
+
+La gestión del proyecto sigue la Guía del PMBOK (Project Management Institute [PMI], 2017) y ordena el gobierno, la integración, los cambios, los interesados, las comunicaciones y las adquisiciones. El desarrollo del software sigue Scrum (Schwaber y Sutherland, 2020), complementado con prácticas DevSecOps que llevan cada cambio desde el código hasta la producción con pruebas y controles de seguridad automáticos. La Figura \ref{fig:convivencia-enfoques-predictivo-adaptativo-contrato} muestra cómo conviven ambos métodos a lo largo del contrato.
+
+\figura{16.1}{fig-6-1-convivencia-enfoques-predictivo-adaptativo-contrato}{Convivencia de los enfoques predictivo y adaptativo en el contrato.}{fig:convivencia-enfoques-predictivo-adaptativo-contrato}{Fuente: elaboración propia a partir del cronograma contractual obligatorio de las Bases administrativas (CMAA, 2026a, Art. 17.1, p. 12).}
+En esta figura, el enfoque predictivo marca los hitos contractuales y el enfoque adaptativo trabaja entre ellos. El software avanza en sprints de dos semanas dentro del cronograma contractual, cada cambio de alcance pasa por aprobación formal y cada hito reúne el resultado de varios sprints. Desde el mes 21, con la solución en operación, el desarrollo deja los sprints y pasa a un flujo continuo de mantención evolutiva.
+
+Este capítulo se complementa con dos formularios técnicos. El Formulario T-9 presenta el detalle operativo de la metodología de gestión de proyectos descrita en la sección 6.1, y el Formulario T-10 el de la metodología de desarrollo de software descrita en la sección 6.2. El capítulo describe cómo se aplica cada metodología, y los formularios reúnen en tablas los procedimientos, responsables, umbrales y evidencias con que se ejecutan en el proyecto. La metodología toma el catálogo de requerimientos del Subdocumento 2, materializa las decisiones de arquitectura y datos de los Subdocumentos 4 y 5, y define las cadencias que utiliza el plan de trabajo del Subdocumento 7. Los riesgos y controles de calidad se desarrollan en los Subdocumentos 8 y 9. Los formularios T-9 y T-10 acompañan este capítulo como archivos independientes.
+
+\seccion{Metodología de Gestión de Proyectos}
+La gestión del proyecto define quién decide, cómo se mide el avance, qué se hace con un cambio y cómo se mantiene informado y comprometido a cada grupo de interés. Se basa en la sexta edición de la guía del PMBOK, adaptada a una implementación de 21 meses con dos etapas que se solapan, y aplica sus procesos de integración, interesados, comunicaciones y adquisiciones con la frecuencia que marca el contrato. Los procesos de riesgos, calidad y cronograma siguen el mismo marco. El detalle operativo de esta metodología, con sus procedimientos, responsables, umbrales y evidencias, se presenta en el Formulario T-9.
+
+\subseccion{Enfoque de gestión}
+El contrato fija un cronograma obligatorio, doce hitos con acta de aceptación y un alcance de 248 requerimientos. Esa parte del proyecto se gestiona con un enfoque predictivo, con líneas base de alcance, cronograma y costo que se aprueban en el mes 2, junto con el hito de cierre del levantamiento.
+
+El detalle de la solución se gestiona con un enfoque adaptativo, de tipo ágil. Las catorce decisiones de diseño que el caso deja abiertas se resuelven en esta propuesta como supuestos SUP-01 a SUP-14 (Anexo B del Subdocumento 2) y se validan durante la ejecución, algunas con participación de terceros. La forma exacta de cada pantalla o regla se valida con quienes la usarán en faena. El trabajo se organiza en un backlog priorizado que se refina cada semana y en entregas cada dos semanas que los usuarios revisan.
+
+La frontera entre ambos enfoques se define de forma explícita. Se fija el requerimiento, su criterio de aceptación, el hito en que se entrega y el presupuesto. Se adapta el orden de trabajo dentro de una etapa, el diseño de la interacción y el detalle de cada regla, siempre que el requerimiento siga cumplido. Con esa frontera, cada solicitud se clasifica como refinamiento o como cambio.
+
+El estándar se adapta al proyecto de tres maneras.
+
+\begin{itemize}
+\item Un solo plan para la dirección del proyecto reúne las líneas base y planes secundarios breves para cada proceso.
+\item Planificación gradual. Los tres meses siguientes se planifican con detalle de historias y tareas, y el resto se mantiene a nivel de paquete de trabajo hasta que se acerca su ejecución.
+\item Avance medido con valor ganado. Un paquete de software suma su valor solo cuando sus historias cumplen la definición de terminado, sin avances parciales declarados. Un paquete de infraestructura suma la mitad de su valor al iniciar la instalación y el resto con el acta de recepción.
+\end{itemize}
+El avance de cada paquete y las horas registradas por el equipo se obtienen de ClickUp, y con esos datos se calculan cada mes el índice de desempeño del cronograma y el índice de desempeño del costo. Un índice entre 0,90 y 0,95 activa una revisión en el comité de proyecto, y uno bajo 0,90 exige un plan de recuperación. Toda desviación mayor al 10 \% en un hito se comunica al cliente dentro de los cinco días hábiles siguientes a su detección, junto con ese plan.
+
+\subseccion{Gobierno del proyecto y mecanismos de decisión}
+El gobierno se organiza en cinco instancias de asistencia obligatoria para ambas partes y en una oficina de gestión del proyecto que las prepara, levanta sus actas y mantiene los registros. La oficina la dirige el jefe de proyecto, con dedicación exclusiva durante la implementación y facultades para comprometer a Overfore en materias de ejecución. Las instancias y frecuencias se ajustan al gobierno contractual (CMAA, 2026a, Art. 71, pp. 37–38).
+
+Cada decisión se toma en la instancia más cercana al trabajo que tenga autoridad para tomarla, y sube a la instancia superior cuando requiere una autoridad mayor. La Figura \ref{fig:instancias-gobierno-camino-escalamiento} muestra las instancias, su frecuencia y el camino que sigue un asunto cuando escala.
+
+\figura{16.09}{fig-6-2-instancias-gobierno-camino-escalamiento}{Instancias de gobierno y camino de escalamiento.}{fig:instancias-gobierno-camino-escalamiento}{Fuente: elaboración propia a partir del artículo 71 de las Bases administrativas (CMAA, 2026a, pp. 37–38).}
+Como se puede observar de la figura anterior, el ritmo del desarrollo y el del gobierno están alineados. El comité de proyecto es quincenal y sesiona al cierre de cada sprint para revisar el incremento terminado. La reunión de seguimiento semanal resuelve los impedimentos de coordinación, y si uno sigue abierto después de una semana pasa al comité de proyecto. Lo que afecta una línea base, un hito o un riesgo mayor sube al comité ejecutivo, que sesiona cada mes y se convoca en forma extraordinaria dentro de cinco días hábiles ante un asunto urgente.
+
+El comité de arquitectura aprueba las decisiones técnicas que cruzan módulos o cambian una tecnología. Desde el mes 13 se suma el Comité de Operación, conducido por el líder de operación (SRE), que autoriza cada intervención menor de la ventana de 03:00 a 05:00.
+
+Todas las actas se publican dentro de los dos días hábiles siguientes a cada sesión, con acuerdos, responsables y plazos. El registro de riesgos se revisa en cada sesión del comité de proyecto conforme a la norma ISO 31000 (International Organization for Standardization [ISO], 2018). El Formulario T-9 detalla los responsables, las cadencias y el escalamiento en sus Tablas \refext{T9}{tab:responsabilidades-escalamiento} y \refext{T9}{tab:instancias-gobierno} del Formulario T-9.
+
+\subseccion{Integración y control de cambios}
+La integración mantiene unidas todas las piezas del proyecto (PMI, 2017). En SITCO Aranda, el acta de constitución del mes 1 y el plan para la dirección del proyecto del mes 2 ordenan el trabajo, el monitoreo mensual usa valor ganado y cada etapa cierra con acta de aceptación en los meses 16 y 21. El desarrollo y la infraestructura avanzan en dos frentes paralelos, el primero organizado en sprints y el segundo en paquetes de instalación.
+
+El control de cambios separa el refinamiento del cambio formal. Un cambio que altera un requerimiento comprometido, un criterio de aceptación, un hito, el costo, un nivel de servicio o un riesgo mayor sigue el procedimiento formal. La reordenación de historias o la precisión de una regla dentro del mismo requerimiento la resuelve el líder funcional con el referente del cliente, y queda registrada en el backlog. La Figura \ref{fig:tratamiento-solicitud-cambio} presenta ambos caminos.
+
+\figura{16.09}{fig-6-3-tratamiento-solicitud-cambio}{Tratamiento de una solicitud de cambio.}{fig:tratamiento-solicitud-cambio}{Fuente: elaboración propia a partir del artículo 72 de las Bases administrativas (CMAA, 2026a, p. 38).}
+La Figura \ref{fig:tratamiento-solicitud-cambio} muestra que cada cambio se ejecuta después de su aprobación, con un análisis de impacto en un plazo máximo de cinco días hábiles. El comité ejecutivo actúa como comité de control de cambios, mantiene el cronograma contractual y limita las modificaciones acumuladas al 20 \% del valor original del contrato (CMAA, 2026a, Art. 72, p. 38). Cuando un cambio aprobado agrega trabajo a una etapa con fecha fija, se presenta junto con un intercambio de alcance de esfuerzo equivalente, que el cliente decide. El procedimiento completo está en la Tabla \refext{T9}{tab:procedimiento-integracion-cambios} del Formulario T-9.
+
+\subseccion{Gestión de los interesados}
+SITCO Aranda modifica la forma de trabajar de los catorce grupos de interés representados en la Figura \ref{fig:ecosistema-actores-interesados-sitco-aranda}, desde el directorio hasta el operador de pala. La gestión de los interesados acompaña a cada grupo con los cuatro procesos del PMBOK, que son identificar a los interesados, planificar su involucramiento, gestionar su involucramiento y monitorearlo, con acciones definidas en cada etapa.
+
+El ecosistema organiza a los grupos de interés en seis ámbitos, que van desde dirección y control hasta los compradores internacionales y la autoridad ambiental. La Figura \ref{fig:ecosistema-actores-interesados-sitco-aranda} muestra estas relaciones con SITCO Aranda.
+
+\figura{16.09}{fig-6-4-ecosistema-actores-interesados-sitco-aranda}{Ecosistema de actores e interesados de SITCO Aranda.}{fig:ecosistema-actores-interesados-sitco-aranda}{Fuente: elaboración propia.}
+Lo anterior refleja que SITCO Aranda relaciona a quienes deciden, aportan reglas y datos, utilizan la solución y reciben sus resultados. Con este mapa, el jefe de proyecto de Overfore y la contraparte técnica del cliente reconocen con quién trabajar y luego determinan la intensidad de gestión de cada grupo, conforme a las instancias de gobierno del proyecto.
+
+Una vez identificados los grupos, la matriz de poder e interés los ordena según su capacidad de influir en decisiones, recursos y condiciones del proyecto, y según su atención y afectación respecto de los resultados (PMI, 2017). La posición de cada grupo frente al proyecto se registra por separado de su interés. La Figura \ref{fig:matriz-poder-interes-grupos-interes} presenta esta clasificación para los mismos catorce grupos del ecosistema.
+
+\figura{16.09}{fig-6-5-matriz-poder-interes-grupos-interes}{Matriz de poder e interés de los grupos de interés.}{fig:matriz-poder-interes-grupos-interes}{Fuente: elaboración propia.}
+La mayoría de los grupos tiene interés alto como se puede observar de la figura anterior, con distinta capacidad de influir en el proyecto. El directorio y gerencia general, finanzas, operaciones mina, la superintendencia de planta, mantenimiento, el sindicato y los compradores internacionales se gestionan de cerca. La autoridad ambiental se mantiene satisfecha con reportes firmados y verificables, y los demás grupos se mantienen informados y participan en el diseño y las pruebas. Las facultades de aprobación permanecen en las instancias de gobierno del proyecto.
+
+El registro de interesados mantiene una ficha por grupo, que reúne a sus representantes, sus intereses y expectativas, la clasificación de poder e interés con su justificación y la participación actual y deseada. El jefe de proyecto lo mantiene junto con la contraparte técnica en SharePoint, con acceso desde Teams, y las tareas de involucramiento se siguen en ClickUp.
+
+Para planificar el involucramiento se compara el nivel actual de cada grupo con el nivel deseado, según la matriz de evaluación del involucramiento del PMBOK, que distingue los niveles desconocedor, reticente, neutral, partidario y líder. Las mayores brechas están en los operadores de equipos y en las empresas contratistas, ambos en nivel desconocedor, y le sigue la jefatura de mantenimiento, con dos niveles de distancia. Las acciones entregan a cada grupo control sobre su ámbito. La jefatura de mantenimiento define sus propias reglas de alerta, mientras que el sindicato acuerda por escrito qué se guarda, quién lo consulta y cuándo se elimina.
+
+El monitoreo del involucramiento usa la asistencia de los referentes a las revisiones de sprint, la adopción medida en cada ola de implantación y una encuesta trimestral breve a los usuarios clave. Cuando un grupo se mantiene bajo el nivel deseado en dos mediciones seguidas, el jefe de proyecto lleva el caso al comité ejecutivo con un plan de acción, responsables y plazos. La clasificación de poder e interés se revisa cuando cambian responsabilidades, condiciones de uso o riesgos del proyecto.
+
+Las evaluaciones de reticencia y los antecedentes sensibles del registro tienen acceso restringido, y el registro utiliza contactos institucionales y excluye imágenes faciales y plantillas biométricas. La Tabla \refext{T9}{tab:procedimiento-participacion} del Formulario T-9 describe los procedimientos de participación, y su Tabla \refext{T9}{tab:participacion-actual-deseada-grupos-interes} del Formulario T-9 presenta la participación actual y deseada de los grupos con mayor brecha, con su intervención y su evidencia.
+
+\subseccion{Gestión de las comunicaciones}
+La gestión de las comunicaciones organiza el intercambio de información entre los catorce grupos de interés del ecosistema. Entre ellos existen 91 canales potenciales, según n(n − 1)/2 = 14 × 13 / 2. La coordinación se concentra en los responsables del proyecto, que mantienen mensajes coherentes y el registro de los acuerdos.
+
+\subsubseccion{Coordinación y métodos de comunicación}
+Las comunicaciones formales pasan por el jefe de proyecto y la contraparte técnica del cliente. En faena, el líder de implantación y gestión del cambio organiza la difusión con los referentes de cada área. Las decisiones mantienen las autoridades de aprobación establecidas en el gobierno del proyecto, y el registro de interesados identifica a los destinatarios y la información que necesita cada grupo.
+
+El plan utiliza los tres métodos de comunicación del PMBOK (PMI, 2017). La comunicación interactiva se usa en los asuntos que requieren intercambio o acuerdo, como los comités y las revisiones de sprint. La comunicación de tipo push envía informes, actas y avisos de desviación. La comunicación de tipo pull mantiene disponibles los documentos, las actas y los registros, junto con un tablero de estado que el cliente consulta en cualquier momento.
+
+\subsubseccion{Canales y plan de comunicaciones}
+Las herramientas se organizan según el público que las utiliza. La coordinación interna del equipo se gestiona en ClickUp, y la comunicación con el cliente utiliza Microsoft Teams, su plataforma corporativa, con un canal por instancia de gobierno. Su sitio de SharePoint conserva la documentación, los entregables, las actas y los registros de riesgos y cambios, y el tablero de estado se publica como una pestaña del equipo de Teams. Así, la documentación queda desde el primer día en el entorno del cliente, bajo sus propias políticas de acceso y respaldo.
+
+El plan de comunicaciones define los destinatarios, la frecuencia, el método y la herramienta de cada actividad, y los informes y las actas enlazan los documentos y acuerdos que los respaldan. La información de control llega al cliente por tres vías complementarias, que son el informe mensual, el tablero de estado y las revisiones de sprint, donde se presenta el software funcionando. La Tabla \refext{T9}{tab:canales-control-comunicaciones} del Formulario T-9 muestra los canales y la Tabla \refext{T9}{tab:plan-comunicaciones} del Formulario T-9, el plan de comunicaciones.
+
+\subsubseccion{Cobertura de grupos y turnos en faena}
+En faena, el personal trabaja en régimen 7x7, con dos grupos que no coinciden y con turnos diurno y nocturno. Cada comunicación dirigida a los usuarios de una ola se repite durante dos semanas consecutivas, para llegar a ambos grupos, y se entrega al inicio del turno mediante una charla breve, con material simple y en español.
+
+La capacitación formal se realiza aparte de estas charlas, en al menos dos ciclos completos de 14 días, e incluye al turno nocturno, conforme a RT-22.04 (CMAA, 2026b, cap. 15, p. 26). La Tabla \refext{T9}{tab:canales-control-comunicaciones} del Formulario T-9 resume estas reglas.
+
+\subsubseccion{Seguimiento y retroalimentación}
+El jefe de proyecto y la contraparte técnica revisan las consultas y observaciones registradas en Teams y SharePoint, con apoyo de los referentes de faena. Cada acción identifica su responsable, la fecha de respuesta acordada y la evidencia de cierre, y cada entregable se aprueba en forma expresa y registrada. La Figura \ref{fig:ciclo-retroalimentacion-mejora-comunicaciones-proyecto} muestra el tratamiento de las observaciones para mejorar las comunicaciones.
+
+\figura{16.1}{fig-6-6-ciclo-retroalimentacion-mejora-comunicaciones-proyecto}{Ciclo de retroalimentación y mejora de las comunicaciones del proyecto.}{fig:ciclo-retroalimentacion-mejora-comunicaciones-proyecto}{Fuente: elaboración propia.}
+Se puede observar que la retroalimentación ajusta el contenido, los canales y la cobertura de los mensajes. Los referentes recogen las observaciones, los responsables presentan las mejoras a la instancia competente y, una vez validadas, se comunica la versión actualizada a los grupos afectados. Luego los referentes comprueban el resultado, con lo que el ciclo vuelve a empezar.
+
+El cumplimiento del plan se controla con dos indicadores. El porcentaje de actas publicadas dentro de dos días hábiles tiene una meta de 100 \%, y la satisfacción de los referentes con la información recibida se mide cada trimestre, con una meta de al menos 4 en una escala de 5. Los resultados y las consultas pendientes definen las acciones correctivas. El Formulario T-9 desarrolla los responsables y las evidencias de estos procedimientos.
+
+\subseccion{Gestión de las adquisiciones}
+Una parte de la solución se desarrolla y otra se adquiere. Algunas piezas las compra el cliente con especificación y otras se contratan a terceros, según lo exige el contrato. El análisis de hacer o comprar (PMI, 2017) separa ambas partes. Se desarrollan la lógica del negocio y la trazabilidad, que quedan en el repositorio del cliente. Se compra lo que el mercado ofrece como producto o servicio maduro, como la nube, el equipamiento de la sala técnica o las pruebas de intrusión, estas últimas a cargo de un tercero independiente.
+
+El tipo de contrato se elige según la certeza del alcance de cada compra. Los productos que se especifican con precisión, como la sala técnica o el equipamiento de red, se contratan a precio fijo cerrado con entrega e instalación incluidas, y el proveedor asume el riesgo de costo. Los servicios de nube se contratan por consumo, con reserva de capacidad para la carga estable. Los especialistas puntuales se contratan por tiempo y materiales, con monto máximo y plazo límite. La Tabla \refext{T9}{tab:listado-adquisiciones} del Formulario T-9 lista las adquisiciones por responsable, modalidad contractual y mes requerido.
+
+Las compras críticas son la sala técnica y el equipamiento del nodo de faena, con la sala recibida al término del mes 4 y la infraestructura de faena habilitada en el mes 6. Sus solicitudes de cotización se emiten en el mes 1, con especificación aprobada por el Comité Ejecutivo, y sus órdenes de compra al adjudicar, considerando los plazos de fabricación y el traslado a una faena en altura. El enlace satelital y el segundo enlace de fibra óptica faena–Antofagasta se contratan como servicios de conectividad con un proveedor de telecomunicaciones distinto del actual, y Overfore los especifica y los integra con el equipo SD-WAN, conforme al alcance del Subdocumento 3, secciones 3.2.3 y 3.3.4.
+
+El acceso a la telemetría de los tres fabricantes se gestiona mediante acuerdos que suscribe el cliente, como propietario de los equipos. Overfore prepara la especificación de datos, frecuencia y formato, acompaña la negociación y verifica el acceso de prueba, conforme a los paquetes 1.2.4.1 y 1.2.4.2 del Formulario T-14. Los acuerdos se programan entre los meses 3 y 12, antes de iniciar la construcción de los conectores. Si alguna firma se retrasa, el conector se desarrolla contra la especificación y su conexión productiva queda condicionada al acuerdo firmado, según el plan del Subdocumento 7. La Tabla \refext{T9}{tab:listado-adquisiciones} del Formulario T-9 incorpora esta adquisición.
+
+El mes 6 es la fecha límite para disponer del segundo enlace habilitado y probado, en coherencia con la infraestructura de faena de la sección 3.3.5 del Subdocumento 3. Antes de aceptar ese hito, se verifica que el segundo proveedor utilice una ruta física y una acometida independientes, se comprueba la conmutación entre fibras en 5 segundos o menos y se prueba el respaldo satelital ante la caída de ambas. La construcción de la ruta corresponde al proveedor de telecomunicaciones y la obra civil local, al cliente. Overfore coordina esas dependencias y conserva las evidencias de recepción en el Formulario T-9.
+
+Las suscripciones de GitHub y SonarQube se contratan en la organización del cliente, que conserva desde el primer día el código, su historial y sus análisis, y ClickUp es la herramienta interna de Overfore y se mantiene a su cargo. Microsoft Teams es la plataforma que el cliente ya usa, y el equipo de Overfore participa en ella como invitado. Las herramientas de código abierto del flujo de entrega se usan sin costo de licencia.
+
+Los proveedores se seleccionan por capacidad técnica, plazo de entrega en faena, soporte local en Antofagasta y certificaciones vigentes, y su desempeño se revisa cada mes en el comité de proyecto. Toda subcontratación requiere autorización previa del cliente y se mantiene bajo el 40 \% del valor del contrato, y todo proveedor que acceda a datos del cliente se declara, se audita y firma un acuerdo de tratamiento de datos conforme a la Ley N° 21.719 (2024). Esta condición corresponde al artículo 73 de las Bases administrativas (CMAA, 2026a, p. 38). La Tabla \refext{T9}{tab:contratacion-recepcion} del Formulario T-9 detalla la contratación y la recepción.
+
+\seccion{Metodología de Desarrollo Software}
+La metodología de desarrollo define cómo un requerimiento del catálogo se convierte en software probado, seguro y en uso. Describe el enfoque de desarrollo, la gestión de requerimientos y la arquitectura, las prácticas DevSecOps que automatizan la entrega, y las ceremonias, artefactos y decisiones que dan ritmo al trabajo diario. El detalle operativo de esta metodología, con sus prácticas, controles, herramientas y evidencias, se presenta en el Formulario T-10.
+
+\subseccion{Enfoque de desarrollo}
+El desarrollo se organiza con Scrum en tres equipos coordinados (Schwaber y Sutherland, 2020). Cada equipo es pequeño, multidisciplinario y responsable de un grupo de módulos de principio a fin, desde la historia hasta el despliegue. Los tres comparten un solo backlog, un solo flujo de entrega y una sola definición de terminado. Durante la operación, el trabajo continúa con Kanban. La Figura \ref{fig:equipos-desarrollo-modulos-construyen} muestra la distribución del trabajo.
+
+\figura{16.1}{fig-6-7-equipos-desarrollo-modulos-construyen}{Equipos de desarrollo y módulos que construyen.}{fig:equipos-desarrollo-modulos-construyen}{Fuente: elaboración propia.}
+La Figura \ref{fig:equipos-desarrollo-modulos-construyen} muestra cómo se organizan los equipos por cadena de valor. El equipo de plataforma e integración construye primero los componentes que los demás necesitan y en la etapa 2 suma los conectores nuevos, bajo la responsabilidad del líder de integración. Entre los meses 12 y 17, el paquete 1.4.3.7 corrige los defectos de la Etapa 1 sin agregar requerimientos, y el desarrollo de la Etapa 2 avanza en paralelo con la marcha blanca de la Etapa 1. La carga de cada equipo está en el Anexo A de OVERFORE-Subdocumento6-Anexos.
+
+El sprint dura dos semanas, cubre un ciclo completo del régimen 7x7 y coincide con la frecuencia quincenal del comité de proyecto. En cada sprint, el incremento se valida con los dos grupos de cada área. Con esa duración, la etapa 1 tiene 19 sprints de construcción entre los meses 3 y 11, más el mes 12 para su certificación, y la etapa 2 tiene 10 sprints entre los meses 13 y 17, más el mes 18 para su certificación. El cálculo de esa capacidad está en el Anexo A de OVERFORE-Subdocumento6-Anexos, y la calendarización precisa se desarrolla en el Subdocumento 7 y el Formulario T-15.
+
+\subsubseccion{Gestión de requerimientos}
+El backlog nace del catálogo de 248 requerimientos. Cada módulo es una épica y cada requerimiento funcional se descompone en historias de usuario que conservan su identificador de origen. Los requerimientos no funcionales se incorporan como criterios de aceptación de las historias a las que afectan o como condiciones de la definición de terminado. Por ejemplo, el umbral de dos segundos para registrar un cambio de material se verifica con una prueba automática en cada historia de la botonera.
+
+La prioridad sigue tres criterios en este orden, la etapa comprometida, la dependencia técnica y el valor para el usuario. Una historia entra a un sprint solo si cumple la definición de listo, es decir, si tiene requerimiento de origen, criterio de aceptación verificable, dependencias resueltas y datos de prueba disponibles. El refinamiento es semanal y en él participan los referentes de cada área del cliente, con quienes el líder de datos acuerda la definición de cada dato y sus reglas de calidad. Las Tablas \refext{T10}{tab:preparacion-trazabilidad-requerimientos} y \refext{T10}{tab:condiciones-entrada-historias} del Formulario T-10 detallan la descomposición y las condiciones de entrada. La Figura \ref{fig:recorrido-requerimiento-hasta-produccion} muestra el recorrido completo de un requerimiento.
+
+\figura{16.09}{fig-6-8-recorrido-requerimiento-hasta-produccion}{Recorrido de un requerimiento hasta producción.}{fig:recorrido-requerimiento-hasta-produccion}{Fuente: elaboración propia.}
+Se muestra de lo anterior que la trazabilidad se genera durante el trabajo, desde el requerimiento hasta el despliegue que lo puso en producción. Cada requerimiento tiene su tarea en ClickUp con el identificador de origen, y la integración entre ClickUp y GitHub vincula en forma automática los cambios de código, las revisiones, las ejecuciones del flujo y los despliegues con esa tarea.
+
+\subsubseccion{Arquitectura evolutiva}
+En los primeros sprints se toman las decisiones estructurales, que abarcan el integrador de sistemas, el nodo de faena y los servicios de identidad y auditoría del módulo de administración y servicios comunes. Sobre esa base, los módulos crecen sprint a sprint, y la etapa 2 agrega módulos y conectores sobre lo construido.
+
+Mientras la arquitectura evoluciona, sus propiedades críticas se vigilan con funciones de aptitud, que son pruebas automáticas que fallan cuando una característica arquitectónica deja de cumplirse (Ford et al., 2017). En SITCO Aranda se definen cuatro, que verifican que el nodo de faena mantenga la operación durante 48 horas sin enlace, los tiempos de registro en terreno, la compatibilidad de los contratos de interfaz versionados semánticamente y que ningún componente escriba hacia la red de control. La prueba de aceptación de las 48 horas se realiza mediante un corte controlado antes de la puesta en producción de cada etapa y, durante la operación, se repite anualmente dentro de una detención programada de planta. Las Tablas \refext{T10}{tab:evolucion-verificacion-arquitectura} y \refext{T10}{tab:verificaciones-arquitectura} del Formulario T-10 detallan los ensayos.
+
+\subsubseccion{Refactorización y deuda técnica}
+La refactorización forma parte del trabajo diario. Quien modifica un código lo deja más claro de lo que estaba, y la revisión por pares lo verifica. La deuda técnica se registra de forma explícita, con su causa, su impacto y el esfuerzo estimado para pagarla.
+
+Cada sprint reserva el 15 \% de la capacidad de cada equipo para pagar deuda técnica, y la deuda que afecta seguridad o desempeño se paga en el sprint siguiente a su detección. El comité de arquitectura revisa el registro cada mes, y si el índice de deuda técnica que calcula el análisis estático supera el 5 \% del esfuerzo de desarrollo del código nuevo de un módulo, el equipo responsable dedica el sprint siguiente a reducirlo. Con esta práctica, el sistema llega a los 36 meses de operación en condiciones de ser mantenido por otras personas, incluido el equipo de tecnologías de información del cliente. La Tabla \refext{T10}{tab:control-deuda-tecnica} del Formulario T-10 detalla el control.
+
+\subsubseccion{Tiempo de salida al mercado}
+Cada sprint termina con un incremento desplegado de forma automática en preproducción y listo para ser liberado. Los despliegues menores en producción se aplican entre las 03:00 y las 05:00, fuera del cierre contable, de las 48 horas previas a un embarque y del embarque mismo. Las intervenciones mayores sobre la infraestructura de faena se hacen en las detenciones de marzo y septiembre, y los pasos a producción van siempre fuera de ellas, después del quinto día hábil del mes (Formulario T-14, sección C). Las ventanas protegidas se establecen en RT-10.05 (CMAA, 2026b, cap. 15, p. 25). La Tabla \refext{T10}{tab:revision-condiciones-liberacion} del Formulario T-10 presenta las condiciones de liberación.
+
+La validación con usuarios se concentra antes de producción. Desde el mes 5 los incrementos se prueban con usuarios de terreno en la faena, con guantes, sol y zonas sin señal, y los usuarios llegan a la marcha blanca conociendo el sistema.
+
+\subseccion{Prácticas de DevSecOps, integración y entrega continuas}
+DevSecOps incorpora la seguridad en cada paso del ciclo de desarrollo (National Institute of Standards and Technology [NIST], 2022). En SITCO Aranda cada cambio de código recorre el mismo flujo automatizado, con controles de bloqueo que detienen el avance si no se cumplen los umbrales definidos. Los controles de bloqueo se ejecutan siempre y los despliegues son automáticos. La autorización del paso a producción queda registrada como una puerta del flujo, y una vez aprobada el despliegue y su reversión se ejecutan sin pasos manuales (CMAA, 2026c, cap. 4.2, RT-04.06, p. 11).
+
+\subsubseccion{Repositorio y flujo de trabajo}
+El código se aloja en GitHub Enterprise Cloud, en una organización de propiedad del cliente, con el equipo de Overfore como miembro. GitHub se integra en forma nativa con ClickUp y vincula cada cambio con su tarea. Se conecta con Azure mediante identidades federadas, y los flujos de despliegue operan sin credenciales permanentes. Además, reúne en una sola plataforma el control de versiones, la automatización con GitHub Actions y los controles de seguridad del código.
+
+La organización se divide en cuatro repositorios, uno por tipo de componente, que son la aplicación, el terreno, la infraestructura y el despliegue. Cada uno tiene sus propios permisos y ciclo de cambios.
+
+El flujo de ramas se basa en ramas de corta duración (Humble y Farley, 2010). La rama principal está protegida y solo recibe cambios mediante solicitudes de integración aprobadas. Cada cambio nace en una rama corta, de menos de dos días, que lleva en su nombre el identificador de la tarea de ClickUp, y los commits van firmados. El archivo de responsables de código exige dos revisores cuando el cambio toca el nodo de faena, la seguridad o la conciliación. La Figura \ref{fig:flujo-trabajo-desde-cambio-codigo-hasta} muestra el flujo completo de trabajo.
+
+\figura{16.09}{fig-6-9-flujo-trabajo-desde-cambio-codigo}{Flujo de trabajo desde el cambio de código hasta la producción.}{fig:flujo-trabajo-desde-cambio-codigo-hasta}{Fuente: elaboración propia.}
+La Figura \ref{fig:flujo-trabajo-desde-cambio-codigo-hasta} muestra cómo ClickUp y GitHub conectan el seguimiento de las tareas con los cambios de código y su entrega. El desarrollador toma una tarea, el repositorio activa la integración continua, el artefacto aprobado activa la entrega continua y cada resultado actualiza la tarea de origen. Las Tablas \refext{T10}{tab:reglas-repositorio-revision} y \refext{T10}{tab:organizacion-repositorios} del Formulario T-10 detallan las reglas de repositorio y revisión y la organización de los repositorios.
+
+\subsubseccion{Prácticas de integración continua}
+La integración continua se ejecuta en cada solicitud de integración y en cada cambio que llega a la rama principal. Sus controles se ejecutan en orden, desde los más rápidos hasta los más extensos, y ninguno deja avanzar un cambio que falle. La Figura \ref{fig:flujo-integracion-continua-controles-bloqueo} muestra el flujo completo con sus controles de bloqueo.
+
+Cada componente y cada integración externa tiene un modelo de amenazas basado en STRIDE (Shostack, 2014), y el escaneo de secretos detiene el flujo ante cualquier credencial expuesta. La cobertura mínima de la lógica de negocio es de 70 \%, con umbral bloqueante, conforme al artículo 24 de las Bases administrativas (CMAA, 2026a, p. 17). El análisis estático con SonarQube Cloud bloquea ante hallazgos críticos o altos o si el código no cumple el umbral de calidad. El análisis de composición bloquea ante vulnerabilidades críticas o altas y licencias incompatibles, y el análisis de la infraestructura como código revisa cada cambio en OpenTofu antes de aplicarlo.
+
+Las pruebas de contrato verifican que cada conector siga siendo compatible, contra un simulador construido a partir de su contrato de interfaz. La imagen de contenedor se construye una sola vez, se escanea y se firma junto con su registro de procedencia, que debe acreditar SLSA nivel 3 o superior, y la lista de materiales se entrega en CycloneDX o SPDX, conforme al artículo 21.4 (CMAA, 2026a, p. 16). La revisión por pares exige las aprobaciones requeridas y, cuando el cambio afecta la infraestructura, el revisor ve el plan de ejecución de OpenTofu.
+
+\figura{12.54}{fig-6-10-flujo-integracion-continua-controles-bloqueo}{Flujo de integración continua y sus controles de bloqueo.}{fig:flujo-integracion-continua-controles-bloqueo}{Fuente: elaboración propia.}
+La Figura \ref{fig:flujo-integracion-continua-controles-bloqueo} muestra que cada práctica tiene su propio control de bloqueo y que un cambio que falla no avanza a la etapa siguiente. El resultado de la integración continua es un artefacto firmado y publicado en el registro de contenedores, que es el único que puede usar la entrega continua. Las Tablas \refext{T10}{tab:secuencia-tratamiento-resultados-integracion} y \refext{T10}{tab:controles-integracion-continua} del Formulario T-10 detallan la secuencia y los controles.
+
+\subsubseccion{Prácticas de entrega continua}
+La entrega continua toma ese artefacto y lo lleva por los ambientes sin volver a compilarlo. La Figura \ref{fig:flujo-entrega-continua-controles-bloqueo} muestra el recorrido del artefacto entre ambientes y la respuesta ante una falla.
+
+Cada ambiente acepta solo artefactos con firma válida y procedencia conocida. La infraestructura se crea y se actualiza desde OpenTofu con el plan aprobado, sin cambios manuales desde la consola, y cada rama de trabajo tiene un ambiente efímero de pruebas. La configuración se gestiona por ambiente y los secretos residen en un almacén con rotación automática y auditoría, sin credenciales en el código ni en las imágenes.
+
+Las pruebas en QA cubren integración, extremo a extremo de los flujos críticos, como el recorrido del viaje al lote embarcado, y análisis dinámico de seguridad con OWASP ZAP. Ese análisis también se ejecuta en la integración continua, sobre la imagen desplegada en el ambiente efímero de la rama. En preproducción se mide el desempeño contra los tiempos comprometidos, la carga y el estrés con 1,5 veces el máximo declarado en el caso, y la resiliencia con inyección de fallas, que se repite antes de cada paso a producción y al menos semestralmente durante la operación (CMAA, 2026a, Art. 24, p. 17).
+
+Antes de la puesta en producción de cada etapa se realiza un corte controlado de 48 horas sobre el nodo de faena, que verifica la continuidad de las funciones locales y la conservación de todos los registros. Estos se sincronizan en un máximo de cuatro horas tras restablecer el enlace, conforme a RT-03.13 del caso minero (CMAA, 2026b, cap. 15, p. 25). Durante la operación, la prueba se repite anualmente dentro de una detención programada de planta. Las migraciones de esquema son versionadas, reversibles y automáticas, y las aprueba el líder de datos.
+
+El ambiente productivo exige la aprobación registrada del comité de proyecto como puerta del flujo, con pruebas de intrusión de un tercero independiente, plan de reversión probado, ventana operacional permitida y usuarios capacitados. Aprobada la puerta, el despliegue es automático. En la nube, el despliegue es azul-verde, con reversión automática probada en preproducción antes de cada paso a producción. En el nodo de faena, Flux, mediante GitOps de Azure Arc, aplica las versiones firmadas entre las 03:00 y las 05:00, conservando la versión anterior. En terreno, el despliegue es por anillos, primero una pala y luego las cinco. Las vulnerabilidades críticas se corrigen en 7 días corridos, las altas en 15 y las medias en 30 (CMAA, 2026a, Art. 21.1, p. 15).
+
+\figura{12.28}{fig-6-11-flujo-entrega-continua-controles-bloqueo}{Flujo de entrega continua y sus controles de bloqueo.}{fig:flujo-entrega-continua-controles-bloqueo}{Fuente: elaboración propia.}
+La Figura \ref{fig:flujo-entrega-continua-controles-bloqueo} muestra las dos respuestas de la entrega continua ante una falla. Si el problema es de seguridad o de cumplimiento, el flujo se detiene. Si el problema aparece con la versión ya instalada en un ambiente, el flujo vuelve a la versión previa, y cada ambiente queda siempre con una versión completa. Las Tablas \refext{T10}{tab:condiciones-promocion-recuperacion} y \refext{T10}{tab:controles-entrega-continua} del Formulario T-10 detallan las condiciones de promoción y los controles.
+
+\subsubseccion{Herramientas de integración continua}
+La integración continua combina GitHub Actions y SonarQube Cloud con herramientas de código abierto maduras, como Trivy, Checkov, Pact y Cosign. GitHub concentra la orquestación y la revisión, mientras que los escáneres y las pruebas especializadas aportan evidencias al mismo flujo. Las suscripciones de GitHub Enterprise Cloud y SonarQube Cloud se gestionan como adquisiciones del proyecto, y cada herramienta ejecuta su control de bloqueo dentro del flujo. La Tabla \refext{T10}{tab:herramientas-evidencia-integracion} del Formulario T-10 detalla cada herramienta.
+
+\subsubseccion{Herramientas de entrega continua}
+La entrega continua combina servicios de Azure, que ya forman parte de la infraestructura del proyecto, con herramientas de código abierto. Cada ambiente se promueve desde GitHub Actions, y la aprobación del comité de proyecto queda registrada en el mismo flujo, como requisito técnico del ambiente productivo. Flux trabaja con un modelo de extracción, y el nodo de faena recibe cada nueva versión sin abrir accesos desde internet. La Tabla \refext{T10}{tab:herramientas-evidencia-entrega} del Formulario T-10 detalla las herramientas y el registro de liberación.
+
+\subsubseccion{Automatización de pruebas y métricas de entrega}
+Las pruebas automáticas siguen la forma de una pirámide. La base son muchas pruebas unitarias y de contrato, que corren en la integración continua. Encima están las pruebas de integración, un conjunto acotado de pruebas de extremo a extremo y las pruebas de resiliencia, que corren en la entrega continua. La carga corta de desempeño corre en la puerta 2 de integración, y la carga completa corre antes de cada paso a producción. La Tabla \refext{T10}{tab:pruebas-medicion-flujo} del Formulario T-10 detalla las pruebas por nivel y la medición del flujo.
+
+El desempeño del flujo de entrega se mide con las cuatro métricas propuestas por Forsgren et al. (2018), que se declaran desde el inicio y se siguen midiendo durante la operación. Las metas de implementación y de operación están en la Tabla \refext{T10}{tab:metas-flujo-entrega} del Formulario T-10.
+
+En la implementación se privilegian la frecuencia y la rapidez hacia los ambientes de prueba, mientras que en la operación las metas de producción respetan las ventanas de la faena. La tasa de cambios fallidos y el tiempo de restauración coinciden con los indicadores del informe mensual de nivel de servicio, cuyos límites de 5 \% de cambios fallidos y 4 horas de restauración fija el artículo 78 de las Bases administrativas (CMAA, 2026a, Art. 78, p. 40).
+
+\subseccion{Ceremonias, artefactos, cadencias y mecanismos de decisión}
+Los roles de Scrum se asignan a roles del equipo del proyecto. El líder funcional actúa como dueño del producto y responde por el backlog único, apoyado por los referentes de cada área del cliente, que validan prioridades y aceptan historias. Cada equipo tiene un facilitador que cuida el proceso y remueve impedimentos, y el líder de desarrollo, el arquitecto de la solución, el líder de datos, el líder de integración, el líder de calidad y pruebas, el líder de operación (SRE) y el encargado de seguridad de la información participan en las decisiones técnicas que cruzan equipos.
+
+Las ceremonias siguen un calendario fijo que se repite cada dos semanas, ajustado al régimen de la faena. La Figura \ref{fig:calendario-sprint-regimen-7x7} presenta el calendario de un sprint típico.
+
+\figura{16.09}{fig-6-12-calendario-sprint-regimen-7x7}{Calendario de un sprint en el régimen 7x7.}{fig:calendario-sprint-regimen-7x7}{Fuente: elaboración propia.}
+De la figura se desprende que cada semana hay una validación en terreno con el grupo que está en turno, y en un mismo sprint ambos grupos del régimen 7x7 prueban el incremento. Las ceremonias son la planificación del sprint, la reunión diaria, el refinamiento semanal con los referentes del cliente, la validación en terreno, la coordinación entre equipos, la revisión del sprint en preproducción y la retrospectiva. Antes de cada hito de entrega se realiza además una planificación de liberación.
+
+Los artefactos son el backlog del producto, el backlog de cada sprint y el incremento. Los acompañan cuatro registros que el cliente puede consultar en el espacio colaborativo, la definición de listo, la definición de terminado, el registro de decisiones de arquitectura y el registro de deuda técnica. La definición de terminado se acuerda con el cliente al inicio del proyecto y se aplica a cada entregable. Una historia está terminada cuando su código está revisado por pares, sus pruebas automáticas pasan con la cobertura exigida, no tiene hallazgos de seguridad críticos ni altos pendientes, su documentación está actualizada, está desplegada en preproducción de forma automática y queda trazada a su requerimiento de origen.
+
+Las decisiones del desarrollo también se toman lo más cerca posible del trabajo. El equipo decide junto al líder funcional qué entra en cada sprint y cómo se implementa cada historia, y el referente del área del cliente la acepta en la revisión del sprint, contra su criterio de aceptación. El comité de arquitectura aprueba toda decisión que cruza módulos o cambia una tecnología. El paso a producción lo propone y lo aprueba el Comité de Proyecto, y el Comité de Operación autoriza la intervención menor de la ventana, con una lista de verificación que exige pruebas de aceptación superadas, pruebas de seguridad aprobadas, plan de reversión probado, ventana operacional permitida y usuarios capacitados. Las Tablas \refext{T10}{tab:artefactos-autoridad-decision} y \refext{T10}{tab:ceremonias-cadencias} del Formulario T-10 detallan artefactos, autoridades y cadencias.
+
+La aceptación contractual de la marcha blanca sigue un cierre propio, que exige ausencia de incidentes críticos y altos, volumen real comprometido y cumplimiento sostenido de disponibilidad y respuesta durante las últimas cuatro semanas, conciliación sin diferencias no explicadas, personal capacitado y certificado y acta de la contraparte técnica (CMAA, 2026a, Art. 17.3, p. 13). El Subdocumento 7 y el Formulario T-18 desarrollan la evidencia de esta aceptación.
+
+Desde el mes 21, con ambas etapas en producción, el desarrollo pasa de los sprints a un flujo continuo con Kanban. El flujo lo conduce el líder de operación (SRE). La mantención evolutiva se ordena según la bolsa anual de horas priorizada por el cliente, con límites de trabajo en curso, y la correctiva sigue los tiempos de cada severidad, siempre con el mismo flujo de entrega, la misma definición de terminado y los mismos controles de bloqueo.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item Ford, N., Parsons, R., y Kua, P. (2017). \emph{Building evolutionary architectures: Support constant change}. O'Reilly Media.
+\item Forsgren, N., Humble, J., y Kim, G. (2018). \emph{Accelerate: The science of lean software and DevOps}. IT Revolution Press.
+\item Humble, J., y Farley, D. (2010). \emph{Continuous delivery: Reliable software releases through build, test, and deployment automation}. Addison-Wesley.
+\item International Organization for Standardization. (2018). \emph{ISO 31000:2018 Risk management. Guidelines}. ISO.
+\item Ley N° 21.719. (2024). \emph{Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales}. Diario Oficial de la República de Chile.
+\item National Institute of Standards and Technology. (2022). \emph{Secure Software Development Framework (SSDF) version 1.1: Recommendations for mitigating the risk of software vulnerabilities} (NIST SP 800-218). \href{https://doi.org/10.6028/NIST.SP.800-218}{https://doi.org/10.6028/NIST.SP.800-218}
+\item Project Management Institute. (2017). \emph{La guía de los fundamentos para la dirección de proyectos (Guía del PMBOK)} (6.ª ed.). Project Management Institute.
+\item Schwaber, K., y Sutherland, J. (2020). \emph{La Guía Scrum}. \href{https://scrumguides.org/}{https://scrumguides.org/}
+\item Shostack, A. (2014). \emph{Threat modeling: Designing for security}. Wiley.
+\end{referencias}
+
+\seccionsinnumero{Declaración de uso de IA}
+Se utilizó IA generativa, principalmente como apoyo en la redacción y en la organización del contenido; el detalle por sección está en la Tabla \ref{tab:declaracion-uso-ia-seccion}.
+
+\begin{tabla}{I{0.149}I{0.164}I{0.210}I{0.088}I{0.141}I{0.250}}{Declaración de uso de IA por sección.}{tab:declaracion-uso-ia-seccion}
+  {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad del uso} & \cab{Nivel en\newline texto} & \cab{Nivel en\newline diagramas} & \cab{Revisión humana (quién y qué verificó)}}
+  {\emph{Fuente: elaboración propia.}}
+Introducción y capítulo 6 & Claude y Codex & Apoyo de redacción para presentar las metodologías del proyecto. & Alto & Alto & Benjamín Rodríguez: validó la articulación entre gestión, desarrollo y cronograma. \\
+6.1 & codex & Síntesis del enfoque de gestión del proyecto. & Medio & Ninguno & Benjamín Rodríguez: comprobó la coherencia de los mecanismos de dirección. \\
+6.1.1 a 6.1.5 & codex & Organización de gestión, gobierno, cambios, interesados y comunicaciones. & Medio & Bajo & Benjamín Rodríguez: revisó las decisiones, roles y canales descritos. \\
+6.1.5.1 a 6.1.5.4 & codex & Apoyo para detallar comunicaciones, cobertura de turnos y seguimiento. & Medio & Bajo & Claudio Cabello: verificó las frecuencias y la llegada de mensajes a todos los turnos. \\
+6.1.6 & codex & Base explicativa del proceso de adquisiciones. & Medio & Ninguno & Benjamín Rodríguez: verificó la secuencia de compra y los responsables. \\
+6.2 & claude y codex & Redacción de enlace para introducir el desarrollo de software. & Alto & Ninguno & Claudio Cabello: validó la correspondencia del enfoque con las entregas previstas. \\
+6.2.1 & claude y codex & Apoyo para explicar el enfoque de desarrollo. & Alto & Bajo & Claudio Cabello: revisó las prácticas y su aplicación en cada etapa. \\
+6.2.1.1 a 6.2.1.4 & claude y codex & Organización de requerimientos, evolución, deuda técnica y salida a producción. & Alto & Bajo & Claudio Cabello: revisó la trazabilidad del backlog y las decisiones. \\
+6.2.2 & claude y codex & Borrador de las prácticas de DevSecOps e integración continua. & Alto & Ninguno & Claudio Cabello: contrastó los controles de entrega y su relación con el Subdoc. 9. \\
+6.2.2.1 a 6.2.2.6 & claude y codex & Desarrollo del flujo de repositorio, integración, entrega, herramientas y métricas. & Alto & Alto & Claudio Cabello: revisó los pasos del flujo, las pruebas y los criterios de promoción. \\
+6.2.3 & claude y codex & Apoyo para ordenar ceremonias, artefactos y cadencias. & Alto & Bajo & Claudio Cabello: comprobó las frecuencias y los mecanismos de decisión del equipo. \\
+Referencias & perplexity & Apoyo para ordenar y uniformar las referencias citadas. & Medio & Ninguno & Claudio Cabello: revisó la existencia de las fuentes y su correspondencia con las citas. \\
+Anexo A & claude y codex & Apoyo para calcular capacidad temporal y programar sprints. & Medio & Ninguno & Claudio Cabello: revisó las horas disponibles y su relación con T-14 y T-15. \\
+T-9 & codex & Base de redacción de la metodología de administración del proyecto. & Alto & Ninguno & Claudio Cabello: validó el gobierno y los mecanismos de control frente al capítulo 6. \\
+T-10 & codex & Borrador de la metodología de desarrollo y entrega de software. & Alto & Ninguno & Claudio Cabello: contrastó las prácticas y controles frente a los Subdocs. 6 y 9. \\
+\end{tabla}
+
+\end{document}

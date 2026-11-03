@@ -1,0 +1,305 @@
+%% OVERFORE-Formulario-T-13.tex — generado desde OVERFORE-Formulario-T-13.docx
+%% Formato: clase overfore, modo formulario. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[formulario]{../../comun/overfore}
+\numsubdoc{9}
+\formulario{T-13}{Plan de pruebas y validación}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+
+\begin{document}
+
+\apartado{Objeto, alcance y base del plan}
+El plan cubre las dos etapas de SITCO Aranda y los cuatro componentes de la solución, que son software, dispositivos de terreno, red e infraestructura. Se ejecuta en los cinco ambientes y se organiza según la serie ISO/IEC/IEEE 29119. Los procesos de prueba (International Organization for Standardization [ISO] et al., 2021a) los implementan las cinco puertas de calidad del Subdocumento 9, la documentación (ISO et al., 2021b) es este formulario con sus informes de campaña, y las técnicas de diseño de casos (ISO et al., 2021c) se indican por nivel y tipo de prueba.
+
+Las pruebas verifican los 248 requerimientos del catálogo y los 14 resultados de negocio del cliente (Compañía Minera Altos de Aranda [CMAA], 2026b, cap. 18, p. 32). La vía con que se verifica cada requerimiento no funcional está en el Anexo A del Subdocumento 9. Este plan define los niveles y tipos que exige la naturaleza de la solución. Las siglas del formulario son TPS (transacciones por segundo), p95 (percentil 95), RTO (objetivo de tiempo de recuperación), RPO (objetivo de punto de recuperación), WCAG (Web Content Accessibility Guidelines), ASVS (Application Security Verification Standard), SD-WAN (red de área amplia definida por software) y LTE (Long Term Evolution).
+
+\apartado{Elementos bajo prueba}
+Los elementos bajo prueba son los módulos, plataformas y componentes de SITCO Aranda con el nombre que tienen en los Subdocumentos 3 y 4. La siguiente tabla los lista con la etapa en que se entregan y las pruebas que más pesan en cada uno.
+
+\begin{tabla}{I{0.454}C{0.126}I{0.419}}{Elementos bajo prueba, etapa y pruebas principales.}{tab:elementos-bajo-prueba-etapa-pruebas-principales}
+  {\cab{Elemento bajo prueba} & \cab{Etapa de entrega} & \cab{Pruebas principales}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 7).}
+Infraestructura: sala técnica, gabinetes de borde y nube con dos regiones & 1 & Configuración, resiliencia, recuperación ante desastres \\
+Red: segundo enlace con SD-WAN, zona desmilitarizada con diodo de datos y cobertura LTE & 1 & Corte de enlace, seguridad y cobertura \\
+Dispositivos de terreno: Botonera de Pala y tablets de mina, planta y puerto & 1 & Pruebas en cabina, capacidad de interacción, desempeño en terreno \\
+Dispositivos de terreno: lectores faciales, caudalímetros y tablets de seguridad y mantenimiento & 2 & Verificación facial, medición, pruebas en terreno \\
+Integrador de Sistemas, siete conectores y el de radio y megafonía del Nodo de Faena en la Etapa 1 & 1 y 2 & Contrato, integración, falla de cada sistema \\
+Nodo de Faena & 1 & Corte de 48 h, sincronización, conflictos \\
+Administración y Servicios Comunes & 1 & Seguridad, identidad, auditoría y firma \\
+Operación Mina & 1 & Registro en cabina, desempeño, clasificador de detenciones \\
+Trazabilidad y Embarque, con el Portal para Compradores en la Etapa 2 & 1 y 2 & Trazabilidad de lote, reconstrucción de origen \\
+Conciliación Metalúrgica & 1 & Cálculo crítico, mezcla, cierre en 3 días hábiles \\
+Acreditación y Acceso, con la verificación facial en la Etapa 2 & 1 y 2 & Portería en 1,5 s, acreditación, biometría \\
+Indicadores y Centro Integrado & 1 y 2 & Latencia analítica, indicadores de turno y de gestión \\
+Equipos y Mantenimiento & 2 & Vista única del equipo, caída de telemetría \\
+Seguridad y Salud Ocupacional & 2 & Registro digital, firma, retención \\
+Cumplimiento Ambiental & 2 & Reportes a la autoridad, huella de carbono \\
+\end{tabla}
+La Etapa 1 reúne la infraestructura, la red y la cadena del mineral, y la Etapa 2 se compone de módulos y conectores sobre una base ya probada.
+
+\apartado{Niveles y tipos de prueba}
+Un nivel responde a qué parte del sistema se prueba y un tipo, a qué característica se verifica. La siguiente tabla lista los quince niveles y tipos del plan, con su objetivo, ambiente, técnica de diseño de casos y grado de automatización.
+
+\begin{tabla}{I{0.173}I{0.253}I{0.178}I{0.197}I{0.199}}{Niveles y tipos de prueba.}{tab:niveles-tipos-prueba}
+  {\cab{Nivel o tipo de prueba} & \cab{Objetivo de la prueba} & \cab{Ambiente de ejecución} & \cab{Técnica de diseño de casos} & \cab{Grado de automatización}}
+  {Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 3) y de las Bases técnicas transversales (CMAA, 2026c, cap. 14).}
+Unitaria y de componente & Verificar cada unidad y cada servicio de forma aislada & Desarrollo & Valores límite y particiones de equivalencia & Automática \\
+Contrato & Verificar que consumidor y proveedor entienden el mismo contrato & Desarrollo y QA & Pruebas de contrato del consumidor & Automática \\
+Integración & Verificar los flujos con los nueve sistemas existentes conectados mediante simuladores & QA & Pruebas basadas en escenarios & Automática \\
+Sistema y regresión & Verificar el sistema completo y que lo entregado no se rompa & QA & Tablas de decisión y transición de estados & Automática, 90 \% de los casos \\
+Clasificador de detenciones & Verificar la precisión y las reglas de confianza del componente de IA & QA & Conjunto de detenciones confirmadas & Automática \\
+Accesibilidad & Verificar WCAG 2.2 AA en todas las interfaces & QA y Preproducción & Revisión automatizada y manual & Mixta \\
+Usabilidad con personas usuarias & Verificar el tiempo de la transacción crítica, los pasos, la tasa de error y el tiempo de aprendizaje & Prototipo en QA, Preproducción y marcha blanca & Observación con tareas guiadas & Manual \\
+Aceptación de usuario & Validar con quienes operan que cada módulo resuelve su necesidad & Preproducción & Casos de aceptación por módulo & Manual \\
+Carga y estrés & Verificar los umbrales a 300 TPS, hallar el punto de quiebre y comprobar que los tiempos de terreno, báscula y portería no se degradan con las consultas analíticas concurrentes & Preproducción & Perfil de carga por escalones & Automática \\
+Resistencia (soak) & Detectar fugas y degradación en ejecución prolongada & Preproducción & Carga constante prolongada & Automática \\
+Resiliencia & Verificar la degradación controlada ante fallas & Preproducción & Inyección controlada de fallas & Mixta \\
+Recuperación ante desastres & Verificar el RTO y el RPO en una conmutación real & Recuperación & Procedimiento de conmutación cronometrado & Mixta \\
+Seguridad ofensiva & Buscar vulnerabilidades explotables & Preproducción y Producción & Pruebas de intrusión de un tercero & Manual \\
+Migración de datos & Verificar carga, validación y conciliación de datos históricos & Preproducción & Conciliación por entidad y período & Automática \\
+Corte de 48 h sin enlace & Verificar la operación autónoma y la resincronización & Producción (Nodo de Faena) & Corte controlado cronometrado & Mixta \\
+\end{tabla}
+
+\apartado{Criterios de entrada, de salida y de suspensión}
+Cada nivel tiene un criterio de entrada que dice cuándo puede comenzar y un criterio de salida que dice cuándo se da por aprobado. La siguiente tabla los reúne. Los criterios de salida se fijan a partir de los valores de la solución.
+
+\begin{tabla}{I{0.224}I{0.342}I{0.435}}{Criterios de entrada y de salida por nivel y tipo.}{tab:criterios-entrada-salida-nivel-tipo}
+  {\cab{Nivel o tipo de prueba} & \cab{Criterio de entrada} & \cab{Criterio de salida}}
+  {Fuente: elaboración propia a partir de las Bases técnicas transversales (CMAA, 2026c) y de las Bases administrativas (CMAA, 2026a, Art. 3).}
+Unitaria y de componente & Código compilado y solicitud de integración abierta & Umbrales de calidad del código cumplidos; sin pruebas en falla \\
+Contrato & Contratos generados desde el código & Ningún consumidor verificado queda roto \\
+Integración & Despliegue en QA con simuladores y datos restaurados & Todos los flujos de integración del caso sin error \\
+Sistema y regresión & Integración aprobada y versión candidata firmada & Batería automatizada completa sin regresiones; sin defectos críticos ni altos abiertos \\
+Clasificador de detenciones & Conjunto de detenciones confirmadas disponible & Precisión de 80 \% o más; propuestas bajo 0,70 de confianza no se muestran \\
+Accesibilidad & Interfaz completa en el ambiente & Conformidad WCAG 2.2 AA verificada y documentada \\
+Usabilidad con personas usuarias & Prototipo listo para probar, tareas definidas y participantes convocados por la Contraparte Técnica, con las muestras de RNF-USA-002 (10 personas operadoras en cabina) y RNF-USA-007 (50 registros de inspección) & Tasa de error de 5 \% o menos con el prototipo y de 2 \% o menos en la marcha blanca, 3 interacciones o menos, tiempos de 2 s, 3 s y 1,5 s en el p95, 90 \% o más de las personas capacitadas sin ayuda en el primer ciclo de 14 días, e informe de hallazgos y cambios de diseño \\
+Aceptación de usuario & Versión promovida a Preproducción con regresión aprobada & Casos aprobados y firmados por la Contraparte Técnica \\
+Carga y estrés & Preproducción equivalente a producción y versión de aceptación & Umbrales de desempeño a 300 TPS; punto de quiebre identificado; tiempos de terreno, báscula y portería sin degradarse con las consultas analíticas concurrentes (RNF-DES-017) \\
+Resistencia (soak) & Carga y estrés aprobados & Sin degradación sobre 10 \% ni crecimiento sostenido de recursos \\
+Resiliencia & Carga y estrés aprobados & Degrada de forma controlada y se recupera sin intervención \\
+Recuperación ante desastres & Réplica con retraso bajo 5 minutos y procedimiento ensayado & RTO de 4 h o menos y RPO de 15 min o menos en conmutación real \\
+Seguridad ofensiva & Versión candidata congelada y alcance acordado con el tercero & Sin hallazgos críticos ni altos abiertos \\
+Migración de datos & Fuentes inventariadas y perfiladas & Completitud de 100 \% o cuarentena justificada; tolerancia cero en las sumas de control por período; sin referencias huérfanas; marca de origen y proceso de carga en todo dato migrado; reversa probada en cada ensayo; conciliación sin diferencias no explicadas (Subdocumento 5, 5.3.4) \\
+Corte de 48 h sin enlace & Nodo de Faena operativo y ventana autorizada & 0 registros perdidos y sincronización en 4 h o menos \\
+\end{tabla}
+Una campaña se suspende cuando un defecto bloquea la ejecución de las pruebas o cuando el ambiente deja de ser representativo de producción. Se reanuda cuando el defecto está corregido y la versión vuelve a superar la puerta de calidad anterior, de modo que no se repiten pruebas que ya pasaron.
+
+\apartado{Ambientes de prueba}
+Los ambientes son cinco, con la arquitectura y la ubicación del Subdocumento 4. La siguiente tabla indica cómo se usa cada uno en las pruebas.
+
+\begin{tabla}{I{0.180}I{0.298}I{0.205}I{0.317}}{Ambientes de prueba, uso, datos y ubicación.}{tab:ambientes-prueba-uso-datos-ubicacion}
+  {\cab{Ambiente} & \cab{Uso en las pruebas} & \cab{Datos utilizados} & \cab{Ubicación y características}}
+  {\emph{Fuente: }elaboración propia.}
+Desarrollo & Unitarias, de componente y contrato del consumidor & Sintéticos & Clúster no productivo compartido en Chile Central; servicios menores que se apagan fuera del horario de uso \\
+QA & Integración, contrato del proveedor, sistema, regresión, clasificador y accesibilidad automatizada & Sintéticos versionados, restaurados antes de cada ciclo & Mismo clúster no productivo, con simuladores del despacho, la báscula, el laboratorio y el historiador \\
+Preproducción & Aceptación, carga, resistencia, resiliencia, seguridad ofensiva, accesibilidad manual y migración & Copias con campos sensibles enmascarados de forma irreversible & Clúster propio en tres zonas, con las mismas versiones y configuración que producción \\
+Producción & Marcha blanca, seguridad ofensiva periódicas, corte de 48 h y migración definitiva & Reales & Chile Central y Nodo de Faena; acceso restringido y auditado, sin acceso interactivo de desarrolladores \\
+Recuperación & Conmutación real ante desastres & Réplica de producción & Brazil South, clúster mínimo que escala al activarse (ítem T11-02 del Formulario T-11) \\
+\end{tabla}
+Además, el banco de pruebas de la sala técnica reproduce el Nodo de Faena en máquinas virtuales para ensayar firmware y actualizaciones, y la prueba de corte de 48 horas se ejecuta sobre el propio Nodo. Ningún ambiente no productivo tiene conectividad con producción.
+
+\apartado{Datos de prueba}
+Se adopta la regla de no usar datos productivos en ambientes no productivos sin anonimización o seudonimización verificable. El generador de los datos sintéticos usa Datafaker, una biblioteca de Java (Datafaker, s.f.), el mismo lenguaje de los servicios de negocio del Subdocumento 4. La siguiente tabla declara el origen, la protección y el ciclo de vida de los datos de cada ambiente y de los dos casos con tratamiento especial, la migración y la verificación facial.
+
+\begin{tabla}{I{0.175}I{0.172}I{0.228}I{0.217}I{0.208}}{Datos de prueba por ambiente y caso especial.}{tab:datos-prueba-ambiente-caso-especial}
+  {\cab{Ambiente o caso} & \cab{Tipo de dato} & \cab{Origen y generación} & \cab{Protección aplicada} & \cab{Ciclo de vida del dato}}
+  {\emph{Fuente: }elaboración propia.}
+Desarrollo & Sintéticos & Generador versionado con Datafaker y semilla reproducible, con distribuciones de la volumetría del caso y hasta tres veces su volumen & Sin datos personales reales & Se regeneran en cada ciclo \\
+QA & Sintéticos versionados & El mismo generador, más los simuladores de los sistemas existentes & Sin datos personales reales & Se restauran a un estado conocido antes de cada ciclo \\
+Preproducción & Copia enmascarada & Copia de producción con los campos sensibles enmascarados de forma irreversible & Prueba automática de ausencia de identificadores personales & Se eliminan al cerrar la campaña, con evidencia del borrado \\
+Ensayos de migración & Reales con dato sensible enmascarado & Fuentes del cliente & Campos personales sensibles enmascarados de forma irreversible e imágenes sintéticas en los formularios digitalizados & Dos ensayos completos antes de la carga definitiva \\
+Verificación facial & Voluntarios o sintéticos & Voluntarios con consentimiento o conjuntos sintéticos & Cumplimiento de la ley de protección de datos personales (Ley N° 21.719, 2024) & Se eliminan al cerrar la campaña \\
+Producción & Reales & Operación del cliente & Acceso restringido y auditado & Retención según el Subdocumento 5 \\
+\end{tabla}
+
+\apartado{Automatización}
+Se automatiza lo que se repite en cada cambio y se deja a las personas lo que depende del cuerpo y del entorno. La siguiente tabla fija las metas del plan.
+
+\begin{tabla}{I{0.373}I{0.373}I{0.255}}{Metas de automatización.}{tab:metas-automatizacion}
+  {\cab{Indicador de automatización} & \cab{Meta de automatización} & \cab{Momento de medición}}
+  {\emph{Fuente: }elaboración propia.}
+Casos de regresión automatizados & 90 \% & En cada promoción a Preproducción \\
+Flujos críticos automatizados & 100 \% & En cada promoción a Preproducción \\
+Duración de la batería completa & 60 min o menos, en paralelo & En cada promoción a Preproducción \\
+Degradación de desempeño en la carga corta & 10 \% o menos frente a la versión en producción & En cada integración \\
+Cobertura de la lógica de negocio & 70 \% o más global y 80 \% o más en código nuevo & En cada solicitud de integración \\
+Acoplamiento entre módulos & Cero ciclos y cero accesos a datos ajenos, con pruebas de arquitectura & En cada solicitud de integración \\
+Casos que quedan manuales & Hardware y ergonomía: botonera con guantes, cámara y pantalla bajo el sol & En cada certificación de etapa \\
+\end{tabla}
+
+\apartado{Pruebas de desempeño}
+Los umbrales de desempeño se miden en el percentil 95 bajo la carga declarada e incluyen los tiempos de registro en terreno que fija el catálogo de requerimientos. La siguiente tabla los reúne.
+
+\begin{tabla}{I{0.627}D{0.373}}{Umbrales de desempeño en el percentil 95.}{tab:umbrales-desempeno-percentil-95}
+  {\cab{Indicador de desempeño} & \cab{Umbral máximo}}
+  {\emph{Fuente: }elaboración propia.}
+Carga inicial de una página del portal & 2 s \\
+Navegación entre vistas ya cargadas & 1 s \\
+Consulta simple de interfaz & 500 ms \\
+Escritura transaccional de interfaz & 800 ms \\
+Búsqueda con criterios compuestos & 3 s \\
+Informe estándar en línea & 30 s \\
+Procesamiento por lotes & 10.000 registros por minuto \\
+Carga de un archivo de 100 MB & 60 s \\
+Arranque en frío de un servicio & 60 s \\
+Registro de un movimiento de material en cabina & 2 s \\
+Pesaje de camión en la báscula & 3 s \\
+Verificación de una persona en portería & 1,5 s \\
+\end{tabla}
+El perfil de carga parte de la volumetría del caso y de su dimensionamiento. La siguiente tabla muestra cada parámetro y de dónde sale.
+
+\begin{tabla}{I{0.335}I{0.286}I{0.379}}{Parámetros del perfil de carga.}{tab:parametros-perfil-carga}
+  {\cab{Parámetro del perfil de carga} & \cab{Valor del parámetro} & \cab{Origen del valor}}
+  {\emph{Fuente: }elaboración propia.}
+Carga habitual & 40 TPS & Operación ordinaria \\
+Carga calculada en el relevo & 135 TPS & Estimación de 505 personas concurrentes y 37 dispositivos \\
+Punta declarada & 200 TPS & Reserva sobre la carga calculada \\
+Carga de la prueba & 300 TPS & 1,5 × 200 TPS \\
+Capacidad de crecimiento & 600 TPS & 3 × 200 TPS \\
+Carga sostenida & 60 min tras 15 min de rampa & Ventana de relevo de 45 a 60 min \\
+Ingesta continua simultánea & Unas 1.090 lecturas por segundo & 94,16 millones de lecturas diarias \\
+Carga local del Nodo en un corte & 120 TPS & Punta de referencia durante un corte \\
+Eventos acumulados en un corte de 48 h & 150.000 & Capacidad de la cola del Nodo, con 146.016 eventos estimados con tres veces la volumetría \\
+\end{tabla}
+La prueba de 300 TPS y la capacidad de 600 TPS derivan de la misma punta de 200 TPS, con factores de 1,5 y de 3 sobre esa punta. Durante la carga se ejecutan además las consultas analíticas de mayor costo, con unos 2.064 pasos de portería en la hora de relevo de una detención mayor (Subdocumento 5, 5.4.6), y los tiempos de terreno, báscula y portería no deben degradarse. El informe de carga entrega la curva de tiempo de respuesta frente a la carga, el punto de saturación, el consumo de recursos y el comportamiento durante y después de la punta.
+
+\apartado{Pruebas de resiliencia y de recuperación ante desastres}
+Se adoptan pruebas de resiliencia por inyección controlada de fallas antes de cada paso a producción y al menos una vez por semestre durante la operación, para comprobar que la solución se recupera sin intervención. La siguiente tabla lista las fallas que se inyectan y lo que debe ocurrir.
+
+\begin{tabla}{I{0.348}I{0.652}}{Fallas inyectadas y resultado esperado.}{tab:fallas-inyectadas-resultado-esperado}
+  {\cab{Falla inyectada} & \cab{Resultado esperado}}
+  {\emph{Fuente: }elaboración propia.}
+Caída de una instancia & El servicio continúa en otra instancia, sin pérdida de transacciones en curso \\
+Caída de una zona & La carga pasa a las otras zonas y se mantienen los umbrales de desempeño \\
+Caída o lentitud de una dependencia externa & El comportamiento coincide con el documentado para esa dependencia \\
+Latencia elevada & Los tiempos de espera y reintentos actúan y no se pierden registros \\
+Saturación de disco & La alerta anticipada se emite y el servicio degrada de forma controlada \\
+\end{tabla}
+La conmutación a la región secundaria sigue el procedimiento de 4.3.2.2 del Subdocumento 4, que este formulario divide en seis pasos, cada uno con su tiempo máximo. La siguiente tabla muestra los pasos que se cronometran en cada prueba.
+
+\begin{tabla}{C{0.112}I{0.702}D{0.186}}{Pasos de la conmutación y tiempo máximo.}{tab:pasos-conmutacion-tiempo-maximo}
+  {\cab{Paso} & \cab{Actividad} & \cab{Tiempo máximo estimado en minutos}}
+  {\emph{Fuente: }elaboración propia.}
+1 & Declarar la contingencia & 30 \\
+2 & Promover las réplicas de PostgreSQL, TimescaleDB y Service Bus & 20 \\
+3 & Escalar el clúster de Brazil South y sincronizar las imágenes firmadas & 60 \\
+4 & Cambiar Front Door y API Management al origen secundario & 15 \\
+5 & Activar los túneles SD-WAN y sincronizar la bandeja de salida del Nodo & 15 \\
+6 & Ejecutar pruebas de humo y abrir el servicio & 30 \\
+Total & Suma de los seis pasos, dentro de las 4 horas exigidas & 170 \\
+\end{tabla}
+La suma estimada es de 170 minutos, es decir, 2 horas con 50 minutos, y se medirá en la primera prueba semestral. La conmutación real se prueba dos veces al año, dentro de las detenciones de planta de marzo y septiembre, y cada prueba produce un informe con el tiempo de recuperación y la pérdida de datos efectivamente medidos y un plan de corrección de las brechas. En terreno, la caída súbita de un nodo de borde se cronometra con un objetivo de 1 h y sin pérdida de eventos.
+
+La pérdida total de la sala técnica se prueba como un escenario distinto, con el kit externo de S8 G.4 y la nube desconectada. El ensayo comienza con la declaración de indisponibilidad completa del recinto y termina cuando las transacciones críticas vuelven a operar. Se exige RTO máximo de 4 horas, cero eventos confirmados perdidos y cero efectos duplicados tras la reconciliación. Antes de comenzar se verifican inventario y configuración del kit, rutas, alimentación, identidades y custodia exterior de eventos. La evidencia incluye cronometraje por paso, conciliación con el registro de control y cierre de brechas. Los ejercicios se realizan en M15 y M21, antes del paso correspondiente, con 32 HH cada uno, asignadas a 1.5.5.1.
+
+\apartado{Pruebas de seguridad ofensiva}
+Las pruebas de intrusión las realiza un tercero independiente del adjudicatario, anualmente y antes de cada paso a producción, con entrega íntegra del informe al cliente y un plan de remediación con plazos. El tercero verifica los requisitos de OWASP ASVS 4.0 nivel 2 (OWASP Foundation, 2021) e informa cuáles verificó y con qué resultado. La siguiente tabla resume el alcance.
+
+\begin{tabla}{I{0.242}I{0.261}I{0.224}I{0.273}}{Alcance de la seguridad ofensiva.}{tab:alcance-seguridad-ofensiva}
+  {\cab{Actividad} & \cab{Alcance} & \cab{Frecuencia} & \cab{Entregable}}
+  {\emph{Fuente: }elaboración propia.}
+Análisis dinámico automatizado & Imagen de la rama y aplicación desplegada en QA & Cada solicitud de integración y cada despliegue a QA & Informe de hallazgos con severidad \\
+Pruebas de intrusión & Capa expuesta, API y portales & Antes de cada paso y cada año & Informe íntegro y plan de remediación con plazos \\
+Corrección de hallazgos & Vulnerabilidades críticas, altas y medias & En 7, 15 y 30 días corridos & Informe del escáner con fecha de detección y cierre \\
+\end{tabla}
+
+\apartado{Calendario de las pruebas}
+El calendario se ancla en los hitos y en el cronograma contractual. La siguiente tabla indica, para cada campaña, cuándo se ejecuta en cada etapa y con qué frecuencia en la operación.
+
+\begin{tabla}{I{0.224}I{0.267}I{0.267}I{0.242}}{Calendario de las campañas de prueba.}{tab:calendario-campanas-prueba}
+  {\cab{Campaña de prueba} & \cab{Calendario en la Etapa 1} & \cab{Calendario en la Etapa 2} & \cab{Frecuencia en la operación (meses 21 a 56)}}
+  {\emph{Fuente: }elaboración propia.}
+Aceptación de usuario & Antes del hito H5 (mes 12) & Antes del hito H10 (mes 18) & No aplica \\
+Usabilidad con personas usuarias & Prototipo antes de la construcción definitiva (meses 5 a 12) y marcha blanca (meses 13 a 15) & Prototipo antes de la construcción definitiva (meses 15 a 17) y marcha blanca (meses 19 y 20) & En cada versión mayor que cambie las interfaces \\
+Carga, estrés y resistencia & Antes de H5 y del paso a producción (mes 16), con resistencia de 72 h & Antes de H10 y del paso a producción (mes 21), con resistencia de 72 h & Por versión mayor, con resistencia de 24 h, y con cada actualización anual de los componentes de base \\
+Resiliencia & Antes de H5 (mes 12) & Antes de H10 (mes 18) & Cada semestre \\
+Recuperación ante desastres & En la detención de marzo de 2028 (mes 15), antes del paso a producción (mes 16) & En la detención de septiembre de 2028 (mes 21), antes del paso a producción (mes 21) & Cada semestre, en las detenciones de marzo y septiembre \\
+Seguridad ofensiva & Mes 11, antes de H5, y mes 15, antes del paso a producción (mes 16) & Mes 17, antes de H10, y mes 20, antes del paso a producción (mes 21) & Cada año \\
+Corte de 48 h sin enlace & En la detención de marzo de 2028 (mes 15), antes del paso a producción (mes 16) & En la detención de septiembre de 2028 (mes 21), antes del paso a producción (mes 21) & Cada año, dentro de una detención de planta \\
+Migración de datos & Dos ensayos antes de la carga definitiva del mes 12; acta de conciliación al cierre del mes 15 & Dos ensayos antes de la carga definitiva del mes 18; acta de conciliación al cierre del mes 20 & No aplica \\
+\end{tabla}
+Las fechas dentro de cada fase, las holguras y la ruta crítica de las campañas están en el Subdocumento 7 (7.3) y en los Formularios T-14, T-15 y T-18, y este calendario sigue los meses de los paquetes 1.5 y 1.8.8 del Formulario T-14.
+
+\apartado{Gestión de defectos}
+Los defectos hallados usan las cuatro severidades de los incidentes de operación. La siguiente tabla fija el plazo de corrección y lo que puede quedar abierto al cerrar la marcha blanca.
+
+\begin{tabla}{I{0.186}I{0.335}I{0.478}}{Plazos de corrección y defectos admitidos al cierre de la marcha blanca.}{tab:plazos-correccion-defectos-admitidos-cierre-marcha}
+  {\cab{Severidad} & \cab{Plazo de corrección} & \cab{Abiertos al cerrar la marcha blanca}}
+  {\emph{Fuente: }elaboración propia.}
+Crítica & 2 días corridos & Ninguno \\
+Alta & 5 días corridos & Ninguno \\
+Media & 15 días corridos & 4 en la Etapa 1 y 1 en la Etapa 2 \\
+Baja & 30 días corridos & 13 en la Etapa 1 y 5 en la Etapa 2 \\
+\end{tabla}
+Los máximos de defectos medios y bajos se calculan como 0,05 y 0,15 por requerimiento funcional de la etapa, con 92 requerimientos en la Etapa 1 y 34 en la Etapa 2, redondeados hacia abajo, como se explica en el Anexo B del Subdocumento 9.
+
+La ejecución de cada campaña y la gestión de defectos las conduce el Líder de Calidad y Pruebas, que actúa con independencia de quienes construyen y cuyas tareas están en el Subdocumento 9.
+
+\apartado{Escenarios de mayor riesgo}
+Nueve escenarios reciben una prueba dedicada. Se priorizan los que cumplen al menos una de tres condiciones, que su falla pueda romper la trazabilidad o la conciliación, que ocurran sin el enlace con Antofagasta, o que dependan de equipos, personas o sistemas que Overfore no controla del todo, como la cabina, la portería o los formularios en papel. La siguiente tabla los detalla, con el nivel de prueba que los ejecuta.
+
+\begin{tabla}{I{0.205}I{0.217}I{0.249}I{0.168}I{0.161}}{Escenarios con prueba dedicada.}{tab:escenarios-prueba-dedicada}
+  {\cab{Escenario} & \cab{Qué se provoca} & \cab{Resultado exigido} & \cab{Ambiente} & \cab{Nivel de prueba}}
+  {\emph{Fuente: }elaboración propia.}
+Corte de enlace y resincronización & Corte de 48 h, con cambio de turno de un operador en una zona de sombra que no recupera señal & 0 registros perdidos y conflictos resueltos por regla & Nodo de Faena & Corte de 48 h sin enlace \\
+Eventos duplicados o desordenados & Reenvío y reintentos, también tras una conmutación & 0 efectos duplicados y saldos idénticos & Preproducción & Resiliencia \\
+Conciliación metalúrgica & Recálculo de 12 cierres históricos & Sin diferencias no explicadas & QA y marcha blanca & Sistema y regresión \\
+Operación en cabina & Botonera con guantes a −6 °C, sol directo y vibración & p95 de 2 s en el equipo definitivo & Faena & Aceptación de usuario \\
+Verificación facial & Casco, lentes, noche y polvo, sin enlace & p95 de 1,5 s y contingencia manual & Preproducción y faena & Aceptación de usuario \\
+Digitalización de formularios de seguridad & Lote de unos 2.600 formularios escaneados, con muestra de 200 y reversión & Errores de la muestra de 2 \% o menos por lote; ilegibles registrados como no migrables & Preproducción & Migración de datos \\
+Relevo de una detención mayor & Cambio de turno con 8.500 personas con acceso y las consultas analíticas concurrentes & p95 de 1,5 s en portería, 3 s en báscula y 2 s en cabina, sin degradarse & Preproducción & Carga y estrés \\
+Lectura del historiador sin escritura & Intento de escribir desde la solución hacia el historiador y la red de control & Escritura rechazada, 0 escrituras al control y alerta de seguridad registrada & Preproducción & Seguridad ofensiva \\
+Sala técnica a 3.180 m & Falla de una de las dos unidades de climatización con la sala a carga plena & Temperatura de entrada bajo 24 °C y ningún equipo apagado por temperatura & Faena (sala técnica) & Resiliencia \\
+\end{tabla}
+Cada escenario cumple al menos una de las tres condiciones de priorización. El corte de enlace y los eventos duplicados ocurren por la falta del enlace con Antofagasta y amenazan la trazabilidad. La conciliación metalúrgica protege la trazabilidad y la conciliación. La operación en cabina, la verificación facial y el relevo de una detención mayor dependen de equipos y personas, la lectura del historiador, de un sistema de la compañía, y la digitalización de los formularios de seguridad, de documentos en papel que Overfore no controla del todo. La sala técnica a 3.180 m depende de una altura y de un clima que Overfore no controla, y su falla dejaría sin Nodo a la faena. Las cifras son las mismas del Subdocumento 9.
+
+\apartado{Herramientas de integración y de entrega continuas}
+Esta sección nombra las herramientas con que se ejecutan las puertas. Son las del Subdocumento 6, que prefiere lo que ya ofrece la plataforma y completa con herramientas de código abierto, más dos que este plan agrega: axe-core, para la accesibilidad automatizada, y las pruebas de arquitectura, que verifican el acoplamiento entre módulos.
+
+La accesibilidad se verifica con herramientas automatizadas y con pruebas manuales. Para la parte automatizada agrega axe-core, que se ejecuta dentro de las pruebas de extremo a extremo de Playwright con el paquete @axe-core/playwright (Microsoft, s.f.) y que incluye reglas etiquetadas para WCAG 2.2 AA (Deque Systems, s.f.). La herramienta no reemplaza las pruebas manuales en Preproducción. La siguiente tabla ordena las herramientas por práctica e indica en qué puertas se usan.
+
+\begin{tabla}{I{0.373}I{0.373}I{0.255}}{Herramientas de integración y de entrega continuas, y puertas donde se usan.}{tab:herramientas-integracion-entrega-continuas-puertas-donde}
+  {\cab{Práctica} & \cab{Herramienta} & \cab{Puertas donde se usa}}
+  {\emph{Fuente: }elaboración propia.}
+Orquestación del flujo & GitHub Actions & 1 a 5 \\
+Escaneo de secretos & GitHub Secret Protection & 1 \\
+Compilación y pruebas unitarias & GitHub Actions y el marco de pruebas de cada lenguaje & 1 \\
+Pruebas de arquitectura & Marco de pruebas de cada lenguaje & 1 \\
+Análisis estático y métricas de código & SonarQube Cloud & 1 \\
+Análisis de composición & Dependabot y Trivy & 1 y 2 \\
+Análisis de infraestructura como código & Checkov & 1 \\
+Pruebas de contrato & Pact y WireMock & 1 y 2 \\
+Revisión por pares & CODEOWNERS y reglas de protección de GitHub & 1 \\
+Imagen de contenedor, firma y verificación & Docker, Trivy, Cosign y Azure Container Registry & 2 a 5 \\
+Trazabilidad & Integración de ClickUp con GitHub & 1 a 5 \\
+Infraestructura & OpenTofu & 3 a 5 \\
+Secretos e identidad & Azure Key Vault e identidades federadas & 3 a 5 \\
+Pruebas de extremo a extremo & Playwright & 3 y 4 \\
+Accesibilidad automatizada & axe-core con @axe-core/playwright & 3 \\
+Generación de datos sintéticos & Datafaker & 3 \\
+Análisis dinámico de seguridad & OWASP ZAP & 1 y 3 \\
+Desempeño & k6 & 2 y 5 \\
+Resiliencia & Azure Chaos Studio & 5 \\
+Despliegue en faena & Flux, mediante GitOps de Azure Arc & 5 \\
+Verificación posterior & Azure Monitor & 5 \\
+\end{tabla}
+La mayor parte del flujo ocurre dentro de GitHub, y la accesibilidad automatizada se suma a las pruebas de extremo a extremo ya previstas.
+
+Los umbrales del Subdocumento 9 se configuran en SonarQube Cloud. La cobertura de la lógica de negocio se mide de forma global y en el código nuevo. La complejidad se aplica a todo el código. La duplicación y la deuda técnica se aplican solo al código nuevo. La duplicación de 3 \% o menos y la deuda técnica de 5 \% o menos son condiciones de la puerta de calidad de SonarQube Cloud, y la complejidad de 10 por método se aplica con su regla de complejidad de métodos, cuyo umbral se configura. SonarQube Cloud no mide el acoplamiento entre clases (SonarSource, s.f.), por lo que ese acoplamiento se verifica con pruebas de arquitectura.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item Datafaker. (s.f.). \emph{Datafaker: Generate fake data for Java and Kotlin}. https://www.datafaker.net
+\item Deque Systems. (s.f.). \emph{axe-core: Accessibility engine for automated web UI testing}. https://github.com/dequelabs/axe-core
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021a). \emph{ISO/IEC/IEEE 29119-2:2021 Software and systems engineering. Software testing. Part 2: Test processes}. ISO.
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021b). \emph{ISO/IEC/IEEE 29119-3:2021 Software and systems engineering. Software testing. Part 3: Test documentation}. ISO.
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021c). \emph{ISO/IEC/IEEE 29119-4:2021 Software and systems engineering. Software testing. Part 4: Test techniques}. ISO.
+\item Ley N° 21.719. (2024). Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales. Diario Oficial de la República de Chile.
+\item Microsoft. (s.f.). \emph{Accessibility testing}. En Playwright documentation. https://playwright.dev/docs/accessibility-testing
+\item OWASP Foundation. (2021). \emph{OWASP Application Security Verification Standard 4.0.3}. https://owasp.org/www-project-application-security-verification-standard/
+\item SonarSource. (s.f.). \emph{Metric definitions}. En SonarQube Cloud documentation. https://docs.sonarsource.com/sonarqube-cloud/managing-your-projects/metric-definitions
+\end{referencias}
+\end{document}

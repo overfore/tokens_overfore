@@ -1,0 +1,309 @@
+%% OVERFORE-Subdocumento8.tex — generado desde OVERFORE-Subdocumento8.docx
+%% Formato: clase overfore, modo subdoc. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[subdoc]{../../comun/overfore}
+\numsubdoc{8}
+\nombresubdoc{Plan de riesgos}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{S7,T14}
+\begin{document}
+
+\capitulo{Introducción a los Riesgos}
+SITCO Aranda debe mantener la trazabilidad del mineral y apoyar la operación de una faena a 3.180 metros de altura. Para hacerlo, necesita intercambiar información con sistemas cuyas interfaces no están documentadas, funcionar cuando la red del rajo pierde cobertura y ser utilizado por personas que ya vieron fracasar dos iniciativas tecnológicas. Estas condiciones dan origen al plan de riesgos. El registro conserva 24 amenazas y 4 oportunidades, ordenadas en siete ramas y vinculadas con la solución y el plan de trabajo. Incluye los seis riesgos particulares de Aranda que exige el caso (Compañía Minera Altos de Aranda [CMAA], 2026b, cap. 19, p. 33).
+
+El análisis comienza antes de las respuestas: tres riesgos quedan en zona crítica y diez en alta. Entre ellos están las interfaces sin documentar, las zonas de sombra y la adopción de la Botonera. Con las medidas y los criterios de impacto del registro, la exposición agregada pasa de 5,293 a 2,011, una reducción estimada de 62,0 \%. Quedan quince riesgos bajos y nueve medios. La probabilidad modelada de consumir las 4,3 semanas consideradas en la Etapa 1 pasa de 45,6 \% a 0,2 \%. Son estimaciones de planificación, sujetas a ejecutar y verificar las respuestas, y no mediciones de eficacia ya obtenidas.
+
+Para seguir ese recorrido, primero se establecen las reglas de gestión, luego se identifican y analizan los riesgos y finalmente se asignan sus respuestas y reservas. El Formulario T-16 conserva el registro y las fichas individuales (Overfore S.A., 2026b). Los anexos reúnen los cálculos que permiten seguir las escalas, la exposición, los modos de falla, la simulación y el costo-beneficio (Overfore S.A., 2026c). Las decisiones técnicas se apoyan en la arquitectura del Subdocumento 4, las actividades en el Formulario T-14 y el seguimiento en las instancias de gobierno del Subdocumento 6. En la oferta técnica se utilizan semanas y horas hombre, sin precios ni tarifas. La valorización corresponde a la Oferta Económica, conforme al Art. 50.2 (CMAA, 2026a, p. 29).
+
+\seccion{Plan de riesgos}
+El plan establece quién observa cada riesgo, cómo se compara su importancia y quién decide la respuesta. Estas reglas permiten que una dificultad detectada durante el levantamiento no quede separada de sus efectos en desarrollo, implantación u operación. La gestión sigue ISO 31000:2018 (International Organization for Standardization [ISO], 2018), el requisito RT-19.04 (CMAA, 2026c, p. 33) y el área de riesgos de la Guía del PMBOK (Project Management Institute [PMI], 2017).
+
+\subseccion{Enfoque de gestión}
+La gestión acompaña los 56 meses del contrato. Parte con la identificación de una condición de la faena o del proyecto y la redacción de su posible consecuencia. Después se estima su probabilidad, se evalúa su impacto y se acuerda una respuesta. El seguimiento comprueba si la medida se ejecutó y si cambió la exposición. Cada ficha conserva la relación entre causa, evento y consecuencia para que el responsable pueda explicar qué está observando. La Figura \ref{fig:ciclo-gestion-riesgos-sitco-aranda-frecuencia} representa este ciclo y las instancias en que se revisa.
+
+\figura{15.5}{fig-8-1-ciclo-gestion-riesgos-sitco-aranda}{Ciclo de gestión de riesgos de SITCO Aranda y su frecuencia.}{fig:ciclo-gestion-riesgos-sitco-aranda-frecuencia}{Fuente: elaboración propia con base en ISO (2018).}
+De la figura se desprende que el registro está en el centro del ciclo. Cada comité lo lee y lo actualiza, y el cliente lo consulta en el sitio del proyecto, como pide el requisito RT-19.05 (CMAA, 2026c, p. 33). El registro se mantiene en el paquete 1.1.3.1 y las respuestas y reservas en el 1.1.3.2 del Formulario T-14, con 312 HH del Jefe de Proyecto entre los meses 1 y 20 (Overfore S.A., 2026a). Desde el mes 13 el Comité de Operación revisa además los riesgos de implantación, y desde el mes 21 asume la revisión completa del registro.
+
+\subseccion{Roles y ciclo de revisión}
+Cada riesgo tiene un único dueño, que es un rol del equipo clave del Formulario T-14, y una contraparte del cliente cuando la respuesta depende de él. El dueño vigila el disparador y avisa en la reunión semanal de seguimiento. Durante la implementación, el Jefe de Proyecto mantiene el registro y autoriza el uso de la reserva de contingencia; desde M21 esa función corresponde al Gerente de Servicio para la operación. La reserva de gestión requiere aprobación del Comité Ejecutivo. La Tabla \ref{tab:instancias-revisan-registro-riesgos} resume las instancias que revisan el registro y sus decisiones.
+
+\begin{tabla}{I{0.249}I{0.264}I{0.486}}{Instancias que revisan el registro de riesgos.}{tab:instancias-revisan-registro-riesgos}
+  {\cab{Instancia} & \cab{Frecuencia} & \cab{Decisión sobre los riesgos}}
+  {Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, cap. 19, Art. 71, pp. 37–38); Bases técnicas transversales, cap. 19, pp. 33–34.}
+Dueño del riesgo & Semanal & Informa si el disparador se acerca o se activó \\
+Comité de Proyecto & Quincenal & Revisa el registro, los disparadores y el consumo de reservas \\
+Comité de Arquitectura & Mensual & Decide las respuestas de los riesgos técnicos y de seguridad \\
+Comité Ejecutivo & Mensual, o extraordinario en 5 días hábiles & Aprueba las respuestas de zona alta y crítica y libera la reserva de gestión \\
+Comité de Operación & Mensual desde el mes 13 & Revisa los riesgos de implantación y de operación \\
+\end{tabla}
+De la tabla se desprende que las decisiones que comprometen plazo o reservas suben al Comité Ejecutivo, donde participa el patrocinador del cliente, y que el seguimiento semanal queda en los dueños y el seguimiento quincenal en el Comité de Proyecto. Siete umbrales numerados ordenan ese escalamiento. Por ejemplo, un riesgo nuevo con exposición de 0,40 o más convoca al Comité Ejecutivo en 5 días hábiles, y el consumo de la mitad de una reserva obliga a presentar un plan de recuperación. La lista completa está en el Anexo A del Subdocumento 8 (Overfore S.A., 2026c).
+
+\subseccion{Escalas de probabilidad e impacto}
+La probabilidad se estima como un porcentaje y se clasifica en cinco niveles. Para que dos personas lleguen al mismo nivel, cada nivel trae un criterio de lectura, como muestra la Tabla \ref{tab:escala-probabilidad}.
+
+\begin{tabla}{I{0.127}D{0.263}D{0.131}I{0.478}}{Escala de probabilidad.}{tab:escala-probabilidad}
+  {\cab{Nivel} & \cab{Rango} & \cab{Valor central} & \cab{Criterio de lectura}}
+  {Fuente: elaboración propia.}
+Muy alta & Más de 70 \% y hasta 100 \% & 0,85 & Ya ocurrió en este cliente y nada lo impide \\
+Alta & Más de 50 \% y hasta 70 \% & 0,60 & La causa existe hoy y depende de un tercero \\
+Media & Más de 30 \% y hasta 50 \% & 0,40 & La causa existe y la respuesta depende de Overfore y del cliente \\
+Baja & Más de 10 \% y hasta 30 \% & 0,20 & Hay controles de diseño y el evento exige otra falla \\
+Muy baja & Más de 0 \% y hasta 10 \% & 0,05 & Requiere una combinación de fallas \\
+\end{tabla}
+De la tabla se desprende que la probabilidad se ancla en hechos del caso. Por ejemplo, el sindicato ya objetó la biometría facial (CMAA, 2026b, cap. 8, p. 15), así que ese riesgo parte en nivel alto. El valor central sólo sirve para dibujar la matriz, el cálculo de cada riesgo usa su estimación puntual.
+
+El impacto se mide en plazo, esfuerzo adicional y alcance o servicio. Se adopta el mayor nivel de las tres dimensiones, con días corridos exactos y límites que no se superponen. Los valores 0,1 a 0,9 son una escala ordinal de Overfore. Los límites de 2 y 7 días son criterios metodológicos, los de 20 y 30 días se anclan en los Arts. 80 y 81.3. La Tabla \ref{tab:escala-impacto-tres-dimensiones} muestra los intervalos y el Anexo G.1 permite reproducir la clasificación de cada ficha.
+
+\begin{tabla}{I{0.190}D{0.209}D{0.196}I{0.405}}{Escala de impacto y sus tres dimensiones.}{tab:escala-impacto-tres-dimensiones}
+  {\cab{Nivel (valor I)} & \cab{Plazo} & \cab{Esfuerzo} & \cab{Alcance y servicio}}
+  {Fuente: elaboración propia a partir de Subdocumento 8, cap. 8 — anexos, sección A, p. 4.}
+Muy alto (0,9) & Más de 30 días & Más de 3.000 HH & Incidente grave o falta definitiva de un entregable esencial \\
+Alto (0,7) & 20 a 30 días, inclusive & 1.200 a 3.000 HH, inclusive & Extensión de marcha blanca o bloqueo de un requisito esencial \\
+Medio (0,5) & 7 o más y menos de 20 días & 600 o más y menos de 1.200 HH & Degradación parcial o temporal con función principal disponible \\
+Bajo (0,3) & 2 o más y menos de 7 días & 300 o más y menos de 600 HH & Efecto menor con operación principal disponible \\
+Muy bajo (0,1) & Menos de 2 días & Menos de 300 HH & Efecto accesorio sin incumplimiento de criterio obligatorio \\
+\end{tabla}
+La multa diaria de 0,5 \% alcanza su tope de 10 \% a los 20 días, y un atraso superior a 30 días abre una causal de término (CMAA, 2026a, Arts. 80 y 81.3, pp. 41–42). Los valores 2,9 y 4,3 semanas sólo redondean 20/7 y 30/7 y no se usan para decidir la clase de impacto. Las 300, 600, 1.200 y 3.000 HH son umbrales conservadores redondeados desde el 0,5, 1, 2 y 5 \% de las 60.394 HH de las ramas 1.1 a 1.7. Una alternativa aún sin aprobación o prueba conserva impacto alto cuando impide un requisito esencial, la disminución de probabilidad no demuestra una disminución de su consecuencia.
+
+\subseccion{Matriz de exposición y zonas de acción}
+La exposición de un riesgo es el producto de su probabilidad por su impacto (P × I) y va de 0 a 1. La Figura \ref{fig:matriz-exposicion-p-i-accion-corresponde} cruza los cinco niveles de cada escala con sus valores centrales y pinta cada celda según su zona. Lo importante no es el color, sino la regla de acción que cada zona trae consigo y que se declara antes de empezar.
+
+\figura{15.0}{fig-8-2-matriz-exposicion-p-i-accion}{Matriz de exposición P × I y acción que corresponde a cada celda.}{fig:matriz-exposicion-p-i-accion-corresponde}{Fuente: elaboración propia.}
+De la figura se desprende que la zona crítica aparece cuando un impacto alto se combina con una probabilidad alta, y que un impacto muy alto con probabilidad baja todavía permite aceptar el riesgo de forma activa. La Tabla \ref{tab:zonas-accion-regla-declarada-reflejo-oferta} fija el rango de cada zona, su regla y el lugar de la oferta donde se ve su consecuencia.
+
+\begin{tabla}{I{0.123}I{0.209}I{0.380}I{0.288}}{Zonas de acción, regla declarada y reflejo en la oferta.}{tab:zonas-accion-regla-declarada-reflejo-oferta}
+  {\cab{Zona} & \cab{Rango de exposición} & \cab{Regla de acción declarada} & \cab{Dónde se ve en la oferta}}
+  {Fuente: elaboración propia.}
+Crítica & P × I ≥ 0,40 & Tratamiento obligatorio mediante diseño y mitigación hasta un residual aceptable; si no se logra, se escala la decisión de ofertar. & Alcance, arquitectura o exclusión explícita \\
+Alta & 0,20 ≤ P × I < 0,40 & Acción de mitigación con costo y plazo dentro del plan de trabajo & Actividad en la EDT y en el cronograma \\
+Media & 0,08 ≤ P × I < 0,20 & Se acepta activamente: reserva de contingencia y disparador definido & Línea de reserva en la oferta económica \\
+Baja & P × I < 0,08 & Se acepta pasivamente: queda en observación y se revisa cada mes & Registro de riesgos, sin costo adicional si no conserva reserva de contingencia \\
+\end{tabla}
+De la tabla se desprende que Overfore no acepta presentar riesgos residuales en zona alta o crítica. El nivel inherente determina la intensidad del tratamiento y el residual permite decidir qué se mantiene en seguimiento. Un riesgo mitigado puede quedar en zona baja y conservar disparador y reserva, la aceptación pasiva corresponde a las fichas que la declaran expresamente. La tolerancia mantiene cero días de atraso imputable en H5, H7 y H12 y el plazo máximo de siete días corridos para vulnerabilidades críticas. Ese plazo no autoriza un paso a producción con un hallazgo bloqueante abierto.
+
+\seccion{Identificación y Análisis de Riesgos}
+Una vez establecidas las reglas, se revisan las condiciones que pueden afectar la solución. Los riesgos se agrupan por su origen y se comparan con las mismas escalas. Esta comparación permite reconocer cuáles necesitan atención primero. El análisis de modos de falla examina si sus señales se detectarán a tiempo, y la simulación estima qué ocurre cuando varios eventos afectan conjuntamente la cadena crítica.
+
+\subseccion{Identificación y estructura de desglose de riesgos}
+La identificación relaciona entrevistas y condiciones de la faena con supuestos de la solución, decisiones de arquitectura y actividades del plan. Así, una interfaz sin documentación se conecta con la construcción del conector y con la fecha en que se necesita su lectura, la falta de cobertura se conecta con el registro local y la sincronización. La estructura de desglose de riesgos, denominada RBS, organiza estas causas en siete ramas. La Figura \ref{fig:estructura-desglose-riesgos-rbs-sitco-aranda} permite localizar cada uno de los 24 riesgos sin sustituir su ficha individual.
+
+\begin{horizontal}
+\figura{22.44}{fig-8-3-estructura-desglose-riesgos-rbs-sitco}{Estructura de desglose de riesgos (RBS) de SITCO Aranda, con la zona inherente de cada riesgo.}{fig:estructura-desglose-riesgos-rbs-sitco-aranda}{Fuente: elaboración propia con el Formulario T-16 (Overfore S.A., 2026b).}
+De la figura se desprende que las causas se distribuyen entre tecnología, integración, operación, personas, contrato, entorno regulatorio y empresa proveedora. Solución y tecnología reúne cinco riesgos. Operación del cliente y personas y adopción concentran el 40 \% de la exposición inherente y dos de los tres riesgos críticos.
+
+\end{horizontal}
+Por ello, la revisión técnica debe acompañarse de acuerdos con las áreas usuarias y de pruebas en las condiciones reales de la faena.
+
+Las Bases piden identificar riesgos técnicos, organizacionales, de proyecto, de seguridad y de operación (CMAA, 2026a, Formulario T-7, p. 58). Cada riesgo lleva además una de esas cinco categorías, y la Tabla \ref{tab:riesgos-categoria-exigida-zona-inherente} resume cuántos hay en cada una y cuáles pesan más.
+
+\begin{tabla}{I{0.184}D{0.147}D{0.159}I{0.509}}{Riesgos por categoría exigida y su zona inherente.}{tab:riesgos-categoria-exigida-zona-inherente}
+  {\cab{Categoría} & \cab{N° de riesgos} & \cab{Críticos / altos} & \cab{Riesgos de mayor exposición}}
+  {Fuente: elaboración propia a partir de Formulario T-16 (asociado al cap. 8), sección 2, p. 6.}
+Técnico & 3 & 1 / 1 & R-05 interfaz sin documentar, R-01 fin de soporte \\
+Organizacional & 6 & 1 / 2 & R-12 adopción, R-07 factores de ajuste, R-11 sindicato \\
+De proyecto & 7 & 0 / 3 & R-16 telemetría, R-23 acreditación \\
+De seguridad & 3 & 0 / 2 & R-19 pruebas de intrusión, R-20 transferencia de datos \\
+De operación & 5 & 1 / 2 & R-08 zona de sombra, R-24 dotación 24x7, R-21 enlace \\
+Total & 24 & 3 / 10 & No aplica \\
+\end{tabla}
+De la tabla se desprende que todas las categorías tienen riesgos en zona alta o crítica, de modo que el registro no se concentra en lo técnico. Además de las amenazas, el registro reconoce cuatro oportunidades, como reducir desde 2028 los embarques penalizados por arsénico (O-01), que se miden con las mismas escalas. El enunciado completo, el origen y la ficha de cada riesgo están en el Formulario T-16.
+
+\subseccion{Riesgos que exigen las Bases}
+Las Bases nombran once temas que el plan debe cubrir. Cinco son transversales, como la obsolescencia tecnológica o la disponibilidad de contrapartes del cliente (CMAA, 2026a, Formulario T-7, p. 58), y seis son propios de Aranda (CMAA, 2026b, cap. 19, p. 33). La Tabla \ref{tab:temas-exigen-bases-riesgos-registro-cubren} muestra qué riesgo del registro responde a cada uno.
+
+\begin{tabla}{I{0.331}I{0.178}I{0.245}I{0.245}}{Temas que exigen las Bases y riesgos del registro que los cubren.}{tab:temas-exigen-bases-riesgos-registro-cubren}
+  {\cab{Tema exigido} & \cab{Origen} & \cab{Riesgos} & \cab{Zona inherente y residual}}
+  {Fuente: elaboración propia a partir de las Bases técnicas transversales (CMAA, 2026c, cap. 19, pp. 33–34) y de las Bases administrativas (CMAA, 2026a, cap. 6, Art. 34, pp. 22–23).}
+Obsolescencia tecnológica & Formulario T-7 & R-01 & Alta → Baja \\
+Bloqueo por proveedor & Formulario T-7 & R-02 nube, R-16 fabricantes & Baja → Baja, Alta → Media \\
+Escalabilidad & Formulario T-7 & R-03 & Baja → Baja \\
+Ciberseguridad & Formulario T-7 & R-04, R-19 y R-20 & Media y alta → Baja \\
+Disponibilidad de contrapartes del cliente & Formulario T-7 & R-10, R-07 & Media → Media, Alta → Media \\
+Propiedad de los datos de telemetría & Caso, Cap. 19 & R-16 & Alta → Media \\
+Cobertura de red que se degrada con el rajo & Caso, Cap. 19 & R-08 & Crítica → Media \\
+Objeción sindical a la biometría & Caso, Cap. 19 & R-11 & Alta → Media \\
+Escepticismo del área de mantenimiento & Caso, Cap. 19 & R-13 & Media → Baja \\
+Indisponibilidad del personal clave & Caso, Cap. 19 & R-07 cliente, R-18 Overfore & Alta → Media, Media → Baja \\
+Ausencia de inventario técnico & Caso, Cap. 19 & R-05 & Crítica → Media \\
+\end{tabla}
+De la tabla se desprende que los once temas tienen al menos un riesgo con dueño, disparador y respuesta. Los seis del caso son, además, el contenido mínimo del registro que fija el paquete 1.1.3.1 del Formulario T-14. Cinco de ellos siguen en zona media después de las respuestas. Su cierre depende de decisiones del cliente: invertir en la red, firmar con el sindicato, negociar con los fabricantes, entregar el inventario técnico y disponer de su personal clave.
+
+Los 24 riesgos del registro se clasifican además en las tres perspectivas solicitadas para el Informe 2: riesgo de la solución, riesgo del desarrollo del proyecto y riesgo de implantación. Cada riesgo se asigna a la perspectiva en que se origina, y la columna «Perspectiva» del registro del Formulario T-16 lo indica (Overfore S.A., 2026b). La Tabla \ref{tab:riesgos-perspectiva-solucion-desarrollo-implantacion} resume cuántos riesgos tiene cada perspectiva y cuáles tienen la mayor exposición inherente.
+
+\begin{tabla}{I{0.250}D{0.150}D{0.250}I{0.350}}{Riesgos por perspectiva de la solución, del desarrollo y de la implantación.}{tab:riesgos-perspectiva-solucion-desarrollo-implantacion}
+  {\cab{Perspectiva} & \cab{N.º de riesgos} & \cab{Críticos y altos} & \cab{Riesgos de mayor exposición}}
+  {Fuente: elaboración propia a partir del registro de riesgos del Formulario T-16 (Overfore S.A., 2026b).}
+Solución & 9 & 2 críticos y 4 altos & R-05 y R-08, con 0,420 \\
+Desarrollo del proyecto & 7 & 3 altos & R-16, con 0,350, y R-07, con 0,315 \\
+Implantación & 8 & 1 crítico y 3 altos & R-12, con 0,420, y R-11, con 0,275 \\
+\end{tabla}
+De la tabla se desprende que la solución concentra la mayor exposición, con dos de los tres riesgos críticos: las interfaces no documentadas (R-05) y las zonas de sombra en terreno (R-08). El desarrollo del proyecto no tiene riesgos críticos, y sus tres riesgos altos dependen de decisiones del cliente y de los fabricantes. La implantación tiene el tercer riesgo crítico, que los operadores sigan usando la radio (R-12), y se controla con el indicador de adopción como condición de cierre de la marcha blanca. Después de las respuestas, ninguna perspectiva conserva riesgos en zona alta o crítica.
+
+\subseccion{Análisis cualitativo}
+Con las escalas de 8.1.3 cada riesgo recibe su probabilidad, su impacto y su exposición. La Figura \ref{fig:ubicacion-24-riesgos-matriz-exposicion-antes} ubica los 24 riesgos en la matriz antes de aplicar cualquier respuesta. La celda indica los niveles de probabilidad y de impacto, y el color de cada etiqueta indica la zona que resulta de la exposición propia del riesgo, calculada con su estimación puntual.
+
+\figura{15.5}{fig-8-4-ubicacion-24-riesgos-matriz-exposicion}{Ubicación de los 24 riesgos en la matriz de exposición, antes de las respuestas.}{fig:ubicacion-24-riesgos-matriz-exposicion-antes}{Fuente: elaboración propia con el Anexo B del Subdocumento 8 (Overfore S.A., 2026c).}
+De la figura se desprende que el registro se concentra en impactos medio y alto, salvo R-04 (impacto muy alto), y probabilidades entre muy baja y alta. Tres riesgos llegan a la zona crítica, todos con 60 \% de probabilidad e impacto alto, y cada uno cuenta una historia distinta de Aranda.
+
+El primero es R-05. El cliente reconoce que no tiene documentadas las interfaces de sus sistemas (CMAA, 2026b, cap. 5, p. 10), y la Etapa 1 necesita leer el despacho de flota, SAP S/4HANA, el sistema de laboratorio y el historiador de proceso. Si al cierre del levantamiento, en el mes 2, una de esas interfaces no existe, la cadena crítica de la Etapa 1 pierde 2,5 semanas, el 58 \% de su reserva.
+
+El segundo es R-08. La red LTE del rajo tiene zonas de sombra que crecen con la profundización, y la Botonera de Pala guarda registros durante al menos 48 horas sin señal. Superar esa autonomía pone en riesgo la conservación de los registros y el volumen real comprometido para cerrar la marcha blanca: al menos el 95 \% de los registros reales del período hechos en SITCO, incluidos viajes, pesajes, lotes y pasos de portería, medido diariamente durante al menos las cuatro últimas semanas (Formulario T-14, 1.6.3.1; Subdocumento 7, Tabla \refext{S7}{tab:indicadores-diarios-umbrales-cierre-marchas-blancas}; Overfore S.A., 2026f). El Art. 17.3 exige alcanzar el volumen comprometido, y el 95 \% lo fija el plan de implantación. La conciliación debe mantenerse sin diferencias no explicadas y la prueba de corte debe conservar cero registros perdidos.
+
+El tercero es R-12. La compañía ya vio a su gente abandonar dos sistemas que funcionaban, y un operador de pala recuerda que la pantalla anterior no servía con guantes (CMAA, 2026b, cap. 8, p. 16). Si los operadores siguen declarando por radio, se estima una extensión de tres semanas de la marcha blanca de la Etapa 1 a costo de Overfore: 3 × 565 = 1.695 HH, con la equivalencia semanal media de los paquetes 1.6.3.1 y 1.6.3.3 del T-14. La extensión no modifica por sí misma las fechas contractuales ni acredita disponibilidad de personas.
+
+Los diez riesgos de zona alta completan el grupo que exige una acción con costo y plazo dentro del plan. El cálculo de los 24 riesgos, con su valor esperado en semanas y en horas, está en el Anexo B del Subdocumento 8.
+
+\subseccion{Análisis de modos y efectos de falla}
+La exposición permite ordenar los riesgos, pero no indica si la señal de alerta llegará antes de que afecten al proyecto. Para examinar esa diferencia se aplicó un análisis de modos y efectos de falla, FMEA, a los trece riesgos de zona crítica y alta, con el método de IEC 60812:2018 (International Electrotechnical Commission [IEC], 2018). La severidad (S) y la ocurrencia (O) utilizan valores de 1 a 10 derivados del impacto y la probabilidad. La detección (D) representa la oportunidad del disparador. Un valor 2 indica una señal con meses de anticipación y un valor 8 una señal que aparece al aceptar el hito. El número de prioridad RPN se obtiene multiplicando S, O y D. La Tabla \ref{tab:numero-prioridad-riesgos-zona-critica-alta} presenta los resultados sin modificar las valoraciones del registro.
+
+\begin{tabla}{I{0.485}D{0.129}D{0.129}D{0.129}D{0.129}}{Número de prioridad de los riesgos de zona crítica y alta.}{tab:numero-prioridad-riesgos-zona-critica-alta}
+  {\cab{Riesgo} & \cab{S} & \cab{O} & \cab{D} & \cab{RPN}}
+  {Fuente: elaboración propia a partir de Subdocumento 8, cap. 8 — anexos, sección C, p. 12.}
+R-12 · Operadores que siguen usando la radio & 8 & 6 & 7 & 336 \\
+R-08 · Zona de sombra mayor que 48 horas & 8 & 6 & 4 & 192 \\
+R-23 · Personal sin credencial al primer turno & 8 & 4 & 6 & 192 \\
+R-16 · Fabricante que no entrega la telemetría & 8 & 5 & 4 & 160 \\
+R-05 · Interfaz existente no documentada & 8 & 6 & 3 & 144 \\
+R-11 · Sin acuerdo sindical para la biometría & 6 & 6 & 4 & 144 \\
+R-19 · Hallazgos altos en las pruebas de intrusión & 8 & 3 & 6 & 144 \\
+R-07 · Factores de ajuste sin quien los explique & 8 & 5 & 3 & 120 \\
+R-21 · Segunda fibra o satélite insuficientes & 6 & 4 & 5 & 120 \\
+R-24 · Analistas 24x7 incompletos al operar & 8 & 4 & 3 & 96 \\
+R-15 · Etapa 1 supera su reserva de plazo & 6 & 5 & 3 & 90 \\
+R-01 · Fin de soporte de componentes en la Etapa 1 & 6 & 5 & 2 & 60 \\
+R-20 · Transferencia de datos sin autorización & 8 & 3 & 2 & 48 \\
+\end{tabla}
+R-12 encabeza la prioridad aunque su exposición es igual a la de R-05 y R-08: la falta de adopción se notaría durante la marcha blanca. R-23 alcanza RPN 192 porque una credencial pendiente a cinco días hábiles del primer turno deja aproximadamente una semana laboral para cubrir la vacante y por ello se usan personas de reserva ya acreditadas. El aviso temprano se complementa con la prueba de guantes desde M5 para R-12 y la revisión interna de seguridad de M9 para R-19. R-01 y R-20 conservan los menores RPN por sus señales conocidas desde los primeros meses.
+
+\subseccion{Análisis cuantitativo por simulación}
+El análisis cuantitativo estima cuánto atraso pueden acumular cinco riesgos sobre la cadena crítica A04 a A24 de la Etapa 1. El plan considera el mes 11, actividad A16, como un periodo de corrección de defectos con capacidad de absorción de hasta 4,3 semanas (Overfore S.A., 2026a, paquete 1.1.3.2). No se trata de un mes sin trabajo. Para absorber un atraso debe poder comprimirse o solaparse parte de la corrección y continuarla en el paquete 1.4.3.7 sin impedir la certificación de M12. R-07 participa porque la Conciliación Metalúrgica, paquete 1.4.3.4, se programa entre M6 y M11 y su retrabajo alcanza esa corrección. R-15 representa el escenario conjunto de R-01, R-05, R-07, R-18 y R-19 que no se añade como un sexto evento.
+
+Cada uno se modeló como un evento que ocurre o no según su probabilidad y que, si ocurre, suma sus semanas de atraso. Se ejecutaron 100.000 iteraciones de Montecarlo con semilla fija, y el resultado se verificó con el cálculo exacto de las 32 combinaciones posibles de los cinco eventos (PMI, 2017). La Figura \ref{fig:distribucion-atraso-acumulado-sobre-cadena-critica} compara el atraso sin respuestas y con las respuestas del registro.
+
+\figura{15.5}{fig-8-5-distribucion-atraso-acumulado-sobre-cadena}{Distribución del atraso acumulado sobre la cadena crítica de la Etapa 1, sin y con respuestas.}{fig:distribucion-atraso-acumulado-sobre-cadena-critica}{Fuente: elaboración propia con el Anexo D del Subdocumento 8 (Overfore S.A., 2026c).}
+De la figura se desprende que, sin respuestas, sólo el 6 \% de los escenarios termina sin atraso y casi la mitad sobrepasa la reserva, con casos de hasta 10,5 semanas. Con las respuestas, el 41 \% de los escenarios termina sin atraso y casi todo el resto queda bajo 2 semanas. La Tabla \ref{tab:resultado-simulacion-sobre-cadena-critica-etapa} resume los indicadores.
+
+\begin{tabla}{I{0.282}D{0.153}D{0.135}D{0.135}D{0.295}}{Resultado de la simulación sobre la cadena crítica de la Etapa 1.}{tab:resultado-simulacion-sobre-cadena-critica-etapa}
+  {\cab{Escenario} & \cab{Atraso medio} & \cab{P80} & \cab{P90} & \cab{Probabilidad de superar 4,3 sem}}
+  {Fuente: elaboración propia a partir de Subdocumento 8, cap. 8 — anexos, sección D, p. 15.}
+Sin respuestas & 4,3 sem & 6,0 sem & 7,0 sem & 45,6 \% \\
+Con las respuestas del registro & 0,8 sem & 1,5 sem & 2,0 sem & 0,2 \% \\
+\end{tabla}
+De la tabla se desprende que las respuestas reducen el atraso modelado. Sin ellas, el P80 es de 6,0 semanas y supera las 4,3 semanas consideradas. Con ellas, el P80 baja a 1,5 semanas y la diferencia es de 2,8 semanas. Esa diferencia es un margen calculado bajo el supuesto de absorción del mes 11, no una capacidad libre demostrada por sí sola. El Líder de Desarrollo debe comprobar la carga de corrección y la secuencia de certificación antes de comprometerla. La probabilidad residual de superar 2,2 semanas es 7,0 \%. El Anexo D conserva los parámetros y la distribución completa.
+
+En la Etapa 2 se distingue la variación habitual de productividad de la digitalización del evento R-06. Con tres puestos de escaneo, B06 tiene 61,8 \% de probabilidad de terminar dentro de 25,6 semanas. El lote piloto permite detectar un rendimiento insuficiente y activar el cuarto puesto previsto, con 18,9 semanas esperadas. R-06 mantiene su alcance sobre un archivo mayor que 200.000 formularios o un rendimiento inferior a 480 formularios diarios por puesto. La verificación facial depende, por su parte, del acuerdo sindical antes de M15. Si no se obtiene, la portería mantiene la credencial y la función facial no se activa, esta contingencia debe quedar registrada y no presentarse como una función ya aceptada.
+
+\seccion{Plan de Acción a Riesgos}
+El análisis permite decidir qué hacer y cuándo hacerlo. Cada respuesta se vincula con un responsable, una actividad del plan y una señal que obliga a actuar. Primero se comparan el esfuerzo de las medidas y su efecto esperado. Después se establecen los plazos y disparadores. Por último se distingue el trabajo preventivo de las reservas que cubren lo que permanece después de las respuestas.
+
+\subseccion{Estrategias y análisis costo-beneficio}
+La estrategia se elige a partir de la exposición y de la causa que puede controlar Overfore. Los tres riesgos críticos requieren cambios de diseño y seguimiento de su residual. R-05 combina conectores por servicio y por archivo para disponer de una alternativa cuando no exista la interfaz prevista. R-08 combina registro local de 48 horas y un estudio de cobertura que permite al cliente decidir su inversión en red. R-12 considera el uso con guantes, la participación de operadores y la medición de adopción durante la marcha blanca. Estas medidas reducen la exposición estimada, pero no eliminan toda posibilidad de ocurrencia.
+
+En el registro completo, 13 riesgos se mitigan, 6 se escalan al cliente, 2 se transfieren y 3 se aceptan. Las etiquetas de etapa de las fichas identifican 94 acciones: 30 en la propuesta, 47 en la implementación, 8 en la implantación y 9 en la operación. Las primeras dos reúnen 77 de 94, aproximadamente 82 \%. La Figura \ref{fig:ubicacion-24-riesgos-matriz-exposicion-despues} muestra la exposición estimada después de las respuestas.
+
+\figura{15.5}{fig-8-6-ubicacion-24-riesgos-matriz-exposicion}{Ubicación de los 24 riesgos en la matriz de exposición, después de las respuestas.}{fig:ubicacion-24-riesgos-matriz-exposicion-despues}{Fuente: elaboración propia con el Anexo B del Subdocumento 8 (Overfore S.A., 2026c).}
+Ningún riesgo residual queda en zona alta o crítica con los criterios adoptados: quince son bajos y nueve medios. R-05 pasa a medio por una semana completa de atraso, R-17 se mantiene en zona media porque la salvedad de origen no acredita el requisito del comprador. R-04, R-12, R-16, R-17, R-19, R-20 y R-22 mantienen impacto alto mientras su consecuencia afecte cierre de marcha blanca, telemetría, trazabilidad, continuidad o la fecha comercial. R-02 y R-03 conservan aceptación pasiva, los demás mantienen su disparador y seguimiento. La dimensión dominante de cada ficha está en el Anexo G.1.
+
+El costo-beneficio compara el esfuerzo preventivo con la disminución del impacto esperado en HH y semanas. Once fichas requieren 704 HH adicionales, cuya asignación por rol y mes está en el Anexo G.2. Los profesionales que ya completan su dedicación no absorben esas horas automáticamente (Overfore S.A., 2026g): se incorporan apoyos o se aumenta una dedicación parcial dentro de su capacidad. Las horas de administración de 1.1.3.2 coordinan el trabajo y no sustituyen especialistas. La Tabla \ref{tab:costo-beneficio-respuestas-agregan-horas-edt} resume las once medidas; el control adicional de continuidad se calcula separadamente en G.4.
+
+\begin{tabla}{I{0.141}D{0.196}D{0.233}D{0.258}D{0.172}}{Costo y beneficio de las respuestas que agregan horas a la EDT.}{tab:costo-beneficio-respuestas-agregan-horas-edt}
+  {\cab{Riesgo} & \cab{Costo adicional (HH)} & \cab{Reducción del valor esperado (HH)} & \cab{Reducción del valor esperado de plazo (sem)} & \cab{Beneficio / costo}}
+  {Fuente: elaboración propia a partir de Subdocumento 8, cap. 8 — anexos, sección F, p. 22.}
+R-01 & 240 & 165 & 0,6 & 0,7 \\
+R-05 & 64 & 200 & 1,3 & 3,1 \\
+R-07 & 16 & 132 & 0,5 & 8,3 \\
+R-09 & 40 & 35 & 0,4 & 0,9 \\
+R-10 & 16 & 47 & 0,3 & 2,9 \\
+R-13 & 16 & 24 & Sin efecto & 1,5 \\
+R-17 & 40 & 38 & Sin efecto & 1,0 \\
+R-19 & 40 & 239 & 0,7 & 6,0 \\
+R-20 & 40 & 80 & Sin efecto & 2,0 \\
+R-23 & 32 & 170 & 0,3 & 5,3 \\
+R-24 & 160 & 120 & Sin efecto & 0,8 \\
+Total & 704 & 1.250 & 4,1 & 1,8 \\
+\end{tabla}
+Las once respuestas comparadas requieren 704 HH y reducen 1.250 HH de impacto esperado, relación de 1,8 a 1. La suma por fichas del Anexo F es 3.505,79845 HH, pero incluye el escenario conjunto R-15 y no se interpreta como ahorro independiente. Además se programan 96 HH de preparación y ensayos de pérdida total de sala, sin atribuirles una reducción de probabilidad no medida. El esfuerzo preventivo total es 800 HH: 704 de las fichas y 96 de continuidad transversal. La adquisición del kit y el consumo de una plataforma alternativa se dimensionan aparte, sin importes en la oferta técnica.
+
+\subseccion{Responsables, plazos y disparadores}
+Después de elegir la medida se establece quién la ejecuta y qué señal activa la contingencia. El responsable vigila el evento y presenta su estado al Comité de Proyecto. Cuando la causa depende del cliente o de un proveedor, identifica además la decisión que necesita y la fecha en que deja de ser útil esperar. El requisito RT-19.04 exige responsable, plazo y disparador (CMAA, 2026c, p. 33). La Tabla \ref{tab:responsable-plazo-disparador-riesgos-zona-critica} reúne estos elementos para los trece riesgos de zona crítica y alta.
+
+\begin{tabla}{I{0.110}I{0.153}I{0.239}I{0.141}I{0.356}}{Responsable, plazo y disparador de los riesgos de zona crítica y alta.}{tab:responsable-plazo-disparador-riesgos-zona-critica}
+  {\cab{Riesgo} & \cab{Estrategia} & \cab{Responsable} & \cab{Plazo} & \cab{Disparador}}
+  {Fuente: elaboración propia a partir de Formulario T-16 (asociado al cap. 8), sección 2, p. 6.}
+R-05 & Mitigar con diseño & Líder de Integración & Meses 1 a 4 & Interfaz crítica sin documentación al cierre del mes 2 \\
+R-08 & Mitigar y escalar & Arquitecto de Solución & M2–M4, M8, M14 y M20, operación semestral & Frente sin cobertura en estudio o actualización, dispositivo con más de 24 horas sin sincronizar \\
+R-12 & Mitigar con diseño & Líder de Implantación y Gestión del Cambio & Meses 3 a 15 & Menos de 90 \% de declaraciones propias en la segunda semana de la pala piloto \\
+R-16 & Escalar & Líder de Integración & Meses 1 a 12 & Acuerdo de un fabricante sin firmar al cierre del mes 9 \\
+R-07 & Escalar & Líder de Datos & Meses 1 a 6 & Acta de ratificación sin firma de finanzas al cierre del mes 3 \\
+R-11 & Escalar & Jefe de Proyecto & Meses 2 a 14 & Sin acuerdo firmado al cierre del mes 12 \\
+R-24 & Mitigar & Líder de Operación / SRE & Meses 12 a 21 & Menos de 4 analistas al cierre del mes 12 o de 7 al cierre del mes 18 \\
+R-15 & Mitigar & Líder de Desarrollo & Meses 1 a 12 & Consumo de 50 \% de la reserva de plazo (2,2 sem) \\
+R-01 & Mitigar & Arquitecto de Solución & Meses 1 a 20 & Fin de soporte a menos de 90 días de un componente desplegado \\
+R-19 & Mitigar & Encargado de Seguridad de la Información & Meses 9 a 20 & Hallazgo alto abierto en la revisión interna del mes 9 \\
+R-20 & Escalar & Encargado de Seguridad de la Información & Meses 1 a 4 & Autorización escrita no recibida al cierre del mes 4 \\
+R-21 & Mitigar & Arquitecto de Solución & Contrato a M6, satélite M5 & Fecha o avance incompatible con habilitación M6, ruta compartida, satélite inferior a 20 Mbps en M5 \\
+R-23 & Mitigar & Jefe de Proyecto & Meses 1 a 20 & Credencial sin resolver a 5 días hábiles del primer turno o examen de altura reprobado \\
+\end{tabla}
+De la tabla se desprende que el seguimiento comienza antes de la aceptación de los hitos. R-12 incorpora la prueba con guantes desde M5 y la observación de la pala piloto. R-24 utiliza conteos en M12 y M18 para anticipar la dotación de operación. En R-21, la contratación y el avance del enlace se revisan antes de su habilitación en M6, no después de ella. El disparador activa la contingencia, pero no reemplaza las acciones preventivas ni demuestra por sí solo que una respuesta haya sido ejecutada. Los trece riesgos se distribuyen entre ocho roles.
+
+\subseccion{Reservas de contingencia y de gestión}
+Las reservas cubren efectos que pueden permanecer aunque las medidas se ejecuten. La incertidumbre de estimación tiene una diferencia P90 de 988 HH respecto del valor esperado, que el T-14 relaciona con corrección y saldos de los roles. La contingencia de los riesgos identificados es de 997 HH netas después de descontar 64 HH esperadas de O-02, o 1.061 HH sin ese ahorro. Su distribución temporal se determina por riesgo, persona y mes: R-17 afecta M25 y R-14 atraviesa implementación y operación, por lo que no se asigna todo ese esfuerzo a la implementación. La reserva de gestión conserva la referencia de 5.372 HH del T-14 y requiere aprobación del Comité Ejecutivo. En plazo, el modelo estima 0,8 semanas de atraso medio y P80 de 1,5 semanas; el margen calculado de 2,8 semanas respecto de M11 sólo se utiliza en la medida en que la carga de corrección lo permita. La Tabla \ref{tab:reservas-contingencia-gestion} distingue estas magnitudes y su autorización.
+
+\begin{tabla}{I{0.196}I{0.221}D{0.141}I{0.227}I{0.215}}{Reservas de contingencia y de gestión.}{tab:reservas-contingencia-gestion}
+  {\cab{Reserva} & \cab{Plazo} & \cab{Horas hombre} & \cab{Dónde se refleja} & \cab{Quién la usa}}
+  {Fuente: elaboración propia a partir de Subdocumento 8, cap. 8 — anexos, sección E, p. 18; Formulario T-14 (asociado al cap. 7), tabla \refext{T14}{tab:esfuerzo-estimado-rama-origen-horas} del Formulario T-14 (esfuerzo estimado por rama), p. 45.}
+Incertidumbre de la estimación & No aplica & 988 HH & Paquetes 1.4.3.7 y 1.4.4.7 y saldo de los roles clave & Líder de Desarrollo, dentro de la línea base \\
+Contingencia de riesgos identificados & 0,8 sem en la Etapa 1 & 997 HH netas, 1.061 HH sin descontar O-02 & Asignación por riesgo, persona y mes en paquetes ejecutores, con efectos de implementación y operación y su valorización en la Oferta Económica & JP en implementación y GS desde M21, contra un disparador activado \\
+Gestión & Hasta 2,8 sem calculadas en M11, sujetas a capacidad, ventanas de 7 y 2 días para H7 y H12 & 5.372 HH & Fuera de la EDT, valorizada en la Oferta Económica & Sólo el Comité Ejecutivo \\
+\end{tabla}
+Las 1.280 HH de corrección conservan su destino en T-14: defectos e incertidumbre de estimación. Las 800 HH preventivas se programan como un incremento separado, las 997 HH netas de contingencia orientan el valor esperado de eventos y las 5.372 HH de gestión conservan su referencia. Cada activación distingue reserva financiera, esfuerzo completo del evento y capacidad de sus ejecutores. G.2–G.4 aportan una asignación estimada y condiciones de ejecución, sin utilizar el ahorro de O-02 antes de materializarse ni el mismo recurso para dos trabajos. La Figura \ref{fig:reservas-contingencia-sobre-cronograma-implementacion-meses} sitúa las ventanas y los paquetes de corrección.
+
+La reconstrucción del T-14/T-15 reúne los roles Datos e Implantación de Benjamín Velásquez Farías: M13/M14 suman 154,25 HH frente a 160 y M19, 148,33 frente a 152. Por ello el refuerzo de R-12 se programa en M16 y usa apoyos temporales. El escenario principal de un área requiere 760 HH brutas, 748 incrementales: 48 HH de LIG llevan su carga de M16 de 94,33 a 142,33 HH, 12 HH de LF se reordenan dentro de 1.2.5.4 y los demás ejecutores son incorporaciones adicionales. Se conserva 1.695 HH como valoración media del registro. Dos áreas simultáneas requieren 1.312 HH, desde tres, 1.864 HH, se escala una ampliación antes de activar la cobertura. El Anexo G.3 muestra turnos, hipótesis y límites (Overfore S.A., 2026c).
+
+Para la pérdida total de sala se adopta el restablecimiento en cuatro horas, coherente con Arquitectura, el dimensionamiento y el Art. 20, que se distingue de la falla de un servidor en una hora y de la resincronización tras un corte de enlace. Se prepara un kit fuera del recinto principal y se ensaya en M15 y M21 con conciliación de eventos. El presupuesto de diseño suma 240 minutos y 96 HH de preparación y ejercicios. Para R-20 se conserva Brazil South como ruta del diseño vigente, sujeta a autorización previa escrita, y se estima una adaptación chilena de 400 HH sólo si se activa una plataforma compatible y aprobada. Los procedimientos, horas y pruebas están en G.4 (Overfore S.A., 2026d, 2026e).
+
+\figura{15.5}{fig-8-7-reservas-contingencia-sobre-cronograma-implementacion}{Reservas de contingencia sobre el cronograma de la implementación, meses 1 a 21.}{fig:reservas-contingencia-sobre-cronograma-implementacion-meses}{Fuente: elaboración propia con el Formulario T-14 (Overfore S.A., 2026a).}
+De la figura se desprende que cada margen protege un momento distinto. La absorción de M11 corresponde a H5 y depende de la corrección que pueda comprimirse. Las ventanas de siete y dos días corresponden a H7 y H12, por lo que no recuperan un incumplimiento anterior de H5. Antes de usar horas se verifica el saldo del rol ejecutor y se registra su origen; financiar una respuesta no sustituye esa comprobación de capacidad. El Jefe de Proyecto registra riesgo, causa, fecha y consumo. Un consumo de 50 \% exige recuperación y uno de 80 \% se eleva al Comité Ejecutivo. La reserva se libera cuando el riesgo se cierra sin ocurrir.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item International Electrotechnical Commission. (2018). Failure modes and effects analysis (FMEA and FMECA) (IEC 60812:2018). IEC.
+\item International Organization for Standardization. (2018). Risk management — Guidelines (ISO 31000:2018). ISO.
+\item Overfore S.A. (2026a). Formulario T-14: Plan de trabajo, EDT y carta Gantt. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026b). Formulario T-16: Plan de riesgos. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026c). Anexos del Subdocumento 8: Plan de riesgos. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026d). Subdocumento 4 Arquitectura lógica y física de la solución. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026e). Subdocumento 5 Modelo y gestión de datos. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026f). Subdocumento 7 Plan de trabajo, EDT, cronograma e implantación. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026g). Formulario T-15: Nivelación de recursos. Licitación N° TFEP-01/2026.
+\item Project Management Institute. (2017). \emph{A guide to the project management body of knowledge (PMBOK guide)} (6.ª ed.). Project Management Institute.
+\end{referencias}
+
+\seccionsinnumero{Declaración de uso de IA}
+Se utilizó IA generativa, principalmente como apoyo en la redacción, en la verificación de cifras y en las figuras generadas desde el registro de riesgos; el detalle por sección está en la Tabla \ref{tab:declaracion-uso-ia-seccion}.
+
+\begin{tabla}{I{0.147}I{0.164}I{0.194}I{0.088}I{0.140}I{0.268}}{Declaración de uso de IA por sección.}{tab:declaracion-uso-ia-seccion}
+  {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad del uso} & \cab{Nivel en\newline texto} & \cab{Nivel en\newline diagramas} & \cab{Revisión humana (quién y qué verificó)}}
+  {Fuente: elaboración propia}
+Introducción y capítulo 8 & Claude y Codex & Redacción de la entrada al análisis de riesgos. & Alto & Ninguno & Benjamín Velásquez: comprobó que la relación del capítulo con el alcance del proyecto tuviera sentido. \\
+8.1 & claude y codex & Base explicativa del plan de riesgos. & Alto & Ninguno & Claudio Cabello: verificó los criterios de gestión y de escalamiento contra el Art. 71 de las Bases administrativas y la Tabla \ref{tab:instancias-revisan-registro-riesgos}. \\
+8.1.1 a 8.1.4 & claude y codex & Organización del enfoque, roles, escalas y matriz de exposición. & Alto & Medio & Benjamín Velásquez: validó las escalas y la clasificación de zonas de acción. \\
+8.2 & claude y codex & Apoyo para estructurar la identificación y el análisis. & Medio & Ninguno & Benjamín Rodríguez: verificó las escalas y la clasificación de zonas de acción contra las bases. \\
+8.2.1 a 8.2.5 & claude y codex & Desarrollo del inventario, análisis cualitativo, FMEA y simulación. & Alto & Medio & Claudio Cabello: revisó las probabilidades, impactos y supuestos de cálculo contra el Anexo B y el Anexo D. \\
+8.3 & claude y codex & Borrador del plan de respuesta a riesgos. & Bajo & Ninguno & Benjamín Rodríguez: comprobó la relación de cada respuesta con su riesgo contra las fichas del Formulario T-16. \\
+8.3.1 a 8.3.3 & claude y codex & Apoyo para explicar costo-beneficio, responsables, disparadores y reservas. & medio & Medio & Benjamín Rodríguez: revisó los costos, plazos y reglas de uso de las reservas contra el Formulario T-14 \\
+Referencias & claude y codex & Apoyo para ordenar y uniformar las referencias citadas. & Bajo & Ninguno & Benjamín Rodríguez: verificó la existencia de las fuentes y sus citas contra las Referencias del capítulo y las Bases administrativas. \\
+Anexo A & claude y codex & Apoyo para explicar escalas, umbrales y escalamiento. & Medio & Ninguno & David Martínez: revisó las escalas frente al plan de riesgos. \\
+Anexo B & claude y codex & Contraste de probabilidad, impacto y exposición. & Medio & Ninguno & Benjamín Velásquez: revisó las fórmulas y la clasificación de cada riesgo. \\
+Anexo C & claude y codex & Organización del análisis de modos y efectos de falla. & Medio & Ninguno & David Martínez: revisó las puntuaciones y prioridades \\
+Anexo D & claude y codex & Apoyo para describir la simulación de la cadena crítica. & Medio & Ninguno & Benjamín Velásquez: verificó los supuestos, entradas y resultados de la simulación contra el Anexo D. \\
+Anexo E & claude y codex & Redacción de los cálculos de reservas y sus reglas de uso. & Medio & Ninguno & Claudio Cabello: comprobó las reservas y su consistencia con el cronograma del Formulario T-14. \\
+Anexo F & claude y codex & Apoyo en la comparación costo-beneficio de respuestas. & Medio & Ninguno & Claudio Cabello: comprobó los costos y la reducción esperada de exposición contra el Anexo F y el Formulario T-16. \\
+Anexo G & claude y codex & Organización de decisiones y recursos de las respuestas. & Medio & Ninguno & David Martínez: verificó las decisiones, plazos y recursos comprometidos contra formulario y anexos \\
+T-16 & claude y codex & Apoyo para redactar las fichas del registro de riesgos. & Alto & Ninguno & Claudio Cabello: verificó los riesgos, puntuaciones, respuestas y responsables contra el Formulario T-16 y la Tabla \refext{T14}{tab:roles-equipo-clave-dedicacion-paquetes-cargo} del Formulario T-14. \\
+\end{tabla}
+
+\end{document}

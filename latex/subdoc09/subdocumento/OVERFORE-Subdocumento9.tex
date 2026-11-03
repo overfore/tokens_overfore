@@ -1,0 +1,268 @@
+%% OVERFORE-Subdocumento9.tex — generado desde OVERFORE-Subdocumento9.docx
+%% Formato: clase overfore, modo subdoc. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[subdoc]{../../comun/overfore}
+\numsubdoc{9}
+\nombresubdoc{Plan de calidad}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{A9,T13}
+\begin{document}
+
+\capitulo{Introducción al Plan de calidad}
+La calidad de SITCO Aranda se demuestra en cada cambio. Cada línea de código pasa por controles automáticos antes de sumarse al producto, recorre cuatro de los cinco ambientes (Desarrollo, QA, Preproducción y Producción) con pruebas cada vez más exigentes, y cada etapa llega a producción solo con un acta firmada por una persona del cliente que apunta a evidencia concreta. Este capítulo describe ese recorrido y los compromisos medibles de Overfore en cada punto.
+
+Una puerta de calidad es un punto del recorrido de un cambio donde se comprueban criterios medibles. Un umbral bloqueante es el valor que, si no se alcanza, cierra la puerta y devuelve el cambio a quien lo hizo. Una solicitud de integración es el pedido para sumar un cambio al código común. SITCO Aranda tiene cinco puertas. Son la solicitud de integración, la integración en la rama principal, el despliegue a QA (el ambiente de verificación previo a Preproducción), la promoción a Preproducción y el paso a producción. Las cuatro primeras son automáticas, salvo la revisión por pares de la puerta 1, y la quinta exige además la firma de una persona del cliente.
+
+La gestión de la calidad tiene tres procesos (Project Management Institute [PMI], 2017). Planificar decide qué calidad se compromete y cómo se demostrará, y asegurar y controlar la ponen en práctica en los hitos del contrato. ISO/IEC 25010:2023 describe la calidad de un producto de software y el modelo de madurez SAMM (Software Assurance Maturity Model), de OWASP (Open Worldwide Application Security Project), mide la madurez de las prácticas de seguridad. La Figura \ref{fig:estructura-plan-calidad-conexion-demas-documentos} muestra la conexión del capítulo con el resto de la propuesta.
+
+\figura{16.1}{fig-9-1-estructura-plan-calidad-conexion-demas}{Estructura del plan de calidad y su conexión con los demás documentos de la propuesta.}{fig:estructura-plan-calidad-conexion-demas-documentos}{Fuente: elaboración propia.}
+El capítulo se ordena en tres partes. La sección 9.1 fija qué se mide y con qué umbral, la 9.2 cómo se verifica cada cambio y la 9.3 cuándo ocurre cada actividad en el calendario del contrato. El Subdocumento 6 aporta el flujo de integración y la definición de terminado, el Subdocumento 7 la estructura de descomposición del trabajo (EDT) y el cronograma de la sección 9.3, y el Subdocumento 13 el clasificador de detenciones. El plan recibe cuatro insumos ya definidos y no modifica ninguno. Del Subdocumento 2 toma los 248 requerimientos de su Anexo A. De ellos, 126 son funcionales (RF), 96 no funcionales (RNF), 15 de transición (TRA) y 11 del proyecto (RP).
+
+Del Subdocumento 3 toma los 14 resultados de negocio y las seis condiciones de cierre de la marcha blanca, que es el período de operación supervisada previo a cada paso a producción. Del Subdocumento 4 toma los contratos entre módulos, el registro de decisiones de arquitectura y los cinco ambientes. Y del Subdocumento 5 toma la migración y los indicadores de calidad de datos.
+
+A su vez, el plan entrega tres productos.
+
+\begin{itemize}
+\item Los anexos, con el detalle que el capítulo resume. El Anexo A verifica cada requerimiento no funcional, el Anexo B define cuándo un trabajo está terminado y fija los plazos y los máximos de defectos, el Anexo C reúne la evidencia de cada estándar de calidad, el Anexo D fundamenta los umbrales de calidad del código y el Anexo E detalla los controles de cada puerta.
+\item El Formulario T-13, el plan de pruebas y validación. Incluye niveles, tipos, ambientes, datos de prueba, criterios de entrada y salida, automatización y el calendario de las pruebas de carga, de resiliencia, de recuperación ante desastres y de seguridad ofensiva.
+\item El Formulario T-17, el protocolo de aceptación de cada hito y del producto final.
+\end{itemize}
+Ambos formularios se entregan como archivos propios, OVERFORE-Formulario-T-13 y OVERFORE-Formulario-T-17. El Formulario T-12 remite a este subdocumento como evidencia de los requisitos de cobertura, pruebas de carga y de resiliencia, seguridad ofensiva, datos de prueba y definición de terminado.
+
+\seccion{Plan de Calidad}
+El plan de calidad define qué se entiende por calidad y con qué umbral se exige, qué madurez deben alcanzar las prácticas que la producen, cómo se mide en el código y quién vigila su cumplimiento. La definición y los umbrales se apoyan en ISO/IEC 25010:2023, la madurez en OWASP SAMM, la medición en métricas de código con umbral bloqueante y la vigilancia en el gobierno de la calidad.
+
+\subseccion{Definición de calidad en SITCO Aranda}
+Para esta solución, calidad es cumplir los 248 requerimientos y los 14 resultados de negocio con evidencia que el cliente pueda verificar.
+
+El plan alcanza a los cuatro componentes de la solución. Las métricas de código se aplican al software. Los dispositivos de terreno se prueban en cabina, y la red se verifica con el estudio de cobertura y las pruebas de corte de enlace. La infraestructura se verifica con pruebas de configuración, de resiliencia y de recuperación ante desastres. Entre las piezas de la infraestructura está el Nodo de Faena, el equipo instalado en la faena que mantiene la operación cuando se corta el enlace con Antofagasta.
+
+Los umbrales y el método de verificación de cada requerimiento se aprueban en los hitos H1 y H2, antes de escribir la mayor parte del código, de modo que la calidad se fija en el diseño y no al final.
+
+\subseccion{Marco de aseguramiento basado en ISO/IEC 25010}
+Para fijar esos umbrales se usa ISO/IEC 25010, el modelo que describe la calidad de un producto de software. No se certifica, y sirve para decidir qué atributos medir y con qué umbral. Se adopta su edición vigente, publicada el 15 de noviembre de 2023, porque agrega la seguridad de funcionamiento, que evita daños a personas, bienes o entorno (International Organization for Standardization [ISO] e International Electrotechnical Commission [IEC], 2023). El atributo es pertinente porque un error del sistema puede llegar a la planta o a las personas.
+
+La edición 2023 tiene nueve características. Son la adecuación funcional, la eficiencia de desempeño, la compatibilidad, la capacidad de interacción (antes usabilidad), la fiabilidad, la seguridad, la mantenibilidad, la flexibilidad (antes portabilidad) y la seguridad de funcionamiento. La seguridad protege datos y accesos, y la seguridad de funcionamiento protege a las personas y a la operación. Cada característica tiene en SITCO Aranda un umbral numérico y una puerta donde bloquea.
+
+Las transacciones por segundo, o TPS, indican cuántas operaciones procesa el sistema cada segundo. El percentil 95, o p95, es el tiempo dentro del cual se atiende el 95 \% de las solicitudes. El objetivo de tiempo de recuperación (RTO) es el plazo máximo para restablecer el servicio, y el objetivo de punto de recuperación (RPO), la mayor pérdida de datos aceptada, medida en tiempo. WCAG son las pautas de accesibilidad para el contenido web (Web Content Accessibility Guidelines), con niveles A, AA y AAA. La Tabla \ref{tab:caracteristicas-iso-iec-25010-2023-umbral} muestra, para cada característica, su umbral y la puerta donde bloquea un cambio.
+
+\begin{tabla}{I{0.242}I{0.396}I{0.362}}{Características de ISO/IEC 25010:2023, umbral en SITCO Aranda y puertas donde bloquean.}{tab:caracteristicas-iso-iec-25010-2023-umbral}
+  {\cab{Característica ISO/IEC 25010} & \cab{Umbral en SITCO Aranda} & \cab{Dónde bloquea}}
+  {Fuente: elaboración propia basada en ISO/IEC 25010:2023 y en el catálogo de requerimientos de SITCO Aranda.}
+Adecuación funcional & 126 requerimientos funcionales con caso aprobado & Puerta 4, promoción a Preproducción \\
+Eficiencia de desempeño & p95 de 2 s, 3 s y 1,5 s a 300 TPS & Puerta 2, integración, y puerta 5, paso a producción \\
+Compatibilidad & 100 \% de interfaces documentadas y 0 consumidores rotos & Puerta 1, solicitud de integración, y puerta 2, integración \\
+Capacidad de interacción & WCAG 2.2 AA sin incumplimientos y 3 interacciones como máximo & Puerta 3, despliegue a QA, y puerta 5, paso a producción \\
+Fiabilidad & 0 registros perdidos en 48 h, RTO de 4 h y RPO de 15 min, en terreno, RTO de 1 h & Puerta 5, paso a producción \\
+Seguridad & 0 hallazgos nuevos críticos o altos & Puertas 1 a 3, de la solicitud de integración a QA, y puerta 5, paso a producción \\
+Mantenibilidad & Cobertura de 70 \% y complejidad de 10 & Puerta 1, solicitud de integración, y puerta 2, integración \\
+Flexibilidad & Crece 3 veces sin rediseño y se replica por parametrización & Puerta 2, integración, y puerta 5, paso a producción \\
+Seguridad de funcionamiento & Modo reducido informado en el 100 \% de los casos y 0 escrituras al control & Puerta 5, paso a producción \\
+\end{tabla}
+Cada característica tiene un umbral medible y una o más puertas donde un incumplimiento detiene el cambio. La distribución de los 222 requerimientos de producto por característica ISO/IEC 25010:2023 está en la Tabla \refext{A9}{tab:requerimientos-producto-segun-caracteristica-iso-iec} del Anexo C de OVERFORE-Subdocumento9-Anexos.
+
+Más de la mitad de los requerimientos de producto son funcionales, 126 de 222 (los 248 del catálogo menos los 15 de transición y los 11 del proyecto), cada uno con su caso de aceptación. Además, el catálogo cubre en parte la mantenibilidad, que es la facilidad para corregir y cambiar el software, con el requisito de cobertura de pruebas (RNF-TRV-04.11) y con los de diagnóstico y trazabilidad de operabilidad (RNF-OPE-001 y RNF-OPE-006). Por eso se agregan métricas propias de complejidad, acoplamiento, duplicación y deuda técnica, que detienen el cambio en la puerta 1, solicitud de integración.
+
+La seguridad de funcionamiento no tiene categoría propia en el catálogo. Se le asignan dos requerimientos ya contados en otras filas, la degradación controlada ante fallas (RNF-DIS-007) y la lectura del historiador sin capacidad de escribir en el control de proceso (RNF-SEG-004).
+
+La calidad de los datos se rige por ISO/IEC 25012 (ISO e IEC, 2008). Su cumplimiento se mide en el tablero que publica el Subdocumento 5 (5.2.3), al que el cliente accede de forma directa. El tablero informa por dominio y por mes tres metas, de 95 \% de completitud, 98 \% de exactitud y 98 \% de consistencia, y diez indicadores de detalle.
+
+Cada estándar se declara con el control implementado y el entregable que lo evidencia. El Anexo C reúne esa cadena para los estándares de calidad del capítulo.
+
+\subseccion{Modelo de madurez}
+ISO/IEC 25010 mide el producto. Un modelo de madurez mide, en cambio, qué tan ordenada y repetible es la forma de trabajar que lo produce. Se adopta OWASP SAMM versión 2 porque cubre las prácticas de mayor riesgo de la solución, la construcción segura y la verificación, y se evalúa al inicio y cada año con el mismo método.
+
+SAMM evalúa quince prácticas, agrupadas en cinco funciones del negocio. Son gobierno, diseño, implementación, verificación y operaciones, y cada práctica tiene tres niveles de madurez (OWASP Foundation, 2020). Las metas no son una certificación sino compromisos que evalúa el Líder de Calidad y Pruebas, y se fijan en cuatro momentos del contrato.
+
+\begin{itemize}
+\item Mes 2, hito H1. Evaluación inicial de las 15 prácticas, con un informe que fija la línea base.
+\item Mes 12, hito H5. Nivel 2 en las 15 prácticas, con informe y cierre de brechas. En este nivel cada práctica está definida y se cumple, y alcanza para certificar la Etapa 1.
+\item Mes 21, hito H12. Nivel 3 en implementación y verificación, que suman 6 prácticas, con informe de reevaluación. Se exige en esas funciones porque un fallo en ellas llegaría a producción.
+\item Desde el mes 21. Reevaluación cada 12 meses, con un informe anual al cliente, durante los 36 meses de operación.
+\end{itemize}
+Los hitos H1, H5 y H12 exigen una evaluación de madurez, y cada evaluación queda como evidencia del hito correspondiente.
+
+\subseccion{Métricas de calidad del código y umbrales bloqueantes}
+La madurez se evalúa una vez al año, mientras que el código se mide en cada cambio. En la puerta 1, solicitud de integración, y en la puerta 2, integración en la rama principal, se produce un informe de métricas del código. Una métrica con umbral bloqueante detiene el cambio y una con alerta lo deja avanzar, pero queda registrada. Las métricas de cobertura se calculan sobre la lógica de negocio, sin contar el código generado de los contratos, los objetos de transferencia de datos, la configuración ni los adaptadores de infraestructura. La Tabla \ref{tab:umbrales-bloqueantes-calidad-codigo} presenta las métricas y sus umbrales.
+
+\begin{tabla}{I{0.296}I{0.394}I{0.310}}{Umbrales bloqueantes de calidad del código.}{tab:umbrales-bloqueantes-calidad-codigo}
+  {\cab{Métrica} & \cab{Umbral bloqueante} & \cab{Código al que se aplica}}
+  {Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 24, p. 17); Bases técnicas transversales, RT-04.11, p. 11; McCabe (1976) y Watson y McCabe (1996).}
+Cobertura de líneas & 70 \% o más, con alerta bajo 75 \% & Lógica de negocio, global \\
+Cobertura de líneas en código nuevo & 80 \% o más & Código nuevo o modificado \\
+Cobertura de ramas & 70 \% global y 75 \% en código nuevo & Lógica de negocio \\
+Cálculo crítico & Líneas 90 \% y ramas 85 \% & Conciliación, mezcla y sincronización \\
+Complejidad ciclomática & 10 por método, con excepción hasta 15 & Todo el código \\
+Acoplamiento entre módulos & Cero ciclos y cero accesos a datos ajenos, con pruebas de arquitectura & Los nueve módulos \\
+Duplicación & 3 \% o menos & Código nuevo \\
+Deuda técnica & 5 \% o menos (calificación A) & Código nuevo \\
+Hallazgos nuevos críticos de seguridad & Cero & Cada cambio \\
+Hallazgos nuevos altos de seguridad & Cero & Cada cambio \\
+\end{tabla}
+Los umbrales protegen tres aspectos. Los de cobertura fijan el piso bajo el cual parte del cálculo queda sin probar, los de complejidad, acoplamiento, duplicación y deuda técnica protegen la mantenibilidad, y los de seguridad no admiten hallazgos nuevos críticos ni altos.
+
+\subsubseccion{Cobertura de líneas y de ramas}
+Se exige una cobertura de líneas de 70 \% o más en la lógica de negocio. En el código nuevo se exige 80 \%, para que la cifra global no dependa de código antiguo. La cobertura de ramas es de 70 \% global y 75 \% en código nuevo. El fundamento de estos valores está en el Anexo D de OVERFORE-Subdocumento9-Anexos.
+
+\subsubseccion{Cálculo crítico}
+El cálculo crítico abarca la conciliación metalúrgica, la atribución de mezclas y la sincronización. Exige 90 \% de líneas y 85 \% de ramas. La cobertura mide si el código se ejecutó, no si las pruebas detectan errores (Inozemtseva y Holmes, 2014). Por eso se complementa con la revisión por pares de los casos de prueba.
+
+\subsubseccion{Complejidad y acoplamiento}
+La complejidad ciclomática tiene un máximo de 10 por método. Puede llegar a 15 con aprobación del par en métodos largos por naturaleza (McCabe, 1976; Watson y McCabe, 1996). El acoplamiento no admite valores intermedios, cero ciclos entre módulos y cero accesos a datos ajenos, verificados con pruebas de arquitectura.
+
+\subsubseccion{Duplicación, deuda técnica y hallazgos de seguridad}
+La duplicación se limita a 3 \% o menos y la deuda técnica a 5 \% o menos, solo en código nuevo. En seguridad no se admiten hallazgos nuevos críticos ni altos.
+
+El Comité de Arquitectura puede proponer cambios a los umbrales de calidad del código, con participación del cliente en su aprobación. Un umbral solo puede bajar con un registro de decisión. En los hitos de entrega del software para pruebas, H4 y H9, el informe de métricas forma parte de la evidencia de aceptación.
+
+\subseccion{Gobierno de la calidad}
+El Líder de Calidad y Pruebas actúa con independencia de quienes construyen. Revisa los entregables por hito, lleva métricas de defectos, registra las no conformidades y mantiene un plan de acciones correctivas. Quien escribe un cambio no aprueba su propia promoción, y la evaluación de madurez la realiza el Líder de Calidad y Pruebas, de forma independiente de quienes construyen.
+
+Las decisiones que afectan a más de un módulo las toma el Comité de Arquitectura, cuya composición y funcionamiento se describen en el Subdocumento 6 (6.1.2).
+
+\seccion{Estrategia de Aseguramiento de Calidad}
+Los umbrales de la sección 9.1 se hacen cumplir con aseguramiento y con control. El aseguramiento mira el proceso y busca que el defecto no ocurra, y el control mira cada entregable y busca los defectos que ya existen. Se usan los dos. El aseguramiento se aplica con las puertas de calidad, las revisiones por pares y el análisis estático y dinámico. El control se aplica con la estrategia de pruebas, la verificación y validación de cada requerimiento y la gestión de defectos, hasta la aceptación de cada hito con el Formulario T-17.
+
+\subseccion{Puertas de calidad}
+Cada puerta da por buena la evidencia de las anteriores y agrega solo lo que estas no verifican, de modo que una prueba no se repite sin necesidad y una falla se detecta donde es más barato corregirla. Humble y Farley (2010) describen esta idea como línea de despliegue. Si un cambio no pasa una puerta, vuelve al punto donde falló. La Figura \ref{fig:cinco-puertas-calidad-ambientes-condiciones-bloquean} resume qué controla y qué bloquea cada puerta.
+
+\figura{16.1}{fig-9-2-cinco-puertas-calidad-ambientes-condiciones}{Las cinco puertas de calidad, sus ambientes y las condiciones que bloquean el avance.}{fig:cinco-puertas-calidad-ambientes-condiciones-bloquean}{Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 24, p. 17), y las Bases técnicas transversales (CMAA, 2026c, 20.1, p. 34).}
+Solo la puerta 1 incluye una revisión de una persona, la revisión por pares, y solo la puerta 5, que compromete al cliente, exige firma. Las puertas 2 a 4 son automáticas. El artefacto firmado desde la puerta 2 avanza sin recompilarse, y un cambio que no pasa una puerta vuelve al punto donde falló.
+
+Cada puerta tiene controles propios, que el Anexo E de OVERFORE-Subdocumento9-Anexos detalla. La puerta 1, solicitud de integración, verifica que el cambio compila, que sus pruebas pasan y que cumple los umbrales de calidad del código. Ejecuta además los análisis de seguridad, incluido el análisis dinámico sobre la imagen desplegada en el ambiente efímero de la rama. Un cambio sin requerimiento ni incidencia no se fusiona en la rama principal.
+
+La puerta 2, integración en la rama principal, verifica los contratos frente a sus consumidores (Pact Foundation, s.f.) y las migraciones de la base de datos. Incluye una prueba de carga corta con límite de degradación de 10 \% en el percentil 95.
+
+La puerta 3, despliegue a QA, ejecuta la prueba de humo, integra los flujos con simuladores y realiza el análisis dinámico de seguridad. La puerta 4, promoción a Preproducción, exige la batería completa de regresión y de sistema sin regresiones.
+
+La puerta 5, paso a producción, concentra las pruebas más costosas. Exige la aprobación del Comité de Proyecto y la firma de la Contraparte Técnica. El paso se programa entre las 03:00 y las 05:00.
+
+El flujo de integración continua que ejecuta las puertas 1 y 2 es el del Subdocumento 6, y sus herramientas están en el Formulario T-13.
+
+\subseccion{Revisiones por pares}
+La revisión por pares es el único control de las puertas 1 a 4 que depende del criterio de una persona. Es obligatoria, y está prohibido escribir directamente en la rama principal. Cada solicitud de integración requiere la aprobación de una persona distinta de su autor. Los cambios que tocan el Nodo de Faena, la seguridad o el cálculo crítico requieren dos aprobaciones. Quien revisa comprueba el requerimiento asociado, las pruebas, el contrato afectado, la seguridad de los datos y la accesibilidad cuando corresponde. Un par distinto del autor revisa también los casos de prueba.
+
+\subseccion{Análisis estático y dinámico}
+El análisis estático examina el código sin ejecutarlo. Revisa la calidad con los umbrales de la puerta 1, la seguridad del código fuente, la composición de software y los secretos. El análisis dinámico examina la solución en funcionamiento. Se ejecuta en dos puntos. En la puerta 1 examina la imagen desplegada en el ambiente efímero de la rama y en la puerta 3 ataca la aplicación desplegada en QA, donde busca sus debilidades más frecuentes. En ambos puntos bloquea el avance ante hallazgos críticos o altos. Antes de cada paso a producción y una vez al año, un tercero independiente realiza pruebas de intrusión. Entrega el informe íntegro al cliente. El referente es el Application Security Verification Standard (ASVS) 4.0 nivel 2, de OWASP (OWASP Foundation, 2021). Las vulnerabilidades se corrigen en 7 días corridos si son críticas, 15 si son altas y 30 si son medias.
+
+\subseccion{Estrategia de pruebas conforme a ISO/IEC/IEEE 29119}
+El control parte con la estrategia de pruebas, que sigue la serie ISO/IEC/IEEE 29119. Las cinco puertas implementan sus procesos (ISO et al., 2021a). El plan de pruebas del Formulario T-13 documenta cada campaña (ISO et al., 2021b). Las técnicas de diseño de casos son valores límite, tablas de decisión y transiciones de estado (ISO et al., 2021c). El Formulario T-13 detalla cada nivel con sus criterios de entrada y de salida, sus ambientes, sus datos y su automatización. Es el documento que se ejecuta.
+
+\subsubseccion{Ambientes}
+Los cinco ambientes tienen la misma arquitectura y se diferencian en sus datos, en su escala y en quién puede modificarlos. Ningún ambiente no productivo tiene conectividad con producción. La Tabla \refext{T13}{tab:ambientes-prueba-uso-datos-ubicacion} del Formulario T-13 indica el uso, los datos y la ubicación de cada uno.
+
+\subsubseccion{Datos de prueba}
+Los datos productivos no se usan en ambientes no productivos sin anonimización verificable. Desarrollo y QA usan datos sintéticos de un generador versionado, con semilla reproducible. Preproducción usa copias con campos sensibles enmascarados de forma irreversible, y una prueba automática verifica que no queden identificadores personales. Los ensayos de migración usan datos reales del cliente con esos mismos campos enmascarados. La verificación facial se prueba con voluntarios que consienten o con conjuntos sintéticos, conforme a la Ley N° 21.719 (2024). La Tabla \refext{T13}{tab:datos-prueba-ambiente-caso-especial} del Formulario T-13 detalla cada caso.
+
+\subsubseccion{Niveles y tipos de prueba}
+El plan tiene quince niveles y tipos de prueba. Un nivel responde a qué parte del sistema se prueba, y un tipo, a qué característica se verifica. La Tabla \refext{T13}{tab:niveles-tipos-prueba} del Formulario T-13 lista cada uno con su objetivo, su ambiente, su técnica y su grado de automatización. Según el momento de ejecución, se agrupan en las pruebas de cada cambio, las de certificación y la prueba trimestral del clasificador de detenciones. La Figura \ref{fig:niveles-tipos-prueba-segun-ambiente-donde} muestra en qué ambiente se ejecuta cada uno.
+
+\figura{16.09}{fig-9-3-niveles-tipos-prueba-segun-ambiente}{Niveles y tipos de prueba según el ambiente donde se ejecutan.}{fig:niveles-tipos-prueba-segun-ambiente-donde}{Fuente: elaboración propia a partir de las Bases técnicas transversales (CMAA, 2026c, 20.1, p. 34).}
+El peso de la verificación se desplaza hacia la derecha a medida que el cambio avanza. Cuatro de los quince son propios de la solución. Son el contrato, el clasificador de detenciones, la resistencia y el corte de 48 horas sin enlace. La Tabla \refext{T13}{tab:criterios-entrada-salida-nivel-tipo} del Formulario T-13 fija sus criterios de entrada y de salida. En las pruebas de certificación, cinco criterios sostienen la decisión de pasar a producción. Son la aceptación de usuario, la accesibilidad WCAG 2.2 AA (World Wide Web Consortium [W3C], 2023), la seguridad ofensiva, la migración de datos y la usabilidad. La usabilidad se verifica con cuatro indicadores medibles. El tiempo de la transacción crítica y los pasos vienen del caso (Compañía Minera Altos de Aranda [CMAA], 2026b, RT-09.01, p. 25; cap. 10, restricción 8, p. 19). La tasa de error y el tiempo de aprendizaje son compromisos de Overfore, este último sobre el ciclo de 14 días del régimen 7×7 (CMAA, 2026b, RT-22.04, p. 26). La migración exige dos ensayos completos antes de la carga definitiva. El clasificador de detenciones muestra propuestas con confianza de 0,70 o más y se desactiva si su precisión cae bajo 80 \%.
+
+\subsubseccion{Automatización}
+La meta es automatizar el 90 \% de los casos de regresión y el 100 \% de los flujos críticos. La batería completa corre en paralelo en 60 minutos o menos, en cada promoción a Preproducción. Quedan manuales el hardware y la ergonomía, como la botonera con guantes, la cámara de verificación facial y la pantalla bajo el sol. Las pruebas de carga se automatizan, cortas en la puerta 2 y completas antes de cada paso a producción. La Tabla \refext{T13}{tab:metas-automatizacion} del Formulario T-13 fija las metas.
+
+\subsubseccion{Pruebas de desempeño, resiliencia y recuperación}
+Las pruebas no funcionales críticas se parametrizan con el dimensionamiento del Subdocumento 4. La punta declarada es de 200 TPS, y la carga de prueba es de 300 TPS, es decir, 1,5 veces esa punta. La capacidad nominal de los servicios en producción es de 337,5 TPS. Deja una holgura de 12,5 \% sobre la carga de prueba (Subdocumento 4, Anexos, D.3). En recuperación ante desastres, el RTO es de 4 horas o menos y el RPO de 15 minutos o menos. La conmutación planificada a Brazil South suma 2 h 50 min en los seis pasos estimados de la Tabla \refext{T13}{tab:pasos-conmutacion-tiempo-maximo} del Formulario T-13, cifra que coincide con la del ítem T11-02 del Formulario T-11 y que se medirá en la primera prueba semestral. En terreno, el RTO es de 1 hora y no se pierde ningún evento. La resistencia dura 72 horas antes de cada paso de etapa. El corte de 48 horas sin enlace exige 0 registros perdidos y una sincronización de 4 horas o menos. Las condiciones y los criterios de cada prueba están en las Tablas \refext{T13}{tab:umbrales-desempeno-percentil-95} a \refext{T13}{tab:pasos-conmutacion-tiempo-maximo} del Formulario T-13. Los nueve escenarios de mayor riesgo, con su prueba dedicada, están en la Tabla \refext{T13}{tab:escenarios-prueba-dedicada} del Formulario T-13. Incluyen al operador en una zona de sombra sin señal, la botonera con guantes a −6 °C y bajo el sol, el relevo de una detención mayor con 8.500 personas, la escritura bloqueada hacia el historiador y la climatización de la sala técnica a 3.180 m. Este subdocumento no los repite.
+
+\subseccion{Verificación, validación y trazabilidad}
+La verificación pregunta si el producto se construyó bien, es decir, conforme a sus requerimientos y a su diseño. La validación pregunta si se construyó el producto correcto, es decir, si resuelve la necesidad de quien lo usa (Institute of Electrical and Electronics Engineers [IEEE], 2017). En SITCO Aranda la verificación ocurre en las puertas 1 a 5, mediante revisiones, análisis y pruebas. La validación ocurre en la aceptación de usuario y, sobre todo, en la marcha blanca, cuando la solución opera con datos y personas reales en convivencia con la operación vigente.
+
+Cada uno de los 248 requerimientos se verifica por una vía, según el método de verificación declarado en el Anexo A del Subdocumento 2. Los 96 requerimientos no funcionales se asignaron a la vía principal que su método indica, y la vía asignada a cada uno está en el Anexo A de este subdocumento.
+
+Las vías de los 96 requerimientos no funcionales están en la Tabla \refext{A9}{tab:matriz-verificacion-requerimientos-no-funcionales} del Anexo A de OVERFORE-Subdocumento9-Anexos. Los 126 funcionales se verifican por módulo, con los casos de la Tabla \refext{A9}{tab:requerimientos-funcionales-modulo-etapa} del mismo anexo. Las vías de los 15 de transición y de los 11 del proyecto están en la Tabla \refext{A9}{tab:vias-verificacion-requerimientos-transicion-proyecto}.
+
+Se verifican 20 de los 96 requerimientos no funcionales solo con datos reales durante la marcha blanca. Los 76 restantes se verifican total o principalmente antes de entrar en producción. Por eso la marcha blanca forma parte de la estrategia de pruebas. La trazabilidad une cada requerimiento con su evidencia según la cadena de la Figura \ref{fig:cadena-trazabilidad-entre-requerimiento-metrica-diseno}. La cadena incluye el componente, el paquete de la EDT y el criterio de aceptación (CMAA, 2026b, cap. 17.1, p. 29).
+
+\figura{16.1}{fig-9-4-cadena-trazabilidad-entre-requerimiento-metrica}{Cadena de trazabilidad entre requerimiento, métrica, diseño, código, prueba, despliegue y aceptación.}{fig:cadena-trazabilidad-entre-requerimiento-metrica-diseno}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 17.1, p. 29).}
+Los identificadores se unen en la solicitud de integración, el caso de prueba y el registro de despliegues. El Formulario T-12 registra el componente y la evidencia de cada requerimiento.
+
+\subseccion{Gestión de defectos, definición de terminado y aceptación}
+Los defectos de prueba usan las cuatro severidades de los incidentes de operación definidas en el Subdocumento 3: crítica, alta, media y baja. La severidad se asigna según el efecto que tendría en producción si el defecto no se corrigiera. Cada severidad tiene un plazo de corrección, y no pueden quedar abiertos defectos críticos ni altos al cerrar una marcha blanca. Al cierre se admiten 4 defectos medios y 13 bajos en la Etapa 1, y 1 medio y 5 bajos en la Etapa 2. El Anexo B de OVERFORE-Subdocumento9-Anexos define las severidades, los plazos y el cálculo de esos máximos. Los plazos de corrección figuran también en la Tabla \refext{T13}{tab:plazos-correccion-defectos-admitidos-cierre-marcha} del Formulario T-13.
+
+Se adopta la definición de terminado del Subdocumento 6. Un entregable está terminado cuando su código está revisado por pares y sus pruebas automáticas pasan con la cobertura exigida. No tiene hallazgos críticos ni altos de seguridad y su documentación está actualizada. Se despliega en Preproducción de forma automática y queda trazado a su requerimiento de origen. Overfore somete esta definición a la Contraparte Técnica con la línea base del hito H1. El Anexo B de OVERFORE-Subdocumento9-Anexos la desarrolla como lista de verificación. La aceptación de cada hito sigue el protocolo del Formulario T-17, con criterios objetivos, diez días hábiles para pronunciarse y diez para subsanar. Para el paso a producción se suman los criterios de la puerta 5. La Figura \ref{fig:aceptacion-cada-hito-recepcion-paso-produccion} muestra el recorrido de la aceptación y de la recepción de un paso a producción.
+
+\figura{15.00}{fig-9-5-aceptacion-cada-hito-recepcion-paso}{Aceptación de cada hito y recepción de un paso a producción.}{fig:aceptacion-cada-hito-recepcion-paso-produccion}{Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 18.2).}
+Como muestra la Figura \ref{fig:aceptacion-cada-hito-recepcion-paso-produccion}, ningún hito se da por cumplido con una declaración de Overfore, porque solo lo cierra el acta de la Contraparte Técnica. En un paso a producción, los defectos medios y bajos admitidos se cierran en la estabilización, la aceptación final del mes 21 da por recibida la implementación y la garantía de 24 meses cubre después los defectos imputables al diseño, la construcción o la implantación de la solución.
+
+\seccion{Alineación con Plan de Trabajo}
+Esta sección ubica las actividades de calidad en los hitos y en el cronograma del contrato, y muestra cómo se sostienen durante el solapamiento de las etapas. La descomposición en paquetes de trabajo y el cronograma interno de cada fase corresponden al Subdocumento 7, y el calendario de las campañas de prueba, al Formulario T-13.
+
+\subseccion{Actividades de calidad en los hitos del contrato}
+El contrato dura 56 meses. Los primeros 12 son de desarrollo de la Etapa 1, y siguen 3 de marcha blanca. La Etapa 1 entra en producción en el mes 16. El desarrollo de la Etapa 2 va entre los meses 13 y 18, con 2 meses de marcha blanca, y entra en producción en el mes 21. Desde ahí hay 36 meses de operación.
+
+El mes 1 corresponde a enero de 2027. Por eso el mes 12 es diciembre de 2027, el mes 16 es abril de 2028 y el mes 21 es septiembre de 2028. La Figura \ref{fig:actividades-calidad-calendario-contractual-meses-1} sitúa en ese calendario los hitos y las actividades de calidad que los respaldan.
+
+\figura{16.09}{fig-9-6-actividades-calidad-calendario-contractual-meses}{Actividades de calidad en el calendario contractual de los meses 1 a 21.}{fig:actividades-calidad-calendario-contractual-meses-1}{Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 17.1, p. 12).}
+Después de la línea base de alcance y diseño (H1, H2 y H8), las actividades de calidad se concentran en cuatro momentos. Esa línea base fija la definición de terminado, el método de verificación y los umbrales de calidad. La habilitación de los ambientes ocurre en el mes 6 (H3). La entrega del software para pruebas ocurre en los meses 10 y 17 (H4 y H9), con las puertas 3 y 4 superadas. La certificación de cada etapa ocurre en los meses 12 y 18 (H5 y H10). Incluye las campañas de aceptación, carga, resiliencia y seguridad ofensiva. El paso a producción ocurre en los meses 16 y 21 (H7 y H12). Los hitos H5 y H10 son los de mayor carga. Las marchas blancas y los pasos a producción, en los hitos H7 y H12, se cierran con las seis condiciones de cierre. Los defectos deben quedar dentro de los máximos admitidos. Cada hito de pago tiene una actividad de calidad y una evidencia que el cliente puede revisar. Los criterios de cada hito están en el Formulario T-17.
+
+\subseccion{Calidad durante el solapamiento de las etapas}
+El contrato tiene dos períodos de solapamiento. Entre los meses 13 y 15 coexisten la marcha blanca de la Etapa 1 y el desarrollo de la Etapa 2. Entre los meses 19 y 20 coexisten la Etapa 1 en producción y la Etapa 2 en marcha blanca. Además, el paso a producción de la Etapa 2 no puede degradar la disponibilidad, el desempeño ni la integridad de los datos de la Etapa 1.
+
+El plan de calidad protege a la Etapa 1 durante esos períodos con tres mecanismos.
+
+\begin{itemize}
+\item La batería de regresión de la Etapa 1 es una condición de la puerta 4 para todo cambio de la Etapa 2. Ninguna versión de la Etapa 2 se promueve a Preproducción si rompe algo de lo que la Etapa 1 ya tiene en producción.
+\item Esa batería cabe en 60 minutos, de modo que puede ejecutarse en cada promoción mientras ambas etapas avanzan en paralelo.
+\item En los meses 19 y 20, la conciliación diaria entre ambas etapas verifica que los datos compartidos, que son las personas habilitadas, los equipos y los polígonos, tengan una sola fuente y no se digiten dos veces.
+\end{itemize}
+
+\subseccion{EDT, cronograma y calendario de pruebas}
+El Líder de Calidad y Pruebas conduce las puertas de calidad, la definición de terminado y el protocolo de aceptación. También conduce las evaluaciones de madurez y las pruebas unitarias, de contrato, de integración y de regresión. Sus paquetes de la EDT incluyen 1.1.4.1 a 1.1.4.4 y 1.5.1.1 a 1.5.1.3 (Subdocumento 7, 7.1). El Líder de Operación / SRE (ingeniería de confiabilidad de sitios) entrega los informes de resiliencia y de conmutación. El Encargado de Seguridad de la Información conduce la seguridad ofensiva y el corte de 48 horas. El Formulario T-14 detalla cada paquete con su entregable, su criterio de aceptación y su responsable. En la operación, los paquetes 1.8.8.1 a 1.8.8.4 y 1.8.8.6 reúnen las puertas por versión, los informes periódicos y las reevaluaciones de madurez.
+
+La aceptación de usuario, la carga y la resiliencia certifican cada etapa en los meses 12 y 18. Los ensayos de migración se cierran antes de cada carga definitiva. En los 36 meses de operación, la resiliencia se repite seis veces y la recuperación ante desastres cinco veces. La seguridad ofensiva y el corte de 48 horas se repiten tres veces cada uno. La carga se repite con cada versión mayor y con cada actualización anual de los componentes de base, al menos tres veces. El calendario completo de las campañas está en la Tabla \refext{T13}{tab:calendario-campanas-prueba} del Formulario T-13.
+
+Las fechas dentro de cada fase están en el Subdocumento 7 (7.3). Cada etapa tiene una cadena de actividades sin holgura hasta su paso a producción. La ventana llega hasta el 28 de abril de 2028 para H7. Para H12, llega hasta el 29 y el 30 de septiembre de 2028 (7.3.1). Una campaña de calidad que se atrasa consume días de esa ventana. La reversión por función o área devuelve la versión anterior en 30 minutos o menos. El Formulario T-15 nivela los recursos de las campañas y el Formulario T-18 detalla la implantación por sitio.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item Humble, J., y Farley, D. (2010). \emph{Continuous delivery: Reliable software releases through build, test, and deployment automation}. Addison-Wesley.
+\item Inozemtseva, L., y Holmes, R. (2014). Coverage is not strongly correlated with test suite effectiveness. En \emph{Proceedings of the 36th International Conference on Software Engineering} (pp. 435–445). ACM. https://doi.org/10.1145/2568225.2568271
+\item Institute of Electrical and Electronics Engineers. (2017). \emph{IEEE standard for system, software, and hardware verification and validation} (IEEE Std 1012-2016). IEEE.
+\item International Organization for Standardization e International Electrotechnical Commission. (2008). \emph{ISO/IEC 25012:2008 Software engineering. Software product Quality Requirements and Evaluation (SQuaRE). Data quality model}. ISO.
+\item International Organization for Standardization e International Electrotechnical Commission. (2023). \emph{ISO/IEC 25010:2023 Systems and software engineering. Systems and software Quality Requirements and Evaluation (SQuaRE). Product quality model}. ISO.
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021a). \emph{ISO/IEC/IEEE 29119-2:2021 Software and systems engineering. Software testing. Part 2: Test processes}. ISO.
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021b). \emph{ISO/IEC/IEEE 29119-3:2021 Software and systems engineering. Software testing. Part 3: Test documentation}. ISO.
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021c). \emph{ISO/IEC/IEEE 29119-4:2021 Software and systems engineering. Software testing. Part 4: Test techniques}. ISO.
+\item Ley N° 21.719. (2024). Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales. Diario Oficial de la República de Chile.
+\item McCabe, T. J. (1976). A complexity measure. \emph{IEEE Transactions on Software Engineering, SE-2}(4), 308–320. https://doi.org/10.1109/TSE.1976.233837
+\item OWASP Foundation. (2020). \emph{OWASP Software Assurance Maturity Model (SAMM) v2.0}. https://owaspsamm.org/model/
+\item OWASP Foundation. (2021). \emph{OWASP Application Security Verification Standard 4.0.3}. https://owasp.org/www-project-application-security-verification-standard/
+\item Pact Foundation. (s.f.). \emph{Pact documentation}. https://docs.pact.io
+\item Project Management Institute. (2017). \emph{A guide to the project management body of knowledge (PMBOK guide)} (6.ª ed.). Project Management Institute.
+\item Watson, A. H., y McCabe, T. J. (1996). \emph{Structured testing: A testing methodology using the cyclomatic complexity metric} (NIST Special Publication 500-235). National Institute of Standards and Technology.
+\item World Wide Web Consortium. (2023). \emph{Web content accessibility guidelines (WCAG) 2.2}. https://www.w3.org/TR/WCAG22/
+\end{referencias}
+
+\seccionsinnumero{Declaración de uso de IA}
+Se utilizó IA generativa, principalmente como apoyo en la redacción y en la organización del contenido; el detalle por sección está en la Tabla \ref{tab:declaracion-uso-ia-seccion}.
+
+\begin{tabla}{I{0.150}I{0.164}I{0.211}I{0.094}I{0.142}I{0.240}}{Declaración de uso de IA por sección.}{tab:declaracion-uso-ia-seccion}
+  {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad} & \cab{Nivel de uso en texto} & \cab{Nivel de uso en diagramas} & \cab{Revisión humana}}
+  {Fuente: elaboración propia.}
+Introducción y capítulo 9 & Claude (Anthropic) & Apoyo en la síntesis de presentación del aseguramiento de calidad de SITCO. & Medio & Medio & David Martínez: comprobó la continuidad con metodología y plan de trabajo. \\
+9.1 & claude & Apoyo para desarrollar el plan de calidad. & Medio & Ninguno & David Martínez: revisó la cobertura de calidad frente a los requerimientos. \\
+9.1.1 a 9.1.4 & claude & Organización de definición de calidad, modelo de madurez y métricas de código. & Medio & Ninguno & Benjamín Velásquez: revisó los atributos, métricas y umbrales comprometidos. \\
+9.1.4.1 a 9.1.4.4 & claude & Explicación de cobertura, cálculo crítico, complejidad, duplicación y seguridad. & Medio & Ninguno & David Martínez: revisó los umbrales y la posibilidad de medirlos. \\
+9.1.5 & claude & Base de redacción del gobierno de calidad. & Medio & Ninguno & David Martínez: revisó las responsabilidades y facultades de aprobación. \\
+9.2 & claude & Desarrollo de la estrategia de aseguramiento de calidad. & Medio & Ninguno & Benjamín Velásquez: revisó la integración de revisiones, pruebas y puertas de calidad. \\
+9.2.1 a 9.2.4 & claude & Apoyo para explicar puertas, pares, análisis y estrategia de pruebas. & Medio & Medio & David Martínez: comprobó los controles de cada puerta y sus evidencias. \\
+9.2.4.1 a 9.2.4.5 & claude & Organización de ambientes, datos, tipos de prueba, automatización y resiliencia. & Medio & Medio & Benjamín Velásquez: validó las condiciones de ejecución y los criterios de éxito. \\
+9.2.5 a 9.2.6 & claude & Redacción sobre trazabilidad, defectos, definición de terminado y aceptación. & Medio & Medio & David Martínez: comprobó la relación entre requisitos, pruebas, defectos y actas. \\
+9.3 & claude & Apoyo para vincular calidad con el plan de trabajo. & Medio & Medio & Benjamín Velásquez: revisó la ubicación de las actividades de calidad en el calendario. \\
+9.3.1 a 9.3.3 & claude & Desarrollo de actividades por hito, solapamiento de etapas y calendario de pruebas. & Medio & Medio & Benjamín Velásquez: contrastó los hitos y paquetes frente a T-13, T-14 y T-17. \\
+Referencias & claude & Apoyo para ordenar y uniformar las referencias citadas. & Medio & Medio & David Martínez: revisó la existencia de las fuentes y su correspondencia con las citas. \\
+Anexo A & claude & Base de la matriz de verificación de requerimientos no funcionales. & Medio & Ninguno & David Martínez: revisó los RNF, pruebas y evidencias relacionadas. \\
+Anexo B & claude & Apoyo para redactar la definición de terminado. & Medio & Ninguno & Benjamín Velásquez: revisó las condiciones de cierre y su verificabilidad. \\
+Anexo C & claude & Organización de estándares, controles y evidencias de calidad. & Medio & Ninguno & Benjamín Velásquez: verificó las fuentes y la evidencia de cumplimiento. \\
+Anexo D & claude & Apoyo en la síntesis de la justificación de umbrales de código. & Medio & Ninguno & Benjamín Velásquez: revisó el fundamento y la medición de cada umbral. \\
+Anexo E & claude & Apoyo para describir controles por puerta de calidad. & Medio & Ninguno & Benjamín Velásquez: revisó los bloqueos y evidencias requeridos en cada puerta. \\
+T-13 & claude & Base del plan de pruebas y su calendario. & Medio & Ninguno & David Martínez: contrastó las campañas, umbrales y evidencias frente al plan de calidad. \\
+T-17 & claude & Apoyo en la síntesis del protocolo de aceptación por hito. & Medio & Ninguno & Benjamín Velásquez: comprobó los criterios, actas y plazos de revisión. \\
+\end{tabla}
+
+\end{document}

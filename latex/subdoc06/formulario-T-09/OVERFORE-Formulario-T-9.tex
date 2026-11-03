@@ -1,0 +1,178 @@
+%% OVERFORE-Formulario-T-9.tex — generado desde OVERFORE-Formulario-T-9.docx
+%% Formato: clase overfore, modo formulario. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[formulario]{../../comun/overfore}
+\numsubdoc{6}
+\formulario{T-9}{Metodología para la administración y gestión del proyecto}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+
+\begin{document}
+
+\apartado{Metodología de Gestión de Proyectos}
+En este apartado se presenta cómo se aplica la metodología de gestión al proyecto: la forma de dirigirlo, el marco de referencia adoptado y el criterio con que se adapta el trabajo dentro de los compromisos del contrato.
+
+\begin{tabla}{I{0.163}I{0.632}I{0.204}}{Aplicación de la metodología de gestión}{tab:aplicacion-metodologia-gestion}
+  {\cab{Componente} & \cab{Aplicación en SITCO Aranda} & \cab{Registro}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Dirección integrada & El jefe de proyecto vincula requerimientos, software, infraestructura y aceptaciones en un plan integrado. & Plan de dirección y líneas base \\
+Marco de gestión & PMBOK adaptado a construcción de software por incrementos y control contractual formal (PMI, 2017). & Procedimientos y decisiones \\
+Adaptación del trabajo & Se refinan historias dentro de los requerimientos. Los compromisos de alcance y aceptación requieren aprobación formal para cambiar. & Backlog y solicitudes de cambio \\
+\end{tabla}
+
+\seccion{Enfoque de gestión}
+Este apartado muestra cómo se planifica y controla el avance del proyecto, desde la organización de los frentes de trabajo hasta los umbrales que activan decisiones y el cierre de cada etapa.
+
+\begin{tabla}{I{0.188}I{0.640}I{0.171}}{Planificación y ciclo de control}{tab:planificacion-ciclo-control}
+  {\cab{Actividad de control} & \cab{Aplicación en SITCO Aranda} & \cab{Responsable o registro}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Frentes de trabajo & Software en sprints de dos semanas e infraestructura por adquisición, instalación y recepción. Se comprueba la disponibilidad de equipos, ambientes y enlaces. & Jefe de proyecto \\
+Alcance e hitos & Catálogo de 248 requerimientos y doce hitos cerrados con actas. Plan y líneas base en mes 2; línea base de alcance de etapa 2 en mes 14. & Líneas base y actas \\
+Planificación progresiva & Detalle de los tres meses próximos; períodos posteriores a nivel de paquete hasta su descomposición. & Plan integrado \\
+Registro del trabajo & Tareas, avance y horas asociados al paquete y compromiso de entrega en ClickUp. & Equipo \\
+Consolidación mensual & Se contrasta el avance con las líneas base. El software reconoce valor al terminar historias; la infraestructura, la mitad al iniciar la instalación y el resto al recibir. & Jefe de proyecto e informe mensual \\
+Decisión y seguimiento & Los umbrales activan revisión; hitos, líneas base o riesgos mayores se escalan. Cada acción conserva responsable, plazo y comprobación posterior. & Comités y tareas \\
+Cierre de etapas & Meses 16 y 21 con acta y lecciones aprendidas. La reprogramación interna no cambia los hitos contractuales; el cierre de la marcha blanca verifica los criterios del art. 17.3, desarrollados en el Subdocumento 7 y el Formulario T-18 (Compañía Minera Altos de Aranda [CMAA], 2026a, p. 13). & Acta de cierre \\
+\end{tabla}
+\begin{tabla}{I{0.286}I{0.200}I{0.299}I{0.215}}{Umbrales y evidencias de control}{tab:umbrales-evidencias-control}
+  {\cab{Indicador o condición} & \cab{Umbral} & \cab{Actuación} & \cab{Evidencia de control}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Índice de cronograma o costo & Entre 0,90 y 0,95 & Revisión en comité de proyecto & Informe y acta \\
+Índice de cronograma o costo & Menor que 0,90 & Plan de recuperación & Plan y seguimiento \\
+Desviación de un hito & Mayor que 10 \% & Aviso al cliente en cinco días hábiles & Comunicación y plan \\
+Paquete de software & Historias terminadas & Reconocimiento de avance & Historias y evidencias \\
+Paquete de infraestructura & Instalación y recepción & Reconocimiento en dos momentos & Registro y acta \\
+\end{tabla}
+
+\seccion{Gobierno del proyecto y mecanismos de decisión}
+Este apartado presenta las instancias de gobierno del proyecto, sus responsabilidades, las reglas de escalamiento y el tratamiento de actas y riesgos.
+
+\begin{tabla}{I{0.176}I{0.627}I{0.197}}{Responsabilidades y escalamiento}{tab:responsabilidades-escalamiento}
+  {\cab{Materia} & \cab{Regla aplicada} & \cab{Registro}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Preparación de sesiones & La oficina de gestión prepara sesiones, mantiene registros y publica actas. El jefe de proyecto tiene dedicación exclusiva durante la implementación. & Acta con acuerdos, responsables y plazos \\
+Impedimentos & Si un impedimento sigue abierto tras una semana, se presenta al comité de proyecto, que sesiona al cierre del sprint. & Registro de impedimentos \\
+Escalamiento ejecutivo & Líneas base, hitos o riesgos mayores pasan al comité ejecutivo. Si no pueden esperar a la sesión mensual, se convoca sesión extraordinaria dentro de cinco días hábiles. & Convocatoria y decisión \\
+Arquitectura & Arquitecto de la solución, líderes de datos e integración, encargado de seguridad de la información y referentes técnicos del cliente evalúan decisiones transversales y cambios tecnológicos. & Alternativas y decisión aprobada \\
+Operación & El líder de operación (SRE) conduce el seguimiento de la estabilización de la etapa 1 y de los niveles de servicio. & Acuerdos de operación \\
+Actas y riesgos & Actas publicadas dentro de dos días hábiles. El registro de riesgos se revisa en cada comité de proyecto conforme a ISO 31000 (ISO, 2018). & Actas, riesgos y tareas vinculadas \\
+\end{tabla}
+\begin{tabla}{I{0.214}I{0.169}I{0.396}I{0.221}}{Instancias de gobierno}{tab:instancias-gobierno}
+  {\cab{Instancia} & \cab{Cadencia} & \cab{Materia de decisión} & \cab{Registro de salida}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Seguimiento & Semanal & Impedimentos y coordinación & Acuerdos y tareas \\
+Comité de proyecto & Quincenal & Incremento, avance y recuperación & Acta y acciones \\
+Comité de arquitectura & Mensual & Decisiones transversales y deuda técnica & Decisión de arquitectura \\
+Comité ejecutivo & Mensual & Líneas base, hitos y cambios & Aprobación o rechazo \\
+Comité de operación & Mensual, desde el mes 13 & Cumplimiento de niveles de servicio, incidentes, problemas y plan de mejora continua; autorización de intervenciones menores en la ventana de 03:00 a 05:00 & Acuerdos de operación \\
+\end{tabla}
+
+\seccion{Integración y control de cambios}
+Este apartado presenta el procedimiento que mantiene integrado el proyecto y el tratamiento de las solicitudes de cambio, desde su clasificación hasta su aplicación y trazabilidad.
+
+\begin{tabla}{I{0.197}I{0.635}I{0.168}}{Procedimiento de integración y cambios}{tab:procedimiento-integracion-cambios}
+  {\cab{Paso del procedimiento} & \cab{Regla aplicada} & \cab{Registro}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Constitución y planificación & Mes 1: acta de constitución con objetivos, hitos, presupuesto global y autoridad. Mes 2: aprobación del plan integrado. Control mensual de desarrollo, infraestructura y aceptaciones. & Acta y plan \\
+Clasificación & Refinamiento: precisa reglas o reordena historias manteniendo compromisos. Cambio formal: altera requerimiento, aceptación, hito, costo, nivel de servicio o riesgo mayor. & Solicitud y compromiso afectado \\
+Refinamiento & El líder funcional y el referente del área deciden dentro de su ámbito y dejan el acuerdo en el backlog. & Acuerdo y aceptación conservada \\
+Análisis formal & Evaluación de alcance, plazo, costo, riesgo y niveles de servicio dentro de cinco días hábiles, con tareas y documentos afectados. & Análisis de impacto \\
+Decisión & El comité ejecutivo aprueba o rechaza antes de ejecutar. No se modifica el cronograma contractual y las modificaciones acumuladas no superan el 20 \% del valor original. & Decisión registrada \\
+Intercambio de alcance & Cuando se agrega trabajo a una etapa con fecha fija, se propone un intercambio de esfuerzo equivalente que decide el cliente. & Aprobación del cliente \\
+Aplicación y trazabilidad & Se actualizan backlog y registros. Se conserva la cadena solicitud, impacto, decisión, responsables y efecto sobre el trabajo. & Registro y seguimiento \\
+\end{tabla}
+
+\seccion{Gestión de los interesados}
+Este apartado presenta cómo se identifica, involucra y monitorea a los grupos de interés, y los compromisos de participación definidos para los grupos con mayor brecha.
+
+\begin{tabla}{I{0.200}I{0.604}I{0.196}}{Procedimiento de participación}{tab:procedimiento-participacion}
+  {\cab{Proceso} & \cab{Aplicación a los grupos de interés} & \cab{Responsable o registro}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Identificación & Se aplica a los catorce grupos principales del ecosistema de la Figura 6.4a y de la matriz de poder e interés de la Figura 6.4b del Subdocumento 6. El registro identifica a cada grupo y sus representantes mediante códigos estables, conserva sus intereses y expectativas, justifica su clasificación y relaciona la participación actual y deseada con acciones, responsables, plazos y evidencias. & Jefe de proyecto y registro de interesados \\
+Intervención & Se programan acciones, se recogen acuerdos y validaciones y se comprueba el cambio mediante asistencia, adopción por ola y encuestas trimestrales. & Registro de participación \\
+Decisiones y validación & Gerencias, directorio, sindicato y compradores participan en decisiones; usuarios de faena, supervisores, contratistas y CIO en diseño y validación. La autoridad ambiental recibe reportes firmados y verificables. & Acuerdos y resultados \\
+Biometría y acceso & Con el sindicato se acuerdan datos guardados, permisos y eliminación. Registros de interesados reticentes restringidos al jefe de proyecto, al líder de implantación y gestión del cambio y a la contraparte técnica. & Protocolo y permisos \\
+Participación insuficiente & Dos mediciones consecutivas bajo el nivel deseado activan la presentación de un plan al comité ejecutivo. La asistencia por sí sola no sustituye la validación funcional. & Mediciones y plan de acción \\
+\end{tabla}
+\begin{tabla}{I{0.205}I{0.165}I{0.143}I{0.338}I{0.150}}{Participación actual y deseada de los grupos de interés}{tab:participacion-actual-deseada-grupos-interes}
+  {\cab{Grupo de interés} & \cab{Nivel actual} & \cab{Nivel deseado} & \cab{Intervención prevista} & \cab{Evidencia}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Directorio y gerencia general & Partidario & Líder & Conducción del comité ejecutivo & Actas \\
+Gerencia de finanzas & Neutral & Partidario & Ratificación de la fuente de verdad del tonelaje en mes 3 & Acuerdo \\
+Gerencia de operaciones mina & Neutral & Partidario & Aprobación de la botonera en el piloto con una pala & Validación \\
+Jefatura de mantenimiento & Reticente & Partidario & Definición y aprobación de reglas de alerta & Reglas aprobadas \\
+Supervisores y despachadores & Neutral & Partidario & Diseño de la taxonomía de demoras & Taxonomía \\
+Operadores de equipos & Desconocedor & Partidario & Prueba de la botonera de día y de noche & Resultados \\
+Sindicato & Reticente & Neutral & Mesa de trabajo desde mes 2 y protocolo de biometría & Protocolo \\
+Empresas contratistas & Desconocedor & Partidario & Capacitación por empresa antes de la marcha blanca & Registro \\
+\end{tabla}
+
+\seccion{Gestión de las comunicaciones}
+Este apartado presenta los canales, herramientas y reglas de comunicación del proyecto, junto con el plan de comunicaciones y sus metas de control.
+
+\begin{tabla}{I{0.213}I{0.598}I{0.189}}{Canales y control de comunicaciones}{tab:canales-control-comunicaciones}
+  {\cab{Aspecto} & \cab{Regla aplicada} & \cab{Registro o meta}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Responsabilidad formal & El jefe de proyecto y la contraparte técnica concentran la comunicación entre las partes; en faena participa el líder de implantación y gestión del cambio. & Acuerdos vinculados a tareas o actas \\
+Canales potenciales & Para 14 grupos, n(n − 1)/2 = 14 × 13/2 = 91 canales posibles. La coordinación formal concentra el intercambio entre las partes. & Cálculo y registro de comunicaciones \\
+Distribución de herramientas & ClickUp para tareas, sprints y horas; Teams para la relación con el cliente; SharePoint para documentación y entregables. Tablero ClickUp disponible en Teams con lectura para contraparte y referentes. & Tablero y espacio colaborativo \\
+Método de comunicación & Interactiva para acuerdos; push para informes, actas y avisos; pull para consulta permanente del tablero y del espacio colaborativo. & Reuniones, envíos y consultas \\
+Cobertura 7x7 & La comunicación de cada ola se repite en dos semanas consecutivas al inicio del turno, con material en español e imágenes reales. Se comprueba la recepción por ambos grupos. & Registro de recepción \\
+Capacitación formal & Al menos dos ciclos completos de 14 días, con cobertura del turno nocturno; se conservan asistencia, evaluación y certificación conforme a RT-22.04 (CMAA, 2026b, cap. 15, p. 26). & Registros por ciclo y turno \\
+Metas & 100 \% de actas publicadas dentro de dos días hábiles y satisfacción trimestral de al menos 4 sobre 5. & Resultados y medidas de mejora \\
+\end{tabla}
+\begin{tabla}{I{0.255}I{0.223}I{0.177}I{0.161}I{0.185}}{Plan de comunicaciones}{tab:plan-comunicaciones}
+  {\cab{Comunicación} & \cab{Destinatario} & \cab{Frecuencia} & \cab{Método} & \cab{Herramienta}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Informe mensual de avance & Contraparte Técnica, que lo revisa en el Comité de Proyecto & Mensual & Push & Teams y SharePoint \\
+Acta de cada instancia de gobierno & Participantes de la instancia & Dentro de dos días hábiles & Push & SharePoint, con aviso en Teams \\
+Aviso de desviación de un hito & Contraparte Técnica & Dentro de cinco días hábiles & Push & Teams y correo \\
+Tablero de estado del proyecto & Cliente & Permanente & Pull & ClickUp, como pestaña en Teams \\
+Espacio colaborativo del proyecto & Equipo del proyecto y cliente & Permanente & Pull & SharePoint \\
+Coordinación interna del equipo & Equipo Overfore & Diaria & Interactiva & ClickUp \\
+Revisión del sprint & Referentes y usuarios clave & Quincenal & Interactiva & Presencial o Teams \\
+Charla de inicio de turno & Usuarios de faena de cada ola & Dos semanas consecutivas por ola & Interactiva & Presencial en faena \\
+\end{tabla}
+
+\seccion{Gestión de las adquisiciones}
+Este apartado presenta el criterio de compra, las modalidades de contratación, el control de proveedores y el listado de bienes y servicios que se adquieren.
+
+\begin{tabla}{I{0.213}I{0.581}I{0.206}}{Contratación y recepción}{tab:contratacion-recepcion}
+  {\cab{Etapa o criterio} & \cab{Regla aplicada} & \cab{Responsable o registro}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Origen de la compra & Especificación técnica y disponibilidad requerida. Se desarrolla la lógica de negocio y trazabilidad; se adquieren productos maduros, equipos y servicios especializados. & Jefe de proyecto y especificación \\
+Disponibilidad crítica & Solicitudes de cotización de sala técnica y equipos críticos en mes 1, con especificación aprobada; órdenes de compra al adjudicar. Sala recibida al final del mes 4; infraestructura de faena habilitada en mes 6. & Orden y acta de recepción \\
+Segundo enlace de fibra & Overfore contrata el servicio con un proveedor de telecomunicaciones distinto del actual, que construye e instala la ruta. Overfore especifica, coordina e integra el enlace con SD-WAN. Debe quedar habilitado y probado en el mes 6; la construcción de la ruta queda a cargo del proveedor queda a cargo del proveedor (Formulario T-14, paquete 1.1.6.2; Subdocumento 3, 3.2.3, 3.3.4 y 3.3.5). & Overfore y proveedor \\
+Recepción de conectividad & Verificar proveedor, ruta física y acometida independientes; conmutación entre fibras en 5 segundos o menos y respaldo satelital al fallar ambas. Instalar los ductos de fibra que provee Overfore hasta el punto de conexión de cada sitio (RT-06.33, p. 17) y coordinar con el cliente la obra civil de base antes del hito del mes 6. & Acta y pruebas de conmutación \\
+Enlace satelital & Instalación en mes 5, con antena junto a la sala técnica en punto despejado. Se verifica como respaldo ante la falla de ambas fibras antes de habilitar. & Prueba del enlace \\
+Selección y cierre & Especificar, seleccionar, contratar, inspeccionar y cerrar. Se evalúa capacidad técnica, entrega en faena, soporte en Antofagasta y certificaciones. Se conservan acta y garantías. & Expediente de adquisición \\
+Seguimiento del proveedor & Desempeño revisado mensualmente en comité de proyecto. & Evaluación y acciones \\
+Modalidades & Equipos a precio fijo cerrado con instalación; nube por consumo con reserva de capacidad; especialistas puntuales por tiempo y materiales con monto y plazo máximos. & Contrato, sin precios en la oferta técnica \\
+Titularidad de herramientas & GitHub y SonarQube en la organización del cliente; ClickUp a cargo de Overfore; Teams existente del cliente. Herramientas de código abierto mantenidas por el equipo. & Suscripciones y administración \\
+Subcontratación y datos & Autorización previa y bajo el 40 \% del valor contractual. Proveedores con acceso a datos declarados, auditados y con acuerdo de tratamiento conforme a la Ley N° 21.719 (2024). & Autorización y acuerdo de tratamiento \\
+\end{tabla}
+\begin{tabla}{I{0.325}I{0.264}I{0.267}I{0.144}}{Listado de adquisiciones}{tab:listado-adquisiciones}
+  {\cab{Bien o servicio} & \cab{Responsable de compra} & \cab{Tipo de contrato} & \cab{Mes requerido}}
+  {\emph{Fuente: }elaboración propia a partir del Subdocumento 6.}
+Servicios de nube Microsoft Azure & Overfore & Consumo con reserva de capacidad & 2 \\
+Sala técnica & Overfore & Precio fijo cerrado con instalación & 4 \\
+Equipamiento del nodo de faena y gabinetes de borde & Overfore & Precio fijo cerrado con instalación & 5 \\
+Equipo SD-WAN y diodo de datos & Overfore & Precio fijo cerrado con instalación & 5 \\
+Segundo enlace de fibra óptica faena–Antofagasta & Overfore & Servicio de conectividad con construcción e instalación incluidas & 6 \\
+Enlace satelital de órbita baja & Overfore & Servicio de conectividad con terminal incluido & 5 \\
+Dispositivos de terreno de la etapa 1 & Cliente, con especificación de Overfore & Compra directa del cliente & 8 \\
+Pruebas de intrusión independientes & Overfore & Precio fijo por campaña & 11, 15, 17 y 20; luego cada año \\
+GitHub Enterprise Cloud, GitHub Code Security y GitHub Secret Protection & Overfore, en la organización del cliente & Suscripción anual por usuario & 1 \\
+SonarQube Cloud & Overfore, en la organización del cliente & Suscripción anual & 2 \\
+ClickUp & Overfore & Suscripción anual por usuario & 1 \\
+Acceso a la telemetría de los tres fabricante & Cliente, con especificación y acompañamiento del líder de integración & Acuerdos de acceso a datos con cada fabricante & 3 y 12 \\
+\end{tabla}
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item International Organization for Standardization. (2018). \emph{ISO 31000:2018 Risk management. Guidelines}. ISO.
+\item Ley N° 21.719. (2024). \emph{Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales}. Diario Oficial de la República de Chile.
+\item Project Management Institute. (2017). \emph{La guía de los fundamentos para la dirección de proyectos (Guía del PMBOK)} (6.ª ed.). Project Management Institute.
+\end{referencias}
+\end{document}

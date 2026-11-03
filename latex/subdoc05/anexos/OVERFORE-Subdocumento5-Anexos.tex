@@ -1,0 +1,1311 @@
+%% OVERFORE-Subdocumento5-Anexos.tex — generado desde OVERFORE-Subdocumento5-Anexos.docx
+%% Formato: clase overfore, modo anexo. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[anexo]{../../comun/overfore}
+\numsubdoc{5}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{S5}
+\begin{document}
+
+\anexo{Diccionario de datos}
+Este anexo reúne el diccionario de datos del modelo. A.1 describe los nueve dominios, A.2 presenta el catálogo de entidades y A.3 desarrolla sus atributos. A.4 describe los catálogos, series, proyecciones, estructuras analíticas y registros técnicos, A.5, los niveles de clasificación de la información, y A.6, el origen y la transformación de los datos de cada fuente. Cada registro identifica su dueño, relaciones, clasificación y retención.
+
+\seccion{Dominios de datos}
+La Tabla \ref{tab:dominios-datos-sitio-escritor-almacen-garantia} y la Tabla \ref{tab:dominios-datos-posicion-cap-propietario-funcional} reúnen en una sola vista lo que el Subdocumento 5 trata por separado en las secciones 5.1 y 5.2. Para cada uno de los nueve dominios, que son los nueve módulos, la primera junta su sitio escritor y su etapa, el paradigma y el almacén que le corresponden y la garantía transaccional que se le exige.
+
+\begin{tabla}{I{0.225}I{0.246}I{0.289}I{0.240}}{Dominios de datos: sitio escritor, almacén y garantía transaccional.}{tab:dominios-datos-sitio-escritor-almacen-garantia}
+  {\cab{Dominio} & \cab{Sitio escritor y etapa} & \cab{Paradigma y almacén} & \cab{Garantía transaccional}}
+  {Fuente: elaboración propia a partir del Subdocumento 4 (ADR-02, ADR-08 y sección 4.1.2.1) y del Subdocumento 5 (secciones 5.1 y 5.2.1).}
+Operación Mina & Nodo de Faena; plan en la nube · Etapa 1 & Relacional, base propia en la nube y en el Nodo, con cifrado a nivel de campo de la identidad del operador; registro local cifrado en botonera y tableta & ACID; escritura local firmada e idempotente por identificador de origen \\
+Trazabilidad y Embarque & Nodo de Faena y nube · Etapa 1; portal en la Etapa 2 & Relacional más documental, base propia en la nube y en el Nodo, con cifrado a nivel de campo de sus atributos personales; vista de exposición filtrada & ACID, integridad referencial del árbol viaje-lote \\
+Conciliación Metalúrgica & Nodo de Faena; arbitraje y conciliación comercial en nube & Relacional, base propia en la nube y en el Nodo & ACID; serializable en la conciliación mensual \\
+Equipos y Mantenimiento & Nube · Etapa 2 & Relacional más series de tiempo & ACID en aviso y clasificación; escritura por lotes en telemetría \\
+Acreditación y Acceso & Nodo de Faena y nube; validación en el gabinete de portería · Etapa 1; facial en portería en la 2 & Relacional más documental, con cifrado a nivel de campo; lista local en el gabinete & ACID \\
+Seguridad y Salud Ocupacional & Nodo de Faena y nube · Etapa 2 & Relacional más documental, con cifrado a nivel de campo & ACID, cifrado a nivel de campo en salud, fatiga, alcohol y drogas \\
+Cumplimiento Ambiental & Nube; los gabinetes guardan durante un corte · Etapa 2 & Relacional más series de tiempo y documental & ACID \\
+Indicadores y Centro Integrado & Nube · Etapas 1 y 2 & Relacional, base propia para las definiciones versionadas de indicador; columnar analítico separado para las tablas de hechos & Consistencia eventual con latencia declarada \\
+Administración y Servicios Comunes & Nube; copia de lectura en el Nodo · Etapa 1 & Relacional más documental, con cifrado a nivel de campo & ACID, asiento de auditoría inalterable \\
+\end{tabla}
+Los nueve dominios se apoyan en un almacén relacional propio y sólo Indicadores y Centro Integrado agrega un motor columnar, el del modelo analítico. Las demás diferencias son complementos. Los cinco módulos que corren también en la faena, que son Operación Mina, Trazabilidad y Embarque, Conciliación Metalúrgica, Acreditación y Acceso, y Seguridad y Salud Ocupacional, tienen además instancia en el Nodo de Faena (Subdocumento 4, sección 4.1.2.1). Equipos y Mantenimiento y Cumplimiento Ambiental suman series de tiempo, y Trazabilidad y Embarque, Conciliación Metalúrgica, Acreditación y Acceso, Seguridad y Salud Ocupacional, Cumplimiento Ambiental y Administración y Servicios Comunes, almacén documental. El cifrado a nivel de campo se aplica en todo dominio que guarda un atributo personal sensible: Operación Mina (operador del viaje y del ciclo, sesiones de operador y declaración de material), Trazabilidad y Embarque, Acreditación y Acceso, Seguridad y Salud Ocupacional, Administración y Servicios Comunes y la estructura común del evento de terreno (Tablas \ref{tab:atributos-modulo-operacion-mina} a \ref{tab:atributos-estructura-comun-eventos-terreno}).
+
+La Tabla \ref{tab:dominios-datos-posicion-cap-propietario-funcional} completa la vista con la posición de cada dominio frente al teorema CAP, el área del cliente que responde por él y su retención.
+
+\begin{tabla}{I{0.225}I{0.257}I{0.321}I{0.197}}{Dominios de datos: posición CAP, propietario funcional y retención.}{tab:dominios-datos-posicion-cap-propietario-funcional}
+  {\cab{Dominio} & \cab{Posición CAP} & \cab{Propietario funcional} & \cab{Retención}}
+  {Fuente: elaboración propia a partir del Subdocumento 5 (Tablas \refext{S5}{tab:posicion-cap-dominio} y \refext{S5}{tab:retencion-categoria-entidad}) y de las Bases técnicas del caso Minería (cap. 15, p. 25).}
+Operación Mina & CP en el Nodo; AP entre Nodo y nube & Gerencia de Operaciones Mina y Superintendencia de Planificación Minera & 10 años; 5 años el pozo, la tronadura y la detención \\
+Trazabilidad y Embarque & CP en cada sitio; AP entre Nodo y nube & Gerencia de Operaciones Mina, Superintendencia de Planta Concentradora y área comercial & 10 años \\
+Conciliación Metalúrgica & AP en el turno; CP en el mes & Superintendencia de Planta Concentradora, Metalurgia y Laboratorio & 10 años \\
+Equipos y Mantenimiento & CP en aviso y clasificación; no aplica entre Nodo y nube, sólo nube & Jefatura de Mantenimiento & 5 años \\
+Acreditación y Acceso & CP en la habilitación; AP en la portería & Área de Seguridad y Salud Ocupacional & 10 años; plantilla biométrica hasta la pérdida del acceso o la revocación del consentimiento \\
+Seguridad y Salud Ocupacional & CP en casos y salud; AP en el registro de terreno & Área de Seguridad y Salud Ocupacional & 10 años \\
+Cumplimiento Ambiental & CP; AP en la captura: los gabinetes de relaves y planta guardan las mediciones durante un corte & Gerencia de Sustentabilidad & 10 años \\
+Indicadores y Centro Integrado & AP & Centro Integrado de Operaciones & Según el dato de origen; definiciones: 10 años y mientras respalden registros vigentes \\
+Administración y Servicios Comunes & CP; copia de lectura en el Nodo & Administrador del cliente: Tecnologías de Información & 10 años \\
+\end{tabla}
+Trazabilidad y Embarque es el único dominio cuya cadena cruza de la faena al puerto: el Nodo de Faena escribe la capa, el lote de planta y el despacho a puerto, y la nube escribe el lote comercial y el embarque. Es también el único que expone una vista filtrada hacia afuera, la del Portal para Compradores. La retención de diez años domina; los cinco años quedan para los registros operacionales, y la plantilla biométrica es la única sin plazo fijo: se elimina cuando la persona pierde el acceso o revoca su consentimiento (Subdocumento 5, secciones 5.2.4 y 5.2.5).
+
+\seccion{Entidades del modelo}
+La Tabla \ref{tab:entidades-modelo} presenta 78 entidades y estructuras comunes, con 844 atributos individuales. Indica módulo dueño, clase, condición de raíz o dependiente y retención. Las estructuras técnicas y analíticas de A.4 se describen por separado y no se suman como raíces de negocio.
+
+\begin{tabla}{I{0.214}I{0.231}I{0.227}I{0.130}I{0.198}}{Entidades del modelo.}{tab:entidades-modelo}
+  {\cab{Entidad} & \cab{Módulo dueño} & \cab{Clase} & \cab{Atributos} & \cab{Retención}}
+  {Fuente: elaboración propia a partir del Subdocumento 5 (secciones 5.1.2 y 5.2.4).}
+Plan minero & Operación Mina & Principal, agregado raíz & 13 & 10 años \\
+Detalle de plan por polígono & Operación Mina & Principal, dependiente de Plan minero & 10 & 10 años \\
+Polígono & Operación Mina & Principal & 8 & 10 años \\
+Viaje & Operación Mina & Principal, agregado raíz & 19 & 10 años \\
+Ciclo de carguío & Operación Mina & Principal, dependiente de Viaje & 14 & 10 años \\
+Turno & Operación Mina & Principal, agregado raíz & 9 & 10 años \\
+Hito de relevo & Operación Mina & Principal, dependiente de Turno & 8 & 10 años \\
+Sesión de operador & Operación Mina & Principal, agregado raíz & 9 & 10 años \\
+Declaración de material & Operación Mina & Principal, agregado raíz & 13 & 10 años \\
+Pozo de perforación & Operación Mina & Principal, agregado raíz & 13 & 5 años \\
+Tronadura & Operación Mina & Principal, agregado raíz & 10 & 5 años \\
+Polígono afectado por tronadura & Operación Mina & Asociativa, dependiente de Tronadura & 3 & 5 años \\
+Detención & Operación Mina & Principal, agregado raíz & 18 & 5 años \\
+Stock & Trazabilidad y Embarque & Principal, agregado raíz & 8 & 10 años \\
+Verificación de stock & Trazabilidad y Embarque & Principal, dependiente de Stock & 10 & 10 años \\
+Capa de stock & Trazabilidad y Embarque & Principal & 9 & 10 años \\
+Aporte a stock & Trazabilidad y Embarque & Principal & 12 & 10 años \\
+Retoma de stock & Trazabilidad y Embarque & Principal & 9 & 10 años \\
+Origen de retoma & Trazabilidad y Embarque & Asociativa & 7 & 10 años \\
+Lote de planta & Trazabilidad y Embarque & Principal, agregado raíz & 11 & 10 años \\
+Despacho a puerto & Trazabilidad y Embarque & Principal, agregado raíz & 13 & 10 años \\
+Recepción en acopio & Trazabilidad y Embarque & Principal, dependiente de Lote comercial & 13 & 10 años \\
+Lote comercial & Trazabilidad y Embarque & Principal, agregado raíz & 17 & 10 años \\
+Composición de lote & Trazabilidad y Embarque & Asociativa & 4 & 10 años \\
+Embarque & Trazabilidad y Embarque & Principal, agregado raíz & 8 & 10 años \\
+Hito de embarque & Trazabilidad y Embarque & Principal, dependiente de Embarque & 9 & 10 años \\
+Liquidación & Trazabilidad y Embarque & Soporte & 12 & 10 años \\
+Componente de liquidación & Trazabilidad y Embarque & Principal, dependiente de Liquidación & 9 & 10 años \\
+Certificado derivado & Trazabilidad y Embarque & Principal & 9 & 10 años \\
+Devolución de concentrado & Trazabilidad y Embarque & Principal & 11 & 10 años \\
+Pesaje & Conciliación Metalúrgica & Principal, agregado raíz & 14 & 10 años \\
+Punto de muestreo & Conciliación Metalúrgica & Soporte & 7 & 10 años \\
+Muestra & Conciliación Metalúrgica & Principal, agregado raíz & 10 & 10 años \\
+Análisis & Conciliación Metalúrgica & Principal & 15 & 10 años \\
+Arbitraje de laboratorio & Conciliación Metalúrgica & Principal, agregado raíz & 15 & 10 años \\
+Laboratorio & Conciliación Metalúrgica & Soporte & 6 & 10 años \\
+Balance de turno & Conciliación Metalúrgica & Principal, agregado raíz & 13 & 10 años \\
+Conciliación & Conciliación Metalúrgica & Principal, agregado raíz & 11 & 10 años \\
+Detalle de conciliación por punto & Conciliación Metalúrgica & Principal, dependiente de Conciliación & 10 & 10 años \\
+Paso de cálculo & Conciliación Metalúrgica & Principal, dependiente de Balance de turno o Conciliación & 10 & 10 años \\
+Aviso de falla & Equipos y Mantenimiento & Principal, agregado raíz & 10 & 5 años \\
+Detención de planta & Equipos y Mantenimiento & Principal, agregado raíz & 16 & 5 años \\
+Pauta de mantenimiento & Equipos y Mantenimiento & Soporte & 7 & 5 años \\
+Alarma de fabricante & Equipos y Mantenimiento & Soporte & 7 & 5 años \\
+Alerta de mantenimiento & Equipos y Mantenimiento & Principal, agregado raíz & 10 & 5 años \\
+Acción de mantenimiento & Equipos y Mantenimiento & Principal, dependiente de Alerta de mantenimiento & 8 & 5 años \\
+Habilitación & Acreditación y Acceso & Principal, agregado raíz & 9 & 10 años \\
+Documento de acreditación & Acreditación y Acceso & Principal, dependiente de Habilitación & 10 & 10 años \\
+Empresa contratista & Acreditación y Acceso & Principal, agregado raíz & 7 & 10 años \\
+Credencial & Acreditación y Acceso & Soporte & 7 & 10 años \\
+Paso de portería & Acreditación y Acceso & Principal, agregado raíz & 23 & 10 años \\
+Consentimiento & Acreditación y Acceso & Principal, agregado raíz & 9 & 10 años \\
+Plantilla biométrica & Acreditación y Acceso & Soporte & 9 & Hasta la pérdida del acceso o la revocación del consentimiento \\
+Incidente & Seguridad y Salud Ocupacional & Principal, agregado raíz & 11 & 10 años \\
+Participación en incidente & Seguridad y Salud Ocupacional & Asociativa & 4 & 10 años \\
+Inspección & Seguridad y Salud Ocupacional & Principal, agregado raíz & 14 & 10 años \\
+Alerta de fatiga & Seguridad y Salud Ocupacional & Principal, agregado raíz & 16 & 10 años \\
+Acción sobre alerta & Seguridad y Salud Ocupacional & Principal, dependiente de Alerta de fatiga & 8 & 10 años \\
+Control de salud & Seguridad y Salud Ocupacional & Principal, agregado raíz & 10 & 10 años \\
+Compromiso & Cumplimiento Ambiental & Principal, agregado raíz & 8 & 10 años \\
+Cumplimiento por período & Cumplimiento Ambiental & Principal, dependiente de Compromiso & 10 & 10 años \\
+Medición ambiental & Cumplimiento Ambiental & Principal & 17 & 10 años \\
+Informe de laboratorio externo & Cumplimiento Ambiental & Principal & 10 & 10 años \\
+Huella de carbono & Cumplimiento Ambiental & Principal, agregado raíz & 10 & 10 años \\
+Detalle de huella & Cumplimiento Ambiental & Principal, dependiente de Huella de carbono & 11 & 10 años \\
+Indicador & Indicadores y Centro Integrado & Principal, agregado raíz & 13 & 10 años; conservar más si respalda registros aún vigentes \\
+Persona & Administración y Servicios Comunes & Principal, agregado raíz & 9 & 10 años \\
+Cuenta externa & Administración y Servicios Comunes & Soporte, proyección de identidad & 9 & 10 años \\
+Asignación de persona & Administración y Servicios Comunes & Soporte, dependiente de Persona & 8 & 10 años \\
+Equipo & Administración y Servicios Comunes & Principal, agregado raíz & 9 & 10 años \\
+Parámetro / Regla & Administración y Servicios Comunes & Principal, agregado raíz & 12 & 10 años \\
+Documento & Administración y Servicios Comunes & Principal, agregado raíz & 20 & 10 años \\
+Caso de flujo & Administración y Servicios Comunes & Principal, agregado raíz & 8 & 10 años \\
+Tarea de flujo & Administración y Servicios Comunes & Principal, dependiente de Caso de flujo & 9 & 10 años \\
+Transición de caso & Administración y Servicios Comunes & Principal, dependiente de Caso de flujo & 10 & 10 años \\
+Asiento de auditoría & Administración y Servicios Comunes & Soporte & 16 & 10 años \\
+Dispositivo inventariado & Administración y Servicios Comunes & Soporte & 7 & 10 años \\
+Evento de terreno & Cada módulo receptor & Principal & 24 & 5 o 10 años, según la categoría del hecho \\
+\end{tabla}
+Las 37 raíces se reparten entre los nueve módulos: ocho en Operación Mina, cinco en Trazabilidad y Embarque, cinco en Conciliación Metalúrgica, tres en Equipos y Mantenimiento, cuatro en Acreditación y Acceso, cuatro en Seguridad y Salud Ocupacional, dos en Cumplimiento Ambiental, una en Indicadores y Centro Integrado y cinco en Administración y Servicios Comunes. El evento es una estructura común, no otra raíz.
+
+\seccion{Atributos por entidad}
+El diccionario desarrolla los 844 atributos de las 78 entidades y estructuras del catálogo en las Tablas \ref{tab:atributos-modulo-operacion-mina} a \ref{tab:atributos-estructura-comun-eventos-terreno}. Cada fila declara un campo individual, su tipo de PostgreSQL 18 (PostgreSQL Global Development Group, s. f.), su dominio, su condición de nulidad, su propietario y su sensibilidad. A.4 completa la definición de los demás almacenes y servicios de persistencia.
+
+El dominio de valores declara el rango y la condición además del tipo, como un tonelaje decimal de 0 a 300 con dos decimales, una ley de cobre de 0 a 100 con tres decimales, un polígono cerrado con coordenadas válidas en el sistema de referencia EPSG:4326 (International Association of Oil \& Gas Producers, s. f.) o una lista cerrada de valores enumerada en el propio atributo. Con ese nivel de detalle, el evento se valida en el dispositivo antes de firmarse.
+
+Todo atributo es obligatorio salvo los que declaran una condición de nulidad. Las referencias de una recepción, declaración o medición pueden quedar pendientes sólo en los estados que lo permiten; el hecho no se descarta. Al completar la asociación o liberar un lote se validan las referencias y datos requeridos. La ausencia de operador se admite sólo en los hechos que contemplan RF-ACR-011, sin dejar al sistema emisor sin identificar.
+
+El propietario y la sensibilidad se declaran por atributo y no por entidad, de modo que una misma tabla puede tener columnas internas, confidenciales y personales sensibles. En Viaje, por ejemplo, el tonelaje y las horas son internos; el polígono, la versión de plan y la posición de carguío son confidenciales, y el operador y la sesión son personal sensible. El cifrado a nivel de campo, que el Subdocumento 5 exige para todo dato personal sensible (sección 5.1.3), y la auditoría de consulta se aplican con esa misma granularidad.
+
+Los campos que heredan una clasificación se protegen según el registro de origen; las condiciones de nulidad se declaran en cada fila.
+
+\begin{horizontal}
+La Tabla \ref{tab:atributos-modulo-operacion-mina} desarrolla 13 entidades o estructuras, con 147 atributos individuales.
+
+\begin{tabla}{I{0.253}I{0.215}I{0.284}I{0.137}I{0.111}}{Atributos del módulo Operación Mina.}{tab:atributos-modulo-operacion-mina}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Plan minero} \\
+id\_plan & UUID & UUID válido que identifica el plan y se mantiene entre sus versiones & Superintendencia de Planificación Minera & Confidencial \\
+version & INTEGER & Entero positivo incremental, único dentro de cada plan & Superintendencia de Planificación Minera & Confidencial \\
+fecha\_publicacion & TIMESTAMPTZ & Fecha y hora con zona horaria & Superintendencia de Planificación Minera & Confidencial \\
+horizonte & VARCHAR(40) & Uno de: semanal, anual o trimestral & Superintendencia de Planificación Minera & Confidencial \\
+tonelaje\_planificado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas) & Superintendencia de Planificación Minera & Confidencial \\
+destino\_planificado & VARCHAR(40) & Uno de: chancado, stock, stock\_baja\_ley o botadero & Superintendencia de Planificación Minera & Confidencial \\
+estado & VARCHAR(40) & Uno de: vigente o superada & Superintendencia de Planificación Minera & Interno \\
+id\_version\_plan & UUID & UUID válido, único y no reutilizable que identifica una versión concreta del plan & Superintendencia de Planificación Minera & Confidencial \\
+vigencia\_desde & TIMESTAMPTZ & Fecha y hora con zona horaria desde la que se aplica la versión & Superintendencia de Planificación Minera & Confidencial \\
+vigencia\_hasta & TIMESTAMPTZ & Fecha y hora posterior a vigencia\_desde. Nulo mientras no tenga término definido. & Superintendencia de Planificación Minera & Confidencial \\
+id\_autor & UUID & UUID válido de la persona autora identificada por el sistema de planificación & Superintendencia de Planificación Minera & Confidencial \\
+motivo\_cambio & VARCHAR(120) & Motivo del catálogo configurado por el cliente: rampa caída, desplazamiento del contacto por tronadura, pedido de planta y motivos adicionales aprobados. & Superintendencia de Planificación Minera & Confidencial \\
+id\_version\_anterior & UUID & UUID válido de la versión anterior del mismo plan. Nulo en la primera versión. & Superintendencia de Planificación Minera & Confidencial \\
+\multicolumn{5}{I{1.000}}{Detalle de plan por polígono} \\
+id\_detalle\_plan & UUID & UUID válido, único y no reutilizable & Superintendencia de Planificación Minera & Confidencial \\
+id\_version\_plan & UUID & UUID válido de id\_version\_plan de Plan minero & Superintendencia de Planificación Minera & Confidencial \\
+id\_poligono & UUID & UUID válido del polígono de esa versión; su geometría histórica no se sobrescribe & Superintendencia de Planificación Minera & Confidencial \\
+inicio\_planificado & TIMESTAMPTZ & Fecha y hora con zona horaria & Superintendencia de Planificación Minera & Confidencial \\
+fin\_planificado & TIMESTAMPTZ & Fecha y hora con zona horaria, posterior a inicio\_planificado & Superintendencia de Planificación Minera & Confidencial \\
+tonelaje\_planificado & NUMERIC(12,2) & Decimal positivo, en toneladas & Superintendencia de Planificación Minera & Confidencial \\
+ley\_cu\_planificada & NUMERIC(6,3) & Decimal de 0 a 100, en porcentaje de cobre & Superintendencia de Planificación Minera & Confidencial \\
+destino\_planificado & VARCHAR(40) & Uno de: chancado, stock, stock\_baja\_ley o botadero & Superintendencia de Planificación Minera & Confidencial \\
+orden\_extraccion & INTEGER & Entero positivo: posición en la secuencia de extracción & Superintendencia de Planificación Minera & Confidencial \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Superintendencia de Planificación Minera & Confidencial \\
+\multicolumn{5}{I{1.000}}{Polígono} \\
+id\_poligono & UUID & UUID válido, único y no reutilizable & Superintendencia de Planificación Minera & Confidencial \\
+denominacion & VARCHAR(80) & Texto libre hasta 80 caracteres & Superintendencia de Planificación Minera & Interno \\
+id\_sector & UUID & UUID válido de un sector del rajo existente & Superintendencia de Planificación Minera & Interno \\
+geometria & GEOGRAPHY(POLYGON,4326) & Polígono cerrado con coordenadas válidas en el sistema de referencia EPSG:4326 & Superintendencia de Planificación Minera & Confidencial \\
+ley\_cu\_estimada & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre) & Superintendencia de Planificación Minera & Confidencial \\
+tipo\_material & VARCHAR(40) & Uno de: mineral, baja ley o estéril & Superintendencia de Planificación Minera & Interno \\
+id\_version\_plan\_origen & UUID & UUID válido de una versión de plan minero existente & Superintendencia de Planificación Minera & Confidencial \\
+contacto\_planificado & JSONB & Geometría y referencia espacial del contacto declarado por planificación, con los polígonos o tipos de material que separa. Nulo si la fuente no declara un contacto para ese polígono. & Superintendencia de Planificación Minera & Confidencial \\
+\multicolumn{5}{I{1.000}}{Viaje} \\
+id\_viaje & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_camion & UUID & UUID válido de un equipo de tipo camión de extracción existente & Jefatura de Mantenimiento & Interno \\
+id\_pala\_origen & UUID & UUID válido de un equipo de tipo pala o cargador frontal existente & Jefatura de Mantenimiento & Interno \\
+id\_poligono & UUID & UUID válido de un polígono existente & Superintendencia de Planificación Minera & Confidencial \\
+id\_version\_plan & UUID & UUID válido de una versión de plan minero existente & Gerencia de Operaciones Mina & Confidencial \\
+destino\_efectivo & VARCHAR(40) & Uno de: chancado, stock, stock\_baja\_ley o botadero & Gerencia de Operaciones Mina & Interno \\
+id\_stock\_destino & UUID & UUID válido de un stock existente. Nulo si el destino es chancado o botadero. & Gerencia de Operaciones Mina & Interno \\
+id\_lote\_planta\_destino & UUID & UUID válido de un lote de planta existente. Nulo si el destino no es chancado. & Gerencia de Operaciones Mina & Interno \\
+id\_declaracion & UUID & UUID válido de una declaración de material existente, o vacío. Nulo si el operador no declaró un cambio de material para el viaje. & Gerencia de Operaciones Mina & Interno \\
+tonelaje\_a\_bordo & NUMERIC(12,2) & Decimal de 0 a 300 con hasta 2 decimales (toneladas) & Gerencia de Operaciones Mina & Interno \\
+posicion\_carguio & GEOGRAPHY(POINT,4326) & Punto con coordenadas válidas en el sistema de referencia EPSG:4326 & Gerencia de Operaciones Mina & Confidencial \\
+hora\_carguio & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+hora\_descarga & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+id\_operador & UUID & UUID válido de una persona existente, o vacío. Admite nulo por RF-ACR-011, operador no identificado. & Gerencia de Operaciones Mina & Personal sensible \\
+marca\_operador\_no\_identificado & BOOLEAN & Verdadero o falso & Gerencia de Operaciones Mina & Interno \\
+marca\_proximidad\_borde & BOOLEAN & Verdadero o falso & Gerencia de Operaciones Mina & Interno \\
+id\_sesion\_operador & UUID & UUID válido de una sesión de operador existente. Nulo si operador no identificado. & Gerencia de Operaciones Mina & Personal sensible \\
+estado\_reconciliacion & VARCHAR(40) & Uno de: pendiente, reconciliado, cuarentena o marcado\_credencial\_revocada & Gerencia de Operaciones Mina & Interno \\
+id\_turno & UUID & UUID válido de un turno existente & Gerencia de Operaciones Mina & Interno \\
+\multicolumn{5}{I{1.000}}{Ciclo de carguío} \\
+id\_ciclo & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_ciclo\_origen & VARCHAR(128) & Identificador del ciclo recibido del despacho. No se repite dentro de la misma fuente, incluso en reenvíos. & Gerencia de Operaciones Mina & Interno \\
+id\_viaje & UUID & UUID válido de un viaje existente & Gerencia de Operaciones Mina & Interno \\
+id\_pala & UUID & UUID válido de un equipo de tipo pala o cargador frontal existente & Jefatura de Mantenimiento & Interno \\
+id\_poligono & UUID & UUID válido del polígono vigente al realizar el ciclo & Superintendencia de Planificación Minera & Confidencial \\
+id\_version\_plan & UUID & UUID válido de la versión del plan aplicada al ciclo & Gerencia de Operaciones Mina & Confidencial \\
+id\_operador & UUID & UUID válido de una persona existente. Nulo cuando el operador no está identificado. & Gerencia de Operaciones Mina & Personal sensible \\
+marca\_operador\_no\_identificado & BOOLEAN & Verdadero cuando id\_operador es nulo; falso cuando está identificado & Gerencia de Operaciones Mina & Interno \\
+posicion\_carguio & GEOGRAPHY(POINT,4326) & Posición de la pala recibida del despacho, con coordenadas válidas en EPSG:4326 & Gerencia de Operaciones Mina & Confidencial \\
+marca\_proximidad\_borde & BOOLEAN & Verdadero o falso según el dato recibido o la regla versionada aplicada. Nulo cuando no se dispone de información suficiente para determinarlo. & Gerencia de Operaciones Mina & Interno \\
+inicio & TIMESTAMPTZ & Fecha y hora con zona horaria del inicio del ciclo & Gerencia de Operaciones Mina & Interno \\
+fin & TIMESTAMPTZ & Fecha y hora con zona horaria, igual o posterior a inicio. Nulo mientras el ciclo no haya terminado. & Gerencia de Operaciones Mina & Interno \\
+posicion\_relativa\_contacto & JSONB & Posición respecto del contacto de la versión aplicada: referencia del contacto, lado y distancia/unidad si la fuente los entrega. Conserva el dato y la calidad originales; si la fuente no los entrega, registra “no disponible”. & Gerencia de Operaciones Mina & Confidencial \\
+sistema\_origen & VARCHAR(80) & Identificador del conector de despacho; unicidad del par sistema\_origen e id\_ciclo\_origen & Gerencia de Operaciones Mina & Interno \\
+\multicolumn{5}{I{1.000}}{Turno} \\
+id\_turno & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+fecha\_operacional & TIMESTAMPTZ & Fecha y hora con zona horaria, pasada o presente & Gerencia de Operaciones Mina & Interno \\
+jornada & VARCHAR(40) & Uno de: dia o noche & Gerencia de Operaciones Mina & Interno \\
+inicio & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+fin & TIMESTAMPTZ & Fecha y hora con zona horaria, posterior a inicio & Gerencia de Operaciones Mina & Interno \\
+id\_version\_definicion\_turno & UUID & UUID válido de id\_version\_parametro con la definición, taxonomía o conjunto de factores aplicado; conserva la versión histórica. & Gerencia de Operaciones Mina & Interno \\
+id\_supervisor\_guardia & UUID & UUID válido de una persona existente & Gerencia de Operaciones Mina & Interno \\
+estado\_cierre & VARCHAR(40) & Uno de: abierto, cerrado o cerrado\_con\_escalamiento & Gerencia de Operaciones Mina & Interno \\
+detenciones\_sin\_clasificar & INTEGER & Entero mayor o igual que 0 & Gerencia de Operaciones Mina & Interno \\
+\multicolumn{5}{I{1.000}}{Hito de relevo} \\
+id\_hito\_relevo & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_turno & UUID & UUID válido de un turno existente & Gerencia de Operaciones Mina & Interno \\
+etapa & VARCHAR(80) & Etapa del catálogo de relevo aprobado por el cliente & Gerencia de Operaciones Mina & Interno \\
+id\_equipo & UUID & UUID válido de un equipo; nulo para hitos de un área & Gerencia de Operaciones Mina & Interno \\
+id\_area & UUID & UUID válido de un área; obligatorio cuando no se refiere a un equipo & Gerencia de Operaciones Mina & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria del hito observado & Gerencia de Operaciones Mina & Interno \\
+origen & VARCHAR(80) & Fuente y método de observación del hito; las etapas no observables se identifican como pendientes de medición & Gerencia de Operaciones Mina & Interno \\
+id\_evento\_origen & UUID & UUID válido del evento que acredita el hito & Gerencia de Operaciones Mina & Interno \\
+\multicolumn{5}{I{1.000}}{Sesión de operador} \\
+id\_sesion & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_equipo & UUID & UUID válido de un equipo existente & Jefatura de Mantenimiento & Interno \\
+id\_credencial & UUID & UUID válido de una credencial existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_dispositivo & UUID & UUID válido de un dispositivo inventariado en estado activo existente & Administrador del cliente: Tecnologías de Información & Interno \\
+apertura & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+cierre & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a apertura, o vacío mientras la sesión está abierta. Nulo si sesión en curso. & Gerencia de Operaciones Mina & Interno \\
+id\_turno & UUID & UUID válido de un turno existente & Gerencia de Operaciones Mina & Interno \\
+origen\_cierre & VARCHAR(40) & Uno de: relevo, fin\_turno o cierre\_automatico & Gerencia de Operaciones Mina & Interno \\
+\multicolumn{5}{I{1.000}}{Declaración de material} \\
+id\_declaracion & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_sesion\_operador & UUID & UUID válido de una sesión de operador existente, o vacío. Nulo si el operador no se identificó en el relevo. & Gerencia de Operaciones Mina & Personal sensible \\
+id\_pala & UUID & UUID válido de un equipo de tipo pala o cargador frontal existente & Jefatura de Mantenimiento & Interno \\
+id\_poligono & UUID & UUID válido de un polígono existente & Superintendencia de Planificación Minera & Confidencial \\
+destino\_planificado & VARCHAR(40) & Uno de: chancado, stock, stock\_baja\_ley o botadero, tomado de la versión aplicada del plan. & Superintendencia de Planificación Minera & Confidencial \\
+destino\_reasignado & VARCHAR(40) & Uno de: chancado, stock, stock\_baja\_ley o botadero, según lo informado por el despacho. Nulo mientras no se haya recibido una reasignación de destino. & Gerencia de Operaciones Mina & Interno \\
+sello\_tiempo\_origen & TIMESTAMPTZ & Fecha y hora con zona horaria, tomada en la Botonera de Pala & Gerencia de Operaciones Mina & Interno \\
+id\_viaje\_asociado & UUID & UUID válido de un viaje existente, o vacío. Nulo hasta que el despacho entrega el viaje reasignado. & Gerencia de Operaciones Mina & Interno \\
+id\_ciclo & UUID & UUID válido de un ciclo perteneciente al viaje asociado. Nulo mientras el aviso esté pendiente de correlación o en revisión. & Gerencia de Operaciones Mina & Interno \\
+estado\_correlacion & VARCHAR(40) & Uno de: pendiente, asociado o en\_revision. Asociado sólo cuando están identificados el viaje y el ciclo correspondientes. & Gerencia de Operaciones Mina & Interno \\
+estado\_reconciliacion & VARCHAR(40) & Uno de: pendiente, reconciliado, cuarentena o marcado\_credencial\_revocada & Gerencia de Operaciones Mina & Interno \\
+id\_version\_plan & UUID & UUID válido de la versión de plan utilizada al registrar el aviso & Gerencia de Operaciones Mina & Confidencial \\
+fecha\_reasignacion & TIMESTAMPTZ & Fecha y hora con zona horaria de la decisión informada por despacho. Nulo mientras no se reciba una reasignación. & Gerencia de Operaciones Mina & Interno \\
+\multicolumn{5}{I{1.000}}{Pozo de perforación} \\
+id\_pozo & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_perforadora & UUID & UUID válido de un equipo de tipo perforadora existente & Jefatura de Mantenimiento & Interno \\
+id\_poligono & UUID & UUID válido de un polígono existente & Superintendencia de Planificación Minera & Confidencial \\
+id\_tronadura & UUID & UUID válido de una tronadura existente, o vacío. Nulo hasta que el pozo se asigna a una tronadura. & Gerencia de Operaciones Mina & Interno \\
+profundidad & NUMERIC(6,2) & Decimal positivo con hasta 2 decimales (metros) & Gerencia de Operaciones Mina & Interno \\
+indice\_dureza & NUMERIC(6,2) & Decimal no negativo con hasta 2 decimales. Nulo mientras falten datos o una regla aprobada para calcularlo; el pendiente queda registrado. & Superintendencia de Planificación Minera & Confidencial \\
+origen\_registro & VARCHAR(40) & Uno de: app\_sitco\_terreno o telemetria\_fabricante & Gerencia de Operaciones Mina & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+id\_persona\_registra & UUID & UUID válido de una persona existente, o vacío. Nulo si el pozo llega por la telemetría de la perforadora. & Gerencia de Operaciones Mina & Interno \\
+posicion & GEOGRAPHY(POINT,4326) & Coordenadas originales válidas en EPSG:4326 & Gerencia de Operaciones Mina & Confidencial \\
+velocidad\_penetracion & NUMERIC(12,4) & Decimal no negativo en metros por minuto. Nulo mientras el dato no haya sido recibido. & Gerencia de Operaciones Mina & Interno \\
+id\_version\_regla\_dureza & UUID & UUID válido de id\_version\_parametro con la regla aprobada por Geología. Nulo hasta disponer de regla aplicable. & Gerencia de Operaciones Mina & Confidencial \\
+parametros\_perforacion & JSONB & Lista de parámetros utilizados: nombre, valor, unidad, fuente y calidad; conserva las entradas que usa la regla de dureza aprobada por Geología. & Gerencia de Operaciones Mina & Confidencial \\
+\multicolumn{5}{I{1.000}}{Tronadura} \\
+id\_tronadura & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_poligono & UUID & UUID válido del polígono principal; los demás afectados se conservan en Polígono afectado por tronadura. & Superintendencia de Planificación Minera & Confidencial \\
+fecha\_programada & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+fecha\_ejecucion & TIMESTAMPTZ & Fecha y hora con zona horaria de la ejecución real. Nulo mientras no se haya ejecutado; no se obliga a que sea posterior a la programación original. & Gerencia de Operaciones Mina & Interno \\
+estado & VARCHAR(40) & Uno de: programada, ejecutada, sector\_liberado o suspendida & Gerencia de Operaciones Mina & Interno \\
+hora\_liberacion\_sector & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a fecha\_ejecucion, o vacío. Nulo mientras el sector no se libera. & Gerencia de Operaciones Mina & Interno \\
+id\_supervisor\_libera & UUID & UUID válido de una persona existente, o vacío. Nulo mientras el sector no se libera. & Gerencia de Operaciones Mina & Interno \\
+notificada\_despacho & BOOLEAN & Verdadero o falso & Gerencia de Operaciones Mina & Interno \\
+id\_sector & UUID & UUID válido del sector del rajo & Gerencia de Operaciones Mina & Interno \\
+desplazamiento\_contacto & JSONB & Desplazamiento declarado: referencia de contacto, descripción o geometría, valor y unidad cuando sean medidos, fuente y responsable. Nulo hasta recibir la declaración de Geología. & Gerencia de Operaciones Mina & Confidencial \\
+\multicolumn{5}{I{1.000}}{Polígono afectado por tronadura} \\
+id\_relacion & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_tronadura & UUID & UUID válido de una tronadura existente & Gerencia de Operaciones Mina & Interno \\
+id\_poligono & UUID & UUID válido de un polígono afectado; par tronadura y polígono sin duplicados & Superintendencia de Planificación Minera & Confidencial \\
+\multicolumn{5}{I{1.000}}{Detención} \\
+id\_detencion & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_equipo & UUID & UUID válido de un equipo existente & Gerencia de Operaciones Mina & Interno \\
+inicio & TIMESTAMPTZ & Fecha y hora con zona horaria & Despacho de flota, por su conector & Interno \\
+fin & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a inicio, o vacío mientras la detención está en curso. Nulo mientras la detención está en curso. & Despacho de flota, por su conector & Interno \\
+causa\_nivel\_1 & VARCHAR(40) & Uno de los valores de la taxonomía cerrada parametrizable en cada nivel; sin texto libre & Gerencia de Operaciones Mina & Interno \\
+causa\_nivel\_2 & VARCHAR(40) & Uno de los valores de la taxonomía cerrada parametrizable en cada nivel; sin texto libre & Gerencia de Operaciones Mina & Interno \\
+causa\_nivel\_3 & VARCHAR(40) & Uno de los valores de la taxonomía cerrada parametrizable en cada nivel; sin texto libre & Gerencia de Operaciones Mina & Interno \\
+id\_version\_taxonomia & UUID & UUID válido de id\_version\_parametro con la definición, taxonomía o conjunto de factores aplicado; conserva la versión histórica. & Gerencia de Operaciones Mina & Interno \\
+origen\_clasificacion & VARCHAR(40) & Uno de: regla\_operacion\_mina, automatica\_telemetria o supervisor & Gerencia de Operaciones Mina & Interno \\
+id\_supervisor\_clasifica & UUID & UUID válido de una persona existente, o vacío. Nulo cuando la clasificación fue automática y no se escaló a supervisor. & Gerencia de Operaciones Mina & Interno \\
+estado\_clasificacion & VARCHAR(40) & Uno de: clasificada, sin\_clasificar o escalada & Gerencia de Operaciones Mina & Interno \\
+id\_tronadura\_asociada & UUID & UUID válido de una tronadura existente, o vacío. Nulo cuando la detención no se explica por una tronadura. & Gerencia de Operaciones Mina & Interno \\
+id\_turno & UUID & UUID válido de un turno existente & Gerencia de Operaciones Mina & Interno \\
+causa\_raiz & TEXT & Diagnóstico de causa raíz. Nulo hasta que sea determinado; no sustituye la clasificación de tres niveles. & Gerencia de Operaciones Mina & Interno \\
+fecha\_diagnostico & TIMESTAMPTZ & Fecha y hora con zona horaria de determinación de la causa raíz. Nulo mientras no exista diagnóstico. & Gerencia de Operaciones Mina & Interno \\
+id\_responsable\_diagnostico & UUID & UUID válido de la persona que determinó la causa raíz. Nulo hasta que exista diagnóstico. & Gerencia de Operaciones Mina & Interno \\
+fecha\_clasificacion & TIMESTAMPTZ & Fecha y hora con zona horaria de la clasificación. Nulo mientras siga sin clasificar. & Gerencia de Operaciones Mina & Interno \\
+historial\_escalamiento & JSONB & Lista de escalamientos con fecha, plazo de origen, destinatario, motivo y referencia a la notificación; lista vacía si no hay escalamiento. & Gerencia de Operaciones Mina & Interno \\
+\end{tabla}
+La tabla contiene 147 atributos: 45 confidenciales y 6 personales sensibles.
+
+La Tabla \ref{tab:atributos-modulo-trazabilidad-embarque} desarrolla 17 entidades o estructuras, con 171 atributos individuales.
+
+\begin{tabla}{I{0.238}I{0.130}I{0.346}I{0.166}I{0.121}}{Atributos del módulo Trazabilidad y Embarque.}{tab:atributos-modulo-trazabilidad-embarque}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Stock} \\
+id\_stock & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+denominacion & VARCHAR(80) & Texto libre hasta 80 caracteres & Gerencia de Operaciones Mina & Interno \\
+id\_sitio & UUID & UUID válido de un sitio operacional existente & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_stock & VARCHAR(40) & Uno de: mineral, baja ley o concentrado & Gerencia de Operaciones Mina & Interno \\
+ley\_ponderada\_cu & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre) & Gerencia de Operaciones Mina & Confidencial \\
+capacidad\_nominal & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas). Nulo en acopios sin capacidad declarada. & Gerencia de Operaciones Mina & Interno \\
+marca\_tiempo\_recalculo & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Gerencia de Operaciones Mina & Confidencial \\
+\multicolumn{5}{I{1.000}}{Verificación de stock} \\
+id\_verificacion & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_stock & UUID & UUID válido de un stock existente & Gerencia de Operaciones Mina & Interno \\
+id\_retoma & UUID & UUID válido de una retoma del stock. Nulo si la verificación corresponde al stock completo & Gerencia de Operaciones Mina & Interno \\
+id\_muestra & UUID & UUID válido de la proyección de la muestra utilizada & Superintendencia de Planta Concentradora & Confidencial \\
+id\_analisis & UUID & UUID válido de la proyección del análisis utilizado & Superintendencia de Planta Concentradora & Confidencial \\
+ley\_cu\_predicha & NUMERIC(6,3) & Decimal de 0 a 100, en porcentaje & Gerencia de Operaciones Mina & Confidencial \\
+ley\_cu\_medida & NUMERIC(6,3) & Decimal de 0 a 100, en porcentaje & Superintendencia de Planta Concentradora & Confidencial \\
+diferencia & NUMERIC(7,3) & Ley medida menos ley predicha, en puntos porcentuales & Superintendencia de Planta Concentradora & Confidencial \\
+fecha\_verificacion & TIMESTAMPTZ & Fecha y hora con zona horaria & Superintendencia de Planta Concentradora & Interno \\
+id\_responsable & UUID & UUID válido de la persona que realizó la verificación & Superintendencia de Planta Concentradora & Interno \\
+\multicolumn{5}{I{1.000}}{Capa de stock} \\
+id\_capa & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_stock & UUID & UUID válido de un stock existente & Gerencia de Operaciones Mina & Interno \\
+fecha\_operacional & TIMESTAMPTZ & Fecha del día operacional que forma la capa, con zona horaria & Gerencia de Operaciones Mina & Interno \\
+tonelaje & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas) & Gerencia de Operaciones Mina & Interno \\
+ley\_cu\_ponderada & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales, promedio ponderado de los aportes (porcentaje de cobre) & Gerencia de Operaciones Mina & Confidencial \\
+tonelaje\_retomado & NUMERIC(12,2) & Decimal mayor o igual que 0 con hasta 2 decimales, no mayor que tonelaje (toneladas) & Gerencia de Operaciones Mina & Interno \\
+estado & VARCHAR(40) & Uno de: abierta, cerrada o agotada & Gerencia de Operaciones Mina & Interno \\
+ley\_cu\_verificada & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre medido por el laboratorio). Nulo hasta la verificación mensual contra el laboratorio (SUP-03). & Laboratorio y Superintendencia de Planta Concentradora & Confidencial \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Gerencia de Operaciones Mina & Confidencial \\
+\multicolumn{5}{I{1.000}}{Aporte a stock} \\
+id\_aporte & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_capa & UUID & UUID válido de una capa de stock existente & Gerencia de Operaciones Mina & Interno \\
+id\_viaje & UUID & UUID válido de un viaje existente; obligatorio para tipo\_origen viaje y nulo en los demás casos. & Gerencia de Operaciones Mina & Interno \\
+id\_poligono\_origen & UUID & UUID válido de un polígono conocido. Nulo para saldo\_anterior sin origen reconstruido o para retoma con varios orígenes, que se conservan en Origen de retoma. & Gerencia de Operaciones Mina & Confidencial \\
+tonelaje\_aportado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas) & Gerencia de Operaciones Mina & Interno \\
+ley\_cu\_aporte & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre) & Gerencia de Operaciones Mina & Confidencial \\
+origen\_ley & VARCHAR(40) & Uno de: estimada\_modelo o medida\_laboratorio & Gerencia de Operaciones Mina & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+tipo\_origen & VARCHAR(40) & Uno de: viaje, retoma\_stock o saldo\_anterior & Gerencia de Operaciones Mina & Interno \\
+id\_retoma\_origen & UUID & UUID válido de la retoma de origen; obligatorio para retoma\_stock y nulo en los demás casos & Gerencia de Operaciones Mina & Interno \\
+referencia\_saldo\_inicial & TEXT & Referencia al inventario y su fecha de corte. Obligatorio para saldo\_anterior y nulo en los demás casos. & Gerencia de Operaciones Mina & Interno \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Gerencia de Operaciones Mina & Confidencial \\
+\multicolumn{5}{I{1.000}}{Retoma de stock} \\
+id\_retoma & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_stock & UUID & UUID válido de un stock existente & Gerencia de Operaciones Mina & Interno \\
+id\_destino & UUID & UUID válido de un stock o lote de planta según tipo\_destino. Referencia polimórfica validada por Trazabilidad; no tiene una FK única. & Gerencia de Operaciones Mina & Interno \\
+tonelaje\_retomado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas) & Gerencia de Operaciones Mina & Interno \\
+ley\_cu\_predicha & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre) & Gerencia de Operaciones Mina & Confidencial \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+tipo\_destino & VARCHAR(40) & Uno de: stock o lote\_planta; identifica el tipo de id\_destino & Gerencia de Operaciones Mina & Interno \\
+id\_version\_regla\_mezcla & UUID & UUID válido de id\_version\_parametro de la regla aplicada & Gerencia de Operaciones Mina & Confidencial \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Gerencia de Operaciones Mina & Confidencial \\
+\multicolumn{5}{I{1.000}}{Origen de retoma} \\
+id\_retoma & UUID & UUID válido de una retoma de stock existente & Gerencia de Operaciones Mina & Interno \\
+id\_poligono & UUID & UUID válido del polígono de origen. Nulo sólo para saldo\_anterior\_no\_reconstruido. & Superintendencia de Planificación Minera & Confidencial \\
+proporcion & NUMERIC(9,6) & Decimal de 0 a 1 con hasta 6 decimales; la suma por retoma es exactamente 1 & Gerencia de Operaciones Mina & Interno \\
+ley\_cu\_atribuida & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre) & Gerencia de Operaciones Mina & Confidencial \\
+id\_origen\_retoma & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+tipo\_origen & VARCHAR(40) & Uno de: poligono\_conocido o saldo\_anterior\_no\_reconstruido & Gerencia de Operaciones Mina & Interno \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Gerencia de Operaciones Mina & Confidencial \\
+\multicolumn{5}{I{1.000}}{Lote de planta} \\
+id\_lote\_planta & UUID & UUID válido, único y no reutilizable & Superintendencia de Planta Concentradora & Interno \\
+id\_linea\_proceso & UUID & UUID válido de una línea de proceso existente & Superintendencia de Planta Concentradora & Interno \\
+id\_turno & UUID & UUID válido de un turno existente & Superintendencia de Planta Concentradora & Interno \\
+inicio\_ventana & TIMESTAMPTZ & Fecha y hora con zona horaria & Superintendencia de Planta Concentradora & Interno \\
+fin\_ventana & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a inicio\_ventana, o vacío mientras el lote está abierto. Nulo si en conformación. & Superintendencia de Planta Concentradora & Interno \\
+tonelaje\_alimentado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas) & Superintendencia de Planta Concentradora & Interno \\
+ley\_cu\_ponderada & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre) & Superintendencia de Planta Concentradora & Confidencial \\
+tonelaje\_concentrado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas de concentrado producidas por el lote). Nulo mientras el lote está en conformación. & Superintendencia de Planta Concentradora & Interno \\
+ley\_cu\_concentrado & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre del concentrado). Nulo hasta que se valida el análisis del concentrado. & Laboratorio y Superintendencia de Planta Concentradora & Confidencial \\
+estado & VARCHAR(40) & Uno de: en\_conformacion, cerrado, retenido o procesado & Superintendencia de Planta Concentradora & Interno \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Superintendencia de Planta Concentradora & Confidencial \\
+\multicolumn{5}{I{1.000}}{Despacho a puerto} \\
+id\_despacho & UUID & UUID válido, único y no reutilizable & Superintendencia de Planta Concentradora & Interno \\
+id\_lote\_planta & UUID & UUID válido de un lote de planta existente & Superintendencia de Planta Concentradora & Interno \\
+codigo\_guia\_qr & VARCHAR(64) & Texto hasta 64 caracteres, único, impreso como código QR en la guía de despacho & Superintendencia de Planta Concentradora & Interno \\
+patente\_camion & VARCHAR(10) & Patente chilena válida del camión de transporte & Superintendencia de Planta Concentradora & Interno \\
+id\_pesaje\_bascula & UUID & UUID válido de un pesaje de báscula existente & Superintendencia de Planta Concentradora & Interno \\
+tonelaje\_humedo & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas) & Superintendencia de Planta Concentradora & Interno \\
+fecha\_salida & TIMESTAMPTZ & Fecha y hora con zona horaria & Superintendencia de Planta Concentradora & Interno \\
+estado & VARCHAR(40) & Uno de: emitido, en\_transito, recibido o rechazado & Superintendencia de Planta Concentradora & Interno \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Superintendencia de Planta Concentradora & Confidencial \\
+tonelaje\_seco & NUMERIC(12,2) & Decimal positivo en toneladas, no mayor que tonelaje\_humedo; obligatorio al emitir la guía & Superintendencia de Planta Concentradora & Interno \\
+humedad\_porcentaje & NUMERIC(6,3) & Decimal de 0 a 100, porcentaje informado al emitir la guía & Superintendencia de Planta Concentradora & Interno \\
+id\_analisis\_guia & UUID & UUID válido del análisis que respalda los valores de la guía & Superintendencia de Planta Concentradora & Confidencial \\
+id\_version\_documento\_guia & UUID & UUID válido de la versión inmutable del documento de la guía, además de su código QR & Superintendencia de Planta Concentradora & Interno \\
+\multicolumn{5}{I{1.000}}{Recepción en acopio} \\
+id\_recepcion & UUID & UUID válido, único y no reutilizable & Área comercial & Interno \\
+id\_despacho & UUID & UUID válido de un despacho a puerto existente & Área comercial & Interno \\
+id\_lote\_comercial & UUID & UUID válido de un lote comercial existente, incluido uno en estado pendiente. & Área comercial & Interno \\
+marca\_tiempo\_lectura & TIMESTAMPTZ & Fecha y hora con zona horaria de la lectura del código QR & Área comercial & Interno \\
+id\_dispositivo & UUID & UUID válido de un dispositivo inventariado existente & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_persona\_recibe & UUID & UUID válido de una persona existente. Nulo cuando el receptor se identifica mediante id\_cuenta\_externa\_recibe. & Área comercial & Interno \\
+origen\_lectura & VARCHAR(40) & Uno de: en\_linea o diferida\_gabinete & Área comercial & Interno \\
+observacion & VARCHAR(40) & Uno de: sin\_observacion, diferencia\_peso, sello\_alterado u otro & Área comercial & Interno \\
+tonelaje\_humedo\_recibido & NUMERIC(12,2) & Decimal positivo en toneladas recibidas; nulo hasta recibir el dato del acopio, con pendiente identificado & Área comercial & Interno \\
+humedad\_recibida & NUMERIC(6,3) & Decimal de 0 a 100; nulo hasta recibir el dato del acopio, con pendiente identificado & Área comercial & Interno \\
+origen\_datos\_recepcion & VARCHAR(120) & Fuente de la declaración o medición del acopio; no presupone una báscula nueva & Área comercial & Interno \\
+fecha\_datos\_recepcion & TIMESTAMPTZ & Fecha y hora con zona horaria de los datos declarados; nulo hasta recibirlos & Área comercial & Interno \\
+id\_cuenta\_externa\_recibe & UUID & UUID válido de Cuenta externa. Obligatorio si el receptor no está representado en Persona; se identifica exactamente un receptor por persona o cuenta externa. & Área comercial & Personal sensible \\
+\multicolumn{5}{I{1.000}}{Lote comercial} \\
+id\_lote\_comercial & UUID & UUID válido, único y no reutilizable & Área comercial & Interno \\
+fecha\_conformacion & TIMESTAMPTZ & Fecha y hora con zona horaria. Nulo mientras el lote esté pendiente de conformación & Área comercial & Interno \\
+tonelaje\_humedo & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas). Nulo mientras no se determine. Obligatorio para liberar el lote & Área comercial & Interno \\
+tonelaje\_seco & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales, menor o igual que tonelaje\_humedo (toneladas). Nulo mientras no se determine. Obligatorio para liberar el lote & Área comercial & Interno \\
+humedad\_porcentaje & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de humedad). Nulo mientras no exista un resultado válido. Obligatorio para liberar el lote & Laboratorio y Superintendencia de Planta Concentradora & Interno \\
+ley\_cu\_liberacion & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre). Nulo mientras no exista un resultado válido. Obligatorio para liberar el lote & Área comercial & Confidencial \\
+ley\_au\_liberacion & NUMERIC(8,3) & Decimal positivo con hasta 3 decimales (gramos por tonelada). Nulo si el contrato del lote no considera pago por oro como subproducto. & Área comercial & Confidencial \\
+ley\_ag\_liberacion & NUMERIC(8,3) & Decimal positivo con hasta 3 decimales (gramos por tonelada). Nulo si el contrato del lote no considera pago por plata como subproducto. & Área comercial & Confidencial \\
+contenido\_as\_liberacion & NUMERIC(10,2) & Decimal positivo con hasta 2 decimales (partes por millón). Nulo mientras no exista un resultado válido. Obligatorio para liberar el lote & Área comercial & Confidencial \\
+estado & VARCHAR(40) & Uno de: pendiente, analizado, validado, liberado, rechazado, remuestreo o no\_liberable & Área comercial & Interno \\
+id\_analisis\_vigente & UUID & UUID válido de un análisis existente. Nulo mientras Conciliación Metalúrgica no ha publicado un análisis válido y vigente para el lote. & Laboratorio y Superintendencia de Planta Concentradora & Confidencial \\
+id\_aprobador\_comercial & UUID & UUID válido de una persona existente. Nulo mientras el lote no ha sido aprobado para liberación. & Área comercial & Interno \\
+id\_devolucion\_origen & UUID & UUID válido de una devolución de concentrado existente, o vacío. Nulo en lotes sin material reincorporado. & Área comercial & Interno \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Área comercial & Confidencial \\
+id\_comprador & UUID & UUID válido del comprador del catálogo; nulo hasta definirlo, obligatorio para liberar el lote & Área comercial & Confidencial \\
+id\_version\_limites\_contrato & UUID & UUID válido de id\_version\_parametro con los límites del contrato del comprador; obligatorio antes de liberar el lote & Área comercial & Confidencial \\
+historial\_liberaciones & JSONB & Lista inmutable de liberaciones: fecha, análisis, versión de límites, aprobador y estado. Las nuevas decisiones se agregan sin sustituir las anteriores. & Área comercial & Confidencial \\
+\multicolumn{5}{I{1.000}}{Composición de lote} \\
+id\_lote\_padre & UUID & UUID válido de un lote comercial existente & Área comercial & Interno \\
+id\_componente & UUID & UUID válido de un lote de planta o de una devolución de concentrado existente, según tipo\_componente & Área comercial & Interno \\
+tipo\_componente & VARCHAR(40) & Uno de: lote\_planta o devolucion\_concentrado & Área comercial & Interno \\
+proporcion & NUMERIC(9,6) & Decimal de 0 a 1 con hasta 6 decimales; la suma por lote padre es exactamente 1 & Área comercial & Interno \\
+\multicolumn{5}{I{1.000}}{Embarque} \\
+id\_embarque & UUID & UUID válido, único y no reutilizable & Área comercial & Interno \\
+id\_lote\_comercial & UUID & UUID válido de un lote comercial existente & Área comercial & Interno \\
+id\_comprador & UUID & UUID válido de un comprador existente & Área comercial & Confidencial \\
+medio\_transporte & VARCHAR(80) & Texto libre hasta 80 caracteres & Área comercial & Interno \\
+id\_puerto\_embarque & UUID & UUID válido de un puerto o recinto portuario existente & Área comercial & Interno \\
+fecha\_zarpe & TIMESTAMPTZ & Fecha y hora con zona horaria real del zarpe. Nulo mientras no haya ocurrido. & Área comercial & Interno \\
+tonelaje\_embarcado & NUMERIC(12,2) & Decimal positivo en toneladas efectivamente embarcadas. Nulo mientras no haya medición definitiva; no se sustituye por cero. & Área comercial & Interno \\
+estado & VARCHAR(40) & Uno de: programado, en\_carga, carga\_terminada, cierre\_documental\_pendiente, cerrado o zarpado. Los hitos físicos se conservan aunque falte la firma del acta. & Área comercial & Interno \\
+\multicolumn{5}{I{1.000}}{Hito de embarque} \\
+id\_hito\_embarque & UUID & UUID válido, único y no reutilizable & Área comercial & Interno \\
+id\_embarque & UUID & UUID válido de un embarque existente & Área comercial & Interno \\
+tipo\_hito & VARCHAR(40) & Uno de: programacion, conformacion\_lote, muestreo, recepcion\_nave, inicio\_carga, termino\_carga, emision\_documentos o zarpe & Área comercial & Interno \\
+fecha\_hecho & TIMESTAMPTZ & Fecha y hora con zona horaria del hito & Área comercial & Interno \\
+fecha\_registro & TIMESTAMPTZ & Fecha y hora con zona horaria de conservación del registro & Área comercial & Interno \\
+tipo\_autor & VARCHAR(40) & Uno de: persona, cuenta\_externa o sistema & Área comercial & Interno \\
+referencia\_autor & VARCHAR(128) & Identificador del autor validado según tipo\_autor & Área comercial & Personal sensible \\
+evidencia & JSONB & Referencias a muestra, análisis, documento o evento que acredita el hito; no copia sus contenidos & Área comercial & Hereda la del registro asociado \\
+origen & VARCHAR(80) & Sistema o canal de origen identificado & Área comercial & Interno \\
+\multicolumn{5}{I{1.000}}{Liquidación} \\
+id\_liquidacion & UUID & UUID válido, único y no reutilizable & Área comercial & Interno \\
+id\_embarque & UUID & UUID válido de un embarque existente & Área comercial & Interno \\
+tipo & VARCHAR(40) & Uno de: provisoria, final o ajuste & Área comercial & Interno \\
+ley\_pagable\_cu & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre) & Área comercial & Confidencial \\
+cargo\_tratamiento & NUMERIC(14,2) & Decimal positivo con hasta 2 decimales (en la moneda declarada) & Área comercial & Confidencial \\
+cargo\_refinacion & NUMERIC(14,2) & Decimal positivo con hasta 2 decimales (en la moneda declarada) & Área comercial & Confidencial \\
+penalizacion\_as & NUMERIC(14,2) & Decimal positivo con hasta 2 decimales (en la moneda declarada). Nulo si no aplica. & Área comercial & Confidencial \\
+monto\_liquidado & NUMERIC(14,2) & Decimal con hasta 2 decimales, positivo o negativo (en la moneda declarada) & Finanzas: SAP S/4HANA & Confidencial \\
+fecha\_liquidacion & TIMESTAMPTZ & Fecha y hora con zona horaria & Área comercial & Interno \\
+moneda & VARCHAR(3) & Código de moneda informado por el comprador; común a los importes de la liquidación & Área comercial & Confidencial \\
+version & INTEGER & Entero positivo de la versión recibida; cada versión se conserva & Área comercial & Interno \\
+id\_liquidacion\_anterior & UUID & UUID válido de la versión anterior del mismo embarque. Nulo en la primera versión. & Área comercial & Interno \\
+\multicolumn{5}{I{1.000}}{Componente de liquidación} \\
+id\_componente\_liquidacion & UUID & UUID válido, único y no reutilizable & Área comercial & Interno \\
+id\_liquidacion & UUID & UUID válido de una liquidación existente & Área comercial & Interno \\
+concepto & VARCHAR(80) & Concepto informado por el comprador: cargo, deducción, penalidad o ajuste & Área comercial & Confidencial \\
+elemento & VARCHAR(40) & Elemento al que corresponde la penalidad. Nulo si el concepto no corresponde a un elemento & Área comercial & Confidencial \\
+valor & NUMERIC(18,4) & Importe o magnitud informados, con signo y precisión originales normalizados & Área comercial & Confidencial \\
+unidad\_moneda & VARCHAR(40) & Unidad o código de moneda del valor informado & Área comercial & Confidencial \\
+fuente & VARCHAR(128) & Referencia de origen del comprador & Área comercial & Interno \\
+fecha\_origen & TIMESTAMPTZ & Fecha y hora con zona horaria & Área comercial & Interno \\
+id\_version\_documento & UUID & UUID válido de la versión documental que respalda el componente & Área comercial & Confidencial \\
+\multicolumn{5}{I{1.000}}{Certificado derivado} \\
+id\_certificado & UUID & UUID válido, único y no reutilizable & Área comercial & Interno \\
+id\_embarque & UUID & UUID válido de un embarque existente & Área comercial & Interno \\
+origen\_por\_sector & VARCHAR(300) & Texto hasta 300 caracteres con denominaciones de sectores del rajo; nunca de polígonos & Área comercial & Interno \\
+stocks\_recorridos & VARCHAR(300) & Texto hasta 300 caracteres con denominaciones de acopios & Área comercial & Interno \\
+cadena\_custodia & TEXT & Texto libre sin límite definido: hitos con fecha y responsable & Área comercial & Interno \\
+id\_analisis\_publicado & UUID & UUID válido de un análisis existente & Laboratorio y Superintendencia de Planta Concentradora & Interno \\
+id\_aprobacion\_comercial & UUID & UUID válido de una persona existente & Área comercial & Interno \\
+estado\_publicacion & VARCHAR(40) & Uno de: borrador, aprobado, publicado o revocado & Área comercial & Interno \\
+documento\_certificado & VARCHAR(512) & Ruta o referencia del almacén documental, hasta 512 caracteres & Área comercial & Interno \\
+\multicolumn{5}{I{1.000}}{Devolución de concentrado} \\
+id\_devolucion & UUID & UUID válido, único y no reutilizable & Área comercial & Interno \\
+id\_embarque & UUID & UUID válido de un embarque existente & Área comercial & Interno \\
+id\_lote\_comercial & UUID & UUID válido de un lote comercial existente & Área comercial & Interno \\
+fecha\_devolucion & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a la fecha de zarpe del embarque & Área comercial & Interno \\
+motivo & VARCHAR(40) & Uno de: ley fuera de especificación, humedad, arsénico sobre límite, daño en tránsito u otro & Área comercial & Interno \\
+tonelaje\_devuelto & NUMERIC(12,2) & Decimal con hasta 2 decimales mayor que 0 y menor o igual que el tonelaje embarcado (toneladas) & Área comercial & Interno \\
+id\_analisis\_comprador & UUID & UUID válido de un análisis existente. Nulo si el rechazo no se funda en análisis. & Laboratorio y Superintendencia de Planta Concentradora & Confidencial \\
+id\_arbitraje & UUID & UUID válido de un arbitraje de laboratorio existente, o vacío. Nulo si no hubo arbitraje. & Laboratorio y Superintendencia de Planta Concentradora & Interno \\
+destino\_reincorporacion & VARCHAR(40) & Uno de: stock, lote\_planta o no\_reincorporado & Gerencia de Operaciones Mina & Interno \\
+id\_destino\_reincorporacion & UUID & UUID válido de un stock o de un lote de planta existente, o vacío. Nulo si no se reincorpora. & Gerencia de Operaciones Mina & Interno \\
+estado & VARCHAR(40) & Uno de: registrada, en\_analisis, reincorporada o descartada & Área comercial & Interno \\
+\end{tabla}
+La tabla contiene 171 atributos: 46 confidenciales y 2 personales sensibles.
+
+La Tabla \ref{tab:atributos-modulo-conciliacion-metalurgica} desarrolla 10 entidades o estructuras, con 111 atributos individuales.
+
+\begin{tabla}{I{0.246}I{0.164}I{0.341}I{0.121}I{0.129}}{Atributos del módulo Conciliación Metalúrgica.}{tab:atributos-modulo-conciliacion-metalurgica}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Pesaje} \\
+id\_pesaje & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_viaje & UUID & UUID válido de un viaje de extracción. Nulo para medición de planta, lote o despacho a puerto; no se crea un viaje. & Gerencia de Operaciones Mina & Interno \\
+id\_lote & UUID & UUID válido del lote indicado en tipo\_lote. Nulo si la medición no pertenece a un lote; referencia polimórfica validada por el módulo. & Gerencia de Operaciones Mina & Interno \\
+origen\_medicion & VARCHAR(40) & Uno de: pesaje\_a\_bordo, bascula\_camiones o balanza\_alimentacion & Gerencia de Operaciones Mina & Interno \\
+tonelaje & NUMERIC(12,2) & Decimal con hasta 2 decimales: de 0 a 300 en pesaje de viaje, mayor que 0 en pesaje de lote (toneladas) & Gerencia de Operaciones Mina & Interno \\
+es\_fuente\_de\_verdad & BOOLEAN & Verdadero o falso & Gerencia de Operaciones Mina & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria propia de la medición; no replica la hora de carguío. & Gerencia de Operaciones Mina & Interno \\
+id\_campana\_calibracion & UUID & UUID válido de una campaña de calibración existente, o vacío. Nulo si el instrumento no está bajo campaña de calibración vigente; la campaña está excluida del Contrato y es punto de extensión declarado. & Gerencia de Operaciones Mina & Interno \\
+id\_instrumento & UUID & UUID válido de un instrumento de pesaje existente & Gerencia de Operaciones Mina & Interno \\
+id\_interfaz\_origen & UUID & UUID válido de una interfaz de origen existente & Gerencia de Operaciones Mina & Interno \\
+tipo\_lote & VARCHAR(40) & Uno de: lote\_planta o lote\_comercial. Nulo si la medición no pertenece a un lote. & Superintendencia de Planta Concentradora & Interno \\
+id\_despacho\_puerto & UUID & UUID válido de la proyección del despacho a puerto. Nulo para mediciones ajenas a ese despacho. & Superintendencia de Planta Concentradora & Interno \\
+referencia\_series & JSONB & Fuente, señal, instrumento, inicio, fin y referencia inmutable de las lecturas utilizadas. Obligatorio para resultados derivados de series; nulo para una medición discreta. & Superintendencia de Planta Concentradora & Interno \\
+id\_version\_factor & UUID & UUID válido de la regla o factor aplicado al resultado derivado. Nulo cuando no se aplica corrección. & Superintendencia de Planta Concentradora & Confidencial \\
+\multicolumn{5}{I{1.000}}{Punto de muestreo} \\
+id\_punto\_muestreo & UUID & UUID válido, único y no reutilizable & Laboratorio & Interno \\
+denominacion & VARCHAR(80) & Texto libre hasta 80 caracteres & Laboratorio & Interno \\
+etapa\_cadena & VARCHAR(40) & Uno de: alimentación, producto de chancado, concentrado o embarque & Laboratorio & Interno \\
+frecuencia & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de frecuencias de muestreo & Laboratorio & Interno \\
+rol\_responsable & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de roles responsables & Laboratorio & Interno \\
+es\_obligatorio & BOOLEAN & Verdadero o falso & Laboratorio & Interno \\
+estado & VARCHAR(40) & Uno de: activo o inactivo & Laboratorio & Interno \\
+\multicolumn{5}{I{1.000}}{Muestra} \\
+id\_muestra & UUID & UUID válido, único y no reutilizable & Laboratorio & Interno \\
+id\_punto\_muestreo & UUID & UUID válido de un punto de muestreo existente & Laboratorio & Interno \\
+objeto\_muestreado & VARCHAR(40) & Uno de: viaje, lote\_planta, lote\_comercial, stock o retoma\_stock; determina el tipo de id\_objeto. & Laboratorio & Interno \\
+id\_objeto & UUID & UUID válido de un registro del tipo declarado en objeto\_muestreado; referencia local o proyección validada por Conciliación, sin FK única polimórfica. & Laboratorio & Interno \\
+hora\_toma & TIMESTAMPTZ & Fecha y hora con zona horaria & Laboratorio & Interno \\
+id\_persona\_toma & UUID & UUID válido de una persona existente & Laboratorio & Interno \\
+cadena\_custodia & TEXT & Texto libre sin límite definido: hitos de traspaso con hora y responsable & Laboratorio & Interno \\
+estado & VARCHAR(40) & Uno de: tomada, enviada, en\_analisis, analizada, rechazada o remuestreo\_solicitado & Laboratorio & Interno \\
+id\_muestra\_reemplazada & UUID & UUID válido de una muestra existente, o vacío. Nulo si no es remuestreo. & Laboratorio & Interno \\
+fecha\_solicitud\_remuestreo & TIMESTAMPTZ & Fecha y hora con zona horaria de solicitud. Nulo si no hubo rechazo; el plazo se verifica contra la fecha de rechazo. & Laboratorio y Metalurgia & Interno \\
+\multicolumn{5}{I{1.000}}{Análisis} \\
+id\_analisis & UUID & UUID válido, único y no reutilizable & Laboratorio & Interno \\
+id\_muestra & UUID & UUID válido de una muestra existente & Laboratorio & Interno \\
+ley\_cu & NUMERIC(6,3) & Decimal de 0 a 100 con hasta 3 decimales (porcentaje de cobre) & Laboratorio & Confidencial \\
+ley\_au & NUMERIC(8,3) & Decimal positivo con hasta 3 decimales (gramos por tonelada). Nulo si el análisis no los incluye. & Laboratorio & Confidencial \\
+ley\_ag & NUMERIC(8,3) & Decimal positivo con hasta 3 decimales (gramos por tonelada). Nulo si el análisis no los incluye. & Laboratorio & Confidencial \\
+contenido\_as & NUMERIC(10,2) & Decimal positivo con hasta 2 decimales (partes por millón) & Laboratorio & Confidencial \\
+id\_laboratorio & UUID & UUID válido de un laboratorio existente & Laboratorio & Interno \\
+es\_arbitraje & BOOLEAN & Verdadero o falso & Laboratorio & Interno \\
+estado\_validez & VARCHAR(40) & Uno de: valido, rechazado o superado\_por\_remuestreo & Laboratorio & Interno \\
+vigencia\_hasta & TIMESTAMPTZ & Fecha y hora con zona horaria de término de vigencia, posterior a hora\_publicacion; nulo si la fuente no fija un término. & Laboratorio & Interno \\
+hora\_publicacion & TIMESTAMPTZ & Fecha y hora con zona horaria & Laboratorio & Interno \\
+documento\_certificado & VARCHAR(512) & Ruta o referencia del almacén documental, hasta 512 caracteres & Laboratorio & Interno \\
+id\_arbitraje & UUID & UUID válido de un arbitraje de laboratorio existente, o vacío. Nulo si el análisis no fue objeto de arbitraje. & Laboratorio & Interno \\
+composicion\_elemental & JSONB & Lista por elemento: codigo, valor, unidad, origen (medido, estimado o no\_disponible), id\_analisis y/o id\_version\_parametro de respaldo. Conserva Cu/Au/Ag/As y otros elementos informados; valores desconocidos nulos, nunca cero. Las referencias son obligatorias según el origen. & Laboratorio & Confidencial \\
+fecha\_rechazo & TIMESTAMPTZ & Fecha y hora con zona horaria de declaración del rechazo. Nulo si no fue rechazado. & Laboratorio y Metalurgia & Interno \\
+\multicolumn{5}{I{1.000}}{Arbitraje de laboratorio} \\
+id\_arbitraje & UUID & UUID válido, único y no reutilizable & Área comercial y Laboratorio & Interno \\
+id\_lote\_comercial & UUID & UUID válido de un lote comercial existente & Área comercial y Laboratorio & Interno \\
+id\_analisis\_vendedor & UUID & UUID válido de un análisis existente & Área comercial y Laboratorio & Confidencial \\
+id\_analisis\_comprador & UUID & UUID válido de un análisis existente & Área comercial y Laboratorio & Confidencial \\
+id\_laboratorio\_arbitro & UUID & UUID válido de un laboratorio acreditado como árbitro existente & Área comercial y Laboratorio & Interno \\
+elemento\_en\_disputa & VARCHAR(40) & Uno de: cobre, oro, plata, arsénico o humedad & Área comercial y Laboratorio & Interno \\
+valor\_vendedor & NUMERIC(14,3) & Decimal con hasta 3 decimales, en la unidad del elemento en disputa & Área comercial y Laboratorio & Confidencial \\
+valor\_comprador & NUMERIC(14,3) & Decimal con hasta 3 decimales, en la unidad del elemento en disputa & Área comercial y Laboratorio & Confidencial \\
+valor\_dirimido & NUMERIC(14,3) & Decimal con hasta 3 decimales, en la unidad del elemento en disputa. Nulo mientras el arbitraje esté en curso. & Área comercial y Laboratorio & Confidencial \\
+fecha\_solicitud & TIMESTAMPTZ & Fecha y hora con zona horaria & Área comercial y Laboratorio & Interno \\
+fecha\_resolucion & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a fecha\_solicitud, o vacío. Nulo mientras esté en curso. & Área comercial y Laboratorio & Interno \\
+estado & VARCHAR(40) & Uno de: solicitado, en\_curso, resuelto o desistido & Área comercial y Laboratorio & Interno \\
+efecto\_liquidacion & VARCHAR(40) & Uno de: sin\_efecto, ajuste\_provisorio o ajuste\_final. Nulo mientras no se resuelva. & Área comercial y Laboratorio & Confidencial \\
+id\_analisis\_dirimente & UUID & UUID válido del análisis dirimente y su certificado. Nulo mientras no se haya recibido el resultado. & Área comercial & Confidencial \\
+unidad\_valores & VARCHAR(40) & Unidad común de los valores del elemento en disputa & Área comercial & Interno \\
+\multicolumn{5}{I{1.000}}{Laboratorio} \\
+id\_laboratorio & UUID & UUID válido, único y no reutilizable & Laboratorio & Interno \\
+nombre & VARCHAR(120) & Texto libre hasta 120 caracteres & Laboratorio & Interno \\
+rol & VARCHAR(40) & Uno de: propio\_cliente, comprador o arbitro & Laboratorio & Interno \\
+acreditacion & VARCHAR(120) & Texto libre hasta 120 caracteres & Laboratorio & Interno \\
+vigencia\_acreditacion & TIMESTAMPTZ & Fecha y hora con zona horaria & Laboratorio & Interno \\
+estado & VARCHAR(40) & Uno de: activo o inactivo & Laboratorio & Interno \\
+\multicolumn{5}{I{1.000}}{Balance de turno} \\
+id\_balance & UUID & UUID válido, único y no reutilizable & Metalurgia & Interno \\
+id\_turno & UUID & UUID válido de un turno existente & Metalurgia & Interno \\
+id\_lote\_planta & UUID & UUID válido de un lote de planta existente & Metalurgia & Interno \\
+tonelaje\_mina & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales: pesaje de a bordo corregido con el factor semanal de la báscula (toneladas) & Metalurgia & Interno \\
+tonelaje\_alimentado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales, de la balanza de alimentación (toneladas) & Metalurgia & Interno \\
+cobre\_fino\_alimentado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas de cobre fino) & Metalurgia & Confidencial \\
+analisis\_pendientes & INTEGER & Entero mayor o igual que 0 & Metalurgia & Interno \\
+usa\_ley\_supuesta & BOOLEAN & Verdadero cuando alguna ley se toma del plan como supuesto mientras falta su análisis & Metalurgia & Interno \\
+estado & VARCHAR(40) & Uno de: provisional, recalculado o aprobado & Metalurgia & Interno \\
+id\_version\_parametros & UUID & UUID válido de id\_version\_parametro con la definición, taxonomía o conjunto de factores aplicado; conserva la versión histórica. & Metalurgia & Interno \\
+marca\_calculo & TIMESTAMPTZ & Fecha y hora con zona horaria del último cálculo & Metalurgia & Interno \\
+cobre\_fino\_recuperado & NUMERIC(12,2) & Decimal no negativo en toneladas de cobre recuperado; nulo mientras falten los insumos, con balance provisional. & Laboratorio y Metalurgia & Confidencial \\
+cobre\_fino\_salidas\_perdidas & NUMERIC(12,2) & Decimal no negativo en toneladas; nulo mientras falten los insumos, con balance provisional. & Laboratorio y Metalurgia & Confidencial \\
+\multicolumn{5}{I{1.000}}{Conciliación} \\
+id\_conciliacion & UUID & UUID válido, único y no reutilizable & Metalurgia & Interno \\
+periodo\_desde & TIMESTAMPTZ & Fecha y hora con zona horaria & Metalurgia & Interno \\
+periodo\_hasta & TIMESTAMPTZ & Fecha y hora con zona horaria, posterior a periodo\_desde & Metalurgia & Interno \\
+cobre\_estimado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas de cobre fino) & Metalurgia & Confidencial \\
+cobre\_extraido & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas de cobre fino) & Metalurgia & Confidencial \\
+cobre\_alimentado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas de cobre fino) & Metalurgia & Confidencial \\
+cobre\_embarcado & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas de cobre fino) & Metalurgia & Confidencial \\
+diferencia\_conciliacion & NUMERIC(6,3) & Decimal de -100 a 100 con hasta 3 decimales (porcentaje) & Metalurgia & Confidencial \\
+id\_punto\_medicion\_atribuido & UUID & UUID válido de un punto de medición de la cadena existente & Metalurgia & Interno \\
+id\_version\_parametros & UUID & UUID válido de id\_version\_parametro con la definición, taxonomía o conjunto de factores aplicado; conserva la versión histórica. & Metalurgia & Interno \\
+estado & VARCHAR(40) & Uno de: abierta, aprobada o entregada\_sap & Metalurgia & Interno \\
+\multicolumn{5}{I{1.000}}{Detalle de conciliación por punto} \\
+id\_detalle\_conciliacion & UUID & UUID válido, único y no reutilizable & Laboratorio y Metalurgia & Interno \\
+id\_conciliacion & UUID & UUID válido de una conciliación existente & Laboratorio y Metalurgia & Interno \\
+id\_punto\_medicion & UUID & UUID válido del punto de la cadena & Laboratorio y Metalurgia & Interno \\
+periodo\_desde & TIMESTAMPTZ & Fecha y hora con zona horaria & Laboratorio y Metalurgia & Interno \\
+periodo\_hasta & TIMESTAMPTZ & Fecha y hora con zona horaria, posterior a periodo\_desde & Laboratorio y Metalurgia & Interno \\
+valor\_entrada & NUMERIC(18,6) & Valor del dato de entrada en la unidad declarada & Laboratorio y Metalurgia & Confidencial \\
+valor\_salida & NUMERIC(18,6) & Valor comparado en la misma unidad & Laboratorio y Metalurgia & Confidencial \\
+diferencia & NUMERIC(18,6) & Diferencia con signo según la regla versionada del cálculo & Laboratorio y Metalurgia & Confidencial \\
+unidad & VARCHAR(40) & Unidad común de los valores & Laboratorio y Metalurgia & Interno \\
+referencias\_origen & JSONB & Referencias inmutables a registros, series y versiones de factores utilizados & Laboratorio y Metalurgia & Confidencial \\
+\multicolumn{5}{I{1.000}}{Paso de cálculo} \\
+id\_paso\_calculo & UUID & UUID válido, único y no reutilizable & Laboratorio y Metalurgia & Interno \\
+tipo\_resultado & VARCHAR(40) & Uno de: balance\_turno o conciliacion & Laboratorio y Metalurgia & Interno \\
+id\_resultado & UUID & UUID válido de la raíz indicada en tipo\_resultado; referencia polimórfica validada por Conciliación & Laboratorio y Metalurgia & Interno \\
+orden & INTEGER & Entero positivo, único dentro del resultado & Laboratorio y Metalurgia & Interno \\
+operacion & TEXT & Expresión y descripción del paso según la regla aprobada & Laboratorio y Metalurgia & Confidencial \\
+entradas & JSONB & Datos y unidades utilizados, con referencia inmutable a cada origen & Laboratorio y Metalurgia & Confidencial \\
+id\_version\_factor & UUID & UUID válido de id\_version\_parametro aplicado. Nulo si el paso no utiliza factor. & Laboratorio y Metalurgia & Confidencial \\
+factor\_aplicado & NUMERIC(18,8) & Factor efectivamente utilizado. Nulo si el paso no utiliza factor. & Laboratorio y Metalurgia & Confidencial \\
+resultado & NUMERIC(18,6) & Resultado intermedio conservado & Laboratorio y Metalurgia & Confidencial \\
+unidad & VARCHAR(40) & Unidad del resultado & Laboratorio y Metalurgia & Interno \\
+\end{tabla}
+La tabla contiene 111 atributos: 30 confidenciales y 0 personales sensibles.
+
+La Tabla \ref{tab:atributos-modulo-equipos-mantenimiento} desarrolla 6 entidades o estructuras, con 58 atributos individuales.
+
+\begin{tabla}{I{0.237}I{0.121}I{0.359}I{0.154}I{0.129}}{Atributos del módulo Equipos y Mantenimiento.}{tab:atributos-modulo-equipos-mantenimiento}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Aviso de falla} \\
+id\_aviso & UUID & UUID válido, único y no reutilizable & Jefatura de Mantenimiento & Interno \\
+id\_equipo & UUID & UUID válido de un equipo existente & Jefatura de Mantenimiento & Interno \\
+id\_modo\_falla & UUID & UUID válido de un modo de falla del catálogo existente & Jefatura de Mantenimiento & Interno \\
+observacion & TEXT & Texto libre sin límite definido. Nulo si el modo de falla basta. & Jefatura de Mantenimiento & Interno \\
+id\_persona\_registra & UUID & UUID válido de una persona existente & Jefatura de Mantenimiento & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Jefatura de Mantenimiento & Interno \\
+id\_alarma\_origen & UUID & UUID válido de una alarma de fabricante existente, o vacío. Nulo si el aviso no nace de una alarma. & Jefatura de Mantenimiento & Interno \\
+numero\_aviso\_sap & VARCHAR(20) & Número del aviso creado en SAP S/4HANA, hasta 20 caracteres; sin clave foránea, porque el aviso vive en SAP. Nulo hasta que SAP confirma la creación. & Jefatura de Mantenimiento & Interno \\
+estado & VARCHAR(40) & Uno de: registrado, enviado\_sap, creado\_sap o rechazado\_sap & Jefatura de Mantenimiento & Interno \\
+componente\_declarado & VARCHAR(120) & Componente elegido del catálogo del equipo por quien registra el aviso. Nulo si la falla no permite identificarlo. & Jefatura de Mantenimiento & Interno \\
+\multicolumn{5}{I{1.000}}{Detención de planta} \\
+id\_detencion\_planta & UUID & UUID válido, único y no reutilizable & Superintendencia de Planta Concentradora & Interno \\
+id\_linea\_proceso & UUID & UUID válido de una línea de proceso existente & Superintendencia de Planta Concentradora & Interno \\
+inicio & TIMESTAMPTZ & Fecha y hora con zona horaria & Superintendencia de Planta Concentradora & Interno \\
+fin & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a inicio, o vacío mientras la detención está en curso. Nulo mientras la detención está en curso. & Superintendencia de Planta Concentradora & Interno \\
+causa\_nivel\_1 & VARCHAR(40) & Uno de los valores de la taxonomía cerrada parametrizable en cada nivel; sin texto libre & Jefatura de Mantenimiento & Interno \\
+causa\_nivel\_2 & VARCHAR(40) & Uno de los valores de la taxonomía cerrada parametrizable en cada nivel; sin texto libre & Jefatura de Mantenimiento & Interno \\
+causa\_nivel\_3 & VARCHAR(40) & Uno de los valores de la taxonomía cerrada parametrizable en cada nivel; sin texto libre & Jefatura de Mantenimiento & Interno \\
+id\_version\_taxonomia & UUID & UUID válido de id\_version\_parametro con la definición, taxonomía o conjunto de factores aplicado; conserva la versión histórica. & Jefatura de Mantenimiento & Interno \\
+origen\_clasificacion & VARCHAR(40) & Uno de: automatica\_historiador o supervisor & Jefatura de Mantenimiento & Interno \\
+estado\_clasificacion & VARCHAR(40) & Uno de: clasificada, sin\_clasificar o escalada & Jefatura de Mantenimiento & Interno \\
+id\_turno & UUID & UUID válido de un turno existente & Gerencia de Operaciones Mina & Interno \\
+causa\_raiz & TEXT & Diagnóstico de causa raíz. Nulo hasta que sea determinado; no sustituye la clasificación de tres niveles. & Jefatura de Mantenimiento & Interno \\
+fecha\_diagnostico & TIMESTAMPTZ & Fecha y hora con zona horaria de determinación de la causa raíz. Nulo mientras no exista diagnóstico. & Jefatura de Mantenimiento & Interno \\
+id\_responsable\_diagnostico & UUID & UUID válido de la persona que determinó la causa raíz. Nulo hasta que exista diagnóstico. & Jefatura de Mantenimiento & Interno \\
+fecha\_clasificacion & TIMESTAMPTZ & Fecha y hora con zona horaria de la clasificación. Nulo mientras siga sin clasificar. & Jefatura de Mantenimiento & Interno \\
+historial\_escalamiento & JSONB & Lista de escalamientos con fecha, plazo de origen, destinatario, motivo y referencia a la notificación; lista vacía si no hay escalamiento. & Jefatura de Mantenimiento & Interno \\
+\multicolumn{5}{I{1.000}}{Pauta de mantenimiento} \\
+id\_pauta & UUID & UUID válido, único y no reutilizable & Jefatura de Mantenimiento & Interno \\
+id\_equipo & UUID & UUID válido de un equipo existente & Jefatura de Mantenimiento & Interno \\
+tipo\_pauta & VARCHAR(40) & Uno de: preventiva, predictiva o inspección técnica & Jefatura de Mantenimiento & Interno \\
+periodicidad\_horas & INTEGER & Entero positivo (horas de horómetro) & Jefatura de Mantenimiento & Interno \\
+proxima\_ejecucion & TIMESTAMPTZ & Fecha y hora con zona horaria & Jefatura de Mantenimiento & Interno \\
+estado\_cumplimiento & VARCHAR(40) & Uno de: al\_dia, por\_vencer o vencida & Jefatura de Mantenimiento & Interno \\
+id\_orden\_trabajo\_sap & VARCHAR(20) & Número de una orden de trabajo de SAP S/4HANA existente, o vacío; sin clave foránea, porque la orden vive en SAP. Se valida en el conector de SAP. Nulo si no hay orden abierta. & Jefatura de Mantenimiento & Interno \\
+\multicolumn{5}{I{1.000}}{Alarma de fabricante} \\
+id\_alarma & UUID & UUID válido, único y no reutilizable & Jefatura de Mantenimiento & Interno \\
+id\_equipo & UUID & UUID válido de un equipo existente & Jefatura de Mantenimiento & Interno \\
+fabricante\_origen & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de fabricantes & Jefatura de Mantenimiento & Interno \\
+codigo\_fabricante & VARCHAR(40) & Texto hasta 40 caracteres con el código propio del fabricante & Jefatura de Mantenimiento & Interno \\
+severidad\_normalizada & VARCHAR(40) & Uno de los valores de la escala cerrada parametrizable de severidad normalizada & Jefatura de Mantenimiento & Interno \\
+marca\_tiempo\_emision & TIMESTAMPTZ & Fecha y hora con zona horaria & Jefatura de Mantenimiento & Interno \\
+estado & VARCHAR(40) & Uno de: abierta, reconocida o cerrada & Jefatura de Mantenimiento & Interno \\
+\multicolumn{5}{I{1.000}}{Alerta de mantenimiento} \\
+id\_alerta\_mantenimiento & UUID & UUID válido, único y no reutilizable & Jefatura de Mantenimiento & Interno \\
+id\_equipo & UUID & UUID válido de un equipo existente & Jefatura de Mantenimiento & Interno \\
+id\_version\_regla & UUID & UUID válido de id\_version\_parametro, correspondiente a una regla de mantenimiento & Jefatura de Mantenimiento & Interno \\
+fecha\_generacion & TIMESTAMPTZ & Fecha y hora con zona horaria & Jefatura de Mantenimiento & Interno \\
+inicio\_periodo\_limite & TIMESTAMPTZ & Fecha y hora con zona horaria del inicio del período semanal definido por la regla & Jefatura de Mantenimiento & Interno \\
+fin\_periodo\_limite & TIMESTAMPTZ & Fecha y hora con zona horaria del fin del período semanal, posterior a inicio\_periodo\_limite & Jefatura de Mantenimiento & Interno \\
+estado & VARCHAR(40) & Uno de: abierta, en\_atencion, cerrada o descartada & Jefatura de Mantenimiento & Interno \\
+evidencia\_origen & JSONB & Lista de referencias a los datos utilizados por la regla, con el tipo, identificador y fuente de cada dato & Jefatura de Mantenimiento & Interno \\
+fecha\_cierre & TIMESTAMPTZ & Fecha y hora con zona horaria, igual o posterior a fecha\_generacion. Nulo mientras la alerta esté abierta o en\_atencion & Jefatura de Mantenimiento & Interno \\
+motivo\_cierre & TEXT & Texto libre sin límite definido con el motivo del cierre o descarte. Nulo mientras la alerta esté abierta o en\_atencion & Jefatura de Mantenimiento & Interno \\
+\multicolumn{5}{I{1.000}}{Acción de mantenimiento} \\
+id\_accion\_mantenimiento & UUID & UUID válido, único y no reutilizable & Jefatura de Mantenimiento & Interno \\
+id\_alerta\_mantenimiento & UUID & UUID válido de una alerta de mantenimiento existente & Jefatura de Mantenimiento & Interno \\
+tipo\_accion & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de acciones de mantenimiento & Jefatura de Mantenimiento & Interno \\
+fecha\_realizacion & TIMESTAMPTZ & Fecha y hora con zona horaria de la acción realizada & Jefatura de Mantenimiento & Interno \\
+id\_persona\_responsable & UUID & UUID válido de una persona existente & Jefatura de Mantenimiento & Interno \\
+id\_aviso & UUID & UUID válido de un aviso de falla existente. Nulo si la acción no está asociada a un aviso & Jefatura de Mantenimiento & Interno \\
+numero\_orden\_trabajo\_sap & VARCHAR(20) & Número de una orden de trabajo de SAP S/4HANA existente, hasta 20 caracteres; sin clave foránea. Se valida en el conector de SAP. Nulo si la acción no está asociada a una orden & Jefatura de Mantenimiento & Interno \\
+documento\_respaldo & VARCHAR(512) & Ruta o referencia del almacén documental, hasta 512 caracteres. Nulo si la acción no tiene documento de respaldo & Jefatura de Mantenimiento & Interno \\
+\end{tabla}
+La tabla contiene 58 atributos: 0 confidenciales y 0 personales sensibles. Cada alerta conserva la versión de regla y sus acciones con fecha y responsable; puede existir aunque no produzca un aviso a SAP.
+
+La Tabla \ref{tab:atributos-modulo-acreditacion-acceso} desarrolla 7 entidades o estructuras, con 74 atributos individuales.
+
+\begin{tabla}{I{0.288}I{0.125}I{0.305}I{0.162}I{0.121}}{Atributos del módulo Acreditación y Acceso.}{tab:atributos-modulo-acreditacion-acceso}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Habilitación} \\
+id\_habilitacion & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+tipo\_habilitacion & VARCHAR(40) & Uno de: examen\_preocupacional, altura\_geografica, vigilancia\_silice, curso\_induccion, curso\_riesgos o contrato\_vigente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+resultado & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de resultados de habilitación & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+fecha\_emision & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+fecha\_vencimiento & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+estado & VARCHAR(40) & Uno de: vigente, por\_vencer, vencida o revocada & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_documento\_respaldo & VARCHAR(512) & Ruta o referencia del almacén documental, hasta 512 caracteres & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_caso\_flujo & UUID & UUID válido del caso que conserva las etapas y tareas del trámite; proyección o referencia validada por la interfaz de Administración & Área de Seguridad y Salud Ocupacional & Interno \\
+\multicolumn{5}{I{1.000}}{Documento de acreditación} \\
+id\_documento\_acreditacion & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_habilitacion & UUID & UUID válido de una habilitación existente & Área de Seguridad y Salud Ocupacional & Interno \\
+tipo\_documento & VARCHAR(80) & Tipo del catálogo de acreditación aprobado por el cliente & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_version\_documento & UUID & UUID válido de una versión de Documento; conserva rechazados y sustituidos & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+emisor & VARCHAR(150) & Identidad de la entidad emisora & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_emision & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_vencimiento & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a fecha\_emision. Nulo si el documento no vence. & Área de Seguridad y Salud Ocupacional & Interno \\
+resultado\_validacion & VARCHAR(40) & Uno de: pendiente, aprobado o rechazado & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_validacion & TIMESTAMPTZ & Fecha y hora con zona horaria. Nulo mientras no se valide. & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona\_valida & UUID & UUID válido de la persona que validó. Nulo mientras no se valide. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+\multicolumn{5}{I{1.000}}{Empresa contratista} \\
+id\_empresa & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+razon\_social & VARCHAR(150) & Texto libre hasta 150 caracteres & Área de Abastecimiento y Contratos & Interno \\
+identificacion\_tributaria & VARCHAR(20) & RUT de empresa con dígito verificador válido, hasta 20 caracteres & Área de Abastecimiento y Contratos & Interno \\
+id\_administrador\_delegado & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Interno \\
+estado\_contractual & VARCHAR(40) & Uno de: vigente, suspendida o terminada & Área de Abastecimiento y Contratos & Interno \\
+dotacion\_acreditada & INTEGER & Entero mayor o igual que 0 & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_alta & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+\multicolumn{5}{I{1.000}}{Credencial} \\
+id\_credencial & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+identificador\_fisico & VARCHAR(40) & Texto hasta 40 caracteres con el número de serie de la credencial & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_emision & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+estado & VARCHAR(40) & Uno de: vigente, reemplazada o revocada & Área de Seguridad y Salud Ocupacional & Interno \\
+motivo\_revocacion & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de motivos de revocación, o vacío. Nulo mientras esté vigente. & Área de Seguridad y Salud Ocupacional & Interno \\
+requiere\_pin & BOOLEAN & Verdadero o falso & Área de Seguridad y Salud Ocupacional & Interno \\
+\multicolumn{5}{I{1.000}}{Paso de portería} \\
+id\_paso & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona & UUID & UUID válido de una persona existente. Nulo sólo en rechazo de una identificación desconocida; no se crea un registro de persona. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_credencial & UUID & UUID válido de una credencial existente. Nulo sólo en rechazo de un soporte desconocido. & Área de Seguridad y Salud Ocupacional & Interno \\
+sentido & VARCHAR(40) & Uno de: ingreso o salida & Área de Seguridad y Salud Ocupacional & Interno \\
+resultado & VARCHAR(40) & Uno de: habilitado, rechazado o excepcional & Área de Seguridad y Salud Ocupacional & Interno \\
+motivo\_rechazo & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de motivos de rechazo, o vacío. Nulo si el resultado no es rechazado. & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_autorizador\_excepcional & UUID & UUID válido de una persona existente, o vacío. Nulo salvo en un ingreso excepcional. & Área de Seguridad y Salud Ocupacional & Interno \\
+verificacion\_facial & VARCHAR(40) & Uno de: no\_aplicada, coincidencia, no\_coincidencia o no\_disponible. La no coincidencia rechaza; la ausencia de plantilla o falla del lector permite la alternativa autorizada. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+origen\_validacion & VARCHAR(40) & Uno de: en\_linea o lista\_local & Área de Seguridad y Salud Ocupacional & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+estado\_reconciliacion & VARCHAR(40) & Uno de: pendiente, reconciliado, cuarentena o marcado\_credencial\_revocada & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_punto\_control & UUID & UUID válido del punto de control del catálogo vigente & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_sitio & UUID & UUID válido del sitio en que ocurrió el intento; no se deduce del emplazamiento actual del lector & Área de Seguridad y Salud Ocupacional & Interno \\
+recinto & VARCHAR(40) & Uno de: porteria o sala\_tecnica & Área de Seguridad y Salud Ocupacional & Interno \\
+tipo\_acceso & VARCHAR(40) & Uno de: entrada, esclusa o salida; esclusa sólo en sala\_tecnica & Área de Seguridad y Salud Ocupacional & Interno \\
+metodo\_verificacion & VARCHAR(40) & Uno de: credencial, credencial\_pin, facial, afis o autorizacion\_excepcional; AFIS sólo en sala técnica & Área de Seguridad y Salud Ocupacional & Interno \\
+motivo\_ingreso\_sala & TEXT & Motivo declarado del ingreso a sala técnica. Nulo cuando no corresponda a ese recinto. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+identificacion\_presentada\_protegida & BYTEA & Identificación del soporte presentado, protegida según el contrato del lector; no contiene PIN ni credenciales en claro & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+fecha\_orden\_apertura & TIMESTAMPTZ & Fecha y hora con zona horaria de la orden. Nulo si no se emitió una orden de apertura. & Área de Seguridad y Salud Ocupacional & Interno \\
+resultado\_apertura & VARCHAR(40) & Uno de: no\_solicitada, pendiente, confirmada o fallida & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_confirmacion\_apertura & TIMESTAMPTZ & Fecha y hora con zona horaria. Nulo mientras no haya respuesta del equipo. & Área de Seguridad y Salud Ocupacional & Interno \\
+evidencia\_cruce & JSONB & Resultado y hora que entrega el equipo sobre el cruce efectivo. Nulo si el equipo no acredita el cruce; una apertura no equivale a paso efectivo. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_evento\_origen & UUID & UUID válido del evento del intento & Área de Seguridad y Salud Ocupacional & Interno \\
+\multicolumn{5}{I{1.000}}{Consentimiento} \\
+id\_consentimiento & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+categoria & VARCHAR(40) & Uno de: salud\_ocupacional, fatiga, alcohol\_drogas o biometria & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+version\_texto & INTEGER & Entero positivo con la versión del texto informado & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_otorgamiento & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_revocacion & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a fecha\_otorgamiento, o vacío. Nulo mientras el consentimiento está vigente. & Área de Seguridad y Salud Ocupacional & Interno \\
+estado & VARCHAR(40) & Uno de: otorgado o revocado & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_documento\_firmado & UUID & UUID válido de id\_version\_documento de Documento, con firma válida del tipo requerido. & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_version\_base\_tratamiento & UUID & UUID válido de id\_version\_parametro del catálogo aprobado de tratamientos: finalidad, base autorizada por el cliente, respaldo, responsable y vigencia. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+\multicolumn{5}{I{1.000}}{Plantilla biométrica} \\
+id\_plantilla & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_consentimiento & UUID & UUID válido de un consentimiento vigente de categoría biometria & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+plantilla\_cifrada & BYTEA & Vector numérico de la plantilla, cifrado a nivel de campo; nunca la imagen del rostro & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+version\_algoritmo & VARCHAR(40) & Texto hasta 40 caracteres con la versión del algoritmo de verificación & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_enrolamiento & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+estado & VARCHAR(40) & Uno de: vigente o eliminada & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_eliminacion & TIMESTAMPTZ & Fecha y hora con zona horaria, o vacío; al eliminarse, la plantilla se destruye por eliminación criptográfica. Nulo mientras la persona conserva el acceso. & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_version\_base\_tratamiento & UUID & UUID válido de id\_version\_parametro del catálogo aprobado de tratamientos: finalidad, base autorizada por el cliente, respaldo, responsable y vigencia. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+\end{tabla}
+La tabla contiene 74 atributos: 0 confidenciales y 21 personales sensibles.
+
+La Tabla \ref{tab:atributos-modulo-seguridad-salud-ocupacional} desarrolla 6 entidades o estructuras, con 63 atributos individuales.
+
+\begin{tabla}{I{0.244}I{0.200}I{0.282}I{0.150}I{0.124}}{Atributos del módulo Seguridad y Salud Ocupacional.}{tab:atributos-modulo-seguridad-salud-ocupacional}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Incidente} \\
+id\_incidente & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+tipo\_incidente & VARCHAR(40) & Uno de los valores de la taxonomía cerrada parametrizable de tipos de incidente & Área de Seguridad y Salud Ocupacional & Interno \\
+gravedad & VARCHAR(40) & Uno de los valores de la escala cerrada parametrizable de gravedad & Área de Seguridad y Salud Ocupacional & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+posicion & GEOGRAPHY(POINT,4326) & Punto con coordenadas válidas en el sistema de referencia EPSG:4326. Nulo si no se registró posición. & Área de Seguridad y Salud Ocupacional & Interno \\
+descripcion & TEXT & Texto libre sin límite definido & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+estado\_investigacion & VARCHAR(40) & Uno de: registrado, en\_investigacion o cerrado & Área de Seguridad y Salud Ocupacional & Interno \\
+evidencia\_fotografica & VARCHAR(512) & Ruta o referencia del almacén de archivos, hasta 512 caracteres. Nulo si no hay evidencia. & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona\_registra & UUID & UUID válido de la persona que registró el incidente; no se deduce de sus participantes & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+fecha\_registro & TIMESTAMPTZ & Fecha y hora con zona horaria de captura; distinta de la hora del incidente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_version\_base\_tratamiento & UUID & UUID válido de id\_version\_parametro del catálogo aprobado de tratamientos: finalidad, base autorizada por el cliente, respaldo, responsable y vigencia. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+\multicolumn{5}{I{1.000}}{Participación en incidente} \\
+id\_incidente & UUID & UUID válido de un incidente existente & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_equipo & UUID & UUID válido de un equipo existente, o vacío. Nulo si no hay equipo involucrado. & Área de Seguridad y Salud Ocupacional & Interno \\
+rol & VARCHAR(40) & Uno de: afectado, testigo, operador o investigador & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+\multicolumn{5}{I{1.000}}{Inspección} \\
+id\_inspeccion & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+tipo\_inspeccion & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de tipos de inspección & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona\_ejecutora & UUID & UUID válido de una persona existente Nulo mientras no se haya ejecutado; resultado y ejecutor obligatorios al completar la inspección. & Área de Seguridad y Salud Ocupacional & Interno \\
+objeto\_inspeccionado & VARCHAR(40) & Uno de: equipo, area o instalacion & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_objeto & UUID & UUID válido de un equipo, área o instalación, según objeto\_inspeccionado existente & Área de Seguridad y Salud Ocupacional & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria Nulo mientras no se haya ejecutado; resultado y ejecutor obligatorios al completar la inspección. & Área de Seguridad y Salud Ocupacional & Interno \\
+resultado & VARCHAR(40) & Uno de: conforme, con\_hallazgos o no\_conforme Nulo mientras no se haya ejecutado; resultado y ejecutor obligatorios al completar la inspección. & Área de Seguridad y Salud Ocupacional & Interno \\
+hallazgos & TEXT & Texto libre sin límite definido, con códigos del catálogo de hallazgos. Nulo si resultado = conforme. Nulo mientras no se haya ejecutado; resultado y ejecutor obligatorios al completar la inspección. & Área de Seguridad y Salud Ocupacional & Interno \\
+evidencia\_fotografica & VARCHAR(512) & Ruta o referencia del almacén de archivos, hasta 512 caracteres. Nulo si no hay evidencia. Nulo mientras no se haya ejecutado; resultado y ejecutor obligatorios al completar la inspección. & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_programada & TIMESTAMPTZ & Fecha y hora con zona horaria prevista para la inspección & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_responsable\_asignado & UUID & UUID válido de la persona responsable prevista & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+estado & VARCHAR(40) & Uno de: planificada, ejecutada, reprogramada o cancelada & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_registro & TIMESTAMPTZ & Fecha y hora con zona horaria de captura & Área de Seguridad y Salud Ocupacional & Interno \\
+historial\_programacion & JSONB & Lista de cambios de fecha y responsable con motivo y referencia de auditoría; no borra la programación anterior & Área de Seguridad y Salud Ocupacional & Interno \\
+\multicolumn{5}{I{1.000}}{Alerta de fatiga} \\
+id\_alerta & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_equipo & UUID & UUID válido de un equipo existente & Área de Seguridad y Salud Ocupacional & Interno \\
+tipo & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de tipos de alerta de fatiga & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+plazo\_accion & TIMESTAMPTZ & Fecha y hora con zona horaria de vencimiento, como máximo 30 minutos desde marca\_tiempo; no se extiende por un parámetro ni por la sincronización. & Área de Seguridad y Salud Ocupacional & Interno \\
+estado\_accion & VARCHAR(40) & Uno de: pendiente o documentada & Área de Seguridad y Salud Ocupacional & Interno \\
+accion\_documentada & TEXT & Un valor de la lista cerrada de acciones, seguido de texto libre sin límite definido. Nulo mientras estado\_accion = pendiente. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_persona\_documenta & UUID & UUID válido de una persona existente, o vacío. Nulo mientras esté pendiente. & Área de Seguridad y Salud Ocupacional & Interno \\
+escalada & BOOLEAN & Verdadero cuando venció el plazo sin acción documentada y Seguridad y Salud Ocupacional ejecutó el escalamiento local. & Área de Seguridad y Salud Ocupacional & Interno \\
+severidad & VARCHAR(40) & Severidad del catálogo de equivalencias aprobado para la fuente; conserva la severidad original en el evento & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+referencia\_mensaje\_origen & VARCHAR(128) & Identificador del mensaje del sistema de fatiga; junto a la fuente impide duplicados & Área de Seguridad y Salud Ocupacional & Interno \\
+fecha\_escalamiento & TIMESTAMPTZ & Fecha y hora con zona horaria. Nulo mientras no se haya escalado. & Área de Seguridad y Salud Ocupacional & Interno \\
+destinatario\_escalamiento & VARCHAR(128) & Cuenta o rol de guardia al que se escaló. Nulo mientras no se haya escalado. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_caso\_flujo & UUID & UUID válido de la proyección del caso de flujo común; nulo mientras la apertura esté pendiente de sincronización & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_version\_base\_tratamiento & UUID & UUID válido de id\_version\_parametro del catálogo aprobado de tratamientos: finalidad, base autorizada por el cliente, respaldo, responsable y vigencia. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+\multicolumn{5}{I{1.000}}{Acción sobre alerta} \\
+id\_accion\_alerta & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_alerta & UUID & UUID válido de una alerta de fatiga existente & Área de Seguridad y Salud Ocupacional & Interno \\
+tipo\_accion & VARCHAR(40) & Tipo del catálogo de acciones aprobado por el cliente & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona\_responsable & UUID & UUID válido de la persona que realizó la acción & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+fecha\_accion & TIMESTAMPTZ & Fecha y hora con zona horaria de realización & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+fecha\_registro & TIMESTAMPTZ & Fecha y hora con zona horaria de conservación local o en nube; no sustituye fecha\_accion & Área de Seguridad y Salud Ocupacional & Interno \\
+detalle & TEXT & Descripción de la acción realizada & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+evidencia & JSONB & Referencias a documentos o eventos que la respaldan; no copia datos sensibles innecesarios & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+\multicolumn{5}{I{1.000}}{Control de salud} \\
+id\_control & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+tipo\_control & VARCHAR(40) & Uno de: examen\_ocupacional, alcohol o drogas & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+resultado & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de resultados; cifrado a nivel de campo & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_consentimiento & UUID & UUID válido de un consentimiento vigente cuando la base de tratamiento aprobada lo exige. Nulo si corresponde otra base documentada y autorizada por el cliente. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+efecto\_propuesto & VARCHAR(40) & Uno de: sin\_efecto, suspende\_habilitacion o requiere\_evaluacion & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_persona\_valida & UUID & UUID válido de una persona existente, o vacío. Nulo mientras ninguna persona ha validado el efecto; sin esa validación no hay consecuencia sobre la habilitación. & Área de Seguridad y Salud Ocupacional & Interno \\
+id\_documento\_respaldo & VARCHAR(512) & Ruta o referencia del almacén documental, hasta 512 caracteres & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_version\_base\_tratamiento & UUID & UUID válido de id\_version\_parametro del catálogo aprobado de tratamientos: finalidad, base autorizada por el cliente, respaldo, responsable y vigencia. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+\end{tabla}
+La tabla contiene 63 atributos: 0 confidenciales y 24 personales sensibles.
+
+La Tabla \ref{tab:atributos-modulo-cumplimiento-ambiental} desarrolla 6 entidades o estructuras, con 66 atributos individuales.
+
+\begin{tabla}{I{0.229}I{0.129}I{0.347}I{0.166}I{0.129}}{Atributos del módulo Cumplimiento Ambiental.}{tab:atributos-modulo-cumplimiento-ambiental}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Compromiso} \\
+id\_compromiso & UUID & UUID válido, único y no reutilizable & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+origen\_normativo & VARCHAR(40) & Uno de: rca, reglamento\_seguridad\_minera, acuerdo\_comunidad u otro & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+referencia\_normativa & VARCHAR(200) & Texto libre hasta 200 caracteres & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+frecuencia & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de frecuencias de reporte & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_punto\_medicion & UUID & UUID válido de un punto de medición ambiental existente. Nulo en compromisos no medibles. & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+destinatario & VARCHAR(150) & Texto libre hasta 150 caracteres & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+proximo\_vencimiento & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+estado & VARCHAR(40) & Uno de: vigente, cumplido\_periodo o atrasado & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+\multicolumn{5}{I{1.000}}{Cumplimiento por período} \\
+id\_cumplimiento & UUID & UUID válido, único y no reutilizable & Gerencia de Sustentabilidad & Interno \\
+id\_compromiso & UUID & UUID válido de un compromiso existente & Gerencia de Sustentabilidad & Interno \\
+periodo\_desde & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Sustentabilidad & Interno \\
+periodo\_hasta & TIMESTAMPTZ & Fecha y hora con zona horaria, posterior a periodo\_desde & Gerencia de Sustentabilidad & Interno \\
+vencimiento & TIMESTAMPTZ & Fecha y hora con zona horaria del plazo aplicable & Gerencia de Sustentabilidad & Interno \\
+estado & VARCHAR(40) & Uno de: pendiente, preparado, enviado, recibido, observado o vencido & Gerencia de Sustentabilidad & Interno \\
+respaldo & JSONB & Referencias a mediciones y versiones documentales que acreditan el período & Gerencia de Sustentabilidad & Interno \\
+fecha\_envio & TIMESTAMPTZ & Fecha y hora con zona horaria. Nulo mientras no se haya enviado. & Gerencia de Sustentabilidad & Interno \\
+destinatario & VARCHAR(150) & Destinatario declarado en el compromiso & Gerencia de Sustentabilidad & Interno \\
+evidencia\_entrega & JSONB & Referencia de notificación y evidencia de recepción cuando la fuente la acredita; distingue no observable de recibido & Gerencia de Sustentabilidad & Interno \\
+\multicolumn{5}{I{1.000}}{Medición ambiental} \\
+id\_medicion & UUID & UUID válido, único y no reutilizable & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_compromiso & UUID & UUID válido de un compromiso. Nulo para consumos o lecturas sin obligación RCA asociada; no se crea un compromiso. & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+parametro\_medido & VARCHAR(40) & Uno de: material particulado, ruido, calidad de agua, consumo de agua, consumo de combustible, consumo energético, variable geotécnica u otros & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+valor & NUMERIC(14,3) & Decimal con hasta 3 decimales, en la unidad declarada en el campo unidad & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+unidad & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de unidades de medida & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+metodo & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de métodos de medición & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_dato\_actividad\_origen & UUID & UUID válido del dato operacional de origen que la sustenta; referencia polimórfica, la entidad se declara en entidad\_origen y por eso no hay clave foránea única & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_version\_factor\_emision & UUID & UUID válido de id\_version\_parametro con la definición, taxonomía o conjunto de factores aplicado; conserva la versión histórica. Nulo cuando el registro no utiliza un factor. & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+entidad\_origen & VARCHAR(60) & Texto hasta 60 caracteres con el nombre lógico de la entidad del modelo a la que pertenece id\_dato\_actividad\_origen: viaje, pesaje, detención, lectura del historiador, lectura de caudalímetro o lectura de instrumento & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_punto\_medicion & UUID & UUID válido del punto del catálogo de medición & Gerencia de Sustentabilidad & Interno \\
+id\_instrumento & UUID & UUID válido del instrumento. Nulo para resultados declarados por laboratorio sin instrumento del catálogo local. & Gerencia de Sustentabilidad & Interno \\
+id\_area & UUID & UUID válido del área. Nulo si el contexto queda identificado por equipo o punto. & Gerencia de Sustentabilidad & Interno \\
+id\_equipo & UUID & UUID válido del equipo. Nulo para mediciones que no corresponden a un equipo. & Gerencia de Sustentabilidad & Interno \\
+id\_informe\_origen & UUID & UUID válido de un informe externo. Nulo cuando la lectura proviene de otra fuente. & Gerencia de Sustentabilidad & Interno \\
+fuente & VARCHAR(128) & Identificador de la fuente que entregó el dato & Gerencia de Sustentabilidad & Interno \\
+calidad\_origen & VARCHAR(80) & Calidad informada por la fuente. Nulo si la fuente no la entrega. & Gerencia de Sustentabilidad & Interno \\
+\multicolumn{5}{I{1.000}}{Informe de laboratorio externo} \\
+id\_informe & UUID & UUID válido, único y no reutilizable & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_compromiso & UUID & UUID válido del compromiso asociado. Nulo para informes que no corresponden a una obligación del catálogo. & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+laboratorio\_emisor & VARCHAR(120) & Texto hasta 120 caracteres con el nombre del laboratorio externo & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+matriz & VARCHAR(40) & Uno de: agua, aire o relaves & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+fecha\_muestreo & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+fecha\_carga & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a fecha\_muestreo & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+estado\_validacion & VARCHAR(40) & Uno de: cargado, validado o rechazado & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+documento\_informe & VARCHAR(512) & Ruta o referencia del almacén documental, hasta 512 caracteres & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+origen\_carga & VARCHAR(40) & Uno de: conector\_laboratorio, carga\_autorizada, migracion o portal\_contratistas; sólo canales habilitados en el contrato de integración. & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_version\_documento & UUID & UUID válido de la versión documental del informe original & Gerencia de Sustentabilidad & Interno \\
+\multicolumn{5}{I{1.000}}{Huella de carbono} \\
+id\_huella & UUID & UUID válido, único y no reutilizable & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+periodo & TIMESTAMPTZ & Primer día del mes calculado, con zona horaria & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+alcance\_1 & NUMERIC(14,3) & Decimal mayor o igual que 0 con hasta 3 decimales (toneladas de CO2 equivalente) & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+alcance\_2 & NUMERIC(14,3) & Decimal mayor o igual que 0 con hasta 3 decimales (toneladas de CO2 equivalente) & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+alcance\_3 & NUMERIC(14,3) & Decimal mayor o igual que 0 con hasta 3 decimales (toneladas de CO2 equivalente) & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+cobre\_fino & NUMERIC(14,3) & Decimal positivo con hasta 3 decimales (toneladas de cobre fino del mes) & Gerencia de Sustentabilidad y Asuntos Regulatorios & Confidencial \\
+intensidad & NUMERIC(10,4) & Decimal mayor o igual que 0 con hasta 4 decimales (toneladas de CO2 equivalente por tonelada de cobre fino) & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_version\_factores & UUID & UUID válido de id\_version\_parametro con la definición, taxonomía o conjunto de factores aplicado; conserva la versión histórica. & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+estado & VARCHAR(40) & Uno de: calculada, aprobada o reportada & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+id\_documento\_firmado & UUID & UUID válido de id\_version\_documento de Documento, con firma válida del tipo requerido. & Gerencia de Sustentabilidad y Asuntos Regulatorios & Interno \\
+\multicolumn{5}{I{1.000}}{Detalle de huella} \\
+id\_detalle\_huella & UUID & UUID válido, único y no reutilizable & Gerencia de Sustentabilidad & Interno \\
+id\_huella & UUID & UUID válido de una huella existente & Gerencia de Sustentabilidad & Interno \\
+alcance & INTEGER & Uno de: 1, 2 o 3 & Gerencia de Sustentabilidad & Interno \\
+dato\_actividad & JSONB & Referencia inmutable del consumo o actividad, período, equipo/área y fuente; no sustituye consumo por compra & Gerencia de Sustentabilidad & Interno \\
+valor\_actividad & NUMERIC(18,6) & Valor utilizado del dato de actividad & Gerencia de Sustentabilidad & Interno \\
+unidad\_actividad & VARCHAR(40) & Unidad original normalizada & Gerencia de Sustentabilidad & Interno \\
+id\_version\_factor & UUID & UUID válido de id\_version\_parametro del factor aplicado & Gerencia de Sustentabilidad & Interno \\
+factor\_aplicado & NUMERIC(18,8) & Factor aprobado efectivamente utilizado & Gerencia de Sustentabilidad & Interno \\
+unidad\_factor & VARCHAR(80) & Unidad del factor compatible con unidad\_actividad & Gerencia de Sustentabilidad & Interno \\
+emision\_resultante & NUMERIC(18,6) & Resultado del paso conservado en tCO2e & Gerencia de Sustentabilidad & Interno \\
+evidencia & JSONB & Referencias a dato original, regla de reparto y documentos de respaldo & Gerencia de Sustentabilidad & Confidencial \\
+\end{tabla}
+La tabla contiene 66 atributos: 2 confidenciales y 0 personales sensibles.
+
+La Tabla \ref{tab:atributos-modulo-indicadores-centro-integrado} desarrolla la única entidad del módulo, Indicador, con 13 atributos individuales.
+
+\begin{tabla}{I{0.204}I{0.129}I{0.312}I{0.226}I{0.129}}{Atributos del módulo Indicadores y Centro Integrado.}{tab:atributos-modulo-indicadores-centro-integrado}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Indicador} \\
+id\_indicador & UUID & UUID válido que identifica el indicador y se mantiene entre versiones. & Centro Integrado de Operaciones & Interno \\
+version & INTEGER & Entero positivo incremental & Centro Integrado de Operaciones & Interno \\
+nombre\_negocio & VARCHAR(120) & Texto libre hasta 120 caracteres & Centro Integrado de Operaciones & Interno \\
+formula & TEXT & Texto libre sin límite definido & Centro Integrado de Operaciones & Interno \\
+eventos\_entrada & TEXT & Texto libre sin límite definido, con nombres de eventos de negocio & Centro Integrado de Operaciones & Interno \\
+granularidad & VARCHAR(40) & Uno de: turno, dia, mes o periodo\_conciliacion & Centro Integrado de Operaciones & Interno \\
+linea\_base & NUMERIC(14,3) & Decimales con hasta 3 decimales, en la unidad del indicador. Nulo en indicadores sin meta comprometida. & Centro Integrado de Operaciones & Interno \\
+meta & NUMERIC(14,3) & Decimales con hasta 3 decimales, en la unidad del indicador. Nulo en indicadores sin meta comprometida. & Centro Integrado de Operaciones & Interno \\
+latencia\_comprometida & VARCHAR(40) & 15 minutos para indicadores de turno y 4 horas para gestión & Centro Integrado de Operaciones & Interno \\
+id\_criterio\_aceptacion & UUID & UUID válido de un criterio de aceptación existente. Nulo si no acredita ninguno. & Centro Integrado de Operaciones & Interno \\
+vigencia\_desde & TIMESTAMPTZ & Fecha y hora con zona horaria & Centro Integrado de Operaciones & Interno \\
+vigencia\_hasta & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a vigencia\_desde, o vacío mientras la definición está vigente. Nulo mientras la definición está vigente. & Centro Integrado de Operaciones & Interno \\
+id\_version\_indicador & UUID & UUID válido, único y no reutilizable de la versión de fórmula aplicada & Centro Integrado de Operaciones & Interno \\
+\end{tabla}
+La tabla contiene 13 atributos: 0 confidenciales y 0 personales sensibles.
+
+La Tabla \ref{tab:atributos-modulo-administracion-servicios-comunes} desarrolla 11 entidades o estructuras, con 117 atributos individuales.
+
+\begin{tabla}{I{0.246}I{0.129}I{0.339}I{0.157}I{0.129}}{Atributos del módulo Administración y Servicios Comunes.}{tab:atributos-modulo-administracion-servicios-comunes}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Persona} \\
+id\_persona & UUID & UUID válido, único y no reutilizable & Área de Seguridad y Salud Ocupacional & Interno \\
+documento\_identidad & VARCHAR(20) & RUT chileno con dígito verificador válido, hasta 20 caracteres & Recursos Humanos: SAP S/4HANA & Personal sensible \\
+nombre\_completo & VARCHAR(150) & Texto libre hasta 150 caracteres & Recursos Humanos: SAP S/4HANA & Personal sensible \\
+tipo\_vinculo & VARCHAR(40) & Uno de: propio o contratista & Recursos Humanos: SAP S/4HANA & Interno \\
+id\_empresa\_contratista & UUID & UUID válido de una empresa contratista existente, o vacío. Nulo en personal propio, cuyo maestro es SAP S/4HANA. & Área de Seguridad y Salud Ocupacional & Interno \\
+estado\_vinculo & VARCHAR(40) & Uno de: vigente o terminado & Recursos Humanos: SAP S/4HANA & Interno \\
+fecha\_termino\_vinculo & TIMESTAMPTZ & Fecha y hora con zona horaria, o vacío mientras el vínculo está vigente. Nulo mientras el vínculo está vigente. & Recursos Humanos: SAP S/4HANA & Interno \\
+id\_maestro\_origen & VARCHAR(128) & Identificador externo en el formato que entrega SAP o el Portal de Contratistas, sin conversión. & Recursos Humanos: SAP S/4HANA y Área de Seguridad y Salud Ocupacional & Interno \\
+sistema\_maestro\_origen & VARCHAR(80) & SAP S/4HANA o Portal de Contratistas según el vínculo & Administrador del cliente: Tecnologías de Información & Interno \\
+\multicolumn{5}{I{1.000}}{Cuenta externa} \\
+id\_cuenta\_externa & UUID & UUID válido, único y no reutilizable & Administrador del cliente: Tecnologías de Información & Interno \\
+proveedor\_identidad & VARCHAR(128) & Identificador del proveedor y tenant de Entra External ID & Administrador del cliente: Tecnologías de Información & Interno \\
+sujeto\_origen & VARCHAR(256) & Identificador externo de la cuenta; único junto al proveedor & Administrador del cliente: Tecnologías de Información & Personal sensible \\
+organizacion & VARCHAR(150) & Organización representada por la cuenta & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_actor & VARCHAR(40) & Uno de: contratista, comprador, operador\_portuario, laboratorio u otro\_externo\_autorizado & Administrador del cliente: Tecnologías de Información & Interno \\
+vigencia\_desde & TIMESTAMPTZ & Fecha y hora con zona horaria & Administrador del cliente: Tecnologías de Información & Interno \\
+vigencia\_hasta & TIMESTAMPTZ & Fecha y hora con zona horaria. Nulo mientras la cuenta siga vigente. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_persona & UUID & UUID válido de Persona. Nulo si el actor externo no pertenece al maestro laboral. & Administrador del cliente: Tecnologías de Información & Personal sensible \\
+estado & VARCHAR(40) & Uno de: activa, bloqueada o baja; no conserva contraseñas & Administrador del cliente: Tecnologías de Información & Interno \\
+\multicolumn{5}{I{1.000}}{Asignación de persona} \\
+id\_asignacion & UUID & UUID válido, único y no reutilizable & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_persona & UUID & UUID válido de una persona existente & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_empresa & UUID & UUID válido de la empresa del catálogo o proyección del contratista & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_sitio & UUID & UUID válido de la faena o sitio de asignación & Administrador del cliente: Tecnologías de Información & Interno \\
+referencia\_contrato & VARCHAR(128) & Referencia externa del contrato o asignación & Administrador del cliente: Tecnologías de Información & Interno \\
+vigencia\_desde & TIMESTAMPTZ & Fecha y hora con zona horaria & Administrador del cliente: Tecnologías de Información & Interno \\
+vigencia\_hasta & TIMESTAMPTZ & Fecha y hora con zona horaria. Nulo mientras la asignación siga vigente. & Administrador del cliente: Tecnologías de Información & Interno \\
+sistema\_origen & VARCHAR(80) & Sistema que informa el vínculo y su término & Administrador del cliente: Tecnologías de Información & Interno \\
+\multicolumn{5}{I{1.000}}{Equipo} \\
+id\_equipo & UUID & UUID válido, único y no reutilizable & Jefatura de Mantenimiento & Interno \\
+denominacion\_operacional & VARCHAR(60) & Texto libre hasta 60 caracteres & Jefatura de Mantenimiento & Interno \\
+tipo\_equipo & VARCHAR(40) & Uno de: camion\_extraccion, pala, cargador\_frontal, perforadora, vehiculo\_liviano o equipo\_planta & Jefatura de Mantenimiento & Interno \\
+fabricante & VARCHAR(40) & Uno de los valores de la lista cerrada parametrizable de fabricantes & Jefatura de Mantenimiento & Interno \\
+generacion & VARCHAR(30) & Texto hasta 30 caracteres con la generación del equipo & Jefatura de Mantenimiento & Interno \\
+capacidad\_nominal & NUMERIC(12,2) & Decimal positivo con hasta 2 decimales (toneladas). Nulo si no aplica al tipo. & Jefatura de Mantenimiento & Interno \\
+horometro & NUMERIC(10,1) & Decimal mayor o igual que 0 con 1 decimal (horas). Nulo en equipos sin telemetría. & Despacho de flota y portales de telemetría, por sus conectores & Interno \\
+estado\_vigente & VARCHAR(40) & Uno de: operando, detenido, en mantenimiento o fuera de servicio & Despacho de flota, por su conector & Interno \\
+tiene\_telemetria & BOOLEAN & Verdadero o falso & Jefatura de Mantenimiento & Interno \\
+\multicolumn{5}{I{1.000}}{Parámetro / Regla} \\
+id\_parametro & UUID & UUID válido que identifica el parámetro o la regla y se mantiene entre sus versiones & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_version\_parametro & UUID & UUID válido, único y no reutilizable que identifica una versión concreta del parámetro o regla & Administrador del cliente: Tecnologías de Información & Interno \\
+nombre & VARCHAR(120) & Texto hasta 120 caracteres. Identifica un parámetro o regla dentro de la unidad organizacional y se mantiene entre sus versiones & Administrador del cliente: Tecnologías de Información & Interno \\
+version & INTEGER & Entero positivo incremental, único dentro de cada parámetro o regla & Administrador del cliente: Tecnologías de Información & Interno \\
+valor & TEXT & Texto libre sin límite definido, serializado según tipo\_valor & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_valor & VARCHAR(40) & Uno de: umbral, plazo, tolerancia, catalogo, taxonomia, factor\_emision, definicion\_turno, definicion\_flujo, regla\_mantenimiento o regla\_calculo. & Administrador del cliente: Tecnologías de Información & Interno \\
+vigencia\_desde & TIMESTAMPTZ & Fecha y hora con zona horaria, pasada o presente & Administrador del cliente: Tecnologías de Información & Interno \\
+vigencia\_hasta & TIMESTAMPTZ & Fecha y hora con zona horaria posterior a vigencia\_desde, o vacío en la versión vigente. Nulo en la versión vigente. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_autor & UUID & UUID válido de una persona existente & Administrador del cliente: Tecnologías de Información & Interno \\
+justificacion & TEXT & Texto libre sin límite definido & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_aprobador\_segundo\_perfil & UUID & UUID válido de una persona existente, o vacío. Nulo cuando el parámetro no exige aprobación de un segundo perfil. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_unidad\_organizacional & UUID & UUID válido del ámbito organizacional del catálogo; la unicidad del nombre se aplica por unidad y parámetro lógico & Administrador del cliente: Tecnologías de Información & Interno \\
+\multicolumn{5}{I{1.000}}{Documento} \\
+id\_documento & UUID & UUID válido que identifica el documento y se mantiene entre sus versiones. & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_documento & VARCHAR(40) & Tipo del catálogo documental: acta\_embarque, consentimiento, reporte\_huella, guia\_despacho, expediente\_acreditacion, adjunto u otro tipo autorizado. & Administrador del cliente: Tecnologías de Información & Interno \\
+modulo\_origen & VARCHAR(60) & Texto hasta 60 caracteres con el nombre del módulo que solicitó la firma & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_registro\_origen & UUID & UUID válido del registro firmado; referencia polimórfica, el módulo y el tipo se declaran en modulo\_origen y tipo\_documento & Administrador del cliente: Tecnologías de Información & Interno \\
+hash\_contenido & VARCHAR(128) & Resumen criptográfico SHA-256 del documento, en hexadecimal & Administrador del cliente: Tecnologías de Información & Interno \\
+ruta\_objeto & VARCHAR(512) & Ruta o referencia del almacén de objetos, hasta 512 caracteres & Administrador del cliente: Tecnologías de Información & Hereda la del registro firmado \\
+id\_firmante & UUID & UUID válido de la persona firmante. Nulo si todavía no se firma, si no requiere firma o si el firmante se identifica por Cuenta externa; al firmar se exige una identidad validada. & Administrador del cliente: Tecnologías de Información & Interno \\
+serie\_certificado & VARCHAR(64) & Número de serie del certificado de firma electrónica avanzada del prestador acreditado. Nulo mientras el documento está pendiente de firma. Nulo mientras no se haya firmado o si el documento no requiere firma. & Administrador del cliente: Tecnologías de Información & Interno \\
+sello\_tiempo & TIMESTAMPTZ & Fecha y hora del sello de tiempo del prestador acreditado. Nulo mientras el documento está pendiente de firma. Nulo mientras no se haya firmado o si el documento no requiere firma. & Administrador del cliente: Tecnologías de Información & Interno \\
+estado & VARCHAR(40) & Uno de: borrador, emitido\_sin\_firma, pendiente\_firma, firmado, rechazado o sustituido; emitido\_sin\_firma sólo cuando requiere\_firma es falso. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_version\_documento & UUID & UUID válido, único y no reutilizable de la versión concreta & Administrador del cliente: Tecnologías de Información & Interno \\
+version & INTEGER & Entero positivo, único dentro de cada documento & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_version\_anterior & UUID & UUID válido de la versión anterior del mismo documento. Nulo en la primera versión. & Administrador del cliente: Tecnologías de Información & Interno \\
+clasificacion & VARCHAR(40) & Uno de: publico, interno, confidencial o personal\_sensible; archivo, metadatos y respaldos heredan esta protección & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_unidad\_propietaria & UUID & UUID válido de la unidad responsable del documento & Administrador del cliente: Tecnologías de Información & Interno \\
+metadatos & JSONB & Tipo, emisor, emisión, vencimiento cuando corresponda y referencias de origen; hereda clasificación del contenido & Administrador del cliente: Tecnologías de Información & Hereda la del documento \\
+requiere\_firma & BOOLEAN & Verdadero cuando el tipo exige firma; falso en los demás casos & Administrador del cliente: Tecnologías de Información & Interno \\
+evidencia\_firma & JSONB & Referencias inmutables al documento firmado verificable, validación del certificado y evidencia del sello de tiempo del prestador. Nulo mientras no se firme o si no requiere firma. & Administrador del cliente: Tecnologías de Información & Hereda la del documento \\
+id\_version\_plantilla & UUID & UUID válido de la plantilla versionada aplicada. Nulo para documentos recibidos sin plantilla SITCO. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_cuenta\_firmante & UUID & UUID válido de Cuenta externa. Nulo cuando el firmante se identifica mediante Persona o no se ha firmado. & Administrador del cliente: Tecnologías de Información & Personal sensible \\
+\multicolumn{5}{I{1.000}}{Caso de flujo} \\
+id\_caso & UUID & UUID válido, único y no reutilizable & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_version\_definicion & UUID & UUID válido de id\_version\_parametro, correspondiente a una definición de flujo & Administrador del cliente: Tecnologías de Información & Interno \\
+modulo\_negocio & VARCHAR(40) & Uno de los nueve módulos de la solución & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_registro\_negocio & UUID & UUID válido del registro asociado al caso. El módulo y la entidad se identifican mediante modulo\_negocio y la definición del flujo; sin clave foránea única. Se valida en el módulo responsable. & Administrador del cliente: Tecnologías de Información & Hereda la del registro asociado \\
+estado & VARCHAR(40) & Uno de: abierto, en\_curso, cerrado o cancelado & Administrador del cliente: Tecnologías de Información & Interno \\
+fecha\_apertura & TIMESTAMPTZ & Fecha y hora con zona horaria & Administrador del cliente: Tecnologías de Información & Interno \\
+fecha\_cierre & TIMESTAMPTZ & Fecha y hora con zona horaria, igual o posterior a fecha\_apertura. Nulo mientras el caso esté abierto o en\_curso. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_correlacion & UUID & UUID válido que vincula el caso con los eventos de la misma operación & Administrador del cliente: Tecnologías de Información & Interno \\
+\multicolumn{5}{I{1.000}}{Tarea de flujo} \\
+id\_tarea & UUID & UUID válido, único y no reutilizable & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_caso & UUID & UUID válido de un caso de flujo existente & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_tarea & VARCHAR(40) & Uno de los tipos de tarea definidos en la versión del flujo que ejecuta el caso & Administrador del cliente: Tecnologías de Información & Interno \\
+estado & VARCHAR(40) & Uno de: por\_asignar, pendiente, en\_curso, completada o cancelada & Administrador del cliente: Tecnologías de Información & Interno \\
+fecha\_creacion & TIMESTAMPTZ & Fecha y hora con zona horaria & Administrador del cliente: Tecnologías de Información & Interno \\
+fecha\_limite & TIMESTAMPTZ & Fecha y hora con zona horaria del vencimiento establecido por el flujo & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_cuenta\_asignada & VARCHAR(128) & Identificador de una cuenta autorizada en Entra ID, hasta 128 caracteres. Nulo mientras la tarea esté por\_asignar. & Administrador del cliente: Tecnologías de Información & Interno \\
+fecha\_ejecucion & TIMESTAMPTZ & Fecha y hora con zona horaria de la ejecución. Nulo mientras la tarea no haya sido completada. & Administrador del cliente: Tecnologías de Información & Interno \\
+resultado & VARCHAR(40) & Uno de los resultados definidos para el tipo de tarea. Nulo mientras la tarea no haya sido completada. & Administrador del cliente: Tecnologías de Información & Hereda la del registro asociado \\
+\multicolumn{5}{I{1.000}}{Transición de caso} \\
+id\_transicion & UUID & UUID válido, único y no reutilizable & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_caso & UUID & UUID válido de un caso de flujo existente & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_tarea & UUID & UUID válido de una tarea del mismo caso. Nulo si la transición corresponde al caso y no a una tarea. & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_transicion & VARCHAR(40) & Uno de: apertura, cambio\_estado, asignacion, delegacion, escalamiento, cierre o cancelacion & Administrador del cliente: Tecnologías de Información & Interno \\
+estado\_anterior & VARCHAR(40) & Uno de los estados del caso o de la tarea afectada. Nulo en la apertura o cuando la transición no cambia el estado. & Administrador del cliente: Tecnologías de Información & Interno \\
+estado\_nuevo & VARCHAR(40) & Uno de los estados del caso o de la tarea afectada. Nulo cuando la transición no cambia el estado. & Administrador del cliente: Tecnologías de Información & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_asiento\_auditoria & UUID & UUID válido del asiento de auditoría que registra la transición y su autor & Administrador del cliente: Tecnologías de Información & Interno \\
+detalle\_transicion & JSONB & Objeto con los datos del cambio y las referencias de respaldo. En asignaciones y delegaciones conserva las cuentas anterior y nueva; en escalamientos, el nivel y destinatario. Vacío cuando no hay datos adicionales. & Administrador del cliente: Tecnologías de Información & Hereda la del registro asociado \\
+motivo & TEXT & Texto libre sin límite definido con la justificación del cambio. Nulo cuando la definición del flujo no exige justificación. & Administrador del cliente: Tecnologías de Información & Hereda la del registro asociado \\
+\multicolumn{5}{I{1.000}}{Asiento de auditoría} \\
+id\_asiento & UUID & UUID válido, único y no reutilizable & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_operacion & VARCHAR(40) & Uno de: creacion, modificacion, eliminacion, consulta\_sensible, exportacion o acceso\_emergencia. & Administrador del cliente: Tecnologías de Información & Interno \\
+entidad\_afectada & VARCHAR(60) & Texto hasta 60 caracteres con el nombre lógico de una entidad del modelo & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_registro\_afectado & UUID & UUID válido del registro auditado; referencia polimórfica, la entidad se declara en entidad\_afectada y por eso no hay clave foránea única & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_persona\_autora & UUID & UUID válido de la persona autora; obligatorio para tipo\_autor persona y nulo para cuenta\_externa o sistema. & Área de Seguridad y Salud Ocupacional & Interno \\
+marca\_tiempo & TIMESTAMPTZ & Fecha y hora con zona horaria, pasada o presente & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_dispositivo\_origen & UUID & UUID válido del dispositivo de origen. Nulo en canales sin dispositivo inventariado; el canal y el autor siguen siendo obligatorios. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_sistema\_origen & VARCHAR(80) & Identificador validado del emisor automático; obligatorio para tipo\_autor sistema y nulo en los demás casos. & Administrador del cliente: Tecnologías de Información & Interno \\
+canal\_origen & VARCHAR(40) & Uno de: dispositivo\_terreno, portal, consola, integracion, canal\_notificacion o proceso\_automatico & Administrador del cliente: Tecnologías de Información & Interno \\
+valor\_anterior & TEXT & Valor previo completo o referencia inmutable; nulo en creación o consulta. Hereda protección del dato afectado. & Administrador del cliente: Tecnologías de Información & Hereda la del dato afectado \\
+valor\_posterior & TEXT & Valor posterior completo o referencia inmutable; nulo en eliminación o consulta. Hereda protección del dato afectado. & Administrador del cliente: Tecnologías de Información & Hereda la del dato afectado \\
+sello\_integridad & VARCHAR(512) & Cadena criptográfica de integridad, hasta 512 caracteres & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_autor & VARCHAR(40) & Uno de: persona, cuenta\_externa o sistema. Se exige una referencia validada correspondiente; la excepción de operador desconocido sólo se aplica al hecho que la admite. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_cuenta\_externa\_autora & UUID & UUID válido de Cuenta externa; obligatorio para tipo\_autor cuenta\_externa y nulo en los demás casos & Administrador del cliente: Tecnologías de Información & Personal sensible \\
+id\_correlacion & UUID & UUID válido de la operación; compartido por sus asientos y eventos & Administrador del cliente: Tecnologías de Información & Interno \\
+motivo & TEXT & Motivo de la consulta sensible, exportación o acceso de emergencia cuando lo exige la política; nulo si la operación no requiere justificación & Administrador del cliente: Tecnologías de Información & Hereda la del dato afectado \\
+\multicolumn{5}{I{1.000}}{Dispositivo inventariado} \\
+id\_dispositivo & UUID & UUID válido, único y no reutilizable & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_dispositivo & VARCHAR(40) & Uno de: botonera\_pala, tableta, consola\_porteria, servidor\_nodo\_faena o agente\_gabinete & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_sitio & UUID & UUID válido de un sitio operacional existente & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_equipo\_asignado & UUID & UUID válido de un equipo existente, o vacío. Nulo en dispositivos portátiles. & Jefatura de Mantenimiento & Interno \\
+estado & VARCHAR(40) & Uno de: activo, bloqueado o baja & Administrador del cliente: Tecnologías de Información & Interno \\
+ultima\_sincronizacion & TIMESTAMPTZ & Fecha y hora con zona horaria & Administrador del cliente: Tecnologías de Información & Interno \\
+eventos\_pendientes & INTEGER & Entero mayor o igual que 0 & Administrador del cliente: Tecnologías de Información & Interno \\
+\end{tabla}
+La tabla contiene 117 atributos: 0 confidenciales y 7 personales sensibles.
+
+Las definiciones de flujo se guardan en el atributo valor como JSON e incluyen el módulo y la entidad asociados, las tareas, responsables, plazos, resultados y transiciones permitidas. Las reglas de mantenimiento guardan sus condiciones, los datos de entrada y el límite semanal de alertas por equipo. Cada caso y alerta conserva la versión aplicada.
+
+La Tabla \ref{tab:atributos-estructura-comun-eventos-terreno} desarrolla la estructura común Evento de terreno, con 24 atributos individuales.
+
+\begin{tabla}{I{0.219}I{0.197}I{0.316}I{0.150}I{0.118}}{Atributos de la estructura común de los eventos de terreno.}{tab:atributos-estructura-comun-eventos-terreno}
+  {\cab{Atributo} & \cab{Tipo} & \cab{Dominio de valores y nulidad} & \cab{Propietario} & \cab{Sensibilidad}}
+  {Fuente: elaboración propia a partir del modelo de datos del Subdocumento 5 (sección 5.1).}
+\multicolumn{5}{I{1.000}}{Evento de terreno} \\
+id\_evento & UUID & UUID válido, único y no reutilizable & Gerencia de Operaciones Mina & Interno \\
+id\_agregado & UUID & UUID válido del agregado al que pertenece el hecho & Administrador del cliente: Tecnologías de Información & Interno \\
+secuencia & BIGINT & Entero positivo incremental por agregado, que conserva el orden y permite detectar huecos & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_dispositivo & UUID & UUID válido del dispositivo de origen. Nulo para eventos nacidos en portal, integración o proceso automático; se identifica el emisor por su canal y sistema. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_sitio & UUID & UUID válido del sitio del hecho. Para eventos de nube identifica el sitio escritor o el ámbito declarado; id\_dispositivo queda nulo. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_sesion\_operador & UUID & UUID válido de una sesión de operador existente. Nulo si operador no identificado. & Gerencia de Operaciones Mina & Personal sensible \\
+tipo\_evento & VARCHAR(40) & Uno de los valores del catálogo cerrado parametrizable de tipos de evento de terreno & Gerencia de Operaciones Mina & Interno \\
+version\_esquema & VARCHAR(20) & Versión semántica del contrato del evento, como 1.1 & Administrador del cliente: Tecnologías de Información & Interno \\
+sello\_tiempo\_origen & TIMESTAMPTZ & Fecha y hora con zona horaria & Gerencia de Operaciones Mina & Interno \\
+deriva\_reloj\_ms & INTEGER & Entero mayor o igual que 0 (milisegundos) & Gerencia de Operaciones Mina & Interno \\
+posicion\_origen & GEOGRAPHY(POINT,4326) & Punto con coordenadas válidas en el sistema de referencia EPSG:4326. Nulo cuando el dispositivo no obtiene posición al registrar el hecho, en interior o en zona de sombra. & Gerencia de Operaciones Mina & Interno \\
+firma\_evento & VARCHAR(512) & Firma verificable de los bytes de contenido\_original, hasta 512 caracteres; la identidad de la clave emisora se resuelve por dispositivo o sistema. & Gerencia de Operaciones Mina & Interno \\
+asercion\_identidad & VARCHAR(512) & Cadena de aserción de identidad, hasta 512 caracteres. Nulo cuando el evento hereda la identidad de la sesión de operador vigente y no reautentica. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+estado\_reconciliacion & VARCHAR(40) & Uno de: pendiente, reconciliado, cuarentena o marcado\_credencial\_revocada & Gerencia de Operaciones Mina & Interno \\
+id\_correlacion & UUID & UUID válido compartido por los registros de la misma operación; no tiene restricción de unicidad por evento. & Administrador del cliente: Tecnologías de Información & Interno \\
+tipo\_autor & VARCHAR(40) & Uno de: persona, cuenta\_externa o sistema. Se exige una referencia validada correspondiente; la excepción de operador desconocido sólo se aplica al hecho que la admite. & Administrador del cliente: Tecnologías de Información & Interno \\
+id\_cuenta\_externa\_autora & UUID & UUID válido de Cuenta externa; obligatorio para tipo\_autor cuenta\_externa y nulo en los demás casos & Administrador del cliente: Tecnologías de Información & Personal sensible \\
+id\_persona\_autora & UUID & UUID válido de la persona autora; obligatorio para tipo\_autor persona, resuelto por sesión o aserción válida. Nulo para cuenta\_externa o sistema. & Área de Seguridad y Salud Ocupacional & Personal sensible \\
+id\_sistema\_origen & VARCHAR(80) & Identificador validado del sistema emisor; obligatorio para tipo\_autor sistema y nulo en los demás casos. El operador desconocido no elimina la identificación del emisor. & Administrador del cliente: Tecnologías de Información & Interno \\
+canal\_origen & VARCHAR(40) & Uno de: dispositivo\_terreno, portal, consola, integracion, canal\_notificacion o proceso\_automatico & Administrador del cliente: Tecnologías de Información & Interno \\
+fecha\_registro & TIMESTAMPTZ & Fecha y hora con zona horaria de conservación durable en el origen & Administrador del cliente: Tecnologías de Información & Interno \\
+fecha\_recepcion & TIMESTAMPTZ & Fecha y hora con zona horaria de recepción en el módulo; nulo mientras no se haya recibido & Administrador del cliente: Tecnologías de Información & Interno \\
+contenido\_original & BYTEA & Bytes exactos del mensaje original, recuperables para comprobar la firma; conservados con la clasificación y cifrado del hecho & Administrador del cliente: Tecnologías de Información & Hereda la del hecho \\
+hash\_contenido & VARCHAR(128) & Hash criptográfico de contenido\_original, sin reserializarlo & Administrador del cliente: Tecnologías de Información & Interno \\
+\end{tabla}
+La tabla contiene 24 atributos: 0 confidenciales y 4 personales sensibles.
+
+\seccion{Catálogos, otros almacenes y persistencia técnica}
+Las siguientes estructuras completan la conservación de datos fuera del catálogo transaccional. No son nuevas raíces de negocio. Los campos JSON se validan con un esquema versionado que define tipos, unidades, referencias y condiciones de nulidad. Las claves externas conservan el formato de su fuente. La retención por categoría se aplica al dato original; los metadatos de auditoría no justifican duplicar contenido sensible vencido.
+
+\begin{tabla}{I{0.137}I{0.157}I{0.420}I{0.135}I{0.151}}{Catálogos y definiciones versionadas.}{tab:catalogos-definiciones-versionadas}
+  {\cab{Registro} & \cab{Dueño y persistencia} & \cab{Esquema y validación} & \cab{Retención} & \cab{Protección}}
+  {Fuente: elaboración propia a partir de los Subdocumentos 3 y 4.}
+Esquema común de catálogo & Administración; Parámetro / Regla versionado & id\_elemento:UUID; codigo\_externo:VARCHAR(128); nombre:VARCHAR(150); tipo:VARCHAR(80); fuente:VARCHAR(128); id\_padre:UUID nulo en raíz; atributos:JSONB; vigencia:JSONB; id\_version\_parametro:UUID. Referencias históricas apuntan a la versión usada. & 10 años y mientras respalde registros vigentes & Interno o la clasificación del contexto. \\
+Unidades, sitios, sectores y áreas & Administración; fuente declarada por el cliente & Contenido del esquema común: jerarquía organizacional, sitio, sector y área, identificadores de maestro y vigencia. Persona, equipo y regla se relacionan con el ámbito correspondiente. & 10 años y mientras respalde registros vigentes & Interno; el ámbito no se deduce de una configuración actual distinta de la histórica. \\
+Puntos, líneas e instrumentos & Módulo dueño; copia versionada en Administración & Punto de control/medición, línea, instrumento, emplazamiento, tipo, unidades y fuente. La campaña de calibración conserva referencia externa, instrumento, fecha y evidencia recibida; no incorpora su ejecución al alcance. El evento mantiene el sitio/punto del hecho. & 10 años y mientras respalde registros vigentes & Interno; posición protegida cuando corresponda. \\
+Comprador, puerto e interfaces & Administración; maestro externo identificado & Comprador/organización, puerto/recinto, interfaz, código externo, formato de identificador y contrato/version de intercambio. Órdenes SAP conservan VARCHAR externo, no UUID impuesto. & 10 años y mientras respalde registros vigentes & Interno; información contractual confidencial. \\
+Reglas y límites del comprador & Administración; Parámetro / Regla & valor con JSON: comprador, referencia\_contrato, límites por elemento/unidad, vigencia, aprobador y fuente. Lote referencia id\_version\_parametro concreto; no calcula liquidación final. & 10 años y mientras respalde registros vigentes & Confidencial. \\
+Definición de flujo & Administración; Parámetro / Regla & valor con JSON: módulo, entidad, estados, tareas, responsables/roles, plazos, resultados, transiciones, delegaciones y escalamientos. Caso referencia id\_version\_parametro de tipo definicion\_flujo. & 10 años y mientras respalde casos vigentes & Interno; referencias de identidad protegidas. \\
+Regla de cálculo & Administración; Parámetro / Regla & Tipo regla\_calculo. valor con JSON: finalidad, entradas/unidades, expresión o pasos, factores, regla de redondeo, fuente y aprobación. Incluye las reglas de dureza y de mezcla aprobadas por las áreas responsables. & 10 años y mientras respalde resultados vigentes & Confidencial. \\
+Tratamientos y catálogos operacionales & Administración; Parámetro / Regla & Tratamiento: finalidad, base aprobada por el cliente, respaldo, responsable y vigencia. Motivos de plan, componente/modo de falla, severidad, acciones y taxonomía: código, descripción y equivalencias de fuente. & 10 años y mientras respalde registros vigentes & Según finalidad; la base de tratamiento la aprueba el cliente. \\
+\end{tabla}
+\begin{tabla}{I{0.133}I{0.151}I{0.405}I{0.147}I{0.164}}{Registros técnicos y recuperación.}{tab:registros-tecnicos-recuperacion}
+  {\cab{Registro} & \cab{Dueño y persistencia} & \cab{Esquema y validación} & \cab{Retención} & \cab{Protección}}
+  {Fuente: elaboración propia a partir de los Subdocumentos 3 y 4.}
+Auditoría de origen & Módulo escritor; PostgreSQL local o nube del módulo & Usa el esquema de Asiento de auditoría: operación, registro, valores protegidos, autor, fecha, correlación y sello. Conservación atómica con hecho y salida. Administración recibe una copia inmutable para consulta; no edita ni sustituye el original. & 10 años & Hereda la clasificación del registro; consultas y exportaciones sensibles registradas. No exige desplegar el módulo común en la faena. \\
+Bandeja de salida y entrada & Módulo de origen/receptor; PostgreSQL y copia durable del dispositivo & id:UUID; evento:UUID; destino:VARCHAR(128); agregado:UUID; secuencia:BIGINT; estado:VARCHAR(40); intentos:INTEGER; ultima\_respuesta:TIMESTAMPTZ; clave\_deduplicacion:VARCHAR(256). Hecho, auditoría y salida atómicos; clave y orden validados por agregado. & Plazo del hecho: operacional 5 años; trazabilidad y SSO: 10 años & Hereda la del hecho; no contiene credenciales. La confirmación permite limpiar la cola activa sin eliminar el archivo original. \\
+Conflicto de sincronización & Módulo dueño; consolidación en Administración & id:UUID; correlacion:UUID; referencias\_fuentes:JSONB; valores:JSONB; version\_regla:UUID; decision:VARCHAR(80); fecha:TIMESTAMPTZ; autor:JSONB; escalamiento:JSONB. Conserva la decisión y el original, no aplica última escritura de otro sitio escritor. & Plazo del hecho: 5 o 10 años según su categoría & Hereda clasificación y cifrado de los valores. \\
+Corte de enlace & Plataforma; PostgreSQL de Administración & id:UUID; sitio:UUID; enlace:VARCHAR(80); inicio:TIMESTAMPTZ; fin:TIMESTAMPTZ nulo durante corte; duracion\_seg:BIGINT; eventos\_acumulados:BIGINT; bytes\_acumulados:BIGINT; recuperacion:JSONB. & 5 años & Interno; resumen operacional distinto de las trazas técnicas de 90 días. \\
+Notificación y entrega & Administración; PostgreSQL & id:UUID; correlacion:UUID; registro\_origen:JSONB; version\_plantilla:UUID; destinatario:VARCHAR(256); canal:VARCHAR(40); estado:VARCHAR(40); historial\_entregas:JSONB con intento, hora, entrega, apertura/error y evidencia. Apertura no\_observable si el canal no la acredita. & 10 años de metadatos; contenido según el registro de origen & Destinatario y referencias heredan protección; cuerpo obtenido de plantilla y registro, sin copia sensible innecesaria. \\
+Preferencia e informe programado & Administración; PostgreSQL & id:UUID; cuenta:VARCHAR(256); canales:JSONB; frecuencia:VARCHAR(80); baja:BOOLEAN; obligaciones\_no\_cancelables:JSONB; calendario:JSONB; filtros:JSONB; version:INTEGER; vigencia:JSONB. Las bajas no suprimen avisos obligatorios. & 10 años de versiones y evidencia & Cuenta y filtros heredan clasificación. \\
+Trabajo de importación o exportación & Administración y módulo dueño; PostgreSQL y objetos & id:UUID; solicitante:JSONB; tipo:VARCHAR(40); fuente:VARCHAR(128); alcance\_filtro:JSONB; estado:VARCHAR(40); archivo\_hash:JSONB; inicio\_fin:JSONB; errores\_fila:JSONB; aceptados\_rechazados:JSONB. Conserva procesamiento parcial y rechazados. & 10 años de metadatos; archivo según la categoría del contenido & Hereda clasificación; errores no exponen datos sensibles ni PIN. \\
+Migración y evaluación de calidad & Módulo dueño; PostgreSQL y objetos & id:UUID; lote\_version:VARCHAR(128); fuente:VARCHAR(128); periodo:JSONB; reglas\_version:JSONB; conteos:JSONB; sumas\_control:JSONB; muestra:JSONB; defectos:JSONB; decision:JSONB; acta\_version:UUID. & 10 años de evidencia y metadatos & Hereda clasificación; conserva origen de cada corrección. \\
+Respaldo y restauración & Plataforma; registro de Administración & id:UUID; respaldo:VARCHAR(256); datos\_cubiertos:JSONB; fecha:TIMESTAMPTZ; verificacion:JSONB; inicio\_fin\_restauracion:JSONB; resultado:VARCHAR(40); custodio\_clave:VARCHAR(128). No guarda la clave en el registro. & 10 años de metadatos; archivo según la política de respaldo del Subdocumento 4 (sección 4.2.3.5) & Interno; acceso restringido. \\
+Plantilla documental o de notificación & Administración; PostgreSQL y objetos & id\_logico:UUID; id\_version:UUID; version:INTEGER; tipo:VARCHAR(40); contenido\_referencia:VARCHAR(512); hash:VARCHAR(128); variables:JSONB; clasificacion:VARCHAR(40); autor:JSONB; vigencia:JSONB. Referencias a versión concreta. & 10 años; conservar mientras respalde un registro vigente & Hereda clasificación; cambios sin despliegue de código. \\
+Verificador local de credencial/PIN & Acreditación; copia protegida Nodo/gabinete & id:UUID; credencial:UUID; verificador\_no\_reversible:BYTEA; version:INTEGER; vigencia\_desde\_hasta:JSONB; revocacion:TIMESTAMPTZ nulo mientras vigente; estado:VARCHAR(40). El valor PIN no se almacena en claro ni en eventos/auditoría. & Copia operativa hasta revocación o vencimiento; auditoría de cambios 10 años & Personal sensible; protegido y separado de la cola de eventos. \\
+Registros técnicos de operación & Plataforma; observabilidad & id:VARCHAR(128); sistema:VARCHAR(80); fecha:TIMESTAMPTZ; severidad:VARCHAR(40); codigo:VARCHAR(80); correlacion:UUID; mensaje\_tecnico:TEXT. Excluye secretos y datos sensibles. & 90 días & Interno; no reemplaza auditoría o evidencia operacional. \\
+\end{tabla}
+\begin{tabla}{I{0.097}I{0.152}I{0.447}I{0.139}I{0.164}}{Series y proyecciones de fuentes externas.}{tab:series-proyecciones-fuentes-externas}
+  {\cab{Registro} & \cab{Dueño y persistencia} & \cab{Esquema y validación} & \cab{Retención} & \cab{Protección}}
+  {Fuente: elaboración propia a partir de los Subdocumentos 3 y 4.}
+Captura original de serie & TimescaleDB; módulo dueño; origen DCS/historiador u otra fuente autorizada & serie:VARCHAR(128); fuente:VARCHAR(128); instrumento\_equipo\_sitio:JSONB; tiempo\_origen:TIMESTAMPTZ; valor:NUMERIC o valor original tipado; unidad:VARCHAR(40); calidad:VARCHAR(80) nula si no se entrega; referencia\_origen:VARCHAR(256). Lectura primaria inmutable y ventana referenciada por resultados. & Operacional 5 años; ambiental o evidencia de trazabilidad 10 años. Copia del Nodo 30 días. & Hereda clasificación; lectura de OT sin escritura al origen. \\
+Orden y pauta SAP & Equipos; proyección PostgreSQL alimentada por Integrador & clave\_externa:VARCHAR(20); tipo:VARCHAR(40); equipo:UUID; estado:VARCHAR(80); componente:VARCHAR(120); horas\_fechas:JSONB; datos\_pauta:JSONB; fuente:VARCHAR(128); version\_origen:VARCHAR(80); fecha\_actualizacion:TIMESTAMPTZ. Campos sólo si el contrato los entrega. & 5 años; referencias históricas que respaldan trazabilidad se conservan durante su plazo & Interno; SAP sigue siendo maestro, sin órdenes creadas en SITCO. \\
+Datos contables y costos SAP & Indicadores; proyección PostgreSQL y hechos ClickHouse & clave\_linea:VARCHAR(128); documento\_origen:VARCHAR(128); periodo:JSONB; cuenta:VARCHAR(80); centro\_costo:VARCHAR(80); importe:NUMERIC(18,4); moneda:VARCHAR(3); equipo\_area:JSONB; version\_origen:VARCHAR(80); fecha\_actualizacion:TIMESTAMPTZ; correlacion:UUID. & 10 años de la proyección analítica; tributarios oficiales 7 años en SAP & Confidencial; no duplica declaraciones tributarias oficiales. \\
+Empleo SAP & Indicadores; proyección y hechos & clave\_externa:VARCHAR(128); persona\_seudonimizada:VARCHAR(128); tipo\_movimiento:VARCHAR(80); organizacion\_area\_localidad:JSONB; periodo:JSONB; cantidad:NUMERIC(18,4); version\_origen:VARCHAR(80); fecha\_actualizacion:TIMESTAMPTZ; correlacion:UUID. & 10 años para evidencia e indicadores históricos & Datos personales seudonimizados, sin nombre ni documento. \\
+Compras locales SAP & Indicadores; proyección y hechos & clave\_linea:VARCHAR(128); compra\_proveedor:JSONB; localidad\_declarada:VARCHAR(128); centro\_costo:VARCHAR(80); periodo:JSONB; cantidad:NUMERIC(18,4); unidad:VARCHAR(40); importe:NUMERIC(18,4); moneda:VARCHAR(3); version\_origen:VARCHAR(80); fecha\_actualizacion:TIMESTAMPTZ; correlacion:UUID. La localidad es la declarada en SAP para cada línea de compra. & 10 años para evidencia e indicadores históricos & Confidencial; SAP conserva la fuente. \\
+Índice de búsqueda & OpenSearch; proyección de los módulos & registro\_origen:JSONB; version:VARCHAR(80); campos\_publicables:JSONB; clasificacion:VARCHAR(40); fecha\_indexacion:TIMESTAMPTZ. Reconstrucción desde PostgreSQL por interfaces versionadas, sin lectura directa de bases ajenas. & Plazo del registro de origen; se elimina o reconstruye con él & Excluye atributos personales sensibles y aplica rol/lista blanca. \\
+\end{tabla}
+Todas las tablas de hechos comparten un mismo esquema: id\_hecho:VARCHAR(256); claves\_dimensiones:JSONB; medidas:JSONB (valor/unidad); evento\_origen:UUID; correlacion:UUID; version\_calculo:VARCHAR(80); fecha\_carga:TIMESTAMPTZ, con unicidad por grano y versión. Todas pertenecen a Indicadores y Centro Integrado, se guardan en ClickHouse y reciben a la persona seudonimizada. Las dimensiones conformadas usan otro esquema: id\_version\_dimension:VARCHAR(256); id\_logico:VARCHAR(128); origen:VARCHAR(128); atributos:JSONB; vigente\_desde:TIMESTAMPTZ; vigente\_hasta:TIMESTAMPTZ nulo mientras vigente; son de tipo 2 y no sobrescriben el contexto histórico. La Tabla \ref{tab:hechos-dimensiones-modelo-analitico} declara lo que distingue a cada estructura.
+
+\begin{tabla}{I{0.220}I{0.280}I{0.300}I{0.200}}{Hechos y dimensiones del modelo analítico.}{tab:hechos-dimensiones-modelo-analitico}
+  {\cab{Estructura} & \cab{Grano} & \cab{Evento de origen} & \cab{Retención}}
+  {Fuente: elaboración propia a partir de los Subdocumentos 3 y 4.}
+Movimiento de mineral & Un viaje & Viaje registrado y material declarado & 10 años (trazabilidad) \\
+Cumplimiento del plan & Un turno y polígono & Versión de plan publicada y viaje registrado & 10 años (trazabilidad) \\
+Conciliación & Un período y punto de medición & Pesaje capturado, análisis validado, balance de turno calculado y conciliación mensual cerrada & 10 años (trazabilidad) \\
+Productividad & Una detención & Detención registrada y detención clasificada & 5 años (operacional) \\
+Acceso y habilitación & Un paso por portería o una validación & Paso de portería registrado y habilitación otorgada o bloqueada & 10 años (seguridad y salud ocupacional) \\
+Seguridad & Un registro de seguridad o un caso de fatiga & Registro de seguridad creado y caso de fatiga abierto & 10 años (seguridad y salud ocupacional) \\
+Cumplimiento ambiental & Una medición o un reporte & Medición recibida, huella calculada y reporte firmado emitido & 10 años (ambiental) \\
+Comercial & Un lote embarcado & Embarque registrado & 10 años (trazabilidad de embarques) \\
+Costos & Una línea contable de SAP y su versión & Datos SAP analíticos recibidos & 10 años (Tabla \ref{tab:series-proyecciones-fuentes-externas}) \\
+Empleo & Una asignación o movimiento de empleo de SAP por período y versión & Datos SAP analíticos recibidos & 10 años (Tabla \ref{tab:series-proyecciones-fuentes-externas}) \\
+Compras locales & Una línea de compra de SAP y su versión, con localización declarada & Datos SAP analíticos recibidos & 10 años (Tabla \ref{tab:series-proyecciones-fuentes-externas}) \\
+Calidad de datos & Una regla evaluada por fuente, ejecución y período & Resultado de calidad registrado & 10 años (auditoría y plataforma) \\
+Adopción & Un indicador por período, sitio y rol seudonimizado & Métrica de adopción calculada & 10 años (auditoría y plataforma) \\
+Dimensiones conformadas & Una versión de turno, equipo, área/sitio, taxonomía, factor, período u otra dimensión del hecho & Alimentadas por evento o proyección declarada & Conservadas mientras interpreten hechos vigentes; seudonimiza identidad. \\
+\end{tabla}
+\begin{tabla}{I{0.160}I{0.182}I{0.378}I{0.124}I{0.156}}{Datos custodiados por servicios de plataforma.}{tab:datos-custodiados-servicios-plataforma}
+  {\cab{Registro} & \cab{Custodio} & \cab{Esquema y validación} & \cab{Retención} & \cab{Protección}}
+  {Fuente: elaboración propia a partir de los Subdocumentos 3 y 4.}
+Formación & Servicio de formación; exportación al repositorio de Administración & curso\_id:VARCHAR(128); version:VARCHAR(80); actividad\_id:VARCHAR(128); cuenta\_seudonimizada:VARCHAR(128); inscripcion:TIMESTAMPTZ; avance:NUMERIC(6,3); estado:VARCHAR(40); evaluacion:JSONB; fecha\_actualizacion:TIMESTAMPTZ; evidencia:JSONB. Una inscripción por curso/version/cuenta; conserva cada actividad y resultado. & 10 años de evidencia de formación & Identidad protegida; la plataforma custodio y su exportación se fijan en el contrato del servicio. \\
+Ticket y actividades de soporte & Mesa de ayuda; exportación al repositorio de Administración & ticket\_id:VARCHAR(128); servicio:VARCHAR(80); solicitante:JSONB; severidad:VARCHAR(40); apertura:TIMESTAMPTZ; plazo\_sla:TIMESTAMPTZ; estado:VARCHAR(40); actividades:JSONB con autor, hora y acción; causa\_raiz:TEXT nula hasta diagnóstico; cierre:TIMESTAMPTZ nulo mientras abierto; evidencia:JSONB. & 10 años de historial y evidencia de servicio & No se confunde con Incidente SSO; datos personales protegidos. El custodio y la exportación se fijan en el contrato del servicio. \\
+Cuenta, rol y sesión federada & Entra ID/External ID; SITCO conserva referencias y evidencia de acceso & proveedor:VARCHAR(128); sujeto:VARCHAR(256); roles\_ambito:JSONB; estado:VARCHAR(40); vigencia:JSONB; sesion\_referencia:VARCHAR(256); acceso\_auditoria:UUID. No guarda contraseñas ni tokens reutilizables en el diccionario/auditoría. & Sesión según su vigencia; evidencia de auditoría 10 años & Personal sensible; la copia local es limitada, protegida y revocable. \\
+Gestión de dispositivos & Plataforma declarada en el Subdocumento 4; proyección de inventario & dispositivo:UUID; identificador\_proveedor:VARCHAR(128); politica\_version:VARCHAR(80); estado:VARCHAR(40); ultima\_aplicacion:TIMESTAMPTZ; evidencia:JSONB. Relacionado con Dispositivo inventariado. & 10 años de evidencia; trazas técnicas 90 días & Interno; secretos fuera del registro. \\
+\end{tabla}
+\end{horizontal}
+
+\seccion{Clasificación de la información}
+La Tabla \ref{tab:niveles-clasificacion-informacion} presenta los cuatro niveles de clasificación que el Subdocumento 5 resume en la sección 5.1.3. La clasificación se declara por atributo en las Tablas \ref{tab:atributos-modulo-operacion-mina} a \ref{tab:atributos-estructura-comun-eventos-terreno} y acompaña al dato en el evento, el índice de búsqueda, las exportaciones, la capa analítica y los respaldos.
+
+\begin{tabla}{I{0.192}I{0.438}I{0.370}}{Niveles de clasificación de la información.}{tab:niveles-clasificacion-informacion}
+  {\cab{Nivel} & \cab{Qué comprende} & \cab{Control que agrega}}
+  {Fuente: elaboración propia.}
+Público & Ningún dato: no existe portal abierto a la ciudadanía & No aplica \\
+Interno & Registro operacional: viajes, pesajes, detenciones, inspecciones, estados de equipo e indicadores & Cifrado en tránsito y en reposo, acceso por rol, área y sitio, y auditoría de modificación \\
+Confidencial & Ley por polígono, modelo de bloques, plan versionado, liquidaciones, penalizaciones y márgenes & Prohibición de exposición externa, aprobación comercial para publicar y registro de toda consulta \\
+Personal sensible & Salud, exámenes, fatiga, alcohol y drogas, biometría, documento de identidad e identidad del operador en registros operacionales & Cifrado a nivel de campo, auditoría de la consulta y enmascarado irreversible fuera de producción \\
+\end{tabla}
+Cada nivel suma controles al anterior. El nivel público no contiene datos, porque no existe un portal abierto a la ciudadanía; desde el nivel confidencial toda consulta queda registrada, y el nivel personal sensible es el único que exige cifrado a nivel de campo y enmascarado irreversible fuera de producción (Subdocumento 5, secciones 5.1.3 y 5.2.6).
+
+\seccion{Origen y transformación de los datos por fuente}
+La Tabla \ref{tab:origen-transformacion-volumen-datos-entran-dominios} detalla, para cada fuente que el Subdocumento 5 resume en la sección 5.1.5, el dato que entrega, el dominio que lo recibe, la transformación que aplica su conector y su volumen diario. El volumen deriva de la volumetría anual del caso, cuyo cálculo está en las Tablas D.4 y D.5 del Anexo D de OVERFORE-Subdocumento4-Anexos.
+
+\begin{tabla}{I{0.182}I{0.197}I{0.202}I{0.237}I{0.181}}{Origen, transformación y volumen de los datos que entran a los dominios.}{tab:origen-transformacion-volumen-datos-entran-dominios}
+  {\cab{Fuente} & \cab{Dato que entrega} & \cab{Dominio que lo recibe} & \cab{Transformación en el conector} & \cab{Volumen diario}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (Compañía Minera Altos de Aranda [CMAA], 2026b, cap. 14.1, p. 23) y del Subdocumento 4 (sección 4.2.4).}
+Despacho de flota & Viajes, ciclos, demoras y posiciones & Operación Mina & Traduce estados y equipos y asigna el turno & 937 viajes y 3.753 ciclos \\
+Planificación minera & Versión del plan y polígonos & Operación Mina & Versiona el plan con fecha y hora & 3 a 4 versiones por semana \\
+Gestión de laboratorio & Resultados de análisis & Conciliación Metalúrgica & Asocia el resultado a la muestra identificada & Unas 195 muestras \\
+Software de la báscula & Pesajes de control y de camiones a puerto & Conciliación Metalúrgica & Marca la fuente de medición y el instrumento & Unos 34 camiones a puerto \\
+Historiador, vía espejo & Balanza de alimentación, flujos y detenciones de planta & Conciliación Metalúrgica y Equipos y Mantenimiento & Conserva la lectura original y deriva totales por turno & 86,4 millones de muestras \\
+SAP S/4HANA & Personal propio, pautas y órdenes de trabajo & Administración y Servicios Comunes y Equipos y Mantenimiento & Copia la ficha sin duplicar la gestión de SAP & 1.780 personas; 93 órdenes \\
+Portales de telemetría & Alarmas, horas, consumos y códigos de falla & Equipos y Mantenimiento & Normaliza la severidad entre fabricantes & 7,49 millones de lecturas \\
+Control de fatiga & Alertas & Seguridad y Salud Ocupacional & Abre un caso y cifra la identidad & Unas 13 alertas \\
+Control de acceso de portería & Lecturas de credencial & Acreditación y Acceso & Valida contra la lista local de habilitaciones & Unos 2.900 pasos \\
+Instrumentos y caudalímetros & Mediciones ambientales y de agua & Cumplimiento Ambiental & Asocia la medición a su compromiso & 272.160 lecturas \\
+Laboratorios externos & Informes de agua, aire y relaves & Cumplimiento Ambiental & Valida el informe al cargarlo & Unos 50 informes al mes \\
+Botonera, tableta y consola & Declaraciones de material, pozos de perforación, registros de seguridad e ingresos manuales de portería & Operación Mina, Seguridad y Salud Ocupacional y Acreditación y Acceso & Valida contra el esquema y firma en el dispositivo & 126 pozos, 53 registros de seguridad y hasta 937 declaraciones \\
+\end{tabla}
+Ninguna fuente escribe directo en el modelo: cada conector traduce el vocabulario del sistema al del módulo antes de escribir. Las declaraciones de material y los ingresos manuales de portería acompañan a hechos ya contados, por lo que no se suman a los unos 8.100 hechos diarios. Los unos 50 informes mensuales de laboratorios externos son un supuesto propio que se confirma en el levantamiento de los primeros tres meses.
+
+\anexo{Trazabilidad de las observaciones del Informe 1}
+La Tabla \ref{tab:trazabilidad-observaciones-informe-1-art-46} presenta, conforme al Artículo 46 de las Bases administrativas (p. 28), cada observación del Informe 1 sobre el Subdocumento 5, la respuesta adoptada y la sección donde se modificó.
+
+\begin{tabla}{I{0.071}I{0.373}I{0.391}I{0.166}}{Trazabilidad de las observaciones del Informe 1 (Art. 46).}{tab:trazabilidad-observaciones-informe-1-art-46}
+  {\cab{N.º} & \cab{Observación del Informe 1 sobre el Subdocumento 5} & \cab{Respuesta} & \cab{Sección modificada}}
+  {Fuente: elaboración propia a partir de la revisión del Informe 1 y del Subdocumento 5.}
+1 & La Figura 1 es “una maraña de unas 45 cajas sin nombre legible ni leyenda de colores” & Modelo por dominio en 15 figuras con leyenda, notación de pata de gallo y claves, citadas antes y explicadas después & 5.1.1 y 5.1.6, Figuras \refext{S5}{fig:vista-general-nueve-dominios-informacion-eventos} a \refext{S5}{fig:administracion-servicios-comunes-parte-2-documentos} \\
+2 & Migración de diez años de papel “sin plan de digitalización” & Cuatro digitalizadores rotan en tres puestos, 124 días hábiles, muestra de 200 por lote y umbral de 2 \%; lo ilegible queda como no migrable y en custodia & 5.3.2 y 5.3.3; Anexo C, sección C.2 \\
+3 & “Volúmenes declarados, no derivados” & Volumen de los siete orígenes en la Tabla \refext{S5}{tab:volumen-migracion-origen}, con su derivación registro por registro en la Tabla \ref{tab:calculo-volumen-migracion-origen}, y volumetría de diseño con su uso en la Tabla \refext{S5}{tab:volumetria-diseno-uso-estrategia-desempeno} y su cálculo en el Anexo D de OVERFORE-Subdocumento4-Anexos & 5.3.1 (Tabla \refext{S5}{tab:volumen-migracion-origen}), 5.4.1 (Tabla \refext{S5}{tab:volumetria-diseno-uso-estrategia-desempeno}) y Anexo C (Tabla \ref{tab:calculo-volumen-migracion-origen}) \\
+4 & Motores “sin trazabilidad al requisito del caso” & Columna “Requisito que la exige” para cada motor; la caché responde al escalado automático de RNF-CAP-008 & 5.2.1 (Tabla \refext{S5}{tab:naturaleza-dato-motor-razon-eleccion}) \\
+5 & “Frases de plantilla repetidas” & Texto reescrito sin fórmulas repetidas & Todo el capítulo \\
+6 & “Columnas partidas” & Tablas del cuerpo de cinco columnas como máximo y sin palabras cortadas; tablas de atributos del anexo (A.4 a A.13) en página horizontal & Tablas \refext{S5}{tab:eventos-entre-dominios-vista-general} a \refext{S5}{tab:declaracion-uso-ia-seccion}; Anexo A \\
+7 & “Filas y figura huérfanas” & Cada figura y cada tabla queda con su leyenda y su fuente & Todo el capítulo \\
+8 & Diagramas en anexo y no en el cuerpo (general) & Todas las figuras van en el cuerpo & 5.1.6 y 5.3.2 \\
+9 & Referencias a versiones y secciones inexistentes (general) & Remisiones verificadas contra la versión final de los Subdocumentos 3, 4, 9 y 13 y de los Formularios T-13, T-14 y T-15 & Todo el capítulo \\
+10 & Bibliografía que no se cita en el texto (general) & Las trece referencias del capítulo se citan en el lugar de uso; las citas a las Bases indican documento, capítulo o artículo y página & Referencias \\
+11 & “La revisión del documento generado debe hacerla una persona que verifique cada cifra y cada frase repetida” & Revisión por persona declarada por sección, con lo verificado & Declaración de uso de IA (Tabla \refext{S5}{tab:declaracion-uso-ia-seccion}) \\
+\end{tabla}
+
+\anexo{Plan de migración: cálculo del volumen y digitalización}
+Este anexo detalla dos partes del plan de migración que el Subdocumento 5 resume en la sección 5.3: el cálculo del volumen de cada origen (C.1) y el plan de digitalización de los formularios de seguridad en papel (C.2).
+
+\seccion{Cálculo del volumen de la migración}
+La Tabla \ref{tab:calculo-volumen-migracion-origen} deriva, registro por registro, el volumen de cada origen que resume la Tabla \refext{S5}{tab:volumen-migracion-origen} del Subdocumento 5. Cada fila multiplica la volumetría anual del caso por la ventana de migración y por un tamaño unitario supuesto, que se mide en el perfilado y en el primer lote.
+
+\begin{tabla}{I{0.260}I{0.130}I{0.290}I{0.183}I{0.137}}{Cálculo del volumen de la migración por origen.}{tab:calculo-volumen-migracion-origen}
+  {\cab{Origen, contenido y etapa} & \cab{Ventana} & \cab{Cantidad, tamaño y cálculo} & \cab{Destino de lo anterior} & \cab{Volumen}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, caps. 14.1 y 15, pp. 23-25), de TRA-MIG-005, de SUP-31 y SUP-32 y del Subdocumento 4 (Anexo D).}
+Despacho de flota: viajes, ciclos, destinos y horas · Etapa 1 & 5 años & 1,71 millones de viajes y 6,85 millones de ciclos (342.000 y 1,37 millones al año × 5) × 0,4 KB & Repositorio histórico & 3,4 GB \\
+Planillas de turno: balances, lotes de planta y capas · Etapa 1 & 5 años & 3.650 balances y 3.650 lotes (2 turnos × 365 × 5) y 10.950 capas (6 stocks supuestos × 365 × 5) × 0,4 KB & Repositorio histórico & < 0,01 GB \\
+Gestión de laboratorio: muestras y análisis · Etapa 1 & 5 años & 2,84 millones de resultados (71.000 muestras al año × 5 × 8 resultados) × 0,4 KB & Repositorio histórico & 1,1 GB \\
+Planilla de acreditación: habilitaciones · Etapa 1 & 10 años & 110.000 habilitaciones (11.000 al año × 10; Subdocumento 4, Anexo D) × 1 KB & Se migra completo & 0,1 GB \\
+SAP S/4HANA: órdenes y pautas de mantenimiento · Etapa 2 & 3 años & 102.000 órdenes (34.000 al año × 3) × 5 KB & Repositorio de consulta histórica & 0,5 GB \\
+Formularios de seguridad en papel: imágenes indexadas · Etapa 2 & 10 años & 193.000 formularios ((11.500 + 7.800) × 10; SUP-32) × 1 MB de imagen y 1 KB de índice & Se migra completo & 193,2 GB \\
+Monitoreo ambiental: mediciones e informes PDF · Etapa 2 & 10 años & 680.000 filas (186 instrumentos × 365 × 10) × 0,4 KB y 6.000 informes (50 al mes × 120) × 1 MB & Se migra completo & 6,3 GB \\
+Historiador de proceso & No se migra & No aplica & Permanece en el historiador & No aplica \\
+SAP S/4HANA, tributarios & No se migra & No aplica & Permanecen en SAP & No aplica \\
+Total & — & — & — & ≈ 205 GB \\
+\end{tabla}
+Los registros estructurados suman cerca de 5,6 GB, dentro de los 12 GB que el Subdocumento 4 reserva para la carga migrada (OVERFORE-Subdocumento4-Anexos, Anexo D), y los informes en PDF, unos 6 GB, van al almacén de objetos. La acreditación usa la ventana de diez años de seguridad y salud ocupacional porque la Tabla \refext{S5}{tab:retencion-categoria-entidad} del Subdocumento 5 la clasifica en esa categoría, y el mantenimiento de SAP S/4HANA anterior a tres años queda en el repositorio de consulta histórica. Los documentos de respaldo de las habilitaciones no se migran porque sumarían unos 220 GB (110.000 habilitaciones × 5 documentos × 0,4 MB, tamaño supuesto en el Anexo D de OVERFORE-Subdocumento4-Anexos).
+
+\seccion{Plan de digitalización de los formularios de seguridad}
+La digitalización de los registros de seguridad es un trabajo sobre papel y no una carga de datos. El método es el escaneo a imagen, sin transcripción de campos, a 300 ppp en escala de grises y en PDF/A, con un índice por tipo de registro, fecha, área, empresa, persona involucrada y folio, que se digita y se valida contra el formulario (SUP-32). El caso indica que estos formularios ya se digitan días después de llenarse (CMAA, 2026b, cap. 4.8, p. 9, y cap. 7.3, p. 12); el inventario ubica esa digitación y, cuando un registro coincide por folio con su formulario, sus campos precargan el índice y el puesto sólo los confirma contra la imagen.
+
+Es la tarea más larga de la migración. Cuatro digitalizadores de Overfore rotan en los tres puestos de escaneo e indexación, a unos 520 formularios diarios por puesto, de modo que los 193.000 formularios toman unos 124 días hábiles (193.000 / (3 × 520)) y los puestos operan entre los meses 10 y 15, en paralelo con el cierre del desarrollo y con la marcha blanca de la Etapa 1, con la dotación que presenta la nivelación de recursos del Formulario T-15 (CMAA, 2026a, Art. 17.2). Si el primer lote rinde menos de lo previsto, el cuarto digitalizador abre un cuarto puesto; el rendimiento de 520 formularios diarios por puesto es un supuesto que se confirma en ese primer lote. Los puestos son equipamiento del servicio de digitalización y no forman parte del Formulario T-11.
+
+El control de calidad revisa en cada lote, que es una semana de producción de un puesto o unos 2.600 formularios, una muestra de 200 en legibilidad y en exactitud del índice; un lote con más de un 2 \% de errores se vuelve a procesar completo, umbral coherente con la meta de exactitud de 98 \% de RF-DAT-001. Un formulario ilegible no se descarta: se registra como no migrable con su motivo y el original queda bajo custodia del cliente. Las imágenes se guardan cifradas en el contenedor inmutable de diez años; como una imagen no admite enmascaramiento, en Preproducción se reemplazan por archivos sintéticos del mismo tamaño que conservan la suma de control de la original. Mientras el módulo de Seguridad y Salud Ocupacional no existe, el índice se guarda en el repositorio de consulta histórica; en la carga definitiva del mes 18, el de los últimos cinco años pasa al almacén del módulo, como fija la ventana en línea de la sección 5.2.4 del Subdocumento 5.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item International Association of Oil \& Gas Producers. (s. f.). EPSG geodetic parameter dataset: EPSG:4326, WGS 84. https://epsg.io/4326
+\item PostgreSQL Global Development Group. (s. f.). PostgreSQL 18 documentation. https://www.postgresql.org/docs/18/
+\end{referencias}
+\end{document}

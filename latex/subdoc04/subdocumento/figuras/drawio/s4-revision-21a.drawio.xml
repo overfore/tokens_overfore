@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" type="device"><diagram name="Figura 4.21a" id="Figura421a">
+    <mxGraphModel dx="1000" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1644" pageHeight="431" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="sd" value="sd Portería (rostro)" style="shape=umlFrame;html=0;whiteSpace=wrap;pointerEvents=0;width=242.328125;height=30;fontFamily=Arial;fontSize=23;fontColor=#1F2937;strokeColor=#334155;strokeWidth=1.5;fillColor=none;spacingLeft=6;spacingTop=4;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="8.0" y="8" width="1612.0" height="413" as="geometry"/>
+        </mxCell>
+        <mxCell id="h0" value="Persona" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontFamily=Arial;fontSize=23;fontStyle=1;fontColor=#1F2937;strokeColor=#334155;fillColor=#FFFFFF;strokeWidth=1.5;" parent="1" vertex="1">
+          <mxGeometry x="116" y="52" width="32" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="h1" value="Torniquete" style="shape=rectangle;rounded=0;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontColor=#1F2937;fillColor=#FFFFFF;strokeColor=#334155;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=6;overflow=hidden;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="231.0" y="60" width="170" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="h2" value="Lector de credencial" style="shape=rectangle;rounded=0;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontColor=#1F2937;fillColor=#FFFFFF;strokeColor=#334155;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=6;overflow=hidden;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="405.0" y="60" width="190" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="h3" value="Conector del control de acceso" style="shape=rectangle;rounded=0;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontColor=#1F2937;fillColor=#FFFFFF;strokeColor=#334155;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=6;overflow=hidden;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="625.0" y="60" width="220" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="h4" value="Módulo Acreditación y Acceso" style="shape=rectangle;rounded=0;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontColor=#1F2937;fillColor=#FFFFFF;strokeColor=#334155;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=6;overflow=hidden;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="860.0" y="60" width="240" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="h5" value="Lector facial" style="shape=rectangle;rounded=0;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontColor=#1F2937;fillColor=#FFFFFF;strokeColor=#334155;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=6;overflow=hidden;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="1146.0" y="60" width="180" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="h6" value="Consola de Portería" style="shape=rectangle;rounded=0;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontColor=#1F2937;fillColor=#FFFFFF;strokeColor=#334155;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=6;overflow=hidden;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="1386.0" y="60" width="190" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="m1" value="1: iniciar verificación facial" style="text;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontStyle=1;fontColor=#1F2937;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;spacing=2;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="745" y="162" width="481" height="33" as="geometry"/>
+        </mxCell>
+        <mxCell id="ar1" value="" style="endArrow=classic;html=0;rounded=0;fontFamily=Arial;fontSize=23;strokeWidth=1.8;strokeColor=#334155;fontStyle=1" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="742" y="201" as="sourcePoint"/>
+            <mxPoint x="1229" y="201" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2" value="2: solicitar la imagen del rostro" style="text;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontStyle=1;fontColor=#1F2937;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;spacing=2;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="142" y="215" width="1084" height="33" as="geometry"/>
+        </mxCell>
+        <mxCell id="ar2" value="" style="endArrow=classic;html=0;rounded=0;fontFamily=Arial;fontSize=23;strokeWidth=1.8;strokeColor=#334155;fontStyle=1" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1229" y="254" as="sourcePoint"/>
+            <mxPoint x="139" y="254" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" value="3: imagen del rostro" style="text;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontStyle=1;fontColor=#1F2937;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;spacing=2;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="142" y="268" width="1084" height="33" as="geometry"/>
+        </mxCell>
+        <mxCell id="ar3" value="" style="endArrow=open;endFill=1;endSize=12;dashed=1;dashPattern=8 8;html=0;rounded=0;fontFamily=Arial;fontSize=23;strokeWidth=1.8;strokeColor=#334155;fontStyle=1" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="139" y="307" as="sourcePoint"/>
+            <mxPoint x="1229" y="307" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4" value="4: comparar con la plantilla cifrada" style="text;html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontStyle=1;fontColor=#1F2937;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;spacing=2;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="1302" y="317" width="420" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="ar4" value="" style="endArrow=classic;html=0;rounded=0;strokeWidth=1.8;strokeColor=#334155;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1286" y="325"/>
+              <mxPoint x="1286" y="351"/>
+            </Array>
+            <mxPoint x="1242" y="325" as="sourcePoint"/>
+            <mxPoint x="1242" y="351" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l0" value="" style="endArrow=none;dashed=1;dashPattern=5 5;strokeColor=#334155;strokeWidth=1.5;html=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="132" y="150" as="sourcePoint"/>
+            <mxPoint x="132" y="391" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1" value="" style="endArrow=none;dashed=1;dashPattern=5 5;strokeColor=#334155;strokeWidth=1.5;html=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="316" y="112" as="sourcePoint"/>
+            <mxPoint x="316" y="391" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2" value="" style="endArrow=none;dashed=1;dashPattern=5 5;strokeColor=#334155;strokeWidth=1.5;html=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="112" as="sourcePoint"/>
+            <mxPoint x="500" y="391" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3" value="" style="endArrow=none;dashed=1;dashPattern=5 5;strokeColor=#334155;strokeWidth=1.5;html=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="735" y="112" as="sourcePoint"/>
+            <mxPoint x="735" y="391" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l4" value="" style="endArrow=none;dashed=1;dashPattern=5 5;strokeColor=#334155;strokeWidth=1.5;html=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="980" y="112" as="sourcePoint"/>
+            <mxPoint x="980" y="391" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l5" value="" style="endArrow=none;dashed=1;dashPattern=5 5;strokeColor=#334155;strokeWidth=1.5;html=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1236" y="112" as="sourcePoint"/>
+            <mxPoint x="1236" y="391" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l6" value="" style="endArrow=none;dashed=1;dashPattern=5 5;strokeColor=#334155;strokeWidth=1.5;html=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1481" y="112" as="sourcePoint"/>
+            <mxPoint x="1481" y="391" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  </mxfile>

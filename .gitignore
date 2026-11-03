@@ -1,0 +1,22 @@
+# Auxiliares de LaTeX (se regeneran al compilar)
+*.aux
+!*-ref.aux
+*.log
+*.out
+*.toc
+*.lot
+*.lof
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+# PDF generados por compilar.py (se regeneran; no se versionan)
+latex/subdoc*/**/*.pdf
+latex/salida/
+latex/salida-borrador/
+# Python
+__pycache__/
+*.pyc
+# Bloqueos de Word
+~$*
+# Diagramas de draw.io (40 MB; el original vive en Google Drive)
+diagramas/

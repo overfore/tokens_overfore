@@ -1,0 +1,205 @@
+%% OVERFORE-Formulario-T-17.tex — generado desde OVERFORE-Formulario-T-17.docx
+%% Formato: clase overfore, modo formulario. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[formulario]{../../comun/overfore}
+\numsubdoc{9}
+\formulario{T-17}{Protocolo de aceptación de hitos}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+
+\begin{document}
+
+\apartado{Objeto y base del protocolo}
+Un hito se cumple únicamente con la suscripción del acta de aceptación por parte de la Contraparte Técnica. Cuando el hito implica un paso a producción, se agrega una aprobación previa. El Comité de Proyecto aprueba el paso a producción y la Contraparte Técnica firma el acta de aceptación del hito. Este protocolo define qué se presenta, qué se comprueba y qué queda firmado, para que la aceptación de cada hito dependa de criterios objetivos y de evidencia que el cliente pueda revisar, y nunca de la declaración del adjudicatario.
+
+Los hitos son los doce del contrato, con los entregables y los meses de cada uno. El protocolo no modifica esos entregables ni sus fechas y precisa cómo se acepta cada uno. Las ponderaciones de pago no forman parte de este formulario.
+
+\apartado{Procedimiento general de aceptación}
+Todo entregable sometido a aceptación incorpora el documento o artefacto, la evidencia objetiva de su verificación, la trazabilidad hacia los requerimientos que satisface y el registro de las observaciones previas ya resueltas. El cliente dispone de diez días hábiles para revisar y pronunciarse. Formuladas observaciones, el adjudicatario dispone de otros diez días hábiles para subsanarlas, y una segunda presentación con observaciones de la misma naturaleza se considera atraso imputable al adjudicatario. La siguiente tabla resume los pasos.
+
+\begin{tabla}{C{0.079}I{0.180}I{0.211}I{0.224}I{0.306}}{Pasos del procedimiento de aceptación.}{tab:pasos-procedimiento-aceptacion}
+  {\cab{Paso} & \cab{Actividad} & \cab{Responsable} & \cab{Plazo} & \cab{Resultado}}
+  {\emph{Fuente: }elaboración propia.}
+1 & Presentación & Overfore & Antes de la fecha del hito & Entregable, evidencia, trazabilidad y observaciones previas resueltas \\
+2 & Revisión & Contraparte Técnica & 10 días hábiles & Pronunciamiento: sin observaciones, con observaciones o rechazo \\
+3 & Subsanación & Overfore & 10 días hábiles desde las observaciones & Entregable corregido y registro de cada observación resuelta \\
+4 & Segunda revisión & Contraparte Técnica & 10 días hábiles & Pronunciamiento sobre las observaciones subsanadas \\
+5 & Acta de conformidad & Contraparte Técnica y Overfore & Al aprobarse el entregable & Acta firmada; el hito queda cumplido \\
+\end{tabla}
+En el caso más largo, una aceptación con una ronda de observaciones toma 30 días hábiles, 10 de la primera revisión, 10 de subsanación y 10 de la segunda revisión. La aceptación no libera al adjudicatario de su responsabilidad por defectos posteriores ni convalida incumplimientos que se detecten después.
+
+\apartado{Protocolo de aceptación por hito}
+Cada hito tiene su propia tabla con el entregable que lo gatilla, los criterios de aceptación objetivos y la evidencia requerida. Los criterios usan los umbrales del Subdocumento 9, las pruebas del Formulario T-13 y, para la madurez y la accesibilidad, el modelo SAMM (Software Assurance Maturity Model) de OWASP (Open Worldwide Application Security Project), versión 2 (OWASP Foundation, 2020), y las pautas WCAG (Web Content Accessibility Guidelines) 2.2 nivel AA (World Wide Web Consortium [W3C], 2023). En las tablas, TPS son las transacciones por segundo. Los plazos de revisión y el procedimiento de observaciones son los del procedimiento general.
+
+\seccion{Hito H1 (mes 2)}
+El hito H1 se cumple en el mes 2. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H1.}{tab:protocolo-aceptacion-hito-h1}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Cierre del levantamiento y aprobación de la línea base de alcance y de la matriz de trazabilidad de requerimientos \\
+Criterios de aceptación objetivos & El 100 \% de los requerimientos tiene identificador, origen, umbral o resultado esperado y método de verificación\newline La matriz de trazabilidad relaciona cada requerimiento con su componente y con la sección donde se acredita\newline La definición de terminado y los umbrales de calidad del código quedan sometidos a la Contraparte Técnica\newline Se entrega la evaluación inicial de madurez de las 15 prácticas de OWASP SAMM \\
+Evidencia requerida & Anexo A del Subdocumento 2 y Formulario T-12\newline Anexo B del Subdocumento 9\newline Informe de evaluación inicial \\
+\end{tabla}
+
+\seccion{Hito H2 (mes 4)}
+El hito H2 se cumple en el mes 4. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H2.}{tab:protocolo-aceptacion-hito-h2}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Aprobación del documento de arquitectura, del plan de seguridad y del modelo de datos \\
+Criterios de aceptación objetivos & El documento de arquitectura incluye el registro de decisiones, con las alternativas evaluadas y el criterio de selección\newline Las reglas de acoplamiento entre módulos y los umbrales de calidad del código del Subdocumento 9 están aprobados por el Comité de Arquitectura\newline El plan de seguridad cubre identidad, cifrado, capa expuesta y controles\newline El modelo de datos incluye los dominios y el diccionario de datos \\
+Evidencia requerida & Subdocumento 4 y registro de decisiones de arquitectura\newline Subdocumento 5 y su diccionario\newline Acta del Comité de Arquitectura \\
+\end{tabla}
+
+\seccion{Hito H3 (mes 6)}
+El hito H3 se cumple en el mes 6. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H3.}{tab:protocolo-aceptacion-hito-h3}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Entrega de la infraestructura híbrida y habilitación de los ambientes de Desarrollo, QA, Preproducción y Producción, con observabilidad operativa \\
+Criterios de aceptación objetivos & Los cinco ambientes, incluido el de Recuperación, están habilitados y operativos\newline Preproducción es equivalente a producción en topología, versiones y configuración, y toda diferencia está declarada y justificada\newline Ningún ambiente no productivo tiene conectividad con producción\newline Las puertas de calidad 1 a 5 están operativas y la observabilidad entrega métricas, registros y trazas \\
+Evidencia requerida & Acta de habilitación de los cinco ambientes\newline Comparación de topología y versiones entre Preproducción y Producción\newline Configuración del flujo de integración con sus criterios de bloqueo \\
+\end{tabla}
+
+\seccion{Hito H4 (mes 10)}
+El hito H4 se cumple en el mes 10. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H4.}{tab:protocolo-aceptacion-hito-h4}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Entrega del software de la Etapa 1 para pruebas, con QA superado y evidencia de cobertura \\
+Criterios de aceptación objetivos & Cobertura de líneas de 70 \% o más en la lógica de negocio y de 80 \% o más en el código nuevo, y demás umbrales de calidad del código del Subdocumento 9\newline Batería de regresión completa sin fallas y sin defectos críticos ni altos abiertos\newline Los 92 requerimientos funcionales de la Etapa 1 tienen al menos un caso ejecutado\newline Los contratos publicados coinciden con los del código desplegado \\
+Evidencia requerida & Informe de calidad del código y de cobertura\newline Informe de regresión y de defectos\newline Matriz de trazabilidad actualizada \\
+\end{tabla}
+
+\seccion{Hito H5 (mes 12)}
+El hito H5 se cumple en el mes 12. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.177}I{0.823}}{Protocolo de aceptación del hito H5.}{tab:protocolo-aceptacion-hito-h5}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Certificación de la solución de la Etapa 1: pruebas de aceptación de usuario, de carga, de resiliencia y de seguridad ofensiva aprobadas \\
+Criterios de aceptación objetivos & Casos de aceptación de usuario aprobados y firmados por la Contraparte Técnica\newline Carga sostenida a 300 TPS durante 60 minutos con los umbrales de desempeño cumplidos y punto de quiebre identificado\newline Resistencia de 72 horas sin degradación sobre 10 \% y resiliencia con las cinco fallas del Formulario T-13\newline Seguridad ofensiva de un tercero independiente sin hallazgos críticos ni altos abiertos, y accesibilidad WCAG 2.2 AA documentada\newline Informe parcial de usabilidad en terreno con las pruebas hechas hasta el mes 11\newline Madurez de nivel 2 en las 15 prácticas de OWASP SAMM\newline Ensayos de migración de la Etapa 1 conciliados con los criterios del Subdocumento 5 (5.3.4), antes de la carga definitiva del mes 12 \\
+Evidencia requerida & Informes de cada campaña del Formulario T-13\newline Informe de la prueba de intrusión del tercero\newline Informe de conformidad WCAG 2.2 AA\newline Informe parcial de usabilidad de la Etapa 1 \\
+\end{tabla}
+
+\seccion{Hito H6 (mes 13)}
+El hito H6 se cumple en el mes 13. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H6.}{tab:protocolo-aceptacion-hito-h6}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Inicio de la marcha blanca de la Etapa 1, con plan de reversión activo y usuarios capacitados \\
+Criterios de aceptación objetivos & El plan de reversión fue ensayado y se declara su tiempo de ejecución\newline El método actual sigue activo y se compara a diario con SITCO Aranda\newline Los usuarios de la primera ola están capacitados conforme al plan, con al menos dos ciclos completos del régimen 7×7\newline Están definidos los indicadores diarios de la marcha blanca y sus umbrales de avance \\
+Evidencia requerida & Acta del ensayo de reversión cronometrado\newline Registro de capacitación por área y turno\newline Tablero de indicadores diarios \\
+\end{tabla}
+
+\seccion{Hito H8 (mes 14)}
+El hito H8 se cumple en el mes 14. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H8.}{tab:protocolo-aceptacion-hito-h8}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Aprobación de la línea base de alcance de la Etapa 2 y de su diseño detallado \\
+Criterios de aceptación objetivos & La matriz de trazabilidad incluye los 34 requerimientos funcionales de la Etapa 2 y el método de verificación de los no funcionales que les aplican\newline El diseño detallado agrega módulos y conectores sin cambiar la arquitectura de la Etapa 1\newline El plan de regresión de la Etapa 1 está definido para cada promoción de la Etapa 2 \\
+Evidencia requerida & Matriz de trazabilidad de la Etapa 2\newline Documento de diseño detallado\newline Plan de regresión \\
+\end{tabla}
+
+\seccion{Hito H7 (mes 16)}
+El hito H7 se cumple en el mes 16. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H7.}{tab:protocolo-aceptacion-hito-h7}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Paso a producción de la Etapa 1 y cierre conforme de la marcha blanca \\
+Criterios de aceptación objetivos & Sin incidentes críticos ni altos abiertos atribuibles a la solución\newline Volumen de operación real comprometido alcanzado en las cuatro últimas semanas, con disponibilidad y tiempo de respuesta cumplidos en ese período\newline Conciliación con el registro vigente sin diferencias no explicadas\newline Personal del cliente capacitado y certificado, y acta firmada por la Contraparte Técnica\newline Defectos medios y bajos abiertos no superiores a 4 y 13, y recuperación ante desastres, corte de 48 horas y ejercicio de pérdida total de la sala técnica aprobados\newline Seguridad ofensiva del mes 15 sin hallazgos críticos ni altos abiertos, simulación de incidente realizada e informe final de usabilidad con las pruebas de la marcha blanca\newline Resultados de negocio con cumplimiento en el mes 16, entre ellos el origen de un lote en menos de 2 horas y la operación sin enlace durante 48 horas \\
+Evidencia requerida & Tablero diario de la marcha blanca\newline Informe de conciliación entre SITCO Aranda y el registro vigente\newline Informes de conmutación regional, caída de nodo, pérdida total de sala con kit externo y corte de 48 horas. El ensayo de sala acredita recuperación en 4 horas o menos, cero eventos confirmados perdidos, cero efectos duplicados y brechas bloqueantes cerradas; y del ejercicio de pérdida total de la sala técnica\newline Informe de la prueba de intrusión del mes 15, informe de simulación de incidente e informe final de usabilidad de la Etapa 1\newline Registro de capacitación y certificación\newline Acta del Comité de Proyecto que aprueba el paso a producción \\
+\end{tabla}
+
+\seccion{Hito H9 (mes 17)}
+El hito H9 se cumple en el mes 17. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H9.}{tab:protocolo-aceptacion-hito-h9}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Entrega del software de la Etapa 2 para pruebas, con QA superado \\
+Criterios de aceptación objetivos & Umbrales de calidad del código del Subdocumento 9 cumplidos y cero defectos críticos o altos abiertos\newline Regresión completa de la Etapa 1 y de la Etapa 2 sin fallas\newline Los 34 requerimientos funcionales de la Etapa 2 tienen al menos un caso ejecutado \\
+Evidencia requerida & Informe de calidad del código\newline Informe de regresión de ambas etapas\newline Matriz de trazabilidad actualizada \\
+\end{tabla}
+
+\seccion{Hito H10 (mes 18)}
+El hito H10 se cumple en el mes 18. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H10.}{tab:protocolo-aceptacion-hito-h10}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Certificación de la solución de la Etapa 2 y cierre del desarrollo \\
+Criterios de aceptación objetivos & Casos de aceptación de usuario de la Etapa 2 aprobados y firmados\newline Carga a 300 TPS con ambas etapas, resistencia de 72 horas, resiliencia y seguridad ofensiva sin hallazgos críticos ni altos abiertos\newline Ensayos de migración de la Etapa 2 conciliados con los criterios del Subdocumento 5 (5.3.4), antes de la carga definitiva del mes 18\newline El desarrollo queda cerrado en el mes 18, inclusive \\
+Evidencia requerida & Informes de cada campaña del Formulario T-13\newline Actas de conciliación de los ensayos de migración\newline Informe de la prueba de intrusión del tercero\newline Informe parcial de usabilidad de la Etapa 2, con las pruebas hechas hasta el mes 17\newline Informe de aceptación de usuario de la Etapa 2 y de regresión de ambas etapas \\
+\end{tabla}
+
+\seccion{Hito H11 (mes 19)}
+El hito H11 se cumple en el mes 19. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H11.}{tab:protocolo-aceptacion-hito-h11}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Inicio de la marcha blanca de la Etapa 2 en convivencia con la Etapa 1 en producción \\
+Criterios de aceptación objetivos & Los datos compartidos entre ambas etapas tienen una única fuente de verdad, sin doble digitación\newline La conciliación diaria entre ambas etapas no presenta diferencias no explicadas\newline El plan de reversión de la Etapa 2 fue ensayado y los usuarios de sus áreas están capacitados \\
+Evidencia requerida & Informe de conciliación diaria\newline Acta del ensayo de reversión\newline Registro de capacitación \\
+\end{tabla}
+
+\seccion{Hito H12 (mes 21)}
+El hito H12 se cumple en el mes 21. La siguiente tabla presenta su protocolo.
+
+\begin{tabla}{I{0.249}I{0.751}}{Protocolo de aceptación del hito H12.}{tab:protocolo-aceptacion-hito-h12}
+  {\cab{Elemento del protocolo} & \cab{Contenido del protocolo}}
+  {\emph{Fuente: }elaboración propia.}
+Entregable que lo gatilla & Paso a producción de la Etapa 2 y aceptación final del proyecto de implementación \\
+Criterios de aceptación objetivos & Las seis condiciones de cierre de la marcha blanca se cumplen para la Etapa 2\newline La Etapa 2 no degrada la disponibilidad, el desempeño ni la integridad de los datos de la Etapa 1\newline Defectos medios y bajos abiertos no superiores a 1 y 5\newline Recuperación ante desastres y corte de 48 horas aprobados, y seguridad ofensiva del mes 20 sin hallazgos críticos ni altos abiertos\newline Informe final de usabilidad de la Etapa 2 con las pruebas de la marcha blanca\newline Resultados de negocio con cumplimiento hasta el mes 21 verificados, y plan de medición de los de fecha posterior\newline Madurez de nivel 3 en implementación y verificación de OWASP SAMM \\
+Evidencia requerida & Acta de cierre de la marcha blanca de la Etapa 2\newline Informe de disponibilidad, desempeño e integridad de la Etapa 1\newline Informe de evaluación de madurez\newline Informes de conmutación regional, caída de nodo, pérdida total de sala con kit externo y corte de 48 horas, e informe de la prueba de intrusión del mes 20. El ensayo de sala acredita recuperación en 4 horas o menos, cero eventos confirmados perdidos, cero efectos duplicados y brechas bloqueantes cerradas.\newline Informe final de usabilidad de la Etapa 2\newline Acta de aceptación final\newline Acta del Comité de Proyecto que aprueba el paso a producción \\
+\end{tabla}
+
+\apartado{Aceptación del producto final y de la operación}
+El producto final se acepta en el hito H12, en el mes 21, que es la aceptación final del proyecto de implementación. Los criterios de ese hito incluyen las condiciones de cierre de la marcha blanca.
+
+Entre ellas están las seis condiciones de cierre de la marcha blanca. No deben existir incidentes críticos ni altos abiertos, debe haberse alcanzado el volumen real comprometido durante al menos las cuatro últimas semanas, los indicadores de disponibilidad y de tiempo de respuesta deben haberse cumplido de forma sostenida, la conciliación no debe presentar diferencias no explicadas, el personal debe estar capacitado y certificado, y la Contraparte Técnica debe haber firmado el acta.
+
+Durante la operación, que va del mes 21 al mes 56, el cumplimiento se acepta cada mes. En los primeros cinco días hábiles, Overfore entrega el informe de nivel de servicio con el detalle de cada indicador comprometido, los incidentes del período, sus causas raíz y el plan de acción, y la Contraparte Técnica lo revisa. Ante diferencias de medición prevalece la del cliente, salvo que se acredite un error metodológico.
+
+\apartado{Procedimiento de observaciones}
+Toda observación se registra con un identificador, su descripción, su severidad, su responsable, la fecha en que se formuló y su estado. La severidad usa las cuatro categorías de los incidentes de operación y determina cómo afecta a la aceptación, como muestra la siguiente tabla.
+
+\begin{tabla}{I{0.186}I{0.534}I{0.280}}{Efecto de una observación sobre la aceptación.}{tab:efecto-observacion-sobre-aceptacion}
+  {\cab{Severidad} & \cab{Efecto sobre la aceptación} & \cab{Plazo de subsanación o corrección}}
+  {\emph{Fuente: }elaboración propia.}
+Crítica o alta & Impide aceptar el entregable & 10 días hábiles para subsanar \\
+Media & Se acepta solo si cumple las condiciones del Subdocumento 9: sin afectar la conciliación, la seguridad ni la integridad de los datos, con solución alternativa y fecha de cierre & Corrección en 15 días corridos \\
+Baja & No impide la aceptación si la cantidad no supera el máximo de la etapa & Corrección en 30 días corridos \\
+\end{tabla}
+Las observaciones críticas y altas detienen la aceptación, y las medias y bajas se administran con plazos y máximos que se miden por requerimiento funcional de la etapa, como se calcula en el Subdocumento 9. El plazo de 10 días hábiles es el de subsanación de la observación en la aceptación y no reemplaza los plazos de corrección de defectos del Subdocumento 9.
+
+\apartado{Modelo de acta de conformidad}
+El acta de conformidad cierra cada hito. La siguiente tabla muestra los campos del modelo que Overfore propone usar en todos los hitos.
+
+\begin{tabla}{I{0.249}I{0.751}}{Campos del acta de conformidad.}{tab:campos-acta-conformidad}
+  {\cab{Campo del acta} & \cab{Contenido del campo}}
+  {\emph{Fuente: }elaboración propia.}
+Identificación & Número y nombre del hito, mes del contrato y fecha de la sesión de aceptación \\
+Entregables recibidos & Lista de los entregables presentados, con su versión \\
+Evidencia verificada & Informes, registros y actas revisados por la Contraparte Técnica \\
+Criterios de aceptación & Cada criterio del protocolo con su resultado: cumple o no cumple \\
+Observaciones & Observaciones formuladas, severidad, responsable, plazo y estado \\
+Resolución & Aceptado, aceptado con observaciones o rechazado \\
+Firmas & Contraparte Técnica del cliente y representante legal de Overfore S.A. \\
+\end{tabla}
+El acta deja constancia de cada criterio con su resultado, y Overfore da por cumplido un hito solo con el acta firmada, lo que equivale a la suscripción de la Contraparte Técnica.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item OWASP Foundation. (2020). \emph{OWASP Software Assurance Maturity Model (SAMM) v2.0}. https://owaspsamm.org/model/
+\item World Wide Web Consortium. (2023). \emph{Web content accessibility guidelines (WCAG) 2.2}. https://www.w3.org/TR/WCAG22/
+\end{referencias}
+\end{document}

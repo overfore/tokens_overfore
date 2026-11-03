@@ -1,0 +1,436 @@
+%% OVERFORE-Formulario-T-15.tex — generado desde OVERFORE-Formulario-T-15.docx
+%% Formato: clase overfore, modo formulario. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[formulario]{../../comun/overfore}
+\numsubdoc{7}
+\formulario{T-15}{Nivelación de Recursos}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{T14}
+\begin{document}
+
+\apartado{Base de la estimación}
+Cada paquete conserva las horas, los perfiles y los meses de su ficha del Formulario T-14. Sus horas se reparten en partes iguales entre esos meses, y de ese reparto salen las horas por etapa, las curvas y la dotación, por lo que todas las cifras de este formulario suman lo mismo que el T-14. La siguiente tabla reúne los supuestos.
+
+\begin{tabla}{I{0.264}I{0.495}I{0.242}}{Supuestos de la nivelación.}{tab:supuestos-nivelacion}
+  {\cab{Supuesto} & \cab{Valor adoptado} & \cab{Origen}}
+  {Fuente: elaboración propia a partir de Formulario T-14, tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14}
+Horas por paquete y perfil & Las del campo "Esfuerzo estimado” de cada ficha & Formulario T-14 \\
+Reparto mensual & Partes iguales entre los meses del paquete & Formulario T-14, campo “Hitos asociados” \\
+Capacidad por persona & 160 HH al mes hasta el mes 15 y 152 HH desde el mes 16: 42 horas semanales hasta marzo de 2028 y 40 desde abril de 2028, descontados el feriado anual y los feriados & Ley N° 21.561 (2023), Formulario T-14, sección D \\
+Personas en un mes & Integrantes del equipo clave con horas ese mes, contados una vez aunque tengan dos roles, más las horas de cada perfil de apoyo o externo divididas por la capacidad del mes y redondeadas hacia arriba & Este formulario \\
+Imputación a etapas & Cuatro reglas, descritas en la sección B & Compañía Minera Altos de Aranda (2026a), Art. 17, pp. 12–13 \\
+\end{tabla}
+
+\apartado{Resumen por etapa}
+La siguiente tabla completa el resumen que piden las Bases para cada etapa del cronograma contractual (Compañía Minera Altos de Aranda [CMAA], 2026a, Art. 17, pp. 12–13, y Formulario T-15, p. 63).
+
+\begin{tabla}{I{0.319}D{0.165}D{0.220}D{0.165}I{0.132}}{Horas hombre, personas y frentes por etapa.}{tab:horas-hombre-personas-frentes-etapa}
+  {\cab{Etapa} & \cab{HH totales} & \cab{N° de personas (peak)} & \cab{Frentes de trabajo} & \cab{Meses}}
+  {Fuente: elaboración propia a partir de Formulario T-14 (asociado al cap. 7), tabla \refext{T14}{tab:esfuerzo-estimado-rama-origen-horas} del Formulario T-14 (esfuerzo estimado por rama), p. 45.}
+Etapa 1 — Desarrollo & 23.514 & 25 (mes 8) & 7 & 1 – 12 \\
+Etapa 1 — Marcha blanca & 10.959 & 25 (mes 15) & 4 & 13 – 15 \\
+Etapa 2 — Desarrollo & 14.628 & 27 (mes 14) & 7 & 13 – 18 \\
+Etapa 2 — Marcha blanca & 7.785 & 36 (mes 19) & 7 & 19 – 20 \\
+Operación & 126.180 & 38 (mes 21) & 7 & 21 – 56 \\
+Total del contrato & 183.066 & 45 (mes 14) & 8 & 1 – 56 \\
+\end{tabla}
+La marcha blanca de la Etapa 1 ocurre en los meses 13 a 15. Sus 10.959 HH incluyen 2.360 HH del trabajo de la Etapa 1 en los meses 16 y 17, entre ellas su paso a producción y su estabilización. Las 14.628 HH del desarrollo de la Etapa 2 incluyen 1.624 HH de trabajo preparatorio en los meses 10 a 12, que no adelanta su desarrollo, como explican las reglas siguientes.
+
+Las horas se imputan con cuatro reglas. Primera, el trabajo de los paquetes propios de la Etapa 1 posterior al mes 12, incluidos su paso a producción y su estabilización, se informa en la marcha blanca de la Etapa 1. Segunda, el trabajo transversal, como la dirección, las pruebas continuas y la gestión del cambio, va a la etapa que está en desarrollo ese mes. Tercera, desde el mes 21 todo se informa en la operación, que comprende ambas etapas desde su primer día (CMAA, 2026a, Art. 17.2, p. 13). Cuarta, los paquetes de la Etapa 2 que empiezan antes del mes 13 —la digitalización de los formularios de seguridad (1.4.6.3) y la instalación de sus dispositivos (1.6.2.2)— se informan en el desarrollo de la Etapa 2, aunque 1.624 HH ocurren en los meses 10 a 12, porque preparan los datos y los equipos de esa etapa sin adelantar su desarrollo, la red del Formulario T-14 los ubica en la cadena de la Etapa 2 (actividades B05 y B06).
+
+Por eso la implementación suma 56.886 HH y la operación 126.180 HH, mientras que en el T-14 las ramas 1.1 a 1.7 suman 60.394 HH y la rama 1.8, 122.672 HH. La diferencia, 3.508 HH, es trabajo de las ramas 1.1 a 1.7 que ocurre desde el mes 21, como la dirección del proyecto hasta el acta de H12, la estabilización de la Etapa 2, la transferencia tecnológica al equipo de TI, los informes de adopción y las verificaciones de las innovaciones.
+
+El máximo de personas del contrato, 45, ocurre en el mes 14, cuando se cruzan la marcha blanca de la Etapa 1 y el desarrollo de la Etapa 2. En la operación el máximo, 38, ocurre en el mes 21 por la estabilización de la Etapa 2, y en régimen trabajan entre 30 y 31 personas.
+
+\apartado{Horas hombre por paquete de trabajo}
+La siguiente tabla detalla las horas de cada uno de los 175 paquetes, con el frente que lo ejecuta y sus meses, y las suma por entregable y por rama. Las filas en negrita son las ramas y los entregables.
+
+\begin{tabla}{I{0.131}I{0.486}I{0.108}I{0.159}D{0.116}}{Horas hombre por rama, entregable y paquete de trabajo.}{tab:horas-hombre-rama-entregable-paquete-trabajo}
+  {\cab{Código} & \cab{Rama, entregable o paquete} & \cab{Frente} & \cab{Meses} & \cab{HH}}
+  {Fuente: elaboración propia a partir de Formulario T-14 (asociado al cap. 7), tabla \refext{T14}{tab:esfuerzo-estimado-rama-origen-horas} del Formulario T-14 (esfuerzo estimado por rama), p. 45.}
+1.1 & Dirección del proyecto & — & M1–M51 & 5.088 \\
+1.1.1 & Acta de constitución y plan para la dirección & — & M1–M21 & 1.464 \\
+1.1.1.1 & Acta de constitución del proyecto & 1.1 & M1 & 24 \\
+1.1.1.2 & Plan para la dirección del proyecto & 1.1 & M1–M2 & 80 \\
+1.1.1.3 & Espacio colaborativo del proyecto habilitado & 1.1 & M1 & 16 \\
+1.1.1.4 & Dirección y coordinación integrada del proyecto & 1.1 & M1–M21 & 1.344 \\
+1.1.2 & Cronograma e informes de valor ganado & — & M1–M20 & 584 \\
+1.1.2.1 & Documento de hitos H1 a H12 & 1.1 & M2 & 24 \\
+1.1.2.2 & Informes mensuales de avance con valor ganado & 1.1 & M1–M20 & 320 \\
+1.1.2.3 & Registro de cambios con análisis de impacto & 1.1 & M2–M20 & 240 \\
+1.1.3 & Documentación de riesgos & — & M1–M20 & 312 \\
+1.1.3.1 & Registro de riesgos con su análisis & 1.1 & M1–M20 & 160 \\
+1.1.3.2 & Plan de respuesta a riesgos y reservas & 1.1 & M2–M20 & 152 \\
+1.1.4 & Plan de calidad y puertas de calidad & — & M1–M21 & 224 \\
+1.1.4.1 & Plan de calidad del proyecto & 1.1 & M1–M2 & 56 \\
+1.1.4.2 & Puertas de calidad y definición de terminado & 1.1 & M2–M4 & 64 \\
+1.1.4.3 & Protocolo de aceptación de los hitos & 1.1 & M2 & 32 \\
+1.1.4.4 & Evaluaciones de madurez OWASP SAMM & 1.1 & M2, M12 y M21 & 72 \\
+1.1.5 & Registro de interesados y plan de comunicaciones & — & M1–M20 & 1.312 \\
+1.1.5.1 & Actas de comité, coordinación semanal y tablero de estado & 1.1 & M1–M20 & 992 \\
+1.1.5.2 & Acuerdo con el sindicato & 1.1 & M2–M14 & 208 \\
+1.1.5.3 & Análisis de interesados y calendario de comunicaciones & 1.1 & M1–M20 & 112 \\
+1.1.6 & Plan de adquisiciones y contratos & — & M1–M14 y M21 & 320 \\
+1.1.6.1 & Plan de adquisiciones & 1.1 & M1–M2 & 40 \\
+1.1.6.2 & Contratos con proveedores y subcontratistas & 1.1 & M2–M14 & 224 \\
+1.1.6.3 & Registro de licencias y garantías & 1.1 & M2–M14 & 24 \\
+1.1.6.4 & Garantías y seguros del contrato & 1.1 & M1, M12 y M21 & 32 \\
+1.1.7 & Equipo acreditado y logística en faena & — & M1–M20 & 496 \\
+1.1.7.1 & Equipo del proyecto acreditado en faena & 1.1 & M1–M18 & 336 \\
+1.1.7.2 & Plan de logística y turnos en faena & 1.1 & M1–M20 & 160 \\
+1.1.8 & Actas de cierre de etapa y lecciones aprendidas & — & M16–M21 & 80 \\
+1.1.8.1 & Acta de cierre de la Etapa 1 & 1.1 & M16 & 24 \\
+1.1.8.2 & Acta de cierre de la Etapa 2 & 1.1 & M21 & 24 \\
+1.1.8.3 & Registro de lecciones aprendidas & 1.1 & M16 y M21 & 32 \\
+1.1.9 & Plan de reversibilidad y salida & — & M3–M51 & 112 \\
+1.1.9.1 & Plan de reversibilidad inicial & 1.1 & M3 & 48 \\
+1.1.9.2 & Actualizaciones anuales del plan de reversibilidad & 1.1 & M15, M27, M39 y M51 & 64 \\
+1.1.10 & Documentación contractual del proyecto & — & M3–M20 & 184 \\
+1.1.10.1 & Índice de documentación contractual & 1.1 & M3 & 16 \\
+1.1.10.2 & Libros de operación y matriz de escalamiento & 1.1 & M14–M20 & 168 \\
+1.2 & Requerimientos del producto & — & M1–M21 & 3.684 \\
+1.2.1 & Inventario técnico de los sistemas existentes & — & M1–M3 & 208 \\
+1.2.1.1 & Fichas técnicas de los sistemas existentes & 1.2 & M1–M3 & 160 \\
+1.2.1.2 & Matriz de integraciones & 1.2 & M2–M3 & 48 \\
+1.2.2 & Línea base de alcance de la Etapa 1 & — & M1–M12 & 1.840 \\
+1.2.2.1 & Catálogo de requerimientos de la Etapa 1 & 1.2 & M1–M2 & 240 \\
+1.2.2.2 & Matriz de trazabilidad de la Etapa 1 & 1.2 & M2 & 56 \\
+1.2.2.3 & Criterios de aceptación de la Etapa 1 & 1.2 & M2 & 96 \\
+1.2.2.4 & Backlog del producto y revisiones de sprint de la Etapa 1 & 1.2 & M1–M12 & 1.344 \\
+1.2.2.5 & Taxonomía única de demoras y detenciones & 1.2 & M3–M5 & 64 \\
+1.2.2.6 & Requisitos de cadena de custodia y de aseguramiento del cobre & 1.2 & M3–M4 & 40 \\
+1.2.3 & Acta de ratificación de las decisiones de diseño & — & M1–M3 & 184 \\
+1.2.3.1 & Análisis de alternativas de las decisiones pendientes & 1.2 & M1–M3 & 168 \\
+1.2.3.2 & Acta de ratificación firmada por el cliente & 1.2 & M3 & 16 \\
+1.2.4 & Acuerdos de acceso a la telemetría & — & M1–M12 & 192 \\
+1.2.4.1 & Especificación de acceso a la telemetría & 1.2 & M1–M3 & 72 \\
+1.2.4.2 & Acuerdos firmados con los fabricantes & 1.2 & M3–M12 & 120 \\
+1.2.5 & Línea base de alcance de la Etapa 2 & — & M13–M21 & 1.196 \\
+1.2.5.1 & Catálogo de requerimientos de la Etapa 2 & 1.2 & M13 & 96 \\
+1.2.5.2 & Matriz de trazabilidad de la Etapa 2 & 1.2 & M13–M14 & 32 \\
+1.2.5.3 & Criterios de aceptación de la Etapa 2 & 1.2 & M14 & 40 \\
+1.2.5.4 & Backlog del producto y revisiones de sprint de la Etapa 2 & 1.2 & M13–M21 & 972 \\
+1.2.5.5 & Revisión de un lote piloto con el comprador & 1.2 & M17 & 56 \\
+1.2.6 & Registro documentado de los factores de ajuste & — & M2–M2 & 64 \\
+1.2.6.1 & Explicación escrita de los factores de ajuste & 1.2 & M2 & 40 \\
+1.2.6.2 & Registro en video validado por metalurgia & 1.2 & M2 & 24 \\
+1.3 & Diseño del sistema & — & M2–M20 & 1.800 \\
+1.3.1 & Arquitectura de la solución & — & M2–M20 & 464 \\
+1.3.1.1 & Arquitectura lógica y registro de decisiones & 1.3 & M2–M4 & 80 \\
+1.3.1.2 & Arquitectura física y plan de capacidad & 1.3 & M2–M4 & 80 \\
+1.3.1.3 & Diseño de red, enlaces y zonas de seguridad & 1.3 & M2–M4 & 72 \\
+1.3.1.4 & Plan de continuidad y recuperación ante desastres & 1.3 & M4–M15 & 80 \\
+1.3.1.5 & Estudio de cobertura de la red del rajo & 1.3 & M2–M4, M8, M14 y M20 & 152 \\
+1.3.2 & Modelo de datos & — & M2–M4 & 248 \\
+1.3.2.1 & Modelo de datos por dominio & 1.3 & M2–M4 & 144 \\
+1.3.2.2 & Diccionario de datos y clasificación de la información & 1.3 & M2–M4 & 72 \\
+1.3.2.3 & Política de retención y eliminación & 1.3 & M3–M4 & 32 \\
+1.3.3 & Plan de seguridad, amenazas y respuesta a incidentes & — & M2–M4 & 240 \\
+1.3.3.1 & Arquitectura de seguridad de confianza cero & 1.3 & M2–M4 & 72 \\
+1.3.3.2 & Modelo de amenazas y matriz de controles & 1.3 & M2–M4 & 72 \\
+1.3.3.3 & Modelo de identidad y acceso & 1.3 & M2–M4 & 56 \\
+1.3.3.4 & Plan de respuesta a incidentes & 1.3 & M4 & 40 \\
+1.3.4 & Investigación de usuarios, sistema de diseño y prototipos & — & M3–M7 & 440 \\
+1.3.4.1 & Informe de investigación con usuarios & 1.3 & M3–M4 & 80 \\
+1.3.4.2 & Sistema de diseño documentado & 1.3 & M3–M5 & 72 \\
+1.3.4.3 & Prototipos navegables de los canales & 1.3 & M4–M7 & 288 \\
+1.3.5 & Diseño detallado de la Etapa 2 & — & M13–M14 & 288 \\
+1.3.5.1 & Diseño de los módulos de la Etapa 2 & 1.3 & M13–M14 & 192 \\
+1.3.5.2 & Diseño de los conectores de la Etapa 2 & 1.3 & M13–M14 & 96 \\
+1.3.6 & Matriz de cumplimiento normativo y de datos personales & — & M2–M4 & 120 \\
+1.3.6.1 & Matriz de cumplimiento normativo & 1.3 & M2–M4 & 56 \\
+1.3.6.2 & Registro de tratamiento y evaluación de impacto & 1.3 & M2–M4 & 64 \\
+1.4 & Software del sistema & — & M1–M21 & 21.062 \\
+1.4.1 & Flujo de integración y entrega continua & — & M1–M21 & 1.710 \\
+1.4.1.1 & Repositorio y flujo de integración continua & 1.4 & M1–M2 & 48 \\
+1.4.1.2 & Flujo de entrega continua con reversión & 1.4 & M2–M3 & 64 \\
+1.4.1.3 & Gestor de secretos y firma de artefactos & 1.4 & M2–M3 & 40 \\
+1.4.1.4 & Coordinación técnica de los equipos de desarrollo & 1.4 & M1–M21 & 1.558 \\
+1.4.2 & Plataformas de integración y de faena & — & M3–M17 & 3.536 \\
+1.4.2.1 & Integrador de Sistemas con conectores de la Etapa 1 & 1.4 & M3–M11 & 1.520 \\
+1.4.2.2 & Nodo de Faena con operación sin enlace & 1.4 & M3–M11 & 1.216 \\
+1.4.2.3 & Integrador de Sistemas con conectores de la Etapa 2 & 1.4 & M13–M17 & 800 \\
+1.4.3 & Módulos de la Etapa 1 & — & M3–M17 & 6.120 \\
+1.4.3.1 & Módulo de Administración y Servicios Comunes & 1.4 & M3–M8 & 768 \\
+1.4.3.2 & Módulo de Operación Mina & 1.4 & M4–M11 & 1.280 \\
+1.4.3.3 & Módulo de Trazabilidad y Embarque & 1.4 & M5–M11 & 1.064 \\
+1.4.3.4 & Módulo de Conciliación Metalúrgica & 1.4 & M6–M11 & 960 \\
+1.4.3.5 & Módulo de Acreditación y Acceso & 1.4 & M4–M10 & 896 \\
+1.4.3.6 & Indicadores y Centro Integrado: tableros de turno y vista del CIO & 1.4 & M8–M11 & 384 \\
+1.4.3.7 & Defectos de la certificación, la marcha blanca y la estabilización de la Etapa 1 corregidos & 1.4 & M12–M17 & 768 \\
+1.4.4 & Módulos de la Etapa 2 & — & M13–M21 & 3.552 \\
+1.4.4.1 & Módulo de Equipos y Mantenimiento & 1.4 & M13–M17 & 800 \\
+1.4.4.2 & Módulo de Seguridad y Salud Ocupacional & 1.4 & M13–M16 & 512 \\
+1.4.4.3 & Módulo de Cumplimiento Ambiental & 1.4 & M14–M17 & 576 \\
+1.4.4.4 & Acreditación y Acceso: verificación facial en portería & 1.4 & M15–M17 & 384 \\
+1.4.4.5 & Portal para Compradores & 1.4 & M15–M17 & 384 \\
+1.4.4.6 & Indicadores y Centro Integrado: indicadores de gestión, costo por tonelada y autoservicio de informes & 1.4 & M15–M17 & 384 \\
+1.4.4.7 & Defectos de la certificación, la marcha blanca y la estabilización de la Etapa 2 corregidos & 1.4 & M18–M21 & 512 \\
+1.4.5 & Canales de uso & — & M3–M11 & 2.240 \\
+1.4.5.1 & Botonera de Pala y App SITCO Terreno & 1.4 & M3–M11 & 1.216 \\
+1.4.5.2 & Portales y Consola de Portería & 1.4 & M4–M11 & 1.024 \\
+1.4.6 & Datos migrados & — & M3–M20 & 3.904 \\
+1.4.6.1 & Informe de perfilado y datos saneados & 1.4 & M3–M8 & 168 \\
+1.4.6.2 & Datos de la Etapa 1 cargados y conciliados & 1.4 & M9–M15 & 240 \\
+1.4.6.3 & Formularios de seguridad digitalizados & 1.4 & M10–M15 & 3.184 \\
+1.4.6.4 & Datos de la Etapa 2 cargados y conciliados & 1.4 & M16–M20 & 192 \\
+1.4.6.5 & Repositorio de consulta histórica habilitado & 1.4 & M10–M20 & 120 \\
+1.5 & Sistema certificado & — & M3–M21 & 3.840 \\
+1.5.1 & Suite de pruebas automatizadas e informes de integración & — & M3–M18 & 2.048 \\
+1.5.1.1 & Pruebas unitarias y de contrato automatizadas & 1.5 & M3–M18 & 768 \\
+1.5.1.2 & Pruebas de integración y regresión automatizadas & 1.5 & M3–M18 & 1.024 \\
+1.5.1.3 & Informes de análisis estático y dinámico & 1.5 & M3–M18 & 256 \\
+1.5.2 & Informes de usabilidad en terreno & — & M5–M20 & 336 \\
+1.5.2.1 & Informe de usabilidad de la Etapa 1 & 1.5 & M5–M15 & 192 \\
+1.5.2.2 & Informe de usabilidad de la Etapa 2 & 1.5 & M15–M20 & 144 \\
+1.5.3 & Acta de certificación de la Etapa 1 & — & M11–M12 & 440 \\
+1.5.3.1 & Informe de pruebas de carga de la Etapa 1 & 1.5 & M12 & 120 \\
+1.5.3.2 & Informe de pruebas de resiliencia de la Etapa 1 & 1.5 & M12 & 80 \\
+1.5.3.3 & Informe de pruebas de aceptación de la Etapa 1 & 1.5 & M11–M12 & 240 \\
+1.5.4 & Informes de pruebas de seguridad ofensiva & — & M3–M20 & 512 \\
+1.5.4.1 & Informes de pruebas de intrusión independientes & 1.5 & M11, M15, M17 y M20 & 336 \\
+1.5.4.2 & Informe de simulación de incidente & 1.5 & M15 & 32 \\
+1.5.4.3 & Informe de gestión de vulnerabilidades & 1.5 & M3–M20 & 144 \\
+1.5.5 & Informe de recuperación y corte de 48 horas & — & M15 y M21 & 240 \\
+1.5.5.1 & Informe de conmutación y retorno & 1.5 & M15 y M21 & 80 \\
+1.5.5.2 & Informe del corte de 48 horas & 1.5 & M15 y M21 & 160 \\
+1.5.6 & Acta de certificación de la Etapa 2 & — & M17–M18 & 264 \\
+1.5.6.1 & Informe de pruebas de carga de la Etapa 2 & 1.5 & M18 & 120 \\
+1.5.6.2 & Informe de pruebas de resiliencia de la Etapa 2 & 1.5 & M18 & 80 \\
+1.5.6.3 & Informe de regresión de ambas etapas & 1.5 & M17–M18 & 64 \\
+1.6 & Solución implantada & — & M1–M27 & 21.920 \\
+1.6.1 & Infraestructura y observabilidad habilitadas & — & M1–M16 & 616 \\
+1.6.1.1 & Nube con cinco ambientes habilitados & 1.6 & M2–M6 & 248 \\
+1.6.1.2 & Sala técnica, Nodo de Faena y gabinetes instalados & 1.6 & M1–M6, M10 y M16 & 224 \\
+1.6.1.3 & Segunda fibra, enlace satelital y diodo operativos & 1.6 & M2–M9 & 144 \\
+1.6.2 & Dispositivos instalados & — & M6–M19 & 656 \\
+1.6.2.1 & Botoneras y tabletas de la Etapa 1 instaladas & 1.6 & M6 y M8–M12 & 336 \\
+1.6.2.2 & Lectores, caudalímetros y tabletas de la Etapa 2 & 1.6 & M12–M19 & 256 \\
+1.6.2.3 & Estaciones de administración instaladas & 1.6 & M11–M12 & 64 \\
+1.6.3 & Actas de marcha blanca & — & M13–M20 & 12.000 \\
+1.6.3.1 & Acta de marcha blanca de la Etapa 1 & 1.6 & M13–M15 & 520 \\
+1.6.3.2 & Acta de marcha blanca de la Etapa 2 & 1.6 & M19–M20 & 360 \\
+1.6.3.3 & Acompañamiento en faena de la Etapa 1 & 1.6 & M13–M15 & 6.824 \\
+1.6.3.4 & Acompañamiento en faena de la Etapa 2 & 1.6 & M19–M20 & 4.248 \\
+1.6.3.5 & Piloto de la Botonera de Pala & 1.6 & M13 & 48 \\
+1.6.4 & Actas de paso a producción & — & M16–M23 & 6.096 \\
+1.6.4.1 & Acta de paso a producción y estabilización de la Etapa 1 & 1.6 & M16–M17 & 2.064 \\
+1.6.4.2 & Acta de paso a producción y estabilización de la Etapa 2 & 1.6 & M21–M23 & 1.752 \\
+1.6.4.3 & Soporte de la Etapa 1 entre su estabilización y la operación & 1.6 & M18–M20 & 2.280 \\
+1.6.5 & Usuarios capacitados & — & M10–M27 & 1.728 \\
+1.6.5.1 & Usuarios capacitados por perfil y turno & 1.6 & M12–M14 y M18–M19 & 1.200 \\
+1.6.5.2 & Manuales, guías y base de conocimiento & 1.6 & M10–M18 & 288 \\
+1.6.5.3 & Acta de transferencia tecnológica al equipo de TI & 1.6 & M22–M27 & 240 \\
+1.6.6 & Plan de gestión del cambio e informes de adopción & — & M2–M26 & 824 \\
+1.6.6.1 & Diagnóstico de impacto organizacional & 1.6 & M2–M4 & 64 \\
+1.6.6.2 & Red de agentes de cambio habilitada & 1.6 & M5–M20 & 128 \\
+1.6.6.3 & Procedimientos operativos rediseñados & 1.6 & M8–M18 & 264 \\
+1.6.6.4 & Informes de adopción y acción correctiva & 1.6 & M13–M26 & 224 \\
+1.6.6.5 & Charlas de inicio de turno por ola & 1.6 & M13–M14 y M19 & 144 \\
+1.7 & Innovaciones & — & M3–M56 & 3.000 \\
+1.7.1 & Control anticipado del arsénico en el lote comercial & — & M8–M54 & 464 \\
+1.7.1.1 & Control del arsénico implementado & 1.7 & M8–M12 & 400 \\
+1.7.1.2 & Informe de verificación de la innovación 1 & 1.7 & M15, M30, M42 y M54 & 64 \\
+1.7.2 & Clasificación asistida de detenciones & — & M3–M56 & 1.464 \\
+1.7.2.1 & Clasificador de detenciones implementado & 1.7 & M13–M18 & 880 \\
+1.7.2.2 & Informe de verificación de la innovación 2 & 1.7 & M16–M33 & 48 \\
+1.7.2.3 & Operación del clasificador & 1.7 & M22–M56 & 456 \\
+1.7.2.4 & Sistema de gestión de la inteligencia artificial con alcance en el clasificador & 1.7 & M3, M9 y M12 & 80 \\
+1.7.3 & Factores de conciliación estimados con incertidumbre & — & M3–M27 & 600 \\
+1.7.3.1 & Modelo de incertidumbre de los instrumentos de pesaje & 1.7 & M3–M6 & 72 \\
+1.7.3.2 & Motor de reconciliación implementado & 1.7 & M7–M12 & 480 \\
+1.7.3.3 & Informe de verificación de la innovación 3 & 1.7 & M15, M21 y M27 & 48 \\
+1.7.4 & Servicio gestionado con traspaso programado & — & M21–M45 & 152 \\
+1.7.4.1 & Plan de traspaso programado del servicio & 1.7 & M21–M27 & 56 \\
+1.7.4.2 & Actas de traspaso de servicios al cliente & 1.7 & M27, M33, M39 y M45 & 96 \\
+1.7.5 & Balance de dilución evitada & — & M16–M46 & 320 \\
+1.7.5.1 & Balance de dilución evitada implementado & 1.7 & M16–M18 & 240 \\
+1.7.5.2 & Informe de verificación de la innovación 5 & 1.7 & M21, M28, M34, M40 y M46 & 80 \\
+1.8 & Servicio de operación y mantención & — & M21–M56 & 122.672 \\
+1.8.1 & Servicio de mesa de ayuda y soporte en faena & — & M21–M56 & 53.688 \\
+1.8.1.1 & Mesa de ayuda dimensionada y operando & 1.8 & M21–M56 & 27.144 \\
+1.8.1.2 & Soporte presencial en faena & 1.8 & M21–M56 & 26.544 \\
+1.8.2 & Centro de operaciones de red y seguridad 24x7 & — & M21–M56 & 53.160 \\
+1.8.2.1 & Centro de operaciones de red 24x7 & 1.8 & M21–M56 & 26.280 \\
+1.8.2.2 & Centro de operaciones de seguridad 24x7 & 1.8 & M21–M56 & 26.568 \\
+1.8.2.3 & Informes trimestrales de capacidad & 1.8 & M21–M56 & 312 \\
+1.8.3 & Servicio de mantención correctiva & — & M21–M56 & 3.072 \\
+1.8.3.1 & Registro de incidentes resueltos & 1.8 & M21–M56 & 2.880 \\
+1.8.3.2 & Informes de análisis de causa raíz & 1.8 & M21–M56 & 192 \\
+1.8.4 & Servicio de mantención preventiva y normativa & — & M21–M56 & 696 \\
+1.8.4.1 & Plan anual de actualizaciones de base & 1.8 & M21–M56 & 240 \\
+1.8.4.2 & Plan de ciclo de vida del equipamiento & 1.8 & M21–M56 & 216 \\
+1.8.4.3 & Adecuaciones normativas implementadas & 1.8 & M21–M56 & 240 \\
+1.8.5 & Servicio de mantención evolutiva & — & M21–M56 & 3.208 \\
+1.8.5.1 & Plan anual de mantención evolutiva & 1.8 & M21–M56 & 2.920 \\
+1.8.5.2 & Registro de deuda técnica & 1.8 & M21–M56 & 288 \\
+1.8.6 & Actualizaciones del plan de continuidad del negocio & — & M21–M56 & 192 \\
+1.8.6.1 & Análisis de impacto en el negocio actualizado & 1.8 & M21–M56 & 96 \\
+1.8.6.2 & Plan de continuidad TIC actualizado & 1.8 & M21–M56 & 96 \\
+1.8.7 & Informes de servicio y cumplimiento & — & M21–M56 & 5.976 \\
+1.8.7.1 & Informe mensual de niveles de servicio & 1.8 & M21–M56 & 576 \\
+1.8.7.2 & Informe anual de certificaciones vigentes & 1.8 & M21–M56 & 64 \\
+1.8.7.3 & Huella de carbono por lote e informe anual de consumo y huella de la solución & 1.8 & M21–M56 & 544 \\
+1.8.7.4 & Actas de los comités de la operación y plan de mejora continua & 1.8 & M21–M56 & 864 \\
+1.8.7.5 & Gestión del servicio y relación con el cliente & 1.8 & M21–M56 & 3.928 \\
+1.8.8 & Informes de pruebas periódicas de la operación & — & M21–M56 & 1.712 \\
+1.8.8.1 & Informes semestrales de resiliencia y recuperación & 1.8 & M24, M27, M30, M33, M36, M39, M42, M45, M48, M51 y M54 & 216 \\
+1.8.8.2 & Informes anuales de intrusión y corte de 48 horas & 1.8 & M21–M56 & 480 \\
+1.8.8.3 & Informes de carga por versión mayor & 1.8 & M21–M56 & 120 \\
+1.8.8.4 & Puertas de calidad de las versiones de la operación & 1.8 & M21–M56 & 576 \\
+1.8.8.5 & Pruebas mensuales de restauración de respaldos & 1.8 & M21–M56 & 288 \\
+1.8.8.6 & Reevaluaciones anuales OWASP SAMM & 1.8 & M33 y M45 & 32 \\
+1.8.9 & Personal del cliente capacitado en la operación & — & M21–M56 & 288 \\
+1.8.9.1 & Personal actualizado en jornadas semestrales & 1.8 & M23, M29, M35, M41, M47 y M53 & 144 \\
+1.8.9.2 & Personal nuevo del cliente inducido & 1.8 & M21–M56 & 144 \\
+1.8.10 & Acta de devolución del servicio & — & M54–M56 & 680 \\
+1.8.10.1 & Código, datos y credenciales entregados & 1.8 & M54–M56 & 160 \\
+1.8.10.2 & Informe de acompañamiento de 90 días & 1.8 & M54–M56 & 520 \\
+ — & Total del contrato & — & M1–M56 & 183.066 \\
+\end{tabla}
+Los paquetes más grandes son los cuatro puestos de atención continua de la operación: la mesa de ayuda, el soporte presencial en faena y los centros de operaciones de red y de seguridad (1.8.1.1, 1.8.1.2, 1.8.2.1, 1.8.2.2), que suman 106.536 HH, el 58 \% del contrato. En la implementación, los más grandes son las plataformas y los módulos de la Etapa 1 y el acompañamiento en faena de las dos marchas blancas.
+
+\apartado{Curvas de horas hombre}
+La siguiente figura muestra las horas hombre programadas para la implementación, por etapa y para el total. Las barras son las horas de cada mes y la línea, las horas acumuladas.
+
+\figura{16.0}{fig-D-1-curva-horas-hombre-implementacion-etapa}{Curva de horas hombre de la implementación, por etapa y total, meses 1 a 20.}{fig:curva-horas-hombre-implementacion-etapa-total}{Fuente: elaboración propia con las fichas del Formulario T-14.}
+La curva sube en los meses 1 a 4, cuando arrancan el diseño, la infraestructura y los equipos de desarrollo, se mantiene entre 1.900 y 2.300 HH al mes hasta el mes 9 y sube a unas 2.800 en los meses 10 y 11, cuando empieza la digitalización de los formularios de seguridad. El punto más alto, 5.251 HH, ocurre en el mes 15, en el solapamiento de los meses 13 a 15, porque se suman el acompañamiento en faena de la marcha blanca de la Etapa 1, el desarrollo de la Etapa 2 y la digitalización de formularios. La siguiente tabla entrega los valores de la curva.
+
+\begin{tabla}{I{0.143}D{0.214}D{0.214}D{0.214}I{0.214}}{Horas hombre por mes y etapa de la implementación.}{tab:horas-hombre-mes-etapa-implementacion}
+  {\cab{Mes} & \cab{Etapa 1} & \cab{Etapa 2} & \cab{Total del mes} & \cab{Acumulado}}
+  {Fuente: elaboración propia a partir de Formulario T-14 , tabla \refext{T14}{tab:esfuerzo-estimado-rama-origen-horas} del Formulario T-14.}
+1 & 800 & 0 & 800 & 800 \\
+2 & 1.569 & 0 & 1.569 & 2.369 \\
+3 & 2.030 & 0 & 2.030 & 4.399 \\
+4 & 2.248 & 0 & 2.248 & 6.647 \\
+5 & 1.986 & 0 & 1.986 & 8.633 \\
+6 & 2.157 & 0 & 2.157 & 10.790 \\
+7 & 2.085 & 0 & 2.085 & 12.875 \\
+8 & 2.294 & 0 & 2.294 & 15.169 \\
+9 & 2.174 & 0 & 2.174 & 17.343 \\
+10 & 2.200 & 531 & 2.731 & 20.074 \\
+11 & 2.280 & 531 & 2.811 & 22.885 \\
+12 & 1.690 & 563 & 2.253 & 25.138 \\
+13 & 2.868 & 2.151 & 5.018 & 30.156 \\
+14 & 2.868 & 2.240 & 5.108 & 35.264 \\
+15 & 2.864 & 2.388 & 5.251 & 40.515 \\
+16 & 1.200 & 1.951 & 3.151 & 43.666 \\
+17 & 1.160 & 1.967 & 3.127 & 46.794 \\
+18 & 0 & 2.307 & 2.307 & 49.101 \\
+19 & 0 & 3.998 & 3.998 & 53.099 \\
+20 & 0 & 3.787 & 3.787 & 56.886 \\
+Total & 34.473 & 22.414 & 56.886 & 56.886 \\
+\end{tabla}
+La tabla muestra que el 41 \% de las horas de la implementación, 23.162 HH, ocurre en los cinco meses de solapamiento entre las dos etapas.
+
+La curva de la etapa de continuidad operacional se presenta por separado en la siguiente figura.
+
+\figura{16.0}{fig-D-2-curva-horas-hombre-operacion-meses}{Curva de horas hombre de la operación, meses 21 a 56.}{fig:curva-horas-hombre-operacion-meses-21}{Fuente: elaboración propia con las fichas del Formulario T-14.}
+\begin{tabla}{I{0.231}D{0.176}D{0.198}D{0.198}I{0.198}}{Horas hombre de la operación por año.}{tab:horas-hombre-operacion-ano}
+  {\cab{Año de operación} & \cab{Meses} & \cab{HH} & \cab{HH por mes} & \cab{Personas por mes}}
+  {Fuente: elaboración propia a partir de Formulario T-14 (asociado al cap. 7), tabla \refext{T14}{tab:esfuerzo-estimado-rama-origen-horas} del Formulario T-14 (esfuerzo estimado por rama), p. 45.}
+Año 1 & M21–M32 & 43.648 & 3.637 & 30 a 38 \\
+Año 2 & M33–M44 & 40.947 & 3.412 & 30 a 31 \\
+Año 3 & M45–M56 & 41.584 & 3.465 & 30 a 31 \\
+Total & M21–M56 & 126.180 & 3.505 & 30 a 38 \\
+\end{tabla}
+La operación se estabiliza en unas 3.410 HH al mes, de las que el 87 \% son los cuatro puestos de atención continua. El primer año es más alto por la estabilización de la Etapa 2 y la transferencia al equipo de TI del cliente, y los meses 54 a 56 suben por la devolución del servicio (1.8.10).
+
+\apartado{Personas involucradas}
+La siguiente figura muestra cuántas personas trabajan en cada frente durante los 56 meses del contrato. Cada persona se cuenta una vez por mes, en el frente donde trabaja más horas, por lo que la altura de cada barra es el total de personas distintas del mes.
+
+\figura{16.0}{fig-E-1-personas-frente-trabajo-meses-1}{Personas por frente de trabajo, meses 1 a 56.}{fig:personas-frente-trabajo-meses-1-56}{Fuente: elaboración propia con las fichas del Formulario T-14.}
+\begin{tabla}{I{0.385}D{0.154}D{0.154}D{0.154}I{0.154}}{Máximo de personas por frente y período.}{tab:maximo-personas-frente-periodo}
+  {\cab{Frente de trabajo} & \cab{M1–M12} & \cab{M13–M15} & \cab{M16–M20} & \cab{M21–M56}}
+  {Fuente: elaboración propia a partir de Formulario T-14 (asociado al cap. 7), sección 4, p. 56.}
+Dirección del proyecto & 5 & 5 & 4 & 2 \\
+Requerimientos del producto & 6 & 1 & 1 & 1 \\
+Diseño del sistema & 8 & 3 & 1 & 0 \\
+Software del sistema & 15 & 13 & 10 & 3 \\
+Sistema certificado & 4 & 7 & 5 & 0 \\
+Solución implantada & 6 & 24 & 26 & 5 \\
+Innovaciones & 3 & 2 & 2 & 2 \\
+Servicio de operación y mantención & 0 & 0 & 0 & 31 \\
+Total (máximo mensual) & 25 & 45 & 36 & 38 \\
+\end{tabla}
+La rama 1.4 concentra la construcción de software hasta el mes 18, con hasta 15 personas. La rama 1.6 crece en cada marcha blanca, cuando el acompañamiento en faena cubre los dos turnos de los dos grupos 7x7, con hasta 26 personas. Desde el mes 21 la rama 1.8 concentra casi todo el equipo, porque cada puesto de atención continua requiere unas cinco personas para cubrir las 24 horas de los 365 días. El total de cada período es el máximo mensual de personas distintas, que no coincide con la suma de los máximos de cada frente porque estos ocurren en meses distintos. El máximo de 45 personas del mes 14 equivale a 32 jornadas completas. Salvo el Jefe de Proyecto, el Líder de Desarrollo, el Líder Funcional y el Gerente de Servicio, el equipo clave y los especialistas externos participan con dedicación parcial.
+
+\apartado{Ruta crítica de la implementación y holguras}
+La ruta crítica es la de la red de precedencias del Formulario T-14 (Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14). Esa red agrupa los paquetes en 35 actividades, A01 a A24 para la Etapa 1 y B01 a B11 para la Etapa 2, y la calcula con el método del camino crítico en meses del contrato: hacia adelante desde el mes 1 y hacia atrás desde el mes 21, respetando el mes de cada hito del Formulario E-25. La holgura de cada actividad es la diferencia entre su inicio más tardío y su inicio más temprano. La siguiente tabla reúne las cadenas que no tienen holgura.
+
+\begin{tabla}{I{0.190}I{0.548}D{0.132}I{0.131}}{Cadenas críticas de la implementación, sin holgura.}{tab:cadenas-criticas-implementacion-sin-holgura}
+  {\cab{Cadena} & \cab{Actividades del T-14 (paquetes)} & \cab{Meses} & \cab{Hitos que fija}}
+  {Fuente: elaboración propia a partir de Formulario T-14 (asociado al cap. 7), tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14 (red de precedencias), p. 20.}
+Etapa 1 · núcleo & A04 línea base (1.2.2.1 a 1.2.2.3) → A06 arquitectura (1.3.1.1, 1.3.2.1 y 1.3.3.1) → A10 ambientes (1.6.1.1) → A14 plataformas, módulos y canales (1.4.2.1, 1.4.2.2, 1.4.3.1 a 1.4.3.3, 1.4.3.5, 1.4.3.6 y 1.4.5) → A16 corrección del mes 11 → A17 certificación (1.5.3.1 y 1.5.3.3) → A22 marcha blanca (1.6.3.1) → A24 paso a producción (1.6.4.1) & M1–M16 & H5 (mes 12), H6 (mes 13) y H7 (mes 16) \\
+Etapa 1 · datos y dispositivos & A18 perfilado (1.4.6.1) → A19 carga (1.4.6.2), A20 prototipos con guantes (1.3.4.3) → A21 dispositivos (1.6.2.1) & M3–M15 & H6 (mes 13) y H7 (mes 16) \\
+Etapa 1 · decisiones y fechas fijas & A05 decisiones del 16.1 (1.2.3.1 y 1.2.3.2), A12 conexión del diodo en la detención de septiembre de 2027 (1.6.1.3), A23 corte de 48 horas y conmutación en la detención de marzo de 2028 (1.5.5.1 y 1.5.5.2) & M1–M3, M9 y M15 & H2 (mes 4), H5 (mes 12) y H7 (mes 16) \\
+Etapa 2 · núcleo & B01 línea base y diseño (1.2.5.1, 1.3.5.1 y 1.3.5.2) → B02 conectores y módulos (1.4.2.3, 1.4.4.1 a 1.4.4.3, 1.4.4.5 y 1.4.4.6) → B03 conexión de la telemetría → B08 certificación (1.5.6.1 y 1.5.6.3) → B09 marcha blanca (1.6.3.2) → B10 corte y conmutación en la detención de septiembre de 2028 → B11 paso a producción (1.6.4.2) & M13–M21 & H8 (mes 14), H10 (mes 18) y H12 (mes 21) \\
+Etapa 2 · sindicato & A02 análisis de interesados (1.1.5.3) → A09 acuerdo con el sindicato (1.1.5.2) → B04 verificación facial (1.4.4.4) & M1–M17 & H9 (mes 17) \\
+Etapa 2 · datos y caudalímetro & B06 digitalización de los formularios de seguridad (1.4.6.3) → B07 carga de la Etapa 2 (1.4.6.4), B05 caudalímetro en la detención de marzo de 2028 (1.6.2.2) & M10–M20 & H10 (mes 18) y H12 (mes 21) \\
+\end{tabla}
+La tabla muestra que cada etapa tiene una cadena sin holgura, porque sus duraciones llenan exactamente los meses que separan los hitos del Art. 17 y del Formulario E-25. Por eso su margen no se mide en meses sino en días de ventana de paso: las ventanas de abril de 2028 quedan disponibles hasta el día 28 para H7, y las del 29 y el 30 de septiembre de 2028, para H12. Las demás actividades tienen holgura, como muestra la siguiente tabla.
+
+\begin{tabla}{I{0.473}D{0.209}D{0.176}D{0.143}}{Actividades de la implementación con holgura.}{tab:actividades-implementacion-holgura}
+  {\cab{Actividad} & \cab{Paquetes} & \cab{Meses más tempranos} & \cab{Holgura}}
+  {Fuente: elaboración propia a partir de Formulario T-14, tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14 , p. 20.}
+A01 Primera acreditación del equipo clave en faena & 1.1.7.1 & M1 & 1 mes \\
+A03 Inventario de los diez sistemas e interfaces & 1.2.1.1 y 1.2.1.2 & M1–M3 & 1 mes \\
+A07 Especificación de acceso a la telemetría & 1.2.4.1 & M1–M3 & 4 meses \\
+A08 Acuerdos con los tres fabricantes & 1.2.4.2 & M3–M12 & 4 meses \\
+A11 Contrato y recepción del diodo de datos & 1.1.6.2 y 1.6.1.3 & M2–M5 & 3 meses \\
+A13 Factores de ajuste explicados & 1.2.6.1 & M2 & 3 meses \\
+A15 Conciliación Metalúrgica & 1.4.3.4 & M5–M9 & 1 mes \\
+\end{tabla}
+Las dependencias externas de Aranda quedan fuera de la ruta crítica, salvo el sindicato. Los acuerdos con los fabricantes tienen cuatro meses de holgura porque los conectores se construyen contra la especificación desde el mes 13 y sólo la conexión productiva del mes 17 espera la firma. Las actividades cuya duración no controla Overfore se estiman además con PERT de tres valores, te = (o + 4m + p) / 6, y con una distribución normal se calcula la probabilidad de terminar dentro del plazo que deja la red.
+
+\begin{tabla}{I{0.253}D{0.165}D{0.165}I{0.214}I{0.203}}{Estimación PERT de las actividades inciertas de la red.}{tab:estimacion-pert-actividades-inciertas-red}
+  {\cab{Actividad} & \cab{O, M y P} & \cab{te y σ} & \cab{Plazo que deja la red} & \cab{Probabilidad}}
+  {Fuente: elaboración propia a partir de Formulario T-14 , tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14.}
+A01 Primera acreditación del equipo clave & 7, 9 y 15 días hábiles & 9,7 y 1,3 días hábiles & 15 días hábiles & Más de 99,9 \% (Z = 4,00) \\
+A03 Inventario de los diez sistemas & 8, 12 y 18 semanas & 12,3 y 1,7 semanas & 17,3 semanas, meses 1 a 4 & 99,9 \% (Z = 3,00) \\
+A08 Acuerdos con los tres fabricantes & 20, 32 y 52 semanas & 33,3 y 5,3 semanas & 60,7 semanas, meses 3 a 16 & Más de 99,9 \% (Z = 5,12) \\
+A09 Acuerdo con el sindicato & 12, 24 y 48 semanas & 26,0 y 6,0 semanas & 56,3 semanas, meses 2 a 14 & Más de 99,9 \% (Z = 5,06) \\
+B06 Digitalización con tres puestos & 22, 24,8 y 30 semanas & 25,2 y 1,3 semanas & 25,6 semanas: 128 días hábiles de los meses 10 a 15 & 61,8 \% (Z = 0,30) \\
+\end{tabla}
+La digitalización es la única actividad incierta con un plazo ajustado: con tres puestos termina dentro de los 128 días hábiles con 61,8 \% de probabilidad, y por eso el primer lote es piloto y un cuarto digitalizador abre un cuarto puesto si el piloto rinde menos de lo previsto. Las negociaciones con terceros terminan a tiempo con alta probabilidad, pero su riesgo es de resultado, y cada una tiene una salida: sin acuerdo con el sindicato al inicio del mes 15, la portería sigue con la credencial de proximidad, y sin acuerdo con un fabricante, su conector se construye contra la especificación y la conexión productiva espera la firma.
+
+\apartado{Frentes de trabajo y solapamientos}
+Los frentes son las ocho ramas de la EDT del Formulario T-14. Así, cada hora conserva el código y el responsable de su paquete, sin introducir una estructura paralela de otro documento.
+
+\begin{tabla}{I{0.451}D{0.154}D{0.187}D{0.209}}{Frentes de trabajo derivados de las ramas de la EDT.}{tab:frentes-trabajo-derivados-ramas-edt}
+  {\cab{Frente / rama} & \cab{Paquetes} & \cab{HH} & \cab{Meses activos}}
+  {Fuente: elaboración propia con las fichas del Formulario T-14.}
+1.1 Dirección del proyecto & 29 & 5.088 & M1–M21, M27, M39 y M51 \\
+1.2 Requerimientos del producto & 19 & 3.684 & M1–M21 \\
+1.3 Diseño del sistema & 19 & 1.800 & M2–M15 y M20 \\
+1.4 Software del sistema & 28 & 21.062 & M1–M21 \\
+1.5 Sistema certificado & 16 & 3.840 & M3–M21 \\
+1.6 Solución implantada & 22 & 21.920 & M1–M27 \\
+1.7 Innovaciones & 13 & 3.000 & M3–M56 \\
+1.8 Servicio de operación y mantención & 29 & 122.672 & M21–M56 \\
+Total & 175 & 183.066 & M1–M56 \\
+\end{tabla}
+La Etapa 1 y la Etapa 2 coexisten en dos períodos (CMAA, 2026a, Art. 17.2, p. 13). La siguiente tabla muestra la dotación de cada frente en esos períodos, en personas a jornada completa, y a qué se dedica.
+
+\begin{tabla}{I{0.209}D{0.126}I{0.269}D{0.126}I{0.269}}{Dotación por frente en los solapamientos de los meses 13 a 15 y 19 a 20.}{tab:dotacion-frente-solapamientos-meses-13-15}
+  {\cab{Frente} & \cab{M13–M15} & \cab{Dedicación en M13–M15} & \cab{M19–M20} & \cab{Dedicación en M19–M20}}
+  {Fuente: elaboración propia con las fichas del Formulario T-14.}
+Dirección del proyecto & 1,5 & Gobierno de ambas etapas y control contractual & 1,3 & Gobierno y cierre del desarrollo \\
+Requerimientos del producto & 1,0 & Backlog y trazabilidad de la Etapa 2 & 0,7 & Cierre de requisitos y trazabilidad \\
+Diseño del sistema & 0,7 & Diseños detallados de la Etapa 2 & 0,1 & Actualizaciones de arquitectura y continuidad \\
+Software del sistema & 9,1 & Construcción de la Etapa 2 y corrección de defectos de la Etapa 1 & 1,7 & Corrección de defectos de la Etapa 2 \\
+Sistema certificado & 1,5 & Pruebas de la Etapa 1 y preparación de certificación de la Etapa 2 & 0,5 & Certificación y regresión de la Etapa 2 \\
+Solución implantada & 17,3 & Acompañamiento, dispositivos y capacitación & 21,4 & Paso a producción y acompañamiento de la Etapa 2 \\
+Innovaciones & 1,0 & Construcción y verificación de innovaciones & 0,0 & Verificación de innovaciones \\
+Servicio de operación y mantención & 0,0 & Sin operación contractual todavía & 0,0 & Preparación de la operación \\
+Total & 32,0 & 7 frentes activos & 25,6 & 7 frentes activos \\
+\end{tabla}
+El primer solapamiento es el más exigente, con hasta 45 personas: el acompañamiento en faena de la Etapa 1 ocupa la rama 1.6, la rama 1.4 construye la Etapa 2 y corrige los defectos de la marcha blanca de la Etapa 1 en el paquete 1.4.3.7. En el segundo, con hasta 36 personas, la Etapa 1 ya está en producción, y el riesgo es afectarla, por eso los módulos de la Etapa 2 se despliegan como servicios separados y cada promoción ejecuta la regresión de la Etapa 1.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Ley N° 21.561. (2023). Modifica el Código del Trabajo con el objeto de reducir la jornada laboral. Diario Oficial de la República de Chile.
+\item Overfore S.A. (2026). Formulario T-14: Plan de trabajo, EDT y carta Gantt.
+\end{referencias}
+\end{document}

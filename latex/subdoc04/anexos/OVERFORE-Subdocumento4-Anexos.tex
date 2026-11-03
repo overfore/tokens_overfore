@@ -1,0 +1,1824 @@
+%% OVERFORE-Subdocumento4-Anexos.tex — generado desde OVERFORE-Subdocumento4-Anexos.docx
+%% Formato: clase overfore, modo anexo. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[anexo]{../../comun/overfore}
+\numsubdoc{4}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{S4}
+\begin{document}
+
+\anexo{Fichas técnicas}
+Este anexo detalla las especificaciones de los equipos y servicios de SITCO Aranda. Los identificadores T11 vinculan cada ficha con el Formulario T-11 y con las decisiones de arquitectura del Subdocumento 4.
+
+\seccion{Equipos y servicios ofertados}
+La Tabla \ref{tab:fichas-tecnicas-equipos-servicios-ofertados} presenta una ficha por cada identificador T11 del Formulario T-11, con su componente, su responsable, el modelo de referencia, la especificación mínima, la redundancia, la garantía, la reposición y el requisito de origen. Todo modelo admite un equivalente que cumpla o supere la ficha, incluida la operación certificada a 3.180 metros.
+
+\begin{tabla}{I{0.296}I{0.704}}{Fichas técnicas de los equipos y servicios ofertados.}{tab:fichas-tecnicas-equipos-servicios-ofertados}
+  {\cab{Campo} & \cab{Contenido}}
+  {Fuente: elaboración propia a partir de las fichas de los fabricantes indicadas en la Tabla \ref{tab:fuentes-especificaciones}.}
+\multicolumn{2}{I{1.000}}{T11-01 · Zona de aterrizaje en la región primaria} \\
+Componente & Todas las capas (plataforma) \\
+Categoría y responsable & Nube · Overfore \\
+Marca o modelo de referencia y versión & Microsoft Azure · Servicio vigente \\
+Cantidad y unidad & 1 plataforma \\
+Ubicación & Azure Chile Central, 3 zonas \\
+Especificación mínima & VNet hub 10.100.0.0/24; producción 10.110.0.0/16; no productiva 10.120.0.0/16; Azure Policy; etiquetado FinOps con presupuestos y alertas \\
+Redundancia / arquitectura & Servicios con HA en al menos dos zonas \\
+Garantía / soporte & Soporte del proveedor 24x7 durante 56 meses \\
+Ciclo de vida / reposición & Capacidad base reservada a 3 años; crecimiento por uso \\
+Requisito fuente & RT-03.01 a RT-03.06; Art. 16° \\
+\multicolumn{2}{I{1.000}}{T11-02 · Región de recuperación} \\
+Componente & Recuperación ante desastres \\
+Categoría y responsable & Nube · Overfore \\
+Marca o modelo de referencia y versión & Microsoft Azure · Servicio vigente \\
+Cantidad y unidad & 1 región \\
+Ubicación & Azure Brazil South, VNet 10.130.0.0/16 \\
+Especificación mínima & Activo-pasivo; réplica asíncrona continua; AKS de 3 nodos de servicios y 3 de datos que escala al conmutar \\
+Redundancia / arquitectura & Otra región, otro país y otra red eléctrica, a unos 2.600 km \\
+Garantía / soporte & Incluido en el soporte del proveedor \\
+Ciclo de vida / reposición & Prueba de conmutación en las detenciones de planta de marzo y septiembre, dos veces al año. \\
+Requisito fuente & RT-07.01 a RT-07.08 \\
+\multicolumn{2}{I{1.000}}{T11-03 · Entrada pública con WAF y protección DDoS} \\
+Componente & Entrada pública (capa 2) \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Azure Front Door Premium con WAF · Servicio vigente \\
+Cantidad y unidad & 1 perfil global \\
+Ubicación & Borde global de Microsoft \\
+Especificación mínima & WAF en prevención con reglas gestionadas y propias; límite de tasa; protección contra bots; DDoS de capas 3, 4 y 7; TLS 1.3; origen primario Chile Central y secundario Brazil South con sondas cada 30 s \\
+Redundancia / arquitectura & Servicio global \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-11.07 a RT-11.10 \\
+\multicolumn{2}{I{1.000}}{T11-04 · Zona DNS pública de los portales} \\
+Componente & Entrada pública (capa 2) \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Azure DNS · Servicio vigente \\
+Cantidad y unidad & 1 zona pública \\
+Ubicación & Global, compartida por los ambientes \\
+Especificación mínima & Registros de producción hacia Front Door; Desarrollo y QA no se publican; registros definidos como código \\
+Redundancia / arquitectura & Servicio global \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-11.07; RT-03.03 \\
+\multicolumn{2}{I{1.000}}{T11-05 · Enlace satelital de órbita baja con terminal empresarial} \\
+Componente & Enlace faena-nube \\
+Categoría y responsable & Enlaces · Overfore \\
+Marca o modelo de referencia y versión & Servicio satelital LEO de un tercer proveedor o equivalente · Servicio vigente \\
+Cantidad y unidad & 1 terminal y servicio \\
+Ubicación & Techo o mástil de la sala técnica; conectado al router SD-WAN de la fibra B \\
+Especificación mínima & Terminal empresarial de órbita baja para intemperie; 20 Mbps de subida o más; latencia de decenas de milisegundos; túnel IPsec hacia la nube por el router SD-WAN \\
+Redundancia / arquitectura & Tercer camino de un proveedor distinto al de las fibras; sostiene la punta de la faena si caen las fibras A y B \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Prueba de conmutación trimestral \\
+Requisito fuente & RT-03.17; 4.2.3.2 \\
+\multicolumn{2}{I{1.000}}{T11-06 · Acceso de confianza cero} \\
+Componente & Acceso de confianza cero (capa 2) \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Microsoft Entra Private Access · Servicio vigente \\
+Cantidad y unidad & 1 servicio \\
+Ubicación & Borde global de Microsoft; 2 conectores en la red central \\
+Especificación mínima & CIO, Santiago y teletrabajo por navegador, sin VPN; doble factor y postura del dispositivo; publicación por aplicación \\
+Redundancia / arquitectura & Un conector por zona \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-03.22 \\
+\multicolumn{2}{I{1.000}}{T11-07 · Puerta de enlace de API} \\
+Componente & Puerta de exposición (capa 3) \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Azure API Management Premium; Developer solo en Desarrollo y QA · Servicio vigente \\
+Cantidad y unidad & 5 unidades Premium \\
+Ubicación & Producción: 2 unidades Premium en snet-apim 10.110.1.0/27, una por zona; Preproducción: 2 unidades Premium, una por zona; Brazil South: 1 unidad Premium de recuperación. \\
+Especificación mínima & OAuth 2.1 o TLS mutuo; cuota por consumidor; 50 llamadas/s por integración; validación contra OpenAPI; red interna \\
+Redundancia / arquitectura & Una unidad por zona en Producción y en Preproducción, y una unidad en la región de recuperación \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-05.18; RT-05.24 \\
+\multicolumn{2}{I{1.000}}{T11-08 · Puerta VPN} \\
+Componente & Enlace faena-nube \\
+Categoría y responsable & Red · Overfore \\
+Marca o modelo de referencia y versión & Azure VPN Gateway VpnGw2AZ · Servicio vigente \\
+Cantidad y unidad & 2 puertas \\
+Ubicación & VNet hub (zonas 1 y 2) y VNet de recuperación \\
+Especificación mínima & Activo-activo; un túnel IPsec por router de faena y uno del gabinete de puerto, que el IR1101 establece sobre el camino disponible; enrutamiento dinámico \\
+Redundancia / arquitectura & Redundancia de zona \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-03.17; RT-03.21 \\
+\multicolumn{2}{I{1.000}}{T11-09 · Puntos de conexión privados} \\
+Componente & Almacenes de datos (capa 6) \\
+Categoría y responsable & Red · Overfore \\
+Marca o modelo de referencia y versión & Azure Private Link · Servicio vigente \\
+Cantidad y unidad & 1 subred \\
+Ubicación & snet-pe 10.110.2.0/24 \\
+Especificación mínima & Almacenes, bus, caché, claves y registro de imágenes sólo con dirección privada \\
+Redundancia / arquitectura & Por región \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-03.04 \\
+\multicolumn{2}{I{1.000}}{T11-10 · Orquestación de contenedores} \\
+Componente & Servicios de negocio (capa 4), Integrador de Sistemas y almacenes en AKS \\
+Categoría y responsable & Plataforma · Overfore \\
+Marca o modelo de referencia y versión & Azure Kubernetes Service, nivel Standard · Kubernetes 1.36 \\
+Cantidad y unidad & 4 clústeres \\
+Ubicación & Producción (snet-aks 10.110.16.0/20), Preproducción, Desarrollo y QA, y Recuperación \\
+Especificación mínima & Producción: sistema 3 × D4s\_v5; servicios 4 a 9 × D8s\_v5, con 27 réplicas iniciales y escalado anticipado; datos 3 × E8s\_v5; malla Istio. \\
+Redundancia / arquitectura & Un nodo de cada grupo por zona \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Una versión menor por año \\
+Requisito fuente & RT-02.10; RT-03.02; RT-09.04 \\
+\multicolumn{2}{I{1.000}}{T11-11 · Registro de contenedores} \\
+Componente & Artefactos de despliegue \\
+Categoría y responsable & Plataforma · Overfore \\
+Marca o modelo de referencia y versión & Azure Container Registry Premium · Servicio vigente \\
+Cantidad y unidad & 1 registro \\
+Ubicación & Chile Central con geo-réplica a Brazil South \\
+Especificación mínima & Sólo imágenes firmadas con análisis aprobado; conserva la versión vigente y la anterior \\
+Redundancia / arquitectura & Geo-replicado \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-11.27 \\
+\multicolumn{2}{I{1.000}}{T11-12 · Bus de eventos administrado} \\
+Componente & Bus de eventos (capa 5) \\
+Categoría y responsable & Plataforma · Overfore \\
+Marca o modelo de referencia y versión & Azure Service Bus Premium · Servicio vigente \\
+Cantidad y unidad & 3 espacios de nombres \\
+Ubicación & Producción, par geo-DR en Brazil South y no productivo \\
+Especificación mínima & 1 unidad de mensajería con redundancia de zona; un tópico por evento; sesiones por agregado; deduplicación; cola de fallidos tras 10 intentos; réplica con retraso máximo de 5 min \\
+Redundancia / arquitectura & Par geo-DR \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RNF-TRV-02.07 \\
+\multicolumn{2}{I{1.000}}{T11-13 · Almacén de estado externo} \\
+Componente & Caché de sesión y de proceso (capa 4) \\
+Categoría y responsable & Datos · Overfore \\
+Marca o modelo de referencia y versión & Azure Managed Redis, nivel equilibrado · Servicio vigente \\
+Cantidad y unidad & 1 instancia \\
+Ubicación & VNet de producción \\
+Especificación mínima & Alta disponibilidad entre zonas; ≈ 550 sesiones en el peak; sin datos sensibles en claro \\
+Redundancia / arquitectura & Se recrea por IaC en la recuperación \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-02.05 \\
+\multicolumn{2}{I{1.000}}{T11-14 · Base de datos transaccional} \\
+Componente & Almacenes transaccionales y auditoría (capa 6) \\
+Categoría y responsable & Datos · Overfore \\
+Marca o modelo de referencia y versión & Azure Database for PostgreSQL, servidor flexible D4ds\_v5 · PostgreSQL 18 \\
+Cantidad y unidad & 3 servidores \\
+Ubicación & Producción (primaria Z1, espera Z2), réplica de lectura en Brazil South y Preproducción \\
+Especificación mínima & 4 vCPU; 16 GB; 256 GB ampliable en línea; base y credencial propia por módulo; recuperación a un instante de 35 días; claves propias \\
+Redundancia / arquitectura & Espera síncrona en otra zona y réplica asíncrona regional \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Migración de versión mayor en septiembre de 2030 \\
+Requisito fuente & RT-05.02; \\
+\multicolumn{2}{I{1.000}}{T11-15 · Discos del grupo de datos} \\
+Componente & Series de tiempo, modelo analítico e índice (capa 6) \\
+Categoría y responsable & Datos · Overfore \\
+Marca o modelo de referencia y versión & Azure Premium SSD v2 · Servicio vigente \\
+Cantidad y unidad & 6 discos de 3 TB iniciales, ampliables \\
+Ubicación & 3 en el grupo de datos de producción; en Brazil South, el clúster de recuperación de 3 nodos de servicios y 3 de datos, con la réplica de las series \\
+Especificación mínima & 3 TB por nodo al inicio; ampliación en línea a 6 TB por nodo para el horizonte base y hasta 14 TB en el escenario de crecimiento de tres veces. \\
+Redundancia / arquitectura & Una réplica por zona \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Ampliar al proyectar 80 \% de ocupación sostenida para los siguientes seis meses. \\
+Requisito fuente & RNF-CAP-004 \\
+\multicolumn{2}{I{1.000}}{T11-16 · Base de series de tiempo en AKS} \\
+Componente & Series de tiempo (capa 6) \\
+Categoría y responsable & Software · Overfore \\
+Marca o modelo de referencia y versión & TimescaleDB sobre PostgreSQL con operador de Kubernetes · 2.30 sobre PostgreSQL 18 \\
+Cantidad y unidad & 1 clúster de 3 réplicas \\
+Ubicación & Grupo de datos de AKS \\
+Especificación mínima & Compresión de fragmentos después de 7 días; retención de 5 o 10 años; archivo continuo del registro en Blob Storage \\
+Redundancia / arquitectura & Una réplica por zona; clúster de réplica en Brazil South \\
+Garantía / soporte & Soporte del adjudicatario \\
+Ciclo de vida / reposición & Migración de versión mayor en 2030 \\
+Requisito fuente & RNF-CAP-004; 4.2.2.1 \\
+\multicolumn{2}{I{1.000}}{T11-17 · Motor analítico columnar en AKS} \\
+Componente & Modelo analítico (capa 6) \\
+Categoría y responsable & Software · Overfore \\
+Marca o modelo de referencia y versión & ClickHouse · 26.8 LTS \\
+Cantidad y unidad & 1 clúster \\
+Ubicación & Grupo de datos de AKS \\
+Especificación mínima & Tres réplicas y tres nodos de coordinación; reconstruible desde eventos \\
+Redundancia / arquitectura & Réplicas en zonas distintas \\
+Garantía / soporte & Soporte del adjudicatario \\
+Ciclo de vida / reposición & Versión LTS dos veces al año \\
+Requisito fuente & RT-05.05 \\
+\multicolumn{2}{I{1.000}}{T11-18 · Índice de búsqueda en AKS} \\
+Componente & Índice de búsqueda (capa 6) \\
+Categoría y responsable & Software · Overfore \\
+Marca o modelo de referencia y versión & OpenSearch · 3 \\
+Cantidad y unidad & 1 clúster \\
+Ubicación & Grupo de datos de AKS \\
+Especificación mínima & Tres nodos; réplica de cada fragmento en otra zona; filtrado por rol \\
+Redundancia / arquitectura & Una réplica por zona \\
+Garantía / soporte & Soporte del adjudicatario \\
+Ciclo de vida / reposición & Migración a la versión 4 en su año de soporte \\
+Requisito fuente & RF-ADM-012; ADR-08 \\
+\multicolumn{2}{I{1.000}}{T11-19 · Almacenamiento de objetos} \\
+Componente & Documental y de objetos (capa 6) \\
+Categoría y responsable & Datos · Overfore \\
+Marca o modelo de referencia y versión & Azure Blob Storage · Servicio vigente \\
+Cantidad y unidad & 3 cuentas \\
+Ubicación & Chile Central y Brazil South (más una cuenta no productiva) \\
+Especificación mínima & ZRS; versionado; eliminación reversible de 30 días; inmutabilidad por clase de retención (10 años para seguridad y salud ocupacional, ambiental y trazabilidad; 5 años para lo operacional; los registros tributarios, de 7 años, permanecen en SAP S/4HANA); nivel esporádico después de 90 días \\
+Redundancia / arquitectura & Replicación de objetos a Brazil South \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Ciclo de vida por nivel \\
+Requisito fuente & RT-05.07; RNF-SEG-005 \\
+\multicolumn{2}{I{1.000}}{T11-20 · Bóveda de respaldo inmutable} \\
+Componente & Respaldos \\
+Categoría y responsable & Datos · Overfore \\
+Marca o modelo de referencia y versión & Azure Backup · Servicio vigente \\
+Cantidad y unidad & 1 bóveda \\
+Ubicación & Brazil South \\
+Especificación mínima & Inmutabilidad bloqueada; autorización de varias personas; claves independientes \\
+Redundancia / arquitectura & Copia fuera de sitio del esquema 3-2-1-1-0 \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Prueba de restauración mensual \\
+Requisito fuente & RT-07.09 a RT-07.14 \\
+\multicolumn{2}{I{1.000}}{T11-21 · Custodia de secretos y claves en HSM} \\
+Componente & Bóveda de claves (capa 7) \\
+Categoría y responsable & Seguridad · Overfore \\
+Marca o modelo de referencia y versión & Azure Key Vault Premium · Servicio vigente \\
+Cantidad y unidad & 2 bóvedas \\
+Ubicación & Chile Central y Brazil South \\
+Especificación mínima & Claves en HSM; autoridad certificadora de servicios; rotación cada 90 días; protección contra purga \\
+Redundancia / arquitectura & Bóveda propia en cada región \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-04.09; RNF-SEG-009 \\
+\multicolumn{2}{I{1.000}}{T11-22 · Identidad del personal propio y externa} \\
+Componente & Proveedor de identidad (capa 7) \\
+Categoría y responsable & Seguridad · Overfore \\
+Marca o modelo de referencia y versión & Microsoft Entra ID P2 y Entra External ID · Servicio vigente \\
+Cantidad y unidad & 1.895 identidades (1.780 del personal propio y 115 del CIO) \\
+Ubicación & Borde global de Microsoft \\
+Especificación mínima & Federación, doble factor, acceso condicional y elevación temporal; External ID por usuario activo mensual para contratistas, compradores y terceros \\
+Redundancia / arquitectura & Copia de identidades en el Nodo con vigencia de 72 h \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Suscripción durante 56 meses \\
+Requisito fuente & RES-09; RNF-SEG-003; ADR-07 \\
+\multicolumn{2}{I{1.000}}{T11-23 · Observabilidad y SOC} \\
+Componente & Observabilidad (capa 8) \\
+Categoría y responsable & Operación · Overfore \\
+Marca o modelo de referencia y versión & Log Analytics, Azure Monitor y OpenTelemetry · Servicio vigente \\
+Cantidad y unidad & 1 plataforma \\
+Ubicación & Chile Central \\
+Especificación mínima & Consola operativa única; alertas por síntoma; límite diario de ingesta con alerta \\
+Redundancia / arquitectura & Colectores con acumulación local \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-03.16; RNF-OPE-001 \\
+\multicolumn{2}{I{1.000}}{T11-24 · SIEM} \\
+Componente & Registro y detección de seguridad (capa 7) \\
+Categoría y responsable & Seguridad · Overfore \\
+Marca o modelo de referencia y versión & Microsoft Sentinel · Servicio vigente \\
+Cantidad y unidad & 1 espacio de trabajo \\
+Ubicación & Chile Central \\
+Especificación mínima & 12 meses en línea y 24 en archivo; casos de detección del negocio \\
+Redundancia / arquitectura & Acumulación local en el Nodo durante un corte \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-11.14 a RT-11.21 \\
+\multicolumn{2}{I{1.000}}{T11-25 · Gestión de tabletas, consolas y estaciones} \\
+Componente & Gestión de dispositivos (capa 7) \\
+Categoría y responsable & Operación · Overfore \\
+Marca o modelo de referencia y versión & Microsoft Intune · Servicio vigente \\
+Cantidad y unidad & 42 dispositivos \\
+Ubicación & Borde global de Microsoft \\
+Especificación mínima & Inventario, distribución firmada, bloqueo y borrado remoto \\
+Redundancia / arquitectura & Servicio global \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Suscripción durante 56 meses \\
+Requisito fuente & RT-03.18; RF-CNX-004 \\
+\multicolumn{2}{I{1.000}}{T11-26 · Gestión de los servidores de faena} \\
+Componente & Nodo de Faena \\
+Categoría y responsable & Operación · Overfore \\
+Marca o modelo de referencia y versión & Azure Arc · Servicio vigente \\
+Cantidad y unidad & 12 servidores \\
+Ubicación & Faena, gestionada desde Chile Central \\
+Especificación mínima & GitOps; políticas; parches; despliegue escalonado por sitio \\
+Redundancia / arquitectura & Opera sin enlace \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-03.15; RT-03.16 \\
+\multicolumn{2}{I{1.000}}{T11-27 · Correo, mensajería y SMS} \\
+Componente & Administración y Servicios Comunes (notificaciones) \\
+Categoría y responsable & Operación · Overfore \\
+Marca o modelo de referencia y versión & Azure Communication Services y agregador de SMS · Servicio vigente \\
+Cantidad y unidad & 1 servicio \\
+Ubicación & Borde global de Microsoft y proveedor en Chile \\
+Especificación mínima & Registro de entrega; reintento sin duplicados \\
+Redundancia / arquitectura & Dos canales \\
+Garantía / soporte & Soporte del proveedor \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-16.20; RNF-DES-018 \\
+\multicolumn{2}{I{1.000}}{T11-28 · Automatización de infraestructura} \\
+Componente & Infraestructura como código \\
+Categoría y responsable & Operación · Overfore \\
+Marca o modelo de referencia y versión & OpenTofu con repositorio Git del Cliente · Versión estable \\
+Cantidad y unidad & 1 cadena de herramientas \\
+Ubicación & Todos los ambientes \\
+Especificación mínima & Módulos versionados; sin creación manual en consola \\
+Redundancia / arquitectura & Estado remoto respaldado \\
+Garantía / soporte & Soporte del adjudicatario \\
+Ciclo de vida / reposición & Queda al Cliente \\
+Requisito fuente & RT-03.03 \\
+\multicolumn{2}{I{1.000}}{T11-29 · Sala técnica prefabricada} \\
+Componente & Sala técnica (recinto) \\
+Categoría y responsable & Recinto · Overfore provee / Cliente obra civil \\
+Marca o modelo de referencia y versión & Módulo prefabricado para centro de datos o equivalente · N/A \\
+Cantidad y unidad & 1 recinto de 40 m² \\
+Ubicación & Faena, junto al edificio de administración \\
+Especificación mínima & 8,0 × 5,0 m; muros con resistencia al fuego de 120 min; piso técnico de 30 cm; esclusa 4,5 m², zona técnica 8,0 m², sala de equipos 17,5 m² y zona de energía 10 m²; acometida separada para la fibra B \\
+Redundancia / arquitectura & Tipología sala técnica principal \\
+Garantía / soporte & Garantía del fabricante \\
+Ciclo de vida / reposición & Vida útil superior al contrato \\
+Requisito fuente & RT-06.01 a RT-06.06; Caso, Cap. 15, p. 25 \\
+\multicolumn{2}{I{1.000}}{T11-30 · Racks de 42U con PDU A y B} \\
+Componente & Sala técnica (recinto) \\
+Categoría y responsable & Recinto · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & APC NetShelter SX o equivalente · N/A \\
+Cantidad y unidad & 4 racks de 42U \\
+Ubicación & RK-1 comunicaciones; RK-2 servidores RK-3 como reserva física de crecimiento \\
+Especificación mínima & Cuatro racks separados, cada uno con PDU A y B conectadas a circuitos distintos \\
+Redundancia / arquitectura & Cuatro racks independientes; RK-3 como la reserva física de crecimiento \\
+Garantía / soporte & Garantía del fabricante \\
+Ciclo de vida / reposición & Vida útil superior al contrato \\
+Requisito fuente & RT-06.01; RT-06.04; RT-06.05 \\
+\multicolumn{2}{I{1.000}}{T11-31 · Servidor del clúster del Nodo de Faena} \\
+Componente & Nodo de Faena \\
+Categoría y responsable & Sala técnica · Overfore \\
+Marca o modelo de referencia y versión & Cisco UCS C240 M8 o equivalente · Firmware soportado vigente \\
+Cantidad y unidad & 3 servidores \\
+Ubicación & RK-2 \\
+Especificación mínima & 24 núcleos; 256 GB; 2 × 960 GB NVMe en RAID 1; 2 fuentes; TPM 2.0; gestión remota; altura certificada o reducción declarada \\
+Redundancia / arquitectura & Clúster K3s de tres con quórum; PostgreSQL con réplica síncrona \\
+Garantía / soporte & 5 años 24x7 en sitio \\
+Ciclo de vida / reposición & Ampliación de memoria o cuarto servidor si el uso con N−1 supera 60 \% \\
+Requisito fuente & RT-03.14; RT-08.01 a RT-08.06 \\
+\multicolumn{2}{I{1.000}}{T11-32 · Servidor del banco de pruebas} \\
+Componente & Nodo de Faena (banco de pruebas) \\
+Categoría y responsable & Sala técnica · Overfore \\
+Marca o modelo de referencia y versión & Cisco UCS C220 M8 o equivalente · Firmware soportado vigente \\
+Cantidad y unidad & 1 servidor \\
+Ubicación & RK-2 \\
+Especificación mínima & Reproduce el Nodo en máquinas virtuales \\
+Redundancia / arquitectura & No aplica \\
+Garantía / soporte & 5 años \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RT-04.02; RT-08.15 \\
+\multicolumn{2}{I{1.000}}{T11-33 · Router SD-WAN} \\
+Componente & Enlace faena-nube \\
+Categoría y responsable & Sala técnica · Overfore \\
+Marca o modelo de referencia y versión & Cisco Catalyst 8300 o equivalente · IOS XE soportado vigente \\
+Cantidad y unidad & 2 unidades \\
+Ubicación & RK-1 \\
+Especificación mínima & Uno por fibra; IPsec AES-256-GCM; QoS por clase; medición de cada camino cada segundo \\
+Redundancia / arquitectura & Activo-activo; conmutación en 5 s o menos; conmuta al enlace satelital (T11-05) si caen ambas fibras \\
+Garantía / soporte & 5 años 24x7 \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RT-03.17; RT-03.24 \\
+\multicolumn{2}{I{1.000}}{T11-34 · Cortafuegos} \\
+Componente & Red de la sala técnica \\
+Categoría y responsable & Sala técnica · Overfore \\
+Marca o modelo de referencia y versión & Cisco Secure Firewall 1230 o equivalente · Versión soportada \\
+Cantidad y unidad & 2 unidades \\
+Ubicación & RK-1 \\
+Especificación mínima & IPS; segmentación de zonas; registros al SIEM \\
+Redundancia / arquitectura & Par en HA \\
+Garantía / soporte & 5 años 24x7 \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RT-08.03 \\
+\multicolumn{2}{I{1.000}}{T11-35 · Conmutador de núcleo} \\
+Componente & Red de la sala técnica \\
+Categoría y responsable & Sala técnica · Overfore \\
+Marca o modelo de referencia y versión & Cisco Catalyst 9500 o equivalente · IOS XE soportado vigente \\
+Cantidad y unidad & 2 unidades \\
+Ubicación & RK-1 \\
+Especificación mínima & VLAN TI, gestión y dispositivos; 802.1X; NTP de la faena \\
+Redundancia / arquitectura & Par redundante \\
+Garantía / soporte & 5 años 24x7 \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RT-08.03 \\
+\multicolumn{2}{I{1.000}}{T11-36 · Consola fuera de banda} \\
+Componente & Red de la sala técnica \\
+Categoría y responsable & Sala técnica · Overfore \\
+Marca o modelo de referencia y versión & Cisco C8200 o equivalente · IOS XE soportado vigente \\
+Cantidad y unidad & 1 unidad \\
+Ubicación & RK-1 \\
+Especificación mínima & Gestión independiente de la red de producción (10.10.99.0/24) \\
+Redundancia / arquitectura & Acceso de gestión alternativo \\
+Garantía / soporte & 5 años \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RNF-SEG-013 \\
+\multicolumn{2}{I{1.000}}{T11-37 · UPS de doble conversión de la sala} \\
+Componente & Sala técnica (recinto) \\
+Categoría y responsable & Energía · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & UPS de 10 kVA con baterías de litio o equivalente · N/A \\
+Cantidad y unidad & 2 UPS de 10 kVA \\
+Ubicación & Zona de energía de la sala técnica \\
+Especificación mínima & Cada una sostiene sola toda la carga de TI: 6,8 kVA requeridos; 30 min a plena carga (≈ 3,2 kWh útiles) \\
+Redundancia / arquitectura & Líneas A y B; una UPS por fuente de cada equipo \\
+Garantía / soporte & Mantención 24x7 \\
+Ciclo de vida / reposición & Baterías entre los meses 36 y 48 \\
+Requisito fuente & RT-06.07 (obligatorio) \\
+\multicolumn{2}{I{1.000}}{T11-38 · Climatización de precisión en fila} \\
+Componente & Sala técnica (recinto) \\
+Categoría y responsable & Climatización · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & Unidades de precisión de 7 kW o equivalente · N/A \\
+Cantidad y unidad & 2 unidades de 7 kW \\
+Ubicación & Sala de equipos (CL-1 y CL-2) \\
+Especificación mínima & Carga térmica 4,35 kW; 6,0 kW nominales por corrección de densidad; pasillo frío confinado; suministro 21 °C; humidificador \\
+Redundancia / arquitectura & N+1 \\
+Garantía / soporte & Mantención 24x7 \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RT-06.13 a RT-06.15 \\
+\multicolumn{2}{I{1.000}}{T11-39 · Detección temprana y extinción} \\
+Componente & Sala técnica (recinto) \\
+Categoría y responsable & Incendio · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & Aspiración láser y agente limpio FM-200 o equivalente · N/A \\
+Cantidad y unidad & 1 sistema \\
+Ubicación & Sala de equipos y zona de energía \\
+Especificación mínima & NFPA 2001; 82,5 m³; ≈ 30 kg de agente con corrección por altura; doble confirmación; extintores de CO₂ \\
+Redundancia / arquitectura & Cobertura total \\
+Garantía / soporte & Certificación vigente \\
+Ciclo de vida / reposición & Prueba semestral \\
+Requisito fuente & RT-06.16 a RT-06.19 \\
+\multicolumn{2}{I{1.000}}{T11-40 · Esclusa biométrica y videovigilancia} \\
+Componente & Sala técnica (recinto) \\
+Categoría y responsable & Seguridad física · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & HID o IDEMIA con CCTV IP o equivalente · N/A \\
+Cantidad y unidad & 1 sistema \\
+Ubicación & Sala técnica; enrolamiento en la sala de 2014 \\
+Especificación mínima & Facial con huella de respaldo; esclusa de una persona; bitácora; video de 30 días \\
+Redundancia / arquitectura & Red aislada \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Revisión anual \\
+Requisito fuente & RT-06.20 a RT-06.25 \\
+\multicolumn{2}{I{1.000}}{T11-41 · Sensores ambientales} \\
+Componente & Sala técnica (recinto) \\
+Categoría y responsable & Monitoreo · Overfore \\
+Marca o modelo de referencia y versión & Sensores de temperatura, humedad y agua · Firmware soportado \\
+Cantidad y unidad & 1 conjunto \\
+Ubicación & Entrada de cada rack a tres alturas, bajo la climatización y sala de 2014 \\
+Especificación mínima & Integración con la consola única \\
+Redundancia / arquitectura & Alerta por síntoma \\
+Garantía / soporte & Garantía del fabricante \\
+Ciclo de vida / reposición & Revisión anual \\
+Requisito fuente & RT-06.14 \\
+\multicolumn{2}{I{1.000}}{T11-42 · Generadores A y B} \\
+Componente & Energía de respaldo \\
+Categoría y responsable & Energía · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & Grupo electrógeno diésel de 20 kVA o equivalente · N/A \\
+Cantidad y unidad & 2 generadores de 20 kVA \\
+Ubicación & Base exterior de la sala técnica \\
+Especificación mínima & Cada uno toma toda la carga del tablero de respaldo: 15,9 kVA requeridos; prueba mensual bajo carga \\
+Redundancia / arquitectura & N+1 \\
+Garantía / soporte & Mantención preventiva \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RT-06.08; RT-06.12 \\
+\multicolumn{2}{I{1.000}}{T11-43 · Tablero de transferencia automática} \\
+Componente & Energía de respaldo \\
+Categoría y responsable & Energía · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & Tablero ATS o equivalente · N/A \\
+Cantidad y unidad & 1 tablero \\
+Ubicación & Base exterior de la sala técnica \\
+Especificación mínima & Transferencia automática red-generador; monitoreo del ATS y del nivel de combustible \\
+Redundancia / arquitectura & No aplica \\
+Garantía / soporte & Mantención preventiva \\
+Ciclo de vida / reposición & Prueba mensual \\
+Requisito fuente & RT-06.12 \\
+\multicolumn{2}{I{1.000}}{T11-44 · Tablero de distribución} \\
+Componente & Energía de respaldo \\
+Categoría y responsable & Energía · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & Tablero eléctrico o equivalente · N/A \\
+Cantidad y unidad & 1 tablero \\
+Ubicación & Zona de energía de la sala técnica \\
+Especificación mínima & Circuitos separados para líneas A y B, clima y gabinetes; puesta a tierra según NCh Elec. 2777 \\
+Redundancia / arquitectura & Circuitos A y B \\
+Garantía / soporte & Mantención preventiva \\
+Ciclo de vida / reposición & Medición semestral (RT-06.10) \\
+Requisito fuente & RT-06.09 \\
+\multicolumn{2}{I{1.000}}{T11-45 · Estanque de combustible de doble pared} \\
+Componente & Energía de respaldo \\
+Categoría y responsable & Energía · Cliente obra / Overfore especifica \\
+Marca o modelo de referencia y versión & Estanque diésel de doble pared de 1.000 L o equivalente · N/A \\
+Cantidad y unidad & 1 estanque de 1.000 L \\
+Ubicación & Base exterior de la sala técnica \\
+Especificación mínima & 555 L requeridos para 7 días con 50 \% de reserva; ≈ 19 días con el estanque lleno y ≈ 9,5 días entre recargas, porque se reabastece al bajar de la mitad; sensor de nivel \\
+Redundancia / arquitectura & No aplica \\
+Garantía / soporte & Mantención preventiva \\
+Ciclo de vida / reposición & Inspección anual \\
+Requisito fuente & RT-06.08 \\
+\multicolumn{2}{I{1.000}}{T11-46 · Repositorio de respaldo local inmutable} \\
+Componente & Respaldos \\
+Categoría y responsable & Sala de 2014 · Overfore \\
+Marca o modelo de referencia y versión & Dell PowerProtect DD3300 o equivalente · Versión soportada vigente \\
+Cantidad y unidad & 1 equipo \\
+Ubicación & Sala de 2014 \\
+Especificación mínima & 4 TB útiles; bloqueo de retención; credenciales separadas; incremental cada hora y completo diario retenido 30 días \\
+Redundancia / arquitectura & Segundo medio del 3-2-1-1-0 \\
+Garantía / soporte & 5 años 24x7 \\
+Ciclo de vida / reposición & Revisión trimestral \\
+Requisito fuente & RT-07.09; RT-07.11 \\
+\multicolumn{2}{I{1.000}}{T11-47 · Medios removibles cifrados} \\
+Componente & Respaldos \\
+Categoría y responsable & Sala de 2014 · Overfore \\
+Marca o modelo de referencia y versión & Unidad RDX con 8 cartuchos de 1 TB o equivalente · N/A \\
+Cantidad y unidad & 1 unidad y 8 cartuchos \\
+Ubicación & Recinto de custodia, sala de 2014 \\
+Especificación mínima & Cifrado; rotación semanal fuera de línea; inventario; verificación de legibilidad \\
+Redundancia / arquitectura & Transportable \\
+Garantía / soporte & Garantía del fabricante \\
+Ciclo de vida / reposición & Reposición por desgaste \\
+Requisito fuente & RT-06.26 a RT-06.28 \\
+\multicolumn{2}{I{1.000}}{T11-48 · Estación de administración con dos monitores} \\
+Componente & Operación \\
+Categoría y responsable & Sala de 2014 · Overfore \\
+Marca o modelo de referencia y versión & Estación de trabajo empresarial o equivalente · SO soportado vigente \\
+Cantidad y unidad & 7 estaciones \\
+Ubicación & 4 en la sala de 2014 y 3 de mesa de ayuda \\
+Especificación mínima & 32 GB; SSD 1 TB; 2 monitores; TPM; EDR; NCh 2527 \\
+Redundancia / arquitectura & Stock general \\
+Garantía / soporte & 5 años \\
+Ciclo de vida / reposición & Reposición por falla \\
+Requisito fuente & RT-06.29; RT-08.07 a RT-08.09 \\
+\multicolumn{2}{I{1.000}}{T11-50 · Tendido de fibra monomodo a la sala nueva} \\
+Componente & Red de faena \\
+Categoría y responsable & Red de faena · Overfore \\
+Marca o modelo de referencia y versión & Fibra monomodo certificada · N/A \\
+Cantidad y unidad & 1 tendido \\
+Ubicación & Sala técnica hacia la red de fibra propia \\
+Especificación mínima & Enlaces certificados y etiquetados en ambos extremos \\
+Redundancia / arquitectura & Anillo con la red existente \\
+Garantía / soporte & Garantía de instalación \\
+Ciclo de vida / reposición & No aplica \\
+Requisito fuente & RT-06.04 \\
+\multicolumn{2}{I{1.000}}{T11-51 · Gabinete industrial climatizado} \\
+Componente & Gabinetes de borde \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Rittal o Schneider o equivalente · N/A \\
+Cantidad y unidad & 4 gabinetes \\
+Ubicación & Portería, planta, relaves y acopio de puerto \\
+Especificación mínima & IP65; climatizado; filtros de polvo; cerradura electrónica; sensores; el de puerto con protección contra corrosión salina \\
+Redundancia / arquitectura & No aplica \\
+Garantía / soporte & Garantía 5 años \\
+Ciclo de vida / reposición & Filtros como consumible trimestral \\
+Requisito fuente & Transversales, Cap. 6.1, p. 14 \\
+\multicolumn{2}{I{1.000}}{T11-53 · Servidor de borde rugerizado} \\
+Componente & Nodo de Faena (agentes de gabinete) e Integrador de Sistemas \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Dell PowerEdge XR4000 o equivalente · Firmware soportado vigente \\
+Cantidad y unidad & 11 servidores \\
+Ubicación & 2 por gabinete, 2 en la DMZ de planta y 1 repuesto \\
+Especificación mínima & 8 núcleos; 32 GB; 2 × 960 GB en RAID 1; TPM 2.0; doble fuente \\
+Redundancia / arquitectura & Activo-pasivo por gabinete \\
+Garantía / soporte & 5 años 24x7 \\
+Ciclo de vida / reposición & Repuesto precargado \\
+Requisito fuente & RT-03.14; RT-08.01 \\
+\multicolumn{2}{I{1.000}}{T11-54 · Conmutador industrial} \\
+Componente & Red de los gabinetes \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Cisco Catalyst IE3400 o equivalente · IOS XE soportado vigente \\
+Cantidad y unidad & 8 unidades: portería 2, planta 2, relaves 2, puerto 1 y 1 de repuesto \\
+Ubicación & Portería 2, planta 2, relaves 2, puerto 1 y 1 repuesto \\
+Especificación mínima & Sin ventilador; VLAN; 802.1X; doble fuente \\
+Redundancia / arquitectura & Par por gabinete, salvo puerto \\
+Garantía / soporte & 5 años 24x7 \\
+Ciclo de vida / reposición & Repuesto precargado \\
+Requisito fuente & RT-08.03 \\
+\multicolumn{2}{I{1.000}}{T11-55 · Cortafuegos industrial} \\
+Componente & Integrador de Sistemas (conector del historiador) \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Cisco Secure Firewall ISA3000 o equivalente · Versión soportada \\
+Cantidad y unidad & 2 unidades \\
+Ubicación & Gabinete de planta, entre la DMZ industrial y el agente de planta \\
+Especificación mínima & Conductos IEC 62443; registros al SIEM \\
+Redundancia / arquitectura & Par en HA \\
+Garantía / soporte & 5 años 24x7 \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RT-03.04; IEC 62443 \\
+\multicolumn{2}{I{1.000}}{T11-56 · Diodo de datos} \\
+Componente & Integrador de Sistemas (conector del historiador) \\
+Categoría y responsable & Borde · Overfore \\
+Marca o modelo de referencia y versión & Owl Cyber Defense o Waterfall o equivalente · Firmware soportado \\
+Cantidad y unidad & 2 unidades \\
+Ubicación & Gabinete de planta: 1 instalado y 1 repuesto \\
+Especificación mínima & Unidireccional por hardware; reemplazo en 4 h \\
+Redundancia / arquitectura & Repuesto en faena \\
+Garantía / soporte & 5 años \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & ADR-05; IEC 62443 \\
+\multicolumn{2}{I{1.000}}{T11-57 · Cliente OPC UA de sólo lectura} \\
+Componente & Integrador de Sistemas (conector del historiador) \\
+Categoría y responsable & Software · Overfore \\
+Marca o modelo de referencia y versión & PTC Kepware Server · 7.1 \\
+Cantidad y unidad & 2 suscripciones \\
+Ubicación & DMZ de planta: máquina virtual A primaria y B reserva \\
+Especificación mínima & Sólo Read y Subscribe; certificados mutuos \\
+Redundancia / arquitectura & Primaria y reserva \\
+Garantía / soporte & Suscripción con soporte \\
+Ciclo de vida / reposición & Actualización anual \\
+Requisito fuente & RNF-INT-001 \\
+\multicolumn{2}{I{1.000}}{T11-58 · Sistema operativo de la DMZ} \\
+Componente & Integrador de Sistemas (conector del historiador) \\
+Categoría y responsable & Software · Overfore \\
+Marca o modelo de referencia y versión & Windows Server 2025 Standard · 2025 \\
+Cantidad y unidad & 2 licencias \\
+Ubicación & DMZ de planta \\
+Especificación mínima & Endurecido CIS; parches centralizados \\
+Redundancia / arquitectura & Primaria y reserva \\
+Garantía / soporte & Soporte general hasta 2029 \\
+Ciclo de vida / reposición & Cubre el contrato \\
+Requisito fuente & RT-03.15 \\
+\multicolumn{2}{I{1.000}}{T11-59 · Sistema operativo de los servidores de faena} \\
+Componente & Nodo de Faena \\
+Categoría y responsable & Software · Overfore \\
+Marca o modelo de referencia y versión & Ubuntu Server con Ubuntu Pro · 24.04 LTS \\
+Cantidad y unidad & 12 suscripciones \\
+Ubicación & Nodo, banco de pruebas y borde en operación \\
+Especificación mínima & Parches de seguridad; CIS \\
+Redundancia / arquitectura & No aplica \\
+Garantía / soporte & Seguridad hasta 2034 \\
+Ciclo de vida / reposición & Cubre el contrato \\
+Requisito fuente & RT-03.15 \\
+\multicolumn{2}{I{1.000}}{T11-60 · UPS de gabinete} \\
+Componente & Gabinetes de borde \\
+Categoría y responsable & Energía · Overfore \\
+Marca o modelo de referencia y versión & UPS de montaje en gabinete o equivalente · N/A \\
+Cantidad y unidad & 4 unidades \\
+Ubicación & Portería, planta, relaves y acopio de puerto \\
+Especificación mínima & 30 min o más a plena carga; transferencia al generador en portería y planta; cierre ordenado en relaves y puerto \\
+Redundancia / arquitectura & No aplica \\
+Garantía / soporte & Garantía 3 años \\
+Ciclo de vida / reposición & Baterías a los 36 meses \\
+Requisito fuente & Transversales, Cap. 6.1, p. 14 \\
+\multicolumn{2}{I{1.000}}{T11-63 · Fibra A} \\
+Componente & Enlace faena-nube \\
+Categoría y responsable & Enlaces · Cliente mantiene \\
+Marca o modelo de referencia y versión & Servicio existente · N/A \\
+Cantidad y unidad & 1 enlace \\
+Ubicación & Proveedor actual, ruta física existente \\
+Especificación mínima & 100 Mbps \\
+Redundancia / arquitectura & Activo-activo con la fibra B \\
+Garantía / soporte & Contrato del Cliente \\
+Ciclo de vida / reposición & N/A \\
+Requisito fuente & RT-03.17 \\
+\multicolumn{2}{I{1.000}}{T11-64 · Fibra B} \\
+Componente & Enlace faena-nube \\
+Categoría y responsable & Enlaces · Overfore \\
+Marca o modelo de referencia y versión & Servicio Ethernet o IP empresarial · N/A \\
+Cantidad y unidad & 1 enlace \\
+Ubicación & Otro proveedor, trazado distinto incluido el camino privado de 26 km, otra acometida \\
+Especificación mínima & 100 Mbps simétricos; ampliable al doble por contrato \\
+Redundancia / arquitectura & Diversidad física y contractual \\
+Garantía / soporte & Soporte 24x7 \\
+Ciclo de vida / reposición & Prueba de corte trimestral \\
+Requisito fuente & RT-03.17; RT-06.32 \\
+\multicolumn{2}{I{1.000}}{T11-65 · Router 4G con servicio de otro operador} \\
+Componente & Trazabilidad y Embarque (acopio de puerto) \\
+Categoría y responsable & Enlaces · Overfore \\
+Marca o modelo de referencia y versión & Cisco IR1101 o equivalente · IOS XE soportado vigente \\
+Cantidad y unidad & 1 router y servicio \\
+Ubicación & Gabinete del acopio de puerto \\
+Especificación mínima & IPsec hacia la nube sobre el camino disponible \\
+Redundancia / arquitectura & Respaldo de la red portuaria sin SLA \\
+Garantía / soporte & 5 años 24x7 \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RT-03.17 \\
+\multicolumn{2}{I{1.000}}{T11-66 · Estudio de cobertura LTE del rajo} \\
+Componente & App SITCO Terreno y Botonera de Pala \\
+Categoría y responsable & Estudio · Overfore \\
+Marca o modelo de referencia y versión & Servicio de ingeniería RF · N/A \\
+Cantidad y unidad & 1 estudio \\
+Ubicación & Rajo; eNodeB existente del Cliente \\
+Especificación mínima & Zonas de sombra; evolución a 3 años; celdas faltantes \\
+Redundancia / arquitectura & No aplica \\
+Garantía / soporte & Ingeniería \\
+Ciclo de vida / reposición & Actualización anual \\
+Requisito fuente & Caso, Cap. 15 \\
+\multicolumn{2}{I{1.000}}{T11-67 · Tableta rugerizada} \\
+Componente & App SITCO Terreno \\
+Categoría y responsable & Terreno · Cliente compra / Overfore especifica \\
+Marca o modelo de referencia y versión & Dell Latitude 7030 Rugged Extreme o equivalente · Windows 11 IoT Enterprise LTSC 2024 \\
+Cantidad y unidad & 33 unidades \\
+Ubicación & 30 puestos: mina 10, mantenimiento 8, planta 6, seguridad 4, acopio 2 \\
+Especificación mínima & Licencia OEM; 1.000 nits; operable con guantes; IP65; caída de 1,2 m; −29 a 63 °C; lector de la credencial de proximidad actual (SUP-17); TPM 2.0; dos baterías intercambiables \\
+Redundancia / arquitectura & Stock de 10 \% (3 unidades) \\
+Garantía / soporte & 5 años; reposición 24 h \\
+Ciclo de vida / reposición & Baterías a los 24 meses \\
+Requisito fuente & RT-08.10 a RT-08.15; RNF-USA-001; RNF-USA-002 \\
+\multicolumn{2}{I{1.000}}{T11-68 · Botonera de cuatro botones} \\
+Componente & Botonera de Pala \\
+Categoría y responsable & Terreno · Cliente compra / Overfore especifica \\
+Marca o modelo de referencia y versión & Fabricación según especificación de Overfore · Firmware firmado \\
+Cantidad y unidad & 6 unidades \\
+Ubicación & Cabina de 5 palas y 1 repuesto \\
+Especificación mínima & 4 pulsadores IP67 operables con guantes; lector de la credencial de proximidad actual (SUP-17); módem LTE; elemento seguro; 48 h de registros cifrados; 24 V de cabina; soporte antivibración \\
+Redundancia / arquitectura & Stock de 10 \% \\
+Garantía / soporte & Soporte hasta agosto de 2031 \\
+Ciclo de vida / reposición & Sólo por falla \\
+Requisito fuente & RNF-USA-008; SUP-09 \\
+\multicolumn{2}{I{1.000}}{T11-69 · PC industrial de la Consola de Portería} \\
+Componente & Consola de Portería \\
+Categoría y responsable & Terreno · Cliente compra / Overfore especifica \\
+Marca o modelo de referencia y versión & PC de panel industrial con Windows 11 IoT Enterprise LTSC · Windows 11 IoT Enterprise LTSC 2024 \\
+Cantidad y unidad & 2 equipos \\
+Ubicación & Portería, uno por sentido \\
+Especificación mínima & Lector de la credencial de proximidad actual (SUP-17); TPM 2.0; conexión a torniquetes y al gabinete \\
+Redundancia / arquitectura & Lista local sin enlace \\
+Garantía / soporte & 5 años \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & RNF-DES-004 \\
+\multicolumn{2}{I{1.000}}{T11-70 · Lector facial por carril} \\
+Componente & Acreditación y Acceso (verificación facial) \\
+Categoría y responsable & Terreno · Cliente compra / Overfore especifica \\
+Marca o modelo de referencia y versión & IDEMIA VisionPass o HID o equivalente · Firmware soportado \\
+Cantidad y unidad & 7 unidades \\
+Ubicación & Torniquetes de portería: 6 en servicio (cinco carriles más uno de reserva) y 1 repuesto \\
+Especificación mínima & Verificación uno a uno; plantilla cifrada; 480 personas/h por carril \\
+Redundancia / arquitectura & 5 carriles + 1 de reserva \\
+Garantía / soporte & 5 años \\
+Ciclo de vida / reposición & Sin reposición programada \\
+Requisito fuente & SUP-13; Ley N° 21.719 \\
+\multicolumn{2}{I{1.000}}{T11-71 · Caudalímetro} \\
+Componente & Cumplimiento Ambiental (agua por área) \\
+Categoría y responsable & Terreno · Cliente compra / Overfore especifica \\
+Marca o modelo de referencia y versión & Caudalímetro electromagnético con salida digital · Firmware soportado \\
+Cantidad y unidad & 4 unidades \\
+Ubicación & Alimentación de planta, campamento, carga de aljibes y 1 repuesto \\
+Especificación mínima & Salida digital; IP67; la planta por la red de control y el diodo, los demás por la red de la faena \\
+Redundancia / arquitectura & Repuesto en faena \\
+Garantía / soporte & Garantía del fabricante \\
+Ciclo de vida / reposición & Calibración \\
+Requisito fuente & RF-CUM-013 \\
+\end{tabla}
+
+\anexo{Mapeo lógico y físico}
+El mapeo relaciona los módulos y componentes de la solución con su implementación lógica y física, y permite localizar las referencias que respaldan cada decisión.
+
+\seccion{Correspondencia entre solución y arquitectura}
+La Tabla \ref{tab:correspondencia-cada-componente-capa-componente-fisico} relaciona cada componente de la sección 3.3 del Subdocumento 3 con su capa de la arquitectura lógica (4.1), su componente físico en la nube y en la faena (4.2) y sus ítems del Formulario T-11.
+
+\begin{tabla}{I{0.437}I{0.563}}{Correspondencia de cada componente con su capa, su componente físico y sus ítems del Formulario T-11.}{tab:correspondencia-cada-componente-capa-componente-fisico}
+  {\cab{Campo} & \cab{Contenido}}
+  {Fuente: elaboración propia a partir del Esquema de Solución del Subdocumento 3 y del Formulario T-11.}
+\multicolumn{2}{I{1.000}}{App SITCO Terreno} \\
+Capa (4.1) & 1 \\
+Componente físico en la nube & Distribución firmada por Intune \\
+Componente físico en la faena & Tableta Dell Latitude 7030 Rugged con Windows 11 IoT LTSC Enterprise LTSC 2024 \\
+Ítems T-11 & T11-67; T11-25 \\
+\multicolumn{2}{I{1.000}}{Botonera de Pala} \\
+Capa (4.1) & 1 \\
+Componente físico en la nube & No aplica \\
+Componente físico en la faena & Caja de cuatro botones en cabina, por la LTE privada \\
+Ítems T-11 & T11-68 \\
+\multicolumn{2}{I{1.000}}{Consola de Portería} \\
+Capa (4.1) & 1 \\
+Componente físico en la nube & No aplica \\
+Componente físico en la faena & Dos PC industriales conectado al gabinete de portería \\
+Ítems T-11 & T11-69 \\
+\multicolumn{2}{I{1.000}}{Portal Web SITCO} \\
+Capa (4.1) & 1 \\
+Componente físico en la nube & AKS tras DNS, Front Door y Private Access \\
+Componente físico en la faena & Instancia local en el Nodo \\
+Ítems T-11 & T11-03; T11-04; T11-06; T11-10; T11-31 \\
+\multicolumn{2}{I{1.000}}{Portal de Contratistas} \\
+Capa (4.1) & 1 \\
+Componente físico en la nube & AKS tras DNS y Front Door \\
+Componente físico en la faena & No aplica \\
+Ítems T-11 & T11-03; T11-04; T11-10 \\
+\multicolumn{2}{I{1.000}}{Portal para Compradores} \\
+Capa (4.1) & 1 \\
+Componente físico en la nube & AKS tras DNS y Front Door \\
+Componente físico en la faena & No aplica \\
+Ítems T-11 & T11-03; T11-04; T11-10 \\
+\multicolumn{2}{I{1.000}}{Operación Mina} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS; base en PostgreSQL \\
+Componente físico en la faena & Servicio y base local en el Nodo \\
+Ítems T-11 & T11-10; T11-14; T11-31 \\
+\multicolumn{2}{I{1.000}}{Trazabilidad y Embarque} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS; base en PostgreSQL \\
+Componente físico en la faena & Servicio en el Nodo; acopio en el gabinete de puerto \\
+Ítems T-11 & T11-10; T11-14; T11-31; T11-53; T11-65 \\
+\multicolumn{2}{I{1.000}}{Conciliación Metalúrgica} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS con el cierre mensual \\
+Componente físico en la faena & Servicio en el Nodo con el balance del turno \\
+Ítems T-11 & T11-10; T11-14; T11-31 \\
+\multicolumn{2}{I{1.000}}{Equipos y Mantenimiento} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS; base en PostgreSQL \\
+Componente físico en la faena & No aplica \\
+Ítems T-11 & T11-10; T11-14 \\
+\multicolumn{2}{I{1.000}}{Acreditación y Acceso} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS; base en PostgreSQL \\
+Componente físico en la faena & Nodo; lista local en portería; lectores faciales (Etapa 2) \\
+Ítems T-11 & T11-10; T11-14; T11-31; T11-53; T11-70 \\
+\multicolumn{2}{I{1.000}}{Seguridad y Salud Ocupacional} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS; base en PostgreSQL \\
+Componente físico en la faena & Servicio y base local en el Nodo \\
+Ítems T-11 & T11-10; T11-14; T11-31 \\
+\multicolumn{2}{I{1.000}}{Cumplimiento Ambiental} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS; TimescaleDB en el grupo de datos \\
+Componente físico en la faena & Series en los gabinetes de relaves y planta; caudalímetros \\
+Ítems T-11 & T11-10; T11-16; T11-53; T11-60; T11-71 \\
+\multicolumn{2}{I{1.000}}{Indicadores y Centro Integrado} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS; ClickHouse \\
+Componente físico en la faena & No aplica \\
+Ítems T-11 & T11-10; T11-17 \\
+\multicolumn{2}{I{1.000}}{Administración y Servicios Comunes} \\
+Capa (4.1) & 4 \\
+Componente físico en la nube & AKS; PostgreSQL; Blob; OpenSearch; notificaciones \\
+Componente físico en la faena & Copia de identidades y alertas en el Nodo; la alerta de evacuación sale por el conector de radio y megafonía \\
+Ítems T-11 & T11-10; T11-14; T11-18; T11-19; T11-27 \\
+\multicolumn{2}{I{1.000}}{Integrador de Sistemas} \\
+Capa (4.1) & 5 \\
+Componente físico en la nube & Conectores de SAP, telemetría, fatiga, planificación, mensajería y firma \\
+Componente físico en la faena & Conectores de despacho, laboratorio, báscula, radio y megafonía (software, síncrono) en el Nodo; historiador en la DMZ de planta; control de acceso en portería \\
+Ítems T-11 & T11-10; T11-31; T11-55; T11-56; T11-57; T11-58 \\
+\multicolumn{2}{I{1.000}}{Nodo de Faena} \\
+Capa (4.1) & 5 \\
+Componente físico en la nube & Gestión por Azure Arc \\
+Componente físico en la faena & 3 Cisco UCS C240 M8 en la sala técnica y agentes en los gabinetes \\
+Ítems T-11 & T11-26; T11-31; T11-53; T11-59 \\
+\end{tabla}
+
+\anexo{Responsabilidades y fuentes}
+Las responsabilidades delimitan las intervenciones de Overfore, del Cliente y de terceros. Las fuentes identifican los antecedentes utilizados para definir y verificar la arquitectura.
+
+\seccion{Distribución de responsabilidades}
+La Tabla \ref{tab:distribucion-responsabilidades-entre-overfore-cliente-terceros} delimita, para cada frente, lo que suministra Overfore, lo que compra u obra el cliente, la evidencia de aceptación y el límite de alcance.
+
+\begin{tabla}{I{0.271}I{0.729}}{Distribución de responsabilidades entre Overfore, el cliente y terceros.}{tab:distribucion-responsabilidades-entre-overfore-cliente-terceros}
+  {\cab{Campo} & \cab{Contenido}}
+  {Fuente: elaboración propia a partir de las Bases técnicas transversales (Compañía Minera Altos de Aranda [CMAA], 2026c, caps. 3, 6 y 8) y de las Bases técnicas del caso Minería (CMAA, 2026b, caps. 11 y 15)}
+\multicolumn{2}{I{1.000}}{Nube y software} \\
+Overfore & Contrata y configura durante 56 meses; IaC; licencias; soporte; reporte FinOps mensual \\
+Cliente & Aprueba suscripciones y recibe la administración \\
+Evidencia de aceptación & Despliegue reproducible y cuentas a nombre del Cliente \\
+Límite de alcance & Costos en la Oferta Económica \\
+\multicolumn{2}{I{1.000}}{Sala técnica de faena} \\
+Overfore & Provee el módulo prefabricado; especifica, coordina, configura y prueba \\
+Cliente & Obra civil: base, acometida eléctrica y canalizaciones \\
+Evidencia de aceptación & Plano, certificaciones y pruebas \\
+Límite de alcance & RT-06.06; Caso, Cap. 15, p. 25 \\
+\multicolumn{2}{I{1.000}}{Energía de respaldo} \\
+Overfore & Especifica generadores, ATS, estanque, UPS de sala y de gabinete; prueba bajo carga \\
+Cliente & Instala, provee combustible y mantiene el contrato de reabastecimiento \\
+Evidencia de aceptación & Prueba mensual bajo carga y medición semestral \\
+Límite de alcance & RT-06.07 a RT-06.12 \\
+\multicolumn{2}{I{1.000}}{Sala de 2014} \\
+Overfore & Habilita soporte, respaldo local y custodia \\
+Cliente & Facilita el recinto existente \\
+Evidencia de aceptación & Inventario de medios y puestos operativos \\
+Límite de alcance & RT-06.26 a RT-06.31 \\
+\multicolumn{2}{I{1.000}}{Hardware TI} \\
+Overfore & Provee servidores Cisco y de borde, red, seguridad y respaldo \\
+Cliente & Recibe activos y facilita la instalación \\
+Evidencia de aceptación & Inventario, seriales, garantía y pruebas de HA \\
+Límite de alcance & Equipamiento nuevo (RT-08.06) \\
+\multicolumn{2}{I{1.000}}{Hardware de terreno} \\
+Overfore & Especifica y entrega una unidad de cada tipo para aceptación \\
+Cliente & Adquiere el parque masivo \\
+Evidencia de aceptación & Prueba de aceptación previa a la compra masiva \\
+Límite de alcance & RT-08.10 a RT-08.15 \\
+\multicolumn{2}{I{1.000}}{Sistemas existentes} \\
+Overfore & Integra sin modificar la lógica de control, incluido el conector de software de radio y megafonía en el Nodo; valida la interfaz física en el levantamiento \\
+Cliente & Mantiene despacho, laboratorio, báscula, historiador, SAP, planificación, el radioenlace de relaves y el sistema de radio y megafonía con su antena \\
+Evidencia de aceptación & Pruebas de lectura y reconciliación \\
+Límite de alcance & No se reemplazan; no se provee hardware de radio ni antena \\
+\multicolumn{2}{I{1.000}}{Red del rajo} \\
+Overfore & Estudio de cobertura sobre el eNodeB existente \\
+Cliente & Ejecuta la construcción si la aprueba \\
+Evidencia de aceptación & Mapa de cobertura \\
+Límite de alcance & Construcción excluida \\
+\multicolumn{2}{I{1.000}}{Enlaces} \\
+Overfore & Contrata la fibra B, el enlace satelital de órbita baja y el router 4G del acopio \\
+Cliente & Mantiene la fibra A y el radioenlace existente a relaves; coordina con el operador portuario \\
+Evidencia de aceptación & Prueba de conmutación entre fibras \\
+Límite de alcance & RT-03.17 \\
+\multicolumn{2}{I{1.000}}{Operación y ciclo de vida} \\
+Overfore & Monitorea, parchea, mantiene stock en faena y coordina disposición \\
+Cliente & Autoriza ventanas y custodia activos \\
+Evidencia de aceptación & Certificados de borrado y disposición \\
+Límite de alcance & 56 meses \\
+\end{tabla}
+
+\seccion{Fuentes de las especificaciones}
+La Tabla \ref{tab:fuentes-especificaciones} identifica los documentos de las Bases y las fuentes técnicas de los fabricantes con que se definieron y verificaron las especificaciones.
+
+\begin{tabla}{I{0.110}I{0.890}}{Fuentes de las especificaciones.}{tab:fuentes-especificaciones}
+  {\cab{Campo} & \cab{Contenido}}
+  {Fuente: elaboración propia.}
+\multicolumn{2}{I{1.000}}{Bases técnicas transversales} \\
+Uso & Híbrido, ambientes, sitios, energía, hardware, terreno y plantilla de volumetría \\
+Ruta / URL & Compañía Minera Altos de Aranda (2026c), Cap. 3 (p. 8), Cap. 4 (p. 10), Cap. 6 (pp. 14-17), Cap. 7 (pp. 17-18), Cap. 8 (pp. 18-19); Capítulo B \\
+\multicolumn{2}{I{1.000}}{Bases técnicas del caso Minería} \\
+Uso & Sala de 40 m², tipología, volumetría y restricciones \\
+Ruta / URL & Compañía Minera Altos de Aranda (2026b), Cap. 6 (p. 11), Cap. 14 (p. 23) y Cap. 15 (pp. 24-25) \\
+\multicolumn{2}{I{1.000}}{Cisco UCS C-Series} \\
+Uso & Servidores del Nodo y del banco \\
+Ruta / URL & https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-c-series-rack-servers/index.html \\
+\multicolumn{2}{I{1.000}}{Cisco Secure Firewall ISA3000} \\
+Uso & Cortafuegos industrial \\
+Ruta / URL & https://www.cisco.com/c/en/us/products/security/industrial-security-appliance-3000/index.html \\
+\multicolumn{2}{I{1.000}}{Cisco Catalyst IE3400} \\
+Uso & Conmutador industrial \\
+Ruta / URL & https://www.cisco.com/c/en/us/products/switches/catalyst-ie3400-rugged-series/index.html \\
+\multicolumn{2}{I{1.000}}{Dell PowerEdge XR4000} \\
+Uso & Servidor de borde \\
+Ruta / URL & https://www.dell.com/support/product-details/en-us/product/poweredge-xr4000/docs \\
+\multicolumn{2}{I{1.000}}{Dell Latitude 7030 Rugged Extreme} \\
+Uso & Tableta \\
+Ruta / URL & https://www.dell.com/en-us/shop/dell-laptops/latitude-7030-rugged-extreme-tablet/spd/latitude-10-7030-rugged-tablet \\
+\end{tabla}
+
+\anexo{Volumetría y dimensionamiento}
+Este anexo presenta la carga operacional de partida, la proyección de crecimiento y las capacidades de diseño. Cada resultado se acompaña de la fórmula con que se calcula y de la sección del Subdocumento 4 que lo usa.
+
+\seccion{Volumetría del Capítulo B}
+La Tabla \ref{tab:plantilla-volumetria-capitulo-b} completa la plantilla de volumetría del Capítulo B de las Bases técnicas transversales con valores derivados de la sección 4.2.4 del Subdocumento 4. El margen es la capacidad de diseño dividida por el valor más exigente, proyectado o peak, menos uno.
+
+\begin{tabla}{I{0.054}I{0.267}I{0.191}D{0.140}D{0.169}I{0.178}}{Plantilla de volumetría del Capítulo B.}{tab:plantilla-volumetria-capitulo-b}
+  {\cab{N°} & \cab{Dimensión} & \cab{Unidad} & \cab{Actual} & \cab{Proyectada a 3 años} & \cab{Peak}}
+  {Fuente: elaboración propia a partir de la plantilla del Capítulo B de las Bases técnicas transversales (CMAA, 2026c).}
+1 & Transacciones de negocio anuales & hechos/año & 2.958.299 & 3.165.380 & Se mide en TPS (filas 2 y 3) \\
+2 & Transacciones por segundo en régimen normal & TPS & 40 & 43,15 & Ver fila 3 \\
+3 & Transacciones por segundo en peak & TPS & 200 & 200 & 200 \\
+4 & Personas usuarias registradas & personas & 4.595 & 4.595 & 8.500 \\
+5 & Personas usuarias concurrentes & personas & 245 & 245 & 505 \\
+6 & Contrapartes externas activas & organizaciones & 106 & 116 & 116 \\
+7 & Documentos procesados al año & documentos & 86.700 & 87.579 & 25.143 \\
+8 & Volumen de almacenamiento transaccional & GB & 12 & 47,50 & 71,16 \\
+9 & Volumen de almacenamiento documental y multimedia & TB & 0,193 & 0,48 & 0,68 \\
+10 & Volumen de datos históricos a migrar & GB & 205 & 205 & 205 \\
+11 & Dispositivos de terreno en operación & dispositivos & 284 & 346,84 & 346,84 \\
+12 & Sitios u operaciones a cubrir & sitios & 7 & 7 & 7 \\
+13 & Integraciones con sistemas internos & integraciones & 9 & 9 & 9 \\
+14 & Integraciones con sistemas externos & integraciones & 5 & 5 & 5 \\
+15 & Contactos mensuales al centro de atención & contactos/mes & 1.250 & 1.250 & 3.750 \\
+16 & Ventana operacional crítica (horario y estacionalidad) & texto & 24 horas, 365 días; relevos de 08:00 y 20:00 & Sin cambio & Relevo de 08:00 (45 a 60 min); cierre mensual en los 5 primeros días hábiles; detenciones de marzo y septiembre \\
+\end{tabla}
+
+\seccion{Detalle de la plantilla de volumetría}
+La Tabla \ref{tab:detalle-cada-dimension-plantilla-volumetria} detalla cada dimensión de la plantilla con su condición de peak, su capacidad de diseño, su margen de crecimiento y su base de cálculo.
+
+\begin{tabla}{I{0.296}I{0.704}}{Detalle de cada dimensión de la plantilla de volumetría.}{tab:detalle-cada-dimension-plantilla-volumetria}
+  {\cab{Campo} & \cab{Contenido}}
+  {Fuente: elaboración propia a partir de la plantilla del Capítulo B de las Bases técnicas transversales (CMAA, 2026c).}
+\multicolumn{2}{I{1.000}}{1} \\
+Dimensión & Transacciones de negocio anuales \\
+Unidad & hechos/año \\
+Actual & 2.958.299 \\
+Proyectada a 3 años & 3.165.380 \\
+Peak & Se mide en TPS (filas 2 y 3) \\
+Condición del peak & Volumen anual sin peak propio \\
+Capacidad de diseño & 8.874.898 \\
+Margen de crecimiento & 180\% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Hechos diarios del caso × 365; 3 años con el crecimiento de viajes (+7 \%); diseño 3x (D.3.1; 4.2.4.1) \\
+\multicolumn{2}{I{1.000}}{2} \\
+Dimensión & Transacciones por segundo en régimen normal \\
+Unidad & TPS \\
+Actual & 40 \\
+Proyectada a 3 años & 43,15 \\
+Peak & Ver fila 3 \\
+Condición del peak & Media jornada, 245 personas \\
+Capacidad de diseño & 337,5 \\
+Margen de crecimiento & 682\% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 245 personas × 0,1 TPS, conectores y terreno; capacidad nominal de 27 réplicas de servicio × 0,5 vCPU × 25 TPS/vCPU (D.3.2 y D.3.3). \\
+\multicolumn{2}{I{1.000}}{3} \\
+Dimensión & Transacciones por segundo en peak \\
+Unidad & TPS \\
+Actual & 200 \\
+Proyectada a 3 años & 200 \\
+Peak & 200 \\
+Condición del peak & Pico comprometido de 200 TPS; sensibilidad en detención mayor, con el doble de administradores de contratistas: 153 TPS; prueba de carga a 300 TPS \\
+Capacidad de diseño & 600 \\
+Margen de crecimiento & 200 \% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & La suma por canales aproxima 135 TPS; se adopta el pico declarado de 200 TPS, prueba a 300 TPS y crecimiento sin rediseño a 600 TPS. \\
+\multicolumn{2}{I{1.000}}{4} \\
+Dimensión & Personas usuarias registradas \\
+Unidad & personas \\
+Actual & 4.595 \\
+Proyectada a 3 años & 4.595 \\
+Peak & 8.500 \\
+Condición del peak & Detención mayor de marzo o septiembre (dotación de 4.180 más 4.300 contratistas, ≈ 8.500) \\
+Capacidad de diseño & Escala por suscripción \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 1.895 propios + 100 cuentas externas + 2.400 contratistas; Entra ID P2 y External ID sin límite práctico (D.3.2; 4.2.4.2) \\
+\multicolumn{2}{I{1.000}}{5} \\
+Dimensión & Personas usuarias concurrentes \\
+Unidad & personas \\
+Actual & 245 \\
+Proyectada a 3 años & 245 \\
+Peak & 505 \\
+Condición del peak & Relevo de 08:00, 45 a 60 min, más 37 dispositivos de terreno \\
+Capacidad de diseño & 2.831 \\
+Margen de crecimiento & 461\% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Personas que atiende el grupo de servicios a 600 TPS, considerando 0,2 TPS por persona y la carga no atribuible a usuarios. \\
+\multicolumn{2}{I{1.000}}{6} \\
+Dimensión & Contrapartes externas activas \\
+Unidad & organizaciones \\
+Actual & 106 \\
+Proyectada a 3 años & 116 \\
+Peak & 116 \\
+Condición del peak & Sin variación: la detención suma personas, no empresas (supuesto) \\
+Capacidad de diseño & Escala por suscripción \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 90 empresas contratistas + 10 compradores y terceros + 6 proveedores integrados (D.3.9; 4.1.7.1) \\
+\multicolumn{2}{I{1.000}}{7} \\
+Dimensión & Documentos procesados al año \\
+Unidad & documentos \\
+Actual & 86.700 \\
+Proyectada a 3 años & 87.579 \\
+Peak & 25.143 \\
+Condición del peak & Documentos en el mes de una detención mayor (documentos/mes) \\
+Capacidad de diseño & Escala por consumo (Blob Storage) \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Seguridad 19.300 + acreditación ≈ 55.000 + guías ≈ 12.400; fotografías aparte (D.3.4 y D.3.9; 4.2.4.4) \\
+\multicolumn{2}{I{1.000}}{8} \\
+Dimensión & Volumen de almacenamiento transaccional \\
+Unidad & GB \\
+Actual & 12 \\
+Proyectada a 3 años & 47,50 \\
+Peak & 71,16 \\
+Condición del peak & Al quinto año (fin de contrato) \\
+Capacidad de diseño & 256 \\
+Margen de crecimiento & 260\% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 12 GB migrados + ≈ 11,8 GB/año; PostgreSQL de 256 GB ampliable en línea (D.3.4; 4.2.4.4) \\
+\multicolumn{2}{I{1.000}}{9} \\
+Dimensión & Volumen de almacenamiento documental y multimedia \\
+Unidad & TB \\
+Actual & 0,193 \\
+Proyectada a 3 años & 0,48 \\
+Peak & 0,68 \\
+Condición del peak & Al quinto año (fin de contrato) \\
+Capacidad de diseño & Escala por consumo (Blob Storage) \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 193 GB escaneados + ≈ 97 GB/año de evidencia y documentos (D.3.4; 4.2.4.4) \\
+\multicolumn{2}{I{1.000}}{10} \\
+Dimensión & Volumen de datos históricos a migrar \\
+Unidad & GB \\
+Actual & 205 \\
+Proyectada a 3 años & 205 \\
+Peak & 205 \\
+Condición del peak & Carga única en la migración \\
+Capacidad de diseño & Carga única, sin crecimiento \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & unos 12 GB de origen digital (datos estructurados e informes PDF) + 193,2 GB de formularios escaneados con su índice ≈ 205 GB (D.3.4; 4.2.4.4) \\
+\multicolumn{2}{I{1.000}}{11} \\
+Dimensión & Dispositivos de terreno en operación \\
+Unidad & dispositivos \\
+Actual & 284 \\
+Proyectada a 3 años & 346,84 \\
+Peak & 346,84 \\
+Condición del peak & Proyección a 3 años con todos los lectores en servicio \\
+Capacidad de diseño & Sin límite de la arquitectura \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 46 dispositivos SITCO + 186 instrumentos + 52 equipos con telemetría; existentes con +24 \% y +35 \% (D.3.7 y D.3.9; 4.2.1.3) \\
+\multicolumn{2}{I{1.000}}{12} \\
+Dimensión & Sitios u operaciones a cubrir \\
+Unidad & sitios \\
+Actual & 7 \\
+Proyectada a 3 años & 7 \\
+Peak & 7 \\
+Condición del peak & Sin variación \\
+Capacidad de diseño & Una segunda unidad operacional agrega su Nodo y gabinetes \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Rajo Aranda, portería, planta, relaves, acopio de puerto, CIO y Santiago; una segunda unidad operacional agrega su Nodo y gabinetes (4.2.4.6) \\
+\multicolumn{2}{I{1.000}}{13} \\
+Dimensión & Integraciones con sistemas internos \\
+Unidad & integraciones \\
+Actual & 9 \\
+Proyectada a 3 años & 9 \\
+Peak & 9 \\
+Condición del peak & Sin variación \\
+Capacidad de diseño & Un conector por sistema \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & SAP, despacho, laboratorio, historiador, planificación, báscula, control de acceso, portales de telemetría y control de fatiga (4.1.7.1) \\
+\multicolumn{2}{I{1.000}}{14} \\
+Dimensión & Integraciones con sistemas externos \\
+Unidad & integraciones \\
+Actual & 5 \\
+Proyectada a 3 años & 5 \\
+Peak & 5 \\
+Condición del peak & Sin variación \\
+Capacidad de diseño & Un conector por sistema \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Instrumentación ambiental y geotécnica, radio y megafonía, laboratorios externos, mensajería y firma electrónica (4.1.7.1) \\
+\multicolumn{2}{I{1.000}}{15} \\
+Dimensión & Contactos mensuales al centro de atención \\
+Unidad & contactos/mes \\
+Actual & 1.250 \\
+Proyectada a 3 años & 1.250 \\
+Peak & 3.750 \\
+Condición del peak & Estabilización de 3 meses tras cada puesta en marcha (supuesto) \\
+Capacidad de diseño & Mesa de ayuda 24x7 \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 1.250 contactos al mes (0,3 por usuario y mes para 4.180 usuarios permanentes, Formulario T-14, paquete 1.8.1.1); estabilización × 3 (D.3.9; supuesto propio) \\
+\multicolumn{2}{I{1.000}}{16} \\
+Dimensión & Ventana operacional crítica (horario y estacionalidad) \\
+Unidad & texto \\
+Actual & 24 horas, 365 días; relevos de 08:00 y 20:00 \\
+Proyectada a 3 años & Sin cambio \\
+Peak & Relevo de 08:00 (45 a 60 min); cierre mensual en los 5 primeros días hábiles; detenciones de marzo y septiembre \\
+Condición del peak & Cambios sólo de 03:00 a 05:00, nunca en el cierre contable ni 48 h antes de un embarque \\
+Capacidad de diseño & Operación sin enlace de 48 h \\
+Margen de crecimiento & No aplica (ver capacidad de diseño) \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 4.2.3.1; 4.2.4.2; 4.3.2.2; invierno altiplánico de enero y febrero puede cortar la ruta 1 a 3 días (4.3.1.3) \\
+\end{tabla}
+La Tabla \ref{tab:dimensiones-complementarias-determinan-capacidad} detalla las dimensiones complementarias que determinan la capacidad y que no forman parte de la plantilla del Capítulo B.
+
+\begin{tabla}{I{0.296}I{0.704}}{Dimensiones complementarias que determinan la capacidad.}{tab:dimensiones-complementarias-determinan-capacidad}
+  {\cab{Campo} & \cab{Contenido}}
+  {Fuente: elaboración propia a partir de la volumetría operacional de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 14, p. 23).}
+\multicolumn{2}{I{1.000}}{C1} \\
+Dimensión & Lecturas de series de tiempo por segundo \\
+Unidad & lecturas/s \\
+Actual & 1.090 \\
+Proyectada a 3 años & 1.220,906 \\
+Peak & 1.090 \\
+Condición del peak & Continuo, sin peak horario \\
+Capacidad de diseño & 3.269,45 \\
+Margen de crecimiento & 168\% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Historiador + telemetría + instrumentos con sus tasas del caso (D.3.1; 4.2.4.1) \\
+\multicolumn{2}{I{1.000}}{C2} \\
+Dimensión & Eventos de dominio por día \\
+Unidad & eventos/día \\
+Actual & 24.314,79 \\
+Proyectada a 3 años & 26.016,825 \\
+Peak & No aplica \\
+Condición del peak & Flujo diario; cola de 48 h en C6 \\
+Capacidad de diseño & Escala con la volumetría \\
+Margen de crecimiento & No aplica \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Tres eventos por hecho operacional (D.3.1). \\
+\multicolumn{2}{I{1.000}}{C3} \\
+Dimensión & Series de tiempo almacenadas \\
+Unidad & TB \\
+Actual & 0,55 \\
+Proyectada a 3 años & 1,68 \\
+Peak & 3,53 \\
+Condición del peak & Al quinto año (fin de contrato) \\
+Capacidad de diseño & 6 \\
+Margen de crecimiento & 70\% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Discos de 3 TB iniciales ampliados a 6 TB por nodo para el horizonte base; el margen considera series, analítica e índice (D.3.4). \\
+\multicolumn{2}{I{1.000}}{C4} \\
+Dimensión & Ancho de banda faena hacia la nube en el relevo \\
+Unidad & Mbps \\
+Actual & 17,3 \\
+Proyectada a 3 años & 17,4 \\
+Peak & 54 \\
+Condición del peak & Con tres veces la volumetría (factor de diseño) \\
+Capacidad de diseño & 100 \\
+Margen de crecimiento & 85\% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & 297 personas × 50 kbps + series + telemetría + eventos; una sola fibra de 100 Mbps (D.3.5; 4.2.4.5) \\
+\multicolumn{2}{I{1.000}}{C5} \\
+Dimensión & Una copia completa de SITCO \\
+Unidad & TB \\
+Actual & 0,205 \\
+Proyectada a 3 años & 2,66 \\
+Peak & 4,28 \\
+Condición del peak & Al quinto año (fin de contrato) \\
+Capacidad de diseño & Escala por consumo \\
+Margen de crecimiento & No aplica \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Suma de almacenes (D.3.4; 4.2.4.4) \\
+\multicolumn{2}{I{1.000}}{C6} \\
+Dimensión & Eventos acumulables en 48 horas sin enlace \\
+Unidad & eventos/48 h \\
+Actual & 48.672 \\
+Proyectada a 3 años & 52.079,84 \\
+Peak & 146.016 \\
+Condición del peak & Corte de 48 h con tres veces la volumetría \\
+Capacidad de diseño & 150.000 \\
+Margen de crecimiento & 3\% \\
+Base de cálculo (Anexo D.3 y Subdocumento 4) & Capacidad de 150.000 eventos para 146.016 en 48 h con 3x. \\
+\end{tabla}
+Criterios de proyección a 3 años: el caso proyecta +7 \% de viajes, +10 \% de etiquetas del historiador, +35 \% de equipos con telemetría y +24 \% de instrumentos (4.2.4.1). Cada dimensión usa la tasa más afín; la dotación se mantiene constante como supuesto. El caso proyecta de 4.180 a 4.400 personas en régimen y de 8.500 a 9.000 en detención (14.1), y esa alza de 5,3 \% queda cubierta por el factor de diseño de tres veces.
+
+Factor de diseño: tres veces la volumetría actual, que cubre la proyección a 3 años y la eventual réplica de la solución en otra unidad operacional hacia 2030 (4.2.4).
+
+\seccion{Dimensionamiento de equipos y servicios}
+Las tablas \ref{tab:volumetria-operacional-partida} a \ref{tab:otras-dimensiones-plantilla-capitulo-b} presentan los supuestos y las fórmulas de volumetría, cómputo, almacenamiento, enlaces, energía y dispositivos, alineados con las secciones 4.2.4 y 4.3.1 del Subdocumento 4. Cada fila indica si el valor proviene del caso, de un supuesto propio o de un cálculo, y qué decisión del Formulario T-11 sustenta.
+
+\subseccion{Volumetría operacional de partida (4.2.4.1)}
+La Tabla \ref{tab:volumetria-operacional-partida} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.229}D{0.165}I{0.182}I{0.215}I{0.209}}{Volumetría operacional de partida.}{tab:volumetria-operacional-partida}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia a partir de la volumetría operacional de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 14, p. 23).}
+Viajes de camión de extracción por día & 937 & viajes/día & Caso (volumetría anual ÷ 365); 4.2.4.1 & Hechos de negocio \\
+Ciclos de carguío por día & 3.753 & ciclos/día & Caso ÷ 365; 4.2.4.1 & Hechos de negocio \\
+Pozos de perforación por día & 126 & pozos/día & Caso ÷ 365; 4.2.4.1 & Hechos de negocio \\
+Muestras de laboratorio por día & 195 & muestras/día & Caso ÷ 365; 4.2.4.1 & Hechos de negocio \\
+Viajes de concentrado a puerto por día & 34 & viajes/día & Caso ÷ 365; 4.2.4.1 & Hechos de negocio \\
+Órdenes de trabajo de mantenimiento por día & 93 & OT/día & Caso ÷ 365; 4.2.4.1 & Hechos de negocio \\
+Incidentes, cuasi accidentes y observaciones por día & 32 & registros/día & Caso ÷ 365; 4.2.4.1 & Hechos de negocio \\
+Inspecciones de seguridad por día & 21 & registros/día & Caso ÷ 365; 4.2.4.1 & Hechos de negocio \\
+Alertas de fatiga por día & 13 & alertas/día & Caso ÷ 365; 4.2.4.1 & Hechos de negocio \\
+Ingresos y salidas de portería por día & 2.900 & pasos/día & Caso; 4.2.4.1 & Hechos de negocio \\
+Tronaduras por día & 0,93 & tronaduras/día & Caso ÷ 365 (340 al año) & Hechos de negocio \\
+Hechos de negocio por día & 8.104,93 & hechos/día & suma de las filas anteriores (≈ 8.100) & Bus, PostgreSQL \\
+Hechos de negocio al año & 2.958.299 & hechos/año & hechos/día × 365 & Capítulo B, fila 1 \\
+Hechos por segundo en promedio & 0,094 & hechos/s & hechos/día ÷ 86.400 (≈ 0,094) & No determina el cómputo \\
+Eventos de dominio por hecho & 3 & eventos & Supuesto: hecho, validación y efecto (4.2.4.1) & Bus de eventos \\
+Eventos de dominio por día & 24.314,79 & eventos/día & hechos × eventos por hecho (≈ 24.300) & Service Bus \\
+Eventos de dominio por hora & 1.014 & eventos/h & eventos/día ÷ 24 (≈ 1.000) & Cola de la bandeja de salida \\
+Etiquetas del historiador & 5.000 & etiquetas & 5.000 señales de ingesta continua del historiador, dentro de las 14.500 etiquetas totales consideradas en el caso & 1.440Series de tiempo \\
+Período de lectura del historiador & 5 & s & Caso; 4.2.4.1 & Series de tiempo \\
+Lecturas del historiador por día & 86.400.000 & lecturas/día & etiquetas × 86.400 ÷ período (86,4 millones) & TimescaleDB \\
+Equipos con telemetría & 52 & equipos & Caso; 4.2.4.1 & Series de tiempo \\
+Señales por equipo (una lectura por minuto) & 100 & señales & Supuesto propio (4.2.4.1) & Series de tiempo \\
+Lecturas de telemetría por día & 7.488.000 & lecturas/día & equipos × señales × 1.440 (7,5 millones) & TimescaleDB \\
+Instrumentos ambientales y geotécnicos & 186 & instrumentos & Caso; 4.2.4.1 & Series de tiempo \\
+Caudalímetros nuevos & 4 en total: 3 en servicio y 1 de repuesto & caudalímetros & Subdoc. 3, 3.3.3; 4.2.1.3 & T11-71 \\
+Lecturas de instrumentos y caudalímetros por día & 272.160 & lecturas/día & (186 instrumentos + 3 caudalímetros) × 1.440 (≈ 272.000) & TimescaleDB \\
+Lecturas de series por día & 94.160.160 & lecturas/día & suma (≈ 94 millones) & TimescaleDB \\
+Lecturas de series por segundo & 1.090 & lecturas/s & lecturas/día ÷ 86.400 (≈ 1.090) & Ingesta de series \\
+Crecimiento del caso a 3 años: viajes & 0,07 & fracción & Caso; 4.2.4.1 & Proyección de hechos y transacciones \\
+Crecimiento del caso a 3 años: etiquetas del historiador & 0,1 & fracción & Caso; 4.2.4.1 & Proyección de series \\
+Crecimiento del caso a 3 años: equipos con telemetría & 0,35 & fracción & Caso; 4.2.4.1 & Proyección de series y conectores \\
+Crecimiento del caso a 3 años: instrumentos & 0,24 & fracción & Caso; 4.2.4.1 & Proyección de series \\
+Crecimiento de la dotación a 3 años & 0 & fracción & Supuesto: dotación constante; el caso proyecta +5,3 \% (14.1), que cubre el factor de diseño de tres veces & Proyección de personas \\
+Factor de diseño sobre la volumetría actual & 3 & x & 4.2.4: proyección a 3 años + réplica en otra unidad hacia 2030 & Todos los recursos \\
+Hechos de negocio por día a 3 años & 8.671,815 & hechos/día & hechos × (1 + crecimiento de viajes) & Capítulo B, fila 1 \\
+Lecturas de series por día a 3 años & 105.486.278,4 & lecturas/día & cada fuente con su tasa del caso & Capítulo B, complementaria \\
+\end{tabla}
+
+\subseccion{Personas usuarias, concurrencia y transacciones (4.2.4.2)}
+La Tabla \ref{tab:personas-usuarias-concurrencia-transacciones} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.252}D{0.106}I{0.180}I{0.267}I{0.195}}{Personas usuarias, concurrencia y transacciones.}{tab:personas-usuarias-concurrencia-transacciones}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 2, pp. 4-5; cap. 14, p. 23).}
+Personas propias de la compañía & 1.780 & personas & Caso; 4.2.4.2 & Entra ID P2 \\
+Personas del CIO & 115 & personas & Caso; 4.2.4.2 & Entra ID P2 \\
+Identidades del personal propio & 1.895 & personas & compañía + CIO & T11-22 Entra ID P2 \\
+Cuentas externas (administradores de contratistas, compradores, operador portuario y laboratorios) & 300 & cuentas & 4.2.4.2 & Entra External ID \\
+Personas contratistas permanentes & 2.400 & personas & Caso; 4.2.4.2 & Credencial y PIN \\
+Personas contratistas adicionales en una detención mayor & 4.300 & personas & Caso; 4.2.4.2 & Credencial y PIN \\
+Personas usuarias registradas en régimen & 4.595 & personas & propios + externos + contratistas permanentes & Capítulo B, fila 4 \\
+Personas usuarias registradas en una detención mayor & 8.500 & personas & Caso; 4.2.1.3 (≈ 8.500) & Capítulo B, fila 4 \\
+Fracción del personal propio considerada en faena durante el relevo & 0,5 & fracción & Supuesto propio (4.2.4.2) & Concurrencia \\
+Personal propio en la faena durante el relevo (dos turnos) & 890 & personas & compañía × fracción en faena (890) & Concurrencia \\
+Fracción que consulta SITCO en el relevo & 0,334 & fracción & Supuesto propio (4.2.4.2) & Concurrencia \\
+Personas de la faena que consultan en el relevo & 297 & personas & personal en relevo × fracción (≈ 297) & Concurrencia y enlace \\
+Personas del CIO en el relevo & 48 & personas & 24 posiciones × 2 turnos; 4.2.4.2 & Concurrencia \\
+Personas de la oficina de Santiago & 60 & personas & 4.2.4.2 & Concurrencia \\
+Administradores de empresas contratistas & 90 & personas & Uno por empresa; 4.2.4.2 & Concurrencia \\
+Compradores y terceros & 10 & personas & Supuesto propio (4.2.4.2) & Concurrencia \\
+Personas concurrentes en el peak (relevo 08:00) & 505 & personas & suma (≈ 505) & Capítulo B, fila 5 \\
+Personas concurrentes en régimen (media jornada) & 245 & personas & Supuesto propio (4.2.4.2) & Capítulo B, fila 5 \\
+Personas de la faena conectadas a la nube en régimen & 111 & personas & 4.2.4.5 & Ancho de banda \\
+Intervalo entre acciones en el relevo & 30 & s & Supuesto propio (4.2.4.2) & TPS \\
+Llamadas a servicios por acción & 6 & llamadas & Supuesto propio (4.2.4.2) & TPS \\
+Transacciones por segundo por persona en el peak & 0,2 & Transacciones & llamadas ÷ intervalo (0,2) & AKS \\
+TPS de personas en el peak & 101 & TPS & concurrentes × TPS por persona (≈ 101) & AKS \\
+Tabletas en uso en el relevo & 30 & tabletas & puestos que registran (D.3.7) & TPS \\
+TPS por tableta en el relevo & 0,5 & TPS & Supuesto propio (4.2.4.2) & TPS \\
+TPS de tabletas & 15 & TPS & tabletas × TPS por tableta (15) & AKS \\
+TPS de botoneras & 1 & TPS & 4.2.4.2 & AKS \\
+TPS de consolas de portería & 2 & TPS & 4.2.4.2 & AKS \\
+Dotación en régimen & 4.180 & personas & Caso; 4.2.1.3 & Portería \\
+Dotación en una detención mayor & 8.500 & personas & Caso; 4.2.1.3 & Portería \\
+Fracción de los pasos en los dos relevos & 0,7 & fracción & Supuesto propio (4.2.1.3) & Portería \\
+Pasos de portería por relevo de una hora & 1.015 & pasos/h & pasos/día × fracción ÷ 2 (≈ 1.015) & Carriles de portería \\
+Pasos por hora en el relevo de una detención mayor & 2.064 & pasos/h & relevo × dotación de detención ÷ normal (≈ 2.064) & Carriles de portería \\
+Transacciones por paso de portería & 3 & TPS & Supuesto propio (4.2.4.2) & TPS \\
+TPS de pasos de portería & 1,7 & TPS & 2.064 pasos/h × 3 transacciones ÷ 3.600 (≈ 1,7) & AKS \\
+TPS del procesamiento de eventos del cierre de turno & 5 & TPS & 4.2.4.2 & AKS \\
+TPS de los conectores de la nube & 9 & TPS & 4.2.4.2 (estado de los 52 equipos) & AKS \\
+TPS estimadas por suma de canales en el pico & 135 & TPS & Estimación por personas, terreno, portería, eventos y conectores (≈ 135 TPS) & AKS \\
+TPS de pico declaradas para el diseño & 200 & TPS & Pico de 200 TPS adoptado por la arquitectura lógica; cubre la estimación por canales & Capítulo B, fila 3 \\
+Intervalo entre acciones en régimen & 60 & s & Supuesto propio (4.2.4.2) & TPS \\
+TPS de personas en régimen & 24,5 & TPS & concurrentes × llamadas ÷ intervalo (24,5) & AKS \\
+TPS de terreno, portería y eventos en régimen & 6,5 & TPS & Supuesto propio (4.2.4.2) & AKS \\
+TPS en régimen & 40 & TPS & 24,5 TPS de usuarios + 9 TPS de conectores + 6,5 TPS de terreno, portería y eventos. & Capítulo B, fila 2 \\
+Factor de la prueba de carga & 1,5 & x & 4.2.4.2 & Preproducción \\
+TPS de la prueba de carga & 300 & TPS & Prueba de carga: 200 TPS × 1,5 = 300 TPS & Preproducción \\
+TPS de crecimiento sin rediseño & 600 & TPS & Crecimiento sin rediseño: 200 TPS × 3 = 600 TPS & Límite superior de AKS \\
+TPS en detención mayor (sensibilidad) & 153 & TPS & 135 + 90 administradores de contratistas × (1 acción / 30 s) × 6 llamadas = 153 & Dentro de la punta de 200 TPS \\
+TPS en el peak a 3 años & 200 & TPS & Mayor entre el pico declarado y la proyección por canales a tres años & Capítulo B, fila 3 \\
+TPS en régimen a 3 años & 43,15 & TPS & misma regla & Capítulo B, fila 2 \\
+\end{tabla}
+
+\subseccion{Cómputo en la nube y en la faena (4.2.4.3)}
+La Tabla \ref{tab:computo-nube-faena} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.303}D{0.095}I{0.154}I{0.274}I{0.173}}{Cómputo en la nube y en la faena.}{tab:computo-nube-faena}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia.}
+Servicios de negocio & 9 & servicios & 4.1, ADR-01 & AKS \\
+Réplicas mínimas por servicio de negocio & 3 & réplicas & Una réplica por zona en producción (4.2.2.2 y 4.2.4.3) & 27 réplicas de los nueve servicios \\
+vCPU solicitada por réplica de servicio de negocio & 0,5 & vCPU & Supuesto propio (4.2.4.3) & AKS \\
+Portales & 3 & portales & 4.1, capa 1 & AKS \\
+Conectores que corren en la nube & 8 & conectores & 4.2.4.3; 4.1, Tabla \refext{S4}{tab:conectores-integrador-sistemas-etapa-lugar-ejecucion} & AKS \\
+vCPU por réplica de portal o conector & 0,25 & vCPU & Supuesto propio (4.2.4.3) & AKS \\
+Sobrecarga de malla de servicios y agentes & 1,71 & fracción & Supuesto propio (4.2.4.3) & AKS \\
+vCPU solicitada por el grupo de servicios & 21,85 & vCPU & 27 réplicas de servicios; dos por portal y conector; más 15 \% de malla y agentes (≈ 21,9 vCPU) & Grupo de servicios \\
+vCPU asignables por nodo D8s\_v5 & 7 & vCPU & 8 vCPU menos reserva del sistema & Grupo de servicios \\
+Nodos del grupo de servicios en régimen & 4 & nodos & Cuatro nodos iniciales D8s\_v5; aproximadamente 28 vCPU asignables & 4 nodos D8s\_v5 \\
+Capacidad de servicio por vCPU & 25 & TPS/vCPU & Supuesto propio; se verifica en Preproducción & AKS \\
+TPS atendidas por las réplicas mínimas & 337,5 & TPS & 27 réplicas × 0,5 vCPU × 25 TPS/vCPU = 337,5 TPS nominales & Cubre la prueba sostenida de 300 TPS, sujeto a medición de latencia \\
+vCPU para las TPS de crecimiento & 37,375 & vCPU & 54 réplicas de servicios para 600 TPS, más dos por portal y conector y 15 \% de malla (≈ 37,4 vCPU) & Grupo de servicios \\
+Nodos para el crecimiento & 4 & nodos & 4 nodos D8s\_v5 para el crecimiento, con 21 vCPU asignables & Grupo de servicios \\
+Máximo configurado del grupo de servicios & 9 & nodos & Escalado de 4 a 9 nodos D8s\_v5 & 4 a 9 nodos D8s\_v5 \\
+Margen del máximo sobre el crecimiento & 0,69 & fracción & Capacidad de nueve nodos comparada con la solicitud de 37,4 vCPU del crecimiento & Plan de crecimiento \\
+Nodos del grupo de datos (E8s\_v5) & 3 & nodos & 4.2.2.2 & Grupo de datos \\
+vCPU asignables por nodo de datos & 7 & vCPU & Supuesto: 8 vCPU menos reserva & Grupo de datos \\
+Memoria asignable por nodo de datos & 53 & GB & Supuesto: 64 GB menos reserva del sistema & Grupo de datos \\
+vCPU solicitada por TimescaleDB, ClickHouse y OpenSearch & 16,5 & vCPU & 4.2.4.3 & Grupo de datos \\
+Memoria solicitada por los almacenes del grupo de datos & 126 & GB & 4.2.4.3 & Grupo de datos \\
+Uso de vCPU del grupo de datos & 0,79 & fracción & solicitado ÷ asignable (≈ 80 \%) & 3 nodos E8s\_v5 \\
+Uso de memoria del grupo de datos & 0,79 & fracción & solicitado ÷ asignable (≈ 80 \%) & 3 nodos E8s\_v5 \\
+Sentencias SQL por transacción & 5 & sentencias & Supuesto propio (4.2.4.3) & PostgreSQL \\
+Sentencias por segundo en el peak & 1.000 & sentencias/s & 200 TPS × 5 sentencias por transacción = 1.000 sentencias/s & PostgreSQL D4ds\_v5 \\
+Nodo: cinco módulos con tres réplicas de 2 GB & 30 & GB & 4.2.4.3 & UCS C240 M8 \\
+Nodo: instancia local del Portal Web SITCO & 4 & GB & 4.2.4.3 & UCS C240 M8 \\
+Nodo: puerta operacional & 3 & GB & 4.2.4.3 & UCS C240 M8 \\
+Nodo: conectores locales & 8 & GB & 4.2.4.3 & UCS C240 M8 \\
+Nodo: bandeja de salida y reconciliación & 4 & GB & 4.2.4.3 & UCS C240 M8 \\
+Nodo: tres instancias de PostgreSQL con TimescaleDB & 96 & GB & 4.2.4.3 (7 días de series en memoria) & UCS C240 M8 \\
+Nodo: observabilidad local & 16 & GB & 4.2.4.3 & UCS C240 M8 \\
+Nodo: servicios de plataforma & 4 & GB & 4.2.4.3 & UCS C240 M8 \\
+Nodo: sistema y K3s & 24 & GB & 4.2.4.3 & UCS C240 M8 \\
+Memoria en uso del clúster del Nodo & 189 & GB & suma (189) & UCS C240 M8 \\
+Memoria por servidor del Nodo & 256 & GB & 4.2.1.2 & T11-31 \\
+Servidores disponibles con uno fuera de servicio & 2 & servidores & Criterio N−1 (4.2.4.3) & T11-31 \\
+Uso de memoria con un servidor fuera & 0,37 & fracción & memoria en uso ÷ memoria de dos servidores (37 \%) & UCS C240 M8 \\
+Memoria en uso con tres veces la volumetría & 285 & GB & la memoria de PostgreSQL se duplica (4.2.4.3) & UCS C240 M8 \\
+Uso de memoria con 3x y un servidor fuera & 0,56 & fracción & (56 \%) & Bajo el umbral \\
+Umbral que dispara una ampliación & 0,6 & fracción & 4.2.4.3; 4.2.4.6 & Plan de crecimiento \\
+Uso si cada servidor tuviera 128 GB & 0,74 & fracción & alternativa descartada (74 \%) & Justifica 256 GB \\
+TPS locales en el peak durante un corte & 120 & TPS & Punta local de referencia durante un corte, según 4.2.4.3 & UCS C240 M8 \\
+vCPU usadas por el Nodo en el peak de un corte & 40 & vCPU & Demanda estimada entre servicios, base, ingesta y observabilidad durante el corte; se verifica en prueba aislada de 48 h & UCS C240 M8 \\
+Núcleos por servidor del Nodo & 24 & núcleos & 4.2.1.2 & T11-31 \\
+Hilos de dos servidores (dos hilos por núcleo) & 96 & hilos & 24 núcleos × 2 hilos × 2 servidores (96) & UCS C240 M8 \\
+Uso de procesador del Nodo con un servidor fuera & 0,42 & fracción & 40 vCPU estimadas frente a 96 hilos disponibles con un servidor fuera (≈ 42 \%) & UCS C240 M8 \\
+Servidor de borde: vCPU usadas & 4 & vCPU & 4.2.4.3 & XR4000 \\
+Servidor de borde: núcleos & 8 & núcleos & 4.2.1.2 & T11-53 \\
+Servidor de borde: memoria usada & 12 & GB & 4.2.4.3 & XR4000 \\
+Servidor de borde: memoria instalada & 32 & GB & 4.2.1.2 & T11-53 \\
+Uso de procesador del servidor de borde & 0,5 & fracción & (50 \%) & XR4000 \\
+Uso de memoria del servidor de borde & 0,375 & fracción & (37 \%) & XR4000 \\
+\end{tabla}
+
+\subseccion{Almacenamiento a cinco años (4.2.4.4)}
+La Tabla \ref{tab:almacenamiento-cinco-anos} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.282}D{0.099}I{0.169}I{0.258}I{0.192}}{Almacenamiento a cinco años.}{tab:almacenamiento-cinco-anos}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia.}
+Registro transaccional por hecho & 2 & KB & Supuesto propio (4.2.4.4) & PostgreSQL \\
+Auditoría por hecho & 2 & KB & Supuesto propio (4.2.4.4) & PostgreSQL \\
+Almacenamiento transaccional anual & 11,83 & GB/año & hechos × 4 KB × 365 (≈ 12) & PostgreSQL \\
+Datos estructurados migrados & 12 & GB & 4.2.4.4 & PostgreSQL \\
+Horizonte de proyección & 5 & años & Cubre los 56 meses del contrato & Todos \\
+PostgreSQL al tercer año & 47,50 & GB & anual × 3 + migrados & Capítulo B, fila 8 \\
+PostgreSQL al quinto año & 71,16 & GB & anual × 5 + migrados (≈ 71) & PostgreSQL de 256 GB \\
+Almacenamiento del servidor PostgreSQL & 256 & GB & 4.2.2.2 & T11-14 \\
+Uso de PostgreSQL al quinto año & 0,28 & fracción & (28 \%) & PostgreSQL \\
+PostgreSQL al quinto año con 3x & 189,49 & GB & con el factor de diseño & Ampliación en línea \\
+Almacenamiento libre al quinto año con 3x & 0,26 & fracción & (≈ 26 \%) & Plan de crecimiento \\
+Bytes por lectura del historiador, con índice & 64 & bytes & 64 bytes por muestra del historiador; las demás señales usan 60 bytes por muestra & TimescaleDB \\
+Series crudas por día & 6 & GB/día & Historiador: 86,4 millones × 64 bytes; otras señales: 7,76 millones × 60 bytes (≈ 6,0 GB/día) & TimescaleDB \\
+Series crudas al año & 2,19 & TB/año & Series crudas por día × 365 (≈ 2,19 TB/año) & TimescaleDB \\
+Compresión de TimescaleDB por antigüedad & 4 & x & 4.2.2.1 & TimescaleDB en AKS \\
+Series comprimidas al año & 0,55 & TB/año & Series crudas al año ÷ 4 (≈ 0,55 TB/año) & TimescaleDB \\
+Días recientes sin comprimir & 7 & días & 4.2.4.2 (Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno}) & TimescaleDB \\
+Series al tercer año & 1,68 & TB & anual × 3 + 7 días crudos & Disco de datos \\
+Series al quinto año & 2,78 & TB & Cinco años de series comprimidas más siete días crudos (≈ 2,78 TB) & Disco de datos \\
+Modelo analítico anual & 0,1 & TB/año & Supuesto propio (4.2.4.4) & ClickHouse \\
+Índice de búsqueda anual & 0,05 & TB/año & Supuesto propio (4.2.4.4) & OpenSearch \\
+Registros de seguridad al año & 19.300 & registros & Incidentes, cuasi accidentes, observaciones e inspecciones (4.2.4.4) & Blob Storage \\
+Fotografías por registro & 2 & fotos & Supuesto propio (4.2.4.4) & Blob Storage \\
+Tamaño por fotografía & 1,5 & MB & Supuesto propio & Blob Storage \\
+Documento firmado por registro & 0,2 & MB & Supuesto propio & Blob Storage \\
+Evidencia de seguridad al año & 61,76 & GB/año & (≈ 62) & Blob Storage \\
+Habilitaciones al año & 11.000 & habilitaciones & permanentes + dos detenciones (≈ 11.000) & Blob Storage \\
+Documentos por habilitación & 5 & documentos & Supuesto propio (4.2.4.4) & Blob Storage \\
+Tamaño por documento de acreditación & 0,4 & MB & Supuesto propio & Blob Storage \\
+Documentación de acreditación al año & 22 & GB/año & (≈ 22) & Blob Storage \\
+Guías, actas de embarque y reportes ambientales & 4 & GB/año & 4.2.4.4 & Blob Storage \\
+Eventos archivados y comprimidos & 9 & GB/año & 4.2.4.4 & Blob Storage \\
+Documental y multimedia al año & 96,76 & GB/año & suma (≈ 97) & Blob Storage \\
+Formularios escaneados que se migran & 193 & GB & 10 años de papel a 1 MB por formulario (4.2.4.4) & Blob Storage \\
+Documental al tercer año & 0,48 & TB & (anual × 3 + migrados) ÷ 1.000 & Capítulo B, fila 9 \\
+Documental al quinto año & 0,68 & TB & (≈ 0,68) & Blob Storage \\
+Datos históricos a migrar & 205 & GB & estructurados + escaneados (205) & Capítulo B, fila 10 \\
+Una copia completa de SITCO al quinto año & 4,28 & TB & Suma de almacenes al quinto año (≈ 4,28 TB) & Capacidad lógica de una copia completa de SITCO \\
+Uso de un nodo de datos al tercer año & 2,13 & TB & Series, analítica e índice de un nodo al tercer año (≈ 2,13 TB) & Disco de 3 TB \\
+Uso de un nodo de datos al quinto año & 3,53 & TB & Uso por nodo al quinto año (≈ 3,53 TB) & Ampliación en línea a 6 TB antes del umbral de 80 \% \\
+Disco Premium SSD v2 por nodo de datos & 3 & TB & Capacidad inicial por nodo; la ampliación se rige por el umbral de 80 \% & 3 TB iniciales; 6 TB horizonte base; hasta 14 TB con 3x \\
+Uso del disco de datos al tercer año & 0,71 & fracción & Uso del disco de 3 TB al tercer año (≈ 71 \%) & Revisión trimestral \\
+Nodo local: datos que escalan con la volumetría & 83 & GB & Supuesto que reproduce 295 GB y 48 \% con 3x (4.2.4.4) & UCS C240 M8 \\
+Nodo local: imágenes, observabilidad, bandeja y sistema & 212 & GB & Supuesto que reproduce 4.2.4.4 & UCS C240 M8 \\
+Almacenamiento local por servidor del Nodo & 295 & GB & (295) & UCS C240 M8 \\
+Disco útil por servidor del Nodo (2 × 960 GB en RAID 1) & 960 & GB & 4.2.1.2 & T11-31 \\
+Uso del disco del Nodo & 0,31 & fracción & (31 \%) & UCS C240 M8 \\
+Uso del disco del Nodo con 3x & 0,48 & fracción & (48 \%) & UCS C240 M8 \\
+\end{tabla}
+
+\subseccion{Ancho de banda y sincronización tras un corte (4.2.4.5)}
+La Tabla \ref{tab:ancho-banda-sincronizacion-tras-corte} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.263}D{0.110}I{0.143}I{0.285}I{0.200}}{Ancho de banda y sincronización tras un corte.}{tab:ancho-banda-sincronizacion-tras-corte}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia a partir de los parámetros RT-03.10 y RT-03.13 de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 15, pp. 24-25).}
+Ancho de banda por persona conectada & 50 & kbps & Supuesto propio (4.2.4.5) & Enlaces \\
+Personas de la faena en el peak & 14,8 & Mbps & personas × 50 kbps (≈ 14,9) & Fibras A y B \\
+Bytes por lectura transmitida & 64 & bytes & 4.2.4.5 & Enlaces \\
+Series del historiador & 0,512 & Mbps & 1.000 lecturas/s × 64 bytes × 8 (≈ 0,5) & Planta hacia el Nodo \\
+Telemetría técnica de los 12 servidores de la faena & 1,8 & Mbps & 4.2.4.5 & Enlaces \\
+Eventos y evidencia del relevo & 0,2 & Mbps & 4.2.4.5 (menos de 0,2) & Enlaces \\
+Faena hacia la nube en el peak & 17,3 & Mbps & suma (≈ 17) & Fibras A y B \\
+Faena hacia la nube en régimen & 8,062 & Mbps & (≈ 8) & Fibras A y B \\
+Faena hacia la nube en el peak a 3 años & 17,4 & Mbps & sólo las series crecen (+10 \% de etiquetas) & Capítulo B, complementaria \\
+Peak con tres veces la volumetría & 54 & Mbps & Referencia de punta redondeada a 18 Mbps × factor de crecimiento 3 = 54 Mbps & Fibras A y B \\
+Capacidad de cada fibra & 100 & Mbps & 4.2.3.2; RT-03.17 & T11-63, T11-64 \\
+Uso de una sola fibra con 3x & 0,54 & fracción & Uso de una fibra de 100 Mbps con 54 Mbps de referencia (54 \%) & Una fibra sostiene el crecimiento \\
+Relaves hacia la faena & 4,96 & kbps & 186 mediciones de 200 bytes por minuto (≈ 5) & Radioenlace existente \\
+CIO de Antofagasta & 5 & Mbps & 48 personas y 24 tableros (4.2.4.5) & Acceso existente \\
+Oficina de Santiago & 3 & Mbps & 60 personas (4.2.4.5) & Acceso existente \\
+Eventos por hora de operación normal de la cola & 1.014 & eventos/h & Eventos/hora redondeados hacia arriba a partir de 24.314,79 eventos/día & Bandeja de salida \\
+Corte mayor registrado & 20 & h & Caso; 4.2.4.5 & Operación sin enlace \\
+Eventos acumulados en 20 h & 20.280 & eventos & (≈ 20.300) & Bandeja de salida \\
+Tamaño por evento & 4 & KB & 4.2.4.5 & Bandeja de salida \\
+Volumen de eventos acumulados en 20 h & 81,12 & MB & 20.280 eventos × 4 KB (≈ 81) & Bandeja de salida \\
+Fotografías y documentos acumulados en 20 h & 141 & MB & 4.2.4.5 & Bandeja de salida \\
+Todas las series comprimidas en 20 h & 1,25 & GB & Historiador y demás señales de 20 horas con compresión 4:1 (≈ 1,25 GB) & Nodo de Faena \\
+Límite de la reconciliación & 40 & eventos/s & 4.2.4.5 & No compite con el tráfico en vivo \\
+Reconciliación de los eventos de 20 h & 8,45 & min & (≈ 8) & Plazo de 4 h \\
+Diseño sin enlace & 48 & h & RT; 4.1.9 & Operación sin enlace \\
+Capacidad instalada de la cola para 48 horas & 150.000 & eventos & 48 h: 48.672 eventos actuales y 146.016 con el factor 3x & Cola persistente del Nodo de Faena \\
+Alerta de la cola al 80 \% & 120.000 & eventos & Alerta al 80 \% de la capacidad instalada de la cola & Observabilidad \\
+Reconciliación de la cola completa & 62,5 & min & 150.000 eventos a 40 eventos/s (≈ 63 min) & Plazo de 4 h \\
+Todas las series comprimidas tras 48 h & 3 & GB & Historiador y demás señales de 48 horas con compresión 4:1 (≈ 3,0 GB) & Nodo de Faena \\
+Caudal útil mínimo reservado para reconciliación & 5 & Mbps & Escenario base: 5 Mbps garantizados; con tres veces la volumetría: 10 Mbps & Enlaces \\
+Envío de series, eventos y documentos tras 48 h & 94 & min & Tiempo para las muestras, eventos y documentos acumulados en 48 h a 5 Mbps útiles & Menor que el plazo de cuatro horas \\
+Plazo exigido de sincronización & 240 & min & 4 horas (RNF) & Se cumple con holgura \\
+\end{tabla}
+
+\subseccion{Energía, climatización e incendio de la sala técnica (4.3.1.2 a 4.3.1.4)}
+La Tabla \ref{tab:energia-climatizacion-incendio-sala-tecnica} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.308}D{0.110}I{0.113}I{0.244}I{0.225}}{Energía, climatización e incendio de la sala técnica.}{tab:energia-climatizacion-incendio-sala-tecnica}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia.}
+Consumo por servidor UCS C240 M8 & 0,6 & kW & Referencia del fabricante & Carga de TI \\
+Servidores del Nodo & 1,8 & kW & 0,6 kW × 3 (1,8) & Carga de TI \\
+Servidor UCS C220 M8 del banco & 0,4 & kW & Referencia del fabricante & Carga de TI \\
+SD-WAN, cortafuegos, núcleo y consola OOB & 1,15 & kW & 2 C8300 + 2 SF1230 + 2 C9500 + 1 C8200 & Carga de TI \\
+Gestión, monitoreo, cámaras y control de acceso & 0,3 & kW & Supuesto propio & Carga de TI \\
+Carga de TI de la sala técnica & 3,65 & kW & suma (3,65) & RT-06.11 \\
+PUE estimado de la sala & 1,6 & x & Supuesto: recinto pequeño con pasillo frío confinado (4.3.1.2) & RT-15.04 \\
+Carga total de la sala & 5,84 & kW & TI × PUE (5,84) & Generadores \\
+Margen de crecimiento eléctrico & 0,3 & fracción & RT-08.05 & UPS y generadores \\
+Factor de potencia de la UPS & 0,9 & x & RT-06.11 & UPS \\
+Reducción de la UPS por altura & 0,22 & fracción & Supuesto: 1 \% cada 100 m sobre 1.000 m & UPS \\
+Potencia útil requerida por UPS & 6,8 & kVA & TI × (1 + margen) ÷ FP ÷ (1 − reducción) (6,8) & Dos UPS de 10 kVA (T11-37) \\
+Potencia de cada UPS ofertada & 10 & kVA & 4.3.1.3 & T11-37 \\
+Autonomía de las UPS a plena carga & 30 & min & 4.3.1.3 & T11-37 \\
+Gabinetes de portería y planta en el tablero de respaldo & 1,5 & kW & Portería 0,6 kW + planta 0,9 kW & Generadores \\
+Carga del tablero de respaldo & 7,34 & kW & sala + gabinetes (7,34) & Generadores \\
+Factor de potencia del generador & 0,8 & x & Estándar de grupos electrógenos & Generadores \\
+Reducción de los generadores por altura & 0,25 & fracción & Supuesto de diseño & Generadores \\
+Potencia requerida por generador (N+1) & 15,9 & kVA & (15,9); cada uno toma toda la carga & Dos generadores de 20 kVA (T11-42) \\
+Potencia de cada generador ofertado & 20 & kVA & 4.3.1.3 & T11-42 \\
+Consumo específico de los generadores & 0,3 & L/kWh & Supuesto de diseño & Estanque \\
+Consumo por hora & 2,202 & L/h & (2,2) & Estanque \\
+Combustible para 24 h (mínimo del RT-06.08) & 52,848 & L & (53) & RT-06.08 \\
+Días de autonomía de diseño & 7 & días & Supuesto: ruta de 145 km cortada 1 a 3 días en invierno altiplánico & Estanque \\
+Reserva sobre la autonomía & 0,5 & fracción & 4.3.1.3 & Estanque \\
+Estanque requerido & 554,904 & L & (555) & Estanque de 1.000 L \\
+Estanque ofertado & 1.000 & L & 4.3.1.3 & T11-45 \\
+Autonomía del estanque ofertado & 19 & días & 1.000 L ÷ 2,2 L/h ÷ 24 h (≈ 19); ≈ 9,5 días entre recargas & Reabastecimiento al 50 \% \\
+Pérdidas de las UPS & 0,4 & kW & 4.3.1.2 & Climatización \\
+Iluminación y personas & 0,3 & kW & 4.3.1.2 & Climatización \\
+Carga térmica de la sala de equipos & 4,35 & kW & (4,35) & Climatización \\
+Densidad del aire a 3.180 m respecto de nivel del mar & 0,72 & fracción & 0,86 kg/m³ (4.3.1.2) & Climatización \\
+Capacidad nominal requerida por unidad & 6,0 & kW & (≈ 6,0) & Dos unidades de 7 kW en N+1 (T11-38) \\
+Volumen protegido por el agente limpio & 82,5 & m³ & sala de equipos + zona de energía × 3 m (82,5) & T11-39 \\
+Agente FM-200 a nivel del mar (7 \% a 20 °C) & 45 & kg & NFPA 2001 (4.3.1.4) & T11-39 \\
+Factor de corrección por altura & 0,67 & x & NFPA 2001 (4.3.1.4) & T11-39 \\
+Agente FM-200 a 3.180 m & 30,15 & kg & (≈ 30) & T11-39 \\
+Ocupación del rack de comunicaciones RK-1 & 0,36 & fracción & 15 de 42 U (4.3.1.1) & T11-30 \\
+Ocupación del rack de servidores RK-2 & 0,24 & fracción & 10 de 42 U (4.3.1.1) & T11-30 \\
+Ocupación inicial del rack RK-3 & 0 & fraccion & Rack instalado con PDU A y B, sin carga inicial & T11-30 \\
+\end{tabla}
+
+\subseccion{Dispositivos de terreno y equipos de borde (4.2.1.2 y 4.2.1.3)}
+La Tabla \ref{tab:dispositivos-terreno-equipos-borde} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.327}D{0.089}I{0.190}I{0.247}I{0.148}}{Dispositivos de terreno y equipos de borde.}{tab:dispositivos-terreno-equipos-borde}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 2, p. 5) y del numeral 8.4 de las Bases técnicas transversales (CMAA, 2026c, cap. 8, pp. 19-20).}
+Palas & 5 & equipos & Caso; 4.2.1.3 & Botonera \\
+Stock de reemplazo de terreno & 0,1 & fracción & Transversales, Cap. 8.4, p. 19 & Terreno \\
+Botoneras de Pala & 6 & unidades & palas + repuesto (6) & T11-68 \\
+Puestos de mina: 7 perforadoras sin instrumentación y 3 supervisores & 10 & puestos & 4.2.1.3 & Tabletas \\
+Puestos de mantenimiento: 4 de mina y 4 de planta & 8 & puestos & 4.2.1.3 & Tabletas \\
+Puestos de planta: metalurgista, supervisor y 4 puntos de muestreo & 6 & puestos & 4.2.1.3 & Tabletas \\
+Puestos de seguridad: rajo, planta, servicios y relaves & 4 & puestos & 4.2.1.3 & Tabletas \\
+Puestos del acopio de puerto & 2 & puestos & 4.2.1.3 & Tabletas \\
+Tabletas en uso simultáneo (puestos que registran) & 30 & tabletas & suma (30) & Tabletas \\
+Tabletas rugerizadas & 33 & unidades & en uso × (1 + stock) (33) & T11-67 \\
+PC industriales de la Consola de Portería & 2 & equipos & Uno por sentido (4.2.1.3) & T11-69 \\
+Estaciones de administración & 7 & estaciones & 4 en la sala de 2014 y 3 de la mesa de ayuda (4.2.1.2) & T11-48 \\
+Dispositivos gestionados por Intune & 42 & dispositivos & tabletas + consolas + estaciones (42) & T11-25 \\
+Capacidad de un carril con credencial y verificación facial & 480 & personas/h & 4.2.1.3 & Portería \\
+Carriles necesarios en régimen & 3 & carriles & (3) & Portería \\
+Carriles necesarios en una detención mayor & 5 & carriles & (5) & Portería \\
+Carriles de reserva & 1 & carriles & 4.2.1.3 & Portería \\
+Lectores faciales en servicio & 6 & unidades & (6) & T11-70 \\
+Lectores faciales de repuesto & 1 & unidades & 4.2.1.4 & T11-70 \\
+Lectores faciales (Etapa 2) & 7 & unidades & (7) & T11-70 \\
+Caudalímetros de repuesto & 1 & unidades & 4.2.1.3 & T11-71 \\
+Caudalímetros & 4 & unidades & planta, campamento, aljibes + repuesto (4) & T11-71 \\
+Gabinetes de borde & 4 & gabinetes & Portería, planta, relaves y puerto & T11-51 \\
+Servidores de borde por gabinete & 2 & servidores & Activo-pasivo (4.2.1.2) & T11-53 \\
+Servidores de borde de la DMZ de planta & 2 & servidores & 4.2.1.2 & T11-53 \\
+Servidores de borde de repuesto precargado & 1 & servidores & 4.2.1.4 & T11-53 \\
+Servidores de borde Dell XR4000 & 11 & servidores & (11) & T11-53 \\
+Conmutadores industriales en sitio (2 + 2 + 2 + 1) & 7 & unidades & Portería, planta y relaves 2; puerto 1 (4.2.1.2) & T11-54 \\
+Conmutadores industriales de repuesto & 1 & unidades & 4.2.1.4 & T11-54 \\
+Conmutadores Cisco IE3400 & 8 & unidades & (8) & T11-54 \\
+Servidores del Nodo de Faena & 3 & servidores & Quórum del clúster (4.2.3.2) & T11-31 \\
+Servidor del banco de pruebas & 1 & servidores & 4.2.1.2 & T11-32 \\
+Suscripciones de Ubuntu Pro & 12 & suscripciones & Nodo + banco + borde en operación (la DMZ usa Windows Server) (12) & T11-59 \\
+Servidores gestionados por Azure Arc & 12 & servidores & los mismos 12 (la DMZ no sale a la nube) & T11-26 \\
+Dispositivos SITCO en operación en terreno & 48 & dispositivos & tabletas en uso + botoneras + consolas + lectores + caudalímetros (48) & Capítulo B, fila 11 \\
+\end{tabla}
+
+\subseccion{Márgenes de crecimiento declarados (4.2.4.6)}
+La Tabla \ref{tab:margenes-crecimiento-declarados} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.263}D{0.110}I{0.143}I{0.285}I{0.200}}{Márgenes de crecimiento declarados.}{tab:margenes-crecimiento-declarados}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia.}
+Grupo de servicios de AKS sobre 600 TPS & 0,69 & fracción & Margen del máximo de 9 nodos sobre la carga de 600 TPS & Capacidad ampliable sin rediseño \\
+Memoria libre del Nodo con 3x y un servidor fuera & 0,44 & fracción & D.3.3 & 44 \% \\
+Disco libre del Nodo con 3x & 0,52 & fracción & D.3.4 & 52 \% \\
+Fibra libre con el peak triplicado y una sola fibra & 0,46 & fracción & 46 \% de capacidad libre en una fibra de 100 Mbps & 46 \% libre \\
+Almacenamiento libre de PostgreSQL al quinto año con 3x & 0,26 & fracción & D.3.4 & ≈ 26 \% \\
+Uso del disco de datos al quinto año tras ampliación & 0,59 & fracción & Datos por nodo al quinto año divididos por 6 TB previstos (≈ 59 \%) & La ampliación se programa con seis meses de anticipación al umbral \\
+\end{tabla}
+
+\subseccion{Otras dimensiones de la plantilla del Capítulo B}
+La Tabla \ref{tab:otras-dimensiones-plantilla-capitulo-b} presenta las variables, sus valores y las fórmulas o fuentes de esta dimensión, con la decisión del Formulario T-11 que sustentan.
+
+\begin{tabla}{I{0.243}D{0.097}I{0.211}I{0.293}I{0.155}}{Otras dimensiones de la plantilla del Capítulo B.}{tab:otras-dimensiones-plantilla-capitulo-b}
+  {\cab{Variable} & \cab{Valor} & \cab{Unidad} & \cab{Fórmula / fuente} & \cab{Decisión T-11}}
+  {Fuente: elaboración propia.}
+Empresas contratistas & 90 & organizaciones & 4.2.4.2 & Capítulo B, fila 6 \\
+Compradores, operador portuario y laboratorios externos & 10 & organizaciones & Supuesto: una cuenta activa por organización (4.2.4.2) & Capítulo B, fila 6 \\
+Proveedores con integración fuera de la faena & 6 & organizaciones & 3 portales de telemetría, control de fatiga, mensajería y firma electrónica (4.1.7.1) & Capítulo B, fila 6 \\
+Contrapartes externas activas & 106 & organizaciones & suma (106) & Capítulo B, fila 6 \\
+Documentos firmados de seguridad al año & 19.300 & documentos & un documento por registro (4.2.4.4) & Capítulo B, fila 7 \\
+Documentos de acreditación al año & 55.000 & documentos & habilitaciones × 5 (≈ 55.000) & Capítulo B, fila 7 \\
+Guías de despacho a puerto al año & 12.400 & documentos & viajes de concentrado & Capítulo B, fila 7 \\
+Documentos procesados al año & 86.700 & documentos & suma; las fotografías no se cuentan como documento & Capítulo B, fila 7 \\
+Documentos procesados al año a 3 años & 87.579 & documentos & seguridad y acreditación con la dotación; guías con viajes & Capítulo B, fila 7 \\
+Documentos en el mes de una detención mayor & 25.143 & documentos/mes & acreditación de 4.300 personas + mes base & Capítulo B, fila 7 \\
+Integraciones con sistemas internos & 9 & integraciones & SAP, despacho, laboratorio, historiador, planificación, báscula, control de acceso, portales de telemetría y control de fatiga (4.1.7.1) & Capítulo B, fila 13 \\
+Integraciones con sistemas externos & 5 & integraciones & Instrumentación ambiental y geotécnica, radio y megafonía, laboratorios externos, mensajería y firma electrónica (4.1.7.1) & Capítulo B, fila 14 \\
+Carga única de planillas y carpetas compartidas & 1 & carga & 4.1.7.1 (no se cuenta como integración en ejecución) & Capítulo B, fila 10 \\
+Sitios con equipos de SITCO & 5 & sitios & Sala técnica, portería, planta, relaves y acopio de puerto (4.2.1.2) & Capítulo B, fila 12 \\
+Sitios de personas usuarias sin equipos propios & 2 & sitios & CIO de Antofagasta y oficina de Santiago (4.3) & Capítulo B, fila 12 \\
+Sitios u operaciones a cubrir & 7 & sitios & suma (7), más 2 regiones de nube & Capítulo B, fila 12 \\
+Instrumentos y equipos existentes que SITCO integra & 238 & dispositivos & 186 instrumentos + 52 equipos con telemetría & Capítulo B, fila 11 \\
+Dispositivos de terreno en operación & 284 & dispositivos & SITCO + existentes integrados & Capítulo B, fila 11 \\
+Dispositivos de terreno en operación a 3 años & 346,84 & dispositivos & SITCO constante; existentes con sus tasas del caso & Capítulo B, fila 11 \\
+Cuentas activas que pueden contactar la mesa de ayuda & 2.195 & cuentas & propios + cuentas externas (los contratistas en terreno pasan por su administrador) & Capítulo B, fila 15 \\
+Contactos por cuenta activa al mes en régimen & 0,57 & contactos & Supuesto propio: 1.250 contactos al mes entre 2.195 cuentas activas & Capítulo B, fila 15 \\
+Contactos por cuenta activa al mes en estabilización & 0,15 & contactos & Supuesto propio: 3 veces el régimen en los 3 meses posteriores a cada puesta en marcha & Capítulo B, fila 15 \\
+Contactos mensuales al centro de atención en régimen & 1.250 & contactos/mes & 0,3 por usuario y mes × 4.180 usuarios permanentes (≈ 1.250) & Capítulo B, fila 15 \\
+Contactos mensuales en estabilización & 3.750 & contactos/mes & Tres veces el régimen de 1.250 contactos durante los 3 meses posteriores a cada puesta en marcha & Capítulo B, fila 15 \\
+\end{tabla}
+
+\anexo{Matriz de Control de Seguridad}
+Este anexo detalla, control por control, cómo SITCO Aranda cumple los controles de ISO/IEC 27001:2022, con la guía de implementación de ISO/IEC 27002:2022, los controles adicionales de ISO/IEC 27017:2015 para servicios en la nube y los principios de privacidad que aplica ISO/IEC 27018:2019 al tratamiento de datos personales en la nube (CMAA, 2026c, RT-11.05 y RT-11.06). Cada fila indica la implementación concreta, la sección o el ítem del Formulario T-11 donde se acredita y la evidencia que lo demuestra. El Subdocumento 4 resume esta matriz en la seccion 4.1.8
+
+\seccion{Controles organizacionales (ISO/IEC 27001:2022)}
+Los 37 controles organizacionales se cumplen con decisiones de la arquitectura y, en los que corresponden a la organización, con el sistema de gestión de Overfore. La Tabla \ref{tab:controles-organizacionales-iso-iec-27001-2022} detalla cada control.
+
+\begin{tabla}{I{0.220}I{0.444}I{0.121}I{0.214}}{Controles organizacionales de ISO/IEC 27001:2022 en SITCO Aranda.}{tab:controles-organizacionales-iso-iec-27001-2022}
+  {\cab{Control} & \cab{Implementación en SITCO Aranda} & \cab{Dónde se acredita} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir de ISO/IEC 27001:2022 e ISO/IEC 27002:2022 (International Organization for Standardization, 2022a, 2022b).}
+5.1 Políticas de seguridad de la información & La política de seguridad de Overfore se aplica al proyecto y se complementa con las reglas de esta arquitectura: confianza cero, privilegio mínimo y cifrado del 100 \% de los almacenes. & S1, 1.3; 4.1.8.1 & Política aprobada y comunicada al equipo del proyecto \\
+5.2 Roles y responsabilidades de seguridad de la información & Las responsabilidades de Overfore, del Cliente y de terceros sobre nube, sala técnica, enlaces, hardware y operación están separadas por componente. & Anexo C; S1, 1.5 & Matriz de responsabilidades aceptada por el Cliente \\
+5.3 Segregación de funciones & Un cambio de parámetro exige doble aprobación; el paso a producción exige la aprobación del cambio; la política de respaldo exige autorización de varias personas. & Tabla \refext{S4}{tab:amenazas-mayor-consecuencia-componentes-expuestos-control}; 4.1.3.4; 4.2.3.5 & Registro de aprobaciones en la auditoría inalterable \\
+5.4 Responsabilidades de la dirección & La dirección del proyecto de Overfore patrocina el cumplimiento de la política y revisa los indicadores de seguridad en el comité del proyecto. & S1, 1.3; S6, 6.1 & Actas del comité del proyecto \\
+5.5 Contacto con las autoridades & Los reportes a la autoridad salen de los módulos de cumplimiento y, durante un corte, esperan en la bandeja de salida en su orden de origen. Los incidentes de ciberseguridad se notifican a la autoridad conforme a la Ley N° 21.663, con la evidencia del registro inalterable. & Tabla \refext{S4}{tab:modulo-plataforma-sostiene-cada-funcion-durante}; 4.1.8.5 & Registro de envíos a la autoridad \\
+5.6 Contacto con grupos de interés especial & Overfore mantiene contacto con los fabricantes de los componentes de la Tabla \refext{S4}{tab:version-fin-soporte-plan-actualizacion-componentes} para recibir avisos de vulnerabilidad y de retiro. & Tabla \refext{S4}{tab:version-fin-soporte-plan-actualizacion-componentes}; S1, 1.6 & Suscripciones a avisos de los fabricantes \\
+5.7 Inteligencia de amenazas & El modelo de amenazas STRIDE se revisa ante todo cambio de límite de contexto, de interfaz o de clasificación de información, y los casos de detección se ajustan a las amenazas propias de la faena. & 4.1.8.5; Tabla \refext{S4}{tab:amenazas-mayor-consecuencia-componentes-expuestos-control} & Modelo de amenazas versionado junto al registro de decisiones \\
+5.8 Seguridad de la información en la gestión de proyectos & Cada decisión de arquitectura se registra como ADR y el modelo de amenazas se entrega y versiona con ese registro; los riesgos de seguridad se gestionan en el plan de riesgos. & 4.1.2.3; 4.1.8.5; S8 & Registro de decisiones y registro de riesgos \\
+5.9 Inventario de información y otros activos asociados & El Formulario T-11 y sus 67 fichas son el inventario inicial; en operación, Azure Arc inventaría los servidores de faena e Intune las tabletas, consolas y estaciones. & T-11; Anexo A; T11-25; T11-26 & Inventario con seriales y garantía (Anexo C) \\
+5.10 Uso aceptable de la información y otros activos asociados & Las reglas de uso de las tabletas por puesto y de las estaciones de administración se aplican mediante Intune y se comunican en la capacitación. & T11-25; T11-67; S1, 1.3 & Política de uso aceptable firmada \\
+5.11 Devolución de activos & Las cuentas y suscripciones quedan a nombre del Cliente y los equipos retirados se entregan con certificado de borrado. & Anexo C & Certificados de borrado y disposición \\
+5.12 Clasificación de la información & Salud, exámenes preocupacionales, fatiga, alcohol y drogas, biometría, documento de identidad e identidad del operador se clasifican como sensibles y tienen clave propia por categoría. & Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}; S5, 5.1.3 & Diccionario de datos con la columna de sensibilidad \\
+5.13 Etiquetado de la información & Cada campo sensible queda marcado en el diccionario de datos y en su categoría de cifrado; los documentos firmados conservan su versión. & Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}; S5 & Diccionario de datos y metadatos de los documentos \\
+5.14 Transferencia de información & Tránsito externo con TLS 1.3; servicios entre sí con TLS mutuo; integraciones con OAuth 2.1 o TLS mutuo; la réplica hacia Brazil South es una transferencia internacional de datos personales, amparada en cláusulas contractuales, en la aprobación del cliente y en el cifrado de los almacenes (Ley N° 21.719). & Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}; Tabla \refext{S4}{tab:mecanismo-identidad-cada-poblacion-usuaria}; 4.3.2.1 & Configuración de TLS y registro de la puerta de exposición \\
+5.15 Control de acceso & Verificación explícita de cada solicitud, autorización por rol y por atributos de sitio, empresa y área, y ninguna confianza por posición de red. & 4.1.8.1 & Políticas de acceso versionadas como código \\
+5.16 Gestión de identidades & Cada población tiene su mecanismo: Entra ID federado para el personal propio, Entra External ID para contratistas, compradores, puerto y laboratorios, y credencial con PIN en terreno. & Tabla \refext{S4}{tab:mecanismo-identidad-cada-poblacion-usuaria}; T11-22 & Directorio y registro de altas y bajas \\
+5.17 Información de autenticación & Doble factor en todas las poblaciones; en terreno, credencial física más PIN, y en la botonera, credencial contrastada con el operador asignado por el despacho, sin contraseña alfanumérica ni credenciales compartidas; la copia local de identidades vence a las 72 horas. & Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}; 4.1.8.3 & Configuración del proveedor de identidad y del Nodo de Faena \\
+5.18 Derechos de acceso & La revocación de una credencial se propaga en 24 horas o menos cuando hay enlace y el bloqueo de un dispositivo en 15 minutos o menos; lo admitido durante un corte se marca para revisión. & 4.1.8.1 & Registro de revocaciones y marcas de reconciliación \\
+5.19 Seguridad de la información en las relaciones con proveedores & Cada servicio y equipo de terceros tiene ficha con soporte y responsable, y el hardware de terreno se compra con la especificación de Overfore. & Anexo A; Anexo C & Fichas técnicas y órdenes de compra \\
+5.20 Tratamiento de la seguridad en los acuerdos con proveedores & La fibra B exige diversidad de trazado acreditada con planos y prueba trimestral; el enlace satelital exige 20 Mbps de subida; los equipos nuevos llevan cinco años de soporte 24x7. & 4.2.3.2; 4.2.1.4 & Contratos con cláusulas de servicio y seguridad \\
+5.21 Gestión de la seguridad en la cadena de suministro de TIC & Sólo se despliegan imágenes firmadas desde el registro propio; la Botonera de Pala usa firmware firmado; todo el equipamiento es nuevo. & 4.1.3.4; T11-11; T11-68; 4.2.1.4 & Firma de cada imagen y certificado de firmware \\
+5.22 Seguimiento, revisión y gestión de cambios de los servicios de proveedores & Los avisos de retiro de Azure e Intune se revisan cada trimestre y las fibras se prueban con un corte trimestral. & Tabla \refext{S4}{tab:version-fin-soporte-plan-actualizacion-componentes}; 4.2.3.2 & Informe trimestral de avisos y de la prueba de corte \\
+5.23 Seguridad de la información para el uso de servicios en la nube & Zona de aterrizaje con Azure Policy, servicios con dirección privada, región primaria en Chile y recuperación en Brazil South; las responsabilidades entre Overfore, el Cliente y Microsoft están separadas. & T11-01; T11-09; 4.2.2.2; Anexo C & Informe de cumplimiento de Azure Policy \\
+5.24 Planificación y preparación de la gestión de incidentes & La arquitectura deja preparada la gestión de incidentes: registro centralizado e inalterable, seis casos de detección propios de la faena y consola única con alertas al responsable de turno. & 4.1.8.5; T11-23; T11-24 & Casos de detección configurados en Sentinel \\
+5.25 Evaluación y decisión sobre eventos de seguridad & Microsoft Sentinel evalúa los eventos contra los seis casos de detección propios de la faena. & 4.1.8.5; T11-24 & Alertas y casos registrados en Sentinel \\
+5.26 Respuesta a incidentes de seguridad de la información & Las acciones de contención están en la arquitectura: bloqueo de un dispositivo en 15 minutos o menos, revocación de credenciales en 24 horas o menos cuando hay enlace y cuentas de emergencia custodiadas si falla la identidad. & 4.1.8.1; 4.2.3.4 & Registro de cada bloqueo y revocación \\
+5.27 Aprendizaje de los incidentes & Cada prueba de recuperación produce un informe con el tiempo y la pérdida medidos y un plan de corrección de brechas, y el modelo de amenazas se actualiza. & 4.3.2.2; 4.1.8.5 & Informes de prueba y planes de corrección \\
+5.28 Recopilación de evidencias & Los eventos de seguridad se registran de forma centralizada e inalterable, con doce meses en línea y veinticuatro en archivo, y el Nodo los conserva durante un corte. & 4.1.8.5 & Registro inalterable con autor y sello de tiempo \\
+5.29 Seguridad de la información durante la interrupción & Durante un corte decide la copia local de políticas e identidades del Nodo, con vigencia de 72 horas; lo admitido se verifica de nuevo al reconciliar. & 4.1.8.1; 4.1.9 & Prueba de corte controlado de 48 horas \\
+5.30 Preparación de las TIC para la continuidad del negocio & Faena autónoma 48 horas, tres caminos de enlace, recuperación en Brazil South con RPO de 15 minutos y RTO de 4 horas, conmutaciones en las detenciones de planta de marzo y septiembre. & 4.1.9; 4.2.3.2; 4.3.2 & Informes de prueba de conmutación y de corte \\
+5.31 Requisitos legales, estatutarios, reglamentarios y contractuales & Ley N° 21.719 en datos personales y su transferencia, Ley N° 19.799 en firma electrónica y retención de 10 años (seguridad y salud ocupacional, ambiental y trazabilidad), 5 años (operacional) y 7 años (tributarios, en SAP S/4HANA) según el Cap. 15 del caso; los eventos de seguridad se conservan 12 meses en línea y 24 en archivo. & 4.3.2.1; 4.2.3.5 & Matriz de cumplimiento T-12 \\
+5.32 Derechos de propiedad intelectual & Las licencias propietarias se limitan a Ubuntu Pro, Windows Server, Kepware y Windows 11 IoT, con inventario por suscripción. & 4.2.1.4; T11-57 a T11-59 & Inventario de licencias \\
+5.33 Protección de los registros & Auditoría inalterable con autor, fecha, motivo y valores anterior y posterior; documentos inmutables durante su retención; copia diaria inmutable retenida doce meses. & Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno}; 4.2.3.5 & Registros de auditoría y política de retención \\
+5.34 Privacidad y protección de la información de identificación personal & Cifrado de campo de los datos sensibles, datos personales sensibles sólo en producción, auditoría de cada consulta de salud y datos personales alojados en Chile. & Tabla \refext{S4}{tab:reglas-resolucion-conflictos-sincronizacion}; 4.1.3.4; Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno} & Auditoría de consultas y configuración de cifrado \\
+5.35 Revisión independiente de la seguridad de la información & La superficie expuesta se contrasta con un escaneo externo antes de cada paso a producción; la revisión independiente del sistema de gestión es de Overfore. & 4.1.8.2; S1, 1.3 & Informe del escaneo externo \\
+5.36 Cumplimiento de las políticas, reglas y normas de seguridad & Azure Policy en la nube y CIS Benchmarks en los servidores de faena verifican la configuración en forma continua. & T11-01; T11-59; RT-03.15 & Informes de cumplimiento de Azure Policy y CIS \\
+5.37 Procedimientos operativos documentados & La infraestructura se reconstruye desde código versionado en el repositorio del Cliente, y la restauración, la conmutación a Brazil South y el corte controlado tienen su procedimiento descrito. & T11-28; 4.2.3.5; 4.3.2.2 & Repositorio de código e informes de prueba \\
+\end{tabla}
+
+\seccion{Controles de personas}
+Los ocho controles de personas recaen en la organización de Overfore, salvo los que la arquitectura resuelve con identidad y acceso. La Tabla \ref{tab:controles-personas-iso-iec-27001-2022} detalla cada control.
+
+\begin{tabla}{I{0.262}I{0.403}I{0.134}I{0.200}}{Controles de personas de ISO/IEC 27001:2022 en SITCO Aranda.}{tab:controles-personas-iso-iec-27001-2022}
+  {\cab{Control} & \cab{Implementación en SITCO Aranda} & \cab{Dónde se acredita} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir de ISO/IEC 27001:2022 e ISO/IEC 27002:2022 (International Organization for Standardization, 2022a, 2022b).}
+6.1 Selección & El personal de Overfore se acredita en Acreditación y Acceso como cualquier contratista (Caso, Cap. 10, restricción 12). & S1, 1.5; Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito} & Expediente de acreditación de cada persona \\
+6.2 Términos y condiciones del empleo & Los contratos del personal de Overfore incluyen las obligaciones de seguridad y confidencialidad del proyecto. & S1, 1.3 & Contratos firmados \\
+6.3 Concienciación, educación y formación en seguridad de la información & La capacitación de cada ola incluye el uso de la credencial, del PIN y del registro local; el equipo de Overfore recibe formación en seguridad. & S7; S1, 1.3 & Registro de asistencia a la capacitación \\
+6.4 Proceso disciplinario & Se aplica el reglamento interno de Overfore y, para el personal del Cliente, el suyo. & S1, 1.3 & Reglamento interno \\
+6.5 Responsabilidades tras la desvinculación o el cambio de empleo & Al terminar o cambiar el rol se revoca la credencial, que se propaga en 24 horas o menos cuando hay enlace, y se bloquean los dispositivos asignados. & 4.1.8.1 & Registro de revocaciones \\
+6.6 Acuerdos de confidencialidad & El equipo de Overfore y los proveedores con acceso a datos firman acuerdos de confidencialidad. & S1, 1.3 & Acuerdos firmados \\
+6.7 Trabajo remoto & El acceso remoto se publica por aplicación con Entra Private Access, doble factor y postura del dispositivo, sin red privada virtual. & T11-06; Tabla \refext{S4}{tab:amenazas-mayor-consecuencia-componentes-expuestos-control}; RT-03.22 & Registro de accesos del servicio de confianza cero \\
+6.8 Notificación de eventos de seguridad de la información & Las alertas de la consola única y de Microsoft Sentinel llegan al responsable de turno, y el personal reporta los eventos por la mesa de ayuda. & T11-23; T11-24; T11-48 & Registro de notificaciones \\
+\end{tabla}
+
+\seccion{Controles físicos}
+Los catorce controles físicos se cumplen en la sala técnica, los gabinetes de borde y la sala de 2014; en la nube los cumple Microsoft como parte de su responsabilidad. La Tabla \ref{tab:controles-fisicos-iso-iec-27001-2022} detalla cada control.
+
+\begin{tabla}{I{0.208}I{0.395}I{0.197}I{0.200}}{Controles físicos de ISO/IEC 27001:2022 en SITCO Aranda.}{tab:controles-fisicos-iso-iec-27001-2022}
+  {\cab{Control} & \cab{Implementación en SITCO Aranda} & \cab{Dónde se acredita} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir de ISO/IEC 27001:2022 e ISO/IEC 27002:2022 (International Organization for Standardization, 2022a, 2022b).}
+7.1 Perímetros de seguridad física & La sala técnica es un recinto prefabricado propio, con muros cortafuego; cada gabinete de borde es un recinto industrial cerrado. & T11-29; T11-51; 4.2.3.4 & Plano de la sala (Figura \refext{S4}{fig:plano-distribucion-sala-tecnica-principal}) \\
+7.2 Controles físicos de entrada & Ingreso a la sala técnica por esclusa biométrica con videovigilancia. & T11-40 & Registro de ingresos de la esclusa \\
+7.3 Seguridad de oficinas, despachos e instalaciones & La sala de 2014 queda como recinto de custodia del respaldo local y de los cartuchos cifrados. & 4.2.1.2; T11-46; T11-47 & Inventario de medios del recinto de custodia \\
+7.4 Monitoreo de la seguridad física & Videovigilancia IP y sensores de temperatura, humedad y agua integrados a la consola única. & T11-40; T11-41; 4.2.3.4 & Alertas de los sensores en la consola \\
+7.5 Protección contra amenazas físicas y ambientales & Detección temprana por aspiración y extinción con agente limpio corregido por altura; climatización N+1 dimensionada a 3.180 m. & T11-38; T11-39; 4.3.1.2; 4.3.1.4 & Memoria de cálculo (Anexo D.3.6) y pruebas \\
+7.6 Trabajo en áreas seguras & El trabajo en la sala técnica queda registrado por la esclusa y la videovigilancia, y las intervenciones se hacen en la ventana autorizada. & T11-40; 4.1.3.4 & Registro de ingresos y de cambios \\
+7.7 Escritorio y pantalla limpios & Las estaciones de administración y las tabletas se administran con Intune; la regla de escritorio limpio es de la política de Overfore. & T11-25; T11-48; S1, 1.3 & Configuración de bloqueo de sesión \\
+7.8 Emplazamiento y protección de los equipos & Racks independientes con PDU A y B, pasillo frío confinado y gabinetes con rango térmico extendido y doble fuente. & T11-30; 4.3.1.1; 4.2.1.2 & Plano con la ocupación de cada rack \\
+7.9 Seguridad de los activos fuera de las instalaciones & Las tabletas guardan las claves en su TPM, cifran el registro local y admiten borrado remoto; el gabinete de puerto opera en un recinto de terceros con cola local. & Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}; 4.2.3.3 & Inventario de Intune y prueba de borrado remoto \\
+7.10 Medios de almacenamiento & Cartuchos removibles cifrados con inventario, registro de cada entrada y salida y verificación periódica de legibilidad. & 4.2.3.5; T11-47 & Registro de movimientos de los cartuchos \\
+7.11 Servicios de suministro & Dos UPS de 10 kVA, dos generadores de 20 kVA en N+1 con transferencia automática y estanque de 1.000 litros. & T11-37; T11-42; T11-43; T11-45; 4.3.1.3 & Prueba mensual bajo carga \\
+7.12 Seguridad del cableado & Fibra monomodo certificada a la sala nueva y canalización independiente para la fibra B. & T11-50; 4.2.3.2 & Certificación del tendido \\
+7.13 Mantenimiento de los equipos & Soporte 24x7 en sitio por cinco años para servidores, red, seguridad y respaldo; prueba mensual de generadores. & 4.2.1.4; 4.3.1.3 & Registro de mantenciones \\
+7.14 Eliminación o reutilización segura de los equipos & Todo equipo retirado se entrega con certificado de borrado y disposición. & Anexo C & Certificados de borrado \\
+\end{tabla}
+
+\seccion{Controles tecnológicos}
+Los 34 controles tecnológicos se cumplen con componentes de esta arquitectura, salvo el filtrado web, que no aplica. La Tabla \ref{tab:controles-tecnologicos-iso-iec-27001-2022} detalla cada control.
+
+\begin{tabla}{I{0.234}I{0.439}I{0.133}I{0.194}}{Controles tecnológicos de ISO/IEC 27001:2022 en SITCO Aranda.}{tab:controles-tecnologicos-iso-iec-27001-2022}
+  {\cab{Control} & \cab{Implementación en SITCO Aranda} & \cab{Dónde se acredita} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir de ISO/IEC 27001:2022 e ISO/IEC 27002:2022 (International Organization for Standardization, 2022a, 2022b).}
+8.1 Dispositivos de punto final de usuario & Tabletas administradas por Intune, con claves en TPM, registro local cifrado y firmado y borrado remoto. & T11-25; T11-67; Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito} & Inventario y cumplimiento de Intune \\
+8.2 Derechos de acceso privilegiado & La elevación de privilegios es temporal, requiere aprobación previa y graba la sesión; la consola fuera de banda también graba la sesión. & 4.1.8.3; T11-36 & Registro de elevaciones y grabaciones \\
+8.3 Restricción del acceso a la información & Autorización por rol y por sitio, empresa y área; los filtros se aplican en el servicio y no en la pantalla; ningún módulo consulta el almacén de otro. & 4.1.8.1; Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno}; 4.1.4.6 & Pruebas de autorización por perfil \\
+8.4 Acceso al código fuente & El código y la infraestructura como código viven en el repositorio Git del Cliente. & T11-28; 4.2.3.5 & Permisos del repositorio \\
+8.5 Autenticación segura & Doble factor por población, sin contraseña alfanumérica en terreno y con TLS mutuo entre servicios. & Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}; 4.1.8.1 & Configuración de identidad \\
+8.6 Gestión de la capacidad & Capacidad dimensionada desde la volumetría con umbrales de ampliación: disco al 80 \%, memoria del Nodo al 60 \% con un servidor fuera. & 4.2.4; Anexo D & Alertas de capacidad en la consola \\
+8.7 Protección contra el código malicioso & EDR en las estaciones de administración; tabletas y consolas con Windows 11 IoT administrado por Intune; servidores endurecidos con CIS que sólo ejecutan imágenes firmadas. & T11-48; T11-25; T11-59; 4.1.3.4 & Informe de cumplimiento de los equipos \\
+8.8 Gestión de las vulnerabilidades técnicas & Parches gestionados con Azure Arc y Ubuntu Pro, plan de actualización de cada componente y escaneo externo antes de cada paso a producción. & T11-26; T11-59; Tabla \refext{S4}{tab:version-fin-soporte-plan-actualizacion-componentes}; 4.1.8.2 & Informe de parches y del escaneo \\
+8.9 Gestión de la configuración & Infraestructura como código con OpenTofu, Azure Policy y GitOps hacia la faena con Azure Arc. & T11-28; T11-01; T11-26 & Historial del repositorio \\
+8.10 Eliminación de la información & Eliminación al vencer la retención de cada dominio, borrado remoto de tabletas y certificados de borrado de equipos. & 4.2.3.5; Tabla \refext{S4}{tab:reglas-resolucion-conflictos-sincronizacion}; Anexo C & Registro de eliminaciones \\
+8.11 Enmascaramiento de datos & Preproducción usa copias con los campos sensibles enmascarados. & 4.1.3.4 & Procedimiento de copia a Preproducción \\
+8.12 Prevención de la fuga de datos & Detección de exportaciones masivas de trazabilidad por perfiles comerciales y publicación al comprador con aprobación comercial. & 4.1.8.5; Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno} & Alertas del caso de detección 2 \\
+8.13 Copias de seguridad de la información & Esquema 3-2-1-1-0 con copia inmutable en Brazil South y restauración verificada cada mes. & 4.2.3.5; T11-20; T11-46 & Informe mensual de restauración \\
+8.14 Redundancia de las instalaciones de procesamiento de la información & Tres zonas en Chile Central, clúster de tres servidores en el Nodo, pares en cada gabinete y región de recuperación. & 4.2.3.4; 4.3.2 & Prueba de conmutación \\
+8.15 Registro de eventos & Registro centralizado e inalterable de los eventos de seguridad, doce meses en línea y veinticuatro en archivo. & 4.1.8.5; T11-23 & Registros en Log Analytics \\
+8.16 Actividades de seguimiento & Seis casos de detección propios de la faena sobre la consola única y Microsoft Sentinel. & 4.1.8.5; T11-24 & Casos y alertas registrados \\
+8.17 Sincronización de los relojes & Cada evento lleva sello de tiempo de origen y la deriva del reloj de cada dispositivo se registra y se vigila. & 4.1.8.5, caso 5 & Alertas de deriva \\
+8.18 Uso de programas utilitarios privilegiados & Las herramientas de administración se usan sólo con elevación temporal y sesión grabada. & 4.1.8.3; T11-36 & Grabaciones de sesión \\
+8.19 Instalación de software en sistemas en producción & Sólo se instala la imagen firmada del registro, igual en la nube, el Nodo y los gabinetes; las tabletas reciben la App por Intune. & 4.1.3.4; T11-11; T11-25 & Firma de cada imagen desplegada \\
+8.20 Seguridad de las redes & Subredes privadas por capa, par de cortafuegos en la sala, cortafuegos industrial en planta y túneles IPsec hacia la nube. & 4.2.2.2; T11-34; T11-55; T11-08 & Reglas de cortafuegos versionadas \\
+8.21 Seguridad de los servicios de red & Entrada pública con WAF y protección DDoS, almacenes sólo con dirección privada y enlaces con soporte 24x7. & T11-03; T11-09; T11-64 & Configuración de Front Door y Private Link \\
+8.22 Segregación de las redes & Zona desmilitarizada industrial con diodo de datos, red de gestión fuera de banda separada y ambientes sin conectividad con producción. & T11-55; T11-56; 4.2.3.1 & Plano de red y prueba negativa de escritura \\
+8.23 Filtrado web & SITCO no presta navegación web general a sus usuarios; la entrada a sus servicios se filtra con el WAF. & T11-03 & No aplica a la navegación \\
+8.24 Uso de la criptografía & TLS 1.3, TLS mutuo con rotación cada 90 días, cifrado del 100 \% de los almacenes con claves en HSM y cifrado de campo por categoría. & Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}; T11-21 & Inventario de claves y certificados \\
+8.25 Ciclo de vida de desarrollo seguro & La integración continua compila, ejecuta pruebas de contrato y firma la imagen; la promoción sigue una sola dirección hasta producción. & 4.1.3.4; 4.2.3.1; S9 & Registro de la integración continua \\
+8.26 Requisitos de seguridad de las aplicaciones & Los requerimientos no funcionales de seguridad (RNF-SEG) se trazan hasta su componente en el Formulario T-12. & T-12; Tablas \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito} y \refext{S4}{tab:reglas-resolucion-conflictos-sincronizacion} & Matriz de trazabilidad \\
+8.27 Arquitectura de sistemas seguros y principios de ingeniería & Confianza cero con su excepción declarada, ocho capas con regla de dependencia y decisiones registradas. & 4.1.8.1; 4.1.3.1; 4.1.2.3 & Registro de decisiones \\
+8.28 Codificación segura & Las reglas de codificación y el análisis de código se aplican en las puertas de calidad del pipeline. & S6, 6.2; S9 & Informes de las puertas de calidad \\
+8.29 Pruebas de seguridad en el desarrollo y la aceptación & Escaneo externo antes de cada paso a producción, prueba negativa de escritura hacia el historiador y prueba de corte de 48 horas. & 4.1.8.2; 4.1.8.5; 4.1.3.4 & Informes de prueba \\
+8.30 Desarrollo externalizado & La Botonera de Pala se fabrica según la especificación de Overfore, con firmware firmado y unidad de prueba antes de la compra masiva. & T11-68; 4.2.1.3 & Acta de aceptación de la unidad de prueba \\
+8.31 Separación de los entornos de desarrollo, prueba y producción & Cada ambiente tiene su suscripción, su red y su bóveda de claves, sin conectividad con producción. & 4.2.3.1; 4.1.3.4 & Configuración de suscripciones y redes \\
+8.32 Gestión de cambios & Aprobación del cambio para pasar a producción, ventana de 03:00 a 05:00, fuera del cierre contable, de las 48 horas previas a un embarque y de las detenciones, con vuelta atrás. & 4.1.3.4; 4.2.3.1 & Registro de cambios \\
+8.33 Información de prueba & Desarrollo y QA usan datos sintéticos con un juego versionado que se restaura antes de cada ciclo. & 4.1.3.4; 4.2.3.1 & Juego de datos versionado \\
+8.34 Protección de los sistemas de información durante las pruebas de auditoría & Las pruebas técnicas se ejecutan en Preproducción, que reproduce la producción, y las restauraciones de prueba también se hacen allí. & 4.1.3.4; 4.2.3.5 & Plan de pruebas acordado con el Cliente \\
+\end{tabla}
+
+\seccion{Controles para servicios en la nube (ISO/IEC 27017:2015)}
+Los siete controles propios de la nube complementan los anteriores en los servicios de Azure. La Tabla \ref{tab:controles-iso-iec-27017-2015-servicios} los detalla.
+
+\begin{tabla}{I{0.277}I{0.354}I{0.134}I{0.234}}{Controles de ISO/IEC 27017:2015 para servicios en la nube.}{tab:controles-iso-iec-27017-2015-servicios}
+  {\cab{Control} & \cab{Implementación en SITCO Aranda} & \cab{Dónde se acredita} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir de ISO/IEC 27017:2015 (International Organization for Standardization, 2015).}
+CLD.6.3.1 Roles y responsabilidades compartidos en la nube & Lo que corresponde a Microsoft, a Overfore y al Cliente está separado por componente. & Anexo C; Anexo A & Matriz de responsabilidades \\
+CLD.8.1.5 Retiro de los activos del cliente del servicio en la nube & Las suscripciones están a nombre del Cliente y la infraestructura se reconstruye desde su repositorio. & Anexo C; T11-28 & Cuentas a nombre del Cliente \\
+CLD.9.5.1 Segregación en entornos de computación virtual & Suscripción, red y bóveda propias por ambiente; espacios de nombres y políticas de red en el clúster no productivo. & 4.2.3.1 & Configuración de suscripciones y políticas de red \\
+CLD.9.5.2 Endurecimiento de las máquinas virtuales & Nodos de AKS con Azure Linux administrado; servidores de faena con CIS y Ubuntu Pro. & Tabla \refext{S4}{tab:sistema-operativo-cada-dominio-ejecucion-fin}; T11-59 & Informe CIS \\
+CLD.12.1.5 Seguridad operativa del administrador & Elevación temporal con aprobación y sesión grabada; autorización de varias personas para cambiar la política de respaldo. & 4.1.8.3; 4.2.3.5 & Registro de elevaciones \\
+CLD.12.4.5 Monitoreo de los servicios en la nube & Azure Monitor, Log Analytics y Microsoft Sentinel en una consola única. & T11-23; T11-24 & Tableros y alertas \\
+CLD.13.1.4 Alineación de la gestión de la seguridad de redes virtuales y físicas & El direccionamiento de las VNet y de la faena se planifica en conjunto y todas las reglas entre faena y nube pasan por un solo par de cortafuegos. & T11-01; T11-34 & Plan de direccionamiento y reglas \\
+\end{tabla}
+
+\seccion{Datos personales en la nube (ISO/IEC 27018:2019)}
+ISO/IEC 27018 aplica los principios de privacidad de ISO/IEC 29100 al tratamiento de datos personales en la nube. La Tabla \ref{tab:principios-privacidad-iso-iec-27018-2019} muestra cómo los cumple SITCO Aranda.
+
+\begin{tabla}{I{0.235}I{0.415}I{0.140}I{0.210}}{Principios de privacidad de ISO/IEC 27018:2019 en SITCO Aranda.}{tab:principios-privacidad-iso-iec-27018-2019}
+  {\cab{Principio} & \cab{Implementación en SITCO Aranda} & \cab{Dónde se acredita} & \cab{Evidencia}}
+  {Fuente: elaboración propia a partir de ISO/IEC 27018:2019 (International Organization for Standardization, 2019).}
+Consentimiento y elección & La verificación facial de portería entra en la etapa 2 sujeta al acuerdo con el sindicato, y cada caso de fatiga registra su base de tratamiento. & T11-70; Tabla \refext{S4}{tab:llamadas-sincronas-entre-componentes-umbral} & Acuerdo sindical y registro de la base \\
+Legitimidad y especificación del propósito & Cada módulo usa sus datos para su función y ninguno consulta el almacén de otro. & 4.1.4.6 & Diccionario de datos por dominio \\
+Limitación de la recolección y minimización de datos & El operador de camión no recibe dispositivo nuevo, la botonera no tiene pantalla y los datos sensibles no salen de producción. & Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito}; 4.1.3.4 & Diseño de los canales \\
+Limitación de uso, retención y divulgación & Retención por dominio según el caso y publicación al comprador sólo con aprobación comercial. & 4.2.3.5; Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno} & Política de retención \\
+Exactitud y calidad & Un registro se corrige sólo con un registro nuevo que conserva autor, motivo y valores. & Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno} & Auditoría inalterable \\
+Apertura, transparencia y aviso & El aviso de privacidad a trabajadores y contratistas es del Cliente; SITCO registra qué dato se trata y con qué base. & S5; Anexo C & Aviso de privacidad del Cliente \\
+Participación y acceso del titular & Cada dato personal tiene un solo almacén propietario, por lo que la consulta, rectificación o eliminación que pida su titular se atiende en el módulo que lo trata, conforme a la Ley N° 21.719. & 4.1.4.6; S5 & Registro de solicitudes atendidas \\
+Responsabilidad & Cada consulta a datos de salud queda auditada; una consulta fuera del rol es un caso de detección. & Tabla \refext{S4}{tab:volumetria-referencia-capacidad-diseno}; 4.1.8.5 & Alertas del caso de detección 3 \\
+Seguridad de la información & Cifrado de campo, claves en HSM y TPM, identificadores únicos sin credenciales compartidas. & Tabla \refext{S4}{tab:reglas-resolucion-conflictos-sincronizacion}; Tabla \refext{S4}{tab:mecanismo-cifrado-custodia-claves-ambito} & Configuración de cifrado e identidad \\
+Cumplimiento de privacidad & Los datos personales se alojan en Chile Central y la réplica a Brazil South es una transferencia internacional amparada en cláusulas contractuales, en la aprobación del cliente y en el cifrado (Ley N° 21.719). & 4.3.2.1; T11-01 & Registro de la transferencia internacional \\
+\end{tabla}
+
+\anexo{Comparación completa de tecnologías de software}
+Las ocho capas de SITCO Aranda requieren componentes con funciones distintas, desde las pantallas de terreno hasta la supervisión del Nodo de Faena. La Tabla \ref{tab:tecnologias-ocho-capas-alternativas-evaluadas} identifica cada tecnología, su versión cuando corresponde, el uso previsto y el motivo para descartar la alternativa evaluada.
+
+\begin{tabla}{I{0.168}I{0.201}I{0.329}I{0.302}}{Tecnologías de las ocho capas y alternativas evaluadas.}{tab:tecnologias-ocho-capas-alternativas-evaluadas}
+  {\cab{Capa} & \cab{Tecnología elegida} & \cab{Uso en SITCO Aranda} & \cab{Alternativa evaluada y criterio}}
+  {Fuente: elaboración propia.}
+ & Angular 22 & Comparte componentes y pantallas entre los portales, la App SITCO Terreno y la Consola de Portería. Un cambio en un formulario operacional se implementa en la misma base de interfaz que usan los cinco canales con pantalla & React permitiría desarrollar las pantallas, pero partir desde su biblioteca exige escoger herramientas para rutas y obtención de datos. Esa combinación agrega decisiones de mantenimiento sin resolver una necesidad distinta de SITCO Aranda \\
+ & .NET 10 LTS & Da a la App SITCO Terreno y a la Consola de Portería un proceso instalado en el equipo para ejecutar la interfaz y coordinar sus funciones locales. El soporte de esta versión termina el 14 de noviembre de 2028; su actualización se programa dentro del contrato & Una aplicación completamente nativa requeriría desarrollar otra interfaz para esas dos aplicaciones y sostenerla junto con la de los portales \\
+ & Microsoft Edge WebView2 & Aloja dentro de las aplicaciones instaladas las pantallas Angular que también se usan en los portales. Así, la experiencia del equipo de terreno no exige rehacer formularios en controles nativos & Frente a pantallas nativas separadas, WebView2 conserva una interfaz compartida. La comparación corresponde al contenedor de escritorio, no a un segundo motor de datos \\
+ & SQLite & Mantiene en la tableta una base local para los hechos capturados antes de entregarlos al Nodo de Faena. Su uso se limita a esa espera y no reemplaza el almacén operacional del módulo & El almacenamiento del navegador puede ser desalojado por el sistema operativo. Si ocurre antes de sincronizar, se pierden registros que aún no llegaron al Nodo \\
+\multirow{-5}{=}{1. Presentación} & SQLCipher 4 & Cifra la base SQLite que contiene los hechos pendientes en la tableta. Protege ese tramo en el que la información todavía permanece en el dispositivo del usuario & La alternativa evaluada para la persistencia local fue el almacenamiento del navegador. Puede perder registros pendientes por desalojo; por eso se eligió una base local y se cifró con SQLCipher \\
+ & Azure Front Door Premium & Es la entrada de los servicios públicos y distribuye el tráfico antes de que llegue a los servicios de SITCO Aranda; el acceso usa TLS 1.3 & Un proxy inverso propio comenzaría a filtrar después de recibir el tráfico en la red virtual. Eso desplaza la exposición hacia la infraestructura de la solución \\
+ & Azure DDoS Network Protection & Aplica reglas de cortafuegos a las solicitudes web públicas antes de encaminarlas a los servicios. Su función incluye la mitigación del tráfico de ataque, incluido el volumétrico, además del filtrado de peticiones web & La alternativa del borde era un proxy inverso propio. Tendría que recibir el tráfico en la red virtual y mantener allí sus reglas de filtrado web, en vez de aplicarlas en la entrada administrada \\
+\multirow{-3}{=}{2. Borde y exposición} & Microsoft Entra Private Access & Da al personal propio acceso al Portal Web SITCO como aplicación concreta, tras verificar su identidad y el equipo & Una red privada virtual abre una ruta hacia la red, aunque la persona solo necesite el portal; aumenta el alcance del acceso que debe administrarse \\
+ & Azure API Management & Publica las interfaces para integraciones autorizadas, aplica cuotas y ofrece catálogo, portal para desarrolladores y pruebas con datos sintéticos & Construir cuotas, catálogo y portal propios trasladaría a Overfore el mantenimiento de esas funciones durante los 56 meses del contrato \\
+\multirow{-2}{=}{3. Puertas de enlace} & Envoy 1.39 & Recibe en el Nodo y los gabinetes las solicitudes de los canales operacionales. También actúa como proxy local para la comunicación entre servicios, de modo que la ruta interna sigue disponible durante un corte & Una puerta de enlace autoalojada de Azure API Management también puede procesar solicitudes durante un corte, si ya está en ejecución; sus cambios de configuración y telemetría esperan la reconexión con Azure. Envoy mantiene la puerta local separada de esa administración \\
+ & Java 25 LTS (Eclipse Temurin) & Ejecuta la lógica de los nueve módulos y permite desplegar el mismo código en nube y Nodo para los cinco que operan localmente. Adoptium prevé disponibilidad de Java 25 al menos hasta septiembre de 2031 & La alternativa de servidor evaluada fue.NET 10. Microsoft fija el fin de soporte el 14 de noviembre de 2028, lo que obligaría a renovar el entorno base durante el contrato \\
+ & Spring Boot 4.1 & Estructura los servicios Java y sus interfaces; el empaquetado común evita mantener una variante del servicio para la nube y otra para el Nodo & La comparación de plataforma se hizo con.NET 10 para servidor. Adoptarlo implicaría cambiar de versión base antes de finalizar el contrato, además de mantener la compatibilidad entre sedes \\
+ & Azure Kubernetes Service (AKS), Kubernetes 1.36 & Orquesta en la nube los contenedores de los módulos. Recibe las mismas imágenes que se preparan para el Nodo cuando un servicio necesita instancia local & Desplegar cada servicio en una máquina virtual obligaría a preparar, actualizar y verificar por separado su instalación en nube y faena \\
+ & K3s, compatible con Kubernetes 1.36 & Ejecuta en el Nodo la imagen de los cinco módulos locales; el mismo empaquetado se usa para los agentes de gabinete. Su distribución liviana responde a los recursos de la faena & Una máquina virtual por servicio añadiría instalaciones y actualizaciones locales independientes, justo donde el equipo debe recuperar y sincronizar tras los cortes \\
+ & Azure Managed Redis & Conserva fuera de los servicios el estado de sesión y de proceso, de modo que una instancia pueda reiniciarse sin depender de su memoria local & Las capas Basic, Standard y Premium de Azure Cache for Redis se retiran el 30 de septiembre de 2028; Enterprise y Enterprise Flash, el 31 de marzo de 2027. Elegir cualquiera obligaría a sustituirla durante el contrato \\
+ & springdoc-openapi 3.1 & Genera desde el código el contrato OpenAPI 3.1 de las interfaces que consultan y escriben los canales y las integraciones & Escribir OpenAPI a mano permite publicar una interfaz distinta de la implementada; cada cambio exigiría mantener en paralelo el código y su contrato \\
+\multirow{-7}{=}{4. Servicios de negocio} & Springwolf 2.8 & Produce la descripción AsyncAPI 3.0 desde los eventos definidos en el código. Al cambiar un productor o consumidor, el contrato publicado puede revisarse junto con esa implementación & Una descripción AsyncAPI redactada a mano puede seguir mostrando un evento anterior después de cambiar el código; el error aparecería recién al integrar los módulos \\
+ & Azure Service Bus Premium & Transporta eventos entre módulos con sesiones que conservan el orden por agregado, deduplicación y cola de fallidos por suscripción. Un mensaje rechazado puede apartarse sin bloquear el resto del flujo & Azure Event Hubs con interfaz Kafka mueve eventos, pero no entrega cola de fallidos ni deduplicación nativas; habría que desarrollar y operar ese control aparte \\
+ & Bandeja de salida sobre PostgreSQL 18 & Guarda en la misma transacción local el hecho y el evento pendiente en el Nodo o gabinete. El envío se reintenta después del corte sin crear un registro operacional huérfano de su evento & Un broker local también podría retener mensajes, pero sumaría otra plataforma que instalar, respaldar y vigilar en faena, además del motor que ya guarda el hecho \\
+ & PTC Kepware Server 7.1 & Atiende el conector del historiador mediante OPC UA en modo de lectura y suscripción. SITCO obtiene señales sin asumir control de escritura sobre el sistema de origen & Un cliente OPC UA desarrollado por Overfore requeriría mantener el protocolo y su compatibilidad con el historiador durante el contrato \\
+ & Azure Communication Services & Envía correo y mensajería instantánea de las notificaciones desde un servicio administrado. Se integra con el flujo de avisos sin operar un servidor de correo propio & Un servidor propio cubriría solo parte de los canales y exigiría al equipo administrar su disponibilidad, seguridad y entrega de mensajes \\
+ & Agregador de SMS con cobertura en Chile & Entrega el canal SMS de los avisos cuando el destinatario no usa el canal digital principal. La cobertura local se resuelve en el proveedor de mensajes & El servidor de correo propio evaluado no envía SMS; usarlo como única salida dejaría sin ese canal a las notificaciones \\
+ & Pact JVM 4.7 & Ejecuta en integración continua pruebas de los consumidores contra el contrato de las interfaces. Comprueba si una nueva versión todavía responde a lo que esperan los módulos que la llaman & Comparar archivos de contrato solo muestra que cambió la descripción; no prueba que el consumidor existente pueda usar la respuesta nueva \\
+\multirow{-7}{=}{5. Integración y eventos} & Pact Broker 2.121 sobre PostgreSQL 18 & Registra contratos y versiones desplegadas en nube y Nodo. & Un registro manual no bloquea una combinación incompatible ni confirma qué versión sigue instalada en el Nodo tras un corte \\
+ & PostgreSQL 18 & Cada módulo mantiene su almacén lógico para las transacciones. El mismo motor sirve además a los metadatos documentales, la auditoría y la consulta histórica, sin juntar los datos de todos los módulos en una sola estructura & Elegir un motor diferente por módulo obligaría a administrar varios calendarios de actualización, respaldos y procedimientos de recuperación. La separación lógica conserva límites entre módulos sin multiplicar plataformas \\
+ & TimescaleDB 2.30 sobre PostgreSQL 18 & Organiza las series del historiador, la telemetría y la instrumentación sobre el motor que ya opera la solución. Esas lecturas por tiempo no se mezclan con las tablas transaccionales de los módulos & InfluxDB atendería las series, pero incorporaría otro motor con sus propias copias de respaldo, actualizaciones y supervisión. Esa carga pesa en un equipo de TI reducido \\
+ & ClickHouse 26.8 LTS & Mantiene el modelo analítico de Indicadores y Centro Integrado para consultas agregadas. Esas consultas se separan de las escrituras que registran la operación & Una réplica de lectura de PostgreSQL aliviaría al servidor principal, pero conservaría el modelo de filas y no daría el almacenamiento columnar previsto para el análisis dimensional \\
+ & OpenSearch 3 & Construye un índice de consulta entre los nueve módulos y filtra cada resultado según el rol del usuario. Permite buscar sin interrogar por separado cada almacén lógico & La búsqueda de texto de PostgreSQL funciona dentro de una base, pero aquí habría que reunir resultados de varios módulos y aplicarles el mismo control de acceso \\
+\multirow{-5}{=}{6. Datos} & Azure Blob Storage, con versionado e inmutabilidad por retención bloqueada & Conserva documentos firmados, fotografías y otras evidencias con versiones y plazos de retención propios. La política bloqueada impide acortar o eliminar la retención. Los módulos guardan las referencias y metadatos necesarios para relacionarlos con cada hecho & Poner los archivos dentro de PostgreSQL mezclaría objetos grandes y de larga conservación con registros transaccionales pequeños; complicaría respaldos y retención \\
+ & Microsoft Entra ID & Federa la identidad del personal propio con el directorio corporativo para el acceso a SITCO Aranda. Evita mantener otra contraseña para las personas que ya pertenecen a la compañía & Un directorio nuevo tendría que reproducir y mantener la federación corporativa, además del alta, baja y cambios de acceso del personal \\
+ & Microsoft Entra External ID & Gestiona las identidades de contratistas y compradores separadas de las cuentas del personal. También permite asignar credenciales de cliente a las integraciones externas previstas & Incorporar externos en un directorio propio obligaría a sostener otro ciclo de credenciales y su relación con las identidades corporativas; la propuesta separa ambos grupos \\
+ & Azure Key Vault Premium & Guarda secretos, certificados de servicios y claves usadas para cifrar campos personales sensibles. Las claves asimétricas pueden protegerse en HSM en la edición Premium & Una bóveda operada por el propio proyecto requeriría proteger y auditar su infraestructura y la custodia de esas claves \\
+ & Istio administrado por AKS & Aplica TLS mutuo a las comunicaciones entre servicios desplegados en la nube. La administración de la malla se integra al entorno AKS, donde ya corren esos módulos & Montar SPIFFE y SPIRE propios añadiría una infraestructura de identidad de servicios que habría que operar y renovar durante el contrato \\
+ & Microsoft Sentinel & Centraliza eventos de seguridad y casos de detección para investigar actividad de la nube y la faena una vez recibida. La evaluación de un incidente queda en un lugar común & Correlacionar eventos mediante desarrollo propio exigiría reglas, operación y revisión continua por un equipo de seguridad dedicado que el cliente no tiene \\
+ & Microsoft Intune & Inventaría tabletas y consolas y distribuye configuración y aplicaciones firmadas. Mantiene administrados los equipos Windows que ejecutan los canales de terreno & Revisar o intervenir cada dispositivo manualmente exige llegar a equipos dispersos por la faena y mantener sus configuraciones una por una \\
+\multirow{-7}{=}{7. Seguridad} & Firma electrónica avanzada de prestador acreditado & Integra la firma de actas de embarque, registros de seguridad exigidos y reportes a la autoridad en sus flujos respectivos. La validación depende del prestador acreditado & Un dispositivo físico por firmante exigiría entregar, custodiar y operar tokens individuales y sacaría la firma del flujo digital que genera el documento \\
+ & OpenTelemetry & Instrumenta módulos y agentes para emitir métricas, registros y trazas con identificadores que permiten seguir una operación entre nube, Nodo y gabinetes & Agentes propietarios distintos por producto fragmentarían los identificadores y dificultarían reconstruir un recorrido completo entre los tres entornos \\
+ & Azure Monitor & Reúne en la nube las señales instrumentadas para revisar el funcionamiento de los servicios y correlacionar fallas. La vista central depende de recibir los datos de faena cuando vuelve el enlace & Consolas separadas por producto obligarían a consultar varias fuentes para reconstruir una incidencia; Azure Monitor recibe una instrumentación común \\
+ & Prometheus 3.13 LTS & Conserva en el Nodo las métricas de sus servicios mientras la comunicación con Antofagasta está interrumpida. Esa consulta local no espera a que las señales lleguen a la nube & Usar solo Azure Monitor dejaría al equipo de faena sin métricas recientes del Nodo durante un corte, justo cuando debe verificar la operación local \\
+\multirow{-4}{=}{8. Observabilidad} & Grafana 13.2 & Presenta en tableros locales las métricas que Prometheus conserva en el Nodo. El equipo de faena puede leer el estado de los servicios sin depender de una consola central & Una visualización disponible solo en Azure Monitor mostraría la última información recibida antes del corte, no las mediciones que siguen generándose en el Nodo \\
+\end{tabla}
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item International Organization for Standardization. (2015). ISO/IEC 27017:2015 Information technology — Security techniques — Code of practice for information security controls based on ISO/IEC 27002 for cloud services. ISO.
+\item International Organization for Standardization. (2019). ISO/IEC 27018:2019 Information technology — Security techniques — Code of practice for protection of personally identifiable information (PII) in public clouds acting as PII processors. ISO.
+\item International Organization for Standardization. (2022a). ISO/IEC 27001:2022 Information security, cybersecurity and privacy protection — Information security management systems — Requirements. ISO.
+\item International Organization for Standardization. (2022b). ISO/IEC 27002:2022 Information security, cybersecurity and privacy protection — Information security controls. ISO.
+\end{referencias}
+\end{document}

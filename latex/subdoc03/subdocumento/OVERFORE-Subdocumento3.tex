@@ -1,0 +1,468 @@
+%% OVERFORE-Subdocumento3.tex — generado desde OVERFORE-Subdocumento3.docx
+%% Formato: clase overfore, modo subdoc. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[subdoc]{../../comun/overfore}
+\numsubdoc{3}
+\nombresubdoc{Esquema de solución y alcance}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{A3}
+\begin{document}
+
+\capitulo{Introducción al Alcance de la Solución}
+La operación de Compañía Minera Altos de Aranda funciona bien, pero no puede demostrarlo con datos. El dato no nace donde ocurre el hecho, ya que un cambio de material se avisa por radio, un pesaje queda en una planilla, un documento vencido se descubre en la portería y un reporte ambiental se arma a mano.
+
+SITCO Aranda (Sistema Integrado de Trazabilidad, Conciliación y Cumplimiento Operacional) cambia esa situación con la idea de que cada hecho quede registrado en el lugar y en el momento en que ocurre, con lo que las personas ya hacen, y que desde ahí llegue sin transcripciones a quien lo necesita, sea el comprador que pide el origen de un lote, finanzas que cierra la conciliación o la autoridad que fiscaliza.
+
+Este capítulo presenta un resumen ejecutivo de la solución, el alcance comprometido, los esquemas de cada componente y su funcionamiento en la operación. Los listados de requerimientos y supuestos están en OVERFORE-Subdocumento2-Anexos y la trazabilidad de cada requerimiento, en el Formulario T-12. La asignación por etapa, la correspondencia entre el problema y la solución y la estrategia por grupo de interés están en los Anexos A, B y C de OVERFORE-Subdocumento3-Anexos. Los módulos son los mismos de la arquitectura del Subdocumento 4, los datos y la migración se desarrollan en el Subdocumento 5, la construcción y el despliegue en el Subdocumento 6, y el plan de trabajo y la implantación en el Subdocumento 7.
+
+\seccion{Resumen Ejecutivo de la Solución}
+SITCO Aranda se describe con tres términos que se usan igual en toda la propuesta. Los componentes son los cuatro bloques de la solución, los cuales son software, dispositivos de terreno, red e infraestructura. Los módulos son las nueve partes funcionales del software, siete de negocio y dos transversales. Las plataformas, el Integrador de Sistemas y el Nodo de Faena, no tienen funciones de negocio propias y sostienen a los módulos.
+
+\subseccion{Descripción general de SITCO Aranda}
+A estos cuatro componentes se suma un servicio de operación y soporte durante todo el contrato. La Figura~\ref{fig:componentes-sitco-aranda} resume la solución completa.
+
+\begin{horizontal}
+\figura{22.44}{fig-3-1-componentes-sitco-aranda}{Componentes de SITCO Aranda}{fig:componentes-sitco-aranda}{Fuente: elaboración propia.}
+\end{horizontal}
+El software es el centro de la solución; sus nueve módulos se conectan con los sistemas existentes por medio del Integrador de Sistemas, y las personas lo usan por los siguientes seis canales. La App SITCO Terreno, la Botonera de Pala, el Portal Web SITCO, el Portal de Contratistas, el Portal para Compradores y la Consola de Portería.
+
+Los cinco dispositivos de terreno nuevos son la Botonera de Pala, las tabletas rugerizadas, los PC industriales de la Consola de Portería, los lectores faciales en portería y los caudalímetros, además de la esclusa biométrica de la sala técnica. La red agrega una segunda fibra hacia Antofagasta, de otro proveedor y camino, y un enlace satelital de órbita baja. La infraestructura es híbrida, pues los servicios centrales funcionan en una nube pública con regiones en Santiago y São Paulo, y en la faena una sala técnica nueva aloja el Nodo de Faena, que permite seguir trabajando sin conexión con Antofagasta.
+
+Ninguno de los diez sistemas existentes queda fuera, ya que cinco se integran, tres se leen sin modificarse, el control de acceso de portería se amplía y las planillas dejan de ser el sistema de registro (3.3.2.2).
+
+\subseccion{Implementación en dos etapas}
+La implementación sigue el cronograma contractual de 56 meses (Compañía Minera Altos de Aranda [CMAA], 2026a, Art. 17.1, p. 12), con dos etapas seguidas de la operación, como muestra la Figura~\ref{fig:calendario-proyecto-56-meses-contrato}.
+
+\figura{16.09}{fig-3-2-calendario-proyecto-56-meses-contrato}{Calendario del proyecto en los 56 meses del contrato.}{fig:calendario-proyecto-56-meses-contrato}{Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 17.1, p. 12, y Art. 17.2, p. 13).}
+La Etapa 1 se desarrolla entre los meses 1 y 12, pasa por marcha blanca entre los meses 13 y 15 y entra en producción en el mes 16 con la infraestructura, la red y la cadena del mineral. La Etapa 2 se desarrolla entre los meses 13 y 18, pasa por marcha blanca en los meses 19 y 20 y entra en producción en el mes 21 con mantenimiento, seguridad, cumplimiento ambiental y el Portal para Compradores. Con el mes 1 en enero de 2027, la trazabilidad opera desde abril de 2028 y la huella de carbono mensual desde octubre de 2028, antes de las exigencias de los compradores de enero de 2029.
+
+\subseccion{Implantación, operación y soporte}
+Cada etapa entra en producción por área y por sitio, nunca como un evento único. Durante la marcha blanca la forma actual de trabajar sigue activa y se compara cada día con SITCO hasta cumplir las condiciones de cierre. Ningún paso a producción coincide con una detención de planta, con el cierre contable ni con las 48 horas previas a un embarque, y la capacitación de cada área cubre al menos dos ciclos del régimen 7x7, de día y de noche (CMAA, 2026b, cap. 13.3, p. 22, y RT-10.05 del cap. 15, p. 25).
+
+Desde el mes 21 hasta el mes 56 la solución se opera como servicio, con mesa de ayuda 24x7, un centro de operaciones, soporte presencial en faena en ambos turnos, mantención y pruebas de recuperación ante desastres, porque el área de tecnologías de información del cliente, de once personas, no cuenta con especialistas para operarla. A ese equipo se le transfiere la administración de la parametrización, los usuarios y los reportes.
+
+\seccion{Alcance}
+El alcance se presenta en dos planos, siguiendo la Guía del PMBOK que adopta la metodología de gestión del Subdocumento 6 (Project Management Institute [PMI], 2017, p. 105). El alcance del producto son las características y funciones de SITCO Aranda, pues abarca sus módulos, las funciones de cada etapa y los requerimientos que cumple. El alcance del proyecto es el trabajo para entregarlo, ya que este hay que construirlo, ponerlo en producción y operarlo durante 36 meses.
+
+\subseccion{Descomposición del problema en módulos}
+El diagnóstico agrupó la problemática de Aranda en tres problemas con una causa común, el dato no nace donde ocurre el hecho, pues la trazabilidad y conciliación del mineral, la productividad de la operación y el cumplimiento regulatorio y la gestión de personas. La solución sigue esa misma división, como muestra la Figura~\ref{fig:descomposicion-problema-modulos}.
+
+\figura{16.09}{fig-3-3-descomposicion-problema-modulos}{Descomposición del problema en módulos}{fig:descomposicion-problema-modulos}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 7, pp. 11-12, y cap. 9, pp. 18-19).}
+El primer problema se resuelve con tres módulos que siguen al mineral, estos son Operación Mina captura el origen, Trazabilidad y Embarque lo sigue hasta el embarque y Conciliación Metalúrgica cuadra las cantidades. Operación Mina sirve también al segundo problema, porque el registro que indica de dónde viene una tonelada mide el cumplimiento del plan y las demoras, y Equipos y Mantenimiento lo completa. El tercero se resuelve con Acreditación y Acceso, Seguridad y Salud Ocupacional y Cumplimiento Ambiental.
+
+Las condiciones transversales se resuelven con los módulos transversales, las plataformas, los dispositivos de terreno y la red, lo que permite construir y poner en producción cada parte por separado y repartirlas en dos etapas sin rehacer la arquitectura.
+
+\subseccion{Alcance de la Etapa 1 y de la Etapa 2}
+El reparto entre etapas se aplica al producto y decide qué entra en producción en el mes 16 y qué en el mes 21. Las subsecciones 3.2.2.4 a 3.2.2.6 describen el trabajo del proyecto que lo hace posible, común a ambas etapas.
+
+\subsubseccion{Criterios de asignación entre etapas}
+El directorio definió un orden de urgencia que prioriza la trazabilidad y la conciliación, seguido del registro en terreno y la acreditación de personas, y al final la analítica de mantenimiento (CMAA, 2026b, cap. 13.1, p. 21). Ese orden se tomó como punto de partida, y cada módulo, plataforma y componente se asignó a una etapa con cuatro criterios:
+
+\begin{itemize}
+\item Plazo externo: lo que exigen los compradores desde enero de 2029 debe estar en producción, con datos suficientes, antes de esa fecha.
+\item Dependencia técnica: un módulo no entra antes que aquel del que depende, por lo que los tres módulos de la cadena del mineral van juntos.
+\item Dependencia de terceros: lo que requiere negociar con los fabricantes de equipos o acordar la verificación facial de portería con el sindicato queda en la Etapa 2, aunque la negociación con los fabricantes parte en el mes 3 y la del sindicato en el mes 2.
+\item Capacidad de absorción: no se pide al mismo grupo de personas aprender dos cosas a la vez. La Etapa 1 involucra a la mina, la planta y la portería, y la Etapa 2 a mantenimiento, seguridad y sustentabilidad.
+\end{itemize}
+Al aplicar estos criterios, se obtiene la asignación que muestra la Tabla \ref{tab:asignacion-etapa}, ordenada por criterio. El detalle de cada componente, plataforma y módulo, junto con su etapa y el motivo de su asignación, está en el Anexo A de OVERFORE-Subdocumento3-Anexos.
+
+\begin{tabla}{I{0.255}C{0.376}I{0.370}}{Asignación por etapa.}{tab:asignacion-etapa}
+  {\cab{Criterio} & \cab{Lleva a la Etapa 1} & \cab{Deja en la Etapa 2}}
+  {Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 17.1, p. 12), y las Bases técnicas del caso Minería (CMAA, 2026b, cap. 13.1, p. 21).}
+Plazo externo (enero 2029) & Cadena del mineral completa & Portal para Compradores (antes de 2029) \\
+Dependencia técnica & Infraestructura, red, Nodo de Faena, servicios comunes & Módulos que se apoyan en ellos \\
+Dependencia de terceros & Acreditación y Acceso (no depende de nadie) & Telemetría, lectores faciales (sindicato) \\
+Capacidad de absorción & Mina, planta y portería & Mantenimiento, seguridad y sustentabilidad \\
+\end{tabla}
+La tabla muestra que la Etapa 1 incluye toda la cadena del mineral, junto con la infraestructura y la red que la apoyan. Respecto al orden sugerido por el directorio aplicamos solo dos ajustes. Primero, adelantamos Acreditación y Acceso a la Etapa 1 porque no depende de otros y porque la sala técnica debe estar protegida desde su instalación. Segundo, trasladamos el Portal para Compradores a la Etapa 2, garantizando que esté operativo antes de enero de 2029. La analítica avanzada de mantenimiento no forma parte de ninguna etapa. La Etapa 2 entrega la vista única del equipo y alertas por reglas. Estos datos permiten evaluar un modelo predictivo durante la operación. A continuación se explica lo que ofrece cada etapa.
+
+\subsubseccion{Alcance de la Etapa 1}
+La Etapa 1 entrega completas la infraestructura y la red y pone en producción la cadena del mineral, la acreditación de personas y los tableros de turno, como resume la Figura \ref{fig:alcance-etapa-1}.
+
+\begin{horizontal}
+\figura{22.44}{fig-3-4-alcance-etapa-1}{Alcance etapa 1.}{fig:alcance-etapa-1}{Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 17.1, p. 12).}
+\end{horizontal}
+La figura muestra que la Etapa 1 concentra toda la infraestructura y la red, por lo que la Etapa 2 no agrega nada en esas dimensiones. Incluye además el inventario técnico de los sistemas existentes, la migración de los históricos de producción, trazabilidad, laboratorio y acreditación (Subdocumento 5, sección 5.3) y una prueba de corte controlado de 48 horas antes del paso a producción.
+
+El acceso a la sala técnica se controla desde su instalación con verificación facial y huella de respaldo, sólo para el personal autorizado de la sala (RT-06.20).
+
+\subsubseccion{Alcance de la Etapa 2}
+La Etapa 2 se construye sobre lo instalado sin cambiar la arquitectura. Agrega módulos, conectores y dispositivos, como muestra la Figura \ref{fig:alcance-etapa-2}.
+
+\begin{horizontal}
+\figura{22.44}{fig-3-5-alcance-etapa-2}{Alcance etapa 2.}{fig:alcance-etapa-2}{Fuente: elaboración propia a partir de las Bases administrativas (CMAA, 2026a, Art. 17.1, p. 12).}
+\end{horizontal}
+Se observa que la Etapa 2 es de software y de terreno. Se instalan los lectores faciales, los caudalímetros del campamento y de la carga de camiones aljibe, y un caudalímetro de repuesto, el caudalímetro de la planta se instala antes, en la detención de marzo de 2028, porque su montaje exige detener el proceso, así entra en uso con Cumplimiento Ambiental en la Etapa 2. Además se suman las tabletas de seguridad y de mantenimiento a las de mina, planta y puerto de la Etapa 1. Mientras la Etapa 1 opera y la Etapa 2 está en marcha blanca, los datos compartidos, como las personas habilitadas, los equipos y los polígonos, tienen una sola fuente y no se digitan dos veces (CMAA, 2026a, Art. 17.2, p. 13).
+
+Además, para habilitar esta etapa, se ejecutará la digitalización y migración histórica de SSO (193.000 formularios en papel, equivalentes a 193 GB, calculados en OVERFORE-Subdocumento5-Anexos, Tabla \refext{A3}{tab:estrategia-grupo-interes}) entre los meses 10 y 15.
+
+\subsubseccion{Alcance de la implementación}
+La implementación construye y certifica cada etapa antes de su marcha blanca, con el contenido que las Bases exigen al desarrollo (CMAA, 2026a, Art. 17.1, p. 12). Esto contempla ejecutar la Etapa 1 entre los meses 1 y 12, mientras que la Etapa 2 se desarrollará entre los meses 13 y 18, en paralelo con la marcha blanca de la primera etapa. Cada parte cierra con un hito del Formulario E-25, cumplido con el acta de la Contraparte Técnica (CMAA, 2026a, p. 74):
+
+\begin{itemize}
+\item Levantamiento y línea base: la línea base de alcance y la matriz de trazabilidad se aprueban en el mes 2 (H1) y la de la Etapa 2 en el mes 14 (H8), el inventario técnico sigue hasta el mes 3.
+\item Diseño: la arquitectura, el plan de seguridad y el modelo de datos se aprueban en el mes 4 (H2).
+\item Construcción: tres equipos trabajan en sprints de dos semanas, 19 en la Etapa 1 y 10 en la Etapa 2 (cálculo en OVERFORE-Subdocumento6-Anexos, sección A.2), y entregan el software para pruebas en los meses 10 (H4) y 17 (H9).
+\item Integraciones: los siete conectores del Anexo A y el conector de radio y megafonía del Nodo de Faena, en la Etapa 1. En la Etapa 2 se suman el conector de telemetría, con un adaptador por cada uno de los tres fabricantes, y el de fatiga, además se amplían los de SAP (mantenimiento y costos) y del control de acceso (verificación facial). La instrumentación ambiental y geotécnica entra como periférico de Cumplimiento Ambiental.
+\item Migración: los históricos de cada etapa se cargan después de dos ensayos completos en Preproducción.
+\item Ambientes: la sala técnica, el Nodo de Faena y los ambientes de Desarrollo, QA, Preproducción y Producción quedan habilitados en el mes 6 (H3), junto con el de Recuperación ante Desastres en la región secundaria.
+\item Pruebas y certificación: las pruebas integrales corren en QA. Cada etapa se certifica en los meses 12 (H5) y 18 (H10) con pruebas de aceptación, carga y resiliencia, y con el informe de la prueba de intrusión independiente de los meses 11 y 17. Antes de cada paso a producción se repite la prueba de intrusión en los meses 15 y 20, y se prueban la recuperación ante desastres, la accesibilidad y el corte de 48 horas.
+\end{itemize}
+Todo el trabajo pasa por un mismo flujo de integración y entrega continua, activo desde el mes 1, el cual utiliza código en GitHub Enterprise Cloud del cliente, controles de bloqueo con una cobertura mínima de pruebas del 70 \%, infraestructura como código con OpenTofu y despliegue azul-verde en la nube, por extracción en el Nodo de Faena y por anillos en terreno, con reversión automática. Su detalle está en la sección 6.2.2 del Subdocumento 6.
+
+\subsubseccion{Alcance de la implantación}
+La implantación se realiza en olas por área y por sitio. En la Etapa 1, la primera ola es la portería y la acreditación, en el mes 13, la segunda, la mina, que parte con una pala durante dos semanas para cubrir ambos grupos del 7x7, y la tercera, la planta, el concentrado y el puerto. En la Etapa 2 las olas son seguridad, con la verificación facial de portería si el acuerdo con el sindicato está firmado, luego mantenimiento y al final cumplimiento ambiental. La verificación facial pasa su marcha blanca en los meses 19 y 20 con el personal permanente, en paralelo con la credencial, y entra en producción terminada la detención de septiembre de 2028, y el personal de las detenciones se incorpora desde la de marzo de 2029.
+
+Una ola avanza sólo tras 72 horas sin incidentes críticos ni altos y alcanza su meta de adopción. La meta es de 95 \% o más de los registros en SITCO y, en mina, 90 \% de las declaraciones con la botonera hechas por el propio operador. El paso a producción de cada ola lo aprueba el Comité de Proyecto, y el Comité de Operación autoriza su ejecución en la ventana de 03:00 a 05:00. Asimismo, se ordena la reversión si un incidente crítico no se resuelve en 4 horas. También la ordena si la conciliación muestra diferencias no explicadas. Las planillas se reabren con los registros de SITCO y la versión anterior se reactiva en 30 minutos o menos, sin perder registros (Subdocumento 7, sección 7.3.3). El paso a producción de la Etapa 2 se hace terminada la detención de septiembre y fuera de los cinco primeros días hábiles, siempre dentro del mes 21. Del mismo modo, el paso a producción de la Etapa 1 en abril de 2028 se hará fuera de los primeros cinco días hábiles. Así no se interfiere con el cierre contable y el ciclo de embarques. Finalmente, como las validaciones con personal clave deben evitar los meses de detención mayor, que son marzo y septiembre, la medición de la marcha blanca de la planta descuenta los seis días de la detención de marzo. Las cuatro últimas semanas que exige el Art. 17.3 incluyen esa detención. Durante esos seis días se registran las actividades efectivamente realizadas; el indicador de volumen considera los registros reales del período y la disponibilidad se controla de forma continua. El acompañamiento es de una persona por turno en cada área y la estabilización sigue sin costo adicional hasta el 31 de mayo y el 8 de noviembre de 2028 (Subdocumento 7, sección 7.3.4).
+
+\subsubseccion{Alcance de la operación y del soporte}
+La operación cubre 36 meses continuos, del mes 21 al 56, y ambas etapas desde el primer día (CMAA, 2026a, Art. 17.2, p. 13). Incluye mesa de ayuda 24x7 en español, un centro de operaciones que vigila la nube, el Nodo de Faena y los enlaces, presencia en faena en cada turno, con personal acreditado y con examen de altura vigente (CMAA, 2026b, cap. 15, RT-21.06 y RT-21.16, p. 26), pruebas semestrales de recuperación ante desastres con un RTO de 4 horas y un RPO de 15 minutos (CMAA, 2026a, Art. 20, p. 14), y un corte anual controlado de 48 horas.
+
+Los incidentes se atienden con las severidades del Art. 78 (CMAA, 2026a, p. 40). La disponibilidad comprometida es de 99,9 \%, 99,5 \%, 99,0 \% y 98,0 \% según la severidad. El informe de causa raíz se entrega en 5 días hábiles (crítica) y 10 (alta). La sala técnica y el Nodo de Faena operan como servicio permanente.
+
+\subseccion{Exclusiones, supuestos y restricciones del alcance}
+Esta sección delimita el alcance por tres lados. Lo que queda fuera, lo que se supone donde el caso no decide y lo que el cliente no permite cambiar.
+
+\subsubseccion{Exclusiones explícitas}
+Las exclusiones del cliente (CMAA, 2026b, cap. 11, p. 20) se aceptan tal como fueron planteadas, y se suman las que resultan del diseño. Las del producto son funciones que SITCO Aranda no tendrá:
+
+\begin{itemize}
+\item Reemplazar o modificar SAP S/4HANA o calcular la liquidación comercial, que siguen en SAP y en el área comercial.
+\item Reemplazar el despacho de flota, el laboratorio, la planificación minera o el software de la báscula, o modificar sus pantallas.
+\item Escribir en la red de control de proceso o modificar la lógica de control.
+\item Automatizar equipos mineros, diseñar el plan minero o estimar recursos y reservas.
+\item Gestionar remuneraciones o la administración de personal.
+\item Reemplazar los torniquetes o las cámaras de fatiga existentes.
+\item Incluir modelos predictivos de mantenimiento durante la implementación, porque hoy no existen los datos para entrenarlos (3.4.5).
+\end{itemize}
+Las del proyecto son trabajos que Overfore no ejecuta, aunque sí asume la parte que se indica:
+
+\begin{itemize}
+\item Operar el terminal portuario.
+\item Construir la ruta de la segunda fibra, sí se incluyen su especificación, coordinación y habilitación con el SD-WAN.
+\item Prestar el servicio satelital, sí se incluyen la especificación, la instalación del terminal y su habilitación.
+\item Construir la red LTE del rajo, sí se incluyen el estudio de cobertura y la especificación de lo que falte.
+\item Comprar el hardware de terreno, que adquiere el cliente, sí se incluyen su especificación, instalación y gestión.
+\item Ejecutar la obra civil de la sala técnica y de los gabinetes, sí se incluyen su especificación y coordinación, y la provisión de los ductos de fibra hasta el punto de conexión de cada sitio (RT-06.33). La losa, la acometida eléctrica y las canalizaciones de energía de la sala son del cliente.
+\item Pagar a los fabricantes por extraer la telemetría, según el contrato del cliente con cada uno.
+\end{itemize}
+Una exclusión del producto se controla en los requerimientos, una del proyecto se gestiona como dependencia, con su hito externo en el cronograma y su riesgo asociado.
+
+\subsubseccion{Supuestos del alcance}
+Las catorce decisiones de diseño que el cliente dejó abiertas (CMAA, 2026b, cap. 16.1, pp. 26-27) se resuelven como supuestos SUP-01 a SUP-14, con fundamento, impacto e instancia de validación, en el Anexo B de OVERFORE-Subdocumento2-Anexos. Ninguna agrega pasos al ciclo productivo, ya que las que tocan al operador se resuelven con un toque de credencial o un botón, y el resto recae en supervisores, planificadores o en el sistema, como la unidad de trazabilidad por tramo, el promedio ponderado por tonelaje de los stocks y el versionado del plan.
+
+Tres decisiones dependen de un tercero y se gestionan también como riesgos. En primer lugar, se encuentra la fuente de verdad del tonelaje, que el cliente ratifica en el mes 3. En segundo lugar, está la propiedad de la telemetría, la cual se negocia con cada fabricante desde el mes 3, después de especificar el acceso en los meses 1 a 3. Por último, se incluye la verificación facial, que requiere acuerdo con el sindicato. Además, la propuesta identificó y resolvió seis vacíos que el caso no lista (SUP-20 a SUP-25), los cuales abarcan la fuente de verdad de la ley, el material acopiado antes del arranque, el certificado de trazabilidad para el comprador, el vector de elementos del lote, la independencia del operador portuario y una fuente horaria común.
+
+El alcance se apoya además en estos supuestos, que se confirman en el levantamiento:
+
+\begin{itemize}
+\item El mes 1 del contrato es enero de 2027 (SUP-15).
+\item El despacho y la báscula se leen sin modificarse, o al menos exportan sus datos de forma programada. SAP entrega datos maestros y recibe los que le envía SITCO, sin modificarse, y sigue siendo el único que emite documentos contables. El sistema de gestión de laboratorio (LIMS) se integra en ambos sentidos (SUP-16).
+\item La botonera y la tableta leen la credencial de proximidad actual (SUP-17).
+\item Las cabinas de las palas tienen alimentación eléctrica para la botonera (SUP-18).
+\item El historiador replica las señales seleccionadas hacia un servidor espejo (SUP-19).
+\item Existen un segundo proveedor de fibra por otro camino físico y un proveedor satelital de órbita baja autorizado en la faena.
+\item Las alertas de fatiga llegan al Nodo de Faena por una salida local. Si caen las dos fibras, llegan por el enlace satelital de órbita baja. Si caen los tres caminos, llegan por el correo de respaldo.
+\item SAP emite la guía de despacho electrónica con su folio y con el código del lote impreso como código QR.
+\end{itemize}
+
+\subsubseccion{Restricciones del alcance}
+Las doce restricciones no negociables del cliente (CMAA, 2026b, cap. 10, pp. 19-20, ventanas horarias y de embarque en RT-10.05, cap. 15, p. 25) condicionan el alcance. Las intervenciones mayores se programan en las detenciones de marzo y septiembre y las menores entre las 03:00 y las 05:00, nunca en el cierre contable ni en las 48 horas previas a un embarque, la independencia del enlace se resuelve en 3.3.6 y la integración sin reemplazos en 3.3.2.2, y lo que exige especialistas se entrega como servicio, y el personal del proyecto se acredita como cualquier contratista.
+
+Ningún registro nuevo agrega pasos al ciclo, ya que el operador de pala aprieta un botón en lugar de llamar por radio y toca su credencial una vez por turno, acciones cuyo tiempo se mide en segundos en el piloto y se demuestra en la marcha blanca (Restricción 8). La identidad se federa con el directorio corporativo, con doble factor, en terreno, el doble factor es la credencial más un PIN, y en la botonera el toque sólo firma la autoría, que se contrasta con el operador que el despacho tiene asignado a la pala.
+
+\subseccion{Catálogo de requerimientos funcionales y no funcionales}
+El catálogo traduce las expectativas, entrevistas, indicadores y restricciones de la compañía en 248 requerimientos verificables: 126 funcionales, 96 no funcionales, 15 de transición y preparación y 11 del proyecto, cada uno con identificador, descripción y origen en el caso. Este capítulo analiza los funcionales y no funcionales, que definen el alcance del producto; el listado completo está en el Anexo A de OVERFORE-Subdocumento2-Anexos.
+
+\subsubseccion{Criterio de clasificación y de priorización}
+Es funcional lo que la solución hace ante un hecho de la operación, y no funcional lo que fija cómo debe hacerlo, con un umbral medible. Bajo esta lógica, avisar con una pulsación que el material cambió es funcional, y registrarlo en dos segundos o menos es no funcional, aunque ambos nacen de la misma entrevista. La prioridad indica la etapa de entrega, fijando el mes 16 para la Etapa 1. Dicha etapa se asigna con los cuatro criterios de la sección 3.2.2.1, mientras que los requisitos no funcionales se verifican junto con las funciones a las que se asocian, en la marcha blanca de la etapa correspondiente.
+
+\subsubseccion{Requerimientos funcionales}
+Los 126 funcionales se agrupan por el módulo o la plataforma que los cumple, como muestra la Tabla \ref{tab:requerimientos-funcionales-modulo-etapa-entrega}.
+
+\begin{tabla}{I{0.485}I{0.184}I{0.184}D{0.147}}{Requerimientos funcionales por módulo y etapa de entrega.}{tab:requerimientos-funcionales-modulo-etapa-entrega}
+  {\cab{Módulo o plataforma} & \cab{Etapa 1} & \cab{Etapa 2} & \cab{Total}}
+  {Fuente: elaboración propia a partir del Anexo A del Subdocumento 2.}
+Operación Mina & 20 & No aplica & 20 \\
+Trazabilidad y Embarque & 16 & 1 & 17 \\
+Conciliación Metalúrgica & 15 & No aplica & 15 \\
+Equipos y Mantenimiento & No aplica & 10 & 10 \\
+Acreditación y Acceso & 16 & 2 & 18 \\
+Seguridad y Salud Ocupacional & No aplica & 7 & 7 \\
+Cumplimiento Ambiental & No aplica & 10 & 10 \\
+Indicadores y Centro Integrado & 1 & 4 & 5 \\
+Administración y Servicios Comunes & 19 & No aplica & 19 \\
+Integrador de Sistemas y Nodo de Faena & 5 & No aplica & 5 \\
+Total & 92 & 34 & 126 \\
+\end{tabla}
+La cadena del mineral reúne 52 requerimientos, el 41 \% de los funcionales, y que 51 entran en la Etapa 1, el único de la Etapa 2 es el Portal para Compradores, que necesita datos de ambas etapas. Administración y Servicios Comunes entrega sus 19 en la Etapa 1, porque los demás módulos dependen de su identidad y su firma, y la Etapa 2 se concentra en mantenimiento, seguridad y cumplimiento ambiental, con 27 de sus 34 requerimientos. La sección 2.5 del Subdocumento 2 distribuye los requerimientos según el problema que los origina, no por módulo.
+
+\subsubseccion{Requerimientos no funcionales}
+Los 96 no funcionales declaran su umbral y su método de verificación. Desempeño (18), seguridad (16) y usabilidad (15) reúnen el 51 \%, lo que refleja la naturaleza de una solución enfocada en registrar hechos en terreno rápido, sin fricción y protegiendo datos sensibles. Les siguen disponibilidad y continuidad (9), capacidad y escalabilidad (8), interoperabilidad (6), operabilidad (6), portabilidad (4), cumplimiento (2) e infraestructura (1). Los 11 requisitos transversales provienen de las Bases técnicas transversales.
+
+Los umbrales más exigentes corresponden a tres categorías principales. La primera abarca los tiempos de registro en terreno, fijados en 2 segundos para un movimiento de material, 3 para un pesaje y 1,5 para verificar a una persona en portería (CMAA, 2026b, cap. 15, RT-09.01, p. 25). La segunda incluye los resultados de negocio, tales como reconstruir el origen de un lote en menos de 2 horas, cerrar la conciliación en 3 días hábiles y acreditar a un contratista en 48 horas. Por último, se encuentra la continuidad, la cual exige operar 48 horas sin enlace sin perder registros.
+
+La trazabilidad entre necesidad, requerimiento y aceptación se mantiene en dos niveles. El Anexo C.1 de OVERFORE-Subdocumento2-Anexos relaciona cada uno de los 14 criterios de aceptación del Caso con los requerimientos que lo sustentan, y el Formulario T-12 declara, para cada requerimiento, el componente que lo satisface, la prueba que lo verifica y la sección de la propuesta donde se acredita.
+
+\subseccion{Criterios de aceptación del alcance comprometido}
+El alcance se acepta en dos niveles. El trabajo del proyecto se recibe por etapa, esto ocurre cuando la marcha blanca cumple las seis condiciones de cierre del Artículo 17.3 de las Bases administrativas (p. 13). Entre estas condiciones están el no tener incidentes críticos ni altos abiertos, mantener el volumen real comprometido en las últimas cuatro semanas, conciliar sin diferencias no explicadas y contar con el acta firmada de la Contraparte Técnica. Por otro lado, el producto se acepta con los catorce resultados de negocio del Capítulo 18 de las Bases técnicas del caso Minería (p. 32). Para asegurar un control que se pueda seguir, estos criterios se dividen según su etapa de entrega. La Tabla \ref{tab:criterios-aceptacion-etapa-1} muestra los ocho resultados con sus metas y métodos de medición para la Etapa 1.
+
+\begin{tabla}{I{0.242}I{0.328}C{0.215}I{0.215}}{Criterios de aceptación etapa 1}{tab:criterios-aceptacion-etapa-1}
+  {\cab{Resultado esperado} & \cab{Meta comprometida} & \cab{Mes de cumplimiento} & \cab{Método de medición}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 18, p. 32).}
+Origen de un lote embarcado & Menos de 2 horas, con evidencia & 16 & Reconstrucción de lotes reales \\
+Cierre de la conciliación & 3 días hábiles o menos & 17 & Fecha de aprobación en SITCO \\
+Cumplimiento del plan & Publicado al inicio del turno siguiente, contra la versión vigente & 16 & Hora de publicación \\
+Detenciones clasificadas (mina) & 100 \% en el turno siguiente & 16 & Pendientes por turno \\
+Rechazos por documento vencido & Cero rechazos que pudieron advertirse & 16 & Causa de cada rechazo \\
+Acreditación de contratista nuevo & Menos de 48 horas desde la documentación completa & 16 & Tiempo en el flujo \\
+Operación sin enlace & 48 horas, con sincronización en 4 horas o menos & 16 & Prueba de corte controlado \\
+Uso de la botonera por decisión propia & 90 \% de los cambios de material declarados con la botonera & Marcha blanca de la Etapa 1 & Cambios de destino con declaración \\
+\end{tabla}
+El análisis de estos primeros resultados muestra que la Etapa 1 toma la parte crítica de la operación minera. Asegura la trazabilidad continua de los lotes y la adopción temprana en terreno mediante el uso de la botonera.
+
+Cuando esta fase se estabiliza, los siete resultados restantes se logran y se evalúan con la entrada en producción de la Etapa 2, como se muestra en la Tabla \ref{tab:criterios-aceptacion-etapa-2}.
+
+\begin{tabla}{I{0.242}I{0.328}C{0.215}C{0.215}}{Criterios de aceptación etapa 2}{tab:criterios-aceptacion-etapa-2}
+  {\cab{Resultado esperado} & \cab{Meta comprometida} & \cab{Mes de cumplimiento} & \cab{Método de medición}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 18, p. 32).}
+Diferencia de conciliación & Bajo 3 \% al mes 22 y bajo 2 \% desde el mes 28, siempre explicada por tramo & 22 y 28 & Informe mensual por tramo \\
+Detenciones clasificadas (Planta) & 100 \% en el turno siguiente & 21 & Pendientes por turno \\
+Vista única del equipo & Todos los equipos con telemetría habilitada & 21 & Revisión por equipo \\
+Registros de seguridad digitales & 100 \% nacen en la App SITCO Terreno & 21 & Registros en papel detectados \\
+Alertas de fatiga & 100 \% con acción documentada & 21 & Casos sin acción \\
+Reportes ambientales & 100 \% generados desde SITCO & 22 & Reportes enviados \\
+Huella de carbono & Cálculo mensual y auditable & 22 & Evidencia por alcance \\
+\end{tabla}
+A partir de los resultados de esta segunda fase, la meta más exigente corresponde a mantener la diferencia de conciliación bajo el 2 \%, que es referencia de la industria (CMAA, 2026b, cap. 7.1, p. 12). Este objetivo se compromete desde el mes 28, ya que requiere de un año completo de datos empíricos para ajustar los factores del pesaje de a bordo y verificar el modelo de mezcla.
+
+\seccion{Esquema de solución}
+Esta sección presenta primero una vista de conjunto de los cuatro componentes y luego cada uno con su esquema, para terminar con el funcionamiento ante un corte del enlace con Antofagasta.
+
+\subseccion{Vista general de la solución}
+La solución se organiza en tres zonas, la faena, el enlace y la nube, como muestra la Figura~\ref{fig:vista-general-sitco-aranda}.
+
+\begin{horizontal}
+\figura{22.44}{fig-3-6-vista-general-sitco-aranda}{Vista general de SITCO Aranda}{fig:vista-general-sitco-aranda}{Fuente: elaboración propia.}
+\end{horizontal}
+La regla que ordena la solución es lo que no puede esperar se resuelve en la faena, y lo que debe consolidarse, calcularse o compartirse con terceros, en la nube. En la faena se registra con los dispositivos y el Nodo de Faena conversa con los sistemas locales, dos fibras y un enlace satelital llevan la información a la nube, a la que se conectan SAP, la telemetría, el sistema de fatiga, el CIO y la oficina de Santiago. Así, la faena trabaja sin la nube y se cumple también el estándar corporativo de nube.
+
+\subseccion{Software}
+El software se organiza en los nueve módulos y las dos plataformas definidos en 3.1.
+
+\subsubseccion{Módulos y canales de uso}
+La Figura~\ref{fig:modulos-canales-uso-sitco-aranda} muestra los módulos, agrupados según el problema que resuelven, y los canales por los que las personas los usan.
+
+\begin{horizontal}
+\figura{20.03}{fig-3-7-modulos-canales-uso-sitco-aranda}{Módulos y canales de uso de SITCO Aranda.}{fig:modulos-canales-uso-sitco-aranda}{Fuente: elaboración propia.}
+\end{horizontal}
+Cada canal sirve a quien genera o consulta el dato en su lugar de trabajo. La App SITCO Terreno y la Botonera de Pala en terreno, la Consola de Portería en el acceso, el Portal Web SITCO en el CIO y las oficinas, y los portales de contratistas y compradores para los externos. Los módulos transversales no capturan hechos sino que Indicadores y Centro Integrado arma los tableros, y Administración y Servicios Comunes entrega identidad, auditoría, firma y flujos de trabajo.
+
+Cinco módulos funcionan también en el Nodo de Faena durante un corte, porque sostienen hechos que no pueden esperar, esos 5 módulos son Operación Mina, Trazabilidad y Embarque, Conciliación Metalúrgica en el balance del turno, Acreditación y Acceso en la portería y Seguridad y Salud Ocupacional. Los demás funcionan en la nube, y Administración y Servicios Comunes deja en el Nodo una copia de las identidades, los parámetros y las alertas de evacuación.
+
+\subsubseccion{Integración con los sistemas existentes}
+La compañía tiene diez sistemas y ya decidió cuáles se mantienen. Cinco se integran, tres se leen sin modificarse, uno se amplía y uno se reemplaza, como muestra la Figura~\ref{fig:tratamiento-sistemas-existentes}.
+
+\begin{horizontal}
+\figura{22.44}{fig-3-8-tratamiento-sistemas-existentes}{Tratamiento de los sistemas existentes}{fig:tratamiento-sistemas-existentes}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 5, p. 10).}
+\end{horizontal}
+Los sistemas de sólo lectura no se intervienen, y el historiador se lee a través de un diodo de datos que impide escribir en la red de control. El software de la báscula se mantiene, aunque podía reemplazarse, porque el problema es que sus datos no se usan. Las planillas y carpetas compartidas son el único sistema que se reemplaza, porque en ellas se rompe la cadena del dato. La Tabla~\ref{tab:sistemas-existentes-relacion-sitco-aranda} resume lo que intercambia cada sistema para el protocolo, el sentido y la frecuencia de cada conector están en el Subdocumento 4.
+
+\begin{tabla}{I{0.303}I{0.215}I{0.482}}{Sistemas existentes y su relación con SITCO Aranda.}{tab:sistemas-existentes-relacion-sitco-aranda}
+  {\cab{Sistema existente} & \cab{Tratamiento} & \cab{Información intercambiada}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 5, p. 10).}
+SAP S/4HANA & Se integra & Producción y conciliación aprobadas, datos para la guía de despacho y su folio, liquidación del comprador, avisos de falla, pautas, órdenes, costos y contratos \\
+Despacho de flota & Se integra & Viajes, pesajes, demoras y polígonos del plan \\
+Gestión de laboratorio & Se integra & Muestras identificadas y resultados de análisis \\
+Portales de telemetría & Se integra & Alarmas, horas, consumos y códigos de falla \\
+Control de fatiga y somnolencia & Se integra & Alertas y cierre de cada caso \\
+Historiador de proceso & Solo lectura & Alimentación, flujos y detenciones de planta \\
+Planificación minera & Solo lectura & Polígonos, leyes y destinos del plan \\
+Software de la báscula & Solo lectura & Pesajes de control y de camiones a puerto \\
+Control de acceso de portería & Se amplía & Habilitación, ingresos, salidas y verificación facial \\
+Planillas y carpetas compartidas & Se reemplaza & Migración de datos históricos y retiro como fuente oficial \\
+\end{tabla}
+SAP y el despacho alimentan a varios módulos, por lo que con un conector por sistema cualquier cambio externo se resuelve en un solo lugar. Esto explica por qué el Integrador de Sistemas funciona como una plataforma propia.
+
+\subseccion{Dispositivos de terreno}
+Los dispositivos instalados antes en Aranda se abandonaron porque no funcionaban con guantes ni se leían bajo el sol. Por eso la solución agrega sólo cinco tipos de dispositivo, cada uno ligado a un hecho que hoy se pierde, y reutiliza el resto, como muestra la Figura~\ref{fig:dispositivos-terreno-nuevos-reutilizados}.
+
+\figura{16.09}{fig-3-9-dispositivos-terreno-nuevos-reutilizados}{Dispositivos de terreno nuevos y reutilizados.}{fig:dispositivos-terreno-nuevos-reutilizados}{Fuente: elaboración propia.}
+Se reutilizan la pantalla del despacho, el pesaje de a bordo, las cámaras de fatiga, los torniquetes, la báscula y la instrumentación. El dispositivo principal es la Botonera de Pala, que muestra la Figura~\ref{fig:botonera-pala}.
+
+\figura{16.09}{fig-3-10-botonera-pala}{Botonera de Pala.}{fig:botonera-pala}{Fuente: elaboración propia.}
+La botonera tiene cuatro botones grandes, uno por destino (planta, baja ley, estéril y borde), y se instala junto a la pantalla del despacho. Una luz indica el destino que el plan asigna al polígono y, si el material no corresponde, el operador aprieta el botón de lo que ve. No hay pantalla ni formularios, y el toque de credencial al inicio del turno asocia cada declaración a su autor.
+
+La botonera reemplaza una llamada por radio por un botón y deja escrita la razón del cambio. El despachador recibe el aviso en diez segundos o menos, y en zonas sin señal la botonera guarda los registros y los envía al recuperar cobertura.
+
+La supervisión usa tabletas rugerizadas, legibles al sol y operables con guantes, que pertenecen al puesto. En portería, la Consola de Portería corre en dos PC industriales, uno por sentido de circulación, y se agrega un lector facial por carril, y tres caudalímetros miden el agua de la planta, del campamento y de la carga de camiones aljibe. En la báscula y en los camiones no se agrega hardware. Las especificaciones están en el Formulario T-11.
+
+\subseccion{Red y conectividad}
+La red aprovecha lo existente y agrega sólo lo necesario para que la operación no se detenga, como muestra la Figura~\ref{fig:red-conectividad-sitco-aranda}, que distingue lo nuevo de lo existente.
+
+\begin{horizontal}
+\figura{22.44}{fig-3-11-red-conectividad-sitco-aranda}{Red y conectividad de SITCO Aranda.}{fig:red-conectividad-sitco-aranda}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 6, p. 11).}
+\end{horizontal}
+Dentro de la faena, las botoneras y tabletas del rajo usan la red LTE privada y la fibra propia une la sala técnica con la portería, la planta y los talleres. Como cada dispositivo guarda sus registros en las zonas sin señal, la solución no depende de la cobertura, aunque se entrega un estudio del rajo con su evolución a tres años.
+
+Lo nuevo son cuatro elementos. Una segunda fibra hacia Antofagasta, de otro proveedor y camino, en paralelo con la actual bajo un equipo SD-WAN que tiene un enlace satelital de órbita baja para cuando caen ambas fibras, un diodo de datos que sólo deja salir información de la red de control hacia una zona desmilitarizada, conforme al modelo de zonas y conductos de la serie IEC 62443 (International Electrotechnical Commission [IEC], s.f.), donde el historiador se lee con OPC UA (OPC Foundation, s.f.), y un router 4G de respaldo en el puerto. Los tiempos de conmutación están en la sección 4.3.2 y la capacidad en la sección 4.2 del Subdocumento 4.
+
+El satélite geoestacionario existente sigue sólo para telefonía y correo, y el CIO y la oficina de Santiago entran mediante acceso de confianza cero, sin exponer servicios a internet.
+
+\subseccion{Infraestructura}
+La infraestructura es híbrida donde los servicios centrales funcionan en una nube pública y en la faena queda sólo lo que no puede depender del enlace, como muestra la Figura~\ref{fig:infraestructura-hibrida-sitco-aranda}.
+
+\begin{horizontal}
+\figura{22.44}{fig-3-12-infraestructura-hibrida-sitco-aranda}{Infraestructura híbrida de SITCO Aranda.}{fig:infraestructura-hibrida-sitco-aranda}{Fuente: elaboración propia.}
+\end{horizontal}
+En la faena se instala una sala técnica nueva y prefabricada junto al edificio de administración, porque la sala de 2014 no cumple los estándares de un recinto técnico y remodelarla obligaría a trasladar lo que funciona en ella (CMAA, 2026b, cap. 15, RT-06.01, p. 25). La sala aloja el Nodo de Faena y su acceso se controla con verificación facial desde la Etapa 1 (RT-06.20). Alcanza a cada persona autorizada que ingresa a la sala, con su consentimiento y con huella dactilar (AFIS) como respaldo. Como sólo alcanza al personal de la sala, no depende del acuerdo sindical que condiciona la verificación facial de portería (SUP-13). La sala de 2014 se reconvierte en espacio de operación, punto de enrolamiento y recinto de custodia de medios. Los cuatro gabinetes de borde en portería, planta, depósito de relaves y acopio de puerto quedan integrados a la red de la faena. Su especificación está en la sección 4.2.3.3 del Subdocumento 4.
+
+En la nube, el proveedor es Microsoft Azure, con región primaria en Santiago y secundaria en São Paulo, separadas por la cordillera y con sistemas eléctricos distintos, de modo que un terremoto o una falla eléctrica no puede afectarlas a la vez. La réplica en Brasil es una transferencia internacional de datos personales y se ampara en cláusulas contractuales conforme a la Ley N° 21.719 (2024). Las zonas y los servicios se desarrollan en la sección 4.2 del Subdocumento 4, y la conmutación, en la sección 4.3.2.
+
+\subseccion{Operación sin enlace con Antofagasta}
+El cliente estableció que la operación en terreno no puede depender de una conexión permanente con la nube. SITCO lo resuelve en tres niveles, donde cada uno cubre la falla del anterior, como muestra la Figura~\ref{fig:funcionamiento-sitco-aranda-ante-corte-enlace}.
+
+\begin{horizontal}
+\figura{22.44}{fig-3-13-funcionamiento-sitco-aranda-ante-corte}{Funcionamiento de SITCO Aranda ante un corte del enlace.}{fig:funcionamiento-sitco-aranda-ante-corte-enlace}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 6, p. 11, y cap. 18, criterio 13, p. 32).}
+\end{horizontal}
+El primer nivel es el dispositivo. La botonera y la tableta envían cada registro en segundos, pero si están en una zona sin señal guardan al menos 48 horas, cifrado y con la identidad de quien registró, y lo envían solos al recuperar cobertura. Así, si un operador termina su turno sin señal y otro lo reemplaza, cada registro conserva su autor.
+
+El segundo nivel es el Nodo de Faena. Si caen sólo las fibras, el satélite mantiene el envío de registros por si se pierden los tres caminos, la red interna sigue funcionando y el Nodo sigue registrando, validando la portería y leyendo el despacho, la báscula, el laboratorio y el historiador, con una copia sincronizada de las identidades. Opera al menos 48 horas sin enlace, más del doble del corte más largo registrado.
+
+El tercer nivel es la nube, donde los portales, SAP y la telemetría siguen funcionando. Al volver el enlace, el Nodo envía lo acumulado en orden y la nube aplica reglas fijas, estableciendo que para un hecho de la operación prevalece la faena, mientras que para un dato maestro, la última versión aprobada en la nube. Los cerca de 3,5 GB de un corte de 48 horas se sincronizan dentro de las cuatro horas del RT-03.13, según el cálculo de la sección 4.1.9.2 del Subdocumento 4.
+
+La Tabla~\ref{tab:funciones-sitco-aranda-durante-corte-enlace} indica qué ocurre con cada función cuando fallan a la vez las dos fibras y el enlace satelital.
+
+\begin{tabla}{I{0.369}I{0.631}}{Funciones de SITCO Aranda durante un corte del enlace}{tab:funciones-sitco-aranda-durante-corte-enlace}
+  {\cab{Función de la solución} & \cab{Situación durante el corte}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 6, p. 11, y cap. 18, criterio 13, p. 32).}
+Registro de la mina, trazabilidad y balance del turno & Sigue funcionando en el Nodo de Faena \\
+Validación de acceso en portería & Sigue funcionando con la lista local de personas habilitadas \\
+Registros de seguridad y acción ante alertas de fatiga & Continúa en la App y el Nodo, las alertas salen por el correo de respaldo \\
+Acreditación de personas nuevas & Sigue en la nube, y un ingreso excepcional se autoriza y registra en la Consola de Portería \\
+Vista del CIO con datos de faena & No disponible, y la coordinación se realiza por radio y teléfono satelital \\
+Vista única del equipo con telemetría & No disponible en faena, y el supervisor usa el despacho mientras el aviso de falla queda en espera \\
+Envíos a SAP y reportes a la autoridad & Quedan en espera y se envían al volver el enlace \\
+Portal para Compradores & Sigue disponible, sin las últimas horas de la faena \\
+\end{tabla}
+Para los registros de seguridad y las alertas de fatiga, el supervisor registra la acción en la App, y las alertas llegan por el correo de respaldo sobre el satélite geoestacionario existente. Durante un corte ninguna función de la operación se detiene. Lo que deja de estar disponible son funciones de supervisión remota y de reporte, que hoy tampoco funcionan durante un corte y que pueden esperar sin afectar la extracción, el transporte ni el procesamiento del mineral.
+
+\seccion{Explicación de la Solución}
+Esta sección explica la solución como la vive la operación: qué cambia en un turno, qué hace cada módulo, cómo responde al problema y cómo se obtendrá el apoyo de los interesados.
+
+\subseccion{Funcionamiento de la solución en la operación}
+SITCO se entiende mejor siguiendo al mineral desde el plan hasta el embarque, en los ocho pasos de la Figura~\ref{fig:recorrido-dato-lo-largo-ciclo-mineral}.
+
+\figura{16.09}{fig-3-14-recorrido-dato-lo-largo-ciclo}{Recorrido del dato a lo largo del ciclo del mineral.}{fig:recorrido-dato-lo-largo-ciclo-mineral}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 4, pp. 7-9).}
+Todo comienza con el plan semanal, que SITCO carga como una versión con fecha y hora, si una tronadura obliga a cambiarlo, se crea una versión nueva, y el cumplimiento de cada turno se mide contra el plan que realmente regía.
+
+En el rajo, la luz de la botonera indica planta, pero el operador ve que el material cambió y aprieta estéril. El despachador reasigna el camión, SITCO asocia el cambio a la declaración del operador y guarda el viaje como una unidad de trazabilidad compuesta por camión, polígono, operador, destino y toneladas.
+
+El camión descarga en un stock, donde el viaje se suma al stock vigente y se recalcula el promedio ponderado por tonelaje, o en el chancador. En la planta, SITCO lee del historiador el tonelaje de alimentación y el laboratorio devuelve las leyes; el balance del turno se calcula al terminar el turno y se recalcula cuando llegan los análisis pendientes, entre 4 y 36 horas después, y el cumplimiento del plan se publica al inicio del turno siguiente.
+
+El concentrado queda ligado a su lote de planta. SITCO entrega a SAP los datos del despacho y el código del lote, y SAP emite la guía de despacho electrónica con ese código impreso como QR. En el acopio de Antofagasta la guía se lee con la tableta y el camión se asocia al lote comercial, de modo que, embarcado el lote, cualquier persona autorizada, incluido el comprador, puede recorrer la cadena hasta los polígonos de origen, mientras Conciliación Metalúrgica cuadra las toneladas y el cobre en cada tramo.
+
+En paralelo, el torniquete consulta si la persona está habilitada, un supervisor registra una inspección sin señal y la cámara de fatiga abre un caso que no se cierra sin acción registrada. Ninguno de estos registros pide al operador más que un botón o un toque de credencial, como solicitó el gerente general.
+
+\subseccion{Módulos de negocio}
+Los siete módulos de negocio se describen según lo que hacen y quién los usa, las situaciones que resuelve cada uno se cruzan en la Tabla \ref{tab:correspondencia-entre-problema-solucion}.
+
+\subsubseccion{Módulo de Operación Mina}
+Operación Mina es donde nace el dato de origen del mineral y de productividad de la mina, y lo usan el operador de pala, el despachador, el supervisor y el planificador. Mantiene la versión vigente del plan, registra el material observado y la razón de cada cambio de destino, clasifica las demoras, registra el avance de las perforadoras y publica el cumplimiento del plan y la entrega de turno al inicio del turno siguiente.
+
+\subsubseccion{Módulo de Trazabilidad y Embarque}
+Trazabilidad y Embarque guarda cada eslabón de la cadena, del viaje al embarque, y lo usan planificación, metalurgia, el área comercial, el acopio de puerto y, desde la Etapa 2, los compradores. Registra cada stock con su tonelaje, ley y orígenes, recalcula su promedio ponderado por tonelaje tras cada aporte, retoma y traspaso, y lo contrasta cada mes con el laboratorio, con lo que la mezcla se vuelve verificable, y calcula y alerta el arsénico de cada lote. Cada stock y cada traspaso registrado, con su tonelaje, su ley y sus orígenes, es la evidencia que piden los esquemas de cadena de custodia, como el de The Copper Mark (2026). SITCO Aranda entrega esa evidencia, pero no equivale a una certificación.
+
+\subsubseccion{Módulo de Conciliación Metalúrgica}
+Conciliación Metalúrgica reemplaza las planillas de los balances de turno y mensual, y la usan los metalurgistas, la superintendencia de planta y finanzas. Fija la fuente de verdad del tonelaje, la balanza de alimentación para la planta y el pesaje de a bordo corregido con la báscula para la mina, de modo que cada diferencia es un dato por tramo, y aprueba la conciliación con factores versionados en tres días hábiles o menos antes de entregarla a SAP.
+
+\subsubseccion{Módulo de Equipos y Mantenimiento}
+Equipos y Mantenimiento reúne en una sola vista lo que hoy está en cuatro sistemas y una radio, el cual consolida el estado desde el despacho, las alarmas de los portales de los fabricantes, leídas con ISO 15143-3 cuando lo soportan (International Organization for Standardization [ISO], 2020), y las pautas y órdenes de SAP. Lo usan mantenimiento, los supervisores y el CIO, que registran avisos de falla sin transcripción. No incluye mantenimiento predictivo, ya que sus alertas siguen reglas del propio equipo, con límite semanal (3.4.5).
+
+\subsubseccion{Módulo de Acreditación y Acceso}
+Acreditación y Acceso reemplaza la planilla que hoy mantiene una sola persona, permitiendo que las contratistas carguen la documentación en su portal, el módulo la valida y seguridad acredita en menos de 48 horas, y luego avisa los vencimientos antes de que alguien viaje a la faena para ser rechazado. En portería, los torniquetes consultan la habilitación y, desde la Etapa 2, la verificación facial compara el rostro sólo con la plantilla de la credencial presentada, plantilla que se elimina al perder el acceso por ser un dato sensible según la Ley N° 21.719 (2024).
+
+\subsubseccion{Módulo de Seguridad y Salud Ocupacional}
+Seguridad y Salud Ocupacional reemplaza los formularios de papel. Con él, supervisores y prevencionistas registran incidentes e inspecciones en la App SITCO Terreno, aun sin señal, y los registros exigidos se firman con firma electrónica avanzada (Ley N° 19.799, 2002) para la fiscalización del Reglamento de Seguridad Minera (Ministerio de Minería, 2004). Cada alerta de fatiga abre un caso que escala si no tiene acción, y los exámenes y controles de alcohol y drogas se guardan cifrados y con registro de cada consulta.
+
+\subsubseccion{Módulo de Cumplimiento Ambiental}
+Cumplimiento Ambiental reemplaza la consolidación manual de sustentabilidad. Mantiene los compromisos de la Resolución de Calificación Ambiental, recibe las mediciones de los instrumentos y calcula el agua por área y el combustible por equipo. Con ellos calcula cada mes la huella de carbono por tonelada de cobre fino según el Protocolo de Gases de Efecto Invernadero (World Resources Institute y World Business Council for Sustainable Development [WRI y WBCSD], 2004), trazable hasta su medición de origen y auditable por un tercero (CMAA, 2026b, cap. 18, criterio 12, p. 32), y genera los reportes a la autoridad con firma electrónica avanzada y construye los indicadores de empleo local y compras locales del convenio con la comunidad.
+
+\subseccion{Módulos transversales y plataformas}
+Indicadores y Centro Integrado permite bajar de cualquier indicador a la transacción que lo originó, agrega en la Etapa 2 el costo diario por tonelada y por libra de cobre fino, y traslada al CIO de Antofagasta funciones que hoy exigen estar en la faena. Administración y Servicios Comunes entrega las notificaciones para evacuaciones al Integrador de Sistemas, que las transmite a la radio y megafonía (CMAA, 2026b, cap. 15, RT-16.21). También permite replicar la solución en otra operación mediante parametrización (CMAA, 2026b, cap. 15, RT-02.12, p. 24).
+
+El Integrador de Sistemas sigue el modelo ISA-95 para decidir qué cruza cada frontera, de modo que hacia el SAP sólo viajan la producción y la conciliación aprobadas, los datos para la guía de despacho y su folio, la liquidación del comprador, los avisos de falla, las pautas, las órdenes, los costos y los contratos, y del control de proceso sólo se leen mediciones (International Society of Automation [ISA], 2010). El Nodo de Faena reúne los cinco módulos que operan sin enlace, sus conectores locales y la copia de identidades.
+
+\subseccion{Coherencia de la solución con el problema}
+Para verificar que la solución responde al problema completo, se relacionó cada una de las 13 situaciones del diagnóstico con el módulo o plataforma que la resuelve. Además, cada problema se vinculó con los criterios de aceptación del caso, que servirán para evaluarlo. La Tabla \ref{tab:correspondencia-entre-problema-solucion} resume esa relación por problema. La correspondencia entre cada situación se encuentra en el Anexo B de OVERFORE-Subdocumento3-Anexos.
+
+\begin{tabla}{I{0.215}C{0.309}I{0.277}I{0.199}}{Correspondencia entre el problema y la solución.}{tab:correspondencia-entre-problema-solucion}
+  {\cab{Problema} & \cab{Módulos o plataformas} & \cab{Situaciones que resuelve} & \cab{Criterios de aceptación (Cap. 18)}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 7, pp. 11-12, y cap. 18, p. 32).}
+Trazabilidad y conciliación & Operación Mina, Trazabilidad y Embarque, Conciliación Metalúrgica & Origen de un lote en 4 a 6 semanas, conciliación en 18 días hábiles & 1, 2 y 3 \\
+Productividad & Operación Mina, Equipos y Mantenimiento, Integrador de Sistemas, Indicadores y Centro Integrado & 23 \% del tiempo sin clasificar, plan medido con 10 a 15 días de desfase & 4, 5 y 6 \\
+Cumplimiento y personas & Acreditación y Acceso, Seguridad y Salud Ocupacional, Cumplimiento Ambiental & 14 \% de rechazos por documentos vencidos, registros en papel & 7 a 12 \\
+Condiciones transversales & Integrador de Sistemas, Nodo de Faena, Administración y Servicios Comunes & Un corte del enlace detiene el registro, credenciales compartidas & 13 y 14 \\
+\end{tabla}
+La tabla muestra que los 14 criterios del Capítulo 18 quedan cubiertos y que ningún módulo ni plataforma queda sin un problema que lo justifique. Operación Mina y el Integrador de Sistemas aparecen en más de un problema porque un mismo registro y un mismo conector sirven a varios módulos.
+
+\subseccion{Estrategia para obtener el apoyo de los grupos de interés}
+La compañía vio fracasar dos iniciativas porque la gente dejó de usarlas. La estrategia se sostiene en estos tres principios, nadie recibe más trabajo del que tiene hoy, cada grupo ve primero lo que gana y quienes operan participan en el diseño de lo que usarán, porque esa falta de participación causó el abandono de la plataforma de 2018. Cuatro tensiones entre grupos de interés se abordan así:
+
+\begin{itemize}
+\item Menos registros en la mina frente al muestreo obligatorio: el muestreo se hace en la planta y la mina sólo aporta el botón, sin perder rendimiento de pala.
+\item Todo en la nube frente a la operación sin enlace: en la faena queda sólo lo que no puede esperar, con una sala técnica operada como servicio y la red de control aislada.
+\item Mantenimiento predictivo frente al escepticismo del área: el gerente general lo quiere y el jefe de mantenimiento lo rechaza porque dos iniciativas fracasaron por exceso de alertas. La solución lo ordena en el tiempo: primero la vista única, las detenciones con causa raíz y alertas por reglas propias del área; con doce meses de esos datos, un modelo podrá evaluarse durante la operación, con cargo a la bolsa evolutiva y con la aprobación de ambos.
+\item Biometría frente a la objeción sindical: desde el mes 2, una mesa con el sindicato, seguridad y recursos humanos acuerda un protocolo sobre qué se guarda, quién lo consulta y cuándo se elimina. Sin acuerdo, la portería funciona con credencial y validación de habilitación, sin credenciales compartidas y con registro completo de accesos.
+\end{itemize}
+El Anexo C de OVERFORE-Subdocumento3-Anexos detalla la estrategia para los diecinueve grupos de interés de la sección 2.4 del Subdocumento 2. Los que deciden, el directorio y finanzas, participan en el comité directivo y ratifican la fuente de verdad del tonelaje en el mes 3. Los dueños de proceso, que son mina, planta, planificación y mantenimiento, aprueban la botonera, las señales, el versionado del plan y las reglas de alerta antes de cada marcha blanca. Los usuarios de terreno diseñan la taxonomía de demoras y prueban la botonera en el piloto del mes 13. El sindicato participa en una mesa desde el mes 2, y los contratistas y el comprador se capacitan o revisan un lote piloto antes de enero de 2029. La adopción se mide en cada ola y, si no alcanza su meta, la ola no avanza hasta recuperarla.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item International Electrotechnical Commission. (s.f.). \emph{IEC 62443 background}. \href{https://syc-se.iec.ch/?p=4375}{https://syc-se.iec.ch/?p=4375}
+\item International Organization for Standardization. (2020). \emph{ISO 15143-3:2020 Earth-moving machinery and mobile road machinery. Worksite data exchange. Part 3: Telematics data}. ISO.
+\item International Society of Automation. (2010). \emph{ANSI/ISA-95.00.01-2010 (IEC 62264-1 Mod) Enterprise-control system integration. Part 1: Models and terminology}. ISA.
+\item Ley N° 19.799. (2002). \emph{Sobre documentos electrónicos, firma electrónica y servicios de certificación de dicha firma}. Diario Oficial de la República de Chile.
+\item Ley N° 21.719. (2024). \emph{Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales}. Diario Oficial de la República de Chile.
+\item Ministerio de Minería. (2004). \emph{Decreto Supremo N.º 132, Reglamento de Seguridad Minera}. Diario Oficial de la República de Chile, 7 de febrero de 2004.
+\item OPC Foundation. (s.f.). \emph{Unified Architecture}. \href{https://opcfoundation.org/about/opc-technologies/opc-ua/}{https://opcfoundation.org/about/opc-technologies/opc-ua/}
+\item Project Management Institute. (2017). \emph{La guía de los fundamentos para la dirección de proyectos (Guía del PMBOK)} (6.ª ed.). Project Management Institute.
+\item The Copper Mark. (2026). \emph{The Copper Mark chain of custody standard} (v. 2). \href{https://coppermark.org/wp-content/uploads/2026/06/CopperMark_Chain-of-Custody-Standard-v2_2026-06-11.pdf}{https://coppermark.org/wp-content/uploads/2026/06/CopperMark\_Chain-of-Custody-Standard-v2\_2026-06-11.pdf}
+\item World Resources Institute y World Business Council for Sustainable Development. (2004). \emph{The greenhouse gas protocol: A corporate accounting and reporting standard} (Ed. rev.). \href{https://ghgprotocol.org/corporate-standard}{https://ghgprotocol.org/corporate-standard}
+\end{referencias}
+
+\seccionsinnumero{Declaración de uso de IA}
+Se utilizó IA generativa, principalmente como apoyo en la redacción, en la organización del contenido y en los diagramas; el detalle por sección está en la Tabla \ref{tab:declaracion-uso-ia-seccion}.
+
+\begin{tabla}{I{0.149}I{0.162}I{0.213}I{0.088}I{0.140}I{0.250}}{Declaración de uso de IA por sección.}{tab:declaracion-uso-ia-seccion}
+  {\cab{Sección} & \cab{Herramienta} & \cab{Finalidad del uso} & \cab{Nivel en\newline texto} & \cab{Nivel en\newline diagramas} & \cab{Revisión humana\newline (Quién y qué verificó)}}
+  {Fuente: elaboración propia.}
+Introducción y capítulo 3 & Claude & Apoyo en la síntesis de la presentación de SITCO Aranda y de su alcance. & Medio & Ninguno & Benjamín Velásquez: comprobó la continuidad con el diagnóstico del Subdocumento 2. \\
+3.1 & claude & Desarrollo de la base del resumen ejecutivo de la solución. & Medio & Ninguno & Claudio Cabello: contrastó que la síntesis coincide con el alcance comprometido. \\
+3.1.1 a 3.1.3 & claude & Redacción de la visión general, las etapas y el soporte. & Medio & Alto & Benjamín Velásquez: revisó la separación de implementación, implantación y operación. \\
+3.2 & claude & Organización del apartado que delimita el alcance. & Medio & Ninguno & Claudio Cabello: contrastó los límites de la solución frente a T-12. \\
+3.2.1 a 3.2.2 & claude & Apoyo para vincular módulos y distribución entre etapas. & Medio & Alto & David Martínez: contrastó que cada módulo conserve la etapa acordada. \\
+3.2.2.1 a 3.2.2.6 & claude & Base explicativa de los criterios y del alcance de cada etapa. & Medio & Alto & Claudio Cabello: verificó los compromisos y las fechas frente a T-14 y T-18. \\
+3.2.3 & claude & Redacción de la entrada a supuestos y restricciones. & Medio & Ninguno & David Martínez: revisó que el texto no convierta supuestos en compromisos. \\
+3.2.3.1 a 3.2.3.3 & claude & Ordenamiento de exclusiones, supuestos y restricciones. & Medio & Ninguno & David Martínez: contrastó las fronteras contractuales y su origen en las Bases. \\
+3.2.4 & claude & Estructura del catálogo funcional y no funcional. & Medio & Ninguno & David Martínez: revisó la relación del catálogo con los requerimientos del caso. \\
+3.2.4.1 a 3.2.4.3 & claude & Apoyo para explicar clasificación, prioridad y tipos de requerimiento. & Medio & Ninguno & David Martínez: comprobó los códigos RF y RNF y su trazabilidad. \\
+3.2.5 & claude & Apoyo en la síntesis de criterios verificables de aceptación del alcance. & Medio & Ninguno & Claudio Cabello: comprobó la posibilidad de demostrar cada criterio con evidencia. \\
+3.3 & claude & Apoyo para explicar el esquema de solución. & Medio & Ninguno & Benjamín Velásquez: revisó la correspondencia del esquema con la arquitectura del Subdoc. 4. \\
+3.3.1 a 3.3.2 & claude & Base de descripción de la vista general y del software. & Medio & Alto & Benjamín Velásquez: revisó los componentes y los nombres usados en las figuras. \\
+3.3.2.1 a 3.3.2.2 & claude & Redacción sobre módulos, canales e integración con sistemas existentes. & Medio & Alto & David Martínez: revisó los flujos y la responsabilidad de cada integración. \\
+3.3.3 a 3.3.6 & claude & Explicación de dispositivos, conectividad, infraestructura y trabajo sin enlace. & Medio & Alto & Benjamín Velásquez: comprobó la continuidad local y los equipos frente a T-11. \\
+3.4 & claude & Desarrollo del hilo explicativo de funcionamiento de SITCO. & Medio & Ninguno & Benjamín Velásquez: validó la relación entre la explicación y el problema del caso. \\
+3.4.1 a 3.4.2 & claude & Apoyo para describir el uso operacional y los módulos de negocio. & Medio & Alto & Claudio Cabello: comprobó que el recorrido de los datos coincida con el diseño. \\
+3.4.2.1 a 3.4.2.7 & claude & Apoyo para describir la función de los siete módulos de negocio. & Medio & Ninguno & Claudio Cabello: revisó las entradas, salidas y límites de cada módulo. \\
+3.4.3 a 3.4.5 & claude & Síntesis de plataformas, coherencia de la solución y apoyo de interesados. & Medio & Ninguno & David Martínez: revisó la cobertura de los problemas y la estrategia de adopción. \\
+Referencias & claude & Apoyo para ordenar y uniformar las referencias citadas. & Medio & Ninguno & Claudio Cabello: revisó la existencia de las fuentes y su correspondencia con las citas. \\
+Anexo A & claude & Apoyo en la síntesis de la asignación de alcance por etapa. & Medio & Ninguno & Claudio Cabello: revisó las etapas frente al capítulo 3 y al cronograma. \\
+Anexo B & claude & Apoyo para relacionar problemas y componentes de solución. & Medio & Ninguno & Benjamín Velásquez: comprobó la cobertura de cada problema por los módulos propuestos. \\
+Anexo C & claude & Redacción de la estrategia para cada grupo de interés. & Medio & Ninguno & David Martínez: revisó las acciones y su adecuación a cada actor. \\
+T-12 & claude & Apoyo para organizar la matriz de cumplimiento técnico. & Medio & Ninguno & Benjamín Velásquez: comprobó cada requisito y la evidencia que acredita su cumplimiento. \\
+\end{tabla}
+
+\end{document}

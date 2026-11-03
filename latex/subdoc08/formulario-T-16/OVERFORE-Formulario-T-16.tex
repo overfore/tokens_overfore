@@ -1,0 +1,685 @@
+%% OVERFORE-Formulario-T-16.tex — generado desde OVERFORE-Formulario-T-16.docx
+%% Formato: clase overfore, modo formulario. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[formulario]{../../comun/overfore}
+\numsubdoc{8}
+\formulario{T-16}{Plan de riesgos}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+\externos{A1,S1,S4,S5,S7,T14}
+\begin{document}
+
+\apartado{Objeto y estructura del formulario}
+Este formulario contiene el detalle del plan de riesgos de SITCO Aranda que el Subdocumento 8 resume y analiza. Reúne los 24 riesgos y las 4 oportunidades del registro, cada uno con su probabilidad, su impacto, su exposición, su respuesta y su responsable, y una ficha por riesgo con el enunciado completo, el origen, el disparador, el plan de contingencia y el riesgo residual. Los cálculos de exposición, modos de falla, simulación, reservas y costo-beneficio están en el archivo OVERFORE-Subdocumento8-Anexos (Overfore S.A., 2026c). El registro sigue la norma ISO 31000:2018 (International Organization for Standardization [ISO], 2018) y el requisito RT-19.04 (Compañía Minera Altos de Aranda [CMAA], 2026c, p. 33), y cubre los seis riesgos que piden las Bases técnicas del caso Minería (CMAA, 2026b, cap. 19, p. 33).
+
+El formulario se ordena en cinco partes. La sección B presenta el registro con las ocho columnas del formulario oficial; la sección C, las oportunidades; la sección D, una ficha por riesgo; la sección E, una ficha por oportunidad, y la sección F, la trazabilidad de los riesgos de mayor exposición con las decisiones de la solución y con la EDT. La Tabla \ref{tab:campos-ficha-riesgo} explica los campos de cada ficha.
+
+\begin{tabla}{I{0.224}I{0.776}}{Campos de la ficha de riesgo.}{tab:campos-ficha-riesgo}
+  {\cab{Campo} & \cab{Contenido}}
+  {Fuente: elaboración propia.}
+Enunciado & Causa, evento y consecuencia, en la forma “dado que…, puede que…, teniendo como consecuencia…” \\
+Origen & Documento y sección donde nace el riesgo: Bases, supuestos (SUP), subdocumentos (SD) y formularios \\
+Probabilidad & Estimación puntual, nivel de la escala y fundamento \\
+Impacto & Nivel y valor, con su efecto en plazo, esfuerzo (HH) y alcance o servicio \\
+Exposición & P × I y zona de acción (crítica, alta, media o baja) \\
+Estrategia y acciones & Respuesta elegida y acciones con etapa, paquete de la EDT y mes \\
+Disparador & Hecho observable que activa el plan de contingencia \\
+Riesgo residual & P, I y exposición después de las acciones, y su tratamiento \\
+Costo adicional & Horas hombre que la respuesta agrega a la EDT del Formulario T-14 \\
+\end{tabla}
+De la tabla se desprende cómo se sigue cada riesgo. El enunciado explica qué puede ocurrir y por qué; las acciones indican qué se hace antes de que ocurra y el disparador señala cuándo activar la contingencia. El residual expresa la exposición estimada después de esas medidas, no una medición de eficacia ya obtenida. [E1] identifica la propuesta, [E2] la implementación, [E3] la implantación y [E4] la operación. M1 a M56 cuenta los meses desde enero de 2027. Las siglas de responsables se desarrollan en la tabla siguiente y la valorización se mantiene fuera de la oferta técnica, conforme al Art. 50.2.
+
+\begin{tabla}{I{0.124}I{0.658}D{0.217}}{Siglas de los responsables.}{tab:siglas-responsables}
+  {\cab{Sigla} & \cab{Rol del equipo clave} & \cab{N° de riesgos y oportunidades}}
+  {Fuente: elaboración propia a partir de Formulario T-14 (asociado al cap. 7), sección 4, p. 56.}
+AS & Arquitecto de Solución & 5 \\
+ESI & Encargado de Seguridad de la Información & 3 \\
+GS & Gerente de Servicio & 1 \\
+JP & Jefe de Proyecto & 5 \\
+LD & Líder de Desarrollo & 1 \\
+LDA & Líder de Datos & 4 \\
+LF & Líder Funcional & 2 \\
+LI & Líder de Integración & 3 \\
+LIG & Líder de Implantación y Gestión del Cambio & 2 \\
+SRE & Líder de Operación / SRE & 2 \\
+\end{tabla}
+De la tabla se desprende que los riesgos se reparten entre diez roles y que el Jefe de Proyecto y el Arquitecto de Solución concentran la mayor parte, porque responden por los riesgos de contrato y de arquitectura.
+
+\begin{horizontal}
+
+\apartado{Registro de riesgos}
+La Tabla \ref{tab:registro-riesgos} presenta el registro de los 24 riesgos con las ocho columnas del formulario y la perspectiva de cada riesgo: solución, desarrollo del proyecto o implantación. La probabilidad y el impacto son los inherentes, y la exposición muestra también su valor residual después de las acciones.
+
+\begin{tabla}{I{0.054}I{0.176}I{0.103}I{0.113}I{0.076}I{0.094}I{0.092}I{0.239}I{0.053}}{Registro de riesgos.}{tab:registro-riesgos}
+  {\cab{ID} & \cab{Riesgo} & \cab{Categoría} & \cab{Perspectiva} & \cab{Prob.} & \cab{Impacto} & \cab{Expos.} & \cab{Mitigación} & \cab{Rol}}
+  {Fuente: elaboración propia a partir de Subdocumento 8, cap. 8, sección 8.2, p. 10.}
+R-01 & Fin de soporte de componentes en plena construcción de la Etapa 1 & Técnico · rama 1 & Solución & 45 \% (media) & Medio (0,5): 1,5 sem, 500 HH & 0,225 alta → 0,060 baja & Mitigar. Línea base del mes 3 con versiones soportadas hasta el mes 16, piloto de compatibilidad de Java 25 y actualización semestral. & AS \\
+R-02 & Retiro o cambio de condiciones de un servicio no portable de Azure & Técnico · rama 1 & Solución & 15 \% (baja) & Medio (0,5): 800 HH & 0,075 baja → 0,075 baja & Aceptar. Contratos OpenAPI y AsyncAPI, contenedores portables y plan de reversibilidad con alternativa para cada servicio. & AS \\
+R-03 & Carga real del relevo o de la resincronización sobre lo dimensionado & De operación · rama 1 & Solución & 15 \% (baja) & Medio (0,5): 1,0 sem, 400 HH & 0,075 baja → 0,075 baja & Aceptar. Dimensionamiento por punta, prueba de carga a 300 TPS en el mes 12 y corte controlado de 48 horas. & SRE \\
+R-04 & Vulnerabilidad crítica no remediable a tiempo o credencial de contratista comprometida & De seguridad · rama 1 & Solución & 20 \% (baja) & Muy alto (0,9): 300 HH & 0,180 media → 0,070 baja & Mitigar. Confianza cero, cuatro servicios expuestos con control de borde, parche rotativo y SOC 24x7. & ESI \\
+R-05 & Interfaz de un sistema existente inexistente o no documentada & Técnico · rama 2 & Solución & 60 \% (alta) & Alto (0,7): 2,5 sem, 400 HH & 0,420 crítica → 0,100 media & Mitigar. Conector de doble modo (servicio y archivo) y prueba de lectura de las cuatro interfaces críticas en el mes 3. & LI \\
+R-06 & Archivo en papel o históricos mayores que lo supuesto & De proyecto · rama 2 & Desarrollo & 15 \% (baja) & Alto (0,7): 3,0 sem, 480 HH & 0,105 media → 0,075 baja & Aceptar. Inventario físico del archivo en el mes 2, lote piloto y cuarto puesto de escaneo si el rendimiento cae. & LDA \\
+R-07 & Factores de ajuste sin explicación vigente y base de la Conciliación Metalúrgica no ratificada & Organiz. · rama 3 & Desarrollo & 45 \% (media) & Alto (0,7): 1,5 sem, 400 HH & 0,315 alta → 0,100 media & Escalar. Registro de los factores en el mes 2 y ratificación de la fuente de tonelaje como condición de H2. & LDA \\
+R-08 & Zona de sombra que supera la autonomía del registro local en terreno & De operación · rama 3 & Solución & 60 \% (alta) & Alto (0,7): 2,0 sem, 1.130 HH & 0,420 crítica → 0,150 media & Mitigar y escalar la inversión en red al cliente. Registro local de 48 horas, estudio de cobertura con proyección a tres años e inversión en red escalada al cliente. & AS \\
+R-09 & Módulo de sala técnica o dispositivos de terreno tardíos o incompatibles & De proyecto · rama 3 & Desarrollo & 25 \% (baja) & Alto (0,7): 2,0 sem, 200 HH & 0,175 media → 0,075 baja & Transferir. Módulo a precio y plazo fijos, validación del lector y prueba de la Botonera con guantes en el mes 5. & AS \\
+R-10 & Validaciones, actas o ventana de paso a producción no disponibles en la fecha del plan & De proyecto · rama 3 & Implantación & 35 \% (media) & Medio (0,5): 1,5 sem, 310 HH & 0,175 media → 0,100 media & Escalar. Fechas de revisión y de paso a producción fijadas en H1, fuera de las detenciones. & JP \\
+R-11 & Sin acuerdo con el sindicato para la verificación facial & Organiz. · rama 4 & Implantación & 55 \% (alta) & Medio (0,5): 384 HH & 0,275 alta → 0,165 media & Escalar. Portería que funciona sin biometría y mesa mensual con el sindicato desde el mes 2. & JP \\
+R-12 & Operadores que siguen usando la radio y capacitación incompleta al cierre de la marcha blanca E1 & Organiz. · rama 4 & Implantación & 60 \% (alta) & Alto (0,7): 3,0 sem, 1.695 HH & 0,420 crítica → 0,140 media & Mitigar. Botonera usable con guantes, investigación con usuarios, ola de una pala e indicador de adopción como condición de cierre. & LIG \\
+R-13 & Alertas de mantenimiento con más ruido que aciertos en la marcha blanca E2 & Organiz. · rama 4 & Implantación & 30 \% (baja) & Medio (0,5): 160 HH & 0,150 media → 0,045 baja & Mitigar. Reglas de alerta probadas con datos del taller y retiro de las que tengan más ruido que aciertos. & LF \\
+R-14 & Innovación implementada y certificada pero sin uso & Organiz. · rama 4 & Implantación & 35 \% (media) & Medio (0,5): 160 HH & 0,175 media → 0,100 media & Mitigar. Operación en paralelo durante las marchas blancas e informes de verificación de cada innovación. & LIG \\
+R-15 & La Etapa 1 supera su reserva de plazo (mes 11) antes de H5 & De proyecto · rama 5 & Desarrollo & 45,6 \% (media) & Medio (0,5): 2,0 sem, 684 HH & 0,228 alta → 0,000528 baja & Mitigar. Respuestas de R-01, R-05, R-07, R-18 y R-19 y seguimiento quincenal de la reserva de plazo. & LD \\
+R-16 & Fabricante que no firma el acceso a la telemetría o lo condiciona a un pago & De proyecto · rama 6 & Desarrollo & 50 \% (media) & Alto (0,7): 400 HH & 0,350 alta → 0,175 media & Escalar. Conector ISO 15143-3 aceptado con datos de prueba y notificación del cliente a los fabricantes en el mes 1. & LI \\
+R-17 & Cadena del lote comercial incompleta en enero de 2029 & De operación · rama 6 & Implantación & 25 \% (baja) & Alto (0,7): 384 HH & 0,175 media → 0,105 media & Escalar. Gabinete autónomo en el acopio, validación del certificado derivado y lote piloto con el comprador. & LF \\
+R-18 & Salida, licencia o sobrecarga de una persona clave de Overfore & Organiz. · rama 7 & Desarrollo & 25 \% (baja) & Alto (0,7): 2,0 sem, 240 HH & 0,175 media → 0,050 baja & Mitigar. Suplente acreditado por rol clave y horas separadas para los dobles roles. & JP \\
+R-19 & Hallazgos críticos o altos en las campañas de intrusión de los meses 11, 15, 17 y 20 & De seguridad · rama 1 & Solución & 30 \% (baja) & Alto (0,7): 3,0 sem, 1.026 HH & 0,210 alta → 0,070 baja & Mitigar. Revisión interna ASVS nivel 2 en el mes 9 y análisis estático y dinámico en cada sprint. & ESI \\
+R-20 & Transferencia internacional de datos sensibles a Brazil South sin autorización escrita & De seguridad · rama 6 & Solución & 30 \% (baja) & Alto (0,7): 400 HH & 0,210 alta → 0,070 baja & Escalar. Autorización escrita pedida con H1 y evaluación y diseño de una alternativa chilena, condicionada a aprobación y prueba. & ESI \\
+R-21 & Segunda fibra no operativa o sin diversidad real, o satélite bajo 20 Mbps & De operación · rama 6 & Solución & 40 \% (media) & Medio (0,5): 200 HH & 0,200 alta → 0,060 baja & Mitigar. Tres caminos de enlace, 48 horas de autonomía y verificación de rutas independientes antes del hito. & AS \\
+R-22 & Inicio del contrato después de abril de 2027 & De proyecto · rama 5 & Desarrollo & 10 \% (muy baja) & Alto (0,7): 800 HH & 0,070 baja → 0,070 baja & Escalar y transferir. Hitos contados desde la fecha real de inicio y replanificación de ventanas en H1. & JP \\
+R-23 & Personal propio o de refuerzo sin credencial vigente en su primer turno en faena & De proyecto · rama 7 & Implantación & 35 \% (media) & Alto (0,7): 1,0 sem, 565 HH & 0,245 alta → 0,030 baja & Mitigar. Acreditación 15 días hábiles antes y cuatro personas de reserva pre-acreditadas. & JP \\
+R-24 & Servicio 24x7 sin los analistas comprometidos al inicio de la operación & De operación · rama 7 & Implantación & 35 \% (media) & Alto (0,7): 480 HH & 0,245 alta → 0,050 baja & Mitigar. Contratación escalonada de analistas y entrenamiento en la estabilización de la Etapa 1. & SRE \\
+\end{tabla}
+De la tabla se desprende que tres riesgos parten en zona crítica y diez en zona alta, y que después de las acciones quince quedan en zona baja y nueve en zona media. Ninguno queda en zona alta o crítica.
+
+\apartado{Registro de oportunidades}
+Las oportunidades se miden con las mismas escalas, donde el impacto representa el beneficio. La Tabla \ref{tab:registro-oportunidades} las presenta.
+
+\begin{tabla}{I{0.051}I{0.207}I{0.105}I{0.080}I{0.093}I{0.080}I{0.338}I{0.046}}{Registro de oportunidades.}{tab:registro-oportunidades}
+  {\cab{ID} & \cab{Oportunidad} & \cab{Categoría} & \cab{Prob.} & \cab{Beneficio} & \cab{Expos.} & \cab{Respuesta} & \cab{Rol}}
+  {Fuente: elaboración propia a partir de Subdocumento 8, cap. 8, sección 8.2, p. 10.}
+O-01 & Menos embarques penalizados por arsénico desde 2028 & De operación · rama 3 & 50 \% (media) & Alto (0,7) & 0,350 & Explotar. Operar la propuesta de mezcla en paralelo en la marcha blanca de la Etapa 1. & LDA \\
+O-02 & Fabricante que entrega la telemetría por ISO 15143-3 & De proyecto · rama 6 & 40 \% (media) & Bajo (0,3) & 0,120 & Compartir. Piloto conjunto del conector con el fabricante que soporte el estándar. & LI \\
+O-03 & Replicación de SITCO en la operación que el cliente evalúa adquirir en 2030 & Organiz. · rama 7 & 25 \% (baja) & Medio (0,5) & 0,125 & Escalar. Prueba de replicación en la mantención evolutiva y presentación del caso al anunciarse la adquisición. & GS \\
+O-04 & Recuperar parte de los 47 minutos perdidos por cambio de turno & De operación · rama 4 & 35 \% (media) & Medio (0,5) & 0,175 & Mejorar. Medir la línea base del relevo en la marcha blanca y publicarla en el tablero de turno. & LDA \\
+\end{tabla}
+De la tabla se desprende que las oportunidades se explotan, se comparten, se mejoran o se escalan, y que sólo O-02 modifica la reserva de contingencia, porque su valor esperado de 64 HH se resta de ella.
+
+\end{horizontal}
+
+\apartado{Fichas de riesgos}
+Esta sección contiene una ficha por cada uno de los 24 riesgos del registro, en el orden de su identificador. Cada ficha sigue los campos de la Tabla \ref{tab:campos-ficha-riesgo}.
+
+\seccion{R-01 · Fin de soporte de componentes en plena construcción de la Etapa 1}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-01}}
+Categoría y rama & Técnico · rama 1, solución y tecnología \\
+Tema de las Bases & Obsolescencia tecnológica (Formulario T-7) \\
+Enunciado & Dado que ninguna versión de Angular, Spring Boot, Kubernetes, ClickHouse, Envoy o.NET cubre los 56 meses, que Kubernetes 1.36 pierde soporte estándar el 30 de junio de 2027 (mes 6), Spring Boot 4.1 y Envoy 1.39 en julio de 2027 y ClickHouse 26.8 en agosto de 2027, y que la actualización es de cargo del adjudicatario, entonces puede que las actualizaciones obligatorias de los meses 6 a 8 rompan compatibilidades (Pact JVM, springdoc-openapi y Springwolf no declaran Java 25) y consuman sprints de la ruta crítica, teniendo como consecuencia hasta 1,5 semanas de atraso en la construcción de la Etapa 1 y unas 500 HH que hoy no tienen paquete, porque la EDT sólo planifica actualizaciones desde el mes 21 (1.8.4.1). \\
+Origen & Bases técnicas transversales, p. 5 (obsolescencia de cargo del adjudicatario); SD4 4.1.1.5 y Tabla \refext{S4}{tab:version-fin-soporte-plan-actualizacion-componentes}; T-14 1.8.4.1. \\
+Dueño y contraparte & Arquitecto de Solución (AS). Contraparte del cliente: No aplica (riesgo interno de Overfore). \\
+Probabilidad & 45 \% (media). Cuatro componentes vencen entre los meses 6 y 8, de modo que las actualizaciones son seguras; lo incierto es que rompan algo. Tres librerías de contratos no declaran Java 25 (SD4). \\
+Impacto & Medio (0,5). 1,5 semanas sobre cadena crítica de la Etapa 1 (A04 a A24, sin holgura; reserva de plazo: mes 11); 500 HH. Sin efecto funcional si se actualiza a tiempo. \\
+Exposición & 0,225 · zona alta. Período de exposición: M3–M8, y cada seis meses durante el contrato. \\
+Estrategia & Mitigar \\
+Acciones & [E1] Declarar en SD4 y SD7 la regla: la línea base del mes 3 adopta la versión soportada más reciente de cada componente con soporte hasta al menos el mes 16. [E2] Piloto de compatibilidad de Java 25 con Pact JVM, springdoc-openapi y Springwolf en M1–M3 (1.4.1.1 y 1.4.1.2). [E2] Actualización de plataforma planificada en un sprint de cada semestre, con regresión automatizada (1.5.1.2), M6–M20 (ajuste de 1.4.1.4). [E4] Plan anual de actualizaciones y de ciclo de vida (1.8.4.1 y 1.8.4.2). \\
+Disparador & Aviso de fin de soporte a menos de 90 días de un componente desplegado en Preproducción o Producción, o falla de la regresión automatizada después de una actualización. \\
+Plan de contingencia & Congelar la versión en el sprint en curso y actualizar en el siguiente; las horas salen de la reserva del LD (1.4.1.4) y de la reserva de plazo de la Etapa 1 (mes 11). \\
+Riesgo residual & P 20 \%, I 0,3, exposición 0,060 · zona baja. Aceptación activa del residual (reserva de contingencia, Etapa 1) \\
+Riesgo secundario & Actualizar en mitad de la construcción agrega una versión más a probar en la regresión de la Etapa 1. \\
+Revisión & Comité de Arquitectura, mensual \\
+Costo adicional & 240 HH: 16 HH por mes × 15 meses (ajuste de 1.4.1.4) \\
+\end{tablasintitulo}
+
+\seccion{R-02 · Retiro o cambio de condiciones de un servicio no portable de Azure}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-02}}
+Categoría y rama & Técnico · rama 1, solución y tecnología \\
+Tema de las Bases & Bloqueo por proveedor (Formulario T-7) \\
+Enunciado & Dado que la entrada pública, la puerta de exposición, el bus de eventos, la identidad, la bóveda de claves y la observabilidad dependen de servicios propios de Azure que no son portables sin trabajo de migración, y que Microsoft ya anunció el retiro de Azure Cache for Redis para septiembre de 2028, entonces puede que durante los 56 meses Microsoft retire o cambie las condiciones de uno de esos servicios, o que el cliente decida cambiar de proveedor al término, teniendo como consecuencia una migración no prevista de unas 800 HH durante la operación y una devolución del servicio (1.8.10) más larga que los 90 días de acompañamiento. \\
+Origen & Art. 16 de las Bases administrativas (reversibilidad y bloqueo por proveedor); SD4 4.1.1.2 y 4.2.2.1; T-14 1.1.9 y 1.8.10. \\
+Dueño y contraparte & Arquitecto de Solución (AS). Contraparte del cliente: Jefa de TI Corporativa (decisión de proveedor al término). \\
+Probabilidad & 15 \% (baja). Un retiro ya anunciado muestra que ocurre, pero los servicios elegidos son generales y con aviso previo de 12 meses o más; 56 meses de exposición. \\
+Impacto & Medio (0,5). 800 HH. Efecto sobre un área funcional clave mientras dura la migración. \\
+Exposición & 0,075 · zona baja. Período de exposición: M21–M56. \\
+Estrategia & Aceptar (pasiva, con vigilancia) \\
+Acciones & [E1] Decisión de arquitectura ya tomada: los servicios dependen de contratos OpenAPI y AsyncAPI y no de la interfaz del producto; contenedores iguales en AKS y K3s; Azure Managed Redis en lugar del servicio que se retira (SD4). [E2] Plan de reversibilidad inicial con la alternativa de cada servicio no portable, M3 (1.1.9.1). [E4] Revisión trimestral de avisos de retiro en el informe de capacidad (1.8.2.3) y actualización anual del plan de reversibilidad (1.1.9.2). \\
+Disparador & Aviso de retiro o de cambio de condiciones de un servicio no portable, o solicitud formal del cliente de cambiar de proveedor. \\
+Plan de contingencia & Migrar el servicio afectado a la alternativa del plan de reversibilidad con la bolsa de mantención evolutiva (1.8.5.1). \\
+Riesgo residual & P 15 \%, I 0,5, exposición 0,075 · zona baja. Aceptación pasiva: sin reserva; vigilancia trimestral \\
+Riesgo secundario & Usar la bolsa evolutiva desplaza mejoras pedidas por el cliente. \\
+Revisión & Comité de Arquitectura, mensual; Comité de Operación desde M21 \\
+Costo adicional & Sin costo adicional: ya en 1.1.9.1 y 1.8.2.3 \\
+\end{tablasintitulo}
+
+\seccion{R-03 · Carga real del relevo o de la resincronización sobre lo dimensionado}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-03}}
+Categoría y rama & De operación · rama 1, solución y tecnología \\
+Tema de las Bases & Escalabilidad (Formulario T-7) \\
+Enunciado & Dado que el caso deja a estimar las 16 dimensiones de volumetría y que SITCO se dimensionó para 40 TPS en régimen (245 personas concurrentes que actúan cada 60 segundos) y 200 en la punta (135 calculadas), con 505 personas concurrentes y 37 dispositivos sólo en el relevo de las 08:00, unos 94 millones de lecturas diarias, una flota que crece de 52 a 70 equipos y un historiador que crece de 14.500 a 16.000 etiquetas, entonces puede que la carga real del relevo (incluidos los 2.064 pasos por hora de portería en una detención mayor) o la resincronización del Nodo de Faena después de un corte de 20 horas superen lo dimensionado, teniendo como consecuencia tiempos de registro sobre 2 s en el percentil 95 en terreno (umbral de cierre de la marcha blanca) y una sincronización de más de 4 horas. \\
+Origen & Bases técnicas del caso Minería, Cap. 14 (volumetría por estimar); SD4 4.2.4.2 y 4.2.4.6; SD5, Tabla \refext{S5}{tab:volumetria-diseno-uso-estrategia-desempeno}; SD7 7.3.3 (prueba de carga de 300 TPS). \\
+Dueño y contraparte & Líder de Operación / SRE (SRE). Contraparte del cliente: No aplica. \\
+Probabilidad & 15 \% (baja). La arquitectura se prueba a 300 TPS (1,5 veces la punta) y crece a 600 sin cambiar topología; la incertidumbre está en las lecturas del historiador y en la cola tras un corte largo. \\
+Impacto & Medio (0,5). 1,0 semanas sobre implantación E1 (marcha blanca); 400 HH. Efecto sobre un área funcional clave (tiempo de registro en terreno). \\
+Exposición & 0,075 · zona baja. Período de exposición: M12 (prueba de carga) a M56. \\
+Estrategia & Aceptar (pasiva, con vigilancia) \\
+Acciones & [E1] Dimensionamiento por punta y no por promedio, declarado en SD4 §4.2.4.2, con la sensibilidad de 153 TPS. [E2] Prueba de carga a 300 TPS, estrés y resistencia, M12 (1.5.3.1), con la prueba de 2.064 pasos por hora de portería; resistencia de 72 horas de la Etapa 2, M18 (1.5.6.1). [E3] Corte controlado de 48 horas que mide la resincronización, M15 y M21 (1.5.5.2). [E4] Informe trimestral de capacidad (1.8.2.3). \\
+Disparador & En la prueba del mes 12, percentil 95 sobre 2 s a 200 TPS, o la prueba de 2.064 pasos por hora de portería sobre 1,5 s (RNF-DES-003), o uso del Nodo de Faena sobre 60 \% con un servidor fuera de servicio (umbral de SD4 §4.2.4.6). \\
+Plan de contingencia & Escalar horizontalmente: grupo de servicios de 4 a 6 nodos y Nodo con más memoria o un cuarto servidor (SD4 §4.2.4.6). \\
+Riesgo residual & P 15 \%, I 0,5, exposición 0,075 · zona baja. Aceptación pasiva: sin reserva; controles ya incluidos en la EDT \\
+Riesgo secundario & Un cuarto servidor del Nodo exige espacio, energía y climatización en la sala a 3.180 m. \\
+Revisión & Comité de Arquitectura, mensual; Comité de Operación desde M21 \\
+Costo adicional & Sin costo adicional: ya en 1.5.3.1, 1.5.5.2 y 1.8.2.3 \\
+\end{tablasintitulo}
+
+\seccion{R-04 · Vulnerabilidad crítica no remediable a tiempo o credencial de contratista comprometida}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-04}}
+Categoría y rama & De seguridad · rama 1, solución y tecnología \\
+Tema de las Bases & Ciberseguridad en la operación (Formulario T-7) \\
+Enunciado & Dado que cuatro servicios quedan expuestos a Internet (Portal de Contratistas, Portal para Compradores, Portal Web SITCO y puerta de exposición) para unas 90 empresas contratistas y hasta 8.500 personas en detención mayor, que SITCO trata datos sensibles de salud, fatiga y biometría (Ley N° 21.719) y que una vulnerabilidad crítica debe corregirse en 7 días corridos aunque las intervenciones mayores en faena sólo se permitan en marzo y septiembre, entonces puede que una vulnerabilidad crítica en un gabinete de borde o en el Nodo de Faena no se remedie dentro del plazo, o que una cuenta de empresa contratista comprometida dé acceso a datos sensibles, teniendo como consecuencia multas semanales y por notificación (Art. 80) y, si hay negligencia, causal de término (Art. 81.3). \\
+Origen & Arts. 80 y 81 de las Bases administrativas; SD4 4.1.8.1, 4.1.8.2 y 4.2.3.4; SD9 9.2.3; Ley N° 21.663. \\
+Dueño y contraparte & Encargado de Seguridad de la Información (ESI). Contraparte del cliente: Jefa de TI Corporativa. \\
+Probabilidad & 20 \% (baja). Superficie expuesta acotada a cuatro servicios con WAF y doble factor, pero con miles de cuentas de terceros de alta rotación y equipos en faena con ventanas restringidas. La transferencia internacional de datos se trata aparte en R-20 y las campañas de intrusión en R-19. \\
+Impacto & Muy alto (0,9). 300 HH. Muy alto: incidente grave imputable a negligencia es causal de término (Art. 81.3). \\
+Exposición & 0,180 · zona media. Período de exposición: M11–M56. \\
+Estrategia & Mitigar \\
+Acciones & [E1] Arquitectura de confianza cero y superficie de cuatro servicios con control de borde (SD4 4.1.8.2); dos servidores por gabinete de borde, lo que permite parchar uno a la vez en la ventana de 03:00 a 05:00 como intervención menor (SD4 §4.2.3.4). [E2] Modelo de amenazas, M2–M4 (1.3.3.2); plan de respuesta a incidentes, M4 (1.3.3.4); gestión mensual de vulnerabilidades, M3–M20 (1.5.4.3); campañas de intrusión independientes, M11, M15, M17 y M20 (1.5.4.1); simulación de incidente, M15 (1.5.4.2). [E4] SOC 24x7 (1.8.2.2) e intrusión anual (1.8.8.2). La verificación de seguridad incluye la separación entre TI y TO y la lectura del historiador sin escrituras hacia el control de proceso, mediante el diodo de datos y la zona desmilitarizada definidos en la solución. La evidencia se vincula con RNF-SEG-004 en S9 y T-13. \\
+Disparador & Vulnerabilidad crítica con explotación pública en un componente del inventario de SITCO (corre el plazo de 7 días corridos), o alerta del SOC de acceso anómalo con una cuenta de empresa contratista. \\
+Plan de contingencia & Control compensatorio en 24 horas (regla de WAF o aislamiento del gabinete en su zona) y parche rotativo en la ventana de 03:00 a 05:00; activación del plan de respuesta 1.3.3.4 y notificación dentro del plazo. \\
+Riesgo residual & P 10 \%, I 0,7, exposición 0,070 · zona baja. Aceptación activa del residual (reserva de operación) \\
+Riesgo secundario & Las reglas compensatorias del WAF pueden bloquear tráfico legítimo de contratistas en un relevo. \\
+Revisión & Comité de Arquitectura, mensual; Comité de Operación desde M13 \\
+Costo adicional & Sin costo adicional: ya en 1.3.3, 1.5.4 y 1.8.2.2 \\
+\end{tablasintitulo}
+
+\seccion{R-05 · Interfaz de un sistema existente inexistente o no documentada}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-05}}
+Categoría y rama & Técnico · rama 2, integración y legado \\
+Tema de las Bases & Ausencia de inventario técnico de los sistemas actuales (CMAA, 2026b, cap. 19) \\
+Enunciado & Dado que el cliente no tiene inventario técnico de sus sistemas (interfaces, versiones ni condiciones de acceso) y que las integraciones críticas de la Etapa 1 suponen que el despacho de flota, SAP S/4HANA, el sistema de laboratorio y el historiador de proceso exponen interfaces documentadas y que el historiador admite réplica hacia la zona desmilitarizada, entonces puede que al menos una de esas interfaces no exista o no entregue la frecuencia requerida al cierre del levantamiento (mes 3), teniendo como consecuencia una capa intermedia no prevista de unas 400 HH en el Integrador de Sistemas y unas 2,5 semanas de atraso sobre la cadena crítica de la Etapa 1, que no tiene holgura y cuya reserva de plazo es el mes 11 (4,3 semanas) antes de H5 (mes 12). \\
+Origen & Bases técnicas del caso Minería, Cap. 5, p. 10, y Cap. 19, p. 33; SUP-16 y SUP-19; SD4, ADR-04; T-14 1.2.1.1, 1.2.1.2 y 1.4.2.1; SD7, Tabla \refext{S7}{tab:estimacion-pert-actividades-inciertas-red}. \\
+Dueño y contraparte & Líder de Integración (LI). Contraparte del cliente: Jefa de TI Corporativa (entrega de documentación y ambientes). \\
+Probabilidad & 60 \% (alta). El propio caso declara que no hay documentación y son cuatro sistemas de proveedores distintos, uno de ellos en la red de control. \\
+Impacto & Alto (0,7). 2,5 semanas sobre cadena crítica de la Etapa 1 (A04 a A24, sin holgura; reserva de plazo: mes 11); 400 HH. Afecta integraciones críticas de la Etapa 1 (balance del turno). \\
+Exposición & 0,420 · zona crítica. Período de exposición: M1–M4 (descubrimiento); efecto M4–M12. \\
+Estrategia & Mitigar (con decisión de diseño) \\
+Acciones & [E1] SUP-16 y SUP-19 declarados con su instancia de validación (SD2 2.5). [E1] Decisión de diseño: cada conector del Integrador de Sistemas se construye con dos modos, servicio y archivo estructurado, para que la falta de una interfaz no detenga la ruta (decisión registrada en SD4 4.1.2). [E2] Fichas técnicas de los 10 sistemas, M1–M3 (1.2.1.1), y matriz de integraciones con prueba de lectura de las cuatro interfaces críticas en ambiente de pruebas, M2–M3 (1.2.1.2). [E2] Integración temprana desde el primer sprint, M3 (1.4.2.1). \\
+Disparador & Al término del mes 2, alguna de las cuatro interfaces críticas sin documentación o sin ambiente de pruebas entregado; o prueba de lectura fallida al término del mes 3. \\
+Plan de contingencia & Conector por exportación programada de archivos con conciliación por turno; capa intermedia acotada al sistema afectado, financiada con la reserva de plazo de la Etapa 1 (mes 11). \\
+Riesgo residual & P 20 \%, I 0,5 (medio), exposición 0,100 · zona media. Una semana completa equivale a siete días e impone impacto medio. La alternativa por archivo conserva latencia que debe verificarse contra la frescura exigida. Aceptación activa con disparador y reserva; revisión contra los criterios de aceptación del Anexo G.1. \\
+Riesgo secundario & La integración por archivo agrega latencia de un turno al balance y más soporte del conector en la operación. \\
+Revisión & Comité de Arquitectura, mensual; revisión quincenal en acta (T-14 1.1.3.1) \\
+Costo adicional & 64 HH: 4 pruebas de lectura × 16 HH en 1.2.1.2 \\
+\end{tablasintitulo}
+
+\seccion{R-06 · Archivo en papel o históricos mayores que lo supuesto}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-06}}
+Categoría y rama & De proyecto · rama 2, integración y legado \\
+Tema de las Bases & Migración de datos y digitalización del archivo (SUP-30 a SUP-32) \\
+Enunciado & Dado que la digitalización de los 193.000 formularios de seguridad en papel (SUP-32 supone menos de 200.000, un margen de 3,6 \%) ocupa 3 puestos a 520 formularios diarios durante 124 días hábiles de los meses 10 a 15, con cuatro digitalizadores que rotan en los tres puestos, en el mes 14, el de máximo de 45 personas, y que los históricos a migrar pueden superar en más de 20 \% la volumetría supuesta o traer más defectos (SUP-30 y SUP-31), entonces puede que el rendimiento caiga bajo 480 formularios diarios por puesto o que el archivo resulte mayor, teniendo como consecuencia unas 3 semanas de atraso en los ensayos de migración de la Etapa 2 (1.4.6.4), en una cadena sin holgura (B06, B07 y B11, con un margen de 2 días en las ventanas del 29 y 30 de septiembre de 2028), y unas 480 HH de un quinto digitalizador o de un cuarto puesto. \\
+Origen & SUP-30, SUP-31 y SUP-32; SD5 5.3.2; T-14 1.4.6.1, 1.4.6.3 y 1.4.6.4, Tablas \refext{T14}{tab:calculo-pert} y \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14; SD7 7.3.1. \\
+Dueño y contraparte & Líder de Datos (LDA). Contraparte del cliente: Jefe de Seguridad y Salud Ocupacional (custodia del archivo). \\
+Probabilidad & 15 \% (baja). Los 193.000 formularios vienen de un inventario del SD5 (5.3.2) y el rendimiento tiene disparador desde el primer lote; queda la incertidumbre del inventario físico del mes 2. Con tres puestos la digitalización tiene 61,8 \% de probabilidad de terminar en las 25,6 semanas disponibles (T-14 Tabla \refext{T14}{tab:estimacion-pert-duracion-actividades-inciertas-red} del Formulario T-14); el primer lote piloto decide si se abre el cuarto puesto (18,9 semanas esperadas). \\
+Impacto & Alto (0,7). 3,0 semanas sobre datos de la Etapa 2 (digitalización B06 y carga B07; sin holgura, margen de 2 días); 480 HH. Alto por plazo: la cadena de datos de la Etapa 2 no tiene holgura; el cuarto puesto de escaneo recupera el plazo. \\
+Exposición & 0,105 · zona media. Período de exposición: M2 (inventario físico) a M18. \\
+Estrategia & Aceptar (activa: reserva y disparador) \\
+Acciones & [E1] SUP-32 declara el límite de 200.000 formularios y que se digitaliza como imagen indexada, sin transcripción campo a campo. [E2] Inventario físico del archivo con SSO, M2 (instancia de SUP-32). [E2] Informe de perfilado antes del primer ensayo, M3–M8 (1.4.6.1). [E2] Medición del rendimiento del primer lote, M10 (1.4.6.3). \\
+Disparador & Primer lote bajo 480 formularios diarios por puesto (T-14 1.4.6.3 planifica 520, a 65 por hora), o inventario físico del mes 2 sobre 200.000 formularios (límite de SUP-32; el estimado del SD5 es 193.000). \\
+Plan de contingencia & Quinto digitalizador acreditado o cuarto puesto de escaneo atendido por los mismos cuatro digitalizadores en turnos extendidos (T-14 1.4.6.3); ejecución rápida: segundo ensayo de migración en paralelo con los últimos lotes. \\
+Riesgo residual & P 15 \%, I 0,5 (medio), exposición 0,075 · zona baja. Una semana completa de atraso implica impacto medio por plazo; 480 HH corresponden a esfuerzo bajo. La activación del cuarto puesto exige comprobar su capacidad. Aceptación activa con disparador y reserva para los datos de la Etapa 2. \\
+Riesgo secundario & El quinto digitalizador llega en el mes del pico de personas: acreditación con 15 días hábiles de anticipación (R-23); el cuarto puesto con los mismos cuatro eleva el riesgo de errores de legibilidad. \\
+Revisión & Comité de Proyecto, quincenal \\
+Costo adicional & Sin costo adicional: ya en 1.4.6.1 y 1.4.6.3 \\
+\end{tablasintitulo}
+
+\seccion{R-07 · Factores de ajuste sin explicación vigente y base de la Conciliación Metalúrgica no ratificada}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-07}}
+Categoría y rama & Organizacional · rama 3, operación del cliente \\
+Tema de las Bases & Indisponibilidad del personal clave del cliente (CMAA, 2026b, cap. 19) y fuente oficial de tonelaje (SUP-02) \\
+Enunciado & Dado que los factores de ajuste del balance mensual, agregados desde 2013, los sabían explicar sólo dos personas y que una de ellas se jubila en marzo de 2026, de modo que al iniciar el contrato sólo queda una, y que la fuente oficial de tonelaje supuesta (SUP-02) debe ratificarla finanzas y metalurgia en el mes 3, entonces puede que el registro del mes 2 deje factores sin explicar o que la fuente cambie después de iniciado el Módulo de Conciliación Metalúrgica (1.4.3.4, meses 6 a 11), teniendo como consecuencia reconstruir factores y reglas de conciliación (unas 400 HH), 1,5 semanas sobre la cadena crítica de la Etapa 1 y arriesgar la conciliación sin diferencias no explicadas que exige el cierre de la marcha blanca (Art. 17.3). \\
+Origen & Bases técnicas del caso Minería, Cap. 8, p. 14 (factores de ajuste que explican dos personas); SUP-02; T-14 1.2.3.2, 1.2.6, 1.4.3.4 y 1.7.3.1; Art. 17.3. \\
+Dueño y contraparte & Líder de Datos (LDA). Contraparte del cliente: Gerente de Finanzas y Superintendente de Planta Concentradora. \\
+Probabilidad & 45 \% (media). La persona que explica los factores ya no está al inicio del contrato (supuesto 2026) y la ratificación de la fuente depende de dos áreas con intereses distintos (finanzas y planta). \\
+Impacto & Alto (0,7). 1,5 semanas sobre cadena crítica de la Etapa 1 (A04 a A24, sin holgura; reserva de plazo: mes 11); 400 HH. Alto: condición copulativa del cierre de marcha blanca (conciliación sin diferencias no explicadas). \\
+Exposición & 0,315 · zona alta. Período de exposición: M2–M15. \\
+Estrategia & Escalar \\
+Acciones & [E1] Supuesto de la jubilación (marzo de 2026) declarado junto a SUP-02, con ratificación de la fuente en el mes 3. [E2] Registro escrito y en video de los factores con quien reemplaza a la persona jubilada, mes 2 (1.2.6.1 y 1.2.6.2). [E2] Acta de ratificación en el Comité Ejecutivo como condición de H2, mes 3 (1.2.3.1 y 1.2.3.2). [E2] Modelo de incertidumbre de los tres instrumentos de pesaje, meses 3 a 6 (1.7.3.1). [E2] Fuente de tonelaje y factores como parámetros versionados en 1.4.3.4. \\
+Disparador & Al término del mes 1, sin definir quién reemplaza a la persona jubilada ni si ella o su documentación están accesibles; acta 1.2.3.2 sin la firma de finanzas al término del mes 3; o al término del mes 2 algún factor sin explicación documentada. \\
+Plan de contingencia & Reconstruir los factores desde las planillas históricas desde 2013 con el analista de datos y metalurgia (unas 80 HH adicionales); construir la conciliación con la fuente como parámetro y operar en paralelo con la planilla de metalurgia durante la marcha blanca; estimar los factores sin explicación con el modelo de 1.7.3. \\
+Riesgo residual & P 20 \%, I 0,5, exposición 0,100 · zona media. Aceptación activa del residual (reserva de contingencia, Etapa 1) \\
+Riesgo secundario & Los factores estimados por modelo pueden no ser aceptados por finanzas (enlaza con R-14, innovación 3). \\
+Revisión & Comité Ejecutivo, mensual (decisión del cliente); Comité de Proyecto, quincenal \\
+Costo adicional & 16 HH: 2 sesiones × 8 HH con la persona que reemplaza a la jubilada \\
+\end{tablasintitulo}
+
+\seccion{R-08 · Zona de sombra que supera la autonomía del registro local en terreno}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-08}}
+Categoría y rama & De operación · rama 3, operación del cliente \\
+Tema de las Bases & Cobertura de red que se degrada con el avance del rajo (CMAA, 2026b, cap. 19) \\
+Enunciado & Dado que la red LTE privada de 2021 tiene zonas de sombra permanentes (fondo del rajo, botadero norte y dos sectores de rampa), que se degrada con el avance del rajo y que su ampliación está fuera del alcance, mientras la Botonera de Pala y la tablet conservan al menos 48 horas de registros sin señal (SUP-09), entonces puede que una pala trabaje más de 48 horas en un sector sin cobertura, poniendo en riesgo la conservación y recuperación oportuna de los registros de origen y autor si no se interviene antes de superar la capacidad verificada (RNF-DIS-003 exige cero registros perdidos) con la posibilidad de incumplir el volumen real comprometido para el cierre de la marcha blanca: al menos el 95 \% de los registros reales del período hechos en SITCO, incluidos viajes, pesajes, lotes y pasos de portería, medido diariamente durante al menos las cuatro últimas semanas (T-14, 1.6.3.1; Subdocumento 7, Tabla \refext{S7}{tab:indicadores-diarios-umbrales-cierre-marchas-blancas}). El Art. 17.3 exige alcanzar el volumen comprometido; el plan fija el 95 \%. Este indicador no sustituye la exigencia de cero registros perdidos. \\
+Origen & Bases técnicas del caso Minería, Cap. 6, p. 11, y Cap. 8, p. 14 (zonas de sombra); SUP-09 y SUP-26; EXC-08; SD3 3.3.4; T-14 1.3.1.5 y 1.8.2.3. \\
+Dueño y contraparte & Arquitecto de Solución (AS). Contraparte del cliente: Gerenta de Operaciones Mina (frentes de carguío) y Jefa de TI Corporativa (red LTE). \\
+Probabilidad & 60 \% (alta). Las sombras ya existen y crecen cada año, y una pala puede permanecer varios turnos en el mismo banco del fondo del rajo. \\
+Impacto & Alto (0,7). 2,0 semanas sobre implantación E1 (marcha blanca); 1.130 HH. Alto: pérdida de registros de la cadena de trazabilidad. \\
+Exposición & 0,420 · zona crítica. Período de exposición: M4 (estudio) a M56. \\
+Estrategia & Mitigar y escalar la inversión en red al cliente \\
+Acciones & [E2] Estudio de cobertura con mapa de sombras y proyección a tres años, M2–M4, y actualizaciones semestrales en M8, M14 y M20, antes de cada detención (1.3.1.5). Se entrega al cliente para decidir la inversión en red (SUP-26). [E3] Medición de horas sin sincronizar por pala desde la ola piloto y corte real de 48 horas sobre el Nodo de Faena con cambio de turno y zona de sombra, en las detenciones de M15 y M21 (1.5.5.2). [E4] Revisiones semestrales de cobertura antes de las detenciones de M27, M33, M39, M45 y M51, y revisión extraordinaria ante cambios relevantes del plan minero (1.8.2.3). \\
+Disparador & El estudio del mes 4 proyecta un frente de carguío sin cobertura, o en operación un dispositivo de terreno con más de 24 horas sin sincronizar (alerta de observabilidad). \\
+Plan de contingencia & Antes de superar la autonomía verificada, descargar localmente los registros por un técnico de terreno sólo si existe un procedimiento cifrado, aprobado y ensayado de extracción, custodia y reingreso, con conciliación que demuestre ausencia de pérdidas y duplicados. Si ese procedimiento no está habilitado, escalar y restablecer conectividad antes de agotar la autonomía, incluido un punto LTE temporal del cliente (SUP-26). El corte de 1.5.5.2 verifica sincronización automática y no acredita por sí solo extracción manual. La extracción requiere su propia evidencia de prueba antes de usarla. \\
+Riesgo residual & P 30 \%, I 0,5, exposición 0,150 · zona media. Se conservan 100 HH y ausencia de atraso bajo el escenario de preservación íntegra de los registros. La extracción manual sólo se habilita con procedimiento cifrado, aprobado y ensayado; en su ausencia se restaura conectividad antes de superar la autonomía verificada de al menos 48 horas. Si no se demuestra conservación total, la consecuencia de alcance sigue siendo alta y se recalifica y escala el riesgo. \\
+Riesgo secundario & Ninguno adicional: el diseño de 48 horas no cambia. \\
+Revisión & Comité de Arquitectura, mensual; revisión mensual en acta (T-14 1.1.3.1) \\
+Costo adicional & Sin HH preventivas adicionales respecto del alcance vigente: el estudio y sus actualizaciones de implementación están en 1.3.1.5, las revisiones semestrales de operación en 1.8.2.3 y los cortes reales en 1.5.5.2. La ampliación de la red LTE permanece fuera del alcance de Overfore. \\
+\end{tablasintitulo}
+
+\seccion{R-09 · Módulo de sala técnica o dispositivos de terreno tardíos o incompatibles}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-09}}
+Categoría y rama & De proyecto · rama 3, operación del cliente \\
+Tema de las Bases & Entregas de la obra civil y de los dispositivos de terreno (SUP-17, SUP-33 y SUP-34) \\
+Enunciado & Dado que Overfore provee e instala el módulo prefabricado de la sala técnica sobre la obra civil de base que entrega el cliente al término del mes 4, que el cliente compra las botoneras y tablets de la Etapa 1 con la especificación aprobada en H2 para entregarlas en faena al término del mes 9, aptas para usarse con guantes a −6 °C, sol directo y polvo, y que el lector de la botonera supone una credencial de proximidad aún no validada, entonces puede que el módulo o la obra civil lleguen tarde, que el lector no lea la credencial actual o que los dispositivos lleguen tarde o fuera de especificación, teniendo como consecuencia que el Nodo de Faena no quede habilitado para H3 (mes 6) o que las 8 semanas de instalación de 1.6.2.1 no terminen antes de H6 (mes 13). \\
+Origen & SUP-17, SUP-33 y SUP-34; SD4, ADR-06; Formulario T-11; T-14 1.1.6.2, 1.6.1.2 y 1.6.2.1; SD6 6.1.6. \\
+Dueño y contraparte & Arquitecto de Solución (AS). Contraparte del cliente: Administrador del Contrato (obra civil y compra de dispositivos). \\
+Probabilidad & 25 \% (baja). Dos entregas con dependencia de un fabricante y del proceso de compra del cliente, traslado a 145 km y un dispositivo anterior que falló con guantes. \\
+Impacto & Alto (0,7). 2,0 semanas sobre sala técnica y Nodo (1.6.1.2, M1–M6, fuera de la cadena crítica) y dispositivos de la Etapa 1 (A21, sin holgura) hacia H3 y H6; 200 HH. Alto: la usabilidad de la Botonera de Pala no se verifica con el equipo real antes de la marcha blanca. \\
+Exposición & 0,175 · zona media. Período de exposición: M1–M13. \\
+Estrategia & Transferir (módulo con precio y plazo fijos) y escalar (obra civil del cliente) \\
+Acciones & [E1] SUP-33 y SUP-34 registran como no imputable cada semana de atraso del cliente; la fabricación y el montaje del módulo son responsabilidad de Overfore. [E2] Orden de compra del módulo en el mes 1, a precio fijo, con plazo, multa por atraso y certificación para 3.180 m (1.1.6.1 y 1.1.6.2). [E2] Validación en los meses 1 a 3 de que el lector de la Botonera de Pala lee la credencial actual (SUP-17; 1.2.1.1). [E2] Prueba de una muestra de ingeniería de la Botonera con guantes en una pala en el mes 5, antes de la compra del cliente (1.5.2.1). [E2] Seguimiento quincenal de la obra civil y de la orden de compra en el Comité de Proyecto. \\
+Disparador & Obra civil de base sin terminar al término del mes 4; módulo sin montar al cierre del mes 5; fabricante que informe entrega después de la semana 16; orden de compra de dispositivos no emitida al término del mes 7; muestra que no aprueba la prueba con guantes; o lector que no lee la credencial en el levantamiento. \\
+Plan de contingencia & Ensayar el Nodo en un rack provisorio en la sala de 2014, sin datos productivos, hasta recibir la sala; iniciar la ola 2 con la pala piloto (T-14 1.6.3.5, piloto de la Botonera de Pala) usando las muestras de ingeniería. \\
+Riesgo residual & P 15 \%, I 0,5, exposición 0,075 · zona baja. Aceptación activa del residual (reserva de contingencia, sala técnica y H6) \\
+Riesgo secundario & El rack provisorio en la sala de 2014 (UPS de 15 minutos, puerta con llave) no cumple el Cap. 6: sólo pruebas, sin datos productivos. Cambiar de lector exige repetir las pruebas de usabilidad con guantes. \\
+Revisión & Comité de Proyecto, quincenal \\
+Costo adicional & 40 HH: 24 HH de muestra de ingeniería y 16 HH de ficha de la credencial \\
+\end{tablasintitulo}
+
+\seccion{R-10 · Validaciones, actas o ventana de paso a producción no disponibles en la fecha del plan}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-10}}
+Categoría y rama & De proyecto · rama 3, operación del cliente \\
+Tema de las Bases & Disponibilidad de contrapartes del cliente (Formulario T-7) \\
+Enunciado & Dado que la Contraparte Técnica dispone de 10 días hábiles por revisión y de una segunda revisión si hay observaciones, que el personal clave de planta y mina tiene disponibilidad limitada en las detenciones de marzo y septiembre, y que el cierre de la marcha blanca de la Etapa 1 (mes 15, marzo de 2028) y el paso a producción de la Etapa 2 (mes 21, septiembre de 2028) caen en esos meses, con prohibición de pasar a producción durante la detención, en los cinco primeros días hábiles del mes y 48 horas antes de cada uno de los cerca de 31 embarques anuales, entonces puede que las validaciones, el acta de cierre o una ventana hábil de paso a producción no estén disponibles en la fecha del plan, teniendo como consecuencia el atraso de H7 (mes 16) o de H12 (mes 21) en 1 a 2 semanas. \\
+Origen & Formulario T-17 (plazos de revisión); Bases técnicas del caso Minería, Cap. 10 y Cap. 13.3; SD7 7.3.2 y 7.3.3; T-14 1.5.5.2 y 1.6.4.2. \\
+Dueño y contraparte & Jefe de Proyecto (JP). Contraparte del cliente: Administrador del Contrato y Contraparte Técnica. \\
+Probabilidad & 35 \% (media). Siete hitos entre los meses 12 y 19 y dos cierres en meses de detención; en septiembre de 2028 el cierre contable termina el jueves 7 y la fecha de la detención la fija el cliente. \\
+Impacto & Medio (0,5). 1,5 semanas sobre implantación (H7 y H12); 310 HH. Efecto sobre un área funcional clave (inicio de la operación). \\
+Exposición & 0,175 · zona media. Período de exposición: M12–M21. \\
+Estrategia & Escalar \\
+Acciones & [E1] Proponer en el protocolo de aceptación que las fechas de revisión de H5 a H12 se fijen en H1 fuera de las detenciones (1.1.4.3, M2; 1.1.2.1, M2). [E1] Solicitar al firmar las fechas de las detenciones de marzo y septiembre de 2028 y el programa de embarques, y fijar en H1 la fecha de paso a producción de cada etapa. [E2] Entrega anticipada por partes de la documentación de cada hito para revisión temprana. [E3] Paso a producción de la Etapa 2 por olas, la primera en la primera ventana hábil posterior a la detención (SD7 7.3.3). \\
+Disparador & Documento sin pronunciamiento al día 10 hábil; fechas de la detención de septiembre de 2028 no confirmadas al término del mes 15; o ventana hábil del mes 21 menor a 5 días. \\
+Plan de contingencia & Comité Ejecutivo extraordinario dentro de 5 días hábiles; registrar el atraso como no imputable; pasar a producción en la primera ventana hábil siguiente. \\
+Riesgo residual & P 20 \%, I 0,5, exposición 0,100 · zona media. Aceptación activa del residual (reserva de contingencia, implantación) \\
+Riesgo secundario & Fijar fechas en H1 reduce la flexibilidad si la Etapa 2 se atrasa. \\
+Revisión & Comité Ejecutivo, mensual; revisión quincenal en acta (T-14 1.1.3.1) \\
+Costo adicional & 16 HH: Calendario de ventanas en 1.1.2.1 \\
+\end{tablasintitulo}
+
+\seccion{R-11 · Sin acuerdo con el sindicato para la verificación facial}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-11}}
+Categoría y rama & Organizacional · rama 4, personas y adopción \\
+Tema de las Bases & Objeción sindical a la biometría (CMAA, 2026b, cap. 19) \\
+Enunciado & Dado que el sindicato ya objetó la biometría facial y que la verificación facial en portería, para unas 4.180 personas con acceso, es la primera ola de la Etapa 2 (marcha blanca en los meses 19 y 20 en paralelo con la credencial, producción tras la detención de septiembre de 2028 y personal de detención desde marzo de 2029) y sólo entra con acuerdo escrito firmado antes del inicio del mes 15 conforme a la Ley N° 21.719, entonces puede que no haya acuerdo a tiempo o que el acuerdo excluya a parte del personal, teniendo como consecuencia que el paquete 1.4.4.4 (384 HH) no se active o lo haga parcialmente y que el préstamo de credenciales no se resuelva en la Etapa 2. \\
+Origen & Bases técnicas del caso Minería, Cap. 8, p. 15, y Cap. 19, p. 33; SUP-13; SD3 3.4.5; T-14 1.1.5.2 y 1.4.4.4, Tablas \refext{T14}{tab:calculo-pert} y \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14; SD7, Tabla \refext{S7}{tab:estimacion-pert-actividades-inciertas-red}. \\
+Dueño y contraparte & Jefe de Proyecto (JP). Contraparte del cliente: Jefe de Seguridad y Salud Ocupacional y área de personas; sindicato. \\
+Probabilidad & 55 \% (alta). La objeción ya existe y la negociación tiene la mayor desviación del plan (σ de 6,0 sem, SD7 Tabla \refext{S7}{tab:estimacion-pert-actividades-inciertas-red}). \\
+Impacto & Medio (0,5). 384 HH. Efecto sobre un área funcional clave (control de identidad en portería). \\
+Exposición & 0,275 · zona alta. Período de exposición: M2–M17. \\
+Estrategia & Escalar \\
+Acciones & [E1] Decisión de diseño: la portería funciona sin biometría (credencial, PIN y validación de habilitación); la verificación facial es un agregado que se activa con el acuerdo (SUP-13). [E2] Mesa con el sindicato desde el mes 2, 13 sesiones mensuales (1.1.5.2). [E2] Evaluación de impacto de datos personales, M2–M4 (1.3.6.2). [E2] No iniciar 1.4.4.4 (M15) sin acuerdo firmado. [E3] Si no hay acuerdo al inicio del mes 15, la portería de la Etapa 2 entra a la marcha blanca y a producción con la credencial de proximidad, sin mover H9 ni H12 (T-14 1.1.5.2). \\
+Disparador & Sin acuerdo firmado al término del mes 12, o acuerdo que excluya a los contratistas. \\
+Plan de contingencia & No construir 1.4.4.4 y devolver sus 384 HH a la reserva del LD (1.4.1.4); portería con credencial, PIN y validación de habilitación. \\
+Riesgo residual & P 55 \%, I 0,3, exposición 0,165 · zona media. Aceptación activa: disparador y plan B; sin HH en riesgo porque 1.4.4.4 no se inicia sin acuerdo \\
+Riesgo secundario & La Contraparte Técnica podría leer la verificación facial no activada como incumplimiento; por eso se declara como funcionalidad condicionada en SD3 y en el Formulario T-12. \\
+Revisión & Comité Ejecutivo, mensual; revisión mensual en acta (T-14 1.1.3.1) \\
+Costo adicional & Sin costo adicional: ya en 1.1.5.2 y 1.3.6.2 \\
+\end{tablasintitulo}
+
+\seccion{R-12 · Operadores que siguen usando la radio y capacitación incompleta al cierre de la marcha blanca E1}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-12}}
+Categoría y rama & Organizacional · rama 4, personas y adopción \\
+Tema de las Bases & Adopción por parte de los usuarios y capacitación (CMAA, 2026b, cap. 17) \\
+Enunciado & Dado que el cliente vio fracasar dos iniciativas porque la gente dejó de usarlas, que la Botonera de Pala reemplaza la declaración por radio de los operadores de las cinco palas en turnos 7x7 de día y de noche, y que el cierre de la marcha blanca exige el 100 \% del personal de las olas capacitado y certificado conforme al plan aprobado, en una faena con 1.780 propios y 2.400 contratistas de unas 90 empresas, entonces puede que los operadores sigan declarando por radio o que la capacitación no llegue al 100 \% al término del mes 15, teniendo como consecuencia una extensión de tres semanas de la marcha blanca de la Etapa 1 a costo de Overfore. El esfuerzo se estima en 1.695 HH (3 semanas × 565 HH semanales según 1.6.3.1 y 1.6.3.3 del T-14), además de la multa de 1 \% del hito de paso a producción por semana de extensión conforme al Art. 80. \\
+Origen & Bases técnicas del caso Minería, Cap. 2.4, Cap. 8, p. 16, y Cap. 17; SD7 7.3.4 y Tabla \refext{S7}{tab:indicadores-diarios-umbrales-cierre-marchas-blancas}; SD4 4.1.5.1; T-14 1.6.3, 1.6.5.1 y 1.6.6.4; Arts. 17.3 y 80. \\
+Dueño y contraparte & Líder de Implantación y Gestión del Cambio (LIG). Contraparte del cliente: Gerenta de Operaciones Mina y jefes de turno. \\
+Probabilidad & 60 \% (alta). La causa ya ocurrió dos veces en este cliente y el caso dice que la adopción pesa tanto como la arquitectura. \\
+Impacto & Alto (0,7). 3,0 semanas sobre implantación E1 (marcha blanca M13–M15); 1.695 HH. Alto: extensión de marcha blanca (Art. 17.3). \\
+Exposición & 0,420 · zona crítica. Período de exposición: M3–M16. \\
+Estrategia & Mitigar (con decisión de diseño) \\
+Acciones & [E1] Decisión de diseño: Botonera de Pala usable con guantes, sin pasos nuevos en el ciclo y con 2 s en el percentil 95 (SD3 y SD4). [E1] Indicador de adopción como condición de cierre (SD7, Tabla \refext{S7}{tab:indicadores-diarios-umbrales-cierre-marchas-blancas}, y T-14 1.6.6.4). [E2] Investigación con usuarios en los dos grupos 7x7, M3–M4 (1.3.4.1); prototipos navegables, M4–M7 (1.3.4.3); prueba de usabilidad en terreno, M5–M15 (1.5.2.1); red de agentes de cambio, M5–M20 (1.6.6.2). [E3] Capacitación por olas desde diciembre de 2027, M12–M14 (1.6.5.1); ola 2 con una sola pala durante 14 días (1.6.3.5) y acompañamiento de una persona por turno en cada área (SD7 7.3.4; 1.6.3.3). \\
+Disparador & En la segunda semana de la pala piloto, menos de 90 \% de los cambios de material declarados por el propio operador con la Botonera; o capacitación bajo 90 \% del plan al cierre de diciembre de 2027. \\
+Plan de contingencia & Extender sólo las áreas que no alcancen el cierre del plan aprobado; no repetir acompañamiento de las áreas ya aceptadas. El escenario principal de mina activa seis apoyos temporales en tres parejas semanales durante 21 días, dos turnos diarios de 12 horas: 504 HH de terreno. Se agregan 120 HH de control, 24 de coordinación, 64 de ajustes, 32 de relator nocturno y 16 de acreditación: 760 HH brutas, de las cuales 748 son incrementales. Dos áreas suman 1.312 HH. Si se necesitan tres áreas o más, o cambian días/turnos, el JP presenta la ampliación de recursos antes de activar la extensión. Se conservan las condiciones de cierre del Art. 17.3 y el hito contractual; las horas no desplazan por sí mismas las fases siguientes. El escenario residual de dos semanas requiere 528 HH brutas y 520 incrementales. El Anexo G.3 detalla las asignaciones. \\
+Riesgo residual & P 20 \%, I 0,7 (alto), exposición 0,140 · zona media. La extensión de dos semanas después del cierre previsto en M15 impide concluir en plazo conforme al Art. 17.3. Por alcance, el impacto es alto; sus 14 días y 1.130 HH son medios. Se mantiene aceptación activa con reserva y disparador para implantación, sin confundir la extensión con refuerzo del piloto dentro de la marcha blanca. \\
+Riesgo secundario & El piloto M13–M15 coincide con el máximo de 45 personas de M14; no se retiran sus integrantes para extender acompañamiento en M16. LIG reúne 48 HH adicionales del escenario principal y queda en 142,33 de 152 HH nominales. LF reordena 12 HH de preparación anticipada de la primera priorización evolutiva dentro de 1.2.5.4 hacia M21; preserva refinamientos, revisiones y aceptación de E2. Las incorporaciones temporales, acreditaciones y turnos deben formalizarse antes del disparador. Tres áreas simultáneas exceden la valoración media de 1.695 HH y requieren ampliación explícita. \\
+Revisión & Comité de Operación, mensual desde M13; Comité de Proyecto, quincenal \\
+Costo adicional & La valoración inherente se conserva en 1.695 HH (3 × 565) y la residual en 1.130 HH (2 × 565), con VE residual de 226 HH. El plan de un área estima 748 HH incrementales para tres semanas y 520 para dos; el máximo de áreas y turnos determina el consumo real, sin confundirlo con el valor esperado. Los 64 HH de ajuste usan DEV/QA adicionales y no se cargan de nuevo a las 1.280 HH de corrección. La reserva de contingencia se complementa, si el evento supera su saldo, mediante la liberación de gestión autorizada por el Comité Ejecutivo; no se presenta como capacidad de personas ya disponible. \\
+\end{tablasintitulo}
+
+\seccion{R-13 · Alertas de mantenimiento con más ruido que aciertos en la marcha blanca E2}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-13}}
+Categoría y rama & Organizacional · rama 4, personas y adopción \\
+Tema de las Bases & Escepticismo del área de mantenimiento (CMAA, 2026b, cap. 19) \\
+Enunciado & Dado que mantenimiento vio apagarse una plataforma predictiva en 2018 después de 14 meses de uso y un piloto de 2022 con seis camiones, y que la Etapa 2 le entrega alertas por reglas sobre los datos de los tres portales de fabricante, entonces puede que las primeras alertas tengan más ruido que aciertos durante la marcha blanca de la Etapa 2 (meses 19 y 20), teniendo como consecuencia que los planificadores dejen de usar la vista única, que el informe de adopción quede bajo la meta y que se pierda la posibilidad de ofrecer más adelante mantenimiento predictivo. \\
+Origen & Bases técnicas del caso Minería, Cap. 1, p. 4, y Cap. 8, p. 14 (mantenimiento); T-14 1.4.4.1, 1.6.6.1 y 1.6.6.4; SD7 7.3.4. \\
+Dueño y contraparte & Líder Funcional (LF). Contraparte del cliente: Jefe de Mantenimiento. \\
+Probabilidad & 30 \% (baja). Las reglas se definen con los datos del propio taller (T-14 1.6.6.1), pero dependen de la calidad de la telemetría (R-16). \\
+Impacto & Medio (0,5). 160 HH. Efecto sobre un área funcional clave (uso de la vista única de mantenimiento). \\
+Exposición & 0,150 · zona media. Período de exposición: M2 (diagnóstico) a M26. \\
+Estrategia & Mitigar \\
+Acciones & [E2] Diagnóstico de impacto con mantenimiento, M2–M4 (1.6.6.1): cada regla de alerta se muestra con datos de detenciones del propio taller antes de construirse. [E2] Respuesta escrita a las tres preguntas del jefe de mantenimiento (con qué datos, cuántas alertas por semana y qué pasa cuando la alerta se equivoca) en el catálogo de la Etapa 2, M13 (1.2.5.1). [E3] En la marcha blanca, los planificadores marcan qué alertas les sirvieron; una regla con más ruido que aciertos se ajusta o se retira (1.6.6.1). [E4] Informes de adopción, M13–M26 (1.6.6.4). \\
+Disparador & Dos semanas seguidas de marcha blanca E2 con menos de 50 \% de alertas marcadas como útiles (más ruido que aciertos). \\
+Plan de contingencia & Retirar o ajustar la regla antes del paso a producción y operar sólo con la vista única para las marcas sin datos productivos. \\
+Riesgo residual & P 15 \%, I 0,3, exposición 0,045 · zona baja. Aceptación activa del residual (reserva de contingencia, E2) \\
+Riesgo secundario & Retirar reglas reduce la cobertura de fallas detectadas: queda en el backlog evolutivo (1.8.5.1). \\
+Revisión & Comité de Operación, mensual desde M13; revisión quincenal en acta (T-14 1.1.3.1) \\
+Costo adicional & 16 HH: Respuesta escrita en 1.2.5.1 \\
+\end{tablasintitulo}
+
+\seccion{R-14 · Innovación implementada y certificada pero sin uso}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-14}}
+Categoría y rama & Organizacional · rama 4, personas y adopción \\
+Tema de las Bases & Riesgo de adopción de las innovaciones (Art. 29 y Formulario T-19) \\
+Enunciado & Dado que las cinco innovaciones dependen de que áreas del cliente cambien su forma de decidir (comercial y operador portuario con la mezcla por arsénico, supervisores con el clasificador de detenciones, metalurgia con la reconciliación estadística, TI con el traspaso del servicio y planificación con los polígonos de dilución), que T-19 califica su riesgo principal con probabilidad media e impacto alto en cuatro de ellas y que el clasificador de detenciones con inteligencia artificial depende de la certificación ISO/IEC 42001 de Overfore, aún no obtenida (hitos en los meses 3, 9 y 12), entonces puede que al menos una innovación quede implementada pero sin uso, teniendo como consecuencia que su beneficio no se verifique en los informes de verificación y que se pierda credibilidad frente al cliente. \\
+Origen & Subdocumento 13 y Formulario T-19 (riesgo de adopción de cada innovación); T-14 1.7.1 a 1.7.5. \\
+Dueño y contraparte & Líder de Implantación y Gestión del Cambio (LIG). Contraparte del cliente: Gerencias usuarias de cada innovación (comercial, mina, metalurgia, TI y planificación). \\
+Probabilidad & 35 \% (media). Equivale a la probabilidad media del Formulario T-19 (31 a 50 \%) llevada a la escala de este plan. \\
+Impacto & Medio (0,5). 160 HH. Medio: el beneficio esperado no se alcanza aunque el compromiso de Overfore se cumpla (SD13 innovación 1). \\
+Exposición & 0,175 · zona media. Período de exposición: M8–M54. \\
+Estrategia & Mitigar \\
+Acciones & [E1] Cada innovación declara su riesgo de adopción, su mitigación y su indicador (SD13 y T-19). [E2] Funcionamiento en paralelo con el método actual durante las marchas blancas (innovaciones 1, 3 y 5). [E2] Procedimiento de carga por lotes con el operador portuario antes del mes 13 (SD13 innovación 1). [E4] Informes de verificación, M15 a M54 (1.7.1.2, 1.7.2.2, 1.7.3.3 y 1.7.5.2) y actas de traspaso (1.7.4.2). El paralelo distingue calibración de verificación del beneficio. Para dilución, M16 a M21 corresponde a línea base y calibración, y el primer balance mensual se realiza en M22. Los informes conservan los indicadores particulares de S13 y T-19, además del uso por las áreas responsables. \\
+Disparador & Informe de verificación de una innovación con uso bajo la meta declarada en T-19 en dos mediciones seguidas. El indicador de uso se revisa junto con los disparadores específicos de cada innovación. En el clasificador, una precisión mensual inferior a 70 \% activa la alerta y una precisión trimestral inferior a 80 \% activa la desactivación prevista en S13, aunque su uso sea alto. \\
+Plan de contingencia & Plan de acción con el área usuaria en el Comité de Operación; ajuste de la innovación con la bolsa evolutiva (1.8.5.1). El reentrenamiento ordinario del clasificador se mantiene en su paquete de operación y no se imputa a la bolsa evolutiva. Si se desactiva el modelo, continúan las reglas y la clasificación manual. La bolsa se utiliza sólo para un cambio funcional extraordinario autorizado. \\
+Riesgo residual & P 20 \%, I 0,5, exposición 0,100 · zona media. Aceptación activa del residual (reserva de contingencia, E2 y operación) \\
+Riesgo secundario & El ajuste consume bolsa evolutiva que el cliente puede querer para otras mejoras. \\
+Revisión & Comité de Operación, mensual \\
+Costo adicional & Sin costo adicional: ya en 1.7.x \\
+\end{tablasintitulo}
+
+\seccion{R-15 · La Etapa 1 supera su reserva de plazo (mes 11) antes de H5}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-15}}
+Categoría y rama & De proyecto · rama 5, contrato y licitación \\
+Tema de las Bases & Plazo comprometido de H5 sobre la cadena crítica de la Etapa 1 \\
+Enunciado & Dado que la cadena crítica de la Etapa 1 no tiene holgura y que su reserva de plazo es el mes 11, de 4,3 semanas (T-14 1.1.3.2), entonces puede que los eventos de R-01, R-05, R-07, R-18 y R-19 ocurran juntos y sumen más atraso que esa reserva, teniendo como consecuencia unas 2,0 semanas de atraso sobre H5 (mes 12) en el caso medio de superarla y unas 684 HH de extensión del equipo de construcción. Es el escenario conjunto de esos cinco riesgos, no un riesgo independiente. \\
+Origen & T-14, Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14, y paquete 1.1.3.2 (reserva de plazo); SD7 7.3.1 y Figura \refext{S7}{fig:ruta-critica-implementacion-sobre-cronograma-contractual}; Art. 80; Anexo D del Subdocumento 8. \\
+Dueño y contraparte & Líder de Desarrollo (LD). Contraparte del cliente: Contraparte Técnica. \\
+Probabilidad & 45,57375 \% (media; 45,6 \% al presentar). Es la suma exacta de la probabilidad de las combinaciones de R-01, R-05, R-07, R-18 y R-19 cuyo atraso supera 4,3 semanas (Anexo D). No se redondea antes de calcular la exposición. \\
+Impacto & Medio (0,5). 2,0 semanas sobre cadena crítica de la Etapa 1 (A04 a A24, sin holgura; reserva de plazo: mes 11); 684 HH. Medio: la certificación de la Etapa 1 se atrasa y consume toda la reserva de plazo. \\
+Exposición & 0,227869 · zona alta. Período de exposición: M1–M12. \\
+Estrategia & Mitigar (a través de las respuestas de R-01, R-05, R-07, R-18 y R-19) \\
+Acciones & [E1] Plazo comprometido con duraciones que llenan los meses entre hitos y margen medido en días de ventana (T-14, Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14; SD7 7.3.1). [E1] Reserva de plazo declarada en 1.1.3.2: el mes 11 y las ventanas de paso hasta el 28 de abril y el 29 y 30 de septiembre de 2028. [E2] Seguimiento del consumo de la reserva en cada Comité de Proyecto. [E2] Las respuestas de R-01, R-05, R-07, R-18 y R-19 bajan la probabilidad de superar la reserva de 45,6 \% a 0,2 \% (Anexo D del Subdocumento 8). El seguimiento diferencia el margen de M11 que protege H5 de las ventanas posteriores que protegen H7 y H12. Antes de comprimir corrección se comprueba su carga y se registra la capacidad que se toma del diseño de la Etapa 2, para no presentar la misma semana o las mismas horas como disponibles para dos actividades. \\
+Disparador & Consumo de 50 \% de la reserva de plazo (2,2 sem): plan de recuperación en el Comité de Proyecto; 80 \% (3,4 sem): Comité Ejecutivo; o probabilidad de superar la reserva recalculada sobre 20 \%. \\
+Plan de contingencia & Intensificar durante un sprint la corrección de defectos del mes 11 con desarrolladores del diseño de la Etapa 2 y certificar por módulo (1.5.3), sin mover H5; se estima que recupera hasta 1 semana. \\
+Riesgo residual & P 0,176 \%, I 0,3 (bajo), exposición 0,000528 · zona baja. Se calcula con P=0,00176 y se presenta como 0,2 \%. Las 0,3 semanas equivalen a 2,1 días; con 100 HH, el plazo determina el nivel bajo. Representa el escenario conjunto de sus cinco componentes y no recibe evento ni reserva independientes. \\
+Riesgo secundario & La intensificación en los meses 11 y 12 resta capacidad al diseño de la Etapa 2 (1.3.5), que precede al inicio de B01 en el mes 13. \\
+Revisión & Comité de Proyecto, quincenal; Comité Ejecutivo si supera el 80 \% de la reserva de plazo \\
+Costo adicional & Sin costo adicional: seguimiento ya en 1.1.2.2. La intensificación de un sprint costaría unas 684 HH (2 semanas × 342 HH) y sólo se usa si se activa el disparador. Las 684 HH representan el escenario de extensión de esta ficha. Su beneficio esperado no se suma como ahorro independiente al de los cinco riesgos componentes sin separar antes sus efectos comunes. \\
+\end{tablasintitulo}
+
+\seccion{R-16 · Fabricante que no firma el acceso a la telemetría o lo condiciona a un pago}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-16}}
+Categoría y rama & De proyecto · rama 6, regulatorio y externo \\
+Tema de las Bases & Propiedad de los datos de telemetría (CMAA, 2026b, cap. 19) y bloqueo por proveedor (Formulario T-7) \\
+Enunciado & Dado que la compañía no tiene claridad contractual sobre la propiedad de la telemetría de sus 52 equipos (70 a tres años) y que un fabricante ya respondió que la extracción programática es un servicio adicional, entonces puede que uno o más de los tres fabricantes no firme el acuerdo de acceso antes del inicio del mes 13 o lo condicione a un pago, que está fuera del alcance, teniendo como consecuencia que el Módulo de Equipos y Mantenimiento entre a H9 (mes 17) sin datos productivos de esa marca, que la vista única de mantenimiento quede incompleta y unas 400 HH de conector alternativo por fabricante. \\
+Origen & Bases técnicas del caso Minería, Cap. 1, p. 3, y Cap. 19, p. 33; SUP-10; SD3 3.2.3.1 (exclusión del pago a fabricantes); T-14 1.2.4.1 y 1.2.4.2; SD7, Tabla \refext{S7}{tab:estimacion-pert-actividades-inciertas-red}. \\
+Dueño y contraparte & Líder de Integración (LI). Contraparte del cliente: Administrador del Contrato y Jefe de Mantenimiento (firman con los fabricantes). \\
+Probabilidad & 50 \% (media). Un fabricante ya pidió pago y son tres negociaciones independientes; la holgura de 4 meses de A08 cubre la demora (33,3 sem esperadas, σ de 5,3 sem), no la negativa. \\
+Impacto & Alto (0,7). 400 HH. Alto: la vista única de mantenimiento queda incompleta para una marca. \\
+Exposición & 0,350 · zona alta. Período de exposición: M1–M13. \\
+Estrategia & Escalar \\
+Acciones & [E1] SUP-10 y exclusión del pago a fabricantes declarados; aceptación de H9 con datos de prueba si un fabricante no firma (T-14 1.2.4.2). [E2] Especificación de datos con ISO 15143-3 como formato preferente, M1–M3 (1.2.4.1). [E2] Comité Ejecutivo del mes 1: el cliente notifica a los fabricantes su posición sobre la propiedad de los datos; Overfore acompaña la negociación, M3–M12 (1.2.4.2). [E2] Conector con modo de exportación programada construido en 1.4.2.3. \\
+Disparador & Acuerdo de un fabricante sin firmar al término del mes 9, o respuesta formal que condicione el acceso a un pago. \\
+Plan de contingencia & Exportación programada diaria desde el portal del fabricante, con el conector ISO 15143-3 aceptado con datos de prueba y activación productiva cuando el cliente firme. \\
+Riesgo residual & P 25 \%, I 0,7 (alto), exposición 0,175 · zona media. La falta de telemetría productiva o su exportación diaria sin verificar la frescura conserva impacto alto. Los datos de prueba permiten evaluar el conector, pero no acreditan cobertura productiva. El dueño sólo propone reducir el impacto después del acuerdo y la prueba de los datos y sus latencias, conforme al Anexo G.1. \\
+Riesgo secundario & La exportación diaria agrega hasta 24 horas de latencia a las alarmas de esa marca y debilita las reglas de mantenimiento (R-13). \\
+Revisión & Comité Ejecutivo, mensual; revisión mensual en acta (T-14 1.1.3.1) \\
+Costo adicional & Sin costo adicional: ya en 1.2.4.1 y 1.2.4.2 \\
+\end{tablasintitulo}
+
+\seccion{R-17 · Cadena del lote comercial incompleta en enero de 2029}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-17}}
+Categoría y rama & De operación · rama 6, regulatorio y externo \\
+Tema de las Bases & Trazabilidad del lote comercial exigida desde enero de 2029 (SUP-21, SUP-22 y SUP-24) \\
+Enunciado & Dado que la exigencia de trazabilidad de los compradores entra en vigor en enero de 2029, que el operador portuario es un tercero sin acuerdo de nivel de servicio que puede restringir el gabinete de borde del acopio (SUP-24), que el certificado derivado propuesto aún no lo validan los compradores (SUP-22) y que el material acopiado antes del sistema debe agotarse antes de esa fecha (SUP-21), entonces puede que en enero de 2029 haya lotes embarcados sin cadena completa o que el comprador exija más de lo que entrega el Portal para Compradores, teniendo como consecuencia penalización comercial para el cliente y un rediseño del Portal para Compradores (unas 384 HH, el tamaño de 1.4.4.5) en plena operación. \\
+Origen & Bases técnicas del caso Minería, Cap. 13.2, p. 22 (exigencia de enero de 2029); SUP-21, SUP-22 y SUP-24; SD3 3.2; T-14 1.2.5.5, 1.4.4.5 y 1.6.1.2. \\
+Dueño y contraparte & Líder Funcional (LF). Contraparte del cliente: Área comercial del cliente. \\
+Probabilidad & 25 \% (baja). Tres condiciones de terceros (operador, compradores y rotación del acopio) con fecha fija; la arquitectura ya no depende del operador para registrar. \\
+Impacto & Alto (0,7). 384 HH. Alto: efecto significativo sobre la funcionalidad comprometida del lote comercial. \\
+Exposición & 0,175 · zona media. Período de exposición: M4–M25 (enero de 2029). \\
+Estrategia & Escalar \\
+Acciones & [E1] Decisión de diseño: gabinete de borde con operación desconectada en el acopio, sin depender del operador (SUP-24). [E1] Validación del certificado derivado con el cliente en la presentación preparatoria 3 (SUP-22). [E2] Autorización del operador portuario para instalar el gabinete antes del mes 4 y acuerdo de procedimiento de carga antes del mes 13 (ajuste de 1.1.6.2). [E3] Medición de la rotación del acopio en la marcha blanca E1 (SUP-21) y lote piloto con el comprador, M17 (1.2.5.5). \\
+Disparador & Sin autorización del operador portuario al término del mes 4; o proyección de rotación del acopio con material de origen anterior al sistema después de diciembre de 2028. \\
+Plan de contingencia & Registro del lote en el último punto controlado por el cliente (despacho a puerto con guía QR) y conciliación con los documentos del operador; certificado con la condición de origen anterior al sistema visible. \\
+Riesgo residual & P 15 \%, I 0,7 (alto), exposición 0,105 · zona media. El registro en el último punto controlado y un certificado con salvedad no completan la trazabilidad de la mezcla portuaria. Se conserva impacto alto hasta que el comprador valide la alternativa. SUP-21 permite identificar el origen anterior durante la transición, pero no exime del compromiso comercial de enero de 2029. \\
+Riesgo secundario & Un punto de registro anterior al acopio deja sin trazar la mezcla en el puerto y debilita la innovación 1. \\
+Revisión & Comité Ejecutivo, mensual \\
+Costo adicional & 40 HH: Ajuste de 1.1.6.2: acuerdo con el operador portuario \\
+\end{tablasintitulo}
+
+\seccion{R-18 · Salida, licencia o sobrecarga de una persona clave de Overfore}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-18}}
+Categoría y rama & Organizacional · rama 7, empresa proveedora \\
+Tema de las Bases & Indisponibilidad del personal clave de Overfore (CMAA, 2026b, cap. 19) \\
+Enunciado & Dado que nueve personas ejercen los once roles del equipo clave, que el Jefe de Proyecto (100 \% en implementación) es también el Gerente de Servicio desde el mes 21, mientras cierra H12, que el Líder de Datos es también Líder de Implantación en el máximo de 45 personas del mes 14, que el Líder de Desarrollo y el Líder Funcional tienen dedicación de 100 \%, y que todo reemplazo exige perfil igual o superior y 15 días hábiles de traslape (unas 3 semanas, que consumirían cerca de 70 \% de la reserva de plazo del mes 11), entonces puede que una persona clave salga, tenga una licencia larga o se sobrecargue entre los meses 10 y 21, teniendo como consecuencia unas 2 semanas de atraso sobre la cadena crítica o sobre el cierre de una marcha blanca y una multa por reemplazo no autorizado si se omite el procedimiento (Art. 80). \\
+Origen & T-14, Tabla \refext{T14}{tab:roles-equipo-clave-dedicacion-paquetes-cargo} del Formulario T-14, y paquete 1.1.7.1; SD1 1.5 y Anexo E del Subdocumento 1; Arts. 76.2 y 80; Formulario T-15. \\
+Dueño y contraparte & Jefe de Proyecto (JP). Contraparte del cliente: Administrador del Contrato (aprueba reemplazos). \\
+Probabilidad & 25 \% (baja). Nueve personas clave durante 21 meses en un mercado de TI con rotación alta y dos personas con doble rol en los meses de mayor carga. \\
+Impacto & Alto (0,7). 2,0 semanas sobre cadena crítica de la Etapa 1 (A04 a A24) e implantación; 240 HH. Alto: pérdida de conducción en la ruta crítica o en una marcha blanca. \\
+Exposición & 0,175 · zona media. Período de exposición: M1–M21. \\
+Estrategia & Mitigar \\
+Acciones & [E1] Suplente designado por rol clave, que conoce su trabajo y está acreditado en faena (T-14 1.1.7.1). [E1] Separar en el plan las horas de Gerente de Servicio y de Jefe de Proyecto del mes 21 (1.1.1.4 y 1.8.7.5) y las de Líder de Datos y Líder de Implantación de los meses 13 a 15 (1.4.6 y 1.6.3), con tope de horas por persona en T-15. [E2] Decisiones técnicas en el registro de decisiones de arquitectura (1.3.1.1) para que el suplente no dependa de una persona. [E2] Control mensual de horas por persona clave en el informe de avance (1.1.2.2). \\
+Disparador & Renuncia o licencia mayor a 10 días hábiles de un rol clave, o una persona clave sobre 110 \% de sus horas disponibles dos meses seguidos. \\
+Plan de contingencia & El suplente asume y se solicita al cliente el reemplazo el mismo día, con perfil igual o superior y 15 días hábiles de traslape (Art. 76.2); redistribuir paquetes del rol entre los líderes del frente. \\
+Riesgo residual & P 10 \%, I 0,5, exposición 0,050 · zona baja. Aceptación activa del residual (reserva de contingencia, Etapa 1) \\
+Riesgo secundario & El suplente que asume dos roles se sobrecarga (el AS es suplente del JP y del LDA): priorizar en el Comité de Proyecto. \\
+Revisión & Comité Ejecutivo, mensual; revisión mensual en acta (T-14 1.1.3.1) \\
+Costo adicional & Sin costo adicional: ya en 1.1.7.1; ajuste de T-15 sin HH nuevas \\
+\end{tablasintitulo}
+
+\seccion{R-19 · Hallazgos críticos o altos en las campañas de intrusión de los meses 11, 15, 17 y 20}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-19}}
+Categoría y rama & De seguridad · rama 1, solución y tecnología \\
+Tema de las Bases & Ciberseguridad: pruebas de intrusión que condicionan hitos (Formulario T-7) \\
+Enunciado & Dado que las cuatro campañas de intrusión independientes (meses 11, 15, 17 y 20) aportan a H5, H7, H10 y H12 y exigen cero hallazgos críticos o altos abiertos al cierre, con corrección en 7 días corridos los críticos y 15 los altos, y que la primera campaña prueba un sistema nuevo con cuatro servicios expuestos a Internet, entonces puede que la campaña del mes 11 deje hallazgos que exijan unas 3 semanas de corrección y nueva verificación, teniendo como consecuencia el consumo de 70 \% de la reserva de plazo del mes 11 (4,3 semanas) y unas 1.030 HH de corrección (3 × 342 HH). \\
+Origen & T-14 1.5.4.1 y 1.5.4.3; SD9 9.2.3 y anexo SD9 Tabla B.2 ; SD4 4.1.8.2; SD7 7.3.1. \\
+Dueño y contraparte & Encargado de Seguridad de la Información (ESI). Contraparte del cliente: Contraparte Técnica. \\
+Probabilidad & 30 \% (baja). La primera campaña sobre un sistema nuevo suele encontrar hallazgos altos; las siguientes parten de una base ya corregida. \\
+Impacto & Alto (0,7). 3,0 semanas sobre cadena crítica de la Etapa 1 (A04 a A24, sin holgura; reserva de plazo: mes 11); 1.026 HH. Alto por plazo: 3 semanas sobre la cadena crítica de la Etapa 1 (70 \% de la reserva de plazo del mes 11). \\
+Exposición & 0,210 · zona alta. Período de exposición: M9–M20. \\
+Estrategia & Mitigar \\
+Acciones & [E1] Alcance de cada campaña según OWASP ASVS 4.0.3 nivel 2, declarado en el plan de pruebas (SD9 y T-13). [E2] Revisión interna con ASVS nivel 2 en el mes 9, dos meses antes de la campaña independiente (1.5.4.3). [E2] Análisis estático y dinámico en cada sprint, M3–M18 (1.5.1.3), y gestión mensual de vulnerabilidades, M3–M20 (1.5.4.3). [E2] Contrato del auditor con fechas fijas de campaña y de reverificación (1.1.6.2). La campaña conserva evidencia de las pruebas negativas de acceso entre zonas y de ausencia de escrituras al control de proceso. Un hallazgo bloqueante impide el paso a producción aunque todavía no venza su plazo de remediación; se aplica el menor plazo si el hallazgo también es un defecto de prueba. \\
+Disparador & Revisión interna del mes 9 con algún hallazgo alto abierto, o hallazgo crítico o alto en el informe de una campaña independiente (corre el plazo de 7 días corridos o de 15 días hábiles). \\
+Plan de contingencia & Equipo de corrección dedicado durante el plazo, priorizado sobre el backlog, con reverificación por el auditor; si el plazo no alcanza, se activa el plan de contingencia de R-15. \\
+Riesgo residual & P 10 \%, I 0,7, exposición 0,070 · zona baja. Aceptación activa del residual (reserva de contingencia, Etapa 1) \\
+Riesgo secundario & Dedicar desarrolladores a corregir hallazgos atrasa historias del sprint: el consumo de la reserva de plazo lo registra. \\
+Revisión & Comité de Arquitectura, mensual; Comité de Proyecto en el mes de cada campaña \\
+Costo adicional & 40 HH: Revisión interna previa del mes 9 en 1.5.4.3 \\
+\end{tablasintitulo}
+
+\seccion{R-20 · Transferencia internacional de datos sensibles a Brazil South sin autorización escrita}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-20}}
+Categoría y rama & De seguridad · rama 6, regulatorio y externo \\
+Tema de las Bases & Protección de datos personales y transferencia internacional (Art. 85.8; Ley N° 21.719) \\
+Enunciado & Dado que SITCO trata datos personales sensibles (salud ocupacional, control de fatiga y biometría) de unas 8.500 identidades, que sus datos residen en Azure Chile Central pero la recuperación ante desastres los replica en Azure Brazil South (pérdida máxima de 15 minutos y recuperación en 4 horas o menos), que los servicios globales de identidad, gestión de dispositivos y notificación (T11-22, T11-25 y T11-27) tratan datos de contacto fuera de Chile, y que la transferencia internacional exige base de licitud, resguardos y autorización previa y escrita del cliente (Art. 85.8), entonces puede que el cliente no autorice por escrito la réplica o los servicios globales antes de la primera carga de datos personales reales, o que lo condicione a requisitos adicionales de la Ley N° 21.719, teniendo como consecuencia excluir los dominios sensibles de la réplica (su recuperación quedaría fuera del objetivo de 15 minutos y 4 horas) o rediseñar su respaldo dentro de Chile, con unas 400 HH. \\
+Origen & Arts. 23 y 85.8 de las Bases administrativas; Ley N° 21.719; SD4 4.2.2.1 y 4.2.3.4; SD5 5.2.6; T-14 1.3.6.1, 1.3.6.2 y 1.3.1.4. \\
+Dueño y contraparte & Encargado de Seguridad de la Información (ESI). Contraparte del cliente: Jefa de TI Corporativa y área legal del cliente. \\
+Probabilidad & 30 \% (baja). La autorización depende de una definición corporativa del cliente sobre datos sensibles fuera de Chile, con una ley recién vigente. \\
+Impacto & Alto (0,7). 400 HH. Alto: el objetivo de recuperación comprometido no se cumple para los dominios sensibles. \\
+Exposición & 0,210 · zona alta. Período de exposición: M1–M15. \\
+Estrategia & Escalar \\
+Acciones & [E1] Solicitar con H1 autorización previa escrita para réplica y respaldo en Brazil South, subencargados y tratamientos de servicios globales, con datos, finalidad y cláusulas identificadas. [E2] Completar matriz de cumplimiento y evaluación de impacto M2–M4 (1.3.6.1–1.3.6.2). [E2] Aplicar cifrado, gestión de claves y cláusulas de 1.1.6.2. [E2] Preparar antes de H2 el expediente de la alternativa chilena con 40 HH adicionales: AS 24 y especialista BCP 16. Incluye amenazas, compatibilidad, capacidad, contratación y pruebas; no equivale a una variante habilitada. \\
+Disparador & Autorización escrita de la réplica en Brazil South no recibida al término del mes 4 (H2), autorización de los servicios globales no recibida al término del mes 4, o respuesta del cliente que exija mantener los datos sensibles en Chile. \\
+Plan de contingencia & Si en H2 falta autorización suficiente o se exige permanencia en Chile, no transferir ni cargar datos reales en servicios no autorizados. El Comité Ejecutivo y la Contraparte Técnica resuelven autorizar la ruta vigente o activar la adaptación de un sitio chileno, estimada en 400 HH incrementales bajo plataforma compatible y contratación aprobada. La adaptación comprende cumplimiento 32, diseño 64, infraestructura 112, réplica 96, ensayo 64 y transferencia 32 HH. Debe demostrar separación de amenazas, réplica continua, conmutación y retorno. Antes del paso afectado se comprueban RTO máximo 4 horas y RPO máximo 15 minutos con ensayo real e informe favorable. La autorización de servicios globales se resuelve separadamente: un sitio chileno no los traslada de país. Sustituir plataformas o construir un centro exige estimar y aprobar otro alcance (Anexo G.4). \\
+Riesgo residual & P 10 \%, I 0,7 (alto), exposición 0,070 · zona baja. El impacto permanece alto mientras una alternativa chilena aprobada no demuestre mediante ensayo real los objetivos de recuperación, la réplica y la conmutación exigidos. Las 400 HH estimadas corresponden a esfuerzo bajo y no reducen la consecuencia de incumplir la continuidad. La eventual revisión de impacto exige evidencia de aceptación, conforme al Anexo G.1. \\
+Riesgo secundario & La alternativa chilena puede compartir amenazas con el sitio primario. El análisis de independencia debe demostrar que su emplazamiento y sus servicios permiten recuperar los dominios sensibles ante el desastre considerado; permanecer en Chile no demuestra por sí solo independencia ni pertenencia a la misma región. \\
+Revisión & Comité Ejecutivo, mensual (decisión corporativa del cliente) \\
+Costo adicional & 40 HH preventivas (AS 24 + BCP externo 16), separadas de 400 HH contingentes de adaptación: 440 HH si se activa la rama. La ejecución utiliza incrementos de dedicación comprobados o apoyos adicionales; no consume automáticamente el saldo de corrección. Las adquisiciones y el consumo de plataforma se dimensionan en el cambio y se valorizan sólo en la Oferta Económica. Se conserva el impacto alto del residual hasta comprobar la alternativa. \\
+\end{tablasintitulo}
+
+\seccion{R-21 · Segunda fibra no operativa o sin diversidad real, o satélite bajo 20 Mbps}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-21}}
+Categoría y rama & De operación · rama 6, regulatorio y externo \\
+Tema de las Bases & Disponibilidad del enlace entre la faena y Antofagasta \\
+Enunciado & Dado que el enlace con Antofagasta depende hoy de fibra de un único proveedor con 3 a 6 cortes al año de 4 a 20 horas, que la segunda fibra la construye un proveedor de telecomunicaciones por otro camino físico (Overfore contrata el servicio con un proveedor distinto del actual y el proveedor construye la ruta, mientras la obra civil local corresponde al cliente, SD6 §6.1.6) y que Overfore contrata el satélite con terminal incluido y lo instala en el mes 5, con al menos 20 Mbps de subida frente a una punta calculada de 17,3 Mbps, entonces puede que al paso a producción de la Etapa 1 (mes 16) la segunda fibra no esté operativa o comparta trazado con la primera, o que el satélite rinda menos de lo exigido, teniendo como consecuencia que un corte de fibra deje portales, integración con SAP y Centro Integrado de Operaciones sobre un camino insuficiente, y que un corte de más de 48 horas supere la autonomía del Nodo de Faena. \\
+Origen & Bases técnicas del caso Minería, Cap. 6, p. 11, y Cap. 8, p. 16 (cortes de fibra); SD4 4.1.9, 4.2.3.2 y 4.2.4.5; SD6 6.1.6; T-14 1.6.1.3. \\
+Dueño y contraparte & Arquitecto de Solución (AS). Contraparte del cliente: Jefa de TI Corporativa (contrato de telecomunicaciones y servicio satelital). \\
+Probabilidad & 40 \% (media). Una ruta de fibra nueva de unos 145 km por otro camino depende de permisos y obras de un tercero, con fecha que el proyecto no controla. \\
+Impacto & Medio (0,5). 200 HH. Medio: portales e integraciones degradados durante los cortes. \\
+Exposición & 0,200 · zona alta. Período de exposición: M2–M56. \\
+Estrategia & Mitigar \\
+Acciones & [E1] Decisión de arquitectura: tres caminos (fibra actual, segunda fibra por otro camino y satélite de órbita baja) y operación de la faena 48 horas sin ninguno (SD4 §4.1.9). [E1] Fijar el mes 6 como fecha límite del enlace habilitado y probado y, antes de aceptar el hito, verificar con planos que el segundo proveedor usa ruta y acometida independientes (SD6 §6.1.6; Formulario T-9). [E2] Satélite operativo desde el mes 5 como respaldo, con medición de capacidad en la puesta en marcha (1.6.1.3; SD6 §6.1.6). [E3] Corte controlado de 48 horas, M15 y M21 (1.5.5.2), y conmutación probada (1.5.5.1). [E4] Prueba trimestral de conmutación en el informe de capacidad (1.8.2.3). Overfore comprueba desde la contratación que la fecha comprometida permita habilitar y probar la segunda fibra en M6. En el seguimiento mensual anterior a M6 se revisan el trazado y los avances del proveedor. La evidencia contractual no se sustituye por una fecha informada después del compromiso. \\
+Disparador & Fecha comprometida o avance del proveedor incompatible con habilitar y probar la segunda fibra en M6, ausencia de respaldo de una ruta independiente en su revisión previa, o satélite con menos de 20 Mbps de subida en la prueba de M5. \\
+Plan de contingencia & Operar con satélite y priorización de la operación en vivo, alertas y bandeja de salida (SD4 §4.2.3.2); exigir al proveedor el plan de mayor capacidad sin cambiar el terminal (SD4 §4.2.4.6). \\
+Riesgo residual & P 20 \%, I 0,3, exposición 0,060 · zona baja. Aceptación activa del residual (reserva de contingencia, implantación) \\
+Riesgo secundario & Operar más tiempo sobre satélite difiere las series del historiador y retrasa los tableros del Centro Integrado de Operaciones. \\
+Revisión & Comité de Arquitectura, mensual; Comité de Operación desde M13 \\
+Costo adicional & Sin HH adicionales de verificación: la revisión de rutas y la integración se mantienen en 1.6.1.3. Overfore contrata los servicios de segunda fibra y satélite como adquisiciones del alcance de base definido en S6, 6.1.6. Esta condición no significa que los servicios sean gratuitos ni que los contrate el cliente. Su valorización corresponde a la Oferta Económica. \\
+\end{tablasintitulo}
+
+\seccion{R-22 · Inicio del contrato después de abril de 2027}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-22}}
+Categoría y rama & De proyecto · rama 5, contrato y licitación \\
+Tema de las Bases & Fecha de inicio del contrato (SUP-15) \\
+Enunciado & Dado que el plan supone que el mes 1 es enero de 2027 y no posterior a abril de 2027 (SUP-15), que con ese inicio la Etapa 2 entra en producción en septiembre de 2028, unos 4 meses antes de que las exigencias de los compradores entren en vigor en enero de 2029, y que la consulta del origen por parte del comprador quedaría fuera de plazo con un inicio posterior, y que los cortes de 48 horas y la conexión del diodo calzan con las detenciones de marzo y septiembre sólo si el contrato parte en enero o en julio, entonces puede que la firma ocurra después de abril de 2027, teniendo como consecuencia que la Etapa 2 y el Portal para Compradores entren en producción después de enero de 2029 (con un inicio en julio de 2027, el paso a producción de la Etapa 2 cae en marzo de 2029, mes de detención) y que haya que replanificar y adelantar a la Etapa 1 la huella de carbono y el portal del comprador, con unas 800 HH. \\
+Origen & SUP-15; SD2 2.5.2; SD3 3.2.3.2; SD7 7.3; Bases técnicas del caso Minería, Cap. 13.2; Art. 17. \\
+Dueño y contraparte & Jefe de Proyecto (JP). Contraparte del cliente: Administrador del Contrato. \\
+Probabilidad & 10 \% (muy baja). La fecha de firma depende sólo del cliente y del proceso de licitación; no hay indicio en las bases de un atraso, pero tampoco una fecha comprometida. \\
+Impacto & Alto (0,7). 800 HH. Alto: el Portal para Compradores no estaría en producción cuando lo exigen los compradores. \\
+Exposición & 0,070 · zona baja. Período de exposición: Antes de la firma (M0) a M1. \\
+Estrategia & Escalar y transferir \\
+Acciones & [E1] Supuesto SUP-15 explícito, con la consecuencia de un inicio posterior a abril de 2027 (SD2 2.5). [E1] Declaración en la propuesta de que los hitos se cuentan desde la fecha real de inicio (Art. 17) y de que, con un inicio distinto de enero, los cortes de 48 horas y la conexión del diodo se mueven a la detención más próxima. [E2] Replanificación del calendario de ventanas en H1 con la fecha real (1.1.2.1, mes 2). \\
+Disparador & Firma del contrato después del 30 de abril de 2027, o aviso del cliente de un inicio posterior. \\
+Plan de contingencia & Proponer al cliente, como cambio de alcance, adelantar a la Etapa 1 el Portal para Compradores y la huella de carbono, o acordar con el área comercial una fecha de exigencia del comprador posterior; realinear los cortes de 48 horas a la detención más próxima. \\
+Riesgo residual & P 10 \%, I 0,7 (alto), exposición 0,070 · zona baja. Reprogramar hitos relativos o proponer un adelanto no modifica la exigencia de enero de 2029. Se conserva impacto alto hasta aprobar y comprobar un calendario que cumpla esa fecha o un acuerdo comercial válido que modifique la exigencia. La revisión queda vinculada a la evidencia del Anexo G.1. \\
+Riesgo secundario & Adelantar componentes de la Etapa 2 a la Etapa 1 aumenta la carga del pico de los meses 13 a 15. \\
+Revisión & Comité Ejecutivo del mes 1; luego se cierra \\
+Costo adicional & Sin costo adicional: declaración del supuesto en la propuesta, sin costo \\
+\end{tablasintitulo}
+
+\seccion{R-23 · Personal propio o de refuerzo sin credencial vigente en su primer turno en faena}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-23}}
+Categoría y rama & De proyecto · rama 7, empresa proveedora \\
+Tema de las Bases & Acreditación del personal del adjudicatario en faena (SUP-35) \\
+Enunciado & Dado que la acreditación de cada persona demora en promedio 9 días desde su documentación completa, con examen de altura geográfica vigente (SUP-35), que el plan la inicia 15 días hábiles antes de cada actividad, que T-14 1.1.7.1 acredita 42 personas (9 del equipo clave, 20 analistas de operación y técnicos de terreno, 4 digitalizadores y 9 externos), y que en las detenciones ingresan hasta 4.300 contratistas adicionales que cargan el proceso del cliente, entonces puede que personas propias o de refuerzo (acompañantes, técnicos, digitalizadores o analistas) no tengan su credencial en la fecha de su primer turno, por un examen de altura reprobado, documentación observada o saturación en marzo y septiembre, teniendo como consecuencia turnos de acompañamiento sin cubrir, atraso de la instalación de dispositivos (1.6.2.1) y hasta 1 semana más de marcha blanca. \\
+Origen & SUP-35; Bases técnicas del caso Minería, Cap. 4.8, p. 9 (acreditación de nueve días); T-14 1.1.7.1 y 1.6.3.3; SD1, Anexo F del Subdocumento 1. \\
+Dueño y contraparte & Jefe de Proyecto (JP). Contraparte del cliente: Administrador del Contrato (proceso de acreditación del cliente). \\
+Probabilidad & 35 \% (media). 42 personas a acreditar según T-14 1.1.7.1 (9 del equipo clave, 20 analistas y técnicos de terreno, 4 digitalizadores y 9 externos), varias en los meses de detención, con un examen de altura que no todos aprueban. \\
+Impacto & Alto (0,7). Una semana sobre implantación E1 y 565 HH. La falta de personal acreditado puede prolongar la marcha blanca más allá del cierre previsto; por el Art. 17.3, el alcance es alto aunque siete días y 565 HH correspondan a niveles inferiores. \\
+Exposición & 0,245 · zona alta. Período de exposición: M1–M20. \\
+Estrategia & Mitigar \\
+Acciones & [E1] SUP-35: la demora atribuible al cliente no es imputable al adjudicatario. [E2] Exámenes de altura y acreditación del equipo clave desde la primera semana (1.1.7.1). [E2] Acreditar desde el mes 12 (15 días hábiles antes del mes 13) a los analistas de operación y técnicos que entran a la marcha blanca, y acreditar con anticipación cuatro personas de reserva; no programar trámites en las semanas de detención (1.1.7.1 y 1.1.7.2). \\
+Disparador & Credencial sin resolver a 5 días hábiles del primer turno de una persona, o examen de altura reprobado. \\
+Plan de contingencia & Cubrir el turno con una persona de reserva ya acreditada y reprogramar la instalación a la ventana siguiente. \\
+Riesgo residual & P 10 \%, I 0,3, exposición 0,030 · zona baja. Aceptación activa del residual (reserva de contingencia, implantación) \\
+Riesgo secundario & Mantener personas pre-acreditadas sin turno fijo tiene un costo de exámenes y traslados. \\
+Revisión & Comité de Proyecto, quincenal \\
+Costo adicional & 32 HH: 32 HH de reserva en 1.1.7.1 (las demás ya están en el T-14) \\
+\end{tablasintitulo}
+
+\seccion{R-24 · Servicio 24x7 sin los analistas comprometidos al inicio de la operación}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{R-24}}
+Categoría y rama & De operación · rama 7, empresa proveedora \\
+Tema de las Bases & Dotación del servicio 24x7 (SUP-27) \\
+Enunciado & Dado que la dotación de operación sube por rampa desde el mes 13 (analistas de operación: 8 en M14–M15, 2 en M16–M17, 3 en M18 y 10 desde M19, más 5 analistas de seguridad del SOC desde M21, es decir 15 desde M21), que cada puesto 24x7 necesita cinco personas y que la mesa se dimensionó para 1.250 contactos mensuales (SUP-27), entonces puede que en alguno de los hitos de la rampa (cierre del mes 12, del mes 18 o del mes 21) falten analistas contratados y entrenados en SITCO, o que el volumen real de los primeros meses con ambas etapas en producción supere lo supuesto, teniendo como consecuencia incumplir niveles de servicio (multas por disponibilidad y por tiempo de respuesta, Art. 80) y debilitar la transferencia al equipo de TI del cliente (1.6.5.3). \\
+Origen & SD1 1.2 y Anexo F del Subdocumento 1, Tabla \refext{A1}{tab:dotacion-apoyo-overfore-asignada-proyecto} de los Anexos del Subdocumento 1; SUP-27; T-14 1.8.1, 1.8.2 y 1.6.5.3; Art. 80. \\
+Dueño y contraparte & Líder de Operación / SRE (SRE). Contraparte del cliente: Jefa de TI Corporativa. \\
+Probabilidad & 35 \% (media). La rampa exige contratar y entrenar a lo largo de 11 meses (M13–M23) en un mercado escaso de analistas de seguridad y para trabajar con apoyo en una faena a 145 km; hay tres hitos de la rampa donde puede fallar. \\
+Impacto & Alto (0,7). 480 HH. Alto: la operación parte sin la dotación que sostiene los niveles de servicio. \\
+Exposición & 0,245 · zona alta. Período de exposición: M12–M24. \\
+Estrategia & Mitigar \\
+Acciones & [E1] Dotación declarada por puesto y por mes (SD1, Anexo F del Subdocumento 1, Tabla \refext{A1}{tab:dotacion-apoyo-overfore-asignada-proyecto} de los Anexos del Subdocumento 1). [E2] Contratación escalonada de los analistas: 4 al cierre del mes 12, 7 al cierre del mes 18 y 10 al cierre del mes 21, con entrenamiento en la estabilización de la Etapa 1, meses 16 y 17 (1.6.4.1), y en la marcha blanca de la Etapa 2 (1.6.3.4). [E4] Medición del volumen real de contactos en los tres primeros meses de operación (SUP-27) en el informe mensual de niveles de servicio (1.8.7.1). \\
+Disparador & Menos de 4 analistas de operación contratados al cierre del mes 12, menos de 7 al cierre del mes 18, o más de 1.250 contactos mensuales en los meses 21 a 23. \\
+Plan de contingencia & Reasignar en forma temporal analistas de las otras cuatro plataformas del centro de operaciones (20 analistas, SD1 §1.2) y acelerar la contratación; el analista 11 de los meses 21 a 23 es el respaldo de la rampa. \\
+Riesgo residual & P 10 \%, I 0,5, exposición 0,050 · zona baja. Aceptación activa del residual (reserva de operación) \\
+Riesgo secundario & La reasignación temporal resta capacidad a los otros clientes del centro de operaciones. \\
+Revisión & Comité Ejecutivo, mensual; Comité de Operación desde M13 \\
+Costo adicional & 160 HH: Ajuste de 1.6.4.1 y 1.6.3.4: 11 analistas × unas 14 HH de entrenamiento en SITCO \\
+\end{tablasintitulo}
+
+\apartado{Fichas de oportunidades}
+Esta sección contiene una ficha por cada oportunidad del registro. Su estructura es la misma de las fichas de riesgo, sin plan de contingencia.
+
+\seccion{O-01 · Menos embarques penalizados por arsénico desde 2028}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{O-01}}
+Categoría y rama & De operación · rama 3, operación del cliente \\
+Enunciado & Dado que en 2025 cuatro de los 31 embarques (12,9 \%) recibieron penalización por arsénico y que reconstruir el origen de un lote toma 4 a 6 semanas, entonces puede que el control anticipado del arsénico (innovación 1) y la trazabilidad de la Etapa 1, en producción desde abril de 2028, reduzcan los embarques penalizados ya en 2028, teniendo como consecuencia un beneficio verificable para el cliente antes de que las exigencias de los compradores entren en vigor en enero de 2029. \\
+Dueño y contraparte & Líder de Datos (LDA). Contraparte del cliente: Área comercial y Superintendente de Planta Concentradora. \\
+Probabilidad & 50 \% (media). La innovación queda certificada en H5 y opera desde la marcha blanca; depende de que el operador portuario ejecute la mezcla (R-14, R-17). \\
+Beneficio & Alto (0,7). Beneficio alto para el cliente (funcionalidad comprometida que se adelanta). \\
+Exposición & 0,350. Período: M13–M25. \\
+Estrategia y acciones & Explotar. [E3] Operar la propuesta de mezcla en paralelo durante la marcha blanca E1, M13–M15, con línea base en el informe del mes 15 (1.7.1.2). [E2] Procedimiento de carga por lotes acordado con el operador portuario antes del mes 13 (ver R-17). \\
+Disparador & Primer lote con arsénico estimado sobre el límite detectado antes de conformar el embarque. \\
+Riesgo secundario & Si el beneficio se publica antes de verificarlo, el área comercial puede exigirlo como compromiso. \\
+Revisión & Comité de Operación, mensual \\
+\end{tablasintitulo}
+
+\seccion{O-02 · Fabricante que entrega la telemetría por ISO 15143-3}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{O-02}}
+Categoría y rama & De proyecto · rama 6, regulatorio y externo \\
+Enunciado & Dado que SUP-10 y RT-05.23 permiten usar el estándar ISO 15143-3 cuando el fabricante lo soporte, entonces puede que uno o más de los tres fabricantes entregue su telemetría por ese estándar, teniendo como consecuencia un conector común que ahorra unas 160 HH por fabricante en 1.4.2.3 (dos sprints de 80 HH) y facilita sumar los equipos que llevan la flota de 52 a 70. \\
+Dueño y contraparte & Líder de Integración (LI). Contraparte del cliente: Jefe de Mantenimiento. \\
+Probabilidad & 40 \% (media). Al menos un fabricante grande soporta el estándar en equipos recientes; no se sabe cuál de los tres ni con qué cobertura. \\
+Beneficio & Bajo (0,3). Beneficio bajo en esfuerzo. \\
+Exposición & 0,120. Período: M1–M17. \\
+Estrategia y acciones & Compartir. [E2] Piloto conjunto del conector con el fabricante que ya soporte el estándar, desde la especificación, M1–M3 (1.2.4.1) y en la construcción, M13–M17 (1.4.2.3). \\
+Disparador & Respuesta de un fabricante que confirma soporte de ISO 15143-3 en sus equipos de Aranda. \\
+Riesgo secundario & Un conector común crea dependencia de la versión del estándar que implemente cada fabricante. \\
+Revisión & Comité de Arquitectura, mensual \\
+\end{tablasintitulo}
+
+\seccion{O-03 · Replicación de SITCO en la operación que el cliente evalúa adquirir en 2030}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{O-03}}
+Categoría y rama & Organizacional · rama 7, empresa proveedora \\
+Enunciado & Dado que el Centro Integrado de Operaciones se usa cerca del 40 \% de su capacidad y que la compañía evalúa una adquisición en 2030, y que SITCO agrega una unidad operacional con su propio Nodo y sus gabinetes sobre los servicios de la nube, entonces puede que el cliente decida replicar SITCO en la nueva operación, teniendo como consecuencia una extensión del servicio para Overfore y un mayor uso del Centro Integrado de Operaciones. \\
+Dueño y contraparte & Gerente de Servicio (GS). Contraparte del cliente: Gerencia General del cliente (decisión de adquisición). \\
+Probabilidad & 25 \% (baja). La adquisición está en evaluación y no depende del proyecto. \\
+Beneficio & Medio (0,5). Beneficio medio (línea de servicio nueva). \\
+Exposición & 0,125. Período: M37–M56. \\
+Estrategia y acciones & Escalar. [E4] Prueba de replicación dentro de la mantención evolutiva (1.8.5.1). [E4] Presentar el caso a la gerencia de Overfore y al Comité Ejecutivo cuando el cliente anuncie la adquisición. \\
+Disparador & Anuncio formal del cliente sobre la adquisición. \\
+Riesgo secundario & Atender una segunda unidad con la misma dotación podría tensionar los niveles de servicio de Aranda. \\
+Revisión & Comité Ejecutivo, mensual (operación) \\
+\end{tablasintitulo}
+
+\seccion{O-04 · Recuperar parte de los 47 minutos perdidos por cambio de turno}
+\begin{tablasintitulo}{I{0.224}I{0.776}}{\cab{Campo} & \cab{O-04}}
+Categoría y rama & De operación · rama 4, personas y adopción \\
+Enunciado & Dado que en cada cambio de turno se pierden 47 minutos efectivos frente a una referencia de 25 de la industria, y que el relevo de 08:00 y 20:00 concentra la carga de registros y accesos, entonces puede que los tableros de turno y la Botonera de Pala acorten el relevo, teniendo como consecuencia un beneficio medible para la operación que además refuerza la adopción (R-12). \\
+Dueño y contraparte & Líder de Datos (LDA). Contraparte del cliente: Gerenta de Operaciones Mina. \\
+Probabilidad & 35 \% (media). El sistema entrega la información del relevo en un tablero, pero la duración depende de la práctica de cada jefe de turno. \\
+Beneficio & Medio (0,5). Beneficio medio para la operación. \\
+Exposición & 0,175. Período: M13–M24. \\
+Estrategia y acciones & Mejorar. [E3] Medir la línea base de minutos efectivos por relevo en la marcha blanca E1 y publicarla en el tablero de turno (1.4.3.6). [E4] Seguimiento en los informes de adopción (1.6.6.4). \\
+Disparador & Relevo medido bajo 40 minutos en dos semanas seguidas. \\
+Riesgo secundario & Si el indicador se usa por persona, los operadores lo leen como control; se publica sólo agregado por grupo (como exige T-14 1.6.6.4). \\
+Revisión & Comité de Operación, mensual \\
+\end{tablasintitulo}
+\begin{horizontal}
+
+\apartado{Trazabilidad de los riesgos con la solución y el plan}
+La Tabla \ref{tab:trazabilidad-riesgo-decision-lugar-propuesta-paquete} muestra, para los riesgos de zona crítica y alta y para los exigidos por las Bases técnicas del caso Minería, qué decisión de la solución o del plan los responde, dónde está en la propuesta, en qué paquete de la EDT y mes se ejecuta, en qué etapa y con qué evidencia se verifica.
+
+\begin{tabla}{I{0.127}I{0.245}I{0.169}I{0.186}I{0.063}I{0.211}}{Trazabilidad riesgo, decisión, lugar en la propuesta, paquete y evidencia.}{tab:trazabilidad-riesgo-decision-lugar-propuesta-paquete}
+  {\cab{Riesgo} & \cab{Decisión que lo responde} & \cab{Lugar en la propuesta} & \cab{Paquete EDT y mes} & \cab{Etapa} & \cab{Evidencia verificable}}
+  {Fuente: elaboración propia a partir de Subdocumento 4, cap. 4, sección 4.1, p. 7; Subdocumento 7, cap. 7, sección 7.1, p. 5.}
+R-05 Interfaces sin documentar & Conector de doble modo (servicio y archivo) en el Integrador de Sistemas; levantamiento y prueba de lectura antes de construir & SD4 §4.1.2.3 (ADR-04); SD2 §2.5.2 (SUP-16, SUP-19) & 1.2.1.1–1.2.1.2, M1–M3; 1.4.2.1, M3 & 1 y 2 & Matriz de integraciones con prueba de lectura aprobada al término del mes 3 \\
+R-08 Cobertura LTE & Registro local de al menos 48 horas; estudio con proyección a tres años y actualizaciones semestrales; ampliación de red fuera del alcance & T-11; SD4 (dispositivos); SD2 2.5 (SUP-09, SUP-26, EXC-08) & 1.3.1.5, M2–M4, M8, M14 y M20; 1.8.2.3, semestral; 1.5.5.2, M15 y M21 & 1, 2 y 4 & Estudio aprobado en H2; actualizaciones antes de las detenciones; corte real de 48 horas sobre el Nodo de Faena en M15 y M21 \\
+R-12 Adopción y capacitación & Valoración 1.695 HH; extensión por áreas con apoyos temporales y control de capacidad & SD3 3.2.5; SD7 7.3.4 y Tabla \refext{S7}{tab:indicadores-diarios-umbrales-cierre-marchas-blancas}; T-14 1.6.6.4; SD4 (requisitos de terreno) & 1.3.4.1, M3–M4; 1.5.2.1, M5–M15; 1.6.5.1, M12–M14; 1.6.6.4, M13–M26 & 1, 2 y 3 & Indicadores y capacitación del plan; acta de cierre por área; recursos y turnos de G.3 \\
+R-16 Telemetría & Conector ISO 15143-3 con modo de exportación programada; H9 aceptado con datos de prueba; pago a fabricantes excluido & SD2 2.5 (SUP-10, EXC-04); SD4 4.1.6.2; T-14 1.2.4.2 & 1.2.4.1, M1–M3; 1.2.4.2, M3–M12; 1.4.2.3, M13–M17 & 1 y 2 & Tres acuerdos firmados antes del mes 13 o acta de H9 con datos de prueba \\
+R-11 Biometría & Portería que funciona sin biometría, con credencial de proximidad; verificación facial sólo con acuerdo escrito firmado antes del mes 15 & SD3 3.4.5; T-14 1.1.5.2; SD2 2.5 (SUP-13) & 1.1.5.2, M2–M14; 1.3.6.2, M2–M4; 1.4.4.4, M15–M17 & 1, 2 y 3 & Acuerdo firmado antes del mes 15 o decisión registrada de no construir 1.4.4.4 \\
+R-07 Base de la Conciliación Metalúrgica & Ratificación de la fuente en el Comité Ejecutivo; registro de factores; reconciliación estadística con los tres instrumentos & SD2 2.5 (SUP-02); SD5 5.3.2; SD13 (innovación 3) & 1.2.3.2, M3; 1.2.6.1–1.2.6.2, M2; 1.7.3.1, M3–M6 & 1 y 2 & Acta de ratificación firmada; registro de factores validado por metalurgia \\
+R-04 Ciberseguridad & Superficie de cuatro servicios con control de borde; dos servidores por gabinete para parchar sin detener; pruebas de intrusión por hito & SD4 4.1.8.2 y 4.2; SD9 9.2.3 & 1.3.3.2, M2–M4; 1.5.4.1, M11/M15/M17/M20; 1.8.2.2, M21–M56 & 1, 2 y 4 & Informes de intrusión sin hallazgos críticos ni altos abiertos \\
+R-01 Obsolescencia & Versión soportada más reciente en la línea base del mes 3; actualización semestral planificada & SD4 Tabla \refext{S4}{tab:version-fin-soporte-plan-actualizacion-componentes} & 1.4.1.4 (ajuste), M6–M20; 1.8.4.1, anual & 1, 2 y 4 & Inventario de versiones sin componentes fuera de soporte en cada puerta de calidad \\
+R-18 Personal clave de Overfore & Suplente por rol acreditado; horas separadas de los dobles roles (JP y GS, LDA y LIG) & T-14 Tabla \refext{T14}{tab:roles-equipo-clave-dedicacion-paquetes-cargo} y \refext{S1}{tab:datos-institucionales-overfore-s}.7.1; T-15 & 1.1.7.1, M1–M18; 1.1.2.2, mensual & 1 y 2 & Registro de suplentes acreditados; horas por persona clave en el informe mensual \\
+R-24 Dotación 24x7 & Rampa de analistas desde el mes 13 (8 en la marcha blanca, 2 en los meses 16 y 17, 3 en el mes 18 y 10 desde el mes 19) y entrenamiento en la estabilización E1 & SD1 §1.5 y Anexo F del Subdocumento 1 (Tabla \refext{A1}{tab:dotacion-apoyo-overfore-asignada-proyecto} de los Anexos del Subdocumento 1); SD10 y SD11 (dotación de operación) & 1.6.4.1 y 1.6.3.4 (ajuste de entrenamiento), M16–M20 & 2 y 4 & Analistas contratados al cierre de los meses 12, 18 y 21 según la Tabla \refext{A1}{tab:dotacion-apoyo-overfore-asignada-proyecto} de los Anexos del Subdocumento 1 \\
+R-15 Ruta crítica E1 & Reserva de plazo (mes 11 y ventanas de paso) declarada en 1.1.3.2; consumo seguido en cada Comité de Proyecto; respuestas de R-01, R-05, R-07, R-18 y R-19 & T-14 Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} y \refext{S1}{tab:datos-institucionales-overfore-s}.3.2; SD7 7.3.1; Anexo D del Subdocumento 8 & 1.2.2 a 1.5.3, M1–M12 & 1 y 2 & Consumo de la reserva de plazo en cada acta del Comité de Proyecto \\
+R-19 Hallazgos de intrusión & Revisión interna ASVS nivel 2 en el mes 9; análisis estático y dinámico por sprint & SD9 9.2.3; T-13 & 1.5.4.3, M9; 1.5.4.1, M11/M15/M17/M20 & 1 y 2 & Informe de la revisión del mes 9 sin hallazgos altos abiertos \\
+R-20 Transferencia a Brazil South & Brazil South con autorización previa; expediente chileno de 40 HH y adaptación condicionada de 400 HH & SD4 4.2 (recuperación); BA Art. 85.8 & 1.3.6.1–1.3.6.2, M2–M4; 1.3.1.4, M4–M15; prueba de recuperación en 1.5.5.1 & 1 y 2 & Autorización antes de primera transferencia; o cambio aprobado y ensayo real RTO ≤ 4 h/RPO ≤ 15 min antes del paso afectado \\
+R-21 Enlace faena–Antofagasta & Tres caminos y 48 horas de autonomía; satélite desde el mes 5; trazado distinto acreditado & SD4 4.2.3; SD3 (alcance de red) & 1.6.1.3, M2–M9; 1.5.5.2, M15 y M21 & 1, 2 y 3 & Planos de trazado; medición de 20 Mbps en la puesta en marcha \\
+R-22 Inicio del contrato (SUP-15) & Supuesto SUP-15 explícito; hitos contados desde la fecha real de inicio & SD2 2.5.2; SD7 7.3 & 1.1.2.1, M2 & 1 & SUP-15 en el Anexo del Subdocumento 2 y declaración en la propuesta \\
+R-10 Contrapartes y ventanas & Calendario de revisiones y de ventanas fijado en H1; paso a producción E2 por olas & SD7 7.3, 7.3.2 y 7.3.3; T-17 & 1.1.2.1, M2; 1.1.4.3, M2; 1.6.4.2, M21 & 1 y 3 & Documento de hitos de H1 con fechas de detención y de paso a producción \\
+R-13 Mantenimiento & Reglas de alerta mostradas con datos del taller antes de construirse; retiro de reglas ruidosas & T-14 1.6.6.1; T-14 1.4.4.1 & 1.6.6.1, M2–M4; 1.2.5.1, M13; 1.6.6.4, M13–M26 & 2 y 3 & Proporción de alertas útiles marcadas por planificadores en la marcha blanca E2 \\
+R-09 Sala técnica y dispositivos & Módulo prefabricado con precio y plazo fijos; muestra de ingeniería de la Botonera con guantes; prueba de lectura de la credencial & SD4 §4.1.2.3 (ADR-06) y §4.2.1; SD6 §6.1.6; T-11 (T11-29, T11-67 a T11-69) & 1.1.6.2, M2–M14; 1.2.1.1, M1–M3; 1.5.2.1, M5; 1.6.1.2, M1–M6 & 1 y 2 & Acta de recepción del módulo antes de H3; informe de usabilidad con guantes en el mes 5 \\
+R-23 Acreditación en faena & Acreditar desde el mes 12 a quienes entran a la marcha blanca y mantener cuatro personas de reserva & T-14 1.1.7.1; SUP-35; SD1 Anexo F del Subdocumento 1 & 1.1.7.1, M1–M18; 1.1.7.2, M1–M20 & 1 y 2 & Registro de acreditación al día antes de cada primer turno \\
+R-17 Cadena del lote comercial & Gabinete de borde autónomo en el acopio; certificado derivado validado; lote piloto con el comprador & SD2 2.5 (SUP-21, 22, 24); SD4 (gabinete de puerto); T-14 1.2.5.5 & 1.6.1.2, M1–M6; 1.1.6.2 (ajuste, operador portuario); 1.2.5.5, M17; 1.4.4.5, M15–M17 & 1, 2 y 3 & Autorización del operador antes del mes 4; acta del lote piloto en la marcha blanca E2 \\
+\end{tabla}
+De la tabla se desprende que cada riesgo de zona crítica y alta tiene una decisión concreta en la propuesta, un paquete de la EDT con mes y una evidencia que la Contraparte Técnica puede verificar. Ninguna respuesta queda sólo declarada.
+
+\end{horizontal}
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item International Organization for Standardization. (2018). Risk management — Guidelines (ISO 31000:2018). ISO.
+\item Moya Villegas, A. (2026, 23 de septiembre). Comunicado 10 Estructura obligatoria de las propuestas preparatorias y técnica final [Comunicación de licitación].
+\item Overfore S.A. (2026a). Formulario T-14: Plan de trabajo, EDT y carta Gantt. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026c). Anexos del Subdocumento 8: Plan de riesgos. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026d). Subdocumento 4 Arquitectura lógica y física de la solución. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026e). Subdocumento 5 Modelo y gestión de datos. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026f). Subdocumento 7 Plan de trabajo, EDT, cronograma e implantación. Licitación N° TFEP-01/2026.
+\item Overfore S.A. (2026g). Formulario T-15: Nivelación de recursos. Licitación N° TFEP-01/2026.
+\end{referencias}
+\end{document}

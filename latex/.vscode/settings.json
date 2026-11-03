@@ -1,0 +1,30 @@
+{
+  // Recetas de OVERFORE. La primera es la normal: revisa reglas y no compila si hay errores.
+  // La segunda compila igual pese a los errores, sólo para ver cómo queda (marca BORRADOR).
+  "latex-workshop.latex.tools": [
+    {
+      "name": "overfore",
+      "command": "python",
+      "args": ["%WORKSPACE_FOLDER%/compilar.py", "%DOC_EXT%"]
+    },
+    {
+      "name": "overfore-borrador",
+      "command": "python",
+      "args": ["%WORKSPACE_FOLDER%/compilar.py", "--borrador", "%DOC_EXT%"]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    { "name": "OVERFORE (este documento)", "tools": ["overfore"] },
+    { "name": "OVERFORE borrador (compila aunque haya errores)", "tools": ["overfore-borrador"] }
+  ],
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoClean.run": "never",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.message.badbox.show": "none",
+  "files.encoding": "utf8",
+  "files.exclude": {
+    "**/*.aux": true, "**/*.log": true, "**/*.out": true, "**/*.toc": true,
+    "**/*.lot": true, "**/*.lof": true, "**/*.synctex.gz": true, "**/*.fls": true, "**/*.fdb_latexmk": true
+  }
+}

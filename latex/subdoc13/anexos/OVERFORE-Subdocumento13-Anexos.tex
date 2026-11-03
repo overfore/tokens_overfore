@@ -1,0 +1,392 @@
+%% OVERFORE-Subdocumento13-Anexos.tex — generado desde OVERFORE-Subdocumento13-Anexos.docx
+%% Formato: clase overfore, modo anexo. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[anexo]{../../comun/overfore}
+\numsubdoc{13}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+
+\begin{document}
+
+\anexo{Control anticipado del arsénico en el lote comercial}
+Este anexo desarrolla el modelo de la innovación 1 que el Subdocumento 13 resume en la sección 13.1. Presenta el balance de masa del lote, la optimización que propone la mezcla, el margen de seguridad, la proyección del acopio y los supuestos con que opera el servicio. Los lotes, las leyes de arsénico y el límite del contrato de los ejemplos son ilustrativos, porque el Caso no entrega esos valores.
+
+\seccion{Balance de masa del lote}
+El arsénico de un lote es el promedio del arsénico de sus partes ponderado por el tonelaje seco, es decir, la suma de las toneladas de cada parte multiplicadas por su ley de arsénico, dividida por la suma de las toneladas. El mismo cálculo se aplica al cobre. Cuando una parte proviene de un stock intermedio, su ley se calcula con la composición por capas del stock y no con el promedio de lo acopiado (Compañía Minera Altos de Aranda [CMAA], 2026b, cap. 4, p. 8). La Tabla \ref{tab:lotes-acopio-puerto-usados-ejemplo} describe el acopio del ejemplo, que es un inventario de lotes de concentrado.
+
+\begin{tabla}{I{0.192}D{0.203}D{0.203}D{0.203}D{0.199}}{Lotes del acopio de puerto usados en el ejemplo.}{tab:lotes-acopio-puerto-usados-ejemplo}
+  {\cab{Lote} & \cab{Toneladas disponibles} & \cab{Arsénico (\%)} & \cab{Cobre (\%)} & \cab{Antigüedad (días)}}
+  {\emph{Fuente:} elaboración propia con valores ilustrativos.}
+P-0412 & 6.000 & 0,22 & 28,1 & 21 \\
+P-0415 & 5.500 & 0,58 & 27,4 & 18 \\
+P-0419 & 7.000 & 0,31 & 28,6 & 12 \\
+P-0423 & 4.500 & 0,27 & 28,0 & 8 \\
+\end{tabla}
+El acopio del ejemplo suma 23.000 toneladas, dentro de la capacidad de 25.000 toneladas que el Caso indica para el acopio de Antofagasta (CMAA, 2026b, cap. 3, p. 6), y que el lote P-0415 es el único con arsénico muy superior al de los demás. Los 12.400 viajes de concentrado al año, de 30 toneladas netas cada uno (CMAA, 2026b, cap. 2, p. 5; cap. 14, p. 23), repartidos en 31 embarques, dan unas 12.000 toneladas por embarque. El ejemplo usa un embarque de 11.500 toneladas, para el que hay que elegir cuánto tomar de cada lote.
+
+\seccion{Optimización lineal de la mezcla}
+El modelo elige las toneladas que se toman de cada lote, con la función objetivo de usar primero el material más antiguo, es decir, maximizar la suma de las toneladas tomadas ponderadas por su antigüedad. El modelo es de optimización lineal (Dantzig, 1963) y se resuelve con HiGHS (Huangfu y Hall, 2018), en su versión estable vigente a la adjudicación, que se actualiza cada seis meses con las pruebas de regresión del servicio. Las condiciones son cuatro. Las toneladas tomadas suman el tonelaje del embarque. De cada lote se toma como máximo lo disponible. El arsénico del lote no supera el límite del contrato menos el margen de seguridad. El cobre del lote no baja del mínimo del contrato. En el ejemplo, el límite del contrato es 0,40 \% de arsénico, el margen es 0,05 puntos y el cobre mínimo es 27,0 \%.
+
+La Tabla \ref{tab:mezcla-propuesta-modelo-mezcla-antiguedad-embarque} compara la mezcla que propone el modelo con la que resulta de tomar solo por antigüedad.
+
+\begin{tabla}{I{0.321}D{0.214}D{0.214}I{0.252}}{Mezcla propuesta por el modelo y mezcla por antigüedad, para un embarque de 11.500 toneladas.}{tab:mezcla-propuesta-modelo-mezcla-antiguedad-embarque}
+  {\cab{Concepto} & \cab{Mezcla propuesta} & \cab{Mezcla por antigüedad} & \cab{Condición}}
+  {Fuente: elaboración propia con valores ilustrativos.}
+P-0412 (t) & 6.000 & 6.000 & Hasta 6.000 \\
+P-0415 (t) & 3.704 & 5.500 & Hasta 5.500 \\
+P-0419 (t) & 1.796 & 0 & Hasta 7.000 \\
+P-0423 (t) & 0 & 0 & Hasta 4.500 \\
+Arsénico del lote (\%) & 0,35 & 0,39 & 0,35 o menos \\
+Cobre del lote (\%) & 27,95 & 27,77 & 27,0 o más \\
+Antigüedad media (días) & 18,6 & 19,6 & Lo más alta posible \\
+\end{tabla}
+Tomar solo por antigüedad deja el arsénico en 0,39 \%, bajo el límite de 0,40 \% pero dentro del margen de error del análisis del comprador, mientras que la mezcla propuesta lo baja a 0,35 \% con una antigüedad media un día menor. El arsénico de la mezcla propuesta resulta de (6.000 × 0,22 + 3.704 × 0,58 + 1.796 × 0,31) ÷ 11.500 = 0,350 \%, y el de la mezcla por antigüedad, de (6.000 × 0,22 + 5.500 × 0,58) ÷ 11.500 = 0,392 \%. La Figura \ref{fig:recorrido-servicio-control-arsenico-desde-datos} muestra el recorrido completo del servicio.
+
+\figura{16.0}{fig-A-1-recorrido-servicio-control-arsenico-desde}{Recorrido del servicio de control del arsénico, desde los datos de entrada hasta el ajuste del margen.}{fig:recorrido-servicio-control-arsenico-desde-datos}{Fuente: elaboración propia.}
+En la figura, los análisis del laboratorio y los registros de despacho alimentan el inventario del acopio, el modelo propone la mezcla y la proyección a quince días avisa si el acopio completo se acerca al límite. Cada análisis del comprador vuelve al margen de seguridad, con lo que el servicio se corrige con los resultados reales.
+
+\seccion{Margen de seguridad y parámetros del servicio}
+El margen de seguridad es 1,65 veces la desviación estándar de la diferencia entre el análisis propio de cada lote y el análisis del comprador del mismo lote. El valor 1,65 corresponde a una probabilidad de 95 \% de que el resultado del comprador quede bajo el límite, bajo el supuesto de que la diferencia tiene distribución normal. La desviación estándar se calcula con los pares de análisis de los últimos doce meses y se recalcula con cada análisis del comprador. En el ejemplo, una desviación de 0,03 puntos da un margen de 1,65 × 0,03 = 0,0495, que se redondea a 0,05 puntos, y el límite operativo queda en 0,40 − 0,05 = 0,35 \%. Al inicio, la desviación se calcula con los pares de análisis propio y del comprador de los últimos doce meses, es decir, de unos 31 embarques, que se obtienen de las liquidaciones del área comercial. Si esos pares no están disponibles, se usa un valor inicial conservador acordado con metalurgia y se recalcula desde el primer embarque.
+
+\begin{tabla}{I{0.246}I{0.235}I{0.310}I{0.209}}{Parámetros del servicio de control del arsénico.}{tab:parametros-servicio-control-arsenico}
+  {\cab{Parámetro} & \cab{Valor} & \cab{Cómo se define} & \cab{Cuándo se revisa}}
+  {\emph{Fuente:} elaboración propia.}
+Margen de seguridad & 1,65 veces la desviación estándar de la diferencia entre análisis propio y del comprador & Pares de análisis de los últimos doce meses & Con cada análisis del comprador \\
+Horizonte de proyección del acopio & 15 días & Plan de embarques y producción esperada de la planta & Cada día \\
+Límite de arsénico & El del contrato de cada comprador & Contrato de venta del embarque & Al programar cada embarque \\
+Cobre mínimo & El del contrato de cada comprador & Contrato de venta del embarque & Al programar cada embarque \\
+Orden de salida del material & El más antiguo primero & Antigüedad desde la descarga en el acopio & Fijo \\
+Frecuencia del análisis de arsénico & Cada lote de concentrado & Si el laboratorio no lo mide por lote, compósito por turno durante los primeros tres meses & Al término de los tres meses \\
+\end{tabla}
+Solo dos parámetros son propios del servicio, que son el margen y el horizonte, y que los demás los fijan los contratos de venta y la práctica del laboratorio.
+
+\seccion{Proyección del acopio a quince días}
+La proyección combina el inventario actual del acopio, el concentrado que la planta producirá en los próximos quince días con su arsénico estimado y el plan de embarques del área comercial. Entrega el arsénico esperado del acopio disponible para cada día del horizonte y avisa a planificación y a metalurgia cuando ese valor supera el límite operativo, porque en ese caso ninguna mezcla en puerto corrige el lote y la corrección debe hacerse antes, en la mezcla de los stocks de la mina. El arsénico de la producción esperada se estima desde los lotes de planta recientes y sus análisis, porque el plan minero exporta leyes estimadas y no arsénico por polígono. Si la comparación de los meses 13 a 15 no valida la estimación, la proyección se limita a la tendencia de los lotes de planta recientes y, si el cliente puede entregar el arsénico del modelo de bloques o del análisis de tronadura, se incorpora como entrada.
+
+\seccion{Supuestos y su verificación}
+La Tabla \ref{tab:supuestos-innovacion-1-verificacion} reúne los supuestos del servicio, con el mes en que se verifica cada uno.
+
+\begin{tabla}{I{0.194}I{0.357}I{0.348}C{0.101}}{Supuestos de la innovación 1 y su verificación.}{tab:supuestos-innovacion-1-verificacion}
+  {\cab{Supuesto} & \cab{Qué se asume} & \cab{Cómo se verifica} & \cab{Mes}}
+  {\emph{Fuente:} elaboración propia a partir de Subdocumento 13, cap. 13, sección 13.1, p. 7.}
+Arsénico por polígono & No viene del plan minero y se estima desde los lotes de planta y sus análisis & Comparación de la estimación con los análisis de los lotes conformados & 13 a 15 \\
+Análisis de arsénico por lote & El laboratorio mide arsénico en cada lote de concentrado & Revisión del procedimiento del laboratorio en el levantamiento & 1 a 3 \\
+Ejecución de la mezcla & El operador del recinto portuario carga por lotes según la propuesta & Procedimiento de carga acordado y registro de las toneladas tomadas & Antes del 13 \\
+Pares de análisis históricos & Las liquidaciones del área comercial traen el análisis del comprador de cada embarque de los últimos doce meses & Conteo de pares obtenidos de las liquidaciones en el perfilado de la Etapa 1 & 3 a 8 \\
+\end{tabla}
+Los cuatro supuestos se verifican antes de la puesta en producción del mes 16, y que el tercero depende de un acuerdo con un tercero que el recinto portuario administra (CMAA, 2026b, cap. 6, p. 11).
+
+\seccion{Derivación de las tasas esperadas y del esfuerzo de laboratorio}
+El beneficio esperado en embarques penalizados se expresa sobre los 33 embarques anuales que proyecta el Caso a tres años (CMAA, 2026b, cap. 14, p. 23). La Tabla \ref{tab:calculo-tasas-esperadas-esfuerzo-laboratorio-innovacion} muestra los cálculos que sostienen las cifras del capítulo.
+
+\begin{tabla}{I{0.377}I{0.450}D{0.174}}{Cálculo de las tasas esperadas y del esfuerzo de laboratorio de la innovación 1.}{tab:calculo-tasas-esperadas-esfuerzo-laboratorio-innovacion}
+  {\cab{Magnitud} & \cab{Cálculo} & \cab{Resultado}}
+  {\emph{Fuente:} elaboración propia a partir de Bases técnicas del caso Minería — Minería, cap. 1, pp. 3–4; Bases técnicas del caso Minería — Minería, cap. 14, pp. 23–24.}
+Línea base de 2025 & 4 embarques penalizados ÷ 31 embarques & 12,9 \% \\
+Tasa esperada de los meses 16 a 27 & Meta de diseño: 2 embarques ÷ 33 embarques & 6,1 \% \\
+Tasa esperada desde el mes 28 & Meta de diseño: 1 embarque ÷ 33 embarques & 3,0 \% \\
+Análisis adicionales al año & 1 análisis por turno × 2 turnos × 365 días & 730 \\
+Proporción de las muestras del laboratorio & 730 ÷ 71.000 muestras al año & 1,0 \% \\
+\end{tabla}
+El esfuerzo adicional del laboratorio equivale a 1,0 \% de sus muestras anuales y que se espera que la tasa de embarques penalizados descienda de 12,9 \% a 6,1 \% y luego a 3,0 \%. Las tasas de dos y de un embarque al año son metas de diseño y no el resultado de un cálculo: la del primer período es mayor porque sus liquidaciones incluyen lotes conformados antes de que el control opere con datos propios, y ambas se contrastan con la distribución de arsénico del acopio que se levanta al terminar la marcha blanca. Las dos metas siguen una regla sobre los 4 embarques penalizados de 2025: reducirlos en 50 \% en el primer período, A la tasa de 2025, 33 embarques tendrían 4,26 penalizados, por lo que quedar en 2 y en 1 equivale a evitar 2,3 y 3,3 embarques, que el capítulo redondea a 2 y 3. El Caso no informa la causa de cada uno de los cuatro embarques penalizados, por lo que la reducción es una hipótesis de diseño (Tabla \ref{tab:supuestos-cartera-innovaciones-verificacion}). Si se evitara un embarque quedarían 3 de 33 (9,1 \%); si se evitaran dos, 2 de 33 (6,1 \%); y si se evitaran tres, 1 de 33 (3,0 \%). Ambas metas se recalibran con esa distribución. Esa tasa es un beneficio esperado y no un compromiso de Overfore, porque depende del arsénico del acopio.
+
+\anexo{Clasificación asistida de detenciones}
+Este anexo detalla la innovación 2 que el Subdocumento 13 resume en la sección 13.2. Reúne las reglas deterministas, las variables del clasificador, el flujo de decisión, las métricas, las condiciones de gobierno del componente de inteligencia artificial, las líneas base y los indicadores.
+
+\seccion{Reglas deterministas}
+Las reglas clasifican solas las detenciones que coinciden con un hecho ya registrado. La Tabla \ref{tab:reglas-deterministas-clasificacion} las lista con la fuente de cada dato y la etapa en que entran. Las causas pertenecen a la taxonomía única que se acuerda con mina y planta sobre el modelo de tiempos de ISO 22400-2 (International Organization for Standardization [ISO], 2014).
+
+\begin{tabla}{I{0.203}I{0.288}I{0.214}I{0.160}C{0.135}}{Reglas deterministas de clasificación.}{tab:reglas-deterministas-clasificacion}
+  {\cab{Regla} & \cab{Hecho registrado que la activa} & \cab{Fuente del dato} & \cab{Tiempo según ISO 22400-2} & \cab{Etapa}}
+  {Fuente: elaboración propia.}
+Tronadura programada & La detención coincide con una tronadura del plan vigente & Plan vigente & Detención programada & 1 \\
+Cambio de turno & La detención ocurre en la ventana de cambio de turno & Calendario de turnos & Demora operacional & 1 \\
+Orden de mantenimiento abierta & El equipo tiene una orden abierta en la fecha de la detención & SAP & Detención programada o no programada, según el tipo de orden & 1 \\
+Estado de demora en el despacho & El despacho registra un estado de demora codificado & Sistema de despacho & Demora operacional & 1 \\
+Código de falla del fabricante & El equipo tiene una falla o alarma activa & Portales de telemetría & Detención no programada & 2 \\
+Señal de parada de planta & El historiador registra la parada de la línea & Historiador de proceso, solo lectura & Detención no programada & 2 \\
+\end{tabla}
+Las reglas de la Etapa 1 usan el despacho, SAP, el plan y el calendario, y que las de la Etapa 2 agregan la telemetría y las señales de parada de planta, que el módulo Equipos y Mantenimiento recibe en esa etapa. Por eso las reglas de la mina entran en el mes 16 y las de la planta en el mes 21.
+
+\seccion{Variables del clasificador}
+El clasificador recibe las variables de la Tabla \ref{tab:variables-entrada-clasificador-detenciones}. La identidad del operador no es una variable del modelo, para que la clasificación no se convierta en una evaluación de personas. El clasificador se entrena solo con detenciones cuya causa confirmó un supervisor, y la historia de 2025 sirve de partida solo en el 39 \% de las detenciones que tiene causa raíz documentada (CMAA, 2026b, cap. 7, p. 12).
+
+\begin{tabla}{I{0.299}I{0.278}C{0.118}I{0.306}}{Variables de entrada del clasificador de detenciones.}{tab:variables-entrada-clasificador-detenciones}
+  {\cab{Variable} & \cab{Fuente} & \cab{Etapa} & \cab{Qué aporta}}
+  {Fuente: elaboración propia.}
+Tipo y modelo de equipo & Maestro de equipos & 1 & Comportamiento propio de cada familia de equipos \\
+Estado en el despacho & Sistema de despacho & 1 & Situación operacional del equipo al detenerse \\
+Ubicación y zona del rajo & Sistema de despacho & 1 & Relación de la detención con el sector de trabajo \\
+Hora y turno & Calendario de turnos & 1 & Patrones por franja horaria \\
+Duración de la detención & Sistema de despacho & 1 & Distingue demoras breves de fallas \\
+Órdenes de trabajo abiertas & SAP & 1 & Mantenimiento abierto o programado del equipo \\
+Plan vigente & Plan versionado & 1 & Contexto de lo planificado \\
+Códigos de falla y alarmas recientes & Portales de telemetría & 2 & Señal directa de falla \\
+\end{tabla}
+Siete de las ocho variables están disponibles desde la Etapa 1 y que solo los códigos de falla y las alarmas esperan a la Etapa 2, lo que explica que el clasificador de la planta entre en el mes 27.
+
+\seccion{Flujo de decisión}
+Cada detención sigue el recorrido de la Figura \ref{fig:flujo-decision-detencion-desde-registro-hasta}. Las reglas actúan primero. Si no hay regla aplicable, el clasificador calcula la causa y su confianza. Las propuestas con confianza de 0,70 o más se muestran al supervisor en la tablet, con la indicación de que fueron sugeridas automáticamente. Las demás no se muestran y el supervisor clasifica a mano. El umbral de 0,70 se ajusta en la validación previa para que lo mostrado alcance 80 \% de precisión, y se sube si no lo logra. La meta de precisión verificada es 85 \% o más, con 80 \% como piso por debajo del cual se desactiva el clasificador, que solo se reactiva después de reentrenarse y de volver a superar 80 \% en la validación, y la meta de propuestas aceptadas sin cambios, que mide la adopción, también es 85 \% o más.
+
+\figura{16.0}{fig-B-1-flujo-decision-detencion-desde-registro}{Flujo de decisión de una detención, desde su registro hasta el reentrenamiento.}{fig:flujo-decision-detencion-desde-registro-hasta}{Fuente: elaboración propia.}
+En la figura, ninguna propuesta del clasificador se registra sin la decisión del supervisor, y si este no la toma antes del cierre del turno siguiente, el caso escala al jefe de turno. Cada decisión queda registrada con la entrada, la causa sugerida, la confianza y la decisión; las correcciones, las clasificaciones manuales y las aceptadas que confirma la muestra auditada alimentan el reentrenamiento trimestral.
+
+\seccion{Métricas, reentrenamiento y desactivación}
+La Tabla \ref{tab:metricas-control-clasificador-detenciones} reúne las métricas con que se controla el componente, la frecuencia y la acción que dispara cada una.
+
+\begin{tabla}{I{0.235}I{0.321}I{0.160}I{0.284}}{Métricas de control del clasificador de detenciones.}{tab:metricas-control-clasificador-detenciones}
+  {\cab{Métrica} & \cab{Definición} & \cab{Frecuencia} & \cab{Umbral y acción}}
+  {\emph{Fuente:} elaboración propia a partir de Subdocumento 13, cap. 13, sección 13.2, p. 11.}
+Precisión & Aciertos ÷ propuestas auditadas, en muestra aleatoria de las mostradas & Mensual, con decisión trimestral & Muestra del mes bajo 70 \%: se revisa de inmediato. Trimestre bajo 80 \%: se desactiva el clasificador \\
+Tasa de aceptación & Propuestas aceptadas sin cambios ÷ propuestas mostradas & Mensual & Indicador de adopción, sin desactivación \\
+Tasa de rechazo & Propuestas corregidas por el supervisor ÷ propuestas mostradas & Mensual & Sube más de diez puntos: se reentrena antes \\
+Deriva & Cambio en la distribución de las causas respecto del mes anterior & Mensual & Cambio relevante: se reentrena antes \\
+Reentrenamiento & Con las clasificaciones manuales, las propuestas corregidas y las aceptadas que la muestra auditada confirmó & Trimestral & Se registra la versión del modelo; lo ejecuta el paquete 1.7.2.3 \\
+Tasa de falsos positivos por causa & Propuestas mostradas de una causa que la muestra auditada reclasifica en otra ÷ propuestas mostradas de esa causa & Por cada versión reentrenada & Se informa con la versión y la precisión; la versión pasa la prueba del clasificador en el ambiente de calidad (Subdocumento 9, 9.2.4.3) antes de su despliegue \\
+Muestra de propuestas mostradas & 5 \% de las propuestas mostradas, aceptadas y corregidas, con un mínimo de 60 al mes, revisadas con el superintendente de cada área & Mensual & Base de la precisión; los hallazgos se incorporan a la taxonomía con la prueba del clasificador \\
+Auditoría de las reglas & 5 \% de las detenciones clasificadas por reglas, con un mínimo de 60 al mes & Mensual & Reglas mal calibradas se corrigen \\
+\end{tabla}
+Seis de las ocho métricas se miden cada mes, que los falsos positivos se informan con cada versión reentrenada y que el reentrenamiento trimestral no espera a la falla. El reentrenamiento lo ejecuta el equipo propio de Overfore con el procedimiento que entrega el paquete 1.7.2.1 en el mes 18. El reentrenamiento suma al conjunto histórico confirmado las clasificaciones manuales, las propuestas corregidas y las aceptadas que la muestra auditada confirmó. Las aceptadas sin auditar no se agregan. El umbral de 80 \% responde a que las dos iniciativas de mantenimiento predictivo que vivió la compañía fracasaron porque la mayoría de las alertas era ruido y los planificadores dejaron de mirarlas (CMAA, 2026b, cap. 8, p. 14). Un error de cada cinco es el máximo que se tolera, y es una decisión de diseño. La meta de 85 \% deja un margen de cinco puntos sobre el piso de 80 \%; es una decisión de diseño que se revisa con la validación previa. Con 60 casos sin errores, el error real de las reglas no supera 5 \% con 95 \% de confianza. La muestra de propuestas mostradas es de 60 casos como mínimo, porque con 60 casos al mes y una precisión de 80 \% el margen de error es de ±10 puntos, frente a ±14 con 30. La decisión de desactivar usa los 180 casos del trimestre, con ±6 puntos. La alerta mensual de 70 \% adelanta la revisión sin esperar al trimestre.
+
+\seccion{Condiciones de gobierno del componente de inteligencia artificial}
+El clasificador es el único componente de inteligencia artificial de la cartera de innovaciones. El otro componente de inteligencia artificial de la propuesta, la verificación facial de portería, pertenece al alcance base (Formulario T-14, paquete 1.4.4.4). La Tabla \ref{tab:condiciones-gobierno-clasificador-evidencia} muestra cómo se cumplen las condiciones de gobierno del clasificador y qué evidencia queda.
+
+\begin{tabla}{I{0.215}I{0.556}I{0.229}}{Condiciones de gobierno del clasificador y su evidencia.}{tab:condiciones-gobierno-clasificador-evidencia}
+  {\cab{Condición} & \cab{Cómo se cumple} & \cab{Evidencia}}
+  {\emph{Fuente:} elaboración propia a partir de las Bases técnicas transversales (CMAA, 2026c, cap. 18, p. 32); Subdocumento 13, cap. 13, sección 13.2, p. 11.}
+Modelo y lugar de ejecución & LightGBM, versión de diseño 4.6.0 (Microsoft Corporation, 2025), entrenado y ejecutado en Chile Central con respaldo en Brazil South. A la adjudicación se adopta la versión estable vigente y se actualiza cada seis meses con las pruebas de regresión del clasificador. LightGBM es de código abierto y no publica fecha de fin de soporte; ese plan reemplaza esa fecha & Registro de versiones del modelo \\
+Uso de los datos del cliente & Cláusula contractual de que los datos no se usan para entrenar modelos de terceros, salvo autorización expresa y escrita (CMAA, 2026c, RT-18.02, p. 32) & Cláusula del contrato \\
+Límites de uso & Propone la causa y no la registra sin validación humana previa; no evalúa personas; las propuestas bajo 0,70 no se muestran & Descripción del flujo y registro de decisiones \\
+Gestión de riesgos & Marco de gestión de riesgos de inteligencia artificial (National Institute of Standards and Technology [NIST], 2023) y norma ISO/IEC 42001 (ISO e International Electrotechnical Commission [IEC], 2023); el paquete 1.7.2.4 audita internamente el sistema de gestión de la inteligencia artificial en el mes 9 y obtiene la certificación en el mes 12 & Registro de riesgos del componente \\
+Registro & Entrada, causa sugerida, confianza, hora en que se mostró y hora de la decisión de cada propuesta & Tabla de auditoría del componente \\
+Desactivación & Se desactiva sin afectar al resto; las reglas y el supervisor siguen clasificando & Procedimiento de desactivación \\
+Transparencia al usuario & La tablet indica que la causa fue sugerida automáticamente y su confianza & Pantalla de la App SITCO Terreno \\
+Medición & Precisión en muestra, tasa de aceptación, tasa de rechazo, reentrenamiento trimestral y deriva mensual & Informe de verificación de la innovación 2 \\
+Responsabilidad & Se asume íntegramente la responsabilidad por los resultados del componente (CMAA, 2026a, Art. 86.2, p. 44) & Contrato de servicio \\
+\end{tabla}
+Cada condición tiene una medida concreta y una evidencia que el cliente puede solicitar, y que la desactivación del componente deja intactas la clasificación por reglas y la clasificación manual.
+
+\seccion{Líneas base}
+Antes de que las reglas entren en producción se reclasifican tres meses de historia del despacho. Si el residuo que dejan las reglas supera 5 \% del tiempo registrado, se recalibran. La línea base de las propuestas aceptadas sin cambios es 0 \%, porque hoy no existe clasificador. La precisión de 80 \% o más en la validación previa es un requisito para entrar en operación, y se registra en el informe de verificación. La línea base del tiempo del supervisor son las detenciones sin propuesta del mismo período, porque así el efecto del clasificador queda separado de la vista única del equipo y del resto del alcance base. El alcance base compromete que el supervisor clasifique el residuo en no más de cinco minutos por turno; la reducción de 50 \% es un beneficio esperado. Las 190 horas de detención no programada son un beneficio esperado y no un compromiso: resultan de restar 24 horas a las 214 de 2025, una hipótesis de diseño de 11 \% que se confirma con el análisis de las causas más repetidas en el mes 27, porque la meta interna de la compañía, bajo 120 horas, depende también de mantenimiento (CMAA, 2026b, cap. 7, p. 12). Las 24 horas equivalen a 26 \% de la brecha entre las 214 horas de 2025 y esa meta de 120 (24 ÷ 94).
+
+El clasificador se opera con el paquete 1.7.2.3, Operación del clasificador, entre los meses 22 y 56: 8 horas hombre al mes para preparar la muestra, calcular la precisión y revisar la deriva, durante 35 meses, son 280 horas, y 16 horas por cada uno de los 11 reentrenamientos trimestrales son 176 horas, con un total de 456 horas hombre. Ese trabajo no consume la bolsa de mantención evolutiva que prioriza el cliente.
+
+\seccion{Indicadores de la innovación 2}
+La Tabla \ref{tab:indicadores-clasificacion-asistida-detenciones} reúne los cuatro indicadores del clasificador, con su línea base, su meta y el momento de medición. La precisión y la aceptación sin cambios miden el clasificador; el tiempo del supervisor y las horas de planta miden su efecto. El tiempo sin clasificar y las detenciones sin causa raíz son metas del alcance base y no se repiten aquí. La meta de precisión y la de aceptación es 85 \% o más, con 80 \% como piso para la precisión.
+
+\begin{tabla}{I{0.318}I{0.252}I{0.219}I{0.211}}{Indicadores de la clasificación asistida de detenciones.}{tab:indicadores-clasificacion-asistida-detenciones}
+  {\cab{Indicador} & \cab{Línea base} & \cab{Meta} & \cab{Momento de medición}}
+  {\emph{Fuente:} elaboración propia a partir de Bases técnicas del caso Minería — Minería, cap. 7, pp. 11–12; Bases técnicas del caso Minería — Minería, cap. 8, pp. 13–17.}
+Propuestas del clasificador aceptadas sin cambios (adopción) & 0 \%, porque hoy no existe clasificador & 85 \% o más & Mes 27 en mina y mes 33 en planta \\
+Precisión verificada en muestra & Sin clasificador; la validación previa fija el punto de partida & 85 \% o más, con piso de 80 \% & Trimestral, desde la entrada en operación \\
+Horas de detención no programada de planta & 214 al año & 190 al año (beneficio esperado) & Mes 33 \\
+Tiempo del supervisor por detención del residuo & Sin propuesta, en el mismo período & Con propuesta, 50 \% menos (beneficio esperado) & Mes 27 en mina \\
+\end{tabla}
+Los indicadores del clasificador se miden desde su entrada en operación: la adopción en los meses 27 (mina) y 33 (planta), la precisión cada trimestre y las horas de planta en el mes 33. La línea base del tiempo del supervisor son las detenciones sin propuesta del mismo período. Las evaluaciones forman parte del informe de verificación y del informe mensual de niveles de servicio de la operación.
+
+\anexo{Factores de conciliación estimados con incertidumbre}
+Este anexo desarrolla la innovación 3 que el Subdocumento 13 resume en la sección 13.3. Presenta el modelo de reconciliación, un ejemplo con tres mediciones, dos de tonelaje y la muestra de la báscula, la estimación del sesgo por camión, el presupuesto de incertidumbre, las fases de construcción y la prueba de detección. Los valores de los ejemplos son ilustrativos.
+
+\seccion{Modelo de reconciliación}
+El modelo representa la cadena como nodos y flujos. En cada nodo, lo que entra es igual a lo que sale más la variación de stock. Cada instrumento entrega una medición que es el valor verdadero más un error con distribución normal y desviación estándar igual a su incertidumbre. El motor busca los valores que cumplen los balances y minimizan la suma de los cuadrados de la diferencia entre cada valor ajustado y su medición, dividida por la incertidumbre del instrumento. Así, el valor ajustado queda más cerca del instrumento más confiable, lo que corresponde al procedimiento de la norma VDI 2048 Blatt 1 (Verein Deutscher Ingenieure [VDI], 2017) y a los métodos de Narasimhan y Jordache (2000). La Figura \ref{fig:red-medicion-cadena-mineral-instrumentos-alimentan} muestra la red de la cadena de Aranda.
+
+\figura{16.0}{fig-C-1-red-medicion-cadena-mineral-instrumentos}{Red de medición de la cadena del mineral, con los instrumentos que alimentan la reconciliación.}{fig:red-medicion-cadena-mineral-instrumentos-alimentan}{Fuente: elaboración propia.}
+En la figura, el pesaje a bordo mide lo que sale de la mina, la báscula pesa una muestra de esos viajes, los stocks intermedios agregan una variación de inventario y la balanza de alimentación mide lo que entra a la planta. La báscula, que pesa una muestra de los viajes y no todos, calibra el pesaje a bordo (CMAA, 2026b, cap. 4, p. 8).
+
+\seccion{Ejemplo con dos mediciones y la muestra de la báscula}
+La Tabla \ref{tab:reconciliacion-tonelaje-turno-ejemplo} reconcilia el tonelaje de un turno medido con el pesaje a bordo y con la balanza de alimentación, sin variación de stock. Las incertidumbres son estándar (k = 1), y el valor ajustado es el promedio de las dos mediciones ponderado por el inverso del cuadrado de su incertidumbre. Ese valor es una estimación de diagnóstico del motor y no una cifra oficial: las cifras oficiales son la balanza de alimentación para la planta y el pesaje a bordo corregido con la báscula para la mina, como establece el Subdocumento 3.
+
+\begin{tabla}{I{0.256}D{0.182}D{0.214}D{0.182}D{0.167}}{Reconciliación del tonelaje de un turno de ejemplo.}{tab:reconciliacion-tonelaje-turno-ejemplo}
+  {\cab{Instrumento} & \cab{Medición (t)} & \cab{Incertidumbre estándar (t)} & \cab{Valor ajustado, diagnóstico (t)} & \cab{Desviación (en σ)}}
+  {Fuente: elaboración propia con valores ilustrativos.}
+Pesaje a bordo & 10.020 & 100,2 & 9.687 & 3,3 \\
+Balanza de alimentación & 9.610 & 48,1 & 9.687 & −1,6 \\
+\end{tabla}
+El valor ajustado queda mucho más cerca de la balanza, que tiene la mitad de incertidumbre, y que el pesaje a bordo se desvía 3,3 veces su propia incertidumbre. La prueba de error grueso compara la diferencia entre las dos mediciones con su incertidumbre combinada, que es la raíz de la suma de los cuadrados de las incertidumbres. Aquí la diferencia es de 410 toneladas y la incertidumbre combinada, de 111,1 toneladas, por lo que la diferencia equivale a 3,7 desviaciones. Como el umbral de alerta es de 3 desviaciones, el motor emite la alerta de desvío entre las dos mediciones. La incertidumbre del valor ajustado es de 43 toneladas. Si el pesaje a bordo hubiera medido 9.860 toneladas, la diferencia de 250 toneladas equivaldría a 2,3 desviaciones y el turno no generaría alerta. Con solo dos instrumentos, la prueba detecta que las mediciones no son compatibles, pero no puede decir cuál falla, porque la desviación mayor recae siempre en el instrumento menos preciso. Lo que aísla al pesaje a bordo como instrumento sospechoso es la tercera medición, la muestra de la báscula de la sección C.3, en la que el sesgo del camión tiene un intervalo que no incluye el cero.
+
+\seccion{Sesgo del pesaje a bordo por camión}
+La báscula pesa una muestra de los viajes. La muestra de viajes que pesa la báscula debe ser independiente de la carga, del turno y del destino. Se verifica comparando su composición por camión, turno y destino con la del total de viajes del despacho; si difiere, el sesgo se pondera por estrato con el total de viajes y se declara. Para cada camión, el sesgo del pesaje a bordo es el promedio de la diferencia porcentual entre el pesaje a bordo y la báscula en los viajes de la muestra, y su intervalo de confianza de 95 \% es el promedio más y menos 1,96 veces el error estándar, que es la desviación de las diferencias dividida por la raíz del número de viajes. Cuando un camión tiene menos de 30 viajes pesados en la ventana de estimación, el sesgo se estima por grupo de camiones del mismo modelo. La Tabla \ref{tab:calculo-sesgo-pesaje-bordo-camion-c} muestra el cálculo con el camión C-17.
+
+\begin{tabla}{I{0.374}I{0.395}D{0.231}}{Cálculo del sesgo del pesaje a bordo del camión C-17.}{tab:calculo-sesgo-pesaje-bordo-camion-c}
+  {\cab{Paso} & \cab{Cálculo} & \cab{Resultado}}
+  {\emph{Fuente:} elaboración propia con valores ilustrativos.}
+Viajes de la muestra & Dato de la báscula & 40 \\
+Sesgo medio & Promedio de las diferencias porcentuales & +1,2 \% \\
+Desviación de las diferencias & Dato de la muestra & 1,9 \% \\
+Error estándar & 1,9 \% ÷ raíz de 40 & 0,30 \% \\
+Intervalo de confianza de 95 \% & 1,2 \% ± 1,96 × 0,30 \% & 0,61 \% a 1,79 \% \\
+\end{tabla}
+El sesgo del camión C-17 es positivo con 95 \% de confianza, porque el intervalo no incluye el cero, y que el pesaje a bordo de ese camión marca entre 0,61 \% y 1,79 \% de más. Ese valor reemplaza al factor semanal único en el balance. El registro original del pesaje a bordo no se modifica: el sesgo se publica y se aplica como factor, como exige la regla de exactitud de los datos del Subdocumento 5. Los factores estimados se registran como los demás factores del módulo, con fórmula, vigencia, responsable, fundamento y fecha, y permiten reproducir los períodos pasados con los factores que regían.
+
+\seccion{Presupuesto de incertidumbre por instrumento}
+La incertidumbre de cada instrumento se expresa como incertidumbre estándar (k = 1), según la guía del Joint Committee for Guides in Metrology (Joint Committee for Guides in Metrology [JCGM], 2008); los intervalos que se informan se dan al 95 \%. Los valores iniciales de la Tabla \ref{tab:presupuesto-incertidumbre-instrumentos-tonelaje} son supuestos de trabajo y se reemplazan por los que se declaran con metalurgia entre los meses 3 y 6 (paquete 1.7.3.1).
+
+\begin{tabla}{I{0.256}I{0.299}D{0.214}I{0.231}}{Presupuesto de incertidumbre de los instrumentos de tonelaje.}{tab:presupuesto-incertidumbre-instrumentos-tonelaje}
+  {\cab{Instrumento} & \cab{Fuente de incertidumbre} & \cab{Incertidumbre estándar inicial (k = 1)} & \cab{Cómo se fija el valor final}}
+  {\emph{Fuente:} elaboración propia.}
+Pesaje a bordo & Calibración del camión y carga irregular & 1,0 \% & Comparación con la báscula \\
+Báscula de camiones & Calibración periódica del equipo & No aplica & Certificado de calibración \\
+Balanza de alimentación & Calibración y deriva & 0,5 \% & Certificado y verificación con metalurgia \\
+\end{tabla}
+La báscula actúa como referencia y no recibe un valor supuesto, porque su incertidumbre la fija el certificado del equipo, y que los otros dos instrumentos tienen valores iniciales que se declaran con metalurgia entre los meses 3 y 6, antes de construir el motor.
+
+\seccion{Fases y calendario}
+La Tabla \ref{tab:fases-innovacion-3-paquetes-estructura-descomposicion} ordena las fases de la innovación con los paquetes del Formulario T-14 y los meses del Formulario T-15. El mes 1 es enero de 2027.
+
+\begin{tabla}{I{0.272}C{0.117}I{0.449}C{0.162}}{Fases de la innovación 3 y paquetes de la estructura de descomposición del trabajo.}{tab:fases-innovacion-3-paquetes-estructura-descomposicion}
+  {\cab{Fase} & \cab{Meses} & \cab{Qué se hace} & \cab{Paquete}}
+  {\emph{Fuente:} elaboración propia a partir de Formulario T-14 (asociado al cap. 7), sección 13, p. 132.}
+Registro de los factores vigentes & 2 & Explicación escrita y registro en video validado por metalurgia & 1.2.6.1 y 1.2.6.2 \\
+Declaración de incertidumbres & 3 a 6 & Incertidumbre estándar de los tres instrumentos aprobada por metalurgia, fuera de los seis días de detención de marzo & 1.7.3.1 \\
+Construcción del motor & 7 a 12 & Modelo, prueba de detección y pantallas del módulo & 1.7.3.2 y 1.4.3.4 \\
+Estimación sobre la historia & 10 a 12 & Estimación sobre doce meses de historia saneada & 1.7.3.2 y 1.4.6.1 \\
+Marcha blanca en paralelo & 13 a 15 & Comparación con los factores documentados e informe de cierre & 1.7.3.3 \\
+Producción y seguimiento & 15, 21 y 27 & El motor reemplaza a los factores heredados; mediciones de seguimiento & 1.7.3.3 \\
+\end{tabla}
+La estimación sobre la historia depende de que los datos estén saneados, lo que se logra con el perfilado de los meses 3 a 8, y que la declaración de incertidumbres de los meses 3 a 6 se programa fuera de los seis días de la detención de marzo (CMAA, 2026b, cap. 10, p. 19).
+
+\seccion{Prueba de detección con errores conocidos}
+Antes de la marcha blanca, el motor se prueba inyectando errores conocidos en la historia saneada. Los errores son una descalibración repentina de un instrumento y una deriva lenta de otro. Se mide en cuántos turnos el motor detecta cada error y si señala al instrumento correcto. El criterio de aceptación es detectar el error dentro del turno siguiente, en 24 horas como máximo porque el turno dura doce horas (CMAA, 2026b, cap. 2, p. 5), y señalar el instrumento correcto, como indica la meta del capítulo. La prueba se hace con el enlace disponible. Si hubo un corte, el plazo se cuenta desde que termina la sincronización.
+
+\anexo{Servicio gestionado con traspaso programado}
+Este anexo detalla la innovación 4 que el Subdocumento 13 resume en la sección 13.4. Reúne los bloques con su requisito de absorción, el calendario con sus restricciones, el método para definir el peso de cada bloque, las reglas de la cláusula de retorno y el modelado de amenazas del bloque 3.
+
+\seccion{Bloques y requisitos de absorción}
+La Tabla \ref{tab:bloques-traspaso-requisito-absorcion} lista los tres bloques con lo que debe cumplirse antes de cada traspaso. Los meses cuentan desde enero de 2027, que es el mes 1.
+
+\begin{tabla}{C{0.123}I{0.256}I{0.321}I{0.144}I{0.156}}{Bloques del traspaso y requisito de absorción.}{tab:bloques-traspaso-requisito-absorcion}
+  {\cab{Bloque} & \cab{Contenido} & \cab{Requisito antes del traspaso} & \cab{Operación asistida} & \cab{Traspaso}}
+  {\emph{Fuente:} elaboración propia a partir de Subdocumento 13, cap. 13, sección 13.4, p. 23.}
+1 & Informes de autoservicio y tableros & Administradores certificados en el bloque y tareas del mes de operación asistida ejecutadas por el equipo del cliente & Mes 26, febrero de 2029 & Mes 27, marzo de 2029 \\
+2 & Reglas de alerta y plantillas de notificación & Los mismos requisitos, con las reglas versionadas y reversibles & Mes 32, agosto de 2029 & Mes 33, septiembre de 2029 \\
+3 & Usuarios y roles internos & Los mismos requisitos, con permisos acotados aprobados por la seguridad del cliente & Mes 38, febrero de 2030 & Mes 39, marzo de 2030 \\
+\end{tabla}
+Los tres bloques siguen la misma secuencia de certificación, operación asistida y traspaso, y que el requisito crece con el riesgo del bloque. Una cuarta acta, en el mes 45, verifica la meta de 80 \% de solicitudes resueltas por el cliente (paquete 1.7.4.2). La operación asistida cae en febrero y agosto, meses sin detención programada de planta. El traspaso de marzo y septiembre es administrativo y se formaliza fuera de los seis días de detención y de los primeros cinco días hábiles del mes, que son el cierre contable (CMAA, 2026b, cap. 10, p. 19; cap. B, p. 35). Las actas de traspaso no requieren al personal de planta (paquete 1.7.4.2), por lo que su baja disponibilidad en marzo y septiembre no las afecta. Las taxonomías de detenciones siguen siendo parámetros versionados de Administración y Servicios Comunes, pero permanecen en el servicio de Overfore durante la operación, porque alimentan al clasificador de la innovación 2, de cuyos resultados se responde íntegramente. El cliente solicita un cambio de taxonomía como solicitud funcional y el adjudicatario lo aplica con la prueba del clasificador antes de usarlo.
+
+\seccion{Verificación de absorción}
+Antes de cada traspaso se verifican cuatro condiciones. Los administradores del cliente están certificados en el bloque. Las tareas del mes de operación asistida las ejecutó el equipo del cliente y las revisó el adjudicatario. Los procedimientos del bloque están en la base de conocimiento. Los permisos acotados del bloque están configurados y separados de los roles de plataforma. Con las cuatro condiciones, se verifica además que el equipo del cliente absorbe el bloque sin un especialista dedicado, que es la restricción que fija el Caso (CMAA, 2026b, cap. 10, p. 20). Si alguna condición no se cumple, el bloque queda en el servicio y se reprograma el traspaso.
+
+\seccion{Peso relativo de cada bloque}
+Entre los meses 21 y 26, la mesa de ayuda registra cada solicitud funcional por tipo y tiempo de resolución. La participación de cada bloque en la carga se calcula como su número de solicitudes multiplicado por el tiempo medio de resolución, dividido por el esfuerzo total de los tres bloques. Esta medición verifica la capacidad que debe asumir el cliente. Hasta esa medición, la carga de cada bloque se estima con una hipótesis de diseño: 16 horas hombre al mes en el bloque 1, con cuatro solicitudes de cuatro horas, 12 en el bloque 2, con tres de cuatro horas, y 10 en el bloque 3, con veinte de media hora. Suman 38 horas al mes, menos que las 152 de una persona a jornada completa (Formulario T-15). Si la medición supera esa capacidad, el bloque no se traspasa y queda en el servicio, como indica la sección D.2. La valorización y las condiciones de ajuste se presentan en la Oferta Económica. La meta de 80 \% al mes 45 se verifica con la cuarta acta de 1.7.4.2.
+
+\seccion{Cláusula de retorno y cambios de permisos}
+El cliente puede devolver un bloque con treinta días de aviso, y el bloque vuelve al servicio con las condiciones del contrato original. Los cambios de permisos del bloque 3 se aplican en la ventana de 03:00 a 05:00, con aprobación previa (CMAA, 2026b, cap. 15, p. 25), y no se aplican en los primeros cinco días hábiles del mes ni en las 48 horas previas a un embarque (CMAA, 2026b, cap. B, p. 35). Los registros de cada cambio quedan en la auditoría de cambios. El plazo de 24 horas de las incidencias de severidad media no se aplica a las solicitudes funcionales, que son cambios (CMAA, 2026a, Art. 78.2, p. 40).
+
+\seccion{Modelado de amenazas del bloque 3}
+El bloque 3 traspasa al cliente la administración de usuarios y roles internos, lo que modifica el control de acceso de la solución. Por eso tiene su propio modelado de amenazas, como exigen las Bases (CMAA, 2026c, RT-26.07, p. 45) y la regla del Subdocumento 4 de revisar el modelo ante todo cambio de límite de contexto, de interfaz o de clasificación de información. Se usa el método STRIDE (Shostack, 2014), que revisa seis categorías de amenaza, y la Tabla \ref{tab:modelado-amenazas-stride-administracion-delegada-usuarios} presenta, para cada una, el escenario en este bloque, el control y la evidencia.
+
+\begin{tabla}{I{0.184}I{0.274}I{0.337}I{0.204}}{Modelado de amenazas STRIDE de la administración delegada de usuarios y roles.}{tab:modelado-amenazas-stride-administracion-delegada-usuarios}
+  {\cab{Amenaza (STRIDE)} & \cab{Escenario en el bloque 3} & \cab{Control} & \cab{Evidencia}}
+  {\emph{Fuente:} elaboración propia con el método de Shostack (2014).}
+Suplantación & Un tercero usa la cuenta de un administrador funcional para crear usuarios & Identidad federada con el directorio corporativo y doble factor obligatorio, sin cuentas locales & Registro de inicio de sesión \\
+Manipulación & Un administrador funcional modifica un rol para darle permisos de plataforma & Los roles delegables están predefinidos, no incluyen permisos de plataforma y su catálogo lo mantiene Overfore & Auditoría de cambios de roles \\
+Repudio & Un administrador niega haber asignado un rol & Cada alta, baja y cambio queda registrado con autor, fecha y aprobador en un registro inmutable & Auditoría de cambios \\
+Divulgación de información & Un rol mal asignado da acceso a datos de salud ocupacional o de fatiga & Los roles con datos personales sensibles requieren la aprobación de un segundo administrador & Matriz de roles y aprobaciones \\
+Denegación de servicio & Una baja masiva o errónea deja sin acceso a un turno completo & El bloque no permite bajas masivas y los cambios se aplican en la ventana de 03:00 a 05:00 & Registro de cambios y restauración \\
+Elevación de privilegios & Un administrador funcional se asigna a sí mismo un rol mayor & Nadie aprueba sus propios cambios y los roles de plataforma solo los asigna Overfore & Revisión trimestral de accesos \\
+\end{tabla}
+Ninguna amenaza depende solo de la buena fe del administrador del cliente: los permisos de plataforma no son delegables, todo cambio sensible requiere a una segunda persona y todo queda en la auditoría. Los controles usan la identidad federada y la auditoría que la arquitectura ya tiene, por lo que el bloque 3 no agrega componentes nuevos.
+
+\anexo{Balance de dilución evitada}
+Este anexo detalla la innovación 5 que el Subdocumento 13 resume en la sección 13.5. Presenta el método para separar la dilución, un ejemplo con las leyes del Caso, la calibración de la atribución, los factores del cálculo de huella, la fórmula del indicador de cobertura y el efecto anual de un punto de dilución.
+
+\seccion{Método de separación de la diferencia de ley}
+El balance compara la ley de cabeza que mide la planta con la ley esperada del material retomado. La ley esperada es el promedio, ponderado por tonelaje, de las leyes de las capas que el módulo Trazabilidad y Embarque registra para el material retomado de cada stock. La proporción de estéril es la diferencia entre la ley esperada y la ley medida, dividida por la diferencia entre la ley esperada y la ley del estéril. Mientras no se mida la ley del estéril se usa 0 \%, lo que subestima la dilución y es conservador; entre los meses 16 y 21 se calibra con la ley que geología asigna al estéril en el modelo de bloques o con la que defina el laboratorio en el levantamiento, y se revisa cada trimestre. La Tabla \ref{tab:separacion-diferencia-ley-poligono-ejemplo} aplica el método al ejemplo del superintendente de planta, con la ley planificada de 0,58 \% y la ley medida de 0,51 \% (CMAA, 2026b, cap. 8, p. 14).
+
+\begin{tabla}{I{0.490}I{0.336}D{0.174}}{Separación de la diferencia de ley de un polígono de ejemplo.}{tab:separacion-diferencia-ley-poligono-ejemplo}
+  {\cab{Paso} & \cab{Cálculo} & \cab{Resultado}}
+  {\emph{Fuente:} elaboración propia a partir de Bases técnicas del caso Minería — Minería, cap. 8, pp. 13–17. Los demás valores son ilustrativos.}
+Diferencia total entre plan y planta & 1 − 0,51 ÷ 0,58 & 12,1 \% \\
+Ley esperada del material retomado & Promedio por capas del stock (ilustrativo) & 0,55 \% \\
+Parte por cambio de composición en el stock & 0,58 − 0,55 & 0,03 puntos \\
+Ley esperada corregida por el error de referencia del modelo de bloques & 0,55 − 0,02, mediana del resto en polígonos bajo el percentil 75 (ilustrativa) & 0,53 \% \\
+Proporción de estéril atribuida a dilución, con ley del estéril de 0 \% & (0,53 − 0,51) ÷ (0,53 − 0) & 3,8 \% \\
+Proporción de estéril atribuida a dilución, con ley del estéril de 0,10 \% (ilustrativa) & (0,53 − 0,51) ÷ (0,53 − 0,10) & 4,65 \% \\
+\end{tabla}
+La diferencia total de 12,1 \% solo una parte corresponde a dilución, y que sin la composición por capas del stock toda la diferencia se habría atribuido a dilución o a error del modelo. La ley del estéril cambia el resultado: con 0 \% la proporción es 3,8 \% y con 0,10 \% es 4,65 \%, por lo que suponer 0 \% subestima la dilución. El ejemplo corresponde a un polígono sobre el percentil 75 de declaraciones; en un polígono bajo ese percentil, todo el resto se atribuye al modelo de bloques y entra en el cálculo del error de referencia del mes. La Figura \ref{fig:datos-intervienen-balance-dilucion-evitada-desde} muestra los datos que intervienen y su recorrido.
+
+\figura{16.0}{fig-E-1-datos-intervienen-balance-dilucion-evitada}{Datos que intervienen en el balance de dilución evitada, desde la declaración del operador hasta el informe.}{fig:datos-intervienen-balance-dilucion-evitada-desde}{Fuente: elaboración propia con valores ilustrativos.}
+En la figura, la declaración del operador de pala identifica el viaje y el polígono, la trazabilidad calcula la ley esperada del material retomado, la balanza y el laboratorio entregan la ley de cabeza medida, y el módulo Cumplimiento Ambiental calcula la dilución y sus recursos. Los resultados llegan a planificación, a la gerencia de mina y a cada grupo de trabajo.
+
+\seccion{Atribución a dilución por polígono}
+Después de explicar el origen, la diferencia restante se divide entre error del modelo de bloques y dilución en dos pasos. Primero, en los polígonos cuya frecuencia de declaraciones de estéril está bajo el percentil 75 de la frecuencia observada por polígono entre los meses 16 y 21, toda la diferencia restante se atribuye al modelo de bloques, y su mediana del mes es el error de referencia del modelo. Segundo, en los polígonos sobre ese percentil, la diferencia restante que excede el error de referencia se atribuye a dilución. Así cada polígono puede tener una parte de error del modelo y una parte de dilución, como en la Tabla \ref{tab:separacion-diferencia-ley-poligono-ejemplo}, y el error del modelo se informa a geología. El umbral se mantiene fijo para que la línea base de los meses 16 a 21 siga siendo comparable con los meses siguientes, y solo se revisa si el plan minero cambia de forma sustancial, con la aprobación de la superintendencia de planificación y con registro del cambio. El percentil 75 es una regla de partida: en la calibración de los meses 16 a 21 se muestra la sensibilidad con los percentiles 60, 75 y 90, en polígonos marcados y en cobre atribuido a dilución y a error del modelo. La línea base se recalcula en el mes 28, cuando el modelo de capas de los stocks cumple su año de verificación. Los viajes marcados como borde, en que un camión carga de dos polígonos, se informan por separado.
+
+\seccion{Factores del cálculo de huella}
+La Tabla \ref{tab:factores-datos-calculo-huella-dilucion} reúne los factores con que se calculan los recursos asociados al estéril procesado. Los resultados del cálculo para un punto porcentual de dilución están en la Tabla \ref{tab:efecto-anual-reducir-punto-porcentual-dilucion} de la sección E.5.
+
+\begin{tabla}{I{0.288}D{0.182}I{0.310}I{0.220}}{Factores y datos del cálculo de huella de la dilución.}{tab:factores-datos-calculo-huella-dilucion}
+  {\cab{Dato o factor} & \cab{Valor} & \cab{Referencia} & \cab{Operación}}
+  {\emph{Fuente:} elaboración propia a partir de Bases técnicas del caso Minería — Minería, cap. 2, pp. 4–5 y de las fuentes de Cochilco citadas en las celdas.}
+Mineral enviado a planta & 21,5 millones de t al año & CMAA (2026b, cap. 2, p. 5) & Base del cálculo \\
+Consumo específico de energía de la concentradora & 21,75 kWh/t & Comisión Chilena del Cobre [Cochilco] (2025a, pp. 33-34) & Promedio simple 2010-2024 de electricidad por tonelada de mineral procesado: 78,3 MJ/t ÷ 3,6 MJ/kWh \\
+Consumo específico de agua & 0,36 m³/t & Cochilco (2019, p. 25) & Agua de origen continental \\
+Factor de emisión del Sistema Eléctrico Nacional & 0,2017 t CO₂e/MWh & Cochilco (2025b, p. 14) & Año 2024 \\
+Ley media de cabeza y recuperación & 0,54 \% y 86,5 \% & CMAA (2026b, cap. 2, p. 5) & Cobre fino de la capacidad liberada \\
+Ley del estéril & 0 \% mientras no se mida; luego, la ley que se calibre & Supuesto de partida; calibración entre los meses 16 y 21 & Subestima la dilución; se revisa cada trimestre \\
+\end{tabla}
+Los consumos específicos son valores promedio de la minería del cobre y no medidos en Aranda, y que desde el mes 22 se reemplazan por los que miden el historiador de proceso y el caudalímetro de la planta.
+
+\seccion{Indicador de cobertura del balance}
+La cobertura es el número de polígonos con material enviado a la planta en el mes que tienen su dilución estimada, dividido por el número de polígonos con material enviado a la planta en el mes. Un polígono tiene su dilución estimada cuando hay lotes de planta con ley de cabeza medida atribuibles a él y una ley esperada calculada. El Caso informa entre 12 y 18 polígonos activos simultáneamente (CMAA, 2026b, cap. 14, p. 23). Con 16 polígonos con envío en el mes, la meta de 90 \% exige estimar al menos 15, que resulta de redondear 14,4 hacia arriba. La meta deja un 10 \% de polígonos sin lote de planta atribuible por la mezcla en los stocks.
+
+\seccion{Efecto anual de reducir un punto porcentual de dilución}
+La Tabla \ref{tab:efecto-anual-reducir-punto-porcentual-dilucion} aplica los factores de la Tabla \ref{tab:factores-datos-calculo-huella-dilucion} a un punto porcentual de dilución. La planta procesa 21,5 millones de toneladas al año (CMAA, 2026b, cap. 2, p. 5), por lo que un punto equivale a 215.000 toneladas de estéril que dejan de procesarse.
+
+\begin{tabla}{I{0.362}I{0.384}D{0.255}}{Efecto anual de reducir un punto porcentual de dilución.}{tab:efecto-anual-reducir-punto-porcentual-dilucion}
+  {\cab{Magnitud} & \cab{Cálculo} & \cab{Resultado anual}}
+  {\emph{Fuente:} elaboración propia a partir de Bases técnicas del caso Minería — Minería, cap. 2, pp. 4–5 y de las fuentes de Cochilco citadas en las celdas.}
+Estéril que deja de procesarse & 1 \% de 21,5 millones de toneladas & 215.000 t \\
+Energía que deja de destinarse a estéril & 215.000 t × 21,75 kWh/t & 4,676 GWh \\
+Agua que deja de destinarse a estéril & 215.000 t × 0,36 m³/t & 77.400 m³ \\
+Emisiones asociadas a esa energía & 4.676 MWh × 0,2017 t CO₂e/MWh & 943 t CO₂e \\
+Cobre fino de la capacidad liberada & 215.000 t × 0,54 \% × 86,5 \% & 1.004 t \\
+\end{tabla}
+La capacidad liberada, usada en mineral, produce además 1.004 toneladas de cobre fino al año. Como la planta opera a capacidad, la capacidad liberada se usa en mineral, y esa energía y esa agua no se ahorran en términos absolutos, sino que se reparten sobre más cobre; por eso el efecto ambiental se expresa como intensidad. la energía y el agua por tonelada de cobre fino bajan cerca de 1 \% por cada punto.
+
+\anexo{Supuestos de la cartera de innovaciones}
+Este anexo reúne los supuestos con que se formulan las cinco innovaciones, para que cada uno sea explícito y verificable. La Tabla \ref{tab:supuestos-cartera-innovaciones-verificacion} los lista con la innovación a la que afectan y la forma de verificarlos.
+
+\begin{tabla}{C{0.146}I{0.396}I{0.320}I{0.138}}{Supuestos de la cartera de innovaciones y su verificación.}{tab:supuestos-cartera-innovaciones-verificacion}
+  {\cab{Innovación} & \cab{Supuesto} & \cab{Cómo se verifica} & \cab{Cuándo}}
+  {\emph{Fuente:} elaboración propia a partir de Subdocumento 13, cap. 13, sección 13.1, p. 7; Subdocumento 13, cap. 13, sección 13.2, p. 11; Subdocumento 13, cap. 13, sección 13.3, p. 17; Subdocumento 13, cap. 13, sección 13.4, p. 23; Subdocumento 13, cap. 13, sección 13.5, p. 29.}
+Todas & El mes 1 del cronograma es enero de 2027 & Fecha de inicio del contrato & Al firmar el contrato \\
+1 & El arsénico por polígono se estima desde los lotes de planta y sus análisis & Comparación con los análisis de los lotes conformados & Meses 13 a 15 \\
+1 & El laboratorio mide arsénico en cada lote de concentrado & Revisión del procedimiento del laboratorio & Meses 1 a 3 \\
+1 & Las liquidaciones del área comercial entregan el análisis del comprador de los últimos doce meses & Conteo de pares con el análisis propio; si faltan, valor inicial conservador del margen & Meses 3 a 8 \\
+1 & El operador del recinto portuario ejecuta la mezcla propuesta & Procedimiento de carga acordado con el operador & Antes del mes 13 \\
+1 & La reducción de 50 \% y 75 \% de los embarques penalizados es una hipótesis de diseño, porque el Caso no informa la causa de cada uno de los cuatro de 2025 & Contraste con las liquidaciones reales y con la distribución de arsénico del acopio & Meses 30, 42 y 54 \\
+3 & La jubilación de la persona que explica los factores estaba prevista para marzo de 2026 & Registro del mes 2 con la persona que sigue en la compañía y, si es posible, con la jubilada & Mes 2 \\
+3 & El número de factores de ajuste vigentes se conoce en el levantamiento del mes 2 y es la base del indicador de factores sin respaldo estadístico & Registro de factores y de sus explicaciones del mes 2 & Mes 2 \\
+3 & Las incertidumbres estándar iniciales (k = 1) de 1,0 \% para el pesaje a bordo y 0,5 \% para la balanza son valores de partida, que el levantamiento reemplaza & Declaración con metalurgia & Meses 3 a 6 \\
+3 & La historia de pesajes de la báscula de los últimos doce meses entra en el perfilado de la Etapa 1 & Revisión del alcance del perfilado; si no está, el sesgo por camión se estima con los datos de la marcha blanca & Meses 3 a 8 \\
+3 & La muestra de la báscula alcanza para estimar el sesgo por camión & Conteo de viajes pesados por camión en la ventana de estimación & Meses 10 a 12 \\
+3 & La muestra de viajes que pesa la báscula es independiente de la carga, del turno y del destino & Comparación de su composición por camión, turno y destino con la del total de viajes del despacho; si difiere, ponderación por estrato & Meses 10 a 12 \\
+4 & El equipo del cliente absorbe cada bloque sin un especialista dedicado & Verificación previa a cada traspaso & Meses 26, 32 y 38 \\
+4 & Los bloques 1, 2 y 3 demandan 16, 12 y 10 horas hombre al mes, y un cambio funcional tarda cinco días hábiles en el servicio completo. Es una hipótesis de diseño, porque el Caso no informa el volumen de solicitudes & Registro de la mesa de ayuda por tipo y tiempo de resolución (sección D.3) & Meses 21 a 26 \\
+5 & La planta opera a capacidad, por lo que la dilución evitada se reemplaza por mineral & Comparación del tonelaje procesado con la capacidad nominal & Mes 22 en adelante \\
+5 & La ley del estéril es 0 \% hasta que se mida, lo que subestima la dilución & Calibración con la ley que geología asigna al estéril en el modelo de bloques o con la que defina el laboratorio; revisión trimestral & Meses 16 a 21 \\
+2 & Seis meses de clasificaciones confirmadas bastan para entrenar el clasificador de cada área & Precisión de 80 \% o más en la validación previa & Meses 21 y 26 \\
+5 & La línea base de dilución de los meses 16 a 21 se recalcula con el modelo de capas verificado & Recálculo con un año de datos del modelo de mezcla de los stocks & Mes 28 \\
+5 & La reducción de dilución de 0,5 punto al mes 34 y de 1 punto al mes 46 es una hipótesis de diseño, porque el Caso no informa la dilución actual & Línea base de los meses 16 a 21, recalculada en el mes 28; evaluación semestral & Meses 28, 34 y 46 \\
+\end{tabla}
+La mayoría de los supuestos se verifican antes de la puesta en producción de la Etapa 1 y que todos tienen una verificación concreta, con un mes o una instancia definidos.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Comisión Chilena del Cobre. (2019). \emph{Consumo de agua en la minería del cobre al año 2018} (DEPP 06/2019). https://cochilco.cl/web/download/821/2019/7845/consumo-de-agua-en-la-mineria-del-cobre-al-ano-2018.pdf
+\item Comisión Chilena del Cobre. (2025a). \emph{Consumo energético de la minería del cobre al año 2024} (DEPP 17/2025). https://www.cochilco.cl/web/download/991/2025/15151/consumo-de-energia-en-la-mineria-del-cobre-actualizacion-ano-2024.pdf
+\item Comisión Chilena del Cobre. (2025b). \emph{Emisiones de gases de efecto invernadero asociadas a la minería del cobre al año 2024} (DEPP 24/2025). https://www.cochilco.cl/web/download/991/2025/15305/emisiones-de-gases-de-efecto-invernadero-asociadas-a-la-mineria-del-cobre-al-ano-2024.pdf
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item Dantzig, G. B. (1963). \emph{Linear programming and extensions}. Princeton University Press.
+\item Huangfu, Q., y Hall, J. A. J. (2018). Parallelizing the dual revised simplex method. \emph{Mathematical Programming Computation, 10}(1), 119–142. https://doi.org/10.1007/s12532-017-0130-5
+\item International Organization for Standardization e International Electrotechnical Commission. (2023). \emph{ISO/IEC 42001:2023 Information technology. Artificial intelligence. Management system}. ISO.
+\item International Organization for Standardization. (2014). \emph{ISO 22400-2:2014 Automation systems and integration. Key performance indicators (KPIs) for manufacturing operations management. Part 2: Definitions and descriptions}. ISO.
+\item Joint Committee for Guides in Metrology. (2008). \emph{Evaluation of measurement data: Guide to the expression of uncertainty in measurement} (JCGM 100:2008). Bureau International des Poids et Mesures.
+\item Microsoft Corporation. (2025). \emph{LightGBM documentation} (Release 4.6.0). https://lightgbm.readthedocs.io
+\item Narasimhan, S., y Jordache, C. (2000). \emph{Data reconciliation and gross error detection: An intelligent use of process data}. Gulf Publishing Company.
+\item National Institute of Standards and Technology. (2023). \emph{Artificial intelligence risk management framework (AI RMF 1.0)} (NIST AI 100-1). https://doi.org/10.6028/NIST.AI.100-1
+\item Shostack, A. (2014). \emph{Threat modeling: Designing for security}. Wiley.
+\item Verein Deutscher Ingenieure. (2017). \emph{VDI 2048 Blatt 1: Control and quality improvement of process data and their uncertainties by means of correction calculation for operation and acceptance tests}. Beuth.
+\end{referencias}
+\end{document}

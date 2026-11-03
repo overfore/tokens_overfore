@@ -1,0 +1,320 @@
+%% OVERFORE-Subdocumento9-Anexos.tex — generado desde OVERFORE-Subdocumento9-Anexos.docx
+%% Formato: clase overfore, modo anexo. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[anexo]{../../comun/overfore}
+\numsubdoc{9}
+\informe{Informe Preparatorio N° 2}
+\fecha{[día] de [mes] de 2026}
+\externos{S9}
+\begin{document}
+
+\anexo{Matriz de verificación de los requerimientos no funcionales}
+Este anexo detalla, para cada uno de los 96 requerimientos no funcionales del catálogo, la vía principal con que se verifica, el ambiente, el momento y los hitos del contrato en que queda la evidencia. La descripción, el umbral y el método de verificación completos de cada requerimiento están en el Anexo A del Subdocumento 2, y su cumplimiento y evidencia, en el Formulario T-12.
+
+La vía principal es una clasificación propia de Overfore, derivada del método de verificación que declara cada requerimiento. Cuando un método combina más de una prueba, se asigna la vía de la prueba que decide el cumplimiento.
+
+\seccion{Resumen por vía de verificación}
+La siguiente tabla cuenta los requerimientos no funcionales de cada vía y señala el ambiente y los hitos en que se verifican.
+
+\begin{tabla}{I{0.219}D{0.164}I{0.219}I{0.242}I{0.155}}{Requerimientos no funcionales por vía de verificación.}{tab:requerimientos-no-funcionales-via-verificacion}
+  {\cab{Vía de verificación} & \cab{Cantidad de requerimientos} & \cab{Ambiente de verificación} & \cab{Momento de verificación} & \cab{Hitos del contrato}}
+  {Fuente: elaboración propia.}
+Carga y escalamiento & 9 & Preproducción & Antes de cada paso a producción de etapa & H5 y H10 \\
+Resiliencia y recuperación & 14 & Preproducción, Nodo de Faena y región de Recuperación & Antes de cada paso a producción y cada semestre & H5, H7, H10 y H12 \\
+Seguridad & 18 & QA y Preproducción & En cada entrega y antes de cada paso a producción & H4, H5, H9 y H10 \\
+Interacción y accesibilidad & 10 & Preproducción, cabina y marcha blanca & Antes de la certificación y durante la marcha blanca & H5, H7, H10 y H12 \\
+Medición en operación real & 20 & Producción & Marcha blanca de cada etapa & H7 y H12 \\
+Revisión o demostración & 25 & QA y Preproducción & En cada entrega & H4, H5, H9 y H10 \\
+Total & 96 & No aplica & No aplica & No aplica \\
+\end{tabla}
+De lo anterior, 25 requerimientos se verifican por revisión o demostración, la vía más numerosa, y 20 solo pueden verificarse con datos reales durante la marcha blanca.
+
+\seccion{Matriz de los 96 requerimientos}
+La siguiente tabla lista cada requerimiento agrupado por familia de identificador, con su vía de verificación, su ambiente y sus hitos. Los identificadores con puntos, como RNF-TRV-04.11, conservan el número del requisito transversal del que provienen.
+
+\begin{tabla}{I{0.240}I{0.276}I{0.296}I{0.187}}{Matriz de verificación de los requerimientos no funcionales.}{tab:matriz-verificacion-requerimientos-no-funcionales}
+  {\cab{Identificador del requerimiento} & \cab{Vía de verificación} & \cab{Ambiente de verificación} & \cab{Hitos del contrato}}
+  {Fuente: elaboración propia.}
+RNF-CAP-001 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-CAP-002 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-CAP-003 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-CAP-004 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-CAP-005 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-CAP-006 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-CAP-007 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-CAP-008 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-CUM-001 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-CUM-002 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-DES-001 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-002 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-003 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-004 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-DES-005 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-006 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-007 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-008 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-009 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-010 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-011 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-012 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H7 y H12 \\
+RNF-DES-013 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-014 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-015 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-016 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DES-017 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-DES-018 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-DIS-001 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H7 y H12 \\
+RNF-DIS-002 & Medición en operación real & Producción & H7 y H12 \\
+RNF-DIS-003 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H7 y H12 \\
+RNF-DIS-004 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-DIS-005 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-DIS-006 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H7 y H12 \\
+RNF-DIS-007 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-DIS-008 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-DIS-009 & Carga y escalamiento & Preproducción & H5 y H10 \\
+RNF-INF-001 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-INT-001 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-INT-002 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-INT-003 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-INT-004 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-INT-005 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-INT-006 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-POR-001 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-POR-002 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-POR-003 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-POR-004 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-001 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-002 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-003 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-004 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-005 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-006 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-007 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-008 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-009 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-010 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-011 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-012 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-013 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-014 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-015 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-SEG-016 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-USA-001 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-USA-002 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-USA-003 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-USA-004 & Medición en operación real & Producción & H7 y H12 \\
+RNF-USA-005 & Medición en operación real & Producción & H7 y H12 \\
+RNF-USA-006 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-USA-007 & Medición en operación real & Producción & H7 y H12 \\
+RNF-USA-008 & Medición en operación real & Producción & H7 y H12 \\
+RNF-USA-009 & Medición en operación real & Producción & H7 y H12 \\
+RNF-USA-010 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-USA-011 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-USA-012 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-USA-013 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-USA-014 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-USA-015 & Interacción y accesibilidad & Preproducción, cabina y marcha blanca & H5, H7, H10 y H12 \\
+RNF-OPE-001 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-OPE-002 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-OPE-003 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-OPE-004 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-OPE-005 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H7 y H12 \\
+RNF-OPE-006 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-TRV-02.06 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-TRV-02.07 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-TRV-02.08 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-TRV-04.11 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-TRV-07.03 & Resiliencia y recuperación & Preproducción, Nodo de Faena y región de Recuperación & H5 y H10 \\
+RNF-TRV-11.04 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-TRV-11.07 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-TRV-11.11 & Seguridad & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-TRV-21.11 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-TRV-21.13 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+RNF-TRV-21.15 & Revisión o demostración & QA y Preproducción & H4, H5, H9 y H10 \\
+\end{tabla}
+
+\seccion{Requerimientos funcionales por módulo}
+Los 126 requerimientos funcionales se verifican con casos de aceptación por módulo, en las puertas 4 y 5 y durante la marcha blanca de la etapa que los entrega. La siguiente tabla cuenta los requerimientos de cada módulo y plataforma, que son los casos de aceptación mínimos que el Formulario T-13 debe cubrir.
+
+\begin{tabla}{I{0.472}D{0.174}D{0.174}D{0.180}}{Requerimientos funcionales por módulo y etapa.}{tab:requerimientos-funcionales-modulo-etapa}
+  {\cab{Módulo o plataforma} & \cab{Requerimientos de la Etapa 1} & \cab{Requerimientos de la Etapa 2} & \cab{Total de requerimientos}}
+  {Fuente: elaboración propia.}
+Operación Mina & 20 & 0 & 20 \\
+Trazabilidad y Embarque & 16 & 1 & 17 \\
+Conciliación Metalúrgica & 15 & 0 & 15 \\
+Administración y Servicios Comunes & 19 & 0 & 19 \\
+Indicadores y Centro Integrado & 1 & 4 & 5 \\
+Equipos y Mantenimiento & 0 & 10 & 10 \\
+Acreditación y Acceso & 16 & 2 & 18 \\
+Seguridad y Salud Ocupacional & 0 & 7 & 7 \\
+Cumplimiento Ambiental & 0 & 10 & 10 \\
+Integrador de Sistemas y Nodo de Faena & 5 & 0 & 5 \\
+Total & 92 & 34 & 126 \\
+\end{tabla}
+La Etapa 1 reúne 92 casos de aceptación mínimos y la Etapa 2, 34, lo que concuerda con la distribución del alcance por etapa.
+
+\seccion{Requerimientos de transición y del proyecto}
+Los 15 requerimientos de transición (TRA) y los 11 del proyecto (RP) no figuran en las Tablas \ref{tab:requerimientos-no-funcionales-via-verificacion} y \ref{tab:requerimientos-funcionales-modulo-etapa}. La siguiente tabla indica la vía de verificación, el ambiente principal y los hitos de cada grupo.
+
+\begin{tabla}{I{0.192}C{0.159}D{0.192}I{0.252}I{0.206}}{Vías de verificación de los requerimientos de transición y del proyecto.}{tab:vias-verificacion-requerimientos-transicion-proyecto}
+  {\cab{Vía de verificación} & \cab{Tipo de requerimiento} & \cab{Cantidad de requerimientos} & \cab{Ambiente principal} & \cab{Hitos de verificación}}
+  {Fuente: elaboración propia a partir de Subdocumento 2, cap. 2 — anexos, sección A, p. 3.}
+Transición y preparación & TRA & 15 & Preproducción y marcha blanca & H5, H6, H7 y H12 \\
+Proyecto & RP & 11 & Revisión documental y ejecución en faena & Todos los hitos \\
+\end{tabla}
+
+\anexo{Definición de terminado}
+Este anexo desarrolla la definición de terminado que presenta el Subdocumento 9. Se adopta la definición del Subdocumento 6, que abarca código, pruebas, documentación, seguridad y despliegue, para que ambas partes entiendan lo mismo por trabajo terminado.
+
+La definición se somete a la Contraparte Técnica junto con la línea base de alcance del hito H1, y se aplica a cada entregable antes de presentarlo para aceptación. La siguiente tabla lista los criterios verificables, la evidencia que los respalda y la puerta de calidad donde se comprueban. Los criterios de la dimensión Paso a producción se suman a la definición cuando el entregable pasa a producción.
+
+\begin{tabla}{I{0.186}I{0.435}I{0.267}C{0.112}}{Criterios de la definición de terminado.}{tab:criterios-definicion-terminado}
+  {\cab{Dimensión de la definición} & \cab{Criterio verificable} & \cab{Evidencia que lo respalda} & \cab{Puerta de calidad}}
+  {Fuente: elaboración propia.}
+Código & Revisado por una persona distinta del autor, con dos aprobaciones cuando el cambio toca el Nodo de Faena, la seguridad o el cálculo crítico & Registro de la solicitud de integración & 1 \\
+Código & Fusionado en la rama protegida, sin escritura directa & Configuración del repositorio & 1 \\
+Código & Umbrales de cobertura, complejidad, duplicación y deuda técnica cumplidos, y acoplamiento entre módulos verificado con pruebas de arquitectura & Informe de métricas y de pruebas de arquitectura & 1 \\
+Pruebas & Pruebas automáticas del requerimiento aprobadas con la cobertura exigida & Informe de pruebas y de cobertura & 1 y 4 \\
+Pruebas & Batería de regresión completa sin fallas & Informe de regresión & 4 \\
+Pruebas & Prueba de la vía de verificación declarada para cada requerimiento no funcional & Informe de la campaña & 5 \\
+Documentación & Documentación del entregable actualizada, versionada y en español & Repositorio documental & 4 \\
+Documentación & Contratos OpenAPI y AsyncAPI publicados iguales a los del código desplegado & Catálogo de interfaces & 2 \\
+Trazabilidad & Trazabilidad registrada hacia el requerimiento, el componente y la prueba & Formulario T-12 y matriz de trazabilidad & 4 \\
+Seguridad & Cero hallazgos críticos ni altos de seguridad abiertos & Informes de análisis estático y dinámico & 1 a 3 \\
+Seguridad & Vulnerabilidades corregidas en 7, 15 y 30 días según su severidad & Informe del escáner & 2 \\
+Seguridad & Ninguna credencial en código, imágenes o configuración & Escaneo de secretos & 1 \\
+Despliegue & Desplegado en Preproducción de forma automática, con la imagen firmada y sin recompilar & Registro de despliegues & 2 y 4 \\
+Paso a producción & Cero hallazgos críticos ni altos abiertos & Informes de análisis estático y dinámico, y de seguridad ofensiva & 5 \\
+Paso a producción & Imagen firmada y verificada antes de desplegar en cada ambiente & Registro de despliegues & 5 \\
+Paso a producción & Reversión probada & Informe del ensayo de reversión & 5 \\
+Paso a producción & Paso programado en la ventana de 03:00 a 05:00, fuera del cierre contable y de las 48 horas previas a un embarque & Calendario de cambios & 5 \\
+Paso a producción & El Comité de Proyecto aprueba el paso a producción y la Contraparte Técnica firma el acta de aceptación del hito & Acta del Formulario T-17 y registro de la aprobación & 5 \\
+\end{tabla}
+Las seis condiciones de la definición de terminado se desglosan en criterios verificables, las condiciones adicionales del paso a producción se agrupan en su propia dimensión y cada criterio tiene una evidencia que el cliente puede revisar.
+
+Los defectos hallados en pruebas usan las mismas cuatro categorías de severidad que los incidentes de operación (Subdocumento 3). Lo que se comparte son las categorías y no los plazos, y la severidad de un defecto se asigna según el efecto que tendría en producción si no se corrigiera.
+
+Un defecto de severidad crítica interrumpiría por completo el servicio, afectaría un proceso crítico del negocio sin alternativa operativa o comprometería datos por una falla de seguridad.
+
+Un defecto de severidad alta degradaría gravemente el servicio, haría fallar una función crítica con una alternativa operativa costosa o afectaría a un grupo relevante de personas usuarias.
+
+Un defecto de severidad media haría fallar una función no crítica o degradaría el servicio sin impedir la operación, y existe una alternativa disponible.
+
+Un defecto de severidad baja sería una incidencia menor o un defecto cosmético.
+
+Cada severidad tiene un plazo de corrección y una tolerancia al cierre de la marcha blanca, que muestra la siguiente tabla. No pueden quedar abiertos defectos críticos ni altos al cerrar una marcha blanca. Para los medios y los bajos, Overfore compromete una densidad máxima por requerimiento funcional de la etapa.
+
+\begin{tabla}{I{0.155}I{0.267}I{0.267}I{0.311}}{Plazos de corrección y tolerancia de defectos abiertos.}{tab:plazos-correccion-tolerancia-defectos-abiertos}
+  {\cab{Severidad} & \cab{Corrección de un defecto de prueba} & \cab{Corrección de una vulnerabilidad} & \cab{Abiertos al cerrar la marcha blanca}}
+  {Fuente: elaboración propia a partir de las Bases administrativas (Compañía Minera Altos de Aranda [CMAA], 2026a, cap. 3, Art. 17, pp. 12–13); Bases técnicas transversales, cap. 11, pp. 23–25; Subdocumento 2, cap. 2 — anexos, sección A.1, p. 3.}
+Crítica & 2 días corridos & 7 días corridos & Ninguno \\
+Alta & 5 días corridos & 15 días corridos & Ninguno \\
+Media & 15 días corridos & 30 días corridos & 4 en la Etapa 1 y 1 en la Etapa 2 \\
+Baja & 30 días corridos & No aplica & 13 en la Etapa 1 y 5 en la Etapa 2 \\
+\end{tabla}
+Al cerrar una marcha blanca solo pueden quedar abiertos defectos medios y bajos, en cantidades acotadas. Esos máximos resultan de comprometer 0,05 defectos medios y 0,15 bajos por requerimiento funcional, redondeados hacia abajo. La Etapa 1 entrega 92 requerimientos funcionales y la Etapa 2, 34.
+
+Medios admitidos en la Etapa 1. 92 × 0,05 = 4,6, es decir, 4.
+
+Medios admitidos en la Etapa 2. 34 × 0,05 = 1,7, es decir, 1.
+
+Bajos admitidos en la Etapa 1. 92 × 0,15 = 13,8, es decir, 13.
+
+Bajos admitidos en la Etapa 2. 34 × 0,15 = 5,1, es decir, 5.
+
+Un defecto medio abierto debe cumplir además tres condiciones. No afecta a la conciliación, a la seguridad ni a la integridad de los datos. Tiene una solución alternativa documentada. Y tiene una fecha de cierre dentro del período de estabilización posterior al paso a producción. Medir por requerimiento y no por líneas de código evita depender del tamaño del código, que no es un dato del cliente, y permite que la Contraparte Técnica lo verifique con el catálogo que ya conoce.
+
+\anexo{Estándares de calidad, control y evidencia}
+Los estándares que reúne este anexo son ISO/IEC 25010:2023 (International Organization for Standardization [ISO] e International Electrotechnical Commission [IEC], 2023), ISO/IEC 25012 (ISO e IEC, 2008), ISO/IEC/IEEE 29119 (ISO et al., 2021a, 2021b, 2021c), IEEE 1012 (Institute of Electrical and Electronics Engineers [IEEE], 2017), OWASP ASVS (OWASP Foundation, 2021), OWASP SAMM (OWASP Foundation, 2020) y WCAG 2.2 (World Wide Web Consortium [W3C], 2023).
+
+Se mantiene la trazabilidad entre el estándar invocado, el control implementado y el entregable que lo evidencia. La siguiente tabla presenta esa cadena para cada estándar de calidad que el Subdocumento 9 invoca.
+
+\begin{tabla}{I{0.164}I{0.408}I{0.234}C{0.195}}{Estándares de calidad, control implementado y entregable que lo evidencia.}{tab:estandares-calidad-control-implementado-entregable-lo}
+  {\cab{Estándar} & \cab{Control implementado} & \cab{Entregable que lo evidencia} & \cab{Sección del Subdocumento 9}}
+  {Fuente: elaboración propia.}
+ISO/IEC 25010:2023 & Las nueve características ordenan el plan. Son adecuación funcional, eficiencia de desempeño, compatibilidad, capacidad de interacción, fiabilidad, seguridad, mantenibilidad, flexibilidad y seguridad de funcionamiento, y cada una tiene un umbral numérico y una puerta que bloquea & Umbrales por característica y requerimientos por característica del Subdocumento 9, y Anexo A & 9.1.2 \\
+ISO/IEC 25012 & Tres metas mensuales de calidad de datos y diez indicadores de detalle, publicados en un tablero & Tablero de calidad de datos del Subdocumento 5 & 9.1.2 \\
+ISO/IEC/IEEE 29119 & Procesos de prueba implementados en las cinco puertas, documentación en el plan de pruebas y técnicas de diseño de casos & Formulario T-13 e informes de campaña & 9.2.4 \\
+IEEE 1012 & Verificación en las puertas 1 a 5 y validación en la aceptación de usuario y la marcha blanca & Vías de verificación del Subdocumento 9 y Formulario T-17 & 9.2.5 \\
+OWASP ASVS 4.0 nivel 2 & Análisis dinámico en la imagen de la rama y en QA, y pruebas de intrusión de un tercero antes de cada paso y cada año & Informe del tercero independiente & 9.2.3 \\
+OWASP SAMM v2 & Evaluación inicial en el mes 2, nivel 2 en el mes 12, nivel 3 en Implementación y Verificación en el mes 21 & Informes de evaluación & 9.1.3 \\
+WCAG 2.2 nivel AA & Verificación automatizada en QA y pruebas manuales en Preproducción & Informe de conformidad & 9.2.4 \\
+\end{tabla}
+Cada uno de los siete estándares tiene un control concreto y un entregable que el cliente puede solicitar.
+
+La siguiente tabla distribuye los 222 requerimientos de producto del catálogo según la característica de ISO/IEC 25010:2023 que los cubre y la prueba con que se verifican.
+
+\begin{tabla}{I{0.274}D{0.186}I{0.247}I{0.293}}{Requerimientos de producto según la característica de ISO/IEC 25010:2023 que los cubre.}{tab:requerimientos-producto-segun-caracteristica-iso-iec}
+  {\cab{Categoría de requerimiento} & \cab{Cantidad de requerimientos} & \cab{Característica ISO/IEC 25010:2023} & \cab{Prueba de verificación principal}}
+  {Fuente: elaboración propia a partir de Subdocumento 2, cap. 2 — anexos, sección A, p. 3.}
+Funcionales (RF) & 126 & Adecuación funcional & Aceptación por módulo \\
+Desempeño (RNF-DES) & 18 & Eficiencia de desempeño & Medición en operación y carga \\
+Capacidad y escalabilidad (RNF-CAP) & 8 & Eficiencia de desempeño y flexibilidad & Carga a 300 TPS y a 3 veces el volumen \\
+Interoperabilidad (RNF-INT) & 6 & Compatibilidad & Contratos e integración \\
+Usabilidad (RNF-USA) & 15 & Capacidad de interacción & WCAG 2.2 AA y pruebas en cabina \\
+Disponibilidad y continuidad (RNF-DIS) & 9 & Fiabilidad & Corte de 48 h y resiliencia \\
+Infraestructura (RNF-INF) & 1 & Fiabilidad & Revisión en terreno \\
+Operabilidad (RNF-OPE) & 6 & Fiabilidad y mantenibilidad & Restauración, alertas y diagnóstico \\
+Seguridad (RNF-SEG) & 16 & Seguridad & Pruebas de acceso e intrusión \\
+Cumplimiento (RNF-CUM) & 2 & Seguridad & Revisión legal y firma electrónica \\
+Portabilidad (RNF-POR) & 4 & Flexibilidad & Instalación, exportación y réplica a otra unidad \\
+Requisitos transversales (RNF-TRV) & 11 & Varias, según el requisito & Según el Anexo A de este subdocumento \\
+Sin categoría propia & 2, incluidos en otras filas & Seguridad de funcionamiento & Inyección de fallas y escritura bloqueada \\
+\end{tabla}
+
+\anexo{Fundamento de los umbrales de calidad del código}
+Este anexo reúne el fundamento de los umbrales bloqueantes de calidad del código que presenta la Tabla \refext{S9}{tab:umbrales-bloqueantes-calidad-codigo} del Subdocumento 9. Cada apartado explica por qué se fija el valor y cómo se calcula.
+
+\seccion{Cobertura de líneas y de ramas}
+La cobertura de líneas es la proporción del código de lógica de negocio que ejecutan las pruebas automáticas. Se adopta 70 \% o más como umbral global, porque bajo ese valor una parte del cálculo queda sin probar. Todo cambio que deje la cobertura por debajo se bloquea. En el código nuevo se exige 80 \%, para que la cifra global no dependa de código antiguo. Si 100 unidades de código existente tienen 70 \% y se agregan 100 unidades nuevas con 80 \%, la cobertura global sube a 75 \%, que es el nivel de la alerta.
+
+La cobertura de ramas cuenta cada decisión del código, cada “si” y cada “si no”. Se fija 70 \% global porque una decisión sin probar es un camino sin probar, y las ramas no deben exigir menos que las líneas. En el código nuevo se exige 75 \%, cinco puntos sobre el umbral global.
+
+\seccion{Cálculo crítico}
+El cálculo crítico comprende la conciliación metalúrgica, la atribución de mezclas en los stocks y la resolución de conflictos de la sincronización. Un error ahí pasa inadvertido y rompe la conciliación o la trazabilidad de un lote. Por eso se exige 90 \% de líneas y 85 \% de ramas, más que en el resto del código. La cobertura mide si el código se ejecutó y no si las pruebas detectan un error (Inozemtseva y Holmes, 2014), por lo que el umbral se complementa con la revisión por pares de los casos de prueba.
+
+\seccion{Complejidad y acoplamiento}
+La complejidad ciclomática cuenta los caminos independientes de un método (McCabe, 1976). Se adopta un máximo de 10 porque cada camino exige al menos una prueba, y 10 es el límite que recomienda la metodología de pruebas estructuradas del National Institute of Standards and Technology (Watson y McCabe, 1996). Admite hasta 15 con aprobación del par para métodos largos por naturaleza, como una tabla de decisión.
+
+El acoplamiento se controla entre módulos y no admite valores intermedios, porque es la regla central de la arquitectura. Ningún módulo lee la base de datos de otro y solo los unen los contratos y los eventos. Se verifica con pruebas de arquitectura, que fallan si aparece un ciclo entre módulos o un acceso a datos ajenos, y que corren con el marco de pruebas de cada lenguaje. Además, las credenciales de base de datos separadas por módulo hacen fallar cualquier acceso a un esquema ajeno.
+
+\seccion{Duplicación, deuda técnica y hallazgos de seguridad}
+La duplicación de 3 \% o menos se exige porque cada copia multiplica los lugares donde hay que corregir un error. La deuda técnica es el esfuerzo que costaría corregir los atajos del código, y el límite de 5 \% significa que saldarla costaría a lo más la veinteava parte del esfuerzo de escribirlo. Ambas se exigen solo al código nuevo, para no bloquear cambios por problemas que no causaron. La deuda global no bloquea un cambio y se lleva en un registro cuantificado durante la operación.
+
+En seguridad no se admiten hallazgos nuevos críticos ni altos, porque uno abierto llegaría al paso a producción, donde no puede haber ninguno.
+
+\anexo{Controles de cada puerta de calidad}
+Este anexo detalla los controles de cada una de las cinco puertas de calidad que resume la Figura \refext{S9}{fig:cinco-puertas-calidad-ambientes-condiciones-bloquean} del Subdocumento 9.
+
+\seccion{Puerta 1, solicitud de integración}
+La puerta 1, solicitud de integración, comprueba que el cambio compila, que sus pruebas unitarias y de componente pasan y que cumple los umbrales de calidad del código. Ejecuta además los análisis estáticos de seguridad, de secretos y de composición de software. También ejecuta el análisis dinámico de seguridad sobre la imagen desplegada en el ambiente efímero de la rama. Verifica que el consumidor de cada contrato afectado siga entendiendo al proveedor. Toda solicitud de integración referencia un requerimiento o una incidencia, que es el primer eslabón de la trazabilidad. Un cambio que no cumple no se fusiona en la rama principal, la versión central del código, que está protegida contra escritura directa.
+
+\seccion{Puerta 2, integración en la rama principal}
+La puerta 2, integración en la rama principal, verifica cada contrato que publica el cambio frente a todos sus consumidores, con pruebas de contrato (Pact Foundation, s.f.), y que las migraciones de esquema de la base de datos puedan ejecutarse hacia adelante y hacia atrás. La imagen firmada que supera esta puerta es la que avanza sin recompilarse a todos los ambientes (Subdocumento 6, 6.2.2), de modo que lo que se prueba es lo que se despliega.
+
+\seccion{Puerta 3, despliegue a QA}
+La puerta 3, despliegue a QA, ejecuta una prueba de humo, que es una verificación rápida de que lo esencial funciona, integra todos los flujos con los simuladores del despacho, la báscula, el laboratorio y el historiador, y realiza el análisis dinámico de seguridad. Antes de cada ciclo, el juego de datos versionado se restaura a un estado conocido.
+
+\seccion{Puerta 4, promoción a Preproducción}
+La puerta 4, promoción a Preproducción, exige la batería completa de regresión y de sistema sin regresiones, al menos un caso ejecutado por cada requerimiento del incremento y los plazos de corrección de defectos al día.
+
+\seccion{Puerta 5, paso a producción}
+La puerta 5, paso a producción, concentra las pruebas más costosas, que se ejecutan en Preproducción, salvo la recuperación ante desastres, que se ejecuta en el ambiente de Recuperación. Son la carga a 300 TPS, el estrés, la resistencia, la resiliencia, la seguridad ofensiva y la accesibilidad, además de la demostración del despliegue progresivo y de su reversión. El Comité de Proyecto aprueba el paso a producción y la Contraparte Técnica firma el acta de aceptación del hito. El paso se programa dentro de la ventana de 03:00 a 05:00, nunca durante el cierre contable ni en las 48 horas previas a un embarque.
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Inozemtseva, L., y Holmes, R. (2014). Coverage is not strongly correlated with test suite effectiveness. En \emph{Proceedings of the 36th International Conference on Software Engineering} (pp. 435–445). ACM. https://doi.org/10.1145/2568225.2568271
+\item Institute of Electrical and Electronics Engineers. (2017). \emph{IEEE standard for system, software, and hardware verification and validation} (IEEE Std 1012-2016). IEEE.
+\item International Organization for Standardization e International Electrotechnical Commission. (2008). \emph{ISO/IEC 25012:2008 Software engineering. Software product Quality Requirements and Evaluation (SQuaRE). Data quality model}. ISO.
+\item International Organization for Standardization e International Electrotechnical Commission. (2023). \emph{ISO/IEC 25010:2023 Systems and software engineering. Systems and software Quality Requirements and Evaluation (SQuaRE). Product quality model}. ISO.
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021a). \emph{ISO/IEC/IEEE 29119-2:2021 Software and systems engineering. Software testing. Part 2: Test processes}. ISO.
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021b). \emph{ISO/IEC/IEEE 29119-3:2021 Software and systems engineering. Software testing. Part 3: Test documentation}. ISO.
+\item International Organization for Standardization, International Electrotechnical Commission e Institute of Electrical and Electronics Engineers. (2021c). \emph{ISO/IEC/IEEE 29119-4:2021 Software and systems engineering. Software testing. Part 4: Test techniques}. ISO.
+\item McCabe, T. J. (1976). A complexity measure. \emph{IEEE Transactions on Software Engineering, SE-2}(4), 308–320. https://doi.org/10.1109/TSE.1976.233837
+\item OWASP Foundation. (2020). \emph{OWASP Software Assurance Maturity Model (SAMM) v2.0}. https://owaspsamm.org/model/
+\item OWASP Foundation. (2021). \emph{OWASP Application Security Verification Standard 4.0.3}. https://owasp.org/www-project-application-security-verification-standard/
+\item Pact Foundation. (s.f.). \emph{Pact documentation}. https://docs.pact.io
+\item Watson, A. H., y McCabe, T. J. (1996). \emph{Structured testing: A testing methodology using the cyclomatic complexity metric} (NIST Special Publication 500-235). National Institute of Standards and Technology.
+\item World Wide Web Consortium. (2023). \emph{Web content accessibility guidelines (WCAG) 2.2}. https://www.w3.org/TR/WCAG22/
+\end{referencias}
+\end{document}

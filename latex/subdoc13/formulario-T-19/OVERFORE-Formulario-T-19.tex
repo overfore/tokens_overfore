@@ -1,0 +1,218 @@
+%% OVERFORE-Formulario-T-19.tex — generado desde OVERFORE-Formulario-T-19.docx
+%% Formato: clase overfore, modo formulario. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[formulario]{../../comun/overfore}
+\numsubdoc{13}
+\formulario{T-19}{Cartera de innovaciones}
+\informe{Informe Preparatorio N° 2}
+\fecha{12 de octubre de 2026}
+
+\begin{document}
+
+\apartado{Fichas de las cinco innovaciones}
+Este formulario es la cartera de innovaciones que acompaña al Subdocumento 13 y se cita en su capítulo 13. Contiene una ficha por cada una de las cinco innovaciones, una por tipo, con los 17 campos del formulario. Cada ficha resume lo que el capítulo 13 desarrolla en su sección y lo que los anexos del Subdocumento 13 detallan, y no contiene precios, que van en la Oferta Económica. La Tabla \ref{tab:cartera-innovaciones-tipo-mes-secciones-referencia} reúne las cinco innovaciones con su tipo, su mes y la sección donde se desarrollan.
+
+\begin{tabla}{C{0.071}I{0.282}I{0.341}I{0.153}I{0.153}}{Cartera de innovaciones, tipo, mes y secciones de referencia.}{tab:cartera-innovaciones-tipo-mes-secciones-referencia}
+  {\cab{N°} & \cab{Tipo de innovación} & \cab{Nombre de la innovación} & \cab{Mes} & \cab{Sección}}
+  {Fuente: elaboración propia a partir del Subdocumento 13 (sección 13.1) y de las Bases administrativas (CMAA, 2026a, cap. 5, Art. 28, p. 19).}
+1 & Producto o servicio & Control anticipado del arsénico en el lote comercial & 16 & 13.1 y Anexo A \\
+2 & Proceso & Clasificación asistida de detenciones & 22 y 27 & 13.2 y Anexo B \\
+3 & Tecnológica o de arquitectura & Factores de conciliación estimados con incertidumbre & 16 & 13.3 y Anexo C \\
+4 & Modelo de negocio o de contratación & Servicio gestionado con traspaso programado & 27, 33 y 39 & 13.4 y Anexo D \\
+5 & Experiencia de usuario, sostenibilidad o impacto social & Balance de dilución evitada & 22 & 13.5 y Anexo E \\
+\end{tabla}
+La cartera tiene una innovación por tipo, que el control del arsénico y los factores de conciliación entran con la Etapa 1 en el mes 16, que la clasificación asistida entra en los meses 22 (mina) y 27 (planta), que el balance de dilución entrega su primer resultado en el mes 22 y que el traspaso programado se materializa durante la operación, en los meses 27, 33 y 39. Las fichas siguientes, una por innovación, desarrollan cada campo.
+
+\seccion{Innovación 1: Control anticipado del arsénico en el lote comercial}
+La ficha de la innovación 1 resume la sección 13.1 del Subdocumento 13 y se detalla en el Anexo A de sus anexos.
+
+\begin{tabla}{I{0.318}I{0.682}}{Ficha de la innovación 1.}{tab:ficha-innovacion-1}
+  {\cab{Ficha 1} & \cab{Control anticipado del arsénico en el lote comercial.}}
+  {Fuente: elaboración propia a partir del Subdocumento 13, cap. 13, sección 13.1, p. 7.}
+Tipo de innovación (1 a 5) & 1. Producto o servicio. \\
+Nombre de la innovación & Control anticipado del arsénico en el lote comercial. \\
+Problema u oportunidad del caso que resuelve & Cuatro de los 31 embarques de 2025 fueron penalizados por arsénico, con un menor ingreso de USD 1,9 millones, y reconstruir el origen tomó cinco semanas. El lote se conforma en el acopio del recinto portuario y se liquida meses después (Compañía Minera Altos de Aranda [CMAA], 2026b, cap. 1, p. 3; cap. 4, p. 8). \\
+Tecnología, práctica o modelo que la sustenta & Balance de masa y optimización lineal que propone la composición del lote y proyecta el arsénico del acopio a quince días. Margen de seguridad de 1,65 veces la desviación estándar de la diferencia entre el análisis propio y el del comprador. Resolución con HiGHS, en su versión estable vigente a la adjudicación. \\
+Nivel de madurez y escala utilizada & Escala TRL de ISO 16290. Prácticas en TRL 9; aplicación a Aranda desde TRL 6 hasta TRL 8 al término de la marcha blanca de la Etapa 1. Investigación adicional: no requiere; se verifican en los meses 1 a 8 los datos de arsénico del laboratorio y los análisis del comprador. \\
+Fuentes citadas (APA 7.ª ed.) & Compañía Minera Altos de Aranda (2026b); Dantzig (1963); Huangfu y Hall (2018); International Organization for Standardization (2013). \\
+Dónde se inserta en la arquitectura & Capa de servicios de negocio, módulo Trazabilidad y Embarque, con el conector del Integrador de Sistemas al laboratorio, la lectura de QR en el acopio y el Portal Web SITCO. \\
+Paquetes de la EDT que la ejecutan & Ejecutan 1.7.1.1 Control del arsénico implementado (meses 8 a 12) y 1.7.1.2 Informe de verificación de la innovación 1 (meses 15, 30, 42 y 54). Apoyan 1.4.3.3 Módulo de Trazabilidad y Embarque (meses 5 a 11) y 1.4.2.1 Integrador de Sistemas con conectores de la Etapa 1 (meses 3 a 11). Los resultados se informan en el informe mensual de niveles de servicio (paquete 1.8.7.1). \\
+Mes del cronograma en que se materializa & Mes 16, abril de 2028. Construido en el mes 12 y en paralelo durante la marcha blanca de los meses 13 a 15. \\
+Inversión requerida & Esfuerzo de los paquetes 1.7.1.1 y 1.7.1.2 del Formulario T-15, 464 horas hombre, sin hardware ni licencias. La valorización va en la Oferta Económica. \\
+Efecto en el costo operacional & Un análisis de arsénico adicional por turno en el peor caso, 730 al año, equivalentes a 1,0 \% de las 71.000 muestras anuales del laboratorio. La valorización va en la Oferta Económica. \\
+Beneficio esperado y su cuantificación & Beneficio esperado, no comprometido porque depende del arsénico del acopio: embarques penalizados de 4 de 31 (12,9 \%) a 2 de 33 (6,1 \%) entre los meses 16 y 27, y a 1 de 33 (3,0 \%) desde el mes 28, como metas de diseño. Las metas reducen 50 \% y 75 \% los 4 embarques penalizados de 2025y se recalibran con la distribución de arsénico del acopio. A la tasa de 2025, 33 embarques tendrían 4,26 penalizados, por lo que las metas equivalen a evitar unos 2 y 3 embarques. El Caso no informa la causa de cada embarque penalizado, por lo que la reducción es una hipótesis de diseño (Anexo F del Subdocumento 13). \\
+Indicador de verificación, línea base y meta & Comprometido: propuesta de mezcla para el 100 \% de los embarques antes de embarcar, y diferencia entre arsénico estimado y analizado dentro del margen de seguridad en 9 de cada 10 lotes. Esperado, no comprometido: tasa de embarques penalizados por arsénico en doce meses, con línea base de 4 de 31 y metas de diseño de 6,1 \% en los meses 16 a 27 y de 3,0 \% desde el mes 28. \\
+Momento de medición & Propuesta: en los lotes de la marcha blanca de los meses 13 a 15, unos ocho, y en cada embarque desde el mes 16. Diferencia entre arsénico estimado y analizado: sobre los embarques de los meses 16 a 27, unos 33, con evaluación en el mes 28 e informe en el mes 30 (paquete 1.7.1.2); en la marcha blanca solo se observa la tendencia. Tasa de embarques penalizados: evaluaciones de los meses 30, 42 y 54 (paquete 1.7.1.2), con la liquidación de cada embarque. \\
+Riesgo de adopción, probabilidad e impacto & Concentrado del acopio completo sobre el límite, con lo que el beneficio esperado no se alcanza aunque el compromiso de Overfore se cumple: probabilidad media e impacto alto. Operador portuario que no ejecuta la mezcla: media y alto. Área comercial que no usa la propuesta: baja y medio. \\
+Estrategia de mitigación & Proyección del acopio a quince días con aviso a planificación y metalurgia; procedimiento de carga por lotes acordado con el operador antes del mes 13; propuesta integrada al registro del lote, con razón obligatoria al modificarla y revisión mensual con la gerencia comercial. \\
+Plan de contingencia si no rinde lo esperado & Informar al área comercial antes del embarque para negociar con el comprador o reprogramar; limitar la propuesta a lotes separables en la faena; revisar el modelo de estimación con metalurgia si no rinde en el mes 30. \\
+\end{tabla}
+
+\seccion{Innovación 2: Clasificación asistida de detenciones}
+La ficha de la innovación 2 resume la sección 13.2 del Subdocumento 13 y se detalla en el Anexo B de sus anexos.
+
+\begin{tabla}{I{0.318}I{0.682}}{Ficha de la innovación 2.}{tab:ficha-innovacion-2}
+  {\cab{Ficha 2} & \cab{Clasificación asistida de detenciones.}}
+  {Fuente: elaboración propia a partir de Subdocumento 13, cap. 13, sección 13.2, p. 11.}
+Tipo de innovación (1 a 5) & 2. Proceso. \\
+Nombre de la innovación & Clasificación asistida de detenciones. \\
+Problema u oportunidad del caso que resuelve & El 23 \% del tiempo registrado como demora quedó sin clasificar y el 61 \% de las detenciones no tuvo causa raíz en 2025. La planta sumó 214 horas de detención no programada, contra una meta interna bajo 120, y el supervisor tarda entre 15 y 20 minutos por evento, que el alcance base reduce con la vista única del equipo (CMAA, 2026b, cap. 7, p. 12; cap. 8, p. 13). \\
+Tecnología, práctica o modelo que la sustenta & Clasificador supervisado LightGBM, de versión de diseño 4.6.0 y con la versión estable vigente a la adjudicación, que propone la causa solo del residuo que no resuelven las reglas deterministas del alcance base, sobre la taxonomía de ISO 22400-2. Se entrena solo con causas que confirmó un supervisor, y el supervisor confirma o corrige cada propuesta. Las propuestas bajo 0,70 de confianza no se muestran, umbral que se ajusta en la validación previa para que lo mostrado alcance 80 \% de precisión. Cumple íntegramente el capítulo 18 de las Bases técnicas transversales (CMAA, 2026c, cap. 18, p. 32). \\
+Nivel de madurez y escala utilizada & Escala TRL de ISO 16290. Clasificador desde TRL 5, probado con el 39 \% de las detenciones de 2025 que tiene causa raíz documentada, hasta TRL 7 al entrar en operación en la mina, en el mes 22. Las reglas del alcance base están en TRL 9. Investigación adicional: requiere validación aplicada del clasificador con datos de Aranda, sin investigación básica; si no alcanza 80 \% de precisión en la validación previa, no entra en operación. \\
+Fuentes citadas (APA 7.ª ed.) & Compañía Minera Altos de Aranda (2026a, 2026b, 2026c); International Organization for Standardization (2013, 2014); ISO e International Electrotechnical Commission (2023); Ke et al. (2017); Microsoft Corporation (2025); National Institute of Standards and Technology (2023). \\
+Dónde se inserta en la arquitectura & Capa de servicios de negocio: módulo Operación Mina en la mina y módulo Equipos y Mantenimiento en la planta, con la App SITCO Terreno y los tableros de Indicadores y Centro Integrado. Entrenamiento y ejecución en Chile Central, con respaldo en Brazil South. \\
+Paquetes de la EDT que la ejecutan & Ejecutan 1.7.2.1 Clasificador de detenciones implementado (meses 13 a 18), 1.7.2.2 Informe de verificación de la innovación 2 (meses 16 a 33) y 1.7.2.3 Operación del clasificador (meses 22 a 56). Apoyan 1.7.2.4 Sistema de gestión de la inteligencia artificial con alcance en el clasificador (meses 3, 9 y 12), 1.4.3.2 Módulo de Operación Mina (meses 4 a 11) y 1.4.4.1 Módulo de Equipos y Mantenimiento (meses 13 a 17), que construyen las reglas del alcance base, y 1.4.2.3 Integrador de Sistemas con conectores de la Etapa 2 (meses 13 a 17). Apoyan además 1.8.5 Servicio de mantención evolutiva, cuya bolsa el reentrenamiento no consume, y 1.8.7.1 Informe mensual de niveles de servicio, que incluye las evaluaciones. \\
+Mes del cronograma en que se materializa & Clasificador en el mes 22 en la mina y en el mes 27 en la planta, por configuración, sobre las reglas del alcance base que entran en los meses 16 y 21. Ambos modelos quedan construidos en el mes 18. \\
+Inversión requerida & Esfuerzo de los paquetes 1.7.2.1 y 1.7.2.2 del Formulario T-15, 928 horas hombre, sin hardware ni licencias; el motor de reglas es alcance base. La valorización va en la Oferta Económica. \\
+Efecto en el costo operacional & Muestra mensual, monitoreo de deriva y reentrenamiento trimestral del paquete 1.7.2.3, 456 horas hombre entre los meses 22 y 56, ejecutadas por el equipo propio de Overfore con el procedimiento que entrega el paquete 1.7.2.1, con capacidad de la nube ya dimensionada y sin consumir la bolsa de mantención evolutiva del cliente. La valorización va en la Oferta Económica. \\
+Beneficio esperado y su cuantificación & Beneficio esperado, no comprometido porque depende también de mantenimiento: detenciones no programadas de planta de 214 a 190 horas al año, hipótesis de diseño de 11 \%, equivalentes a 276 toneladas de cobre fino al año, y reducción de 50 \% del tiempo del supervisor por detención del residuo cuando hay propuesta, frente a cuando no la hay en el mismo período. Las 24 horas son 26 \% de la brecha entre 214 y la meta interna de la compañía, bajo 120 horas. La valorización va en la Oferta Económica. \\
+Indicador de verificación, línea base y meta & Precisión verificada en muestra: meta 85 \% o más; si la del trimestre cae bajo 80 \% el clasificador se desactiva y solo se reactiva tras reentrenarse, con alerta mensual bajo 70 \%; 80 \% en la validación previa es requisito de entrada. Propuestas aceptadas sin cambios (adopción): línea base 0 \% y meta 85 \% o más. Tiempo del supervisor por detención del residuo: línea base, las detenciones sin propuesta del mismo período; meta, 50 \% menos con propuesta. Horas de planta: 214 al año, con 190 como beneficio esperado. Tasa de falsos positivos por causa, informada con cada versión reentrenada, que además pasa la prueba del clasificador en el ambiente de calidad (Subdocumento 9, 9.2.4.3). \\
+Momento de medición & Precisión, cada trimestre desde la entrada en operación; propuestas aceptadas, en los meses 27 (mina) y 33 (planta);tiempo del supervisor, comparado en el mismo período, en el mes 27 (mina); horas de planta, en el mes 33. \\
+Riesgo de adopción, probabilidad e impacto & Supervisores que aceptan propuestas sin revisarlas: probabilidad media e impacto alto. Percepción de control sobre el trabajo: baja y medio. \\
+Estrategia de mitigación & Confianza siempre visible, propuestas bajo 0,70 ocultas, revisión mensual de una muestra aleatoria de 5 \% de las propuestas mostradas (mínimo 60) con el superintendente de cada área, que mide la precisión, taxonomía diseñada con supervisores y exclusión de la identidad del operador. \\
+Plan de contingencia si no rinde lo esperado & Desactivar el clasificador si la precisión del trimestre cae bajo 80 \%, mantener las reglas y la clasificación manual, y reactivarlo solo tras reentrenarse. Se asume íntegramente la responsabilidad por los resultados del componente (CMAA, 2026a, Art. 86.2, p. 44). \\
+\end{tabla}
+
+\seccion{Innovación 3: Factores de conciliación estimados con incertidumbre}
+La ficha de la innovación 3 resume la sección 13.3 del Subdocumento 13 y se detalla en el Anexo C de sus anexos.
+
+\begin{tabla}{I{0.318}I{0.682}}{Ficha de la innovación 3.}{tab:ficha-innovacion-3}
+  {\cab{Ficha 3} & \cab{Factores de conciliación estimados con incertidumbre.}}
+  {Fuente: elaboración propia a partir de Subdocumento 13, cap. 13, sección 13.3, p. 17.}
+Tipo de innovación (1 a 5) & 3. Tecnológica o de arquitectura. \\
+Nombre de la innovación & Factores de conciliación estimados con incertidumbre. \\
+Problema u oportunidad del caso que resuelve & La diferencia de conciliación varía entre 3,1 \% y 6,8 \% mensual y el cierre toma 18 días hábiles. Los factores de ajuste se agregaron desde 2013, solo dos personas los explican y una se jubila en marzo, supuesto de marzo de 2026 declarado en el Subdocumento 13 (CMAA, 2026b, cap. 7, p. 11; cap. 8, p. 14). \\
+Tecnología, práctica o modelo que la sustenta & Reconciliación de datos por mínimos cuadrados ponderados por la incertidumbre estándar (k = 1) de cada instrumento, con detección de errores gruesos y sesgo del pesaje a bordo por camión estimado con la muestra de viajes de la báscula. \\
+Nivel de madurez y escala utilizada & Escala TRL de ISO 16290. Método en TRL 9; configuración para Aranda desde TRL 6 hasta TRL 8 al término de la marcha blanca de la Etapa 1. Investigación adicional: requiere validación aplicada, con las incertidumbres declaradas con metalurgia en los meses 3 a 6 y la suficiencia de la muestra de la báscula verificada en los meses 10 a 12; el método no requiere investigación. \\
+Fuentes citadas (APA 7.ª ed.) & Compañía Minera Altos de Aranda (2026b); International Organization for Standardization (2013); JCGM (2008); Narasimhan y Jordache (2000); Verein Deutscher Ingenieure (2017). \\
+Dónde se inserta en la arquitectura & Capa de servicios de negocio de la nube, módulo Conciliación Metalúrgica, alimentado por el Integrador de Sistemas desde despacho, báscula, historiador y laboratorio. El balance del turno sigue en el Nodo de Faena. Sin enlace, el Nodo lo mantiene con los últimos factores recibidos y el motor procesa los turnos del corte al sincronizar. No emite cifras contables. El tonelaje ajustado es de diagnóstico y no una cifra oficial. \\
+Paquetes de la EDT que la ejecutan & Ejecutan 1.7.3.1 Modelo de incertidumbre de los instrumentos de pesaje (meses 3 a 6), 1.7.3.2 Motor de reconciliación implementado (meses 7 a 12) y 1.7.3.3 Informe de verificación de la innovación 3 (meses 15, 21 y 27). Apoyan 1.2.6.1 Explicación escrita de los factores de ajuste y 1.2.6.2 Registro en video validado por metalurgia (mes 2), 1.4.3.4 Módulo de Conciliación Metalúrgica (meses 6 a 11) y 1.4.6.1 Informe de perfilado y datos saneados (meses 3 a 8). \\
+Mes del cronograma en que se materializa & Mes 16, abril de 2028. Construido en el mes 12 y en paralelo durante la marcha blanca de los meses 13 a 15. \\
+Inversión requerida & Esfuerzo de los paquetes 1.7.3.1 a 1.7.3.3 del Formulario T-15, 600 horas hombre, sin hardware ni licencias. La valorización va en la Oferta Económica. \\
+Efecto en el costo operacional & Bajo: el cálculo se ejecuta por turno en la nube ya dimensionada. La valorización va en la Oferta Económica. \\
+Beneficio esperado y su cuantificación & Hoy un error de medición se descubre en el cierre mensual, que toma hasta 18 días hábiles (CMAA, 2026b, cap. 7, p. 11). Con el motor y el enlace disponible se detecta dentro del turno siguiente, en 24 horas como máximo. Si el enlace se corta, los turnos del corte se procesan al completarse la sincronización y su plazo se cuenta desde ese momento. El alcance base cierra la conciliación en 3 días hábiles desde el mes 17, por lo que la detección pasa de hasta 3 días hábiles a 24 horas, y de hasta 18 días hábiles de la operación actual a 24 horas. El 100 \% de los factores de ajuste vigentes pasa a tener respaldo estadístico y su incertidumbre declarada. La valorización va en la Oferta Económica. \\
+Indicador de verificación, línea base y meta & Factores sin base estadística: línea base 100 \% de los factores vigentes, cuyo número se confirma en el levantamiento de los meses 1 y 2, meta 0 \%. Tiempo hasta detectar un error de medición: se descubre en el cierre mensual, hasta 18 días hábiles hoy y 3 días hábiles con el alcance base desde el mes 17, meta turno siguiente (24 horas como máximo con el enlace disponible). Sesgo del pesaje a bordo: factor semanal único, meta sesgo por camión con intervalo de confianza de 95 \%. \\
+Momento de medición & Cierre de la marcha blanca (mes 15) para los factores, el sesgo y la detección, con seguimiento en los meses 21 y 27 (paquete 1.7.3.3). \\
+Riesgo de adopción, probabilidad e impacto & Metalurgia que no confía en cifras ajustadas por un modelo: probabilidad media e impacto alto. Muestra de báscula insuficiente por camión: media y medio. \\
+Estrategia de mitigación & Funcionamiento en paralelo con los factores documentados en la marcha blanca y validación con los metalurgistas de turno; estimación del sesgo por grupo de camiones; muestra de la báscula verificada contra el total de viajes. \\
+Plan de contingencia si no rinde lo esperado & Operar solo como alarma de calibración sin afectar la conciliación base; entregar el sesgo por flota con un intervalo de confianza mayor. \\
+\end{tabla}
+
+\seccion{Innovación 4: Servicio gestionado con traspaso programado}
+La ficha de la innovación 4 resume la sección 13.4 del Subdocumento 13 y se detalla en el Anexo D de sus anexos.
+
+\begin{tabla}{I{0.318}I{0.682}}{Ficha de la innovación 4.}{tab:ficha-innovacion-4}
+  {\cab{Ficha 4} & \cab{Servicio gestionado con traspaso programado.}}
+  {Fuente: elaboración propia a partir de Subdocumento 13, cap. 13, sección 13.4, p. 23.}
+Tipo de innovación (1 a 5) & 4. Modelo de negocio o de contratación. \\
+Nombre de la innovación & Servicio gestionado con traspaso programado. \\
+Problema u oportunidad del caso que resuelve & El área de tecnologías de información tiene once personas y no puede operar un sistema que requiera un especialista dedicado. En un servicio completo la compañía paga hasta el mes 56 por tareas funcionales que su equipo podría asumir, y la transferencia se concentra en el plan de reversibilidad del término del contrato (CMAA, 2026b, cap. 8, p. 16; cap. 10, p. 20; CMAA, 2026a, Art. 77, p. 39). \\
+Tecnología, práctica o modelo que la sustenta & Esquema de construcción, operación y transferencia adaptado a tres bloques de administración funcional, con certificación previa, un mes de operación asistida, traspaso de responsabilidades y cláusula de retorno, por sobre la certificación, la mentoría y la transferencia que exigen las Bases (CMAA, 2026c, RT-22.05 y RT-22.07, p. 38). \\
+Nivel de madurez y escala utilizada & Escala de capacidad de proceso de ISO/IEC 33020, niveles 0 a 5, aplicada a una práctica contractual consolidada de construcción, operación y transferencia. La administración funcional empieza en el nivel 1. Cada bloque llega al nivel 3 cuando se traspasa y al nivel 4 al mes 45. No se necesita investigación adicional. Es un diseño contractual. \\
+Fuentes citadas (APA 7.ª ed.) & Compañía Minera Altos de Aranda (2026a, 2026b, 2026c); Shostack (2014); World Bank (2017); International Organization for Standardization e International Electrotechnical Commission. (2019). ISO/IEC 33020:2019 Information technology. Process assessment. Process measurement framework for assessment of process capability. ISO. \\
+Dónde se inserta en la arquitectura & Administración y Servicios Comunes, con roles de administrador funcional acotados por bloque y un modelado de amenazas STRIDE propio del bloque 3 (Shostack, 2014); Indicadores y Centro Integrado y la base de conocimiento. Las taxonomías de detenciones permanecen en el servicio. \\
+Paquetes de la EDT que la ejecutan & Ejecutan 1.7.4.1 Plan de traspaso programado del servicio (meses 21 a 27) y 1.7.4.2 Actas de traspaso de servicios al cliente (meses 27, 33, 39 y 45). Apoyan 1.6.5.3 Acta de transferencia tecnológica al equipo de TI (meses 22 a 27), 1.6.5.2 Manuales, guías y base de conocimiento (meses 10 a 18) y 1.8.9 Personal del cliente capacitado en la operación (meses 21 a 56), con sus paquetes 1.8.9.1 y 1.8.9.2. \\
+Mes del cronograma en que se materializa & Traspasos en los meses 27, 33 y 39 (marzo de 2029, septiembre de 2029 y marzo de 2030) y verificación de la meta en el mes 45. \\
+Inversión requerida & Esfuerzo de los paquetes 1.7.4.1 y 1.7.4.2 del Formulario T-15, 152 horas hombre, sin hardware ni licencias. La valorización va en la Oferta Económica. \\
+Efecto en el costo operacional & La carga de administración funcional que asume el equipo del cliente se estima en 38 horas hombre al mes con los tres bloques traspasados, como hipótesis de diseño del Anexo F, y se verifica con las solicitudes reales de M21–M26. Esas horas no modifican el esfuerzo ni la dotación del Formulario T-15. Su valorización y las condiciones económicas se presentan exclusivamente en la Oferta Económica. \\
+Beneficio esperado y su cuantificación & Pasan al equipo del cliente 208 horas hombre de administración funcional en 2029, 436 en 2030 y 304 entre enero y agosto de 2031, 948 en el contrato. El bloque 1 se administra durante 30 meses, con 16 horas al mes, el bloque 2 durante 24, con 12, y el bloque 3 durante 18, con 10 (hipótesis de diseño del Anexo F, porque el Caso no informa el volumen de solicitudes). Un cambio funcional pasa de cinco días hábiles en el servicio completo a uno. Al mes 56 su equipo lleva entre 18 y 30 meses administrando la solución. La valorización va en la Oferta Económica. \\
+Indicador de verificación, línea base y meta & Proporción de solicitudes funcionales resueltas por el equipo del cliente sin abrir un requerimiento. Línea base: 0 \%. Meta: 80 \% al mes 45, verificada en la cuarta acta. Complementario: un día hábil desde el pedido del cambio hasta producción. \\
+Momento de medición & Cada trimestre desde el mes 27, con la mesa de ayuda y la auditoría de cambios; meta al mes 45. \\
+Riesgo de adopción, probabilidad e impacto & Equipo del cliente sin capacidad para asumir un bloque: probabilidad media e impacto medio. Error o abuso en la administración delegada de usuarios y roles: baja y alto. Cliente que no asume ningún bloque: baja y bajo. \\
+Estrategia de mitigación & Certificación previa, mes de operación asistida y verificación de absorción antes de cada traspaso; para el bloque 3, los controles de su modelado STRIDE: roles delegables sin permisos de plataforma, segundo aprobador para roles con datos personales y auditoría de cada cambio. \\
+Plan de contingencia si no rinde lo esperado & Cláusula de retorno: el bloque vuelve al servicio con treinta días de aviso y con las condiciones del contrato original, sin penalización. \\
+\end{tabla}
+
+\seccion{Innovación 5: Balance de dilución evitada}
+La ficha de la innovación 5 resume la sección 13.5 del Subdocumento 13 y se detalla en el Anexo E de sus anexos.
+
+\begin{tabla}{I{0.318}I{0.682}}{Ficha de la innovación 5.}{tab:ficha-innovacion-5}
+  {\cab{Ficha 5} & \cab{Balance de dilución evitada.}}
+  {Fuente: elaboración propia a partir de Subdocumento 13, cap. 13, sección 13.5, p. 29.}
+Tipo de innovación (1 a 5) & 5. Experiencia de usuario, sostenibilidad o impacto social. \\
+Nombre de la innovación & Balance de dilución evitada. \\
+Problema u oportunidad del caso que resuelve & El Caso no registra ningún indicador de dilución. Un polígono planificado en 0,58 \% de ley llegó a la planta en 0,51 \%, sin que nadie sepa si hubo pérdida, error del modelo o material de otro origen (CMAA, 2026b, cap. 8, p. 14). Cada tonelada de estéril procesada gasta energía y agua sin producir cobre. \\
+Tecnología, práctica o modelo que la sustenta & Balance de masa que compara la ley de cabeza medida con la ley esperada del material retomado, calculada con la composición por capas de los stocks y con la ley del estéril, 0 \% mientras no se mida. Separa origen, error de referencia del modelo de bloques, estimado con los polígonos de pocas declaraciones, y dilución, y calcula energía, agua y emisiones con consumos específicos y un factor de emisión publicados. \\
+Nivel de madurez y escala utilizada & Escala TRL de ISO 16290. Métodos en TRL 9; aplicación a las declaraciones del operador desde TRL 7 hasta TRL 8 con el primer balance mensual, en el mes 22. Investigación adicional: no requiere; se calibran la ley del estéril y el umbral de declaraciones en los meses 16 a 21. \\
+Fuentes citadas (APA 7.ª ed.) & Compañía Minera Altos de Aranda (2026b); Comisión Chilena del Cobre (2019, 2025a, 2025b); International Organization for Standardization (2013); World Resources Institute y World Business Council for Sustainable Development (2005). \\
+Dónde se inserta en la arquitectura & Capa de servicios de negocio: Cumplimiento Ambiental calcula, con datos de Operación Mina, Conciliación Metalúrgica, Trazabilidad y Embarque, el historiador a través del diodo de datos y el caudalímetro; Indicadores y Centro Integrado presenta los resultados. \\
+Paquetes de la EDT que la ejecutan & Ejecutan 1.7.5.1 Balance de dilución evitada implementado (meses 16 a 18) y 1.7.5.2 Informe de verificación de la innovación 5 (meses 21, 28, 34, 40 y 46). Apoyan 1.4.4.3 Módulo de Cumplimiento Ambiental (meses 14 a 17), 1.6.2.2 Lectores, caudalímetros y tabletas de la Etapa 2 (meses 12 a 19), 1.4.3.2 Módulo de Operación Mina, 1.4.3.4 Módulo de Conciliación Metalúrgica y 1.4.5.1 Botonera de Pala y App SITCO Terreno. \\
+Mes del cronograma en que se materializa & Mes 22, octubre de 2028, con el primer balance mensual; construido en el mes 18. \\
+Inversión requerida & Esfuerzo de los paquetes 1.7.5.1 y 1.7.5.2 del Formulario T-15, 320 horas hombre, sin hardware porque la botonera y el caudalímetro ya están en el alcance. La valorización va en la Oferta Económica. \\
+Efecto en el costo operacional & Prácticamente nulo: el cálculo usa datos y capacidad de cómputo existentes. \\
+Beneficio esperado y su cuantificación & Por cada punto porcentual de dilución que se reduce: 215.000 t de estéril que dejan de procesarse, 4,68 GWh, 77.400 m³ de agua y 943 t de CO₂e que dejan de destinarse a estéril, y 1.004 t de cobre fino de capacidad liberada. Como la planta opera a capacidad, la capacidad liberada se usa en mineral y el efecto ambiental es una baja de cerca de 1 \% en la energía y el agua por tonelada de cobre fino. La valorización va en la Oferta Económica. \\
+Indicador de verificación, línea base y meta & Cobertura del balance: proporción de polígonos con envío a planta que tienen su dilución estimada en el mes. Línea base: 0 \%. Meta: 90 \% desde el mes 22. Beneficio esperado, que depende de planificación: reducir la dilución en 0,5 puntos al mes 34 y en 1 punto al mes 46 respecto de la línea base de los meses 16 a 21, recalculada en el mes 28 con el modelo de capas verificado. Ambas reducciones son hipótesis de diseño, porque el Caso no informa la dilución actual. \\
+Momento de medición & Cobertura, cada mes desde el mes 22; reducción de dilución, cada semestre, en los meses 34 y 46. \\
+Riesgo de adopción, probabilidad e impacto & Planificación que no usa los polígonos informados: probabilidad media e impacto alto. Grupos que perciben el resumen como evaluación: baja y medio. \\
+Estrategia de mitigación & Informe semanal en la reunión de planificación con registro de la revisión de cada polígono; cifras solo agregadas por grupo, nunca por persona, presentadas como resultado del grupo. \\
+Plan de contingencia si no rinde lo esperado & Mantener el balance como medición y revisar con planificación qué información le falta si al mes 34 la dilución no baja; retirar el resumen de las charlas si baja la frecuencia de declaraciones. \\
+\end{tabla}
+Las cinco innovaciones declaran sus 17 campos, con tipo, madurez con su escala, paquetes de la estructura de descomposición del trabajo, mes, indicador con línea base y meta, y riesgo con su mitigación y contingencia.
+
+\begin{horizontal}
+
+\apartado{Paquetes de la EDT de la cartera}
+La Tabla \ref{tab:paquetes-edt-innovacion-meses-horas-hombre} lista, por innovación, los paquetes de la rama 1.7 de la estructura de descomposición del trabajo que la ejecutan y los paquetes de otras ramas que la apoyan, con sus meses y sus horas hombre según los Formularios T-14 y T-15. Las horas se indican solo para los paquetes de la rama 1.7, porque las de los paquetes de apoyo forman parte del esfuerzo del alcance base.
+
+\begin{tabla}{C{0.062}C{0.114}I{0.363}I{0.182}C{0.102}C{0.110}D{0.067}}{Paquetes de la EDT por innovación, con meses y horas hombre.}{tab:paquetes-edt-innovacion-meses-horas-hombre}
+  {\cab{N°} & \cab{Código} & \cab{Paquete} & \cab{Innovación} & \cab{Rol} & \cab{Meses} & \cab{HH}}
+  {Fuente: elaboración propia a partir de Formulario T-14 (asociado al cap. 7), sección 13, p. 132.}
+1 & 1.7.1.1 & Control del arsénico implementado & 1 · Arsénico & Ejecuta & 8 a 12 & 400 \\
+2 & 1.7.1.2 & Informe de verificación de la innovación 1 & 1 · Arsénico & Ejecuta & 15, 30, 42 y 54 & 64 \\
+3 & 1.4.3.3 & Módulo de Trazabilidad y Embarque & 1 · Arsénico & Apoya & 5 a 11 & — \\
+4 & 1.4.2.1 & Integrador de Sistemas con conectores de la Etapa 1 & 1 · Arsénico & Apoya & 3 a 11 & — \\
+5 & 1.7.2.1 & Clasificador de detenciones implementado & 2 · Detenciones & Ejecuta & 13 a 18 & 880 \\
+6 & 1.7.2.2 & Informe de verificación de la innovación 2 & 2 · Detenciones & Ejecuta & 16 a 33 & 48 \\
+7 & 1.7.2.3 & Operación del clasificador & 2 · Detenciones & Ejecuta & 22 a 56 & 456 \\
+8 & 1.7.2.4 & Sistema de gestión de la inteligencia artificial con alcance en el clasificador & 2 · Detenciones & Apoya & 3, 9 y 12 & 80 \\
+9 & 1.4.3.2 & Módulo de Operación Mina & 2 · Detenciones & Apoya & 4 a 11 & — \\
+10 & 1.4.4.1 & Módulo de Equipos y Mantenimiento & 2 · Detenciones & Apoya & 13 a 17 & — \\
+11 & 1.4.2.3 & Integrador de Sistemas con conectores de la Etapa 2 & 2 · Detenciones & Apoya & 13 a 17 & — \\
+12 & 1.7.3.1 & Modelo de incertidumbre de los instrumentos de pesaje & 3 · Conciliación & Ejecuta & 3 a 6 & 72 \\
+13 & 1.7.3.2 & Motor de reconciliación implementado & 3 · Conciliación & Ejecuta & 7 a 12 & 480 \\
+14 & 1.7.3.3 & Informe de verificación de la innovación 3 & 3 · Conciliación & Ejecuta & 15, 21 y 27 & 48 \\
+15 & 1.2.6.1 & Explicación escrita de los factores de ajuste & 3 · Conciliación & Apoya & 2 & — \\
+16 & 1.2.6.2 & Registro en video validado por metalurgia & 3 · Conciliación & Apoya & 2 & — \\
+17 & 1.4.3.4 & Módulo de Conciliación Metalúrgica & 3 · Conciliación & Apoya & 6 a 11 & — \\
+18 & 1.4.6.1 & Informe de perfilado y datos saneados & 3 · Conciliación & Apoya & 3 a 8 & — \\
+19 & 1.7.4.1 & Plan de traspaso programado del servicio & 4 · Traspaso & Ejecuta & 21 a 27 & 56 \\
+20 & 1.7.4.2 & Actas de traspaso de servicios al cliente & 4 · Traspaso & Ejecuta & 27, 33, 39 y 45 & 96 \\
+21 & 1.6.5.3 & Acta de transferencia tecnológica al equipo de TI & 4 · Traspaso & Apoya & 22 a 27 & — \\
+22 & 1.6.5.2 & Manuales, guías y base de conocimiento & 4 · Traspaso & Apoya & 10 a 18 & — \\
+23 & 1.8.9 & Personal del cliente capacitado en la operación & 4 · Traspaso & Apoya & 21 a 56 & — \\
+24 & 1.7.5.1 & Balance de dilución evitada implementado & 5 · Dilución & Ejecuta & 16 a 18 & 240 \\
+25 & 1.7.5.2 & Informe de verificación de la innovación 5 & 5 · Dilución & Ejecuta & 21, 28, 34, 40 y 46 & 80 \\
+26 & 1.4.4.3 & Módulo de Cumplimiento Ambiental & 5 · Dilución & Apoya & 14 a 17 & — \\
+27 & 1.6.2.2 & Lectores, caudalímetros y tabletas de la Etapa 2 & 5 · Dilución & Apoya & 12 a 19 & — \\
+28 & 1.4.3.2 & Módulo de Operación Mina & 5 · Dilución & Apoya & 4 a 11 & — \\
+29 & 1.4.3.4 & Módulo de Conciliación Metalúrgica & 5 · Dilución & Apoya & 6 a 11 & — \\
+30 & 1.4.5.1 & Botonera de Pala y App SITCO Terreno & 5 · Dilución & Apoya & 3 a 11 & — \\
+— & 1.7 & Total de los paquetes que ejecutan las innovaciones & Todas & — & 3 a 56 & 2.920 \\
+\end{tabla}
+Cada innovación tiene en la rama 1.7 sus paquetes propios de implementación y de verificación, más la operación del clasificador en la innovación 2, y que su ejecución se apoya en los paquetes de construcción de los módulos y en los de transferencia y datos del alcance base. La suma de las horas hombre de los paquetes propios de la rama 1.7 es de 2.920, de las cuales 456 corresponden a la operación del clasificador entre los meses 22 y 56.
+
+\end{horizontal}
+
+\seccionsinnumero{Referencias}
+\begin{referencias}
+\item Comisión Chilena del Cobre. (2019). \emph{Consumo de agua en la minería del cobre al año 2018} (DEPP 06/2019). https://cochilco.cl/web/download/821/2019/7845/consumo-de-agua-en-la-mineria-del-cobre-al-ano-2018.pdf
+\item Comisión Chilena del Cobre. (2025a). \emph{Consumo energético de la minería del cobre al año 2024} (DEPP 17/2025). https://www.cochilco.cl/web/download/991/2025/15151/consumo-de-energia-en-la-mineria-del-cobre-actualizacion-ano-2024.pdf
+\item Comisión Chilena del Cobre. (2025b). \emph{Emisiones de gases de efecto invernadero asociadas a la minería del cobre al año 2024} (DEPP 24/2025). https://www.cochilco.cl/web/download/991/2025/15305/emisiones-de-gases-de-efecto-invernadero-asociadas-a-la-mineria-del-cobre-al-ano-2024.pdf
+\item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
+\item Compañía Minera Altos de Aranda. (2026c). \emph{Bases técnicas transversales}. Licitación N° TFEP-01/2026.
+\item Dantzig, G. B. (1963). \emph{Linear programming and extensions}. Princeton University Press.
+\item Huangfu, Q., y Hall, J. A. J. (2018). Parallelizing the dual revised simplex method. \emph{Mathematical Programming Computation, 10}(1), 119–142. https://doi.org/10.1007/s12532-017-0130-5
+\item International Organization for Standardization e International Electrotechnical Commission. (2023). \emph{ISO/IEC 42001:2023 Information technology. Artificial intelligence. Management system}. ISO.
+\item International Organization for Standardization. (2013). \emph{ISO 16290:2013 Space systems. Definition of the Technology Readiness Levels (TRLs) and their criteria of assessment}. ISO.
+\item International Organization for Standardization. (2014). \emph{ISO 22400-2:2014 Automation systems and integration. Key performance indicators (KPIs) for manufacturing operations management. Part 2: Definitions and descriptions}. ISO.
+\item Joint Committee for Guides in Metrology. (2008). \emph{Evaluation of measurement data: Guide to the expression of uncertainty in measurement} (JCGM 100:2008). Bureau International des Poids et Mesures.
+\item Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., Ye, Q., y Liu, T.-Y. (2017). LightGBM: A highly efficient gradient boosting decision tree. En \emph{Advances in Neural Information Processing Systems 30} (pp. 3146–3154). Curran Associates.
+\item Microsoft Corporation. (2025). \emph{LightGBM documentation} (Release 4.6.0). https://lightgbm.readthedocs.io
+\item Narasimhan, S., y Jordache, C. (2000). \emph{Data reconciliation and gross error detection: An intelligent use of process data}. Gulf Publishing Company.
+\item National Institute of Standards and Technology. (2023). \emph{Artificial intelligence risk management framework (AI RMF 1.0)} (NIST AI 100-1). https://doi.org/10.6028/NIST.AI.100-1
+\item Shostack, A. (2014). \emph{Threat modeling: Designing for security}. Wiley.
+\item Verein Deutscher Ingenieure. (2017). \emph{VDI 2048 Blatt 1: Control and quality improvement of process data and their uncertainties by means of correction calculation for operation and acceptance tests}. Beuth.
+\item World Bank. (2017). \emph{Public-private partnerships reference guide} (Versión 3). World Bank.
+\item World Resources Institute y World Business Council for Sustainable Development. (2005). \emph{The GHG protocol for project accounting}. https://ghgprotocol.org/standards/project-protocol
+\end{referencias}
+\end{document}

@@ -1,0 +1,91 @@
+%% OVERFORE-Subdocumento3-Anexos.tex — generado desde OVERFORE-Subdocumento3-Anexos.docx
+%% Formato: clase overfore, modo anexo. El formato lo pone la clase; aquí sólo va el contenido.
+\documentclass[anexo]{../../comun/overfore}
+\numsubdoc{3}
+\informe{Informe Preparatorio N° 2}
+\fecha{[día] de [mes] de 2026}
+
+\begin{document}
+
+\anexo{Asignación por etapa}
+Este anexo detalla, por cada componente, cómo se reparte el alcance entre la Etapa 1 y la Etapa 2 que la sección 3.2.2.1 del Subdocumento 3 resume por criterio. La Tabla \ref{tab:asignacion-etapa-cada-componente-plataforma-modulo} muestra los elementos de la solución, agrupados en componentes, plataformas y módulos, en 19 filas. Algunos elementos se dividen por etapa y cada fila indica la etapa en que entra en producción y el motivo de su asignación.
+
+\begin{tabla}{I{0.541}C{0.093}I{0.366}}{Asignación por etapa de cada componente, plataforma y módulo.}{tab:asignacion-etapa-cada-componente-plataforma-modulo}
+  {\cab{Componente, plataforma o módulo} & \cab{Etapa} & \cab{Motivo de la asignación}}
+  {Fuente: elaboración propia a partir de las Bases administrativas (Compañía Minera Altos de Aranda [CMAA], 2026a, Art. 17.1, p. 12), y las Bases técnicas del caso Minería (CMAA, 2026b, cap. 13.1, p. 21).}
+\multicolumn{3}{I{1.000}}{Componentes de la solución} \\
+Infraestructura: sala técnica nueva, gabinetes de borde y nube con dos regiones & 1 & Todos los módulos funcionan sobre ella \\
+Red: segunda fibra y enlace satelital de órbita baja con SD-WAN, zona desmilitarizada con diodo de datos y estudio de cobertura LTE & 1 & La operación no puede depender de un único enlace \\
+Dispositivos de terreno: botoneras y tabletas de mina, planta y puerto, y PC industriales de la Consola de Portería & 1 & Registran los hechos donde ocurren \\
+Dispositivos de terreno: lectores faciales de portería, caudalímetros y tabletas de seguridad y mantenimiento & 2 & Acompañan a los módulos de la Etapa 2; los lectores faciales requieren acuerdo con el sindicato \\
+\multicolumn{3}{I{1.000}}{Plataformas} \\
+Integrador de Sistemas con siete conectores: despacho, báscula, historiador, laboratorio, planificación, SAP y control de acceso de portería, más el conector de radio y megafonía del Nodo de Faena. & 1 & Es la fuente de datos de la trazabilidad y de la validación en portería \\
+Integrador de Sistemas con un conector de telemetría (un adaptador por cada uno de los tres fabricantes) y el de fatiga, la ampliación de SAP (mantenimiento y costos) y del control de acceso (verificación facial) & 2 & Requiere acceso a la telemetría de los fabricantes \\
+Nodo de Faena & 1 & Permite operar al menos 48 horas sin enlace con Antofagasta \\
+\multicolumn{3}{I{1.000}}{Módulos} \\
+Administración y Servicios Comunes & 1 & Entrega identidad, auditoría y firma a todos los módulos \\
+Operación Mina & 1 & Captura el origen de cada tonelada \\
+Trazabilidad y Embarque, sin el Portal para Compradores & 1 & Sigue la cadena hasta el embarque \\
+Conciliación Metalúrgica & 1 & Permite cerrar la conciliación en tres días hábiles \\
+Acreditación y Acceso, sin la verificación facial en portería (incluye la verificación facial con huella de respaldo en el acceso a la sala técnica) & 1 & No depende de terceros, y la sala técnica debe quedar protegida desde que se instala \\
+Indicadores y Centro Integrado: tableros de turno y vista del CIO & 1 & Muestran lo que captura la Etapa 1 \\
+Equipos y Mantenimiento & 2 & Requiere acceso a la telemetría de los fabricantes \\
+Seguridad y Salud Ocupacional (incluye digitalización de 193.000 formularios históricos) & 2 & Debe estar operativo antes de la auditoría de 2029 \\
+Cumplimiento Ambiental & 2 & Usa los consumos y la telemetría \\
+Acreditación y Acceso: verificación facial en portería & 2 & Requiere acuerdo con el sindicato \\
+Trazabilidad y Embarque: Portal para Compradores & 2 & Debe estar operativo antes de enero de 2029 \\
+Indicadores y Centro Integrado: indicadores de gestión y costo por tonelada & 2 & Requiere datos de ambas etapas \\
+\end{tabla}
+De la tabla se ve que la Etapa 1 incluye toda la infraestructura y la red. También incorpora el Nodo de Faena, los siete conectores iniciales del Integrador de Sistemas y la cadena completa del mineral. Por otro lado, la Etapa 2 solo suma módulos, conectores y dispositivos sobre esa base. No cambia la arquitectura. Cada motivo corresponde a uno de los cuatro criterios de asignación del Subdocumento 3, que son el plazo externo, dependencia técnica, dependencia de terceros y capacidad de absorción.
+
+\anexo{Correspondencia entre el problema y la solución}
+Este anexo muestra la correspondencia que la sección 3.4.4 del Subdocumento 3 resume por problema. La Tabla \ref{tab:correspondencia-entre-situaciones-diagnostico-modulos-plataformas} relaciona cada una de las 13 situaciones identificadas en el diagnóstico del Subdocumento 2 con el módulo o plataforma que la resuelve. Están ordenadas según los tres problemas y las condiciones transversales.
+
+\begin{tabla}{I{0.218}I{0.245}I{0.538}}{Correspondencia entre las situaciones del diagnóstico y los módulos y plataformas de SITCO Aranda.}{tab:correspondencia-entre-situaciones-diagnostico-modulos-plataformas}
+  {\cab{Problema} & \cab{Módulo o plataforma} & \cab{Situaciones que resuelve}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 7, pp. 11-12).}
+ & Operación Mina & Plan sin versión vigente, cambios de material avisados por radio y cargas en el borde de dos polígonos \\
+ & Trazabilidad y Embarque & Ley de los stocks sin verificar, concentrado a puerto acompañado de papel y origen de un lote reconstruido en semanas \\
+\multirow{-3}{=}{Trazabilidad y conciliación} & Conciliación Metalúrgica & Tres tonelajes sin fuente de verdad, resultados de laboratorio transcritos y balances con factores que pocas personas conocen \\
+ & Operación Mina & Demoras sin clasificar, perforación en planilla, cumplimiento del plan con desfase y tiempo perdido en el cambio de turno \\
+ & Equipos y Mantenimiento & Información del equipo dispersa en cuatro sistemas y una radio, avisos de falla por radio, detenciones sin causa raíz y desconfianza en las alertas \\
+ & Integrador de Sistemas & Telemetría repartida en tres portales y propiedad de sus datos sin aclarar \\
+\multirow{-4}{=}{Productividad de la operación} & Indicadores y Centro Integrado & Centro Integrado de Operaciones usado por debajo de su capacidad \\
+ & Acreditación y Acceso & Acreditación lenta en una planilla, rechazos por documentos vencidos y préstamo de credenciales \\
+ & Seguridad y Salud Ocupacional & Registros en papel, alertas de fatiga sin acción registrada y datos sensibles en planillas y correos \\
+\multirow{-3}{=}{Cumplimiento y personas} & Cumplimiento Ambiental & Reportes armados a mano, agua y combustible sin detalle por área, huella de carbono anual e indicadores de comunidad hechos a mano \\
+ & Integrador de Sistemas & Sistemas que no conversan entre sí y falta de inventario técnico \\
+ & Nodo de Faena & Conectividad frágil con Antofagasta \\
+\multirow{-3}{=}{Condiciones transversales} & Administración y Servicios Comunes & Credenciales compartidas, registros sin autor ni firma y factores de ajuste sin control de versiones \\
+\end{tabla}
+De la tabla se ve que cada situación del diagnóstico tiene un módulo o plataforma responsable. Ninguno de los nueve módulos ni de las dos plataformas queda sin una situación que lo justifique. Operación Mina y el Integrador de Sistemas aparecen en más de un problema. Esto se debe a que un mismo registro de origen sirve tanto para la trazabilidad como para la productividad. Además, un mismo conector sirve a varios módulos.
+
+\anexo{Estrategia por grupo de interés}
+El Anexo C detalla la estrategia por grupo de interés que resume la sección 3.4.5 del Subdocumento 3. Para cada uno de los diecinueve grupos identificados en la sección 2.4 del Subdocumento 2, la Tabla \ref{tab:estrategia-grupo-interes} indica su preocupación principal, la respuesta de la solución y su forma de participación.
+
+\begin{tabla}{I{0.232}I{0.235}I{0.276}I{0.258}}{Estrategia por grupo de interés.}{tab:estrategia-grupo-interes}
+  {\cab{Grupo de interés} & \cab{Preocupación principal} & \cab{Respuesta de la solución} & \cab{Forma de participación}}
+  {Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 8, pp. 13-18).}
+Directorio y gerencia general & Demostrar el origen antes de 2029 & Trazabilidad en producción en el mes 16 & Comité directivo mensual con avance por hito \\
+Gerencia de finanzas & Una sola verdad contable & SAP contabiliza la liquidación que informa el comprador de cada embarque. El cierre se hace en 3 días hábiles y el costo es diario. & Ratifica la fuente de verdad del tonelaje en el mes 3 \\
+Gerencia de operaciones mina & Rendimiento de la pala & Despacho intacto y botonera de un toque & Aprueba la botonera en el piloto con una pala \\
+Superintendencia de planta y metalurgia & Tonelaje confiable y red de control intocable & Fuente de verdad por tramo y diodo de datos & Define las señales que se leen \\
+Superintendencia de planificación minera & Plan que cambia sin registro & Versiones del plan y cumplimiento por turno & Valida el versionado en la marcha blanca \\
+Jefatura de mantenimiento & Alertas que nadie mira & Vista única y reglas propias con límite semanal & Define y aprueba cada regla de alerta \\
+Metalurgistas y laboratorio químico & Transcribir y perder los factores & Resultados directos y factores documentados & Documenta los factores en los primeros meses \\
+Personal del CIO & Información que sólo existe en faena & Tableros de turno y vista integrada & Usuarios piloto de los tableros \\
+Supervisores y despachadores & Más pantallas y más tiempo & Razón del cambio con un clic & Diseñan la taxonomía de demoras \\
+Operadores de equipos & Pantallas inútiles con guantes y sol & Botonera sin pantalla & Prueban la botonera de día y de noche \\
+Sindicato & Uso de la biometría & Verificación uno a uno y plantilla cifrada & Mesa de trabajo desde el mes 2 \\
+Empresas contratistas & Rechazos y viajes perdidos & Portal con avisos de vencimiento & Capacitación por empresa antes de la marcha blanca \\
+Compradores internacionales & Evidencia verificable del origen & Portal para Compradores & Revisión de un lote piloto con el comprador en 2028 \\
+Autoridad ambiental & Evidencia verificable de los reportes & Reportes firmados generados desde SITCO & No participa en el diseño; recibe los reportes generados desde SITCO \\
+TI & Operar la solución con un equipo de once personas & Mesa de ayuda 24x7, centro de operaciones y transferencia de la parametrización, los usuarios y los reportes (3.1.3) & Valida con el proyecto la identidad federada, el aislamiento de la red de control y lo que se transfiere a su equipo \\
+Seguridad y Salud Ocupacional & Registros de incidentes y fatiga con acción documentada & Registros digitales en la App SITCO Terreno y alertas de fatiga que escalan si no tienen acción (3.4.2.6) & Valida los formularios digitales y la acción exigida a cada alerta antes de la marcha blanca de la Etapa 2 \\
+Sustentabilidad y Asuntos Regulatorios & Reportes ambientales y huella de carbono armados a mano & Reportes y huella generados desde SITCO (3.4.2.7) & Valida el cálculo del agua por área y de la huella antes de la marcha blanca de la Etapa 2 \\
+Autoridad minera & Registros de seguridad trazables para la fiscalización & Registros firmados con firma electrónica avanzada (3.4.2.6) & No participa en el diseño; recibe los registros que solicita en la fiscalización \\
+Comunidad del convenio & Indicadores de empleo y compras locales construidos hoy con planillas & Indicadores de empleo local y compras locales construidos desde el dato de origen en Cumplimiento Ambiental & No participa en el diseño; recibe los indicadores semestrales \\
+\end{tabla}
+De la tabla se ve que los grupos que usan la solución participan en su diseño o en su validación, y que la mayoría lo hace antes de la marcha blanca de su etapa; las autoridades y la comunidad reciben sus resultados.
+
+\end{document}

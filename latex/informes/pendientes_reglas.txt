@@ -1,0 +1,13 @@
+Resultado de python compilar.py --reglas (0 errores; sólo avisos, que no impiden compilar).
+
+subdoc03\subdocumento\OVERFORE-Subdocumento3.tex:318: AVISO [concepto-descripcion] La tabla «Funciones de SITCO Aranda durante un corte del enl» parece «Concepto / Descripción»: ese contenido va como texto
+subdoc04\subdocumento\OVERFORE-Subdocumento4.tex:153: AVISO [concepto-descripcion] La tabla «Registro de decisión ADR-01: servicios modulares.» parece «Concepto / Descripción»: ese contenido va como texto
+subdoc04\subdocumento\OVERFORE-Subdocumento4.tex:166: AVISO [concepto-descripcion] La tabla «Registro de decisión ADR-02: Nodo de Faena con cin» parece «Concepto / Descripción»: ese contenido va como texto
+subdoc04\subdocumento\OVERFORE-Subdocumento4.tex:179: AVISO [concepto-descripcion] La tabla «Registro de decisión ADR-03: integración por event» parece «Concepto / Descripción»: ese contenido va como texto
+subdoc04\subdocumento\OVERFORE-Subdocumento4.tex:192: AVISO [concepto-descripcion] La tabla «Registro de decisión ADR-04: un conector por siste» parece «Concepto / Descripción»: ese contenido va como texto
+subdoc04\subdocumento\OVERFORE-Subdocumento4.tex:205: AVISO [concepto-descripcion] La tabla «Registro de decisión ADR-05: lectura del historiad» parece «Concepto / Descripción»: ese contenido va como texto
+subdoc04\subdocumento\OVERFORE-Subdocumento4.tex:218: AVISO [concepto-descripcion] La tabla «Registro de decisión ADR-06: canales de terreno.» parece «Concepto / Descripción»: ese contenido va como texto
+subdoc04\subdocumento\OVERFORE-Subdocumento4.tex:231: AVISO [concepto-descripcion] La tabla «Registro de decisión ADR-07: identidad por poblaci» parece «Concepto / Descripción»: ese contenido va como texto
+subdoc04\subdocumento\OVERFORE-Subdocumento4.tex:244: AVISO [concepto-descripcion] La tabla «Registro de decisión ADR-08: almacén propio por mó» parece «Concepto / Descripción»: ese contenido va como texto
+
+0 errores en total.
