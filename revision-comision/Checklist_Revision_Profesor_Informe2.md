@@ -23,7 +23,7 @@ Lista por subdocumento de lo que pide la Primera Revisión del Informe 2 (`revis
 | S5 Datos | 5 % | 5 | Frecuencia del histórico ambiental, SSO como imagen indexada |
 | S2 Problema | 4 % | 5 | Investigación de dominio con contenido propio |
 | General | 2 % | 4 | Dominio de correo y sitio, volumen, figuras bajo 9 pt |
-| S1 Empresa | 1 % | 5 | Una sola cifra de dotación, ISO/IEC 42001 |
+| S1 Empresa | 1 % | 4 | Una sola cifra de dotación, ISO/IEC 42001 |
 
 ---
 
@@ -43,11 +43,11 @@ Lista por subdocumento de lo que pide la Primera Revisión del Informe 2 (`revis
 
 - ✅ Remisión a la «sección 12.3» (capítulo no entregado).
 - ✅ Fuente «Sitio web oficial Overfore» en Figuras 1.1, 1.2 y Tabla 1.3.
+- ✅ Anexos del S1 con una sola numeración («Anexo A» a «Anexo F», sin «Anexo 1.A» ni «Tabla 1.E.1»).
 - ⬜ **Alta [Decisión]** Una sola cifra de desarrolladores y técnicos de terreno: Figura 1.1 y 1.2 dicen 5 desarrolladores, el texto dice ocho (meses 3–11), el Anexo F llega a 10 técnicos (folios 7, 12, 13, 33). Debe coincidir con el T-15 (DEC-013 / R-05).
 - ⬜ **Alta** Reescribir el párrafo de ISO/IEC 42001 en una sola idea: qué se certifica, cuándo y qué alcance tiene sobre la verificación facial (folio 11).
 - ⬜ **Alta** Analizar en 1.4 por qué proyectos de hasta USD 800.000 respaldan un contrato de la escala de Aranda (alcance, plazo, sitios, 24x7), no sólo por camiones y personas (folio 10).
 - ⬜ **Media** Anexo E: dice que la persona ejerce los dos roles «sólo desde la primera ola del paso de la Etapa 2 hasta el acta de H12», mientras la Tabla E.1 la pone como JP en M1–M21 y Gerente de Servicio en M21–M56 (folios 28–29).
-- ⬜ **Forma** Anexos del S1: «Anexo A» en el índice y «Anexo 1.A» en el texto; «Tabla 1.E.1» por «Tabla E.1» (folio 28). 🔎
 
 ## S2 · Problema y necesidad (4 %)
 
