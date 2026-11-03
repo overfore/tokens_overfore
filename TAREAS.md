@@ -173,7 +173,7 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
   - S9, A9 y T-17: TMMi junto a SAMM; capacidad de interacción en segundos; pruebas en detenciones justificadas; puerta 5 sin pasos en detención; criterio 14 en H7 y H12; remisión a T-14; escalamiento de campañas atrasadas.
   - S13, A13 y T-19: valorización de la innovación 1 (USD 0,95 a 1,4 millones al año, beneficio del cliente); innovación 3 en toneladas y defensa frente a la práctica habitual; rama 1.7 en 3.000 HH; innovación 5 con cuatro módulos; páginas relativas en fuentes.
 - **Fuera de alcance (requiere el equipo o rehacer cálculos):** figuras ([Figuras_Pendientes.md](revision-comision/Figuras_Pendientes.md)); reglas de negocio del Cap. 17.1; parciales del T-12; ADR de región y CIO y conversión de ADR a texto; latencia y costo de Brazil South; LTE del rajo; CPM con duraciones estimadas y reserva de cronograma; medida de tamaño; sacar los riesgos internos y agregar los externos del S8; 704 + 96 HH en T-14/T-15; reserva de gestión; Montecarlo; volumen; lectura de cierre humana.
-- **Validación:** ver la línea de validación al cierre de esta ficha.
+- **Validación 2026-11-03:** `python compilar.py --reglas`: 0 errores (los 9 avisos de R-08). `python compilar.py` en modo normal: 31 documentos sin error, estable en 3 pasadas, 1.326 folios (9 más que antes por el texto agregado). Entorno: TeX Live 2023 en Linux. Las cifras nuevas quedaron en `FUENTE_DE_VERDAD.md`; las 800 HH preventivas del S8 quedan como conflicto abierto. No se versionan PDF ni auxiliares. Sólo autorrevisión.
 
 ### E3-01 — Economía de entrega 3
 
