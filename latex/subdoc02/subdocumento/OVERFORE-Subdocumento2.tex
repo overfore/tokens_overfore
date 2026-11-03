@@ -47,17 +47,17 @@ La operación de la compañía se reparte entre tres zonas: la faena de Sierra G
 
 La figura \ref{fig:faena-antofagasta-norte} corresponde a la faena, ubicada en la comuna de Sierra Gorda, Región de Antofagasta, a 3.180 metros de altura. En ella se encuentran el rajo, donde se perfora, se trona y se carga y transporta el mineral, el área de servicios y portería, que controla el acceso de las personas a la faena y la planta concentradora, donde se procesa el mineral y el depósito de relaves, ubicado a 6 km de la planta.
 
-\figura{16.06}{fig-2-1-faena-antofagasta-norte}{Faena (Antofagasta Norte).}{fig:faena-antofagasta-norte}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.).}
+\figura{16.06}{fig-2-1-faena-antofagasta-norte}{Faena de Aranda en Sierra Gorda, Región de Antofagasta.}{fig:faena-antofagasta-norte}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.-c).}
 Las cuatro instalaciones de la faena, el rajo, el área de servicios y portería, la planta concentradora y el depósito de relaves, están separadas entre sí, con el depósito de relaves a 6 km de la planta, por lo que la información de cada una se traslada hoy por radio, papel o correo antes de consolidarse.
 
 La segunda zona corresponde a la ciudad de Antofagasta, que se conecta con la faena a través de una ruta de 145 km. En esta zona se ubican el centro integrado de operaciones, que supervisa la mina y la planta de forma remota, y el acopio y embarque de concentrado, que recibe el material desde la faena y lo despacha a través de un terminal portuario administrado por un tercero. La figura \ref{fig:ciudad-antofagasta-cio-acopio-puerto} muestra ambas instalaciones.
 
-\figura{13.48}{fig-2-2-ciudad-antofagasta-cio-acopio-puerto}{Ciudad de Antofagasta (CIO y acopio de puerto).}{fig:ciudad-antofagasta-cio-acopio-puerto}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.).}
+\figura{13.48}{fig-2-2-ciudad-antofagasta-cio-acopio-puerto}{Ciudad de Antofagasta (CIO y acopio de puerto).}{fig:ciudad-antofagasta-cio-acopio-puerto}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.-a).}
 En Antofagasta conviven dos funciones que dependen del dato de la faena, el acopio y embarque, donde se forma el lote comercial que llega al comprador, y el centro integrado de operaciones, que supervisa a distancia la mina y la planta.
 
 Por último, la tercera zona corresponde a la oficina corporativa, ubicada en la comuna de Las Condes, en Santiago. En ella se encuentran las áreas de finanzas, comercial, sustentabilidad, abastecimiento y tecnologías de información, que se relacionan con la operación a través de la zona de Antofagasta. La Figura~\ref{fig:oficina-corporativa-santiago} muestra la ubicación de la oficina.
 
-\figura{12.63}{fig-2-3-oficina-corporativa-santiago}{Oficina corporativa en Santiago.}{fig:oficina-corporativa-santiago}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.).}
+\figura{12.63}{fig-2-3-oficina-corporativa-santiago}{Oficina corporativa en Santiago.}{fig:oficina-corporativa-santiago}{Fuente: elaboración propia a partir de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 3, p. 6) y de imágenes de Google Maps (Google, s. f.-b).}
 La oficina corporativa se encuentra en Santiago, lejos de la faena, por lo que las áreas que trabajan en Santiago dependen por completo de la información que llega desde la faena y desde Antofagasta.
 
 \subsubseccion{Sistemas de la compañía}
@@ -85,6 +85,15 @@ En trazabilidad, The Copper Mark (2026) aporta un marco de verificación y repor
 
 \subsubseccion{Particularidades estacionales}
 El calendario de Aranda tiene momentos en que la operación cambia de ritmo, y algunos coinciden justamente con los momentos en que el problema se hace más visible. Los que más pesan son las detenciones programadas de planta de marzo y septiembre y las lluvias de enero y febrero, a los que se suman el cierre contable, los cambios de turno, las tronaduras casi diarias y el ciclo 7x7. El detalle de las horas, ventanas y frecuencias de cada uno está en la sección C.5 del Anexo C de OVERFORE-Subdocumento2-Anexos.
+
+\subsubseccion{Conceptos de la industria que condicionan la solución}
+Tres conceptos de la industria explican por qué el problema de Aranda no se resuelve sólo digitalizando registros: cómo se concilia el metal, cómo se liquida el concentrado y cómo se lee la red de control sin exponerla.
+
+La conciliación metalúrgica compara, para un mismo período, el cobre fino que estima cada etapa del proceso. La mina lo estima con el tonelaje despachado y la ley del modelo de bloques de cada polígono; la planta, con el tonelaje de la balanza de alimentación y la ley de cabeza ensayada en laboratorio; y el embarque, con el concentrado pesado y ensayado en el puerto. La razón entre dos de esas estimaciones es un factor de conciliación: mina contra planta, planta contra embarque y, en conjunto, mina contra embarque. Un factor cercano a 1 indica que las mediciones cuadran; cuando no cuadran, la diferencia se distribuye entre las etapas con factores de ajuste ponderados por la incertidumbre de cada medición, en lugar de cargarla a la última (Morrison, 2008). En Aranda la diferencia mensual va de 3,1 \% a 6,8 \%, frente a una referencia de la industria bajo 2 \%, y el cierre toma 18 días hábiles frente a 3 a 5 (CMAA, 2026b, cap. 7.1, p. 11). Sin el origen de cada viaje, la compañía no puede saber en qué etapa nace la diferencia.
+
+La liquidación del concentrado determina cuánto recibe Aranda por cada lote. El valor se calcula sobre toneladas secas, descontando la humedad medida al embarque; sobre ellas se aplica la ley de cobre y el porcentaje pagable del contrato, y al metal pagable se le restan el cargo de tratamiento por tonelada seca y el de refinación por libra pagable. Los elementos deletéreos, como el arsénico, generan una penalidad por cada fracción sobre el umbral del contrato y, sobre un límite mayor, pueden llevar al rechazo del lote. Por eso la ley de arsénico de cada lote tiene valor económico directo: en 2025, cuatro de los 31 embarques fueron penalizados, con un menor ingreso de USD 1,9 millones (CMAA, 2026b, cap. 1, p. 3), y reconstruir el origen de un lote para discutir una liquidación tomó semanas.
+
+La red de control de la planta, donde está el historiador de proceso, no puede quedar expuesta a la red corporativa ni a la nube. La serie de normas IEC 62443 organiza esa separación en zonas, cada una con un nivel de seguridad exigido, y en conductos, que son los únicos caminos permitidos entre zonas (International Electrotechnical Commission [IEC], 2020). En la práctica, leer del historiador significa que los datos salen de la zona de control por un conducto de un solo sentido hacia una zona desmilitarizada industrial, donde se publican para su lectura, y que ningún sistema de la red corporativa puede escribir ni iniciar conexiones hacia la red de control. Esa restricción define cómo se integra la telemetría de planta en la solución (Subdocumento 4, ADR-05).
 
 \subseccion{Desglose de la problemática}
 La problemática se divide en tres problemas. El Problema 1 corresponde a la trazabilidad comercial del mineral y su conciliación, el Problema 2 a la productividad de la operación y el Problema 3 al cumplimiento regulatorio y la gestión de personas. Si bien se relacionan entre sí (figura \ref{fig:relacion-entre-tres-problemas-aranda-causa}), conviene analizarlos por separado, ya que cada uno tiene destinatarios, plazos y responsables diferentes. Separarlos permite ver, por ejemplo, que el comprador, la operación y la autoridad le hacen preguntas distintas al mismo dato. A los tres problemas se suman condiciones que los cruzan a todos. La descripción de cada problema se construye a partir del ciclo del mineral y de las entrevistas de levantamiento entregadas por la compañía.
@@ -223,7 +232,7 @@ El caso no define todos los puntos que condicionan el diseño, por lo que se ide
   {Fuente: elaboración propia a partir del Anexo B de OVERFORE-Subdocumento2-Anexos y de las Bases técnicas del caso Minería (CMAA, 2026b, cap. 16.1, pp. 26–27).}
 Decisiones de diseño pendientes & Capítulo 16.1, decisiones 1 a 14 & 14 & 0 & 3 \\
 Vacíos identificados por el proponente & Nota final del capítulo 16.1 & 6 & 0 & 3 \\
-Supuestos del alcance & Capítulos descriptivos del caso y Bases técnicas transversales & 15 & SUP-30 & 8 \\
+Supuestos del alcance & Capítulos descriptivos del caso y Bases técnicas transversales & 15 & 1 & 8 \\
 Total & No aplica & 35 & 1 & 14 \\
 \end{tabla}
 De la tabla se concluye que 14 de los 35 supuestos responden a decisiones que el propio caso deja pendientes, y que ninguna de ellas se consultó a la compañía. Los seis vacíos son puntos que el caso no menciona y que el diseño necesita definir, como las condiciones del contrato con el operador del terminal portuario o de qué reloj se toma la hora de los eventos. Los 15 restantes son supuestos del alcance, y ocho de ellos se tratan también como riesgo porque dependen de que la compañía entregue información o equipos, como los datos a migrar o el hardware de terreno.
@@ -243,10 +252,12 @@ Las exclusiones generan dependencias concretas: cobertura inalámbrica del rajo 
 \item Compañía Minera Altos de Aranda. (2026a). \emph{Bases administrativas}. Licitación N° TFEP-01/2026.
 \item Compañía Minera Altos de Aranda. (2026b). \emph{Bases técnicas del caso Minería}. Licitación N° TFEP-01/2026.
 \item Decreto 594. (1999). Aprueba Reglamento sobre condiciones sanitarias y ambientales básicas en los lugares de trabajo. Ministerio de Salud. Diario Oficial de la República de Chile.
-\item Google. (s. f.). [Mapa satelital de la ciudad de Antofagasta, Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de https://www.google.com/maps
-\item Google. (s. f.). [Mapa satelital de Santiago, Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de \href{https://www.google.com/maps}{https://www.google.com/maps}
-\item Google. (s. f.). [Mapa satelital de Sierra Gorda Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de https://www.google.com/maps
+\item Google. (s. f.-a). [Mapa satelital de la ciudad de Antofagasta, Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de https://www.google.com/maps
+\item Google. (s. f.-b). [Mapa satelital de Santiago, Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de \href{https://www.google.com/maps}{https://www.google.com/maps}
+\item Google. (s. f.-c). [Mapa satelital de Sierra Gorda Chile]. Google Maps. Recuperado el 23 de septiembre de 2026 de https://www.google.com/maps
+\item International Electrotechnical Commission. (2020). \emph{Security for industrial automation and control systems — Part 3-2: Security risk assessment for system design} (IEC 62443-3-2:2020). IEC.
 \item Ley N° 21.719. (2024). Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales. Diario Oficial de la República de Chile.
+\item Morrison, R. D. (Ed.). (2008). \emph{An introduction to metal balancing and reconciliation}. Julius Kruttschnitt Mineral Research Centre, The University of Queensland.
 \item The Copper Mark. (2026). The Copper Mark chain of custody standard (v. 2). https://coppermark.org/wp-content/uploads/2026/06/CopperMark\_Chain-of-Custody-Standard-v2\_2026-06-11.pdf
 \item World Resources Institute y World Business Council for Sustainable Development. (2004). The greenhouse gas protocol: A corporate accounting and reporting standard (Ed. rev.). \href{https://ghgprotocol.org/corporate-standard}{https://ghgprotocol.org/corporate-standard}
 \end{referencias}

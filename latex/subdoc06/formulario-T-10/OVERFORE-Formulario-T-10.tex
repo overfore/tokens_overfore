@@ -178,7 +178,7 @@ Uso de ambientes & Ambientes efímeros vinculados a ramas; no productivos reduci
 Ensayos físicos & El banco de pruebas verifica cada versión. El nodo de faena se prueba 48 horas antes del paso a producción de cada etapa y anualmente en operación; sincronización máxima de cuatro horas. & Registros físicos separados \\
 Migración & El líder de datos aprueba migraciones versionadas, automáticas y reversibles; ambas versiones de la aplicación conviven durante el cambio de esquema. & Aprobación y reversión \\
 Aprobación productiva & Pruebas de aceptación, pruebas de seguridad, intrusión independiente, plan de reversión probado, ventana permitida y usuarios capacitados. & Expediente de liberación \\
-Destinos & Nube con azul-verde. Flux, mediante GitOps de Azure Arc, descarga en faena cuando hay enlace y aplica en la ventana conservando la versión anterior. Botonera por anillos: una pala y después las cinco. & Resultado por destino \\
+Destinos & Nube con azul-verde. Flux, mediante GitOps de Azure Arc, descarga en faena cuando hay enlace y aplica en la ventana conservando la versión anterior. Botonera por anillos: una pala y después las cinco. App SITCO Terreno por anillos: un área y un turno, el resto del área y luego las demás áreas. & Resultado por destino \\
 Recuperación & Una falla previa detiene la promoción; una falla instalada activa la reversión. El líder de operación (SRE) vigila indicadores y degradación posterior. & Monitoreo y reversión \\
 Remediación operacional & Críticos en siete días corridos, altos en quince y medios en treinta. Estos plazos no autorizan versiones nuevas con hallazgos críticos o altos pendientes. & Hallazgos y corrección \\
 \end{tabla}
@@ -195,7 +195,7 @@ Migración de esquema & Ambiente de instalación & Migración reversible aprobad
 Autorizar producción & Ambiente protegido & Comité de proyecto y condiciones de liberación aprobados & Aprobación registrada \\
 Desplegar en nube & Producción & Azul-verde con artefacto aprobado & Despliegue \\
 Desplegar en nodo de faena & Faena & Enlace disponible y ventana de 03:00 a 05:00 & Actualización por Flux \\
-Desplegar en terreno & Palas & Primer anillo verificado antes de las cinco & Resultado por anillo \\
+Desplegar en terreno & Palas y tabletas & Primer anillo verificado antes del siguiente & Resultado por anillo \\
 Verificar operación & Nube y faena & Indicadores dentro de lo comprometido & Monitor y resultado \\
 \end{tabla}
 

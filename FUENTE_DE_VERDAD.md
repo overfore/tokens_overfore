@@ -68,6 +68,11 @@ Para cualquier edición, ampliar esta lista con los consumidores encontrados por
 | Esfuerzo de la línea base | 183.066 HH; cálculo de la propuesta, en revisión | T14/T15: 60.394 HH de ramas 1.1–1.7 + 122.672 HH de 1.8; revisar R-01 |
 | Esfuerzo por período | 56.886 HH en M1–M20 + 126.180 HH en M21–M56 | T15, resumen por etapa; 3.508 HH de ramas 1.1–1.7 ocurren desde M21, no es contradicción por sí sola |
 | Ramas 1.1 / 1.4 | 29 / 28 paquetes; 5.088 / 21.062 HH | Conteo y suma de hojas T15; razón 4,14 de esfuerzo, no de duración. R-01 |
+| Rama 1.7 (innovaciones) | 3.000 HH: 2.920 de las cinco innovaciones + 80 del sistema de gestión de IA (1.7.2.4); cálculo de la propuesta | T14, T15 y T19 coinciden desde LC-02 (antes T19 decía 2.920) |
+| HH preventivas de riesgos | 800 HH (704 de once fichas + 96 de continuidad); cálculo de la propuesta, **fuera** de las 183.066 HH | S8 y A8 (Anexo G). Conflicto abierto: el profesor pide incluirlas en T14/T15 |
+| Dotación máxima | 45 personas distintas en M14 (equipo clave + apoyo + externos); 30 de apoyo en M14–M15; 8 desarrolladores en M3–M11 y 7 en M13–M17; cálculo de la propuesta | T15 y A1 (Anexo F); DEC-017. Las Figuras 1.1 y 1.2 aún dicen 5 desarrolladores |
+| Grupos de interés | 19 (14 internos y 5 externos) y 171 canales de comunicación; decisión documentada | S2 2.4, S3-Anexos C, S6 y T9; DEC-018. Las Figuras 6.4 y 6.5 aún dibujan 14 |
+| Exposición agregada de riesgos | 5,06 inherente → 2,01 residual (60 %), sin R-15 por ser escenario conjunto; cálculo de la propuesta | S8 y A8 desde LC-02 (antes 5,293 → 2,011, 62 %) |
 
 No cambiar estas cifras para hacer coincidir resúmenes. Primero recalcular las fichas y después sus derivados. Este inventario inicial no sustituye la extracción de otros parámetros cuando una tarea los necesita.
 
@@ -75,9 +80,10 @@ No cambiar estas cifras para hacer coincidir resúmenes. Primero recalcular las 
 
 | Tema | Fuentes en tensión | Registro / tarea |
 |---|---|---|
-| Actores | S2: 19 grupos; S6: 14 y 91 canales, sin equivalencia explícita | DEC-012 / R-04 |
-| Dotación de desarrollo | S1: 8 y 7 según período; figura 1.2: 5 sin período | DEC-013 / R-05 |
+| Actores | Resuelto: 19 grupos en S2, S3, S6 y T-9, 171 canales (DEC-018); faltan las Figuras 6.4 y 6.5 | DEC-012 / DEC-018 / R-04 |
+| Dotación de desarrollo | Resuelto en texto: Anexo F y T-15 (8 y 7 según período; 45 personas en M14), DEC-017; faltan las Figuras 1.1 y 1.2 | DEC-013 / DEC-017 / R-05 |
 | Identidad de botonera | S4 ADR-07 llama segundo factor al contraste con despacho | DEC-007 / R-03 |
 | Motor de conciliación | Resuelto en S13, T-19 y A13 (nube; balance del turno en el Nodo, DEC-014) | DEC-014 / R-06 |
+| HH preventivas del plan de riesgos | S8/A8: 800 HH fuera de la EDT; regla de zona alta y profesor: deben estar en T14/T15. Incluirlas lleva el total a 183.866 HH | LC-02 (pendiente de decisión) |
 
 Los motivos y consecuencias se consultan en [DECISIONES.md](DECISIONES.md). No copiar uno de los valores a todos los documentos sin resolver su fundamento.

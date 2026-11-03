@@ -121,6 +121,7 @@ Los ADR-01 a ADR-08 se encuentran en [S4, registro de decisiones de arquitectura
 - **Observación:** S2 identifica 19 grupos; S6 usa 14 y calcula 91 canales. Una agrupación puede explicar diferencias, pero no se localizó su equivalencia explícita.
 - **Motivo de cada conteo:** S2 distingue internos/externos y ámbitos; el fundamento que reconcilia ambos universos no está localizado. No declarar 19 como solución universal por preferencia.
 - **Consecuencias y consumidores:** actores, matrices y figuras de S2/S6; acciones de S3, S7 y riesgos S8. **Tarea R-04.** La resolución debe comprobar cobertura, no sólo cambiar una cifra.
+- **Resolución (2026-11-03):** ver DEC-018. Se adopta el registro de 19 grupos de S2, que S3 ya usa y cuyo Anexo C cubre grupo por grupo.
 
 ## DEC-013 — Dotación en texto y organigrama sin período común
 
@@ -128,6 +129,7 @@ Los ADR-01 a ADR-08 se encuentran en [S4, registro de decisiones de arquitectura
 - **Observación:** texto declara 8 desarrolladores M3–M11 y 7 M13–M17; figura 1.2 muestra 5 sin período.
 - **Fundamento:** el texto vincula dotación con períodos de T15; no se localizó una justificación temporal del 5 de la figura. No elegir dotación nueva sin nivelación.
 - **Consecuencias y consumidores:** A1, S6, S7/T14/T15 y figuras; separar personas distintas de equivalentes de jornada completa. **Tarea R-05.** Resolución pendiente.
+- **Resolución (2026-11-03):** ver DEC-017. Se adopta la dotación de A1 (Anexo F), que coincide con T14/T15; las Figuras 1.1 y 1.2 quedan pendientes de redibujo.
 
 ## DEC-014 — Motor de conciliación con ubicación contradictoria
 
@@ -157,6 +159,42 @@ Los ADR-01 a ADR-08 se encuentran en [S4, registro de decisiones de arquitectura
 - **Coherencia con otros documentos:** 27 solicitudes funcionales al mes frente a los 1.250 contactos mensuales de la mesa de ayuda (A2, SUP-27); la bolsa evolutiva de 960 HH al año (80 al mes, T-14 1.8.5.1) es de cambios extraordinarios y no se toca; el cliente tiene once personas de TI (Caso, cap. 8) y no se exige un especialista dedicado.
 - **Límites:** las horas que pasan al cliente no rebajan líneas del T-15 (la mesa trabaja en turnos fijos y la bolsa es fija), por lo que «Efecto en el costo operacional» de la ficha 4 no tiene base en HH; requiere una decisión propia. Con la meta de 80 % al mes 45, hasta un 20 % de las solicitudes sigue en el adjudicatario. Plazo de 5 días hábiles: analogía con S6, no medida.
 - **Consumidores:** S13 (13.4, impacto económico), T-19 (ficha 4), A13 (D.3 y tabla de supuestos F), Oferta Económica. **Tarea S13-01 / R-10.** Validación: medición de la mesa de ayuda en los meses 21 a 26.
+
+## DEC-017 — Dotación de apoyo según el Anexo F y el T-15
+
+- **Estado:** documentada el 2026-11-03 por Claude a pedido del usuario («tomar la decisión que menos cambie»); sin validación del equipo. Reemplaza la resolución pendiente de DEC-013.
+- **Decisión:** las cifras de dotación son las del Anexo F del S1, que coinciden con las fichas del T-14 y la nivelación del T-15: 8 desarrolladores en M3–M11, 7 en M13–M17; hasta 10 técnicos de terreno; 30 personas de apoyo en M14–M15; 45 personas distintas en M14 con equipo clave y externos.
+- **Motivo:** el T-14 y el T-15 sostienen las HH, las curvas, el máximo de 45 y la economía; cambiarlos para igualar las figuras alteraría toda la planificación. Las figuras 1.1 y 1.2 («5 desarrolladores», «3 técnicos») no tenían período ni cálculo.
+- **Recálculo:** M13 = 7 + 1 + 2 + 4 + 8 = 22; M14 y M15 = 22 + 8 analistas de operación = 30 (Anexo F). Por eso el anexo pasa de «meses 13 a 15» a «14 y 15».
+- **Aplicado en:** S1 (1.2, frase de las 45 personas), A1 (Anexo F). **Pendiente:** Figuras 1.1 y 1.2 ([Figuras_Pendientes.md](revision-comision/Figuras_Pendientes.md)).
+
+## DEC-018 — Un solo registro de 19 grupos de interés
+
+- **Estado:** documentada el 2026-11-03 por Claude a pedido del usuario; sin validación del equipo. Resuelve DEC-012.
+- **Decisión:** el registro de interesados de toda la propuesta es el de S2, 2.4: 19 grupos, 14 internos y 5 externos. S6 y T-9 lo adoptan y calculan 171 canales (19 × 18 / 2).
+- **Motivo:** S2 y S3 ya usan 19, y el Anexo C de S3-Anexos tiene una estrategia por cada uno; el S6 era el único con 14 y su conjunto no coincidía con los 14 internos (incluía compradores y autoridad ambiental, según la revisión del profesor). Cambiar S6 y T-9 es el menor cambio.
+- **Aplicado en:** S6 (6.1.4 y 6.1.5) y T-9 (identificación y canales). **Pendiente:** Figuras 6.4 y 6.5, que dibujan 14 grupos.
+
+## DEC-019 — Contacto institucional sin cuenta gratuita ni sitio personal
+
+- **Estado:** documentada el 2026-11-03 por Claude a pedido del usuario; sin validación del equipo.
+- **Decisión:** en la Tabla 1.1 del S1 el contacto pasa a `licitaciones@overfore.cl` y se retira la fila del sitio web, que apuntaba a una página personal en GitHub.
+- **Motivo:** el profesor pide «contacto y sitio con dominio de la empresa, o sin sitio web». Retirar la fila es el menor cambio; publicar un dominio propio queda como alternativa del equipo.
+- **Límites:** el sitio web sigue siendo el entregable de RT-23.01 a RT-23.04 en la instancia que fija el T-22, y el T-12 conserva su dirección actual hasta que el equipo publique uno con dominio propio.
+
+## DEC-020 — Histórico ambiental migrado con resolución diaria
+
+- **Estado:** supuesto documentado el 2026-11-03 por Claude a pedido del usuario; sin validación del equipo.
+- **Decisión:** el histórico de monitoreo ambiental se migra con una lectura por instrumento y día (186 × 365 × 10 = 680.000 filas, 6,3 GB); la resolución de 1.440 lecturas diarias del Anexo D del S4 rige desde que SITCO opera la instrumentación.
+- **Motivo:** mantiene el volumen de migración, el almacenamiento y el cronograma ya dimensionados. El caso no informa la frecuencia del histórico existente; si fuera la de la operación, el volumen crecería unas mil veces y se migraría como serie comprimida.
+- **Aplicado en:** S5 (5.3.1, tabla de alcance) y S5-Anexos.
+
+## DEC-021 — Compromisos agregados en la lectura de cierre LC-02
+
+- **Estado:** propuesta del 2026-11-03, escrita por Claude a pedido del usuario; requiere validación del equipo antes de la entrega final.
+- **Decisiones:** (1) entre sesiones del Comité de Operación, el líder de operación autoriza cada intervención de la ventana de 03:00 a 05:00 con lista de verificación y registro (S6); (2) despliegue por anillos también para la App SITCO Terreno (S6, T-10); (3) TMMi con línea base en M2, nivel 2 en M12 y nivel 3 en M21, junto a SAMM (S9); (4) criterio 14 del caso (90 % de cambios de material con la botonera, ya comprometido en S3) en las condiciones de H7 y H12 (T-17); (5) puerta 5 prohíbe pasar a producción durante una detención programada (S9-Anexos); (6) R-15 se excluye de la exposición agregada para no contar dos veces sus componentes (S8, A8).
+- **Motivo:** responden observaciones de la Primera Revisión del Informe 2 sin cambiar HH, hitos ni dotación.
+- **Pendiente:** el despliegue por anillos de tabletas no tiene paquete propio en el T-14; si el equipo lo exige, se agrega con horas tomadas de 1.6.4.
 
 ## Cobertura y límites del registro inicial
 
