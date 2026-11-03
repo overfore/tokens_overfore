@@ -151,7 +151,7 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
   - T-12, RT-19.08 y RT-19.10: «Tabla 6.2» inexistente → Formulario T-9, Tabla «Plan de comunicaciones».
   - S8-Anexos: el Comunicado 10 se atribuye al mandante (CMAA, 2026d) y no al docente; T-16: se retira esa entrada, que no se citaba.
   - S8: leyenda de la Figura 8.3 sin la «zona inherente» que la figura no muestra.
-  - Declaraciones de IA: nombre de herramienta con mayúscula (Claude, ChatGPT, Codex), sin cambiar niveles ni revisores.
+  - Declaraciones de IA: sin cambios. El paso a mayúscula de los nombres de herramienta se revirtió a pedido del usuario; las celdas quedan como en `e7f2195`.
 - **Fuera de alcance (requiere decisión del equipo):** tabla de la Declaración de IA que no cabe en una página (O-G.0 de la v3), 14 frente a 19 grupos de interés (DEC-012), dotación del S1 (DEC-013), sitio y correo institucional, figuras bajo 9 pt, parciales del T-12, EDT y Gantt del S7, riesgos internos del S8.
 - **Validación 2026-11-03:** `python compilar.py --reglas`: 0 errores (los 9 avisos de R-08). `python compilar.py --borrador`: 31 documentos sin error, estable en 3 pasadas, 1.317 folios; la compilación normal sigue detenida por la Declaración de IA (fuera de alcance). T-9 recompilado tras agregar `\externos{S6}`: 0 referencias indefinidas; T-12, S4 y S8-Anexos también con 0. Cada corrección se comprobó en el texto de los PDF: «Tabla 6.2» 0, «presentan este recorrido» 0, «Moya» 0, «zona inherente» en la leyenda 0. Entorno: TeX Live 2023 en Linux. No se versionan PDF ni auxiliares. Sólo autorrevisión.
 
