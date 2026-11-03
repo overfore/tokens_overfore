@@ -18,6 +18,7 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 
 | ID | Prioridad / instancia | Trabajo | Estado | Responsable | Revisor |
 |---|---|---|---|---|---|
+| INT-02 | Coordinación | Actualizar main con la rama remota más reciente, conservar diagramas y publicar | en_curso | Codex, sesión 2026-11-03 | Autorrevisión de sincronización |
 | INT-01 | Coordinación | Integrar ramas en main y actualizar copia local preservando cambios | en_revision | Codex, sesión 2026-11-02 | Autorrevisión; independiente pendiente |
 | C-00 | Coordinación | Incorporar instrucciones, fuentes, decisiones y esta cola | cerrada | Codex, sesión 2026-10-21 | Autorrevisión documental registrada; no independiente |
 | R-01 | Alta / revisión entrega 2 | Sustentar desglose y HH de ramas 1.1 y 1.4 antes de presupuestar | pendiente | Sin asignar | Sin asignar |
@@ -39,6 +40,15 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 | E3-02 | Planificada / entrega 3 | Prototipo navegable y evidencia de requisitos UX/UI | pendiente | Sin asignar | Sin asignar |
 
 ## Fichas y criterios de aceptación
+
+### INT-02 — Actualización local preservando diagramas
+
+- **Autorización:** solicitud del usuario de traer lo más actualizado, conservar su carpeta `diagramas/`, hacer commit y push.
+- **Responsable y base:** Codex, sesión 2026-11-03; `main` en `f778818`. La rama remota más reciente es `origin/claude/kind-heisenberg-egckbe` en `c994e1a`, que contiene la base y cinco commits posteriores.
+- **Alcance y archivos previstos:** integrar esos commits sin editar su contenido técnico y registrar la sincronización en `TAREAS.md`. No modificar ni incorporar al índice `diagramas/`, que está excluida de Git.
+- **Preservación:** respaldo externo de los dos archivos locales en `C:/Users/Claudio Cabello/.codex/backups/tokens-overfore-diagramas-20261103-204601/`, con manifiesto SHA-256 previo.
+- **Criterio:** integración sin conflictos, reglas y diferencias verificadas, comparación SHA-256 sin cambios en diagramas y push de `main` con comprobación de igualdad con `origin/main`. Las revisiones técnicas existentes mantienen su estado.
+- **Estado:** en_curso; validación y publicación pendientes.
 
 ### C-00 — Coordinación inicial
 
