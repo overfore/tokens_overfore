@@ -196,6 +196,14 @@ Los ADR-01 a ADR-08 se encuentran en [S4, registro de decisiones de arquitectura
 - **Motivo:** responden observaciones de la Primera Revisión del Informe 2 sin cambiar HH, hitos ni dotación.
 - **Pendiente:** el despliegue por anillos de tabletas no tiene paquete propio en el T-14; si el equipo lo exige, se agrega con horas tomadas de 1.6.4.
 
+## DEC-022 — Las 800 HH del plan de riesgos dentro de la EDT
+
+- **Estado:** documentada el 2026-11-04 por Claude a pedido del usuario, que aprobó las cuatro recomendaciones; sin validación del equipo. Cierra el conflicto abierto en LC-02.
+- **Decisión:** (1) las 800 HH preventivas del S8 (Anexo G) pasan a la EDT y el total del contrato sube de 183.066 a 183.866 HH; (2) se agregan dos paquetes bajo el entregable 1.1.3, renombrado «Gestión y respuesta a riesgos» (M1–M21, 1.112 HH): 1.1.3.3 «Medidas preventivas del plan de riesgos» (704 HH, M2–M20, responsable JP) y 1.1.3.4 «Preparación y ensayos de pérdida total de sala» (96 HH, M6–M8, M15 y M21, responsable SRE); (3) el máximo sigue en 45 personas: las horas las ejecutan personas que ya están en el proyecto ese mes; (4) las HH de los riesgos internos que se retirarán del registro (tarea de riesgos) se mantienen en la EDT, porque son trabajo de dirección que igual se hace.
+- **Motivo:** el profesor y la regla de zona alta del S8 piden que la respuesta a los riesgos esté en la EDT y el cronograma. Agregarlas como paquetes propios bajo 1.1.3 no mueve los demás paquetes, la dotación ni los hitos.
+- **Recálculo:** ramas 1.1–1.7 de 60.394 a 61.194 HH; rama 1.1 de 29 a 31 paquetes y de 5.088 a 5.888 HH; 177 paquetes; implementación 57.654 HH y operación 126.212 HH (32 HH del ensayo de M21); máximo mensual 5.299 HH en M15. Imputación del T-15: M1–M12 a la Etapa 1, M13–M20 a la Etapa 2, M21 a la operación. Los umbrales del S8 (Anexo) se recalculan sobre 61.194 HH.
+- **Aplicado en:** T-14 (fichas, clases PERT, roles, perfiles, ramas), T-15 (etapas, tabla mensual, operación, paquetes), S7 (introducción y Tabla 7.1), S8 y S8-Anexos; Figuras B.1/7.1, B.2, C.2, D.1/7.2 y D.2.
+
 ## Cobertura y límites del registro inicial
 
 S1 y S2 tienen conflictos registrados; S3 conserva el reparto de alcance; S4 aporta ocho ADR; S5 desarrolla propiedad y migración de datos; S6 define métodos; S7 aporta estimación; S8 gobierna riesgos; S9 pruebas; S13 innovaciones. Sus relaciones están en el mapa de autoridad.

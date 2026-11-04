@@ -9,7 +9,7 @@
 \begin{document}
 
 \apartado{Objeto y estructura del formulario}
-Este formulario presenta la estructura de descomposición del trabajo (EDT) de SITCO Aranda, su carta Gantt de 56 meses y su diccionario. El proyecto comprende 8 ramas, 55 entregables y 175 paquetes, con los mismos códigos en diagramas, cronograma y fichas. La Tabla \ref{tab:campos-diccionario-edt} define los campos de cada ficha.
+Este formulario presenta la estructura de descomposición del trabajo (EDT) de SITCO Aranda, su carta Gantt de 56 meses y su diccionario. El proyecto comprende 8 ramas, 55 entregables y 177 paquetes, con los mismos códigos en diagramas, cronograma y fichas. La Tabla \ref{tab:campos-diccionario-edt} define los campos de cada ficha.
 
 \begin{tabla}{I{0.286}I{0.714}}{Campos del diccionario de la EDT.}{tab:campos-diccionario-edt}
   {\cab{Campo} & \cab{Qué se escribe en él}}
@@ -27,7 +27,7 @@ Referencias & Los requisitos, contratos o documentos técnicos aplicables. \\
 \end{tabla}
 Cada ficha comienza con el código y el nombre. La del entregable resume el trabajo, el responsable, los meses, los hitos y las HH. La del paquete añade los demás campos; incluye Supuestos cuando existe uno específico.
 
-Las actividades elementales de trabajo se estiman individualmente en un rango de 8 a 80 HH. Para aquellos paquetes de trabajo complejos o de ejecución continua cuya entrega o unidad indivisible de gestión requiere un esfuerzo superior a este límite (por ejemplo, los 17 paquetes identificados con N = 1), la cifra declarada representa el esfuerzo consolidado del paquete completo, el cual se desagrega operativamente en tareas elementales de 8 a 80 HH dentro de la nivelación de recursos del plan de trabajo. Los paquetes continuos reciben el saldo de horas de su rol. Las ramas 1.1 a 1.7 suman 60.394 HH y la operación, 122.672 HH, sujetas a ajustes mediante planificación gradual (PMI, 2017).
+Las actividades elementales de trabajo se estiman individualmente en un rango de 8 a 80 HH. Para aquellos paquetes de trabajo complejos o de ejecución continua cuya entrega o unidad indivisible de gestión requiere un esfuerzo superior a este límite (por ejemplo, los 17 paquetes identificados con N = 1), la cifra declarada representa el esfuerzo consolidado del paquete completo, el cual se desagrega operativamente en tareas elementales de 8 a 80 HH dentro de la nivelación de recursos del plan de trabajo. Los paquetes continuos reciben el saldo de horas de su rol. Las ramas 1.1 a 1.7 suman 61.194 HH y la operación, 122.672 HH, sujetas a ajustes mediante planificación gradual (PMI, 2017).
 
 Las HH se estiman con PERT de tres valores: optimista (O), más probable (M) y pesimista (P), con $E = \frac{(O + 4M + P) }{6}$ y $\sigma = \frac{(P - O)}{6}$ (PMI, 2017). Cada ficha indica la clase de incertidumbre de la Tabla \ref{tab:clases-incertidumbre-estimacion-pert-resultado}. O y P se obtienen de M con los factores de esa tabla, tomados del cono de incertidumbre (McConnell, 2006), y M se despeja para que E sea la cifra de la ficha.
 
@@ -37,8 +37,8 @@ Las HH se estiman con PERT de tres valores: optimista (O), más probable (M) y p
 Baja & Trabajo recurrente o de contenido fijado: informes, actas, actualizaciones, pruebas periódicas, jornadas de capacitación y digitalización por lotes & 0,80 y 1,25 & 50 & 12.368 & 272 \\
 Media & Trabajo definido por el catálogo de requerimientos: diseño, construcción, pruebas e instalación & 0,67 y 1,50 & 83 & 22.224 & 514 \\
 Alta & Trabajo que depende de terceros o de información que no existe al ofertar: fabricantes, sindicato, proveedores, inventario de los diez sistemas y migración de datos & 0,50 y 2,00 & 21 & 6.568 & 507 \\
-Sin PERT & Saldo de la dedicación de los roles clave, cobertura de turnos y capacidad mensual comprometida & No aplica & 21 & 141.906 & No aplica \\
-Total & — & — & 175 & 183.066 & 772 \\
+Sin PERT & Saldo de la dedicación de los roles clave, cobertura de turnos, capacidad mensual comprometida y medidas del plan de riesgos con horas fijadas por mes y rol & No aplica & 23 & 142.706 & No aplica \\
+Total & — & — & 177 & 183.866 & 772 \\
 \end{tabla}
 Los paquetes de incertidumbre alta reúnen el 16 \% de las HH estimadas con PERT y el 43 \% de su varianza. Con 80 \% de confianza, las 41.160 HH estimadas con PERT suben a lo más 648 HH; con 90 \%, 988 HH. Esas diferencias se cubren con las 1.280 HH de corrección de 1.4.3.7 y 1.4.4.7. Si todas las desviaciones van en el mismo sentido, las 5.372 HH se cubren con la reserva de gestión, fuera de la EDT, que libera el Comité Ejecutivo.
 
@@ -60,6 +60,8 @@ La Contraparte Técnica revisa cada versión en diez días hábiles y Overfore c
 1.1.2.3 & PERT baja, E = 12 HH.\newline N = 20 solicitudes estimadas, dos en el mes 2 y una por mes entre los meses 3 y 20.\newline H = 12 × 20 = 240 HH. & $M = 6 \times 12 / (4 + 0{,}80 + 1{,}25) \approx 12$\newline $O = 0{,}80 \times 12 \approx 10$\newline $P = 6 \times 12 - 10 - 4 \times 12 = 14$ & 13,333 \\
 1.1.3.1 & PERT baja, E = 160 HH.\newline N = 1, paquete completo. & $M = 6 \times 160 / (4 + 0{,}80 + 1{,}25) \approx 159$\newline $O = 0{,}80 \times 159 \approx 127$\newline $P = 6 \times 160 - 127 - 4 \times 159 = 197$ & 11,667 \\
 1.1.3.2 & PERT baja, E = 8 HH.\newline N = 19 actualizaciones.\newline H = 8 × 19 = 152 HH. & $M = 6 \times 8 / (4 + 0{,}80 + 1{,}25) \approx 8$\newline $O = 0{,}80 \times 8 \approx 6$\newline $P = 6 \times 8 - 6 - 4 \times 8 = 10$ & 12,667 \\
+1.1.3.3 & \multicolumn{3}{I{0.896}}{Sin PERT. Horas fijadas por medida, mes y rol en el Anexo G del Subdocumento 8.\newline $H = 704 \mathrm{HH}$} \\
+1.1.3.4 & \multicolumn{3}{I{0.896}}{Sin PERT. Preparación de 32 HH y dos ensayos de 32 HH.\newline $H = 32 + 2 \times 32 = 96 \mathrm{HH}$} \\
 1.1.4.1 & PERT media, E = 56 HH.\newline N = 1, paquete completo. & $M = 6 \times 56 / (4 + 0{,}67 + 1{,}50) \approx 54$\newline $O = 0{,}67 \times 54 \approx 36$\newline $P = 6 \times 56 - 36 - 4 \times 54 = 84$ & 8,000 \\
 1.1.4.2 & PERT media, E = 64 HH.\newline N = 1, paquete completo. & $M = 6 \times 64 / (4 + 0{,}67 + 1{,}50) \approx 62$\newline $O = 0{,}67 \times 62 \approx 42$\newline $P = 6 \times 64 - 42 - 4 \times 62 = 94$ & 8,667 \\
 1.1.4.3 & PERT baja, E = 32 HH.\newline N = 1, paquete completo. & $M = 6 \times 32 / (4 + 0{,}80 + 1{,}25) \approx 32$\newline $O = 0{,}80 \times 32 \approx 26$\newline $P = 6 \times 32 - 26 - 4 \times 32 = 38$ & 2,000 \\
@@ -227,8 +229,8 @@ La Contraparte Técnica revisa cada versión en diez días hábiles y Overfore c
 1.8.10.1 & PERT media, E = 40 HH.\newline N = 4 entregas (código, datos, configuraciones y credenciales).\newline H = 40 × 4 = 160 HH. & $M = 6 \times 40 / (4 + 0{,}67 + 1{,}50) \approx 39$\newline $O = 0{,}67 \times 39 \approx 26$\newline $P = 6 \times 40 - 26 - 4 \times 39 = 58$ & 21,333 \\
 1.8.10.2 & \multicolumn{3}{I{0.896}}{Sin PERT. Acompañamiento de 90 días, 40 HH a la semana durante 13 semanas.\newline $H = 40 \times 13 = 520 \mathrm{HH}$} \\
 PERT & Subtotal de 154 paquetes con tres escenarios. & $H = \Sigma H_{p} = 41.160 \mathrm{HH}$\newline $\sigma = \surd (\Sigma \sigma _{p}^{2})$ & 771,745 \\
-Sin PERT & Subtotal de 21 paquetes de cobertura, capacidad o saldo de dedicación. & $H = \Sigma H_{p} = 141.906 \mathrm{HH}$ & No aplica \\
-Total & 175 paquetes. & $H = 41.160 + 141.906 = 183.066 \mathrm{HH}$ & 771,745 \\
+Sin PERT & Subtotal de 23 paquetes de cobertura, capacidad, saldo de dedicación o medidas del plan de riesgos. & $H = \Sigma H_{p} = 142.706 \mathrm{HH}$ & No aplica \\
+Total & 177 paquetes. & $H = 41.160 + 142.706 = 183.866 \mathrm{HH}$ & 771,745 \\
 \end{tabla}
 
 \apartado{Estructura de descomposición del trabajo}
@@ -410,18 +412,18 @@ Cada paquete tiene un responsable del equipo clave que responde por su entrega y
 \begin{tabla}{I{0.084}I{0.186}I{0.162}I{0.237}I{0.104}D{0.130}D{0.098}}{Roles del equipo clave, dedicación y paquetes a cargo.}{tab:roles-equipo-clave-dedicacion-paquetes-cargo}
   {\cab{Sigla} & \cab{Rol} & \cab{Persona} & \cab{Dedicación mínima exigida} & \cab{Meses} & \cab{Paquetes} & \cab{HH en la EDT}}
   {Fuente: elaboración propia a partir del Subdocumento 1 (Overfore S.A., 2026a, sección 1.5), del Anexo E del Subdocumento 1 (Overfore S.A., 2026b, Tabla \refext{A1}{tab:roles-dedicacion-periodo-responsabilidad-equipo-clave} de los Anexos del Subdocumento 1) y de las Tablas \ref{tab:diccionario-entregable-1-1-1-acta} a \ref{tab:diccionario-entregable-1-8-10-acta}}
-JP & Jefe de Proyecto & Claudio Cabello Vásquez & 100 \% en implementación & 1 a 21 & 22 & 3.248 \\
-AS & Arquitecto de Solución & Benjamín Rodríguez Pavez & Alta en diseño, permanente en el Comité de Arquitectura & 1 a 56 & 13 & 1.176 \\
-ESI & Encargado de Seguridad de la Información & David Martínez Canto & Permanente & 1 a 56 & 13 & 1.208 \\
-LDA & Líder de Datos & Benjamín Velásquez Farías & Permanente en implementación; en la operación, sólo los informes de las innovaciones 1 y 5 & 1 a 54 & 16 & 1.220 \\
+JP & Jefe de Proyecto & Claudio Cabello Vásquez & 100 \% en implementación & 1 a 21 & 23 & 3.248 \\
+AS & Arquitecto de Solución & Benjamín Rodríguez Pavez & Alta en diseño, permanente en el Comité de Arquitectura & 1 a 56 & 13 & 1.232 \\
+ESI & Encargado de Seguridad de la Información & David Martínez Canto & Permanente & 1 a 56 & 13 & 1.248 \\
+LDA & Líder de Datos & Benjamín Velásquez Farías & Permanente en implementación; en la operación, sólo los informes de las innovaciones 1 y 5 & 1 a 54 & 16 & 1.236 \\
 LD & Líder de Desarrollo & Gabriel Sanzana Cuibin & 100 \% en implementación & 1 a 56 & 22 & 4.258 \\
 LF & Líder Funcional & Patricio Figueroa Gallardo & 100 \% en implementación & 1 a 21 & 18 & 3.312 \\
 LCP & Líder de Calidad y Pruebas & Kavon Kermani Órdenes & Permanente & 1 a 56 & 16 & 1.320 \\
 LI & Líder de Integración & Marcelo Flores Coloane & Permanente en implementación & 1 a 21 & 8 & 1.462 \\
-SRE & Líder de Operación / SRE & Lucas Zamora Gatica & Desde el mes 6, permanente en Operación & 6 a 56 & 28 & 3.436 \\
+SRE & Líder de Operación / SRE & Lucas Zamora Gatica & Desde el mes 6, permanente en Operación & 6 a 56 & 29 & 3.460 \\
 LIG & Líder de Implantación y Gestión del Cambio & Benjamín Velásquez Farías & Desde el mes 8 (se incorpora en el mes 2) & 2 a 56 & 11 & 1.096 \\
 GS & Gerente de Servicio & Claudio Cabello Vásquez & Dedicado durante la Operación & 21 a 56 & 8 & 5.384 \\
-Total & 11 roles & 9 personas & No aplica & 1 a 56 & 175 & 27.120 \\
+Total & 11 roles & 9 personas & No aplica & 1 a 56 & 177 & 27.256 \\
 \end{tabla}
 Nueve personas ejercen once roles: Claudio Cabello y Benjamín Velásquez asumen dos roles cada uno. La dedicación permanente implica participar todos los meses, según las horas de sus paquetes.
 
@@ -438,23 +440,23 @@ La Tabla \ref{tab:perfiles-apoyo-externos-participan-edt} identifica al personal
 \begin{tabla}{I{0.126}I{0.386}I{0.186}D{0.173}D{0.130}}{Perfiles de apoyo y externos que participan en la EDT.}{tab:perfiles-apoyo-externos-participan-edt}
   {\cab{Sigla} & \cab{Perfil} & \cab{Origen} & \cab{Ramas} & \cab{HH}}
   {Fuente: elaboración propia a partir del Subdocumento 1 (Overfore S.A., 2026a, sección 1.5), del Anexo F del Subdocumento 1 (Overfore S.A., 2026b, Tablas \refext{A1}{tab:dotacion-apoyo-overfore-asignada-proyecto} y \refext{A1}{tab:especialistas-externos} de los Anexos del Subdocumento 1) y de las Tablas \ref{tab:diccionario-entregable-1-1-1-acta} a \ref{tab:diccionario-entregable-1-8-10-acta}}
-DEV & Desarrollador & Apoyo Overfore & 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8 & 17.994 \\
-QA & Analista de pruebas & Apoyo Overfore & 1.1, 1.2, 1.5, 1.8 & 2.024 \\
+DEV & Desarrollador & Apoyo Overfore & 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8 & 18.258 \\
+QA & Analista de pruebas & Apoyo Overfore & 1.1, 1.2, 1.5, 1.8 & 2.088 \\
 ADT & Analista de datos & Apoyo Overfore & 1.2, 1.3, 1.4, 1.6, 1.7, 1.8 & 2.860 \\
-OPS & Analista de operación de la mesa de ayuda y del centro de operaciones de red (NOC) & Apoyo Overfore & 1.1, 1.5, 1.6, 1.8 & 63.316 \\
+OPS & Analista de operación de la mesa de ayuda y del centro de operaciones de red (NOC) & Apoyo Overfore & 1.1, 1.5, 1.6, 1.8 & 63.492 \\
 ASG & Analista del centro de operaciones de seguridad (SOC) & Apoyo Overfore & 1.3, 1.5, 1.8 & 26.384 \\
 DIG & Digitalizador & Apoyo Overfore & 1.4 & 2.976 \\
-TEC & Técnico de terreno & Apoyo Overfore & 1.5, 1.6, 1.8 & 35.500 \\
-ACP & Analista de control de proyectos & Externo & 1.1 & 608 \\
-ABG & Abogado en datos personales y derecho laboral & Externo & 1.1, 1.2, 1.3, 1.8 & 344 \\
+TEC & Técnico de terreno & Apoyo Overfore & 1.1, 1.5, 1.6, 1.8 & 35.540 \\
+ACP & Analista de control de proyectos & Externo & 1.1 & 672 \\
+ABG & Abogado en datos personales y derecho laboral & Externo & 1.1, 1.2, 1.3, 1.8 & 368 \\
 UXR & Diseñador UX/UI & Externo & 1.3, 1.4, 1.5 & 640 \\
 RFE & Especialista en radiofrecuencia & Externo & 1.3, 1.8 & 192 \\
 PEN & Auditor de intrusión independiente & Externo & 1.5, 1.8 & 400 \\
 MON & Montajista eléctrico y de comunicaciones & Externo & 1.6 & 192 \\
 REL & Relator de capacitación & Externo & 1.6, 1.8 & 1.176 \\
-RTC & Redactor técnico & Externo & 1.6 & 216 \\
+RTC & Redactor técnico & Externo & 1.1, 1.6 & 232 \\
 CDA & Científico de datos & Externo & 1.7 & 552 \\
-BCP & Especialista en continuidad del negocio & Externo & 1.3, 1.8 & 128 \\
+BCP & Especialista en continuidad del negocio & Externo & 1.1, 1.3, 1.8 & 144 \\
 GCA & Consultor en gestión del cambio & Externo & 1.6 & 228 \\
 PRF & Especialista en pruebas de rendimiento & Externo & 1.5, 1.8 & 216 \\
 \end{tabla}
@@ -463,7 +465,7 @@ La operación 24x7 y el acompañamiento concentran la mayor parte de las HH de a
 \begin{tabla}{I{0.314}D{0.133}D{0.132}I{0.285}D{0.136}}{Esfuerzo estimado por rama y origen de las horas.}{tab:esfuerzo-estimado-rama-origen-horas}
   {\cab{Rama} & \cab{Equipo clave (HH)} & \cab{Apoyo Propio (HH)} & \cab{Externos: total HH y perfiles} & \cab{Total}}
   {Fuente: elaboración propia a partir de las Tablas \ref{tab:roles-equipo-clave-dedicacion-paquetes-cargo}, \ref{tab:perfiles-apoyo-externos-participan-edt} y \ref{tab:diccionario-entregable-1-1-1-acta} a \ref{tab:diccionario-entregable-1-8-10-acta}}
-1.1 Dirección del proyecto & 4.168 & 104 & 816; ACP 608, ABG 208 & 5.088 \\
+1.1 Dirección del proyecto & 4.304 & 648 & 936; ACP 672, ABG 232, BCP 16, RTC 16 & 5.888 \\
 1.2 Requerimientos del producto & 3.308 & 352 & 24; ABG 24 & 3.684 \\
 1.3 Diseño del sistema & 1.152 & 192 & 456; UXR 248, RFE 112, ABG 64, BCP 32 & 1.800 \\
 1.4 Software del sistema & 4.492 & 16.290 & 280; UXR 280 & 21.062 \\
@@ -471,7 +473,7 @@ La operación 24x7 y el acompañamiento concentran la mayor parte de las HH de a
 1.6 Solución implantada & 2.108 & 18.096 & 1716; REL 1.080, GCA 228, RTC 216, MON 192 & 21.920 \\
 1.7 Innovaciones & 1.016 & 1.432 & 552; CDA 552 & 3.000 \\
 1.8 Servicio de operación y mantención & 9.580 & 112.556 & 536; PEN 144, BCP 96, REL 96, RFE 80, PRF 72, ABG 48 & 122.672 \\
-Total & 27.120 & 151.054 & 4892; No aplica & 183.066 \\
+Total & 27.256 & 151.598 & 5.012; No aplica & 183.866 \\
 \end{tabla}
 Las 4.892 HH externas (2,7 \%) se destinan a especialidades que se requieren en tareas específicas. Desarrollo, migración, acompañamiento y operación 24x7 usan personal propio por su continuidad.
 
@@ -528,7 +530,7 @@ Operar el terminal portuario, que administra un tercero & Intercambio de los dat
 El cliente ejecuta la obra civil de sala y gabinetes (1.6.1.2) y contrata la telemetría con los fabricantes, como dueño de los equipos. Overfore define los datos y acompaña los acuerdos (1.2.4.1 y 1.2.4.2). Torniquetes y cámaras de fatiga existentes se integran sin reemplazo.
 
 \apartado{Rama 1.1 Dirección del proyecto}
-La rama 1.1 tiene 10 entregables y 29 paquetes de trabajo, que suman 5.088 HH. Las tablas \ref{tab:diccionario-entregable-1-1-1-acta} a \ref{tab:diccionario-entregable-1-1-10-documentacion} presentan la ficha de cada entregable y, bajo ella, la de cada uno de sus paquetes.
+La rama 1.1 tiene 10 entregables y 31 paquetes de trabajo, que suman 5.888 HH. Las tablas \ref{tab:diccionario-entregable-1-1-1-acta} a \ref{tab:diccionario-entregable-1-1-10-documentacion} presentan la ficha de cada entregable y, bajo ella, la de cada uno de sus paquetes.
 
 \begin{tabla}{I{0.269}I{0.731}}{Diccionario del entregable 1.1.1, Acta de constitución y plan para la dirección.}{tab:diccionario-entregable-1-1-1-acta}
   {\cab{1.1.1} & \cab{Acta de constitución y plan para la dirección}}
@@ -602,13 +604,13 @@ Hitos asociados & M2–M20. \\
 Esfuerzo estimado & 240 HH (JP 120, AS 60 y LF 60). PERT baja. \\
 Referencias & Art. 72 y RT-19.03. \\
 \end{tabla}
-\begin{tabla}{I{0.269}I{0.731}}{Diccionario del entregable 1.1.3, Documentación de riesgos.}{tab:diccionario-entregable-1-1-3-documentacion}
-  {\cab{1.1.3} & \cab{Documentación de riesgos}}
+\begin{tabla}{I{0.269}I{0.731}}{Diccionario del entregable 1.1.3, Gestión y respuesta a riesgos.}{tab:diccionario-entregable-1-1-3-documentacion}
+  {\cab{1.1.3} & \cab{Gestión y respuesta a riesgos}}
   {Fuente: elaboración propia a partir de la Guía del PMBOK (PMI, 2017, p. 162).}
-Descripción del trabajo & Riesgos del proyecto con su análisis y su respuesta, actualizados durante toda la implementación. Supone que el cliente comparte la información de fabricantes, sindicato y personal clave. \\
+Descripción del trabajo & Riesgos del proyecto con su análisis y su respuesta, actualizados durante toda la implementación, y ejecución de las medidas preventivas y de los ensayos de continuidad que fija el plan de riesgos. Supone que el cliente comparte la información de fabricantes, sindicato y personal clave. \\
 Responsable & Claudio Cabello (JP). \\
-Hitos asociados & M1–M20. Sin hito propio. \\
-Esfuerzo estimado & 312 HH, todas del JP. \\
+Hitos asociados & M1–M21. Sin hito propio. \\
+Esfuerzo estimado & 1.112 HH: 312 del JP en el registro y el plan, 704 de medidas preventivas y 96 de ensayos de continuidad. \\
 1.1.3.1 & Registro de riesgos con su análisis \\
 Descripción del trabajo & Identificar los riesgos en talleres, analizarlos y actualizar el registro en cada Comité de Proyecto. \\
 Entregable & Registro de riesgos con causa, probabilidad, impacto, dueño y estado. \\
@@ -625,6 +627,22 @@ Responsable & Claudio Cabello (JP). \\
 Hitos asociados & M2–M20. \\
 Esfuerzo estimado & 152 HH del JP. PERT baja. \\
 Referencias & Subdocumento 8, Art. 50.2 y Art. 71. T-12: RT-19.04. \\
+1.1.3.3 & Medidas preventivas del plan de riesgos \\
+Descripción del trabajo & Ejecutar en su mes las medidas preventivas que el plan de riesgos asigna por rol: vigilancia del fin de soporte de los componentes, pruebas tempranas de las interfaces sin documentación, registro de los factores de ajuste con quien los conoce, validación del módulo de sala técnica y de los dispositivos, preparación de actas y ventanas de paso, revisión legal de la cadena del lote y de la transferencia internacional, revisión de seguridad previa a las pruebas de intrusión, calibración de las reglas de alerta, acreditación anticipada y contratación escalonada de los analistas 24x7. \\
+Entregable & Medidas preventivas ejecutadas, con su evidencia en el registro de riesgos. \\
+Criterio de aceptación & Cada medida del Anexo G del Subdocumento 8 se ejecuta en su mes y su evidencia queda en el acta del Comité de Proyecto, con el saldo de horas actualizado. \\
+Responsable & Claudio Cabello (JP). \\
+Hitos asociados & M2–M20. \\
+Esfuerzo estimado & 704 HH (DEV 264, OPS 160, QA 64, ACP 64, AS 40, ESI 40, ABG 24, LDA 16, BCP 16 y RTC 16). Sin PERT: las horas están fijadas por medida, mes y rol en el Anexo G del Subdocumento 8. \\
+Referencias & Subdocumento 8, sección 8.3 y Anexo G. T-12: RT-19.04. \\
+1.1.3.4 & Preparación y ensayos de pérdida total de sala \\
+Descripción del trabajo & Preparar el procedimiento de restablecimiento ante la pérdida total de la sala técnica con el kit externo y ensayarlo dos veces, una antes de cada paso a producción. \\
+Entregable & Procedimiento de restablecimiento de sala y dos informes de ensayo. \\
+Criterio de aceptación & Preparación cerrada en el mes 8. Ensayos en los meses 15 y 21 con restablecimiento en 4 horas o menos y cero eventos confirmados perdidos. \\
+Responsable & Lucas Zamora (SRE). \\
+Hitos asociados & M6–M8, M15 y M21. Aporta a H7 (mes 16) y H12 (mes 21). \\
+Esfuerzo estimado & 96 HH (TEC 40, SRE 24, AS 16 y OPS 16). Sin PERT. \\
+Referencias & Subdocumento 8, sección 8.3 y Anexo G. \\
 \end{tabla}
 \begin{tabla}{I{0.269}I{0.731}}{Diccionario del entregable 1.1.4, Plan de calidad y puertas de calidad.}{tab:diccionario-entregable-1-1-4-plan}
   {\cab{1.1.4} & \cab{Plan de calidad y puertas de calidad}}

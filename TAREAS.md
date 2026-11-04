@@ -37,6 +37,7 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 | F-03 | Alta / presentación | Dependencias y ruta crítica en las cartas Gantt de las ramas de T-14 | en_revision | Claude, sesión 2026-10-29, rama grupo6 | Pendiente (sólo autorrevisión) |
 | LC-01 | Media / lectura de cierre | Corregir erratas, oraciones rotas, citas inexistentes e indicios «dudosos» que señaló la Primera Revisión del Informe 2 y que siguen en el LaTeX | en_revision | Claude, sesión 2026-11-03, rama claude/kind-heisenberg-egckbe | Pendiente (sólo autorrevisión) |
 | LC-02 | Alta / revisión del profesor | Corregir lo pendiente de la Primera Revisión del Informe 2 tomando la decisión de menor cambio; figuras en md aparte | en_revision | Claude, sesión 2026-11-03, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
+| LC-03 | Alta / revisión del profesor | Figuras de las decisiones de LC-02 y 800 HH del plan de riesgos dentro de la EDT (T-14, T-15, S7, S8) | en_revision | Claude, sesión 2026-11-04, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
 | E3-01 | Planificada / entrega 3 | Documento económico, planilla, flujo, curva S, VAN/TIR e innovaciones | pendiente | Sin asignar | Sin asignar |
 | E3-02 | Planificada / entrega 3 | Prototipo navegable y evidencia de requisitos UX/UI | pendiente | Sin asignar | Sin asignar |
 
@@ -186,6 +187,14 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
   - S13, A13 y T-19: valorización de la innovación 1 (USD 0,95 a 1,4 millones al año, beneficio del cliente); innovación 3 en toneladas y defensa frente a la práctica habitual; rama 1.7 en 3.000 HH; innovación 5 con cuatro módulos; páginas relativas en fuentes.
 - **Fuera de alcance (requiere el equipo o rehacer cálculos):** figuras ([Figuras_Pendientes.md](revision-comision/Figuras_Pendientes.md)); reglas de negocio del Cap. 17.1; parciales del T-12; ADR de región y CIO y conversión de ADR a texto; latencia y costo de Brazil South; LTE del rajo; CPM con duraciones estimadas y reserva de cronograma; medida de tamaño; sacar los riesgos internos y agregar los externos del S8; 704 + 96 HH en T-14/T-15; reserva de gestión; Montecarlo; volumen; lectura de cierre humana.
 - **Validación 2026-11-03:** `python compilar.py --reglas`: 0 errores (los 9 avisos de R-08). `python compilar.py` en modo normal: 31 documentos sin error, estable en 3 pasadas, 1.326 folios (9 más que antes por el texto agregado). Entorno: TeX Live 2023 en Linux. Las cifras nuevas quedaron en `FUENTE_DE_VERDAD.md`; las 800 HH preventivas del S8 quedan como conflicto abierto. No se versionan PDF ni auxiliares. Sólo autorrevisión.
+
+### LC-03 — Figuras de LC-02 y 800 HH del plan de riesgos en la EDT
+
+- **Estado:** en_revision. Responsable: Claude, sesión 2026-11-04, a pedido del usuario («las fotos pendientes… y también el cambio de la EDT y HH… exportar con 300 ppp»; «edt, riesgos y gantt»). Revisión independiente pendiente.
+- **Figuras (300 ppp, mxGraph desde `diagramas/Diagramas OVERFORE.drawio`; curvas con matplotlib):** 1.1, 1.2, 6.4, 6.5 y 9.1 (commit `2457afa`); B.1/7.1, B.2, C.2, D.1/7.2 y D.2. Medidas en [Figuras_Pendientes.md](revision-comision/Figuras_Pendientes.md); todas sobre 9 pt.
+- **EDT y HH (DEC-022):** paquetes 1.1.3.3 (704 HH) y 1.1.3.4 (96 HH); 1.1.3 renombrado «Gestión y respuesta a riesgos»; total 183.866 HH en 177 paquetes; ramas 1.1–1.7 61.194 HH; implementación 57.654 y operación 126.212 HH; 45 personas como máximo, sin cambio. Actualizados T-14 (fichas, PERT, roles, perfiles, ramas), T-15 (etapas, tabla mensual, operación, paquetes), S7, S8 y S8-Anexos (umbrales sobre 61.194 HH). Gantt C.2 en sus tres copias draw.io.
+- **Fuera de alcance (sigue pendiente):** registro de riesgos sin los internos y con los externos (tarea siguiente); dependencias, sprints, puertas y reserva en las cartas Gantt (F-03); figuras 4.23, 4.36, 6.7, 6.9, 7.3, 7.4 y 9.3.
+- **Validación 2026-11-04:** `python compilar.py --reglas`: 0 errores (los 9 avisos de R-08). `python compilar.py` en modo normal: 31 documentos sin error y sin referencias indefinidas, 1.328 folios. Figuras medidas con el método de `medir_figuras.py`. Entorno: TeX Live 2023 en Linux. No se versionan PDF ni auxiliares. Sólo autorrevisión.
 
 ### E3-01 — Economía de entrega 3
 

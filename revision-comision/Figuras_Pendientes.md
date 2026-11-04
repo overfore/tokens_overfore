@@ -18,6 +18,12 @@ Exportadas a 300 ppp con mxGraph desde `diagramas/Diagramas OVERFORE.drawio` y m
 | 6.5 | Página nueva con los 19 grupos, clasificados según la Tabla 2.3 del S2 | 10,6 pt |
 | 9.1 | Anexos D y E agregados | 10,2 pt |
 
+| B.1 y 7.1 | EDT, vista general, con 183.866 HH y la rama 1.1 en 31 paquetes y 5.888 HH (página nueva en draw.io) | 9,7 pt |
+| B.2 | Rama 1.1 con 31 paquetes, 5.888 HH y 1.1.3 «Gestión y respuesta a riesgos» (4 paquetes, 1.112 HH) | 10,6 pt |
+| C.2 | Filas 1.1.3.3 (M2–M20) y 1.1.3.4 (M6–M8, M15 y M21); 1.1.3 extendido a M21 | 9,2 pt |
+| D.1 y 7.2 | Curva regenerada con la tabla mensual del T-15 (57.654 HH, máximo 5.299 en M15) | 10,2 pt |
+| D.2 | Barra de M21 con las 32 HH del ensayo de pérdida de sala | sin cambio de letra |
+
 Las filas de esas figuras en las tablas A y B quedan cerradas.
 
 ---
