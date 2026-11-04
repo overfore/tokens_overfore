@@ -23,6 +23,8 @@ Exportadas a 300 ppp con mxGraph desde `diagramas/Diagramas OVERFORE.drawio` y m
 | C.2 | Filas 1.1.3.3 (M2–M20) y 1.1.3.4 (M6–M8, M15 y M21); 1.1.3 extendido a M21 | 9,2 pt |
 | D.1 y 7.2 | Curva regenerada con la tabla mensual del T-15 (57.654 HH, máximo 5.299 en M15) | 10,2 pt |
 | D.2 | Barra de M21 con las 32 HH del ensayo de pérdida de sala | sin cambio de letra |
+| 8.3 | RBS con 22 riesgos, identificador R-xx y zona inherente en cada caja, siete ramas numeradas (página nueva en draw.io) | 9,7 pt |
+| 8.4 y 8.6 | Matrices con los 22 riesgos, antes y después (matplotlib) | 11,1 pt |
 
 Las filas de esas figuras en las tablas A y B quedan cerradas.
 

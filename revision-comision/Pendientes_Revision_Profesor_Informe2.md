@@ -119,13 +119,13 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 
 ## S8 · Plan de riesgos (7 %)
 
-- [ ] **Crítico [Decisión]** Retirar del registro los 11 riesgos internos del proveedor (R-01 a R-04, R-13 a R-15, R-18, R-19, R-23, R-24) y resolverlos en la propuesta; reformular obsolescencia, bloqueo por proveedor, escalabilidad y ciberseguridad como exposición del cliente.
-- [ ] **Crítico [Decisión]** Agregar los riesgos externos que el caso anticipa: invierno altiplánico (enero–febrero, coincide con M13), auditoría y recertificación de 2029, exigencias de los compradores desde 2029 y emergencias.
+- [x] **Crítico [Decisión]** Retirar del registro los 11 riesgos internos del proveedor (R-01 a R-04, R-13 a R-15, R-18, R-19, R-23, R-24) y resolverlos en la propuesta; reformular obsolescencia, bloqueo por proveedor, escalabilidad y ciberseguridad como exposición del cliente. → _Hecho en LC-03 (DEC-023): R-01 a R-04 y R-13 reformulados; seis retirados con su resolución en el T-16, sección F._
+- [x] **Crítico [Decisión]** Agregar los riesgos externos que el caso anticipa: invierno altiplánico (enero–febrero, coincide con M13), auditoría y recertificación de 2029, exigencias de los compradores desde 2029 y emergencias. → _Hecho en LC-03: R-25 a R-28 con ficha completa._
 - [x] **Alta [Decisión]** Incorporar las 704 HH preventivas y las 96 HH de continuidad a paquetes del T-14 y a la nivelación del T-15 (la regla de zona alta lo exige). → _Hecho en LC-03 (DEC-022): paquetes 1.1.3.3 y 1.1.3.4; total 183.866 HH; T-15, S7, S8 y figuras B.1/7.1, B.2, C.2, D.1/7.2 y D.2 actualizados._
 - [ ] **Alta [Decisión]** Redefinir la reserva de gestión como reserva para lo no identificado; dejar la holgura de M11 y la incertidumbre de estimación como contingencia; mostrar la reserva de plazo en la Gantt.
 - [x] **Alta** Justificar por escrito las respuestas con beneficio/costo bajo 1 (R-01 0,7; R-09 0,9; R-24 0,8) o cambiar la estrategia. → _Hecho._
 - [x] **Alta** Descontar R-15 de la exposición agregada (se cuenta dos veces). → _Hecho: 5,06 → 2,01, reducción de 60 %._
-- [ ] **Alta** Rehacer la Figura 8.3 con identificadores R-xx, zonas y la séptima rama numerada; alinear los nombres del párrafo con las ramas dibujadas.
+- [x] **Alta** Rehacer la Figura 8.3 con identificadores R-xx, zonas y la séptima rama numerada; alinear los nombres del párrafo con las ramas dibujadas. → _Hecho en LC-03 (9,7 pt); texto y Anexo B usan los nombres de la figura._
 - [ ] **Media** Si se mantiene la simulación de Montecarlo, modelar duraciones con distribución sobre la red del T-14 (hoy cinco eventos de Bernoulli).
 - [x] **Media** Redondear la precisión espuria («0,4557375», «0,000528», «3.505,79845 HH»). → _Hecho en el texto, el anexo y la ficha de R-15; las tablas de cálculo del Anexo B conservan decimales._
 - [x] **Media** Tabla 8.6: la indisponibilidad del personal clave del cliente está en R-10, no en R-07/R-18. → _Hecho._

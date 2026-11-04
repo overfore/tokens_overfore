@@ -36,7 +36,7 @@ Medio & 7 o más y menos de 20 días & 3,5 \% a menos de 10 \% & 7 o más y meno
 Bajo & 2 o más y menos de 7 días & 1 \% a menos de 3,5 \% & 2 o más y menos de 7 días corridos \\
 Muy bajo & Menos de 2 días & Menos de 1 \% & Absorbible en una ventana de paso \\
 \end{tabla}
-El nivel alto se ancla en 20 días corridos, cuando se alcanza el tope acumulado de la multa; el incumplimiento existe desde el primer día de atraso contractual. Para estimar esfuerzo se emplean dos equivalencias del T-14: una semana de construcción de la cadena crítica E1 equivale a 342 HH, la mitad de un sprint de 684 HH; una semana media de marcha blanca E1 equivale a 565 HH, redondeando 40 HH de 1.6.3.1 más 6.824 / 13 = 524,923 HH de 1.6.3.3. R-12 conserva 1.695 HH inherentes y 1.130 HH residuales. R-23 conserva 565 HH por una semana; su impacto alto deriva de la extensión del cierre, no de aumentar estas horas. La cobertura efectiva se dimensiona por áreas y turnos.
+El nivel alto se ancla en 20 días corridos, cuando se alcanza el tope acumulado de la multa; el incumplimiento existe desde el primer día de atraso contractual. Para estimar esfuerzo se emplean dos equivalencias del T-14: una semana de construcción de la cadena crítica E1 equivale a 342 HH, la mitad de un sprint de 684 HH; una semana media de marcha blanca E1 equivale a 565 HH, redondeando 40 HH de 1.6.3.1 más 6.824 / 13 = 524,923 HH de 1.6.3.3. R-12 conserva 1.695 HH inherentes y 1.130 HH residuales, y R-25 usa 1,5 semanas, 848 HH; su impacto alto deriva de la extensión del cierre, no de aumentar estas horas. La cobertura efectiva se dimensiona por áreas y turnos.
 
 \seccion{Umbrales de escalamiento}
 El escalamiento no depende del criterio de quien preside el comité, sino de siete umbrales numerados. La Tabla \ref{tab:umbrales-escalamiento-plan-riesgos} los presenta con la acción que gatillan.
@@ -61,9 +61,9 @@ El apetito de Overfore es bajo en plazo y en seguridad: la oferta se presenta s�
 Este anexo contiene el cálculo que las secciones 8.2.3 y 8.3.1 del Subdocumento 8 resumen en las Figuras \refext{S8}{fig:ubicacion-24-riesgos-matriz-exposicion-antes} y \refext{S8}{fig:ubicacion-24-riesgos-matriz-exposicion-despues}. Para cada riesgo, la exposición es E = P × I, con P en su estimación puntual e I en el valor de su nivel (0,1; 0,3; 0,5; 0,7 o 0,9). El valor esperado de plazo es P por las semanas brutas sobre su cadena o tramo, y el de esfuerzo es P por las horas hombre adicionales. El enunciado y el fundamento de cada estimación están en la ficha del riesgo en el Formulario T-16.
 
 \seccion{Exposición inherente}
-La Tabla \ref{tab:exposicion-valor-esperado-inherentes-24-riesgos} presenta los 24 riesgos antes de aplicar las respuestas, con la zona que resulta de su exposición.
+La Tabla \ref{tab:exposicion-valor-esperado-inherentes-24-riesgos} presenta los 22 riesgos del registro antes de aplicar las respuestas, con la zona que resulta de su exposición.
 
-\begin{tabla}{I{0.081}D{0.137}D{0.062}D{0.118}I{0.105}D{0.130}D{0.099}D{0.130}D{0.137}}{Exposición y valor esperado inherentes de los 24 riesgos.}{tab:exposicion-valor-esperado-inherentes-24-riesgos}
+\begin{tabla}{I{0.081}D{0.137}D{0.062}D{0.118}I{0.105}D{0.130}D{0.099}D{0.130}D{0.137}}{Exposición y valor esperado inherentes de los 22 riesgos.}{tab:exposicion-valor-esperado-inherentes-24-riesgos}
   {\cab{ID} & \cab{P} & \cab{I} & \cab{E = P × I} & \cab{Zona} & \cab{Semanas} & \cab{HH} & \cab{VE plazo (sem)} & \cab{VE esfuerzo (HH)}}
   {Fuente: elaboración propia a partir de Formulario T-16 (asociado al cap. 8), sección 2.}
 R-01 & 0,45 & 0,5 & 0,225 & Alta & 1,5 & 500 & 0,68 & 225 \\
@@ -79,25 +79,23 @@ R-10 & 0,35 & 0,5 & 0,175 & Media & 1,5 & 310 & 0,53 & 109 \\
 R-11 & 0,55 & 0,5 & 0,275 & Alta & 0,0 & 384 & 0,00 & 211 \\
 R-12 & 0,60 & 0,7 & 0,420 & Crítica & 3,0 & 1.695 & 1,80 & 1.017 \\
 R-13 & 0,30 & 0,5 & 0,150 & Media & 0,0 & 160 & 0,00 & 48 \\
-R-14 & 0,35 & 0,5 & 0,175 & Media & 0,0 & 160 & 0,00 & 56 \\
-R-15 & 0,4557375 & 0,5 & 0,227869 & Alta & 2,0 & 684 & 0,911475 & 311,724 \\
 R-16 & 0,50 & 0,7 & 0,350 & Alta & 0,0 & 400 & 0,00 & 200 \\
 R-17 & 0,25 & 0,7 & 0,175 & Media & 0,0 & 384 & 0,00 & 96 \\
-R-18 & 0,25 & 0,7 & 0,175 & Media & 2,0 & 240 & 0,50 & 60 \\
-R-19 & 0,30 & 0,7 & 0,210 & Alta & 3,0 & 1.026 & 0,90 & 308 \\
 R-20 & 0,30 & 0,7 & 0,210 & Alta & 0,0 & 400 & 0,00 & 120 \\
 R-21 & 0,40 & 0,5 & 0,200 & Alta & 0,0 & 200 & 0,00 & 80 \\
 R-22 & 0,10 & 0,7 & 0,070 & Baja & 0,0 & 800 & 0,00 & 80 \\
-R-23 & 0,35 & 0,7 & 0,245 & Alta & 1,0 & 565 & 0,35 & 198 \\
-R-24 & 0,35 & 0,7 & 0,245 & Alta & 0,0 & 480 & 0,00 & 168 \\
-Total & — & — & 5,292869 & — & — & — & 10,136475 & 4.746,974 \\
+R-25 & 0,50 & 0,7 & 0,350 & Alta & 1,5 & 848 & 0,75 & 424 \\
+R-26 & 0,25 & 0,5 & 0,125 & Media & 0,0 & 640 & 0,00 & 160 \\
+R-27 & 0,35 & 0,7 & 0,245 & Alta & 0,0 & 900 & 0,00 & 315 \\
+R-28 & 0,20 & 0,5 & 0,100 & Media & 2,0 & 400 & 0,40 & 80 \\
+Total & — & — & 4,835 & — & — & — & 8,625 & 4.624,7 \\
 \end{tabla}
-La exposición inherente suma unos 5,29 con las probabilidades puntuales del registro, y 5,06 sin R-15, que es el escenario conjunto de otros cinco riesgos; la Tabla \ref{tab:exposicion-valor-esperado-inherentes-24-riesgos} presenta los valores redondeados. R-15 usa una probabilidad de 45,6 \%, calculada con las 32 combinaciones del Anexo D. Los valores esperados de plazo corresponden a tramos diferentes y su suma no representa un atraso único.
+La exposición inherente suma 4,835 con las probabilidades puntuales del registro; la Tabla \ref{tab:exposicion-valor-esperado-inherentes-24-riesgos} presenta los valores redondeados. Los seis riesgos internos del Informe 2 (R-14, R-15, R-18, R-19, R-23 y R-24) se retiraron del registro y se resuelven en la propuesta (Formulario T-16, sección F); el escenario conjunto de la Etapa 1, que era R-15, se estima ahora sólo en la simulación del Anexo D. Los valores esperados de plazo corresponden a tramos diferentes y su suma no representa un atraso único.
 
 \seccion{Exposición residual}
 La Tabla \ref{tab:exposicion-valor-esperado-residuales-24-riesgos} presenta los mismos riesgos después de aplicar las respuestas del Formulario T-16, con la probabilidad, el impacto, las semanas y las horas que quedan.
 
-\begin{tabla}{I{0.081}D{0.137}D{0.062}D{0.118}I{0.105}D{0.130}D{0.099}D{0.130}D{0.137}}{Exposición y valor esperado residuales de los 24 riesgos.}{tab:exposicion-valor-esperado-residuales-24-riesgos}
+\begin{tabla}{I{0.081}D{0.137}D{0.062}D{0.118}I{0.105}D{0.130}D{0.099}D{0.130}D{0.137}}{Exposición y valor esperado residuales de los 22 riesgos.}{tab:exposicion-valor-esperado-residuales-24-riesgos}
   {\cab{ID} & \cab{P} & \cab{I} & \cab{E = P × I} & \cab{Zona} & \cab{Semanas} & \cab{HH} & \cab{VE plazo (sem)} & \cab{VE esfuerzo (HH)}}
   {Fuente: elaboración propia a partir de Formulario T-16 (asociado al cap. 8), sección 2.}
 R-01 & 0,20 & 0,3 & 0,060 & Baja & 0,5 & 300 & 0,10 & 60 \\
@@ -113,20 +111,18 @@ R-10 & 0,20 & 0,5 & 0,100 & Media & 1,0 & 310 & 0,20 & 62 \\
 R-11 & 0,55 & 0,3 & 0,165 & Media & 0,0 & 0 & 0,00 & 0 \\
 R-12 & 0,20 & 0,7 & 0,140 & Media & 2,0 & 1.130 & 0,40 & 226 \\
 R-13 & 0,15 & 0,3 & 0,045 & Baja & 0,0 & 160 & 0,00 & 24 \\
-R-14 & 0,20 & 0,5 & 0,100 & Media & 0,0 & 160 & 0,00 & 32 \\
-R-15 & 0,0017600 & 0,3 & 0,000528 & Baja & 0,3 & 100 & 0,000528 & 0,176 \\
 R-16 & 0,25 & 0,7 & 0,175 & Media & 0,0 & 400 & 0,00 & 100 \\
 R-17 & 0,15 & 0,7 & 0,105 & Media & 0,0 & 384 & 0,00 & 58 \\
-R-18 & 0,10 & 0,5 & 0,050 & Baja & 1,0 & 240 & 0,10 & 24 \\
-R-19 & 0,10 & 0,7 & 0,070 & Baja & 2,0 & 684 & 0,20 & 68 \\
 R-20 & 0,10 & 0,7 & 0,070 & Baja & 0,0 & 400 & 0,00 & 40 \\
 R-21 & 0,20 & 0,3 & 0,060 & Baja & 0,0 & 200 & 0,00 & 40 \\
 R-22 & 0,10 & 0,7 & 0,070 & Baja & 0,0 & 160 & 0,00 & 16 \\
-R-23 & 0,10 & 0,3 & 0,030 & Baja & 0,5 & 280 & 0,05 & 28 \\
-R-24 & 0,10 & 0,5 & 0,050 & Baja & 0,0 & 480 & 0,00 & 48 \\
-Total & — & — & 2,010528 & — & — & — & 1,900528 & 1.241,176 \\
+R-25 & 0,50 & 0,3 & 0,150 & Media & 0,5 & 300 & 0,25 & 150 \\
+R-26 & 0,10 & 0,3 & 0,030 & Baja & 0,0 & 320 & 0,00 & 32 \\
+R-27 & 0,20 & 0,5 & 0,100 & Media & 0,0 & 600 & 0,00 & 120 \\
+R-28 & 0,20 & 0,3 & 0,060 & Baja & 0,5 & 200 & 0,10 & 40 \\
+Total & — & — & 2,050 & — & — & — & 1,900 & 1.382,6 \\
 \end{tabla}
-La exposición agregada baja de 5,06 a 2,01 sin contar R-15, para no sumar dos veces sus cinco riesgos: una reducción estimada de 60 \%. Quince riesgos quedan en zona baja y nueve en media. R-16 tiene la mayor exposición residual, 0,175. La suma de valores esperados de esfuerzo por ficha es 1.241,176 HH; no es la reserva de contingencia, que excluye las aceptaciones pasivas, R-15 y considera O-02. Los cálculos emplean los valores completos, aunque las tablas presenten redondeos.
+La exposición agregada baja de 4,84 a 2,05: una reducción estimada de 58 \%. Doce riesgos quedan en zona baja y diez en media. R-16 tiene la mayor exposición residual, 0,175. La suma de valores esperados de esfuerzo por ficha es 1.382,6 HH; no es la reserva de contingencia, que excluye las aceptaciones pasivas, suma el residual de los riesgos internos resueltos y considera O-02. Los cálculos emplean los valores completos, aunque las tablas presenten redondeos.
 
 \seccion{Síntesis por zona y por rama}
 La Tabla \ref{tab:distribucion-riesgos-zona-inherente-residual} resume cuántos riesgos hay en cada zona antes y después de las respuestas, y la Tabla \ref{tab:exposicion-rama-estructura-desglose-riesgos} cómo se reparte la exposición entre las ramas de la estructura de desglose.
@@ -135,23 +131,23 @@ La Tabla \ref{tab:distribucion-riesgos-zona-inherente-residual} resume cuántos 
   {\cab{Zona} & \cab{N° inherente} & \cab{Riesgos (inherente)} & \cab{N° residual} & \cab{Riesgos (residual)}}
   {Fuente: elaboración propia a partir de Formulario T-16 (asociado al cap. 8), sección 2.}
 Crítica & 3 & R-05, R-08, R-12 & 0 & Ninguno \\
-Alta & 10 & R-01, R-07, R-11, R-15, R-16, R-19, R-20, R-21, R-23, R-24 & 0 & Ninguno \\
-Media & 8 & R-04, R-06, R-09, R-10, R-13, R-14, R-17, R-18 & 9 & R-05, R-07, R-08, R-10, R-11, R-12, R-14, R-16, R-17 \\
-Baja & 3 & R-02, R-03, R-22 & 15 & R-01, R-02, R-03, R-04, R-06, R-09, R-13, R-15, R-18, R-19, R-20, R-21, R-22, R-23, R-24 \\
+Alta & 8 & R-01, R-07, R-11, R-16, R-20, R-21, R-25, R-27 & 0 & Ninguno \\
+Media & 8 & R-04, R-06, R-09, R-10, R-13, R-17, R-26, R-28 & 10 & R-05, R-07, R-08, R-10, R-11, R-12, R-16, R-17, R-25, R-27 \\
+Baja & 3 & R-02, R-03, R-22 & 12 & R-01, R-02, R-03, R-04, R-06, R-09, R-13, R-20, R-21, R-22, R-26, R-28 \\
 \end{tabla}
 \begin{tabla}{I{0.348}D{0.143}D{0.180}D{0.143}D{0.186}}{Exposición por rama de la estructura de desglose de riesgos.}{tab:exposicion-rama-estructura-desglose-riesgos}
   {\cab{Rama} & \cab{N° de riesgos} & \cab{Exposición inherente} & \cab{\% del total} & \cab{Exposición residual}}
   {Fuente: elaboración propia a partir de Formulario T-16 (asociado al cap. 8), sección 2.}
-1 · Solución y tecnología & 5 & 0,765000 & 14,5 \% & 0,350000 \\
-2 · Integración y legado & 2 & 0,525000 & 9,9 \% & 0,175000 \\
-3 · Operación del cliente & 4 & 1,085000 & 20,5 \% & 0,425000 \\
-4 · Personas y adopción & 4 & 1,020000 & 19,3 \% & 0,450000 \\
-5 · Contrato y licitación & 2 & 0,297869 & 5,6 \% & 0,070528 \\
-6 · Regulatorio y externo & 4 & 0,935000 & 17,7 \% & 0,410000 \\
-7 · Empresa proveedora & 3 & 0,665000 & 12,6 \% & 0,130000 \\
-Total & 24 & 5,292869 & 100 \% & 2,010528 \\
+1 · Tecnología y seguridad & 4 & 0,555 & 11,5 \% & 0,280 \\
+2 · Interfaces e históricos & 2 & 0,525 & 10,9 \% & 0,175 \\
+3 · Operación e infraestructura & 4 & 1,085 & 22,4 \% & 0,425 \\
+4 · Adopción y uso & 3 & 0,845 & 17,5 \% & 0,350 \\
+5 · Contrato y plazo & 1 & 0,070 & 1,4 \% & 0,070 \\
+6 · Terceros y cumplimiento & 6 & 1,305 & 27,0 \% & 0,540 \\
+7 · Entorno de la faena & 2 & 0,450 & 9,3 \% & 0,210 \\
+Total & 22 & 4,835 & 100 \% & 2,050 \\
 \end{tabla}
-De las tablas se desprende que la operación del cliente y las personas y adopción reúnen el 40 \% de la exposición inherente, y que todas las ramas bajan más de la mitad con las respuestas.
+De las tablas se desprende que terceros y cumplimiento, y operación e infraestructura, reúnen el 49 \% de la exposición inherente, y que todas las ramas bajan con las respuestas salvo contrato y plazo, cuyo riesgo R-22 depende de la fecha de firma. La rama del entorno de la faena, nueva en este informe, reúne el invierno altiplánico y las emergencias.
 
 \seccion{Oportunidades}
 Las cuatro oportunidades se miden con las mismas escalas, donde el impacto representa el beneficio. La Tabla \ref{tab:exposicion-oportunidades} las presenta.
@@ -167,7 +163,7 @@ O-04 & Recuperar parte de los 47 minutos perdidos por cambio de turno & 0,35 & 0
 De la tabla se desprende que la oportunidad de mayor peso es reducir los embarques penalizados por arsénico (O-01), que depende de la innovación 1 y del acuerdo con el operador portuario. Sólo O-02 tiene un efecto en horas, de 160 HH, cuyo valor esperado de 64 HH se resta de la reserva de contingencia (Anexo E).
 
 \anexo{Análisis de modos y efectos de falla}
-Este anexo detalla el análisis que la sección 8.2.4 del Subdocumento 8 resume en la Tabla \refext{S8}{tab:numero-prioridad-riesgos-zona-critica-alta}. Se aplica a los trece riesgos de zona crítica y alta, siguiendo el método de la norma IEC 60812:2018, y sus tres escalas se derivan del registro para no introducir una segunda opinión sobre la probabilidad y el impacto.
+Este anexo detalla el análisis que la sección 8.2.4 del Subdocumento 8 resume en la Tabla \refext{S8}{tab:numero-prioridad-riesgos-zona-critica-alta}. Se aplica a los once riesgos de zona crítica y alta, siguiendo el método de la norma IEC 60812:2018, y sus tres escalas se derivan del registro para no introducir una segunda opinión sobre la probabilidad y el impacto.
 
 \seccion{Escalas de severidad, ocurrencia y detección}
 La severidad (S) se toma del nivel de impacto y la ocurrencia (O) de la probabilidad, redondeada a la decena (O = P × 10). La detección (D) es la única escala nueva: mide cuán tarde aparece el disparador respecto del efecto, como muestra la Tabla \ref{tab:correspondencia-severidad-escala-deteccion}.
@@ -194,34 +190,32 @@ La Tabla \ref{tab:modos-falla-disparadores-numero-prioridad} presenta el modo de
   {Fuente: elaboración propia a partir de Subdocumento 8, cap. 8, sección 8.2.4.}
 R-12 & Los operadores siguen declarando por radio al cierre de la marcha blanca & Declaraciones propias bajo 90 \% en la segunda semana de la pala piloto (marcha blanca) & 8 & 6 & 7 & 336 \\
 R-08 & Una pala trabaja más de 48 horas sin señal y se pierden registros & Estudio de cobertura del mes 4 o equipo con más de 24 horas sin sincronizar & 8 & 6 & 4 & 192 \\
-R-23 & Personal sin credencial deja turnos descubiertos y prolonga la marcha blanca & Credencial sin resolver a 5 días hábiles del primer turno o examen de altura reprobado & 8 & 4 & 6 & 192 \\
+R-25 & Una suspensión de faena por invierno interrumpe la medición de la marcha blanca E1 & Alerta meteorológica para el altiplano o suspensión de faena declarada en M13–M14 & 8 & 5 & 5 & 200 \\
 R-16 & Un fabricante no firma el acceso a la telemetría o pide un pago & Acuerdo sin firmar al cierre del mes 9 & 8 & 5 & 4 & 160 \\
 R-05 & Una interfaz crítica no existe al cierre del levantamiento & Documentación faltante al cierre del mes 2 o prueba de lectura fallida en el mes 3 & 8 & 6 & 3 & 144 \\
 R-11 & No hay acuerdo sindical para la verificación facial & Sin acuerdo firmado al cierre del mes 12, tras 11 sesiones mensuales desde M2; las 13 sesiones previstas se completan en M14 & 6 & 6 & 4 & 144 \\
-R-19 & La primera campaña de intrusión deja hallazgos altos abiertos & Revisión interna del mes 9, dos meses antes de la campaña & 8 & 3 & 6 & 144 \\
+R-27 & El comprador define o cambia sus exigencias después del diseño de la Etapa 2 & Especificación sin recibir al cierre de M12 o cambio publicado después de M18 & 8 & 4 & 4 & 128 \\
 R-07 & Los factores de ajuste quedan sin explicación o la fuente no se ratifica & Acta del mes 3 sin firma de finanzas o factor sin explicar al cierre del mes 2 & 8 & 5 & 3 & 120 \\
 R-21 & La segunda fibra no opera o el satélite rinde menos de 20 Mbps & Fecha o avance incompatible con M6, ruta compartida en revisión previa o satélite inferior a 20 Mbps en M5 & 6 & 4 & 5 & 120 \\
-R-24 & Faltan analistas al inicio de la operación 24x7 & Conteo de analistas al cierre de los meses 12 y 18 & 8 & 4 & 3 & 96 \\
-R-15 & La cadena crítica de la Etapa 1 supera su reserva de plazo & Consumo de la reserva revisado en cada Comité de Proyecto & 6 & 5 & 3 & 90 \\
 R-01 & Un componente pierde soporte en plena construcción & Fechas públicas de fin de soporte, con aviso a 90 días & 6 & 5 & 2 & 60 \\
 R-20 & El cliente no autoriza la réplica de datos sensibles fuera de Chile & Autorización pedida con H1 y exigida al cierre del mes 4 & 8 & 3 & 2 & 48 \\
 \end{tabla}
-Cuatro riesgos superan RPN 150: R-12 (336), R-08 y R-23 (192), y R-16 (160). En R-23, el disparador a cinco días hábiles del primer turno equivale aproximadamente a una semana laboral de anticipación: D=6 conforme a la Tabla \ref{tab:correspondencia-severidad-escala-deteccion}. La fecha de ingreso es conocida, pero la credencial sin resolver no se detecta con meses de margen; un examen reprobado activa antes el mismo control. Para responder se mantienen personas de reserva acreditadas. La detección temprana también incluye la prueba con guantes de M5 para R-12, el estudio de cobertura para R-08 y la notificación a fabricantes en el Comité Ejecutivo de M1 para R-16.
+Cuatro riesgos superan RPN 150: R-12 (336), R-25 (200), R-08 (192) y R-16 (160). En R-25 la estación de invierno se conoce, pero cada episodio se anuncia con uno a tres días: D=5 conforme a la Tabla \ref{tab:correspondencia-severidad-escala-deteccion}. Por eso la respuesta no depende de la alerta, sino de la regla de medición acordada en H1 y de la autonomía del Nodo. La detección temprana también incluye la prueba con guantes de M5 para R-12, el estudio de cobertura para R-08 y la notificación a fabricantes en el Comité Ejecutivo de M1 para R-16.
 
 \anexo{Simulación de la cadena crítica de la Etapa 1}
-Este anexo detalla la simulación que la sección 8.2.5 del Subdocumento 8 resume en la Figura \refext{S8}{fig:distribucion-atraso-acumulado-sobre-cadena-critica} y en la Tabla \refext{S8}{tab:resultado-simulacion-sobre-cadena-critica-etapa}. Su objetivo es estimar la probabilidad de que los riesgos que caen sobre la cadena crítica de la Etapa 1 consuman la reserva de plazo del mes 11, de 4,3 semanas, declarada en el paquete 1.1.3.2 del Formulario T-14.
+Este anexo detalla la simulación que la sección 8.2.5 del Subdocumento 8 resume en la Figura \refext{S8}{fig:distribucion-atraso-acumulado-sobre-cadena-critica} y en la Tabla \refext{S8}{tab:resultado-simulacion-sobre-cadena-critica-etapa}. Su objetivo es estimar la probabilidad de que las causas de atraso que caen sobre la cadena crítica de la Etapa 1 consuman la reserva de plazo del mes 11, de 4,3 semanas, declarada en el paquete 1.1.3.2 del Formulario T-14.
 
 \seccion{Modelo y parámetros}
-Cada riesgo de la cadena se modela como un evento de Bernoulli: ocurre con su probabilidad y, si ocurre, suma sus semanas brutas de atraso. El atraso total es la suma de los eventos que ocurren. R-15 no se suma como evento, porque representa precisamente el escenario conjunto de los otros cinco. Los cinco eventos caen sobre la cadena A04 a A24 de la Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14, que no tiene holgura. R-07 llega a ella porque la Conciliación Metalúrgica (1.4.3.4) está programada en los meses 6 a 11, sus fechas más tardías, y su retrabajo pasa a la corrección del mes 11 (A16). La Tabla \ref{tab:parametros-simulacion} presenta los parámetros.
+Cada causa de atraso se modela como un evento de Bernoulli: ocurre con su probabilidad y, si ocurre, suma sus semanas brutas de atraso. El atraso total es la suma de los eventos que ocurren. Tres eventos son riesgos del registro (R-01, R-05 y R-07) y dos son causas internas que la propuesta resuelve y que ya no se declaran al cliente (personal clave y hallazgos de intrusión, antes R-18 y R-19); se conservan en el modelo porque consumen el mismo margen. El escenario conjunto, que en el Informe 2 era R-15, es el resultado de esta simulación y no un riesgo del registro. Los cinco eventos caen sobre la cadena A04 a A24 de la Tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14, que no tiene holgura. R-07 llega a ella porque la Conciliación Metalúrgica (1.4.3.4) está programada en los meses 6 a 11, sus fechas más tardías, y su retrabajo pasa a la corrección del mes 11 (A16). La Tabla \ref{tab:parametros-simulacion} presenta los parámetros.
 
 \begin{tabla}{I{0.441}D{0.130}D{0.149}D{0.130}D{0.149}}{Parámetros de la simulación.}{tab:parametros-simulacion}
   {\cab{Riesgo} & \cab{P inherente} & \cab{Semanas inherentes} & \cab{P residual} & \cab{Semanas residuales}}
   {Fuente: elaboración propia a partir de Formulario T-16 (asociado al cap. 8), sección 2; Formulario T-14 (asociado al cap. 7), tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14 (red de precedencias).}
-R-01 · Fin de soporte de componentes en la Etapa 1 & 0,45 & 1,5 & 0,20 & 0,5 \\
+R-01 · Ventanas de actualización en la Etapa 1 & 0,45 & 1,5 & 0,20 & 0,5 \\
 R-05 · Interfaz existente no documentada & 0,60 & 2,5 & 0,20 & 1,0 \\
 R-07 · Factores de ajuste sin quien los explique & 0,45 & 1,5 & 0,20 & 1,0 \\
-R-18 · Salida o sobrecarga de una persona clave & 0,25 & 2,0 & 0,10 & 1,0 \\
-R-19 · Hallazgos altos en las pruebas de intrusión & 0,30 & 3,0 & 0,10 & 2,0 \\
+Causa interna (antes R-18) · Salida o sobrecarga de una persona clave & 0,25 & 2,0 & 0,10 & 1,0 \\
+Causa interna (antes R-19) · Hallazgos altos en las pruebas de intrusión & 0,30 & 3,0 & 0,10 & 2,0 \\
 \end{tabla}
 De la tabla se desprende que R-05 es el evento de mayor peso, con 60 \% de probabilidad y 2,5 semanas. Se ejecutaron 100.000 iteraciones con la semilla fija 20261010, para que el resultado sea reproducible, y se calculó además la distribución exacta de las 32 combinaciones posibles de los cinco eventos. La diferencia entre ambos métodos es menor que 0,1 punto porcentual en todos los indicadores.
 
@@ -270,9 +264,9 @@ El modelo considera los cinco eventos identificados que afectan la cadena críti
 Este anexo detalla las reservas que la sección 8.3.3 del Subdocumento 8 resume en la Tabla \refext{S8}{tab:reservas-contingencia-gestion}. La reserva de contingencia es el valor esperado del riesgo residual de cada riesgo con respuesta o aceptado en forma activa, medido en semanas y en horas hombre, y se suma a las 988 HH de incertidumbre de la estimación que el Formulario T-14 cubre con los paquetes de corrección y el saldo de los roles clave. La reserva de gestión cubre los riesgos no identificados. La valorización de ambas va en la Oferta Económica, conforme al Art. 50.2.
 
 \seccion{Reserva de contingencia por riesgo}
-La Tabla \ref{tab:reserva-contingencia-riesgo} presenta la reserva de cada riesgo, el tramo del cronograma donde se refleja y el mes en que se libera si el riesgo se cierra sin ocurrir. R-02 y R-03 no tienen reserva porque se aceptan de forma pasiva, y R-15 no se suma porque su reserva ya está en los cinco riesgos que lo componen.
+La Tabla \ref{tab:reserva-contingencia-riesgo} presenta la reserva de cada riesgo, el tramo del cronograma donde se refleja y el mes en que se libera si el riesgo se cierra sin ocurrir. R-02 y R-03 no tienen reserva porque se aceptan de forma pasiva. El residual de los riesgos internos resueltos en la propuesta se conserva en una sola línea, porque es esfuerzo de Overfore que se valoriza en la Oferta Económica aunque no se declare como riesgo del cliente.
 
-O-02 aporta un ahorro esperado de 64 HH, no un recurso asegurado. El registro conserva la contingencia neta de 997 HH y permite identificar una exposición bruta de 1.061 HH antes de ese descuento. Hasta que la oportunidad se materialice, el Jefe de Proyecto no utiliza su ahorro como capacidad liberada. Si no ocurre, la cobertura se decide con la reserva bruta y con el saldo real de los roles, sin alterar la probabilidad ni el impacto de las amenazas.
+O-02 aporta un ahorro esperado de 64 HH, no un recurso asegurado. El registro conserva la contingencia neta de 1.339 HH y permite identificar una exposición bruta de 1.403 HH antes de ese descuento. Hasta que la oportunidad se materialice, el Jefe de Proyecto no utiliza su ahorro como capacidad liberada. Si no ocurre, la cobertura se decide con la reserva bruta y con el saldo real de los roles, sin alterar la probabilidad ni el impacto de las amenazas.
 
 \begin{tabla}{I{0.087}I{0.323}D{0.155}D{0.161}I{0.273}}{Reserva de contingencia por riesgo.}{tab:reserva-contingencia-riesgo}
   {\cab{ID} & \cab{Tramo donde se refleja} & \cab{VE plazo (sem)} & \cab{VE esfuerzo (HH)} & \cab{Se libera en}}
@@ -288,20 +282,20 @@ R-10 & Implantación E1 y E2 (H7, H12) & 0,20 & 62 & M21 (H12) \\
 R-11 & Etapa 2 (H9) & 0,00 & 0 & M15 (acuerdo o plan B) \\
 R-12 & Implantación E1 (H7) & 0,40 & 226 & M16 (H7) \\
 R-13 & Etapa 2 (H9 a H12) & 0,00 & 24 & M21 (H12) \\
-R-14 & Etapa 2 y operación & 0,00 & 32 & M30 (segundo informe de verificación) \\
 R-16 & Etapa 2 (H9) & 0,00 & 100 & M13 (acuerdos firmados) \\
 R-17 & Operación (M25) & 0,00 & 58 & M25 (enero de 2029) \\
-R-18 & Etapa 1 (H5) & 0,10 & 24 & M21 (H12) \\
-R-19 & Etapa 1 (H5) & 0,20 & 68 & M20 (última campaña) \\
 R-20 & Diseño y continuidad (H2, H7) & 0,00 & 40 & M4 (autorización recibida) \\
 R-21 & Implantación E1 (H7) & 0,00 & 40 & M16 (segunda fibra operativa) \\
 R-22 & Calendario (H1) & 0,00 & 16 & M1 (contrato firmado) \\
-R-23 & Implantación E1 (H7) & 0,05 & 28 & M20 (fin de las marchas blancas) \\
-R-24 & Operación & 0,00 & 48 & M24 (tres meses de operación medidos) \\
+R-25 & Implantación E1 (H7) & 0,25 & 150 & M15 (cierre de marcha blanca E1) \\
+R-26 & Operación (M31) & 0,00 & 32 & M31 (expediente de recertificación) \\
+R-27 & Etapa 2 y operación (M25) & 0,00 & 120 & M25 (enero de 2029) \\
+R-28 & Implantación E1 y E2 & 0,10 & 40 & M21 (H12) \\
+Internos (antes R-14, R-18, R-19, R-23 y R-24) & Etapa 1, implantación y operación & 0,35 & 200 & M20 a M30 según la medida \\
 O-02 & Etapa 2 (H9) & 0,00 & -64 & M17 (H9) \\
-Total & Tramos paralelos: el plazo no se suma & 0,80 en la Etapa 1 & 997 & No aplica \\
+Total & Tramos paralelos: el plazo no se suma & 0,80 en la Etapa 1 & 1.339 & No aplica \\
 \end{tabla}
-La contingencia neta es de 997 HH después de descontar las 64 HH esperadas de O-02; la exposición bruta es de 1.061 HH. R-04 aporta 30 HH, R-17 58 HH y R-24 48 HH de efectos que alcanzan la operación. R-14 aporta 32 HH con exposición en implementación y operación. La tabla identifica el efecto de cada ficha, pero no reemplaza su asignación mensual ni demuestra que una reserva de implantación cubra las recurrencias posteriores de un riesgo.
+La contingencia neta es de 1.339 HH después de descontar las 64 HH esperadas de O-02; la exposición bruta es de 1.403 HH. De ellas, 342 HH vienen de los cuatro riesgos externos nuevos y 200 HH del residual de los riesgos internos resueltos. R-04 aporta 30 HH, R-17 58 HH, R-26 32 HH y R-27 120 HH de efectos que alcanzan la operación. La tabla identifica el efecto de cada ficha, pero no reemplaza su asignación mensual ni demuestra que una reserva de implantación cubra las recurrencias posteriores de un riesgo.
 
 \seccion{Reserva por tramo del cronograma}
 La Tabla \ref{tab:reserva-contingencia-tramo-uso-reserva-plazo} agrupa la reserva por tramo y la compara con la reserva de plazo que ese tramo ya tiene en el Formulario T-14.
@@ -309,17 +303,17 @@ La Tabla \ref{tab:reserva-contingencia-tramo-uso-reserva-plazo} agrupa la reserv
 \begin{tabla}{I{0.224}I{0.273}D{0.118}D{0.087}I{0.298}}{Reserva de contingencia por tramo y uso de la reserva de plazo.}{tab:reserva-contingencia-tramo-uso-reserva-plazo}
   {\cab{Tramo} & \cab{Riesgos} & \cab{Plazo (sem)} & \cab{HH} & \cab{Uso de la reserva de plazo}}
   {Fuente: elaboración propia a partir de Formulario T-14 (asociado al cap. 7), tabla \refext{T14}{tab:red-precedencias-calculo-ruta-critica-meses} del Formulario T-14 (red de precedencias).}
-Etapa 1 hacia H5 & R-01, R-05, R-07, R-18, R-19 & 0,80 & 240 & 19 \% de las 4,3 sem del mes 11 en valor esperado \\
-Implantación E1 (H7) & R-08, R-12, R-21, R-23 & 0,45 & 324 & Se cubre con acompañamiento en faena sin mover fases; 7 días de ventana \\
+Etapa 1 hacia H5 & R-01, R-05, R-07 y causas internas (antes R-18 y R-19) & 0,80 & 240 & 19 \% de las 4,3 sem del mes 11 en valor esperado \\
+Implantación E1 (H7) & R-08, R-12, R-21, R-25, R-28 y antes R-23 & 0,80 & 514 & Se cubre con acompañamiento en faena sin mover fases; 7 días de ventana y días de suspensión fuera de la medición \\
 Implantación E1 y E2 & R-10 & 0,20 & 62 & 7 días de ventana en E1 y 2 días en E2 \\
 Datos de la Etapa 2 & R-06 & 0,15 & 72 & 2 días de ventana; palanca: cuarto puesto de escaneo \\
 Sala técnica y H6 & R-09 & 0,15 & 15 & Fuera de la cadena crítica \\
-Etapa 2 y operación (R-17 en M25) & R-11, R-13, R-16, R-17 & 0 & 182 & Sin efecto en hitos \\
-Diseño, calendario y operación & R-04, R-14, R-20, R-22, R-24 & 0 & 166 & Sin efecto en hitos \\
+Etapa 2 y operación (R-17 y R-27 en M25) & R-11, R-13, R-16, R-17, R-27 & 0 & 302 & Sin efecto en hitos \\
+Diseño, calendario y operación & R-04, R-20, R-22, R-26 y antes R-14 y R-24 & 0 & 198 & Sin efecto en hitos \\
 Oportunidad & O-02 & 0 & -64 & Se resta de la reserva \\
-Total & 21 riesgos y 1 oportunidad & No se suma & 997 & Asignación por riesgo, persona y mes \\
+Total & 20 riesgos, 6 internos resueltos y 1 oportunidad & No se suma & 1.339 & Asignación por riesgo, persona y mes \\
 \end{tabla}
-La Tabla \ref{tab:reserva-contingencia-tramo-uso-reserva-plazo} distribuye las 997 HH netas por grupos de riesgos, sin certificar una separación mensual de capacidad. La autorización identifica riesgo, persona, rol, mes, paquete ejecutor y saldo, y distingue trabajo preventivo de contingencia. Los paquetes 1.4.3.7 y 1.4.4.7 suman 1.280 HH y mantienen su corrección y cobertura de incertidumbre del T-14. La misma hora no cubre simultáneamente defectos, incertidumbre y riesgo. Las 0,8 semanas son atraso medio; la absorción en M11 depende de la corrección que pueda comprimirse.
+La Tabla \ref{tab:reserva-contingencia-tramo-uso-reserva-plazo} distribuye las 1.339 HH netas por grupos de riesgos, sin certificar una separación mensual de capacidad. La autorización identifica riesgo, persona, rol, mes, paquete ejecutor y saldo, y distingue trabajo preventivo de contingencia. Los paquetes 1.4.3.7 y 1.4.4.7 suman 1.280 HH y mantienen su corrección y cobertura de incertidumbre del T-14. La misma hora no cubre simultáneamente defectos, incertidumbre y riesgo. Las 0,8 semanas son atraso medio; la absorción en M11 depende de la corrección que pueda comprimirse.
 
 \seccion{Reserva de gestión}
 La reserva de gestión cubre lo que el registro no identificó y sólo la libera el Comité Ejecutivo. La Tabla \ref{tab:componentes-reserva-gestion} presenta sus tres componentes.
@@ -345,7 +339,7 @@ El consumo de 50 \% de una reserva obliga a un plan de recuperación, y el de 80
 El uso de una reserva no modifica por sí mismo ningún hito contractual. Se comprueba el margen utilizable y se registra la asignación de horas por rol y paquete, sin superponerla con corrección o incertidumbre de estimación. Si no permite cumplir el hito, la desviación se escala y se gestiona conforme al procedimiento contractual.
 
 \anexo{Análisis costo-beneficio de las respuestas}
-Este anexo compara el esfuerzo de las respuestas con el cambio del impacto esperado de cada ficha. Mantiene las probabilidades y consecuencias del registro. Trece respuestas se apoyan en paquetes existentes y once requieren 704 HH adicionales respecto de sus actividades de referencia. La ejecución corresponde al rol y al paquete de cada ficha. El plan de respuestas 1.1.3.2 coordina su asignación, pero no demuestra por sí solo que exista capacidad libre. Las medidas preventivas se separan de la contingencia residual y se valorizan en la Oferta Económica. La tabla conserva el detalle por riesgo para permitir su revisión.
+Este anexo compara el esfuerzo de las respuestas con el cambio del impacto esperado de cada ficha. Mantiene las probabilidades y consecuencias del registro. Catorce respuestas del registro se apoyan en paquetes existentes; ocho respuestas del registro y las medidas de tres riesgos internos resueltos (antes R-19, R-23 y R-24) requieren 704 HH adicionales respecto de sus actividades de referencia, que están en el paquete 1.1.3.3. La ejecución corresponde al rol y al paquete de cada ficha. El plan de respuestas 1.1.3.2 coordina su asignación, pero no demuestra por sí solo que exista capacidad libre. Las medidas preventivas se separan de la contingencia residual y se valorizan en la Oferta Económica. La tabla conserva el detalle por riesgo para permitir su revisión.
 
 \begin{tabla}{I{0.081}I{0.249}D{0.137}D{0.130}D{0.130}D{0.124}D{0.149}}{Costo y beneficio de la respuesta de cada riesgo.}{tab:costo-beneficio-respuesta-cada-riesgo}
   {\cab{ID} & \cab{Estrategia} & \cab{Costo adicional (HH)} & \cab{VE inherente (HH)} & \cab{VE residual (HH)} & \cab{Red. HH} & \cab{Beneficio / costo}}
@@ -363,20 +357,19 @@ R-10 & Escalar & 16 & 109 & 62 & 47 & 2,9 \\
 R-11 & Escalar & 0 & 211 & 0 & 211 & Sin costo adicional \\
 R-12 & Mitigar & 0 & 1.017 & 226 & 791 & Sin costo adicional \\
 R-13 & Mitigar & 16 & 48 & 24 & 24 & 1,5 \\
-R-14 & Mitigar & 0 & 56 & 32 & 24 & Sin costo adicional \\
-R-15 & Mitigar & 0 & 311,724 & 0,176 & 311,548 & Sin costo adicional \\
 R-16 & Escalar & 0 & 200 & 100 & 100 & Sin costo adicional \\
 R-17 & Escalar & 40 & 96 & 58 & 38 & 1,0 \\
-R-18 & Mitigar & 0 & 60 & 24 & 36 & Sin costo adicional \\
-R-19 & Mitigar & 40 & 308 & 68 & 239 & 6,0 \\
 R-20 & Escalar & 40 & 120 & 40 & 80 & 2,0 \\
 R-21 & Mitigar & 0 & 80 & 40 & 40 & Sin costo adicional \\
 R-22 & Escalar y transferir & 0 & 80 & 16 & 64 & Sin costo adicional \\
-R-23 & Mitigar & 32 & 198 & 28 & 170 & 5,3 \\
-R-24 & Mitigar & 160 & 168 & 48 & 120 & 0,8 \\
-Total & No aplica & 704 & 4.746,974 & 1.241,176 & 3.505,798 & 5,0 \\
+R-25 & Mitigar & 0 & 424 & 150 & 274 & Sin costo adicional \\
+R-26 & Mitigar & 0 & 160 & 32 & 128 & Sin costo adicional \\
+R-27 & Escalar & 0 & 315 & 120 & 195 & Sin costo adicional \\
+R-28 & Aceptar & 0 & 80 & 40 & 40 & Sin costo adicional \\
+Internos (antes R-14, R-18, R-19, R-23 y R-24) & Resueltos en la propuesta & 232 & 790 & 200 & 589 & 2,5 \\
+Total & No aplica & 704 & 5.414,2 & 1.583,0 & 3.831,2 & 5,4 \\
 \end{tabla}
-Las fichas suman 4.746,97445 HH inherentes y 1.241,176 HH residuales, diferencia de 3.505,79845 HH. El cociente descriptivo sobre 704 HH es 5,0; no se interpreta como ahorro independiente porque R-15 representa un escenario conjunto. Su reducción de 311,54845 HH se excluye de cualquier suma de beneficio económico conjunto. Las once medidas con costo adicional conservan 704 HH, reducción de 1.250 HH y cociente 1,8. Se agregan por separado 96 HH para el control transversal de continuidad del Anexo G.4, sin atribuirle una reducción probabilística no medida.\newline El costo preventivo adicional de R-12 es 0 HH porque sus acciones se ejecutan en paquetes ya incluidos en la EDT. Las HH de G.3 corresponden al esfuerzo contingente para extender la marcha blanca si se activa el riesgo; no forman parte del costo preventivo comparado en esta tabla.
+Las fichas del registro y la línea de riesgos internos suman 5.414,2 HH inherentes y 1.583,0 HH residuales, diferencia de 3.831,2 HH. El cociente descriptivo sobre 704 HH es 5,4; no se interpreta como ahorro independiente porque varios riesgos comparten la cadena crítica de la Etapa 1. Las medidas con costo adicional conservan 704 HH, reducción de 1.250 HH y cociente 1,8. Se agregan por separado 96 HH para el control transversal de continuidad del Anexo G.4 (paquete 1.1.3.4), sin atribuirle una reducción probabilística no medida.\newline El costo preventivo adicional de R-12 es 0 HH porque sus acciones se ejecutan en paquetes ya incluidos en la EDT. Las HH de G.3 corresponden al esfuerzo contingente para extender la marcha blanca si se activa el riesgo; no forman parte del costo preventivo comparado en esta tabla.
 
 \begin{horizontal}
 
@@ -384,7 +377,7 @@ Las fichas suman 4.746,97445 HH inherentes y 1.241,176 HH residuales, diferencia
 Este anexo permite reproducir las valoraciones y asignar los recursos adicionales. Los planes son estimaciones de ejecución vinculadas al T-14, el T-15 y los requisitos de aceptación; la contratación de apoyos y los resultados de los ensayos se registran en sus paquetes antes de habilitar cada servicio. Se separan los valores esperados del registro, el esfuerzo del evento activado y la capacidad de los ejecutores.
 
 \seccion{Aplicación de la escala de impacto}
-La Tabla \ref{tab:dimensiones-valoraciones-adoptadas} aplica I = máximo de plazo, HH y alcance. Los días se obtienen de las semanas del registro por siete. Los umbrales exactos son 2, 7, 20 y 30 días, y 300, 600, 1.200 y 3.000 HH. Las consecuencias de R-15 se conservan redondeadas a 2,0 y 0,3 semanas; sus probabilidades se calculan sin redondear. Una semana completa exige al menos impacto medio. El impacto alto de R-12 responde a la extensión fuera del cierre M15, y los de R-16/R-17/R-20/R-22 al requisito esencial aún afectado. R-23 también es alto antes de las respuestas por su semana adicional de marcha blanca; su escenario residual de media semana con personal de reserva mantiene impacto bajo.
+La Tabla \ref{tab:dimensiones-valoraciones-adoptadas} aplica I = máximo de plazo, HH y alcance. Los días se obtienen de las semanas del registro por siete. Los umbrales exactos son 2, 7, 20 y 30 días, y 300, 600, 1.200 y 3.000 HH. Una semana completa exige al menos impacto medio. El impacto alto de R-12 responde a la extensión fuera del cierre M15, y los de R-16/R-17/R-20/R-22 al requisito esencial aún afectado. R-25 también es alto antes de las respuestas por la extensión de la marcha blanca; su escenario residual de media semana, con los días de suspensión fuera de la medición, tiene impacto bajo.
 
 \begin{tabla}{I{0.088}I{0.111}I{0.111}I{0.124}I{0.111}I{0.111}I{0.111}I{0.124}I{0.111}}{Dimensiones y valoraciones adoptadas.}{tab:dimensiones-valoraciones-adoptadas}
   {\cab{Riesgo} & \cab{Días inh.} & \cab{HH inh.} & \cab{I alcance inh.} & \cab{I final inh.} & \cab{Días res.} & \cab{HH res.} & \cab{I alcance res.} & \cab{I final res.}}
@@ -402,26 +395,24 @@ R-10 & 10,5 & 310 & 0,5 & 0,5 & 7,0 & 310 & 0,5 & 0,5 \\
 R-11 & 0,0 & 384 & 0,5 & 0,5 & 0,0 & 0 & 0,3 & 0,3 \\
 R-12 & 21,0 & 1.695 & 0,7 & 0,7 & 14,0 & 1.130 & 0,7 & 0,7 \\
 R-13 & 0,0 & 160 & 0,5 & 0,5 & 0,0 & 160 & 0,3 & 0,3 \\
-R-14 & 0,0 & 160 & 0,5 & 0,5 & 0,0 & 160 & 0,5 & 0,5 \\
-R-15 & 14,0 & 684 & 0,3 & 0,5 & 2,1 & 100 & 0,3 & 0,3 \\
 R-16 & 0,0 & 400 & 0,7 & 0,7 & 0,0 & 400 & 0,7 & 0,7 \\
 R-17 & 0,0 & 384 & 0,7 & 0,7 & 0,0 & 384 & 0,7 & 0,7 \\
-R-18 & 14,0 & 240 & 0,7 & 0,7 & 7,0 & 240 & 0,5 & 0,5 \\
-R-19 & 21,0 & 1.026 & 0,7 & 0,7 & 14,0 & 684 & 0,7 & 0,7 \\
 R-20 & 0,0 & 400 & 0,7 & 0,7 & 0,0 & 400 & 0,7 & 0,7 \\
 R-21 & 0,0 & 200 & 0,5 & 0,5 & 0,0 & 200 & 0,3 & 0,3 \\
 R-22 & 0,0 & 800 & 0,7 & 0,7 & 0,0 & 160 & 0,7 & 0,7 \\
-R-23 & 7,0 & 565 & 0,7 & 0,7 & 3,5 & 280 & 0,3 & 0,3 \\
-R-24 & 0,0 & 480 & 0,7 & 0,7 & 0,0 & 480 & 0,5 & 0,5 \\
+R-25 & 10,5 & 848 & 0,7 & 0,7 & 3,5 & 300 & 0,3 & 0,3 \\
+R-26 & 0,0 & 640 & 0,5 & 0,5 & 0,0 & 320 & 0,3 & 0,3 \\
+R-27 & 0,0 & 900 & 0,7 & 0,7 & 0,0 & 600 & 0,5 & 0,5 \\
+R-28 & 14,0 & 400 & 0,5 & 0,5 & 3,5 & 200 & 0,3 & 0,3 \\
 \end{tabla}
 Los valores ordinales y el umbral metodológico de siete días son una decisión de Overfore; no una exigencia numérica de las Bases.
 
 R-05/R-06 conservan una semana residual y pasan a I = 0,5. R-12 conserva dos semanas de extensión de marcha blanca y pasa a I = 0,7. R-16 mantiene I = 0,7 mientras la descarga diaria o los datos de prueba no acrediten telemetría productiva con la frescura exigida. R-17 conserva I = 0,7: SUP-21 permite identificar transitoriamente un origen anterior, pero exige extinguir esa salvedad antes de enero de 2029. R-20 mantiene I = 0,7 hasta demostrar la alternativa de continuidad. R-22 mantiene I = 0,7 porque reprogramar hitos relativos no cambia la fecha comercial absoluta. Estos criterios no sustituyen la aceptación del cliente o del comprador.
 
-R-15 usa P inherente 0,4557375 y P residual 0,00176, suma exacta de las combinaciones que exceden 4,3 semanas. Su exposición residual es 0,00176 × 0,3 = 0,000528. Para lectura se muestra 0,2 \%, pero todos los productos emplean 0,176 \%. El exceso condicionado medio, 1,973965 y 0,336364 semanas, permite comprobar el orden de magnitud de las consecuencias redondeadas. R-15 no es un sexto evento ni una reserva adicional. Las otras probabilidades son estimaciones de planificación del registro y no frecuencias históricas medidas.
+R-27 conserva I = 0,5 residual por las 600 HH de adaptación con la bolsa evolutiva. Las probabilidades son estimaciones de planificación del registro y no frecuencias históricas medidas.
 
 \seccion{Programación de las medidas preventivas}
-Las once medidas adicionales suman 704 HH y se programan con apoyos nuevos o incrementos de dedicación parcial. No se asignan como horas libres del JP, LD o LF, cuya capacidad base ya se completa con trabajo continuo. La Tabla \ref{tab:asignacion-704-hh-preventivas} identifica el incremento por rol y periodo; el archivo de control por persona y mes conserva la reconstrucción uniforme de la base y sus límites.
+Las medidas adicionales suman 704 HH, en el paquete 1.1.3.3 del Formulario T-14, y se programan con apoyos nuevos o incrementos de dedicación parcial. No se asignan como horas libres del JP, LD o LF, cuya capacidad base ya se completa con trabajo continuo. La Tabla \ref{tab:asignacion-704-hh-preventivas} identifica el incremento por rol y periodo; el archivo de control por persona y mes conserva la reconstrucción uniforme de la base y sus límites.
 
 \begin{tabla}{I{0.085}I{0.085}I{0.128}I{0.085}I{0.617}}{Asignación de las 704 HH preventivas.}{tab:asignacion-704-hh-preventivas}
   {\cab{Riesgo} & \cab{Mes} & \cab{Rol ejecutor} & \cab{HH} & \cab{Forma de cobertura}}
@@ -440,26 +431,26 @@ R-01 & M6 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-01 & M7 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-01 & M8 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-01 & M9 & DEV & 16 & DEV-P01; apoyo adicional \\
-R-19 & M9 & ESI & 40 & David Martínez Canto \\
+Int. (R-19) & M9 & ESI & 40 & David Martínez Canto \\
 R-01 & M10 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-01 & M11 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-01 & M12 & DEV & 16 & DEV-P01; apoyo adicional \\
-R-23 & M12 & ACP & 32 & ACP-P01; apoyo adicional \\
+Int. (R-23) & M12 & ACP & 32 & ACP-P01; apoyo adicional \\
 R-01 & M13 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-13 & M13 & RTC & 16 & RTC-P01; apoyo adicional \\
 R-01 & M14 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-01 & M15 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-01 & M16 & DEV & 16 & DEV-P01; apoyo adicional \\
-R-24 & M16 & OPS & 32 & OPS-P01; apoyo adicional \\
+Int. (R-24) & M16 & OPS & 32 & OPS-P01; apoyo adicional \\
 R-01 & M17 & DEV & 16 & DEV-P01; apoyo adicional \\
-R-24 & M17 & OPS & 24 & OPS-P02; apoyo adicional \\
+Int. (R-24) & M17 & OPS & 24 & OPS-P02; apoyo adicional \\
 R-01 & M18 & DEV & 16 & DEV-P01; apoyo adicional \\
 R-01 & M19 & DEV & 16 & DEV-P01; apoyo adicional \\
-R-24 & M19 & OPS & 42 & OPS-P03; apoyo adicional \\
+Int. (R-24) & M19 & OPS & 42 & OPS-P03; apoyo adicional \\
 R-01 & M20 & DEV & 16 & DEV-P01; apoyo adicional \\
-R-24 & M20 & OPS & 62 & OPS-P04; apoyo adicional \\
+Int. (R-24) & M20 & OPS & 62 & OPS-P04; apoyo adicional \\
 \end{tabla}
-La asignación nominada sólo incrementa perfiles con margen estimado: Datos en M2, Arquitectura en M2/M4 y Seguridad en M9. Las actividades adicionales de desarrollo, pruebas, coordinación, capacitación y especialidad se cubren con perfiles de apoyo contratados para los periodos del plan. Los identificadores de apoyos describen puestos a incorporar, no personas cuya disponibilidad ya esté certificada.
+La asignación nominada sólo incrementa perfiles con margen estimado: Datos en M2, Arquitectura en M2/M4 y Seguridad en M9. Las actividades adicionales de desarrollo, pruebas, coordinación, capacitación y especialidad se cubren con perfiles de apoyo contratados para los periodos del plan. Los identificadores de apoyos describen puestos a incorporar, no personas cuya disponibilidad ya esté certificada. Las filas «Int.» son medidas de riesgos internos resueltos en la propuesta (Formulario T-16, sección F).
 
 \seccion{Cobertura de la extensión de marcha blanca}
 R-12 activa acompañamiento en las áreas que no cierren sus indicadores; las ya aceptadas no repiten la extensión. El escenario principal es un área de mina durante 21 días. Se asignan seis apoyos en tres parejas semanales: cada apoyo cubre siete turnos de 12 horas, 84 HH, y cada pareja cubre día y noche de una semana. La Tabla \ref{tab:esfuerzo-tres-semanas-area} suma 760 HH brutas y separa 12 HH de LF reordenadas dentro de su dedicación: el incremento es 748 HH. La valoración del registro, 1.695 HH, conserva la equivalencia media 3 × 565 del T-14 y cubre este escenario sin certificar que cubra cualquier número de áreas.
@@ -472,12 +463,12 @@ Control de marcha & 40 HH × 3 semanas & LIG 36 + ADT adicional 84 & 120 \\
 Coordinación & 8 HH × 3 semanas & LIG 12 + LF 12 & 24 \\
 Ajustes de interfaz & DEV 56 + QA 8 & Apoyos adicionales & 64 \\
 Capacitación nocturna & 16 sesiones × 2 HH de relator & Relator adicional; hasta 16 asistentes por sesión & 32 \\
-Acreditación & 2 apoyos fuera de la cobertura de R-23 × 8 HH & Apoyo de coordinación & 16 \\
+Acreditación & 2 apoyos fuera de las cuatro personas de reserva × 8 HH & Apoyo de coordinación & 16 \\
 Total bruto & 504 + 120 + 24 + 64 + 32 + 16 & 748 HH incrementales + 12 HH reordenadas & 760 \\
 \end{tabla}
 LIG/LDA suma 94,33 HH base en M16; con 48 HH de este evento llega a 142,33 de 152 HH nominales, margen 9,67. LF reordena 12 HH de preparación anticipada de la primera priorización evolutiva hacia M21 dentro de 1.2.5.4: se reservan allí 12 de sus 152 HH continuas, sin añadir 12 sobre esa capacidad ni recortar las revisiones y aceptaciones E2. Los 64 HH de ajustes usan apoyos adicionales y no vuelven a consumir las 1.280 HH de corrección. El plan del evento no acredita una contratación ya ejecutada.
 
-Las 32 HH de relator cubren hasta 256 asistentes pendientes con sesiones de dos horas y grupos de hasta dieciséis: 2 × techo(asistentes pendientes / 16). Si la cohorte supera ese límite, se amplía la relatoría. Las dos acreditaciones adicionales son distintas de las cuatro previstas en R-23; si estas cuatro no pueden reutilizarse para las seis posiciones de terreno, se agregan otras 32 HH de acreditación. Los escenarios de varias áreas comparten control y ajustes sólo mientras no cambie esa hipótesis de alcance.
+Las 32 HH de relator cubren hasta 256 asistentes pendientes con sesiones de dos horas y grupos de hasta dieciséis: 2 × techo(asistentes pendientes / 16). Si la cohorte supera ese límite, se amplía la relatoría. Las dos acreditaciones adicionales son distintas de las cuatro personas de reserva acreditadas (1.1.7.2); si estas cuatro no pueden reutilizarse para las seis posiciones de terreno, se agregan otras 32 HH de acreditación. Los escenarios de varias áreas comparten control y ajustes sólo mientras no cambie esa hipótesis de alcance.
 
 La extensión residual de dos semanas estima 528 HH brutas y 520 incrementales; conserva 1.130 HH como valoración residual y 226 HH de valor esperado. Dos áreas durante tres semanas requieren 1.312 HH brutas; tres requieren 1.864 y cuatro 2.416. Desde tres áreas, o ante otro cambio de turnos/duración, se aprueba capacidad y financiación adicional antes de activar el plan. Si se materializa el escenario de un área, las 748 HH incrementales superan sus 226 HH esperadas en 522 HH: esa diferencia es una solicitud de consumo adicional de contingencia o gestión, no una reasignación de gestión ya aprobada. Las fechas contractuales y las condiciones de Art. 17.3 se conservan.
 
@@ -513,7 +504,7 @@ Total & 32 + 64 + 112 + 96 + 64 + 32 & 400 & Activación condicionada de R-20 \\
 Se propone diseño en M5 y habilitación M5–M8 según contratación, con ensayo antes del hito afectado. Los incrementos se cubren con dedicación parcial disponible o apoyos adicionales y se nivelan antes de ejecutar. Si exige sustituir plataformas, construir un centro o cambiar servicios globales, se estima otro alcance. Las 400 HH cubren adaptación, no consumo de infraestructura ni adquisiciones: se presupuesta el incremento neto contra el sitio sustituido en la Oferta Económica. El escenario activado suma 440 HH adicionales, 40 preventivas y 400 contingentes; no se suma el VE de 40 HH a las 400 HH del mismo evento.
 
 \seccion{Evidencias y referencias de las decisiones}
-El Comunicado 10 exige cifras reproducibles, coherencia de diseño y trazabilidad entre requisitos, implementación y operación (CMAA, 2026d, secciones 3 y 7.1). Por ello se conserva el cálculo exacto de R-15, se muestra la dimensión dominante de impacto y se separan objetivos, estimaciones y resultados de ensayos. Las decisiones no modifican los objetivos contractuales ni declaran autorizaciones recibidas. Los informes de prueba, actas de cierre y contratos de recursos se registran en T-13/T-17 y en los paquetes ejecutores.
+El Comunicado 10 exige cifras reproducibles, coherencia de diseño y trazabilidad entre requisitos, implementación y operación (CMAA, 2026d, secciones 3 y 7.1). Por ello se conserva el cálculo exacto de la simulación de la Etapa 1, se muestra la dimensión dominante de impacto y se separan objetivos, estimaciones y resultados de ensayos. Las decisiones no modifican los objetivos contractuales ni declaran autorizaciones recibidas. Los informes de prueba, actas de cierre y contratos de recursos se registran en T-13/T-17 y en los paquetes ejecutores.
 
 \seccionsinnumero{Referencias}
 \begin{referencias}
