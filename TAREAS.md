@@ -39,6 +39,7 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 | LC-02 | Alta / revisión del profesor | Corregir lo pendiente de la Primera Revisión del Informe 2 tomando la decisión de menor cambio; figuras en md aparte | en_revision | Claude, sesión 2026-11-03, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
 | LC-03 | Alta / revisión del profesor | Figuras de las decisiones de LC-02 y 800 HH del plan de riesgos dentro de la EDT (T-14, T-15, S7, S8) | en_revision | Claude, sesión 2026-11-04, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
 | LC-04 | Alta / revisión del profesor | Pendientes de la revisión que no requieren al equipo: figuras a tamaño real, reserva de gestión, ADR de recuperación, LTE, T-11, T-18 y S6 | en_revision | Claude, sesión 2026-11-04, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
+| LC-05 | Media / revisión del profesor | Pendientes de redacción y forma de la revisión (grupo 4) | en_revision | Claude, sesión 2026-11-04, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
 | E3-01 | Planificada / entrega 3 | Documento económico, planilla, flujo, curva S, VAN/TIR e innovaciones | pendiente | Sin asignar | Sin asignar |
 | E3-02 | Planificada / entrega 3 | Prototipo navegable y evidencia de requisitos UX/UI | pendiente | Sin asignar | Sin asignar |
 
@@ -205,6 +206,14 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 - **Texto:** reserva de gestión (DEC-024) en S8, S8-Anexos, S7 y T-14; ADR-09 y ADR-10 en el S4 y oración rota corregida; brechas de la LTE del rajo y RT-06.07 de las UPS en el S4 (más la referencia CMAA 2026c); H4 y mes 11 en el S6; dotación de las semanas 1 y 2 de la marcha blanca en la T-18; T-11 renumerado T11-01 a T11-67 con sus citas.
 - **Sin cifra:** latencia Chile Central–Brazil South: la tabla pública de Azure no la informa; queda para el equipo.
 - **Validación 2026-11-04:** `python compilar.py --reglas`: 0 errores. `python compilar.py` en modo normal: 31 documentos sin error y sin referencias indefinidas, estable en 3 pasadas, 1.329 folios. `medir_figuras.py` sobre los PDF: 161 figuras, 6 bajo 9 pt (4.23, 4.36, 6.7, 6.9, 7.3 y 7.4; antes 10). Sólo autorrevisión.
+
+### LC-05 — Redacción y forma de la revisión
+
+- **Estado:** en_revision. Responsable: Claude, sesión 2026-11-04, a pedido del usuario («eso del 4 nomás»).
+- **Hecho:** S2 con el análisis de las particularidades operacionales y estacionales en el cuerpo; S3 con el nivel de diagramas de 3.3 corregido; S4 con conclusiones en 4.7 a 4.9 y Anexo B con los 126 RF por módulo; T-9 con matriz RACI, registro de los 19 interesados y plantilla del informe mensual; T-10 con plantilla de historia de usuario; fecha completada en S3, S6 y S9-Anexos.
+- **Verificado sin cambios:** fuente de la Figura 3.13, páginas del S5, autor de las Bases, listados del S9-Anexos, T-13, T-14 y T-19.
+- **Requiere autorización:** portada de anexos y formularios en `overfore.cls` (RUT de la empresa bajo el nombre del representante).
+- **Validación 2026-11-04:** `python compilar.py --reglas`: 0 errores (los 9 avisos de R-08). `python compilar.py` en modo normal: 31 documentos sin error y sin referencias indefinidas, estable en 4 pasadas, 1.334 folios. Sólo autorrevisión.
 
 ### E3-01 — Economía de entrega 3
 

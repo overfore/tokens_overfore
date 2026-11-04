@@ -308,7 +308,7 @@ Administración y Servicios Comunes & 19 & 0 & RF-ADM-005, RF-ADM-012, RF-DAT-00
 Integrador de Sistemas y Nodo de Faena & 5 & 0 & RF-CNX-001 a RF-CNX-005 \\
 Total & 92 & 34 & No aplica \\
 \end{tabla}
-Los 126 requerimientos funcionales quedan asignados a un módulo o plataforma con el mismo nombre que en el Subdocumento 3. Los seis canales de uso no tienen requerimientos funcionales propios, porque sólo presentan lo que resuelve el módulo al que sirven con sus exigencias que son no funcionales, como la operación con guantes o la accesibilidad.
+Los 126 requerimientos funcionales quedan asignados a un módulo o plataforma con el mismo nombre que en el Subdocumento 3. El Anexo B de OVERFORE-Subdocumento4-Anexos lista los 126 códigos por módulo, de modo que la matriz se puede revisar completa sin recurrir al Formulario T-12. Los seis canales de uso no tienen requerimientos funcionales propios, porque sólo presentan lo que resuelve el módulo al que sirven con sus exigencias que son no funcionales, como la operación con guantes o la accesibilidad.
 
 El catálogo asigna los cinco requerimientos de conectividad en conjunto al Integrador de Sistemas y al Nodo de Faena. La arquitectura los reparte según qué componente ejecuta la función. El Nodo de Faena es responsable de los cinco: sincroniza lo acumulado y aplica el orden y la deduplicación al volver el enlace que guarda la lista de habilitaciones con que el agente del gabinete de portería valida sin enlace, recibe los registros cifrados de los dispositivos y les entrega la fuente horaria común y la sesión local en el relevo, administra el firmware de las botoneras y coordina con Microsoft Intune el bloqueo remoto en 15 minutos o menos, y registra cada corte con su inicio, su término y el volumen acumulado. El Integrador de Sistemas participa sólo en dos: al volver el enlace, sus conectores de nube vacían la cola de envíos pendientes hacia SAP y la autoridad, y el conector del control de acceso, que corre en el gabinete de portería, entrega la lectura de la credencial y ejecuta la apertura del torniquete durante el corte.
 
@@ -427,7 +427,7 @@ En la capa de datos termina el recorrido del hecho. La capa guarda los datos en 
 \begin{horizontal}
 \figura{22.44}{fig-4-7-almacenes-capa-datos-unidades-trazabilidad}{Almacenes de la capa de datos y unidades de trazabilidad.}{fig:almacenes-capa-datos-unidades-trazabilidad}{Fuente: elaboración propia.}
 \end{horizontal}
-Cada módulo es dueño exclusivo de su almacén y comparte información mediante eventos. Los almacenes comunes atienden series de tiempo, documentos, analítica, búsqueda y consulta histórica. El Nodo y los dispositivos mantienen copias locales cifradas para operar sin enlace.
+Cada módulo es dueño exclusivo de su almacén y comparte información mediante eventos. Los almacenes comunes atienden series de tiempo, documentos, analítica, búsqueda y consulta histórica. El Nodo y los dispositivos mantienen copias locales cifradas para operar sin enlace. De la figura se concluye que la trazabilidad no depende de un almacén central: cada unidad queda en el almacén de su módulo y la cadena se reconstruye con los eventos, por lo que la faena sigue registrando aunque no haya enlace.
 
 La declaración del operador de pala queda guardada en el almacén transaccional de Operación Mina como parte del viaje, la primera unidad de trazabilidad del ciclo del mineral. La cadena de unidades se muestra en la Figura \ref{fig:almacenes-capa-datos-unidades-trazabilidad} y su modelo se desarrolla en el Subdocumento 5. La capa ofrece a los servicios transacciones con garantías de atomicidad y aislamiento, cifrado en reposo y respaldo, y excluye cualquier consulta de un módulo al almacén de otro. La selección de motores, la consistencia por dominio, la retención y la migración de los datos se desarrollan en el Subdocumento 5.
 
@@ -453,7 +453,7 @@ Las identidades, las claves y la supervisión central se administran desde la nu
 La copia controlada de identidades permite continuar la operación y acumular los eventos locales.
 
 \end{horizontal}
-La seguridad aplica confianza cero, identidad por población, autorización por rol y atributos, claves protegidas y TLS mutuo. Durante un corte, el Nodo usa una copia temporal de políticas e identidades. Los controles y amenazas se desarrollan en 4.1.8.
+La seguridad aplica confianza cero, identidad por población, autorización por rol y atributos, claves protegidas y TLS mutuo. Durante un corte, el Nodo usa una copia temporal de políticas e identidades. De las figuras se concluye que un corte cambia dónde se toma la decisión de acceso, no la regla: el Nodo aplica las mismas políticas con la copia temporal y acumula los eventos de acceso para revisarlos en la nube al volver el enlace. Los controles y amenazas se desarrollan en 4.1.8.
 
 \subsubseccion{Capa 8: Observabilidad transversal}
 La capa de observabilidad sigue el hecho por todas las capas. Reúne métricas, registros y trazas unidos por un identificador de transacción en el 100 \% de las operaciones, instrumentados con OpenTelemetry en la nube, el Nodo de Faena y los gabinetes. La Figura \ref{fig:flujo-telemetria-capa-observabilidad-transversal} muestra cómo viaja la telemetría desde la faena hasta la consola y qué alertas produce.
@@ -461,7 +461,7 @@ La capa de observabilidad sigue el hecho por todas las capas. Reúne métricas, 
 \begin{horizontal}
 \figura{22.44}{fig-4-9-flujo-telemetria-capa-observabilidad-transversal}{Flujo de la telemetría en la capa de observabilidad transversal.}{fig:flujo-telemetria-capa-observabilidad-transversal}{Fuente: elaboración propia.}
 \end{horizontal}
-Los componentes emiten métricas, registros y trazas correlacionados. Los colectores locales conservan telemetría durante los cortes y Azure Monitor consolida la operación al restablecerse el enlace. La consola alerta por estado, integración y retraso de sincronización.
+Los componentes emiten métricas, registros y trazas correlacionados. Los colectores locales conservan telemetría durante los cortes y Azure Monitor consolida la operación al restablecerse el enlace. La consola alerta por estado, integración y retraso de sincronización. De la figura se concluye que un corte no deja puntos ciegos: lo ocurrido en la faena se consolida después, y el retraso de sincronización es una alerta propia, de modo que la operación sabe cuánto falta por sincronizar.
 
 \subseccion{Canales de terreno}
 Los canales de terreno condicionan la arquitectura más que cualquier otro componente, porque en ellos nace el dato. Esta sección desarrolla la decisión ADR-06: las exigencias que la acotan, las alternativas comparadas y la solución adoptada.

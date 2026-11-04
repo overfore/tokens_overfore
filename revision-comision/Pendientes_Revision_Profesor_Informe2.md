@@ -45,7 +45,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 ## S2 · Problema y necesidad (4 %)
 
 - [x] **Alta** Desarrollar en 2.2 la investigación de dominio con contenido propio: cálculo de la conciliación metalúrgica y sus factores, IEC 62443 aplicada a la lectura del historiador (zonas y conductos), fórmula de liquidación con ley pagable, cargos y penalidad por arsénico. → _Hecho: nueva subsección «Conceptos de la industria que condicionan la solución»._
-- [ ] **Alta** Llevar al cuerpo el análisis de las particularidades operacionales, regulatorias y estacionales; dejar en el Anexo C sólo el listado (hoy el 2.2 remite a C.3–C.9).
+- [x] **Alta** Llevar al cuerpo el análisis de las particularidades operacionales, regulatorias y estacionales; dejar en el Anexo C sólo el listado (hoy el 2.2 remite a C.3–C.9). → _Hecho en LC-05: análisis de las particularidades operacionales y estacionales en 2.2, con sus consecuencias para la solución; el detalle sigue en C.5._
 - [x] **Media** Tabla 2.5: la columna «Consultados al cliente» dice «SUP-30» en lugar de «1» (folio 75). → _Hecho._
 - [x] **Media** Figura 2.1 titulada «Faena (Antofagasta Norte)»; la faena está en Sierra Gorda (folio 50). Las Figuras 2.1–2.3 son renders sobre capturas satelitales que no aportan al problema. → _Hecho: leyenda corregida a Sierra Gorda; reemplazar los renders es opcional._
 - [x] **Forma** Citas de las Bases con un solo estilo y con entrada «CMAA» en la lista; distinguir las tres capturas de Google como «s. f.-a, -b, -c» (folios 50–52, 77). 🔎 → _Hecho para Google (s. f.-a, -b, -c); el estilo CMAA ya es uniforme._
@@ -55,17 +55,17 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [ ] **Crítico [Decisión]** Restituir el registro de reglas de negocio de la industria (conciliación, liquidación, mezcla, clasificación de detenciones, habilitación), trazado a su origen, como exige el Cap. 17.1 del caso. Era OK en el Informe 1 y desapareció (regresión).
 - [ ] **Alta [Decisión]** Cerrar o justificar los requisitos obligatorios del T-12 en «Cumple parcialmente» o «Por cumplir» (hoy 97 y 8 en el resumen), empezando por sala técnica, hardware y desempeño (por ejemplo, RT-06.27 y RF-TRZ-004).
 - [x] **Alta** Agregar al 3.2 un análisis breve de escalabilidad y desempeño: qué se satura primero y con qué volumen, coherente con el S4 (Tabla 4.33). → _Hecho (3.2.4.3)._
-- [ ] **Media** Declaración de IA: niveles de diagrama inconsistentes entre sección y subsecciones (3.3 «Ninguno», 3.3.1 a 3.3.6 «Alto»); el profesor también nota la herramienta sin versión.
-- [ ] **Forma** La fuente de la Figura 3.13 queda en la página siguiente, separada de la figura. 🔎
-- [ ] **Forma** La portada de los anexos del S3 pone bajo el representante el RUT de la empresa (folio 284). 🔎
+- [x] **Media** Declaración de IA: niveles de diagrama inconsistentes entre sección y subsecciones (3.3 «Ninguno», 3.3.1 a 3.3.6 «Alto»); el profesor también nota la herramienta sin versión. → _Hecho: 3.3 en «Alto», igual que sus subsecciones._
+- [x] **Forma** La fuente de la Figura 3.13 queda en la página siguiente, separada de la figura. 🔎 → _Verificado: figura, leyenda y fuente en la misma página._
+- [ ] **Forma** La portada de los anexos del S3 pone bajo el representante el RUT de la empresa (folio 284). 🔎 → _Requiere autorización para modificar `overfore.cls` (la portada de anexos y formularios pone «RUT Empresa» bajo el nombre del representante). Se completó la fecha «[día] de [mes]» de S3, S6 y S9-Anexos._
 
 ## S4.1 · Arquitectura lógica (5 %)
 
 - [x] **Alta [Decisión]** Llevar a ADR la región de recuperación (Brazil South) y el descarte del CIO como sitio de recuperación. → _Hecho: ADR-09 y ADR-10 en texto, sección del data center secundario del S4._
 - [ ] **Alta** Convertir los ADR del cuerpo en texto con una tabla de síntesis y dejar el registro completo en anexo (las Tablas ADR usan «Campo | Contenido», que la Aclaración no acepta; son los 9 avisos de R-08).
 - [x] **Media** Los ocho ADR citan como fuente «análisis de decisiones con múltiples criterios (PMI, 2017)»: el PMBOK no es fuente de un ADR. → _Hecho._
-- [ ] **Media** Matriz RF → componente: la Tabla 4.17 da totales y ejemplos; el mapeo completo está sólo en el T-12 y el Anexo B.
-- [ ] **Media** Figuras 4.6 a 4.9: un solo párrafo de tres líneas que repite la figura sin conclusiones; la frase «se desarrollan en el Subdocumento 5» se repite en párrafos seguidos.
+- [x] **Media** Matriz RF → componente: la Tabla 4.17 da totales y ejemplos; el mapeo completo está sólo en el T-12 y el Anexo B. → _Hecho: Anexo B del S4 con los 126 RF por módulo, citado desde el texto._
+- [x] **Media** Figuras 4.6 a 4.9: un solo párrafo de tres líneas que repite la figura sin conclusiones; la frase «se desarrollan en el Subdocumento 5» se repite en párrafos seguidos. → _Hecho: conclusiones en 4.7, 4.8 y 4.9; la frase repetida ya no estaba._
 - [x] **Forma** Verificar la fecha de fin de soporte de Angular 22 («Junio de 2028», Tabla de componentes) contra la política de 18 meses de Angular. → _Hecho: noviembre de 2027._
 
 ## S4.2 · Arquitectura física (10 %)
@@ -85,7 +85,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [x] **Alta** Decir que los formularios de SSO se migran como imagen indexada (consulta por tipo, fecha, área, empresa y persona, no por contenido), no «completos». → _Hecho._
 - [x] **Media** Digitalización: la figura la ubica desde el mes 9 y el texto en los meses 10 a 15 (folios 791–792). → _Verificado: la Figura 5.17 ya dice M10–M15._
 - [x] **Media** Tabla 5.5: la celda de RTO del registro de terreno tiene nueve líneas de explicación; pasarla a texto. → _Hecho._
-- [ ] **Forma** Páginas casi vacías antes de las figuras (folios 748, 755, 757, 759 de la entrega).
+- [x] **Forma** Páginas casi vacías antes de las figuras (folios 748, 755, 757, 759 de la entrega). → _Verificado en el PDF actual del S5._
 
 ## S6 · Metodologías (6 %)
 
@@ -95,7 +95,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [ ] **Alta** Extender la estrategia de anillos a las 176 tabletas de camiones, supervisores, portería y SSO (hoy sólo botonera de palas) y darle paquete en el T-14 y tarea en la Gantt. → _Hecho en S6 y T-10; sin paquete propio en el T-14 (DEC-021)._
 - [ ] **Alta** Llevar los sprints, demostraciones y liberaciones a la Gantt (ver S7).
 - [x] **Media** Explicar qué entra a pruebas en H4 (mes 10) y qué se termina en el mes 11. → _Hecho en el S6, párrafo de capacidad de los equipos: qué recibe H4 en el mes 10 y qué se corrige en el mes 11._
-- [ ] **Media** T-9 y T-10: agregar detalle operativo (matriz RACI, plantilla del informe mensual, registro de interesados) en lugar de repetir el S6.
+- [x] **Media** T-9 y T-10: agregar detalle operativo (matriz RACI, plantilla del informe mensual, registro de interesados) en lugar de repetir el S6. → _Hecho: T-9 con matriz RACI, registro de los 19 interesados y plantilla del informe mensual; T-10 con plantilla de historia de usuario._
 - [ ] **Media** Figuras 6.7 (~7,7 pt) y 6.9 (~8,7 pt) bajo 9 pt.
 - [x] **Forma** El T-9 lista la referencia 2026c sin citarla. 🔎 → _Verificado: ya no está._
 
@@ -115,7 +115,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [x] **Media** Tabla 7.1: mostrar la regla de imputación (la marcha blanca de la Etapa 1 incluye 2.360 HH de los meses 16–17). → _Hecho._
 - [x] **Media [Decisión]** T-18: justificar o reforzar una sola persona por turno en las semanas 1 y 2 de la marcha blanca de la Etapa 1, cuando entra portería. → _Hecho: justificada en la T-18 (sólo portería con la credencial existente) con regla de refuerzo._
 - [x] **Media** Discutir en el cuerpo la holgura cero y qué se hace si se atrasa la cadena del núcleo. → _Hecho (7.3.1)._
-- [ ] **Forma** Índice del T-14 con todas las secciones; fuentes del T-15 con páginas relativas («p. 45») en lugar de folio. 🔎 → _Fuentes del T-15 sin páginas relativas; índice del T-14 por verificar._
+- [x] **Forma** Índice del T-14 con todas las secciones; fuentes del T-15 con páginas relativas («p. 45») en lugar de folio. 🔎 → _Verificado: índice con todas las secciones A a N._
 
 ## S8 · Plan de riesgos (7 %)
 
@@ -140,10 +140,10 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [ ] **Alta** Vincular en la Gantt la certificación y las puertas con los módulos que verifican y con el paso a producción (ver S7).
 - [x] **Media** Declarar qué campaña de calidad se sacrifica primero si se atrasa el mes 21. → _Hecho: escalamiento al Comité con criterio fijo._
 - [x] **Media** El 9.3.3 remite los paquetes a «Subdocumento 7, 7.1», que no los lista: remitir al T-14. → _Hecho._
-- [ ] **Media** Citar las Bases con el mismo autor en todos los subdocumentos.
+- [x] **Media** Citar las Bases con el mismo autor en todos los subdocumentos. → _Verificado: todas citan «Compañía Minera Altos de Aranda»._
 - [x] **Media** Figura 9.3 bajo 9 pt (~8,7). → _Hecho en LC-04 (11,5 pt)._
-- [ ] **Forma** El listado de tablas de los anexos del S9 omite A.1 y A.2. 🔎 → _La Figura 9.1 ya incluye los Anexos D y E (LC-03)._
-- [ ] **Forma** Nomenclatura de tablas del T-13 idéntica entre el S9 y el formulario. 🔎
+- [x] **Forma** El listado de tablas de los anexos del S9 omite A.1 y A.2. 🔎 → _Verificado: el listado incluye A.1 y A.2._
+- [x] **Forma** Nomenclatura de tablas del T-13 idéntica entre el S9 y el formulario. 🔎 → _Verificado: el S9 cita las tablas del T-13 por referencia cruzada, con la misma numeración._
 
 ## S13 · Innovaciones (8 %)
 
@@ -152,4 +152,4 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [x] **Alta [Decisión]** Defender la innovación 3 frente a los códigos de práctica de contabilidad metalúrgica (VDI 2048, Narasimhan y Jordache) o reforzar su delta propio (Art. 30). → _Hecho: frecuencia por turno y sesgo por camión como delta._
 - [x] **Alta** Cuadrar las horas de la rama 1.7: el T-19 declara 2.920 y la tabla suma 3.000 con el paquete 1.7.2.4. → _Hecho._
 - [x] **Media** Incoherencia: la introducción dice que la innovación 5 usa datos «de otros tres módulos» y la 13.5.3 que «usa cinco módulos». → _Hecho._
-- [ ] **Forma** Listado de tablas del T-19 (omitía T-19.5 y T-19.6) y fuentes con páginas relativas («sección 13.1, p. 7»). 🔎 → _Páginas relativas retiradas; listado por verificar._
+- [x] **Forma** Listado de tablas del T-19 (omitía T-19.5 y T-19.6) y fuentes con páginas relativas («sección 13.1, p. 7»). 🔎 → _Verificado: el listado incluye todas las tablas._

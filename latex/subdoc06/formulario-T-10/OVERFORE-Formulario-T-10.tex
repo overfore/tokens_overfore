@@ -263,6 +263,20 @@ Definición de terminado & Revisión por pares, pruebas y cobertura aprobadas, s
 Autoridad de decisión & El equipo y el líder funcional seleccionan el sprint; el referente acepta la función; el equipo implementa dentro de la arquitectura vigente; el comité de arquitectura aprueba cambios transversales; el comité de proyecto autoriza producción. & Decisión por instancia \\
 Mantención & Desde el mes 21, Kanban conducido por el líder de operación (SRE). La evolutiva se ordena por la bolsa anual priorizada por el cliente, con límites de trabajo en curso; la correctiva sigue la severidad, conservando controles y definición de terminado. & Registro de mantención \\
 \end{tabla}
+La Tabla \ref{tab:plantilla-historia-usuario} es la plantilla de cada historia del backlog. Una historia entra a un sprint sólo con todos sus campos completos, que es la condición de listo.
+
+\begin{tabla}{I{0.250}I{0.500}I{0.250}}{Plantilla de historia de usuario}{tab:plantilla-historia-usuario}
+  {\cab{Campo} & \cab{Contenido} & \cab{Quién lo completa}}
+  {Fuente: elaboración propia a partir del Subdocumento 6.}
+Identificador y origen & Código de la historia y requerimiento de origen (RF o RNF del Formulario T-12), que se conserva hasta la prueba & Líder Funcional \\
+Módulo y equipo & Módulo de SITCO y equipo Scrum que la construye & Líder de Desarrollo \\
+Necesidad & Quién, qué necesita y para qué, en el lenguaje del área usuaria & Líder Funcional con el área \\
+Criterios de aceptación & Casos verificables, incluidos los RNF como condición (por ejemplo, registro en 2 s al percentil 95) & Líder Funcional y Calidad \\
+Dependencias & Historias, conectores o datos de otro equipo o del cliente que deben estar antes & Líder de Desarrollo \\
+Estimación & Puntos del equipo y riesgo técnico declarado & Equipo \\
+Evidencia de terminado & Pruebas automatizadas, revisión de código, análisis de seguridad y demostración aceptada & Equipo y Calidad \\
+\end{tabla}
+
 \begin{tabla}{I{0.248}I{0.256}I{0.259}I{0.237}}{Ceremonias y cadencias}{tab:ceremonias-cadencias}
   {\cab{Ceremonia} & \cab{Cadencia} & \cab{Participación} & \cab{Resultado}}
   {Fuente: elaboración propia a partir del Subdocumento 6.}

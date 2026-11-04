@@ -66,6 +66,23 @@ Comité ejecutivo & Mensual & Líneas base, hitos y cambios & Aprobación o rech
 Comité de operación & Mensual, desde el mes 13 & Cumplimiento de niveles de servicio, incidentes, problemas y plan de mejora continua; autorización de intervenciones menores en la ventana de 03:00 a 05:00 & Acuerdos de operación \\
 \end{tabla}
 
+La Tabla \ref{tab:matriz-raci-decisiones-gobierno} asigna cada decisión de gobierno con la matriz RACI: R ejecuta, A aprueba y rinde cuentas, C es consultado e I es informado.
+
+\begin{tabla}{I{0.310}D{0.115}D{0.115}D{0.115}D{0.115}D{0.115}D{0.115}}{Matriz RACI de las decisiones de gobierno}{tab:matriz-raci-decisiones-gobierno}
+  {\cab{Decisión} & \cab{JP} & \cab{AS} & \cab{SRE o GS} & \cab{Comité de proyecto} & \cab{Comité ejecutivo} & \cab{Contraparte Técnica}}
+  {Fuente: elaboración propia a partir del Subdocumento 6 y del Subdocumento 8.}
+Líneas base, hitos y cambios de alcance & R & C & C & C & A & C \\
+Aceptación de un hito del Formulario E-25 & R & C & I & I & I & A \\
+Decisión de arquitectura transversal & I & R & C & I & A si cambia una línea base & C \\
+Uso de la reserva de contingencia & A & C & R desde M21 & I & I & I \\
+Liberación de la reserva de gestión & R & C & C & I & A & I \\
+Paso a producción de una ola & R & C & R & C & I & A \\
+Intervención menor en la ventana de 03:00 a 05:00 & I & C & A & I & I & I \\
+Informe mensual de avance & A & C & C & I & I & I \\
+Registro de riesgos y disparadores & A & C & C & R & I & I \\
+\end{tabla}
+De la tabla se desprende que el cliente aprueba lo que afecta su operación y sus hitos, que el Comité Ejecutivo aprueba lo que cambia una línea base o libera reserva de gestión, y que la operación diaria queda en los roles de Overfore con registro.
+
 \seccion{Integración y control de cambios}
 Este apartado presenta el procedimiento que mantiene integrado el proyecto y el tratamiento de las solicitudes de cambio, desde su clasificación hasta su aplicación y trazabilidad.
 
@@ -106,6 +123,33 @@ Sindicato & Reticente & Neutral & Mesa de trabajo desde mes 2 y protocolo de bio
 Empresas contratistas & Desconocedor & Partidario & Capacitación por empresa antes de la marcha blanca & Registro \\
 \end{tabla}
 
+La Tabla \ref{tab:registro-interesados-19-grupos} es el registro de interesados: los 19 grupos del Subdocumento 2, su cuadrante en la matriz de poder e interés del Subdocumento 6, su preocupación principal, su forma de participación y el rol de Overfore que responde por la relación.
+
+\begin{tabla}{I{0.200}I{0.150}I{0.230}I{0.300}D{0.120}}{Registro de interesados}{tab:registro-interesados-19-grupos}
+  {\cab{Grupo de interés} & \cab{Cuadrante} & \cab{Preocupación principal} & \cab{Forma de participación} & \cab{Responsable}}
+  {Fuente: elaboración propia a partir del Subdocumento 3, Anexo C, y del Formulario T-16.}
+Directorio y gerencia general & Gestionar de cerca & Demostrar el origen antes de 2029 & Comité ejecutivo mensual con avance por hito & JP \\
+Gerencia de finanzas & Gestionar de cerca & Una sola verdad contable & Ratifica la fuente de verdad del tonelaje en el mes 3 & LDA \\
+Gerencia de operaciones mina & Gestionar de cerca & Rendimiento de la pala & Aprueba la botonera en el piloto con una pala & LIG \\
+Superintendencia de planta & Gestionar de cerca & Tonelaje confiable y red de control intocable & Define las señales que se leen & LDA \\
+Jefatura de mantenimiento & Gestionar de cerca & Alertas que nadie mira & Define y aprueba cada regla de alerta & LF \\
+Compradores internacionales & Gestionar de cerca & Evidencia verificable del origen & Revisa un lote piloto en 2028 & LF \\
+Sindicato & Gestionar de cerca & Uso de la biometría & Mesa de trabajo desde el mes 2 & JP \\
+TI & Gestionar de cerca & Operar la solución con once personas & Valida identidad federada, aislamiento de la red de control y traspaso & AS \\
+Seguridad y Salud Ocupacional & Gestionar de cerca & Registros con acción documentada & Valida formularios digitales y alertas de fatiga antes de la marcha blanca E2 & LDA \\
+Sustentabilidad y Asuntos Regulatorios & Gestionar de cerca & Reportes y huella armados a mano & Valida el cálculo del agua y de la huella antes de la marcha blanca E2 & LF \\
+Autoridad minera & Gestionar de cerca & Registros trazables para la fiscalización & Recibe los registros en la fiscalización & GS \\
+Planificación minera & Mantener informados & Plan que cambia sin registro & Valida el versionado en la marcha blanca & LF \\
+Personal del CIO & Mantener informados & Información que sólo existe en faena & Usuarios piloto de los tableros & LIG \\
+Supervisores y despachadores & Mantener informados & Más pantallas y más tiempo & Diseñan la taxonomía de demoras & LIG \\
+Metalurgistas y laboratorio & Mantener informados & Transcribir y perder los factores & Documentan los factores en los primeros meses & LDA \\
+Empresas contratistas & Mantener informados & Rechazos y viajes perdidos & Capacitación por empresa antes de la marcha blanca & LIG \\
+Operadores de equipos & Mantener informados & Pantallas inútiles con guantes y sol & Prueban la botonera de día y de noche & LIG \\
+Comunidad del convenio & Mantener informados & Indicadores de empleo y compras locales con planillas & Recibe los indicadores semestrales & GS \\
+Autoridad ambiental & Mantener satisfechos & Evidencia verificable de los reportes & Recibe los reportes generados desde SITCO & GS \\
+\end{tabla}
+De la tabla se desprende que cada grupo tiene un responsable de Overfore y una forma de participación concreta; los once que se gestionan de cerca participan en una decisión o validación con fecha.
+
 \seccion{Gestión de las comunicaciones}
 Este apartado presenta los canales, herramientas y reglas de comunicación del proyecto, junto con el plan de comunicaciones y sus metas de control.
 
@@ -131,6 +175,22 @@ Espacio colaborativo del proyecto & Equipo del proyecto y cliente & Permanente &
 Coordinación interna del equipo & Equipo Overfore & Diaria & Interactiva & ClickUp \\
 Revisión del sprint & Referentes y usuarios clave & Quincenal & Interactiva & Presencial o Teams \\
 Charla de inicio de turno & Usuarios de faena de cada ola & Dos semanas consecutivas por ola & Interactiva & Presencial en faena \\
+\end{tabla}
+
+La Tabla \ref{tab:plantilla-informe-mensual-avance} es la plantilla del informe mensual de avance (paquete 1.1.2.2 del Formulario T-14), que el Jefe de Proyecto entrega en los primeros cinco días hábiles de cada mes.
+
+\begin{tabla}{I{0.220}I{0.520}I{0.260}}{Plantilla del informe mensual de avance}{tab:plantilla-informe-mensual-avance}
+  {\cab{Sección} & \cab{Contenido} & \cab{Fuente}}
+  {Fuente: elaboración propia a partir del Subdocumento 6 y del Formulario T-14.}
+1. Resumen & Estado general, hitos del mes y decisiones que se piden al cliente & Comité de proyecto \\
+2. Avance y valor ganado & Valor planificado, ganado y real en HH; índices de cronograma y de costo; desviación por etapa & Línea base del T-14 y registro de horas \\
+3. Hitos & Hitos del Formulario E-25 cumplidos, en curso y próximos, con su evidencia & Documento de hitos (1.1.2.1) \\
+4. Incremento & Funciones terminadas por equipo, velocidad y demostraciones del mes & Revisiones de sprint \\
+5. Calidad & Defectos por gravedad, cobertura de pruebas y resultado de las puertas de calidad & Plan de calidad (Subdocumento 9) \\
+6. Riesgos y reservas & Riesgos de zona alta, disparadores activados y consumo de las reservas & Registro de riesgos (Formulario T-16) \\
+7. Cambios & Solicitudes de cambio, su impacto y su estado & Registro de cambios (1.1.2.3) \\
+8. Interesados & Participación medida frente a la deseada y acciones & Registro de interesados \\
+9. Adquisiciones & Estado de contratos, entregas y recepciones & Listado de adquisiciones \\
 \end{tabla}
 
 \seccion{Gestión de las adquisiciones}
