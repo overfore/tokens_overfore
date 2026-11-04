@@ -31,13 +31,13 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 ## General · Formalidad (2 %)
 
 - [x] **Alta [Decisión]** Correo `overfore60@gmail.com` y sitio `lucasdzamora.github.io/FEP_Proyecto` (S1 Tabla 1.1; T-12 RT-23.01 a 23.04): usar un dominio de la empresa o quitar el sitio. → _Hecho (DEC-019): correo con dominio propio y sin sitio personal en el S1._
-- [ ] **Alta** 8 figuras bajo 9 pt: 7.3 (5,5), 4.23 (5,8), 7.4 (6,7), 6.7 (7,7), 1.1, 6.9 y 9.3 (8,7), 4.36 (8,9). Medir con `python herramientas/medir_figuras.py`.
+- [ ] **Alta** 7 figuras bajo 9 pt: 7.3 (5,5), 4.23 (5,8), 7.4 (6,7), 6.7 (7,7), 6.9 y 9.3 (8,7), 4.36 (8,9). La 1.1 quedó en 10,2 pt (LC-03). Medir con `python herramientas/medir_figuras.py`.
 - [ ] **Media [Decisión]** Volumen: pasar listados del cuerpo a anexos o formularios (el profesor contó 1.035 páginas sólo en los ítems del Informe 1; el S4 no cumple la proporción cuerpo/detalle).
 - [ ] **Alta** Lectura de cierre humana completa de todos los archivos, registrada con nombre y fecha.
 
 ## S1 · Presentación de la empresa (1 %)
 
-- [ ] **Alta [Decisión]** Una sola cifra de desarrolladores y técnicos de terreno: Figura 1.1 y 1.2 dicen 5 desarrolladores, el texto dice ocho (meses 3–11), el Anexo F llega a 10 técnicos (folios 7, 12, 13, 33). Debe coincidir con el T-15 (DEC-013 / R-05).
+- [x] **Alta [Decisión]** Una sola cifra de desarrolladores y técnicos de terreno: Figura 1.1 y 1.2 dicen 5 desarrolladores, el texto dice ocho (meses 3–11), el Anexo F llega a 10 técnicos (folios 7, 12, 13, 33). Debe coincidir con el T-15 (DEC-013 / R-05). → _Hecho: texto (DEC-017) y Figuras 1.1 y 1.2 redibujadas en LC-03._
 - [x] **Alta** Reescribir el párrafo de ISO/IEC 42001 en una sola idea: qué se certifica, cuándo y qué alcance tiene sobre la verificación facial (folio 11). → _Hecho._
 - [x] **Alta** Analizar en 1.4 por qué proyectos de hasta USD 800.000 respaldan un contrato de la escala de Aranda (alcance, plazo, sitios, 24x7), no sólo por camiones y personas (folio 10). → _Hecho._
 - [x] **Media** Anexo E: dice que la persona ejerce los dos roles «sólo desde la primera ola del paso de la Etapa 2 hasta el acta de H12», mientras la Tabla E.1 la pone como JP en M1–M21 y Gerente de Servicio en M21–M56 (folios 28–29). → _Hecho._
@@ -47,7 +47,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [x] **Alta** Desarrollar en 2.2 la investigación de dominio con contenido propio: cálculo de la conciliación metalúrgica y sus factores, IEC 62443 aplicada a la lectura del historiador (zonas y conductos), fórmula de liquidación con ley pagable, cargos y penalidad por arsénico. → _Hecho: nueva subsección «Conceptos de la industria que condicionan la solución»._
 - [ ] **Alta** Llevar al cuerpo el análisis de las particularidades operacionales, regulatorias y estacionales; dejar en el Anexo C sólo el listado (hoy el 2.2 remite a C.3–C.9).
 - [x] **Media** Tabla 2.5: la columna «Consultados al cliente» dice «SUP-30» en lugar de «1» (folio 75). → _Hecho._
-- [ ] **Media** Figura 2.1 titulada «Faena (Antofagasta Norte)»; la faena está en Sierra Gorda (folio 50). Las Figuras 2.1–2.3 son renders sobre capturas satelitales que no aportan al problema. → _Leyenda corregida; reemplazar los renders es opcional._
+- [x] **Media** Figura 2.1 titulada «Faena (Antofagasta Norte)»; la faena está en Sierra Gorda (folio 50). Las Figuras 2.1–2.3 son renders sobre capturas satelitales que no aportan al problema. → _Hecho: leyenda corregida a Sierra Gorda; reemplazar los renders es opcional._
 - [x] **Forma** Citas de las Bases con un solo estilo y con entrada «CMAA» en la lista; distinguir las tres capturas de Google como «s. f.-a, -b, -c» (folios 50–52, 77). 🔎 → _Hecho para Google (s. f.-a, -b, -c); el estilo CMAA ya es uniforme._
 
 ## S3 · Esquema de solución y alcance (10 %)
@@ -89,7 +89,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 
 ## S6 · Metodologías (6 %)
 
-- [ ] **Alta [Decisión]** Un solo registro de interesados en S2, S3 y S6 (19 o 14) con su cálculo de canales (hoy S6 y T-9: 14 y 91 canales; S2 y S3: 19) — DEC-012 / R-04. → _Hecho en texto (DEC-018); faltan las Figuras 6.4 y 6.5._
+- [x] **Alta [Decisión]** Un solo registro de interesados en S2, S3 y S6 (19 o 14) con su cálculo de canales (hoy S6 y T-9: 14 y 91 canales; S2 y S3: 19) — DEC-012 / R-04. → _Hecho: texto (DEC-018) y Figuras 6.4 y 6.5 con 19 grupos en LC-03._
 - [x] **Alta** Declarar quién autoriza entre sesiones las intervenciones de la ventana de 03:00 a 05:00 (el Comité de Operación es mensual) y con qué registro. → _Hecho._
 - [x] **Alta** Incorporar a la metodología la acreditación del personal de Overfore (tiempos, examen de altura; restricción 12 y RT-21.16) y el plan de traspaso al equipo de TI del cliente de once personas (restricción 10, Art. 77). → _Hecho._
 - [ ] **Alta** Extender la estrategia de anillos a las 176 tabletas de camiones, supervisores, portería y SSO (hoy sólo botonera de palas) y darle paquete en el T-14 y tarea en la Gantt. → _Hecho en S6 y T-10; sin paquete propio en el T-14 (DEC-021)._
@@ -109,7 +109,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [ ] **Crítico** Mostrar en la Gantt sprints, revisiones, liberaciones y puertas de calidad del S6 y el S9.
 - [ ] **Alta [Decisión]** Contrastar la estimación con una medida de tamaño (Puntos de Casos de Uso u otra) y no despejar el PERT de una cifra fijada (el 77,5 % de las HH no tiene PERT) — R-01.
 - [x] **Alta** Cuadrar la rama 1.7: 3.000 HH en T-14/T-15 y 2.920 en el T-19. → _Hecho: 3.000 HH en T-14, T-15 y T-19._
-- [ ] **Alta** Cuadrar la dotación de desarrolladores con el S1 (ver S1). → _Hecho en texto (DEC-017); faltan las Figuras 1.1 y 1.2._
+- [x] **Alta** Cuadrar la dotación de desarrolladores con el S1 (ver S1). → _Hecho: texto (DEC-017) y Figuras 1.1 y 1.2 en LC-03._
 - [ ] **Alta** Figuras 7.3 (ruta crítica, ~5,5 pt) y 7.4 (calendario, ~6,7 pt) en 9 pt.
 - [x] **Media** Criterio contradictorio del 1.4.6.2: «Sin errores en la muestra… con tasa de error bajo 1,5 %». → _Hecho: se explica con la regla del tres._
 - [x] **Media** Tabla 7.1: mostrar la regla de imputación (la marcha blanca de la Etapa 1 incluye 2.360 HH de los meses 16–17). → _Hecho._
@@ -142,7 +142,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [x] **Media** El 9.3.3 remite los paquetes a «Subdocumento 7, 7.1», que no los lista: remitir al T-14. → _Hecho._
 - [ ] **Media** Citar las Bases con el mismo autor en todos los subdocumentos.
 - [ ] **Media** Figura 9.3 bajo 9 pt (~8,7).
-- [ ] **Forma** La Figura 9.1 omite los Anexos D y E; el listado de tablas de los anexos omite A.1 y A.2. 🔎
+- [ ] **Forma** El listado de tablas de los anexos del S9 omite A.1 y A.2. 🔎 → _La Figura 9.1 ya incluye los Anexos D y E (LC-03)._
 - [ ] **Forma** Nomenclatura de tablas del T-13 idéntica entre el S9 y el formulario. 🔎
 
 ## S13 · Innovaciones (8 %)
