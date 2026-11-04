@@ -6,6 +6,20 @@ Figuras que hay que editar en su origen (draw.io o imagen) para cerrar la Primer
 
 **Prioridad:** primero las que cambian contenido o contradicen el texto (A), después las que sólo están bajo 9 pt (B), y al final las que están en el límite (C).
 
+## Actualizado el 04-11-2026 (tarea LC-03)
+
+Exportadas a 300 ppp con mxGraph desde `diagramas/Diagramas OVERFORE.drawio` y medidas con el método de `medir_figuras.py`:
+
+| Figura | Cambio | Letra medida |
+|---|---|---|
+| 1.1 | Página nueva en draw.io; 8 desarrolladores (7 desde M13), hasta 10 técnicos de terreno, 45 personas en M14 | 10,2 pt |
+| 1.2 | 8 desarrolladores (7 desde M13), 1 a 2 analistas de datos, 4 digitalizadores, hasta 10 técnicos; letra más grande | 9,7 pt |
+| 6.4 | Página nueva con los 19 grupos en el diseño compacto del informe | 11,1 pt |
+| 6.5 | Página nueva con los 19 grupos, clasificados según la Tabla 2.3 del S2 | 10,6 pt |
+| 9.1 | Anexos D y E agregados | 10,2 pt |
+
+Las filas de esas figuras en las tablas A y B quedan cerradas.
+
 ---
 
 ## A. Cambiar contenido (hoy contradicen el texto o la revisión)
