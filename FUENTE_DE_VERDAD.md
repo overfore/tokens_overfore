@@ -75,6 +75,7 @@ Para cualquier edición, ampliar esta lista con los consumidores encontrados por
 | Registro de riesgos | 22 riesgos numerados R-01 a R-22 y 4 oportunidades; 3 críticos y 8 altos antes, 12 bajos y 10 medios después; decisión documentada | S8, A8 y T-16 desde LC-03 (DEC-023). los seis internos del Informe 2 (sus R-14, R-15, R-18, R-19, R-23 y R-24) se retiraron y se llaman RI-01 a RI-06 (T-16, sección F). Renumeración del Informe 2 al 3: R-16→R-14, R-17→R-15, R-20→R-16, R-21→R-17, R-22→R-18; nuevos R-19 a R-22 |
 | Exposición agregada de riesgos | 4,835 inherente → 2,050 residual (58 %); cálculo de la propuesta | S8 y A8 desde LC-03 (antes 5,06 → 2,01 con 24 riesgos) |
 | Reserva de contingencia | 1.339 HH netas (1.403 brutas menos 64 de O-02), incluye 200 HH del residual de los riesgos internos resueltos; 0,8 semanas en la Etapa 1 | A8, Anexo E, y S8 desde LC-03 (antes 997 / 1.061 HH) |
+| Reserva de gestión | 3.060 HH (5 % de 61.194 HH), sólo para lo no identificado; sin reserva de gestión de plazo; decisión documentada | S8 y A8 desde LC-04 (DEC-024). Antes 5.372 HH, que ahora es la contingencia de estimación |
 
 No cambiar estas cifras para hacer coincidir resúmenes. Primero recalcular las fichas y después sus derivados. Este inventario inicial no sustituye la extracción de otros parámetros cuando una tarea los necesita.
 

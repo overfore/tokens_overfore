@@ -26,6 +26,10 @@ Exportadas a 300 ppp con mxGraph desde `diagramas/Diagramas OVERFORE.drawio` y m
 | 8.3 | RBS con 22 riesgos, identificador R-xx y zona inherente en cada caja, siete ramas numeradas (página nueva en draw.io) | 9,7 pt |
 | 8.4 y 8.6 | Matrices con los 22 riesgos, antes y después (matplotlib) | 11,1 pt |
 
+**Corrección del 04-11-2026 (LC-04):** `\figura` limita el alto al 70 % de la página (82 % en hoja horizontal), así que una figura alta se imprime más angosta que el ancho pedido. Medidas con `medir_figuras.py` sobre el PDF, 1.2, 6.5 y 8.3 quedaban bajo 9 pt y se corrigieron: 1.2 → 9,7 pt (rehecha en draw.io), 6.5 → 10,2 pt y 8.3 → 10,2 pt. Al exportar una figura, medirla al ancho real: mín(ancho pedido, alto máximo / proporción).
+
+**Requieren exportar desde draw.io** (usan íconos de bibliotecas que el renderizador local no dibuja): 4.23 (vista general, ~5,8 pt) y 4.36 (~8,9 pt; subir la letra un 10 % y revisar los rótulos «fuera de sitio», «Lectura y escritura» y «Identidad y secretos»). **Sin origen editable:** 6.7, 6.9, 7.3 y 7.4, que hay que redibujar. La 9.3 se regeneró con matplotlib (11,5 pt).
+
 Las filas de esas figuras en las tablas A y B quedan cerradas.
 
 ---

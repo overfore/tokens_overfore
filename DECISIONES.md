@@ -212,6 +212,13 @@ Los ADR-01 a ADR-08 se encuentran en [S4, registro de decisiones de arquitectura
 - **Recálculo:** 22 riesgos; exposición 4,835 → 2,050 (58 %); 3 críticos y 8 altos antes, 12 bajos y 10 medios después; FMEA sobre 11 riesgos (R-19 con RPN 200); contingencia 1.339 HH netas; costo-beneficio de las medidas con costo sigue en 704 HH, 1.250 HH y 1,8. La simulación de la Etapa 1 conserva sus cinco eventos (tres del registro y dos causas internas) y sus resultados.
 - **Aplicado en:** S8, S8-Anexos, T-16; Figuras 8.3, 8.4 y 8.6. **Pendiente:** reserva de gestión para lo no identificado y planes de contingencia de los riesgos que mantienen impacto alto (otras observaciones del S8).
 
+## DEC-024 — Reserva de gestión sólo para lo no identificado
+
+- **Estado:** documentada el 2026-11-04 por Claude a pedido del usuario («hazlo todo lo que puedas»), con el criterio de menor cambio; sin validación del equipo.
+- **Decisión:** la reserva de gestión es 3.060 HH, el 5 % de las 61.194 HH de las ramas 1.1–1.7 (PMI, 2017, 7.2.2.6), fuera de la línea base, liberada sólo por el Comité Ejecutivo; 1.836 HH para la Etapa 1 y 1.224 HH para la Etapa 2. El margen de M11 (2,8 semanas al P80), las ventanas de 7 y 2 días y el caso extremo de la estimación (5.372 HH) pasan a contingencia. No hay reserva de gestión de plazo porque los hitos del Art. 17 son fijos.
+- **Motivo:** la revisión observa que los componentes anteriores eran holgura de contingencia e incertidumbre de estimación (riesgos conocidos), no reserva para lo desconocido. El 5 % coincide con el umbral de impacto muy alto del Anexo A.
+- **Aplicado en:** S8 (8.3.3 y Tabla de reservas), S8-Anexos (Anexo E), S7 y T-14 (párrafo de incertidumbre). **Pendiente:** valorizar las 3.060 HH en la Oferta Económica (Informe 3).
+
 ## Cobertura y límites del registro inicial
 
 S1 y S2 tienen conflictos registrados; S3 conserva el reparto de alcance; S4 aporta ocho ADR; S5 desarrolla propiedad y migración de datos; S6 define métodos; S7 aporta estimación; S8 gobierna riesgos; S9 pruebas; S13 innovaciones. Sus relaciones están en el mapa de autoridad.

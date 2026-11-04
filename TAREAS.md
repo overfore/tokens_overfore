@@ -38,6 +38,7 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 | LC-01 | Media / lectura de cierre | Corregir erratas, oraciones rotas, citas inexistentes e indicios «dudosos» que señaló la Primera Revisión del Informe 2 y que siguen en el LaTeX | en_revision | Claude, sesión 2026-11-03, rama claude/kind-heisenberg-egckbe | Pendiente (sólo autorrevisión) |
 | LC-02 | Alta / revisión del profesor | Corregir lo pendiente de la Primera Revisión del Informe 2 tomando la decisión de menor cambio; figuras en md aparte | en_revision | Claude, sesión 2026-11-03, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
 | LC-03 | Alta / revisión del profesor | Figuras de las decisiones de LC-02 y 800 HH del plan de riesgos dentro de la EDT (T-14, T-15, S7, S8) | en_revision | Claude, sesión 2026-11-04, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
+| LC-04 | Alta / revisión del profesor | Pendientes de la revisión que no requieren al equipo: figuras a tamaño real, reserva de gestión, ADR de recuperación, LTE, T-11, T-18 y S6 | en_revision | Claude, sesión 2026-11-04, rama claude/kind-heisenberg-egckbe, a pedido del usuario | Pendiente (sólo autorrevisión) |
 | E3-01 | Planificada / entrega 3 | Documento económico, planilla, flujo, curva S, VAN/TIR e innovaciones | pendiente | Sin asignar | Sin asignar |
 | E3-02 | Planificada / entrega 3 | Prototipo navegable y evidencia de requisitos UX/UI | pendiente | Sin asignar | Sin asignar |
 
@@ -196,6 +197,14 @@ El origen de R-01 a R-10 y E3-01/E3-02 es el [informe interno de revisión](revi
 - **Riesgos (DEC-023):** R-01 a R-04 y R-13 reformulados como exposición del cliente; seis riesgos internos retirados (RI-01 a RI-06, T-16, sección F); cuatro externos agregados con ficha, P × I, respuesta, dueño y disparador. Recalculados registro, zonas, ramas, categorías, perspectivas, FMEA, contingencia, costo-beneficio y Anexo G en S8, S8-Anexos y T-16. Registro renumerado de R-01 a R-22 a pedido del usuario, con sus citas. Figuras 8.3 (RBS con R-xx, zonas y siete ramas numeradas; página en draw.io), 8.4 y 8.6 (matplotlib) rehechas a 300 ppp.
 - **Fuera de alcance (sigue pendiente):** reserva de gestión para lo no identificado y planes de contingencia de los riesgos que mantienen impacto alto; dependencias, sprints, puertas y reserva en las cartas Gantt (F-03); figuras 4.23, 4.36, 6.7, 6.9, 7.3, 7.4 y 9.3.
 - **Validación 2026-11-04:** `python compilar.py --reglas`: 0 errores (los 9 avisos de R-08). `python compilar.py` en modo normal: 31 documentos sin error y sin referencias indefinidas, 1.328 folios tras la EDT y 1.329 tras los riesgos (estable en 3 pasadas). Figuras medidas con el método de `medir_figuras.py`. Entorno: TeX Live 2023 en Linux. No se versionan PDF ni auxiliares. Sólo autorrevisión.
+
+### LC-04 — Pendientes de la revisión resueltos sin el equipo
+
+- **Estado:** en_revision. Responsable: Claude, sesión 2026-11-04, a pedido del usuario («hazlo todo lo que puedas»). Revisión independiente pendiente.
+- **Figuras:** la medición oficial sobre los PDF mostró que `\figura` reduce las figuras altas para que quepan en 70 % del alto de página (82 % en horizontal), por lo que 1.2 (8,2 pt), 6.5 (8,4) y 8.3 (8,9) quedaban bajo 9 pt. Se rehízo 1.2 en draw.io (letra 21,5, cajas según su texto; se quitó «desde M1» repetido), se comprimió 6.5 en vertical y se compactó 8.3; ahora miden 9,7, 10,2 y 10,2 pt a su tamaño impreso. Carta C.2 reexportada con los rombos de hito. 9.3 regenerada con matplotlib con los mismos datos (11,5 pt). 4.23 y 4.36 usan bibliotecas de íconos de draw.io que el renderizador local no dibuja: deben exportarse desde draw.io.
+- **Texto:** reserva de gestión (DEC-024) en S8, S8-Anexos, S7 y T-14; ADR-09 y ADR-10 en el S4 y oración rota corregida; brechas de la LTE del rajo y RT-06.07 de las UPS en el S4 (más la referencia CMAA 2026c); H4 y mes 11 en el S6; dotación de las semanas 1 y 2 de la marcha blanca en la T-18; T-11 renumerado T11-01 a T11-67 con sus citas.
+- **Sin cifra:** latencia Chile Central–Brazil South: la tabla pública de Azure no la informa; queda para el equipo.
+- **Validación 2026-11-04:** `python compilar.py --reglas`: 0 errores. `python compilar.py` en modo normal: 31 documentos sin error y sin referencias indefinidas, estable en 3 pasadas, 1.329 folios. `medir_figuras.py` sobre los PDF: 161 figuras, 6 bajo 9 pt (4.23, 4.36, 6.7, 6.9, 7.3 y 7.4; antes 10). Sólo autorrevisión.
 
 ### E3-01 — Economía de entrega 3
 

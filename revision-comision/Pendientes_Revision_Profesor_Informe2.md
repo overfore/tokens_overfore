@@ -31,7 +31,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 ## General · Formalidad (2 %)
 
 - [x] **Alta [Decisión]** Correo `overfore60@gmail.com` y sitio `lucasdzamora.github.io/FEP_Proyecto` (S1 Tabla 1.1; T-12 RT-23.01 a 23.04): usar un dominio de la empresa o quitar el sitio. → _Hecho (DEC-019): correo con dominio propio y sin sitio personal en el S1._
-- [ ] **Alta** 7 figuras bajo 9 pt: 7.3 (5,5), 4.23 (5,8), 7.4 (6,7), 6.7 (7,7), 6.9 y 9.3 (8,7), 4.36 (8,9). La 1.1 quedó en 10,2 pt (LC-03). Medir con `python herramientas/medir_figuras.py`.
+- [ ] **Alta** 6 figuras bajo 9 pt según `medir_figuras.py` (04-11-2026): 7.3 (5,5), 4.23 (5,8), 7.4 (6,7), 6.7 (7,7), 6.9 (8,7) y 4.36 (8,9). 4.23 y 4.36 se exportan desde draw.io; las otras cuatro no tienen origen editable.
 - [ ] **Media [Decisión]** Volumen: pasar listados del cuerpo a anexos o formularios (el profesor contó 1.035 páginas sólo en los ítems del Informe 1; el S4 no cumple la proporción cuerpo/detalle).
 - [ ] **Alta** Lectura de cierre humana completa de todos los archivos, registrada con nombre y fecha.
 
@@ -61,7 +61,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 
 ## S4.1 · Arquitectura lógica (5 %)
 
-- [ ] **Alta [Decisión]** Llevar a ADR la región de recuperación (Brazil South) y el descarte del CIO como sitio de recuperación.
+- [x] **Alta [Decisión]** Llevar a ADR la región de recuperación (Brazil South) y el descarte del CIO como sitio de recuperación. → _Hecho: ADR-09 y ADR-10 en texto, sección del data center secundario del S4._
 - [ ] **Alta** Convertir los ADR del cuerpo en texto con una tabla de síntesis y dejar el registro completo en anexo (las Tablas ADR usan «Campo | Contenido», que la Aclaración no acepta; son los 9 avisos de R-08).
 - [x] **Media** Los ocho ADR citan como fuente «análisis de decisiones con múltiples criterios (PMI, 2017)»: el PMBOK no es fuente de un ADR. → _Hecho._
 - [ ] **Media** Matriz RF → componente: la Tabla 4.17 da totales y ejemplos; el mapeo completo está sólo en el T-12 y el Anexo B.
@@ -70,14 +70,14 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 
 ## S4.2 · Arquitectura física (10 %)
 
-- [ ] **Alta [Decisión]** Cuantificar la latencia Chile Central → Brazil South y el costo de la región de recuperación frente al CIO, con fuente citada (hoy la comparación es cualitativa, folio 599). 🔎
-- [ ] **Alta** Especificar qué faltaría en la LTE del rajo para las zonas de sombra según el estudio de cobertura (Cap. 11 del caso; T11-66).
+- [ ] **Alta [Decisión]** Cuantificar la latencia Chile Central → Brazil South y el costo de la región de recuperación frente al CIO, con fuente citada (hoy la comparación es cualitativa, folio 599). 🔎 → _Sin cifra publicada para Chile Central en la tabla de latencias de Azure (learn.microsoft.com/azure/networking/azure-network-latency) consultada el 04-11-2026; el equipo debe medirla o citar otra fuente._
+- [x] **Alta** Especificar qué faltaría en la LTE del rajo para las zonas de sombra según el estudio de cobertura (Cap. 11 del caso; T11-66). → _Hecho en el S4 (Z08): cobertura del fondo del rajo y botadero norte, capacidad en el cambio de turno, estudio 1.3.1.5._
 - [ ] **Alta** Figuras 4.26 y 4.27 (nube) con zonas, SKU y subredes dibujadas, no sólo en el texto.
 - [ ] **Alta** Figura 4.23 (vista general de la topología) bajo 9 pt (~5,8) y 4.36 (~8,9).
-- [ ] **Media** Declarar contra qué requisito del Cap. 6 de las Transversales se dimensionan los 30 min de autonomía de las UPS de la sala técnica (los gabinetes tienen 60).
-- [ ] **Media** T-11: numeración con huecos (faltaban T11-49, -52, -61, -62) y «67 ítems» con identificadores hasta T11-71. 🔎
+- [x] **Media** Declarar contra qué requisito del Cap. 6 de las Transversales se dimensionan los 30 min de autonomía de las UPS de la sala técnica (los gabinetes tienen 60). → _Hecho: RT-06.07 (30 min a plena carga) citado en el S4._
+- [x] **Media** T-11: numeración con huecos (faltaban T11-49, -52, -61, -62) y «67 ítems» con identificadores hasta T11-71. 🔎 → _Hecho: T11-01 a T11-67 consecutivos y citas actualizadas en T-12, S4-Anexos y T-16._
 - [x] **Forma** Referencias de la lista sin cita (ISO/IEC 27001, 27002, 27017, 27018; Microsoft s.f.-c y -k; Bases Transversales 2026c). 🔎 → _Verificado: ya no están en la lista._
-- [ ] **Forma** Palabras cortadas por columnas angostas («Etap a» en la Tabla 4.22; «Herramient a» en la 4.33). 🔎
+- [x] **Forma** Palabras cortadas por columnas angostas («Etap a» en la Tabla 4.22; «Herramient a» en la 4.33). 🔎 → _Verificado: no aparecen en los PDF actuales._
 
 ## S5 · Modelo y gestión de datos (5 %)
 
@@ -94,10 +94,10 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [x] **Alta** Incorporar a la metodología la acreditación del personal de Overfore (tiempos, examen de altura; restricción 12 y RT-21.16) y el plan de traspaso al equipo de TI del cliente de once personas (restricción 10, Art. 77). → _Hecho._
 - [ ] **Alta** Extender la estrategia de anillos a las 176 tabletas de camiones, supervisores, portería y SSO (hoy sólo botonera de palas) y darle paquete en el T-14 y tarea en la Gantt. → _Hecho en S6 y T-10; sin paquete propio en el T-14 (DEC-021)._
 - [ ] **Alta** Llevar los sprints, demostraciones y liberaciones a la Gantt (ver S7).
-- [ ] **Media** Explicar qué entra a pruebas en H4 (mes 10) y qué se termina en el mes 11.
+- [x] **Media** Explicar qué entra a pruebas en H4 (mes 10) y qué se termina en el mes 11. → _Hecho en el S6, párrafo de capacidad de los equipos: qué recibe H4 en el mes 10 y qué se corrige en el mes 11._
 - [ ] **Media** T-9 y T-10: agregar detalle operativo (matriz RACI, plantilla del informe mensual, registro de interesados) en lugar de repetir el S6.
 - [ ] **Media** Figuras 6.7 (~7,7 pt) y 6.9 (~8,7 pt) bajo 9 pt.
-- [ ] **Forma** El T-9 lista la referencia 2026c sin citarla. 🔎
+- [x] **Forma** El T-9 lista la referencia 2026c sin citarla. 🔎 → _Verificado: ya no está._
 
 ## S7 · Plan de trabajo, EDT, cronograma (12 %)
 
@@ -113,7 +113,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [ ] **Alta** Figuras 7.3 (ruta crítica, ~5,5 pt) y 7.4 (calendario, ~6,7 pt) en 9 pt.
 - [x] **Media** Criterio contradictorio del 1.4.6.2: «Sin errores en la muestra… con tasa de error bajo 1,5 %». → _Hecho: se explica con la regla del tres._
 - [x] **Media** Tabla 7.1: mostrar la regla de imputación (la marcha blanca de la Etapa 1 incluye 2.360 HH de los meses 16–17). → _Hecho._
-- [ ] **Media [Decisión]** T-18: justificar o reforzar una sola persona por turno en las semanas 1 y 2 de la marcha blanca de la Etapa 1, cuando entra portería.
+- [x] **Media [Decisión]** T-18: justificar o reforzar una sola persona por turno en las semanas 1 y 2 de la marcha blanca de la Etapa 1, cuando entra portería. → _Hecho: justificada en la T-18 (sólo portería con la credencial existente) con regla de refuerzo._
 - [x] **Media** Discutir en el cuerpo la holgura cero y qué se hace si se atrasa la cadena del núcleo. → _Hecho (7.3.1)._
 - [ ] **Forma** Índice del T-14 con todas las secciones; fuentes del T-15 con páginas relativas («p. 45») en lugar de folio. 🔎 → _Fuentes del T-15 sin páginas relativas; índice del T-14 por verificar._
 
@@ -122,7 +122,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [x] **Crítico [Decisión]** Retirar del registro los 11 riesgos internos del proveedor (R-01 a R-04, R-13 a R-15, R-18, R-19, R-23, R-24) y resolverlos en la propuesta; reformular obsolescencia, bloqueo por proveedor, escalabilidad y ciberseguridad como exposición del cliente. → _Hecho en LC-03 (DEC-023): R-01 a R-04 y R-13 reformulados; seis retirados como RI-01 a RI-06 con su resolución en el T-16, sección F; registro renumerado R-01 a R-22._
 - [x] **Crítico [Decisión]** Agregar los riesgos externos que el caso anticipa: invierno altiplánico (enero–febrero, coincide con M13), auditoría y recertificación de 2029, exigencias de los compradores desde 2029 y emergencias. → _Hecho en LC-03: nuevos R-19 a R-22 (numeración nueva) con ficha completa._
 - [x] **Alta [Decisión]** Incorporar las 704 HH preventivas y las 96 HH de continuidad a paquetes del T-14 y a la nivelación del T-15 (la regla de zona alta lo exige). → _Hecho en LC-03 (DEC-022): paquetes 1.1.3.3 y 1.1.3.4; total 183.866 HH; T-15, S7, S8 y figuras B.1/7.1, B.2, C.2, D.1/7.2 y D.2 actualizados._
-- [ ] **Alta [Decisión]** Redefinir la reserva de gestión como reserva para lo no identificado; dejar la holgura de M11 y la incertidumbre de estimación como contingencia; mostrar la reserva de plazo en la Gantt.
+- [x] **Alta [Decisión]** Redefinir la reserva de gestión como reserva para lo no identificado; dejar la holgura de M11 y la incertidumbre de estimación como contingencia; mostrar la reserva de plazo en la Gantt. → _Hecho en LC-04 (DEC-024): gestión = 3.060 HH para lo no identificado; margen de M11, ventanas y caso extremo de la estimación como contingencia. La reserva de plazo visible en la Gantt sigue con F-03._
 - [x] **Alta** Justificar por escrito las respuestas con beneficio/costo bajo 1 (R-01 0,7; R-09 0,9; R-24 0,8) o cambiar la estrategia. → _Hecho._
 - [x] **Alta** Descontar R-15 de la exposición agregada (se cuenta dos veces). → _Hecho: 5,06 → 2,01, reducción de 60 %._
 - [x] **Alta** Rehacer la Figura 8.3 con identificadores R-xx, zonas y la séptima rama numerada; alinear los nombres del párrafo con las ramas dibujadas. → _Hecho en LC-03 (9,7 pt); texto y Anexo B usan los nombres de la figura._
@@ -141,7 +141,7 @@ Sólo lo que falta corregir de la Primera Revisión del Informe 2 (`revisiones-p
 - [x] **Media** Declarar qué campaña de calidad se sacrifica primero si se atrasa el mes 21. → _Hecho: escalamiento al Comité con criterio fijo._
 - [x] **Media** El 9.3.3 remite los paquetes a «Subdocumento 7, 7.1», que no los lista: remitir al T-14. → _Hecho._
 - [ ] **Media** Citar las Bases con el mismo autor en todos los subdocumentos.
-- [ ] **Media** Figura 9.3 bajo 9 pt (~8,7).
+- [x] **Media** Figura 9.3 bajo 9 pt (~8,7). → _Hecho en LC-04 (11,5 pt)._
 - [ ] **Forma** El listado de tablas de los anexos del S9 omite A.1 y A.2. 🔎 → _La Figura 9.1 ya incluye los Anexos D y E (LC-03)._
 - [ ] **Forma** Nomenclatura de tablas del T-13 idéntica entre el S9 y el formulario. 🔎
 
